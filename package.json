@@ -1,0 +1,50 @@
+{
+  "name": "kws3-storybooks-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build-storybook": "build-storybook -s public -o build",
+    "storybook": "start-storybook -p 9009 -s public"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.m?js$": "babel-jest",
+      "^.+\\.html$": "svelte-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "html"
+    ]
+  },
+  "dependencies": {
+    "global": "^4.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@storybook/addon-actions": "4.0.0-alpha.20",
+    "@storybook/addon-backgrounds": "4.0.0-alpha.20",
+    "@storybook/addon-centered": "4.0.0-alpha.20",
+    "@storybook/addon-knobs": "4.0.0-alpha.20",
+    "@storybook/addon-links": "4.0.0-alpha.20",
+    "@storybook/addon-notes": "4.0.0-alpha.20",
+    "@storybook/addon-options": "4.0.0-alpha.20",
+    "@storybook/addon-storyshots": "4.0.0-alpha.20",
+    "@storybook/addon-storysource": "4.0.0-alpha.20",
+    "@storybook/addon-viewport": "4.0.0-alpha.20",
+    "@storybook/addons": "4.0.0-alpha.20",
+    "@storybook/svelte": "4.0.0-alpha.20",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.5.0",
+    "moment": "^2.22.2",
+    "svelte": "^2.13.2",
+    "svelte-jest": "^0.2.0",
+    "svelte-loader": "^2.11.0"
+  }
+}
