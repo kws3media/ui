@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/svelte';
+import "./common.scss";
 
 import WelcomeView from './views/WelcomeView.html';
 import ButtonView from './views/ButtonView.html';
