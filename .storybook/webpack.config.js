@@ -8,5 +8,15 @@ module.exports = (storybookBaseConfig, configType, defaultConfig) => {
     enforce: 'pre',
   });
 
+  defaultConfig.module.rules.push({
+    test: /\.scss$/,
+    include: path.resolve(__dirname, '../src'),
+    use: [
+      'style-loader',
+      'css-loader',
+      'sass-loader'
+    ]
+  })
+
   return defaultConfig;
 };
