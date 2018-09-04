@@ -1,0 +1,32 @@
+<button class="button {classes} {tracker.saving ? 'is-loading' : (tracker.error ? 'is-danger' : (tracker.saved ? 'is-success' : ''))}" type="submit" disabled="{disabled}" data-cy="{cy}">
+  {#if tracker.saved}
+    <Icon icon="check" size="{icon_size}" /> <span>{saved_text}</span>
+  {:else}
+    <Icon icon="{icon}" size="{icon_size}" /> <span>{text}</span>
+  {/if}
+</button>
+
+
+<script>
+  import Icon from './Icon.html';
+
+  export default {
+    data: function(){
+      return {
+        classes: 'is-primary',
+        text: 'Save Changes',
+        saved_text: 'Saved',
+        icon: 'save',
+        icon_size:'',
+        tracker:{
+          saving: false,
+          saved: false,
+          error: false
+        },
+        disabled: false
+      }
+    },
+    components:{Icon}
+  }
+
+</script>
