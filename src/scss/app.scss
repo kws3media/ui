@@ -5,6 +5,9 @@
 //bulma itself
 @import "../../node_modules/bulma/bulma";
 
+html{
+  overflow-x: scroll;
+}
 .main{
   padding:1rem;
 }
