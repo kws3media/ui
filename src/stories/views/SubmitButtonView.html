@@ -1,55 +1,21 @@
-<!-- <div class="main">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-narrow">
-        <SubmitButton classes="is-primary" icon="plus" icon_size="small" text="Add User" />
-      </div>
-      <div class="column is-narrow">
-        <SubmitButton classes="is-primary" icon="plus" icon_size="small" text="Add User" disabled={true}/>
-      </div>
-      <div class="column is-narrow">
-        <SubmitButton classes="is-primary" icon="plus" icon_size="small" text="Add User" />
-      </div>
-      <div class="column is-narrow">
-        <SubmitButton classes="is-primary" icon="plus" icon_size="small" text="Add User" />
-      </div>
-      <div class="column is-narrow">
-        <SubmitButton classes="is-primary" icon="plus" icon_size="small" text="Add User" />
-      </div>
-      <div class="column is-narrow">
-        <SubmitButton classes="is-primary" icon="plus" icon_size="small" text="Add User" />
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 <div class="main">
   <div class="container">
     <div class="columns">
-      <table class="table is-bordered">
-        <thead>
-          <tr>
-            <th><SubmitButton /></th>
-            <th><SubmitButton  text="Add User" /></th>
-            <th><SubmitButton  disabled={true}/></th>
-            <th><SubmitButton  tracker={error_state}/></th>
-            <th><SubmitButton   tracker={saved_state} /></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>default</code></td>
-            <td><code>custom text</code></td>
-            <td><code>disabled</code></td>
-            <td><code>error_state</code></td>
-            <td><code>saved state</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="column">
+        <SubmitButton
+          :classes
+          :icon
+          :icon_size
+          :text
+          :disabled
+          tracker={states[state]}
+          />
+      </div>
     </div>
   </div>
 </div>
+
+
 
 
 <style>
@@ -68,15 +34,27 @@
     },
     data() {
       return {
-        error_state:{
-          saving: false,
-          saved: false,
-          error: true
-        },
-        saved_state: {
-          saving: false,
-          saved: true,
-          error: false
+        states:{
+          default: {
+            saving: false,
+            saved: false,
+            error: false
+          },
+          error: {
+            saving: false,
+            saved: false,
+            error: true
+          },
+          saving: {
+            saving: true,
+            saved: false,
+            error: false
+          },
+          saved: {
+            saving: false,
+            saved: true,
+            error: false
+          }
         }
       };
     },
