@@ -1,0 +1,6 @@
+//bulma vars and utils
+@import "../../node_modules/bulma/sass/utilities/initial-variables";
+//our vars (overriding bulma vars)
+@import "_variables";
+//bulma itself
+@import "../../node_modules/bulma/bulma";
