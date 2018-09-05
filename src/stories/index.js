@@ -1,6 +1,9 @@
 import { storiesOf } from '@storybook/svelte';
 import "../scss/app.scss";
 
+
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
+
 import WelcomeView from './views/WelcomeView.html';
 import ButtonView from './views/ButtonView.html';
 import SubmitButtonView from './views/SubmitButtonView.html';
@@ -27,13 +30,29 @@ storiesOf('Button', module)
 
 
 storiesOf('Components', module)
-  .add('Custom Submit Button', () => ({
-    Component: SubmitButtonView,
-    data: {
-      classes: 'is-primary',
-      icon: 'plus',
-      icon_size: 'small',
-      text: 'Add User',
-      disabled: false
-    },
-  }))
+  .addDecorator(withKnobs)
+  .add('Custom Submit Button', () => {
+
+
+    const label = 'States';
+    const options = {
+      default: 'default',
+      error: 'error',
+      saving: 'saving',
+      saved: 'saved'
+    };
+    const defaultValue = options.default
+
+
+    return {
+      Component: SubmitButtonView,
+      data: {
+        classes: text('Classes', 'is-primary'),
+        icon: text('Icon', 'plus'),
+        icon_size: text('Icon Size', 'small'),
+        text: text('Text', 'Save Changes'),
+        disabled: boolean('disabled', false),
+        state: select(label, options, defaultValue)
+      },
+    }
+  })
