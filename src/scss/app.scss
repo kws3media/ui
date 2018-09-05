@@ -5,5 +5,18 @@
 //bulma itself
 @import "../../node_modules/bulma/bulma";
 
-// helpers
+.main{
+  padding:1rem;
+}
+p{
+  margin:0.5rem 0;
+}
+
+/* SCSS for stories */
+/*------------------*/
+
+//searchable select
+@import '../../node_modules/@kws3/searchable-select/styles';
+
+//Panel
 @import "_panel";

@@ -6,7 +6,7 @@
     "dev": "npm-run-all dev:hmr",
     "dev:hmr": "start-storybook -p 9009 -s public",
     "build": "build-storybook -s public -o build",
-    "populate":"grunt dist",
+    "populate": "grunt dist",
     "build:dist": "npm-run-all -s build -s populate",
     "deploy:dist": "grunt deploy:dist"
   },
@@ -27,8 +27,9 @@
     ]
   },
   "dependencies": {
-    "global": "^4.3.2",
-    "bulma": "0.6.2"
+    "@kws3/searchable-select": "^0.1.1",
+    "bulma": "0.6.2",
+    "global": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
