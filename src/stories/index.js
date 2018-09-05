@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/svelte';
+import Centered from '@storybook/addon-centered/svelte';
 import "../scss/app.scss";
 
 
@@ -8,7 +9,9 @@ import WelcomeView from './views/WelcomeView.html';
 import ButtonView from './views/ButtonView.html';
 import SubmitButtonView from './views/SubmitButtonView.html';
 
-storiesOf('Welcome', module).add('Welcome', () => ({
+storiesOf('Welcome', module)
+.addDecorator(Centered)
+.add('Welcome', () => ({
   Component: WelcomeView,
 }));
 
