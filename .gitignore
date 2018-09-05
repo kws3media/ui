@@ -8,7 +8,16 @@ coverage
 build
 
 # misc
-.DS_Store
+.DS_STORE
+._*
+*.log
+.tm_properties
+*.orig
+*.original~
+/nbproject/private/
+.idea/
+/.project
+.ftppass
 .env
 npm-debug.log
 yarn-error.log
