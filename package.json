@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build-storybook": "build-storybook -s public -o build",
-    "storybook": "start-storybook -p 9009 -s public"
+    "dev": "npm-run-all dev:hmr",
+    "dev:hmr": "start-storybook -p 9009 -s public",
+    "build": "build-storybook -s public -o build",
+    "populate":"grunt dist",
+    "build:dist": "npm-run-all -s build -s populate",
+    "deploy:dist": "grunt deploy:dist"
   },
   "babel": {
     "presets": [
@@ -43,11 +47,16 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^0.28.7",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.19.0",
-    "node-sass": "^4.5.3",
+    "grunt": "^0.4.5",
+    "grunt-gitinfo": "^0.1.8",
+    "grunt-sftp-deploy": "^0.2.5",
+    "grunt-text-replace": "^0.4.0",
     "jest": "^23.5.0",
     "moment": "^2.22.2",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
     "svelte": "^2.13.2",
     "svelte-jest": "^0.2.0",
     "svelte-loader": "^2.11.0"
