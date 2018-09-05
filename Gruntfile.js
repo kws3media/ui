@@ -25,6 +25,10 @@ module.exports = function (grunt) {
           {
             from: '<link rel="shortcut icon" href="favicon.ico?v=1" />',
             to: '<link rel="shortcut icon" href="favicon.png?v=' + '<%= gitinfo.local.branch.current.shortSHA %>' + '" />'
+          },
+          {
+            from: /\.js"/g,
+            to: '.js?v=' + '<%= gitinfo.local.branch.current.shortSHA %>' + '"'
           }
         ]
       }
