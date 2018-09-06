@@ -1,0 +1,61 @@
+<div class="main">
+  <div class="container">
+    <h1 class="title is-2">Message</h1>
+    <p>A Message component for showing notifications.</p>
+    <hr>
+    <div class="columns">
+      <div class="column is-6">
+        <h2 class="title is-4">Basic example</h2>
+        <Message>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </Message>
+        <pre><code>&lt;Message&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit.&lt;/p&gt;
+&lt;/Message&gt;</code></pre>
+
+
+        <hr>
+        <h2 class="title is-4">Type</h2>
+        <Message type='danger'>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error.</p>
+        </Message>
+        <pre><code>// type : info (default), primary, success, warning, danger
+&lt;Message type='danger'&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Error.&lt;/p&gt;
+&lt;/Message&gt;</code></pre>
+
+
+
+      </div>
+
+      <div class="column">
+        <h2 class="title is-4">Usage</h2>
+        <p>Import the component:</p>
+        <pre><code>import &#123; Message &#125; from '@kws3/helpers'; </code></pre>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<script>
+
+  import { Message } from '@kws3/helpers';
+
+  export default {
+    components: {
+      Message
+    },
+    data() {
+      return {
+
+      };
+    },
+
+    methods: {
+    }
+  };
+</script>
