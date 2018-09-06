@@ -8,6 +8,7 @@
         <h2 class="title is-4">Basic example</h2>
         <SearchableSelect
           data="{brands}"
+          placeholder="Any Brands"
           bind:value="selected_brand"
           searchKey="name"
           searchValue="id"
@@ -21,9 +22,9 @@
 /&gt;</code></pre>
         <p>Here <code>brands</code> is an array of this format:</p>
         <pre><code>[
-  &#123; id: 1, name: 'Apple'&#125;,
-  &#123; id: 2, name: 'HTC'&#125;,
-  &#123; id: 3, name: 'Samsung'&#125;,
+  &#123; id: 1, name: 'LG'&#125;,
+  &#123; id: 2, name: 'Samsung'&#125;,
+  &#123; id: 3, name: 'Xiaomi'&#125;,
   ...
 ]</code></pre>
         <p>
@@ -77,7 +78,7 @@ $kws-ss-caret-color: #0071bc;</code></pre>
           {id: 10, name: "Blackberry"},
           {id: 11, name: "Apple"}
         ],
-        selected_brand: 11
+        selected_brand: ''
       };
     }
   };
