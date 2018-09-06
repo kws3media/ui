@@ -1,0 +1,74 @@
+<div class="main">
+  <div class="container">
+    <h1 class="title is-2">Loader</h1>
+    <p>A Loader component for display FontAwsome icon.</p>
+    <hr>
+    <div class="columns">
+      <div class="column is-6">
+        <h2 class="title is-4">Basic example</h2>
+        <div>
+          <Loader/>
+        </div>
+        <br>
+        <pre><code>&lt;Loader/&gt;</code></pre>
+
+        <hr>
+        <h2 class="title is-4">Color</h2>
+        <div>
+          <Loader color="info" />
+        </div>
+        <br>
+        <pre><code>// transparent (default), info, danger, warning, primary <br><br> &lt;Loader color="info"/&gt;</code></pre>
+
+        <hr>
+        <h2 class="title is-4">Large Loader</h2>
+        <div>
+          <Loader large_loader={true} />
+        </div>
+        <br>
+        <pre><code> &lt;Loader large_loader=&#123;true&#125;/&gt;</code></pre>
+
+
+
+      </div>
+
+      <div class="column">
+        <h2 class="title is-4">Usage</h2>
+        <p>Import the component:</p>
+        <pre><code>import &#123; Loader &#125; from '@kws3/helpers'; </code></pre>
+        <p>Import the SCSS:</p>
+        <pre><code>@import 'path/to/node_modules/@kws3/helpers/components/Loader/styles';</code></pre>
+        <p>SCSS customization variables with default values:</p>
+        <pre><code>$kws-loader-width: 2rem;
+$kws-loader-height: 2rem;
+$kws-loader-width-large: ($kws-loader-width * 3);
+$kws-loader-height-large: ($kws-loader-height * 3);
+$kws-loader-color: #ccc;
+$kws-loader-overlay-background: rgba(0,0,0,0.15);</code></pre>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<script>
+
+  import { Loader } from '@kws3/helpers';
+
+  export default {
+    components: {
+      Loader
+    },
+    data() {
+      return {
+
+      };
+    },
+
+    methods: {
+    }
+  };
+</script>
