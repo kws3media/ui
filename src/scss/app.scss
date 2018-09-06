@@ -1,28 +1,29 @@
 //fontAwesome
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-
 //bulma vars and utils
 @import "../../node_modules/bulma/sass/utilities/initial-variables";
 //our vars (overriding bulma vars)
 @import "_variables";
 //bulma itself
 @import "../../node_modules/bulma/bulma";
-
-html{
+html {
   overflow-x: scroll;
 }
-.main{
-  padding:1rem;
+
+.main {
+  padding: 1rem;
 }
-p{
-  margin:0.5rem 0;
+
+p {
+  margin: 0.5rem 0;
 }
 
 /* SCSS for stories */
+
 /*------------------*/
 
 //searchable select
 @import '../../node_modules/@kws3/searchable-select/styles';
 
-//Panel
-@import "_panel";
+//helpers - Panel
+@import '../../node_modules/@kws3/helpers/components/Panel/styles';
