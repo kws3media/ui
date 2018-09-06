@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@kws3/searchable-select": "^0.1.1",
+    "@kws3/helpers": "^0.2.1",
     "bulma": "0.6.2",
     "global": "^4.3.2"
   },
