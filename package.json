@@ -8,7 +8,10 @@
     "build": "build-storybook -s public -o build",
     "populate": "grunt dist",
     "build:dist": "npm-run-all -s build -s populate",
-    "deploy:dist": "grunt deploy:dist"
+    "deploy:dist": "grunt deploy:dist",
+    "bootstrap": "lerna bootstrap",
+    "publish": "lerna publish",
+    "list": "lerna list"
   },
   "babel": {
     "presets": [
