@@ -1,12 +1,13 @@
 {
   "name": "@kws3/helpers",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Helper components for Svelte applications",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "bitbucket:kws3-team/kws3-helpers",
+  "repository": "bitbucket:kws3-team/storybooks-frontend",
+  "demo_url": "https://ui.kws3.media/?selectedKind=Helpers%7CIcon",
   "keywords": [
     "helpers",
     "loader",
