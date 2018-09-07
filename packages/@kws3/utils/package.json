@@ -1,6 +1,6 @@
 {
   "name": "@kws3/utils",
-  "version": "0.5.2",
+  "version": "0.5.1",
   "description": "Kws3 internel helpers for Svelte App",
   "main": "src/index.js",
   "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
