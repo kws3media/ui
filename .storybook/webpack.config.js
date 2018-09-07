@@ -16,7 +16,10 @@ module.exports = (storybookBaseConfig, configType, defaultConfig) => {
       'css-loader',
       'sass-loader'
     ]
-  })
+  });
+
+
+  defaultConfig.resolve.modules.push(path.resolve('./packages'))
 
   return defaultConfig;
 };
