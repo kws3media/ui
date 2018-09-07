@@ -8,7 +8,7 @@ import IconView from './views/IconView.html';
 
 
 
-storiesOf('Helpers | Icon ', module)
+storiesOf('Helpers|Icon', module)
   .add('Icon', () => ({
     Component: IconView,
   }))

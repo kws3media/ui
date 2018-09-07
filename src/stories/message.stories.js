@@ -8,7 +8,7 @@ import MessageView from './views/MessageView.html';
 
 
 
-storiesOf('Helpers | Message ', module)
+storiesOf('Helpers|Message', module)
   .add('Message', () => ({
     Component: MessageView,
   }))

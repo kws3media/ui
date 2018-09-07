@@ -8,7 +8,7 @@ import View from './views/SearchableSelectView.html';
 
 
 
-storiesOf('Forms | Searchable Select', module)
+storiesOf('Forms|Searchable Select', module)
   .add('Searchable Select', () => {
     return {
       Component: View

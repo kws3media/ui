@@ -8,7 +8,7 @@ import NotificationView from './views/NotificationView.html';
 
 
 
-storiesOf('Helpers | Notification ', module)
+storiesOf('Helpers|Notification', module)
   .add('Notification', () => ({
     Component: NotificationView,
   }))

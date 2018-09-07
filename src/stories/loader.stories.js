@@ -8,7 +8,7 @@ import LoaderView from './views/LoaderView.html';
 
 
 
-storiesOf('Helpers | Loader ', module)
+storiesOf('Helpers|Loader', module)
   .add('Loader', () => ({
     Component: LoaderView,
   }))

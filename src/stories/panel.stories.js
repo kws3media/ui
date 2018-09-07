@@ -8,7 +8,7 @@ import PanelView from './views/PanelView.html';
 
 
 
-storiesOf('Helpers | Panel ', module)
+storiesOf('Helpers|Panel', module)
   .add('Panel', () => ({
     Component: PanelView,
   }))
