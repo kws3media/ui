@@ -1,0 +1,21 @@
+{
+  "name": "@kws3/transitions",
+  "version": "0.0.1",
+  "description": "Kws3 Transition helpers for Svelte App.",
+  "main": "src/Transition.html",
+  "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
+  "license": "Private",
+  "keywords": [
+    "transition helpers",
+    "fade",
+    "fly",
+    "scale",
+    "slide",
+    "animation"
+  ],
+  "dependencies": {
+    "eases-jsnext": "^1.0.10",
+    "svelte-transitions": "^1.1.1",
+    "svelte-transitions-scale": "git://github.com/ekhaled/svelte-transitions-scale#v0.9.0"
+  }
+}

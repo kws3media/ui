@@ -1,0 +1,63 @@
+<div class="panel {collapsible ? 'collapsible' : ''} {collapsed ? 'collapsed' : ''}" style="{style}">
+  {#if title != ''}
+  <div class="panel-heading" on:click="toggle()">
+    <div class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          <h2 class="subtitle">{@html title}</h2>
+        </div>
+      </div>
+      <div class="level-item">
+        {#if has_center}
+          <slot name="center"></slot>
+        {/if}
+      </div>
+      <div class="level-right">
+        {#if has_toolbar}
+        <div class="level-item">
+          <slot name="toolbar"></slot>
+        </div>
+        {/if}
+        <div class="level-item">
+          <h2 class="subtitle is-6">{@html subtitle}</h2>
+        </div>
+        <span class="collapsor level-item">
+          <i class="fa fa-caret-right"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  {/if}
+  <div class="panel-content-outer">
+    <div class="panel-block is-clearfix" style="{inner_style} {relative ? 'position:relative' : ''}">
+      <slot></slot>
+    </div>
+  </div>
+</div>
+
+<script>
+export default {
+  data: function(){
+    return {
+      title:'',
+      subtitle:'',
+      style:'',
+      inner_style:'',
+      collapsible: false,
+      collapsed: false,
+      relative: false,
+      has_toolbar: true,
+      has_center: true,
+    }
+  },
+  methods:{
+    toggle(){
+      let {collapsible, collapsed} = this.get();
+      if(collapsible){
+        collapsed = !collapsed;
+        this.set({collapsed})
+      }
+    }
+  }
+}
+</script>

@@ -1,0 +1,21 @@
+{
+  "name": "@kws3/searchable-select",
+  "version": "0.1.1",
+  "description": "A Searchable Select component for Svelte applications",
+  "main": "index.js",
+  "dependencies": {
+    "@kws3/keyboard-event-handlers": "^0.0.1",
+    "@kws3/utils": "^0.0.1"
+  },
+  "repository": "bitbucket:kws3-team/kws3-searchable-select",
+  "demo_url":"https://ui.kws3.media/?selectedKind=Forms%20%7C%20Searchable%20Select",
+  "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
+  "contributors": [
+    "Khaled Ahmed <me.khaled@gmail.com>"
+  ],
+  "license": "Private",
+  "keywords": [
+    "searchable",
+    "select"
+  ]
+}

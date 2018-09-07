@@ -1,0 +1,17 @@
+<div class="message is-{type}" style="{style}">
+  <div class="message-body" style="{inner_style}">
+    <slot></slot>
+  </div>
+</div>
+
+<script>
+  export default {
+    data(){
+      return {
+        type:'info',
+        style:'',
+        inner_style:''
+      }
+    }
+  }
+</script>

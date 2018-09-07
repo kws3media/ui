@@ -1,0 +1,450 @@
+<svelte:window on:resize="close()" />
+<div ref:searchableselect class='searchableselect input is-shadowless {disabled ? ' is-disabled ' : ' '} {classes}' on:click="open()"
+  style="{style}">
+
+
+  <span class="name-wrapper">
+    <span class="name">
+      {_name || placeholder}
+    </span>
+  </span>
+
+  <input type='text' bind:value='filter' on:focus='open()' on:enter on:uparrow on:downarrow on:escape>
+
+
+  <ul ref:dropdown class='dropdown {open ? ' open ' : ' '} {dd_class}'>
+    <li class="{selected && highlighted < 0 ? 'selected' : ''}" on:click="select(null)">{placeholder}</li>
+    {#each items as item, i}
+    <li class='{highlighted == i ? ' selecting ' : ' '} {selected == i ? 'selected ' : ' '}' on:click='select(item, i)'>
+      {item[searchKey]}
+    </li>
+    {/each}
+  </ul>
+
+</div>
+
+
+
+<script>
+
+  var win = window;
+  var doc = document;
+  var dropdownId = 'searchableselect-dropdown-container';
+
+  import {enter, uparrow, downarrow, escape} from '@kws3/keyboard-event-handlers';
+  import { rAF } from '@kws3/utils';
+
+  export default {
+    data() {
+      return {
+        _name: '',
+        value: '',
+        filter: '',
+        style: '',
+        classes: '',
+        dd_class: '',
+        scrollTarget: null,
+        searchKey: null, //which key to search in each data object
+        searchValue: null, //which key to search in each data object
+        data: [],// remove items from data as they move to selected
+        highlighted: -1, // for dropdown
+        selected: -1, // for selected items
+        open: false,
+        disabled: false
+      }
+    },
+    events: {
+      enter, uparrow, downarrow, escape
+    },
+    oncreate() {
+
+      var self = this;
+
+      let el = self.refs.searchableselect;
+      let selected = el.querySelector('.name');
+      let input = el.querySelector('input');
+
+      input.style.display = 'none';
+      selected.style.display = 'block';
+
+      self.on('state', ({ changed, current }) => {
+        if (changed.open) {
+        let { open, value } = current;
+
+        if (!open) {
+          input.style.display = 'none';
+          selected.style.display = 'block';
+
+          if (value === '') {
+            self.set({
+              highlighted: -1,
+              selected: -1
+            })
+          }
+        }else{
+          input.style.display = 'block';
+          selected.style.display = 'none';
+          input.focus();
+          input.select();
+        }
+      }
+      })
+      //normalize data and selected
+      var { data } = self.get();
+      if (!data) {
+        self.set({ data: [] });
+      }
+
+
+      //hoist the dropdowns into a container on the body
+      var dropdown = this.refs.searchableselect.querySelector('.dropdown');
+
+      self.dropdown = dropdown; // cache for later
+
+      var container = doc.getElementById(dropdownId);
+
+      if (!container) {
+        container = doc.createElement('div');
+        container.id = dropdownId;
+        container.className = 'searchableselect';
+        doc.body.appendChild(container);
+      }
+
+      container.appendChild(dropdown);
+
+
+      var highlightedElement = self.refs.dropdown.querySelector('.selecting');
+
+      //-- custom events
+
+
+      self.on('uparrow', function (e) {
+
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        e.preventDefault();
+
+        self.set({ selected: -1 });
+        var { highlighted, items } = self.get();
+
+
+        if (highlighted <= -1)
+          return;
+
+        // increase highlighted until we find a non group
+        do {
+          highlighted--;
+        } while (highlighted == -1)
+
+        highlighted = Math.max(-1, highlighted);
+
+        self.set({ highlighted });
+
+        self.updateBounds();
+      });
+
+      self.on('downarrow', function (e) {
+
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        e.preventDefault();
+
+        self.set({ selected: -1 });
+
+        var { open, highlighted, items } = self.get();
+
+        if (highlighted >= items.length - 1)
+          return;
+
+        if (!open) {
+          self.open();
+        }
+
+        do {
+          highlighted++;
+        } while (highlighted == items.length)
+
+        highlighted = Math.min(items.length, highlighted);
+
+        self.set({ highlighted });
+
+        self.updateBounds();
+
+      });
+
+
+      self.on('enter', function (e) {
+
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        e.preventDefault();
+
+        var { open, highlighted, items } = self.get();
+
+        if (highlighted !== -1) {
+          if (open) {
+            self.select(items[highlighted], highlighted);
+          }
+        }
+
+        if (highlighted < 0) {
+          self.select(null);
+        }
+      });
+
+      self.on('escape', function(e){
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        e.preventDefault();
+
+        self.close();
+      });
+
+
+
+      self.clickHandler = function(e){
+        e.stopImmediatePropagation();
+        var el = self.refs.searchableselect;
+
+        var dropdown = el.querySelector('.dropdown');
+
+        var target = e.target;
+        if (el.contains(target) || target === dropdown)
+          return;
+
+        self.set({ open: false });
+      }
+
+      self.scrollHandler = function(e){
+        e.stopImmediatePropagation();
+        rAF(function () {
+          self.updateBounds();
+        });
+      }
+
+
+      self.on('update', function({ changed, current }){
+
+         if (changed.open) {
+
+          var { open, scrollTarget, value } = current;
+          if (!scrollTarget) {
+            scrollTarget = win;
+          } else if (typeof scrollTarget === 'string') {
+            scrollTarget = doc.getElementById(scrollTarget);
+          }
+
+
+          if (open) {
+            doc.addEventListener('click', self.clickHandler);
+            scrollTarget.addEventListener('scroll', self.scrollHandler);
+
+          } else {
+            doc.removeEventListener('click', self.clickHandler);
+            scrollTarget.removeEventListener('scroll', self.scrollHandler);
+          }
+
+
+          self.updateBounds();
+        }
+      })
+
+
+    },
+    onupdate({ changed, current }) {
+
+      var self = this;
+
+
+      if(changed.value){
+        var { value } = current;
+        if (value === '') {
+          self.set({
+            _name: '',
+            filter: '',
+            highlighted: -1,
+            selected: -1
+          });
+        } else {
+          let { searchKey, searchValue, data } = current;
+          var _name;
+          for (let i in data) {
+            if (data[i][searchValue] == value) {
+              _name = data[i][searchKey];
+              break;
+            }
+          }
+
+          self.set({ _name, value });
+        }
+      }
+
+      if(changed.items){
+        var { _name, searchKey, items } = current;
+
+        for (let item in items) {
+          if (items[item][searchKey] == _name) {
+            self.set({
+              selected: item,
+              highlighted: item
+            });
+            break;
+          }
+        }
+      }
+    },
+    ondestroy() {
+      var el = this.refs.searchableselect;
+      var self = this;
+
+      el.removeEventListener('click', self.clickHandler);
+      win.removeEventListener('click', self.clickHandler);
+      doc.removeEventListener('scroll', self.scrollHandler);
+
+      // have to manually clean this up since we hoisted it from under svelte's nose
+      if (self.dropdown) {
+        self.dropdown.parentNode.removeChild(self.dropdown);
+      }
+
+      var container = doc.getElementById(dropdownId);
+
+      if (container && container.childNodes.length == 0) {
+        container.parentNode.removeChild(container);
+      }
+    },
+    computed: {
+      items({ data, filter, searchKey }) {
+        var filter = filter.toLowerCase();
+        var items = data || [];
+        var searchKey = searchKey;
+
+
+        if (!items || !(items instanceof Array))
+          return null;
+
+        items = items.slice().filter(function (item) {
+
+
+          // filter out items that don't match `filter`
+          if (typeof item === 'object') {
+            if (searchKey) {
+              if (typeof item[searchKey] === 'string' && item[searchKey].toLowerCase().indexOf(filter) > -1)
+                return true;
+            } else {
+              for (var key in item) {
+                if (typeof item[key] === 'string' && item[key].toLowerCase().indexOf(filter) > -1)
+                  return true;
+              }
+            }
+          } else {
+            return item.toLowerCase().indexOf(filter) > -1
+          }
+        });
+
+        return items;
+
+      }
+    },
+    methods: {
+      open() {
+
+        var self = this;
+        var { disabled } = self.get();
+
+        if (!disabled) {
+          self.set({
+            open: true
+          });
+
+          self.updateBounds();
+        }
+
+      },
+      close() {
+        var self = this;
+        self.set({
+          open: false
+        });
+      },
+      select(item, i) {
+
+        var self = this;
+
+        var { searchKey, searchValue, items } = self.get();
+        if (!item) {
+          self.set({
+            value: '',
+            _name: '',
+            selected: -1
+          });
+        } else {
+          self.set({
+            value: item[searchValue],
+            _name: item[searchKey],
+            selected: +i,
+            highlighted: +i
+          });
+        }
+
+        self.set({ filter: '' });
+
+        self.close();
+
+        self.updateBounds();
+      },
+      updateBounds() {
+
+        var self = this;
+
+
+        var el = self.refs.searchableselect;
+        var { open }  = self.get();
+
+        var highlightedElement = self.refs.dropdown.querySelector('.selecting');
+        var selectedElement = self.refs.dropdown.querySelector('.selected');
+
+        var bounds = el.getBoundingClientRect();
+
+        // match dropdown width with el width
+        self.dropdown.style.width = bounds.width + 'px';
+
+        var dropdown = self.dropdown;
+
+        if (open) {
+
+          if (highlightedElement != null) {
+            if (highlightedElement.offsetTop > 358) {
+              dropdown.scrollTop = highlightedElement.offsetTop - 358;
+            } else {
+              dropdown.scrollTop = 0;
+            }
+          }
+
+          if (selectedElement != null) {
+            if (selectedElement.offsetTop > 358) {
+              dropdown.scrollTop = selectedElement.offsetTop - 358;
+            } else {
+              dropdown.scrollTop = 0;
+            }
+          }
+
+          dropdown.style.left = bounds.left + 'px';
+          var top = (bounds.bottom),
+            inht = win.innerHeight;
+          if ((top + dropdown.offsetHeight) > inht) {
+            //not enough space to render drop down below input,
+            //render it above
+            dropdown.style.bottom = (inht - (bounds.top - 3)) + 'px';
+            dropdown.style.top = 'auto';
+          } else {
+            dropdown.style.top = top + 'px';
+            dropdown.style.bottom = 'auto';
+          }
+
+        } else {
+          dropdown.style.left = '-9999px';
+        }
+      }
+    }
+  }
+</script>

@@ -1,0 +1,31 @@
+<div class="transible {classes}" in:fly="{x: (x || 0), y: (y || 0), duration: (duration || 300), delay: (delay || 0), easing: getEasing(easing)}">
+  <slot></slot>
+</div>
+
+<script>
+  import { fly } from 'svelte-transitions';
+  import { sineOut, elasticOut, expoOut, cubicOut, circOut, bounceOut, backOut } from 'eases-jsnext';
+
+  export default{
+    transitions: { fly },
+    helpers:{
+      getEasing(easing){
+        var eases = {
+          sineOut, elasticOut, expoOut,
+          cubicOut, circOut, bounceOut, backOut
+        };
+        return easing ? (eases[easing] || cubicOut) : cubicOut;
+      }
+    },
+    data(){
+      return {
+        x:0,
+        y:0,
+        easing: null,
+        delay:0,
+        duration:300,
+        classes: ''
+      }
+    }
+  }
+</script>

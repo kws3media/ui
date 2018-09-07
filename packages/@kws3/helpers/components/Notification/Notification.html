@@ -1,0 +1,23 @@
+<div class="notification is-{type}" style="{style}">
+  {#if dismissable}
+    <button class="delete" on:click="dismiss()"></button>
+  {/if}
+  <slot></slot>
+</div>
+
+<script>
+  export default {
+    data(){
+      return {
+        type:'info',
+        style:'',
+        dismissable: false
+      }
+    },
+    methods:{
+      dismiss(){
+        this.destroy()
+      }
+    }
+  }
+</script>

@@ -1,0 +1,29 @@
+<div class="transible {classes}" in:slide="{duration: (duration || 300), delay: (delay || 0), easing: getEasing(easing)}">
+  <slot></slot>
+</div>
+
+<script>
+  import { slide } from 'svelte-transitions';
+  import { sineOut, elasticOut, expoOut, cubicOut, circOut, bounceOut, backOut } from 'eases-jsnext';
+
+  export default {
+    transitions: { slide },
+    helpers: {
+      getEasing(easing) {
+        var eases = {
+          sineOut, elasticOut, expoOut,
+          cubicOut, circOut, bounceOut, backOut
+        };
+        return easing ? (eases[easing] || cubicOut) : cubicOut;
+      }
+    },
+    data() {
+      return {
+        easing: null,
+        delay: 0,
+        duration: 300,
+        classes: ''
+      }
+    }
+  }
+</script>

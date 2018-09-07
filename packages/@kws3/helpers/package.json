@@ -1,0 +1,19 @@
+{
+  "name": "@kws3/helpers",
+  "version": "0.2.1",
+  "description": "Helper components for Svelte applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "bitbucket:kws3-team/kws3-helpers",
+  "keywords": [
+    "helpers",
+    "loader",
+    "icon",
+    "message",
+    "notification"
+  ],
+  "author": "khaled Ahmed <me.khaled@gmail.com>",
+  "license": "Private"
+}
