@@ -23,6 +23,8 @@ $kws-loader-overlay-background: rgba(0,0,0,0.15) !default;
     .hero-body:after{
       width:$kws-loader-width-large;
       height:$kws-loader-height-large;
+      left: calc(50% - (#{$kws-loader-width-large} / 2));
+      top: calc(50% - (#{$kws-loader-height-large} / 2));
     }
   }
 }
