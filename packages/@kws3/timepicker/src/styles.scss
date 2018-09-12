@@ -1,1 +1,13 @@
-@import "../node_modules/flatpickr/dist/flatpickr";
+$kws-timepicker-boder-radius: 3px 3px !default;
+$kws-timepicker-border: 1px solid $primary !default;
+$kws-timepicker-am-pm-color: $primary !default;
+.flatpickr-calendar {
+  .flatpickr-time {
+    border-radius: $kws-timepicker-boder-radius;
+    border: $kws-timepicker-border !important;
+    input,
+    .flatpickr-am-pm {
+      color: $kws-timepicker-am-pm-color;
+    }
+  }
+}

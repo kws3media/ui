@@ -1,7 +1,7 @@
 <div class="main">
   <div class="container">
-    <h1 class="title is-2">Icon</h1>
-    <p>A Timepicker component to pick time.</p>
+    <h1 class="title is-2">Datepicker</h1>
+    <p>A Datepicker component to pick date.</p>
     <hr>
 
     <h2 class="title is-4">Example</h2>
@@ -9,16 +9,15 @@
       <div class="column is-4">
         <div class="columns">
           <div class="column">
-            <p>Pick a time</p>
-            <Timepicker bind:value="new_time" />
+            <Datepicker bind:value="new_date" />
           </div>
         </div>
 
       </div>
 
       <div class="column">
-        <pre><code>&lt;Timepicker bind:value="new_time" /&gt;
-        </code></pre>
+        <pre><code>&lt;Datepicker bind:value="new_date" /&gt;
+</code></pre>
 
       </div>
     </div>
@@ -32,7 +31,7 @@
       <pre><code>npm install flatpickr --save </code></pre>
     </Message>
     <p>Import the component:</p>
-    <pre><code>import Timepicker from '@kws3/timepicker'; </code></pre>
+    <pre><code>import Datepicker from '@kws3/datepicker'; </code></pre>
 
   </div>
 
@@ -42,18 +41,18 @@
 
 <script>
 
-  import Timepicker from '@kws3/timepicker';
+  import Datepicker from '@kws3/datepicker';
   import { Message } from '@kws3/helpers';
 
 
   export default {
     components: {
-      Timepicker,
+      Datepicker,
       Message
     },
     data() {
       return {
-        new_time: ''
+        new_date: ''
       };
     },
 
