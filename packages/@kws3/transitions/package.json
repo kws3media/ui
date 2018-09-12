@@ -1,6 +1,6 @@
 {
   "name": "@kws3/transitions",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Kws3 Transition helpers for Svelte App.",
   "main": "src/Transition.html",
   "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
