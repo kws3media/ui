@@ -1,2 +1,2 @@
-import timePicker from './src/Timepicker.html';
-export default timePicker;
+import datePicker from './src/Datepicker.html';
+export default datePicker;

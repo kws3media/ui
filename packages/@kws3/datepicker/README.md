@@ -1,5 +1,5 @@
-# Kws3 Timepicker
+# Kws3 Datepicker
 
-Kws3 Timepicker for Svelte applications.
+Kws3 Datepicker for Svelte applications.
 
 
