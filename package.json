@@ -9,7 +9,7 @@
     "populate": "grunt dist",
     "build:dist": "npm-run-all -s build -s populate",
     "deploy:dist": "grunt deploy:dist",
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --hoist",
     "publish": "lerna publish",
     "list": "lerna list"
   },
