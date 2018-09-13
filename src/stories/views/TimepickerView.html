@@ -1,5 +1,8 @@
 <div class="main">
   <div class="container">
+
+    <Package {pkg} />
+
     <h1 class="title is-2">Icon</h1>
     <p>A Timepicker component to pick time.</p>
     <hr>
@@ -51,16 +54,20 @@ $kws-timepicker-am-pm-color: $primary !default;</code></pre>
 
   import Timepicker from '@kws3/timepicker';
   import { Message } from '@kws3/helpers';
+  import pkg from '@kws3/timepicker/package.json';
+  import Package from './Package.html';
 
 
   export default {
     components: {
       Timepicker,
-      Message
+      Message,
+      Package
     },
     data() {
       return {
-        new_time: ''
+        new_time: '',
+        pkg
       };
     },
 

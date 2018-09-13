@@ -1,5 +1,8 @@
 <div class="main">
   <div class="container">
+
+    <Package {pkg} />
+
     <h1 class="title is-2">Notification</h1>
     <p>A Notification component for showing notifications.</p>
     <hr>
@@ -48,14 +51,16 @@
 <script>
 
   import { Notification } from '@kws3/helpers';
+  import pkg from '@kws3/helpers/package.json';
+  import Package from './Package.html';
 
   export default {
     components: {
-      Notification
+      Notification, Package
     },
     data() {
       return {
-
+        pkg
       };
     },
 

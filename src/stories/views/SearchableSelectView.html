@@ -1,5 +1,8 @@
 <div class="main">
   <div class="container">
+
+    <Package {pkg} />
+
     <h1 class="title is-2">Searchable Select</h1>
     <p>A select component that allows you to search by typing into it.</p>
     <hr>
@@ -59,10 +62,12 @@ $kws-ss-caret-color: #0071bc;</code></pre>
 
 <script>
   import SearchableSelect from '@kws3/searchable-select';
+  import pkg from '@kws3/searchable-select/package.json';
+  import Package from './Package.html';
 
   export default {
     components: {
-      SearchableSelect
+      SearchableSelect, Package
     },
     data() {
       return {
@@ -79,7 +84,8 @@ $kws-ss-caret-color: #0071bc;</code></pre>
           {id: 10, name: "Blackberry"},
           {id: 11, name: "Apple"}
         ],
-        selected_brand: ''
+        selected_brand: '',
+        pkg
       };
     }
   };

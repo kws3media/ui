@@ -1,5 +1,8 @@
 <div class="main">
   <div class="container">
+
+    <Package {pkg} />
+
     <h1 class="title is-2">Panel</h1>
     <p>A Panel component that allows wrap elements.</p>
     <hr>
@@ -127,14 +130,16 @@ $kws-panel-caret-closed-color: #00a4d8;</code></pre>
 <script>
 
   import { Panel } from '@kws3/helpers';
+  import pkg from '@kws3/helpers/package.json';
+  import Package from './Package.html';
 
   export default {
     components: {
-      Panel
+      Panel, Package
     },
     data() {
       return {
-
+        pkg
       };
     },
 

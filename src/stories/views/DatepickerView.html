@@ -1,5 +1,8 @@
 <div class="main">
   <div class="container">
+
+    <Package {pkg} />
+
     <h1 class="title is-2">Datepicker</h1>
     <p>A Datepicker component to pick date.</p>
     <hr>
@@ -74,15 +77,18 @@ $kws-datepicker-inner-container-border-bottom-color: 1px solid $primary;</code><
 
   import Datepicker from '@kws3/datepicker';
   import {Message} from '@kws3/helpers';
+  import pkg from '@kws3/datepicker/package.json';
+  import Package from './Package.html';
 
 
   export default {
     components: {
-      Datepicker, Message
+      Datepicker, Message, Package
     },
     data() {
       return {
-        new_date: ''
+        new_date: '',
+        pkg
       };
     }
   };
