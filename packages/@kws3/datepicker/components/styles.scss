@@ -1,29 +1,21 @@
 $kws-datepicker-arrow-top-color: $primary !default;
 $kws-datepicker-arrow-bottom-color: $primary !default;
-//
 $kws-datepicker-month-color: $white !default;
 $kws-datepicker-month-bg-color: $primary !default;
 $kws-datepicker-month-fill-color: $white !default;
 $kws-datepicker-month-boder-radius: 3px 3px 0 0 !default;
-//
 $kws-datepicker-weekdays-bg-color: $primary !default;
-//
 $kws-datepicker-weekday-bg-color: $primary !default;
 $kws-datepicker-weekday-color: $primary-invert !default;
-//
 $kws-datepicker-prev-next-hover-color: $dark !default;
 $kws-datepicker-prev-next-hover-svg-color: $dark !default;
-//
 $kws-datepicker-days-border-radius: 0 0 3px 3px !default;
 $kws-datepicker-left-border: 1px solid $primary !default;
 $kws-datepicker-right-border: 1px solid $primary !default;
-//
 $kws-datepicker-day-bg-color: $primary !default;
 $kws-datepicker-day-border-color: $primary !default;
-//
 $kws-datepicker-inner-container-border-radius: 3px 3px 0 0 !default;
 $kws-datepicker-inner-container-border-bottom-color: 1px solid $primary !default;
-//
 .flatpickr-calendar {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
   &.arrowTop:before,
