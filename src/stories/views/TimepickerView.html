@@ -30,9 +30,16 @@
       <strong>Requires <code>flatpickr</code> version 3.0.6,<br>
       </strong>
       <pre><code>npm install flatpickr --save </code></pre>
+      <p>Import flatpickr style file to app.scss</p>
+      <pre><code>@import "path/to/node_modules/flatpickr/dist/flatpickr"; </code></pre>
     </Message>
     <p>Import the component:</p>
     <pre><code>import Timepicker from '@kws3/timepicker'; </code></pre>
+    <p>Import the SCSS:</p>
+    <pre><code>@import 'path/to/node_modules/@kws3/timepicker/styles';</code></pre>
+    <pre><code>$kws-timepicker-boder-radius: 3px 3px !default;
+$kws-timepicker-border: 1px solid $primary !default;
+$kws-timepicker-am-pm-color: $primary !default;</code></pre>
 
   </div>
 
