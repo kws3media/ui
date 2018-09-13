@@ -9,6 +9,7 @@
       <div class="column is-4">
         <div class="columns">
           <div class="column">
+            <p>Pick a date</p>
             <Datepicker bind:value="new_date" />
           </div>
         </div>
@@ -17,7 +18,7 @@
 
       <div class="column">
         <pre><code>&lt;Datepicker bind:value="new_date" /&gt;
-</code></pre>
+        </code></pre>
 
       </div>
     </div>
@@ -29,9 +30,39 @@
       <strong>Requires <code>flatpickr</code> version 3.0.6,<br>
       </strong>
       <pre><code>npm install flatpickr --save </code></pre>
+      <p>Import flatpickr style file to app.scss</p>
+      <pre><code>@import "path/to/node_modules/flatpickr/dist/flatpickr"; </code></pre>
     </Message>
     <p>Import the component:</p>
     <pre><code>import Datepicker from '@kws3/datepicker'; </code></pre>
+    <p>Import the SCSS:</p>
+    <pre><code>@import 'path/to/node_modules/@kws3/datepicker/styles';</code></pre>
+    <p>SCSS customization variables with default values:</p>
+    <pre><code>$kws-datepicker-arrow-top-color: $primary;
+$kws-datepicker-arrow-bottom-color: $primary;
+
+$kws-datepicker-month-color: $white;
+$kws-datepicker-month-bg-color: $primary;
+$kws-datepicker-month-fill-color: $white;
+$kws-datepicker-month-boder-radius: 3px 3px 0 0;
+
+$kws-datepicker-weekdays-bg-color: $primary;
+
+$kws-datepicker-weekday-bg-color: $primary;
+$kws-datepicker-weekday-color: $primary-invert;
+
+$kws-datepicker-prev-next-hover-color: $dark;
+$kws-datepicker-prev-next-hover-svg-color: $dark;
+
+$kws-datepicker-days-border-radius: 0 0 3px 3px;
+$kws-datepicker-left-border: 1px solid $primary;
+$kws-datepicker-right-border: 1px solid $primary;
+
+$kws-datepicker-day-bg-color: $primary;
+$kws-datepicker-day-border-color: $primary;
+
+$kws-datepicker-inner-container-border-radius: 3px 3px 0 0;
+$kws-datepicker-inner-container-border-bottom-color: 1px solid $primary;</code></pre>
 
   </div>
 
