@@ -1,7 +1,7 @@
-<input ref:input class="input {classes}" type="text" style="{style}" readonly bind:value disabled="{disabled}" />
+<input use:datepicker class="input {classes}" type="text" style="{style}" readonly bind:value disabled="{disabled}" />
 
 <script>
-  import flatpickr from 'flatpickr';
+  import datepicker from './actions';
 
   export default {
     data(){
@@ -13,57 +13,8 @@
         _setting: false
       }
     },
-    oncreate(){
-      var self = this,
-      setting = false;
-
-      self.picker = flatpickr(self.refs.input,{
-        altInput: true,
-        altFormat: 'd/m/Y',
-        dateFormat: 'Y-m-d',
-        onChange: function (date, dateStr) {
-          setting = true; // to prevent infinite loop
-          self.set({value: dateStr});
-          self.updateClassNames();
-          setting = false;
-        }
-      });
-
-      self.set({ _setting: setting})
-
-    },
-    onupdate({ changed, current, previous }){
-      var self = this;
-
-      if(changed['value']){
-        if (self.get()._setting) return;
-        var { value: date } = current;
-        self.picker.setDate(date);
-        self.updateClassNames();
-      }
-
-      if(changed['classes']){
-        self.updateClassNames();
-      }
-
-      if (changed['disabled']) {
-        self.updateDisability();
-      }
-    },
-    methods:{
-      updateDisability(){
-        var self = this,
-        { disabled } = self.get();
-        self.picker.input.nextSibling.disabled = disabled;
-      },
-      updateClassNames(){
-        var self = this,
-        cs = self.picker.input.className;
-        self.picker.input.nextSibling.className = cs;
-      }
-    },
-    ondestroy(){
-      this.picker.destroy();
+    actions:{
+      datepicker
     }
   }
 </script>

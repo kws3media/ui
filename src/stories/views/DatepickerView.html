@@ -26,16 +26,16 @@
     <hr>
 
     <h2 class="title is-4">Usage</h2>
-    <Message type="warning">
-      <strong>Requires <code>flatpickr</code> version 3.0.6,<br>
+    <p>Import the component:</p>
+    <pre><code>import Datepicker from '@kws3/datepicker'; </code></pre>
+
+    <Message color="warning" style="margin-top:1rem">
+      <strong>Requires <code>flatpickr</code> SCSS to be loaded first<br>
       </strong>
-      <pre><code>npm install flatpickr --save </code></pre>
       <p>Import flatpickr style file to app.scss</p>
       <pre><code>@import "path/to/node_modules/flatpickr/dist/flatpickr"; </code></pre>
     </Message>
-    <p>Import the component:</p>
-    <pre><code>import Datepicker from '@kws3/datepicker'; </code></pre>
-    <p>Import the SCSS:</p>
+    <p>Import the component SCSS:</p>
     <pre><code>@import 'path/to/node_modules/@kws3/datepicker/styles';</code></pre>
     <p>SCSS customization variables with default values:</p>
     <pre><code>$kws-datepicker-arrow-top-color: $primary;
@@ -73,21 +73,17 @@ $kws-datepicker-inner-container-border-bottom-color: 1px solid $primary;</code><
 <script>
 
   import Datepicker from '@kws3/datepicker';
-  import { Message } from '@kws3/helpers';
+  import {Message} from '@kws3/helpers';
 
 
   export default {
     components: {
-      Datepicker,
-      Message
+      Datepicker, Message
     },
     data() {
       return {
         new_date: ''
       };
-    },
-
-    methods: {
     }
   };
 </script>
