@@ -1,2 +1,1 @@
-import ss from './components/SearchableSelect/SearchableSelect.html';
-export default ss;
+export {default} from './components/SearchableSelect/SearchableSelect.html';
