@@ -4,7 +4,7 @@
   "description": "A Timepicker component for Svelte applications",
   "main": "index.js",
   "repository": "bitbucket:kws3-team/storybooks-frontend",
-  "demo_url": "https://ui.kws3.media/?selectedKind=Forms%7CSearchable%20Select",
+  "demo_url": "https://ui.kws3.media/?selectedKind=Forms%7CTimepicker",
   "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
   "contributors": [
     "Khaled Ahmed <me.khaled@gmail.com>"
