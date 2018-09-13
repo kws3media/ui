@@ -1,2 +1,1 @@
-import timePicker from './src/Timepicker.html';
-export default timePicker;
+export { default as Timepicker } from './components/Timepicker.html'

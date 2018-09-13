@@ -1,2 +1,1 @@
-import datePicker from './src/Datepicker.html';
-export default datePicker;
+export {default as Datepicker} from './components/Datepicker.html';
