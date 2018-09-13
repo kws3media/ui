@@ -3,31 +3,25 @@
     <h1 class="title is-2">Message</h1>
     <p>A Message component for showing message.</p>
     <hr>
+    <h2 class="title is-4">Example</h2>
+    <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
     <div class="columns">
       <div class="column is-6">
-        <h2 class="title is-4">Basic example</h2>
-        <Message>
+        <Message :color>
+          <h1>This is a Heading</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </Message>
-        <pre><code>&lt;Message&gt;
-  &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit.&lt;/p&gt;
-&lt;/Message&gt;</code></pre>
-
-
-        <hr>
-        <h2 class="title is-4">Type</h2>
-        <Message type='danger'>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error.</p>
-        </Message>
-        <pre><code>// type : info (default), primary, success, warning, danger
-&lt;Message type='danger'&gt;
+      </div>
+      <div class="column">
+        <pre><code>&lt;Message color='{color}'&gt;
+  &lt;h1&gt;This is a Heading&lt;/h1&gt;
   &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Error.&lt;/p&gt;
 &lt;/Message&gt;</code></pre>
-
-
-
       </div>
+    </div>
 
+    <div class="columns">
+      <hr>
       <div class="column">
         <h2 class="title is-4">Usage</h2>
         <p>Import the component:</p>
