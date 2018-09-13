@@ -1,1 +1,1 @@
-export {default as Datepicker} from './components/Datepicker.html';
+export { default } from './components/Datepicker.html';
