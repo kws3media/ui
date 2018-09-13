@@ -1,6 +1,6 @@
 {
   "name": "@kws3/timepicker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Timepicker component for Svelte applications",
   "main": "index.js",
   "repository": "bitbucket:kws3-team/storybooks-frontend",
