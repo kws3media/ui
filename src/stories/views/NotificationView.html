@@ -3,40 +3,35 @@
     <h1 class="title is-2">Notification</h1>
     <p>A Notification component for showing notifications.</p>
     <hr>
+    <h2 class="title is-4">Example</h2>
+    <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
     <div class="columns">
-      <div class="column is-6">
-        <h2 class="title is-4">Basic example</h2>
-        <Notification>
+      <div class="column">
+        <Notification :color>
           <p>Your have 41 notifications</p>
         </Notification>
-        <pre><code>&lt;Notification&gt;
+      </div>
+      <div class="column">
+        <pre><code>&lt;Notification color="{color}"&gt;
   &lt;p&gt;Your have 41 notifications.&lt;/p&gt;
 &lt;/Notification&gt;</code></pre>
-
-
-        <hr>
-        <h2 class="title is-4">Type</h2>
-        <Notification type='danger'>
-          <p>Your have 41 notifications</p>
-        </Notification>
-        <pre><code>// type : info (default), primary, success, warning, danger
-&lt;Notification type='danger'&gt;
-  &lt;p&gt;Your have 41 notifications.&lt;/p&gt;
-&lt;/Notification&gt;</code></pre>
-
-
-        <hr>
-        <h2 class="title is-4">Dismissable</h2>
+      </div>
+    </div>
+    <hr>
+    <h2 class="title is-4">Dismissable</h2>
+    <div class="columns">
+      <div class="column">
         <Notification dismissable={true}>
-          <p>Your have 41 notifications. And you can dismiss this notification.</p>
+         <p> You have 41 notifications. And you can dismiss this notification.</p>
         </Notification>
+      </div>
+      <div class="column">
         <pre><code>&lt;Notification dismissable=&#123;true&#125;&gt;
   &lt;p&gt;Your have 41 notifications. And you can dismiss this notification.&lt;/p&gt;
 &lt;/Notification&gt;</code></pre>
-
-
       </div>
-
+    </div>
+    <div class="columns">
       <div class="column">
         <h2 class="title is-4">Usage</h2>
         <p>Import the component:</p>
