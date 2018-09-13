@@ -1,5 +1,8 @@
 <div class="main">
   <div class="container">
+
+    <Package {pkg} />
+
     <h1 class="title is-2">Icon</h1>
     <p>An Icon component to display FontAwesome icons.</p>
     <hr>
@@ -54,14 +57,17 @@
 <script>
 
   import { Icon, Message } from '@kws3/helpers';
+  import pkg from '@kws3/helpers/package.json';
+
+  import Package from './Package.html';
 
   export default {
     components: {
-      Icon, Message
+      Icon, Message, Package
     },
     data() {
       return {
-
+        pkg
       };
     },
 
