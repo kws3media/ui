@@ -3,6 +3,9 @@
   "version": "0.0.2",
   "description": "A Datepicker component for Svelte applications",
   "main": "index.js",
+  "dependencies": {
+    "flatpickr": "^3.0.6"
+  },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
   "demo_url": "https://ui.kws3.media/?selectedKind=Forms%7CDatepicker",
   "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
