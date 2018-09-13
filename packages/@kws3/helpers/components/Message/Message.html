@@ -1,4 +1,4 @@
-<div class="message is-{type}" style="{style}">
+<div class="message is-{color}" style="{style}">
   <div class="message-body" style="{inner_style}">
     <slot></slot>
   </div>
@@ -8,9 +8,14 @@
   export default {
     data(){
       return {
-        type:'info',
+        color:'info',
         style:'',
         inner_style:''
+      }
+    },
+    onstate({changed, current, previous}){
+      if(changed.type){
+        this.set({color: current.type})
       }
     }
   }

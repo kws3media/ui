@@ -1,4 +1,4 @@
-<div class="notification is-{type}" style="{style}">
+<div class="notification is-{color}" style="{style}">
   {#if dismissable}
     <button class="delete" on:click="dismiss()"></button>
   {/if}
@@ -9,9 +9,14 @@
   export default {
     data(){
       return {
-        type:'info',
+        color:'info',
         style:'',
         dismissable: false
+      }
+    },
+    onstate({changed, current, previous}){
+      if(changed.type){
+        this.set({color: current.type})
       }
     },
     methods:{
