@@ -1,0 +1,59 @@
+<div class="main">
+  <div class="container">
+
+    <Package {pkg} />
+
+    <h1 class="title is-2">DeleteButton</h1>
+    <p>Graphic to display a loading status to users.</p>
+    <hr>
+
+    <h2 class="title is-4">Example</h2>
+    <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+    <div class="columns">
+      <div class="column">
+        <DeleteButton text="Delete" :color :size :icon_only/>
+      </div>
+      <div class="column">
+        <pre><code>&lt;DeleteButton
+  text="Delete"
+  color="{color}"
+  size="{size}"
+  icon_only="{icon_only}"
+/&gt;
+</code></pre>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <h2 class="title is-4">Usage</h2>
+    <p>Import the component:</p>
+    <pre><code>import &#123; DeleteButton &#125; from '@kws3/buttons'; </code></pre>
+  </div>
+
+
+</div>
+
+
+<script>
+
+  import { DeleteButton } from '@kws3/buttons';
+
+  import pkg from '@kws3/buttons/package.json';
+  import Package from './Package.html';
+
+  export default {
+    components: {
+      DeleteButton, Package
+    },
+    data() {
+      return {
+        pkg
+      };
+    },
+
+    methods: {
+    }
+  };
+</script>
