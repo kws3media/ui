@@ -3,7 +3,7 @@
   {text}
   {size}
   {icon}
-  {type}
+  {color}
   {doing_icon}
   {doing_text}
   {done_icon}
@@ -21,19 +21,24 @@
     components:{
       ConfirmButton
     },
-    data: function(){
+    data(){
       return {
         classes: 'is-pulled-right',
         text: 'Delete',
         size:'',
         icon: 'minus-circle',
-        type: 'danger',
+        color: 'danger',
         doing_icon: 'hourglass',
         doing_text: 'Deleting...',
         done_icon: 'check',
         done_text: 'Deleted',
         context:null,
         icon_only: false
+      }
+    },
+    onstate({ changed, current, previous }) {
+      if (changed.type) {
+        this.set({ color: current.type })
       }
     }
   }

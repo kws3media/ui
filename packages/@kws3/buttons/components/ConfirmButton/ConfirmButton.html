@@ -32,7 +32,7 @@
         text: '',
         size:'',
         icon: 'check',
-        type: 'info',
+        color: 'info',
         doing_icon: 'hourglass',
         doing_text: 'Please Wait...',
         done_icon: 'check',
@@ -46,8 +46,8 @@
       }
     },
     computed:{
-      main_color({ type }){
-        return 'is-' + type;
+      main_color({ color }){
+        return 'is-' + color;
       },
       icon_size({ size }){
         switch(size){
@@ -58,6 +58,11 @@
             return 'small';
           break;
         }
+      }
+    },
+    onstate({ changed, current, previous }) {
+      if (changed.type) {
+        this.set({ color: current.type })
       }
     },
     methods:{
