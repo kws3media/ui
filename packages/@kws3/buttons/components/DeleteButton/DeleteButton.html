@@ -1,0 +1,40 @@
+<ConfirmButton
+  {classes}
+  {text}
+  {size}
+  {icon}
+  {type}
+  {doing_icon}
+  {doing_text}
+  {done_icon}
+  {done_text}
+  {icon_only}
+  {context}
+  on:do="fire('erase', event)"
+  on:done="fire('erased', event)"
+ />
+
+<script>
+  import ConfirmButton from '../ConfirmButton/ConfirmButton.html';
+
+  export default {
+    components:{
+      ConfirmButton
+    },
+    data: function(){
+      return {
+        classes: 'is-pulled-right',
+        text: 'Delete',
+        size:'',
+        icon: 'minus-circle',
+        type: 'danger',
+        doing_icon: 'hourglass',
+        doing_text: 'Deleting...',
+        done_icon: 'check',
+        done_text: 'Deleted',
+        context:null,
+        icon_only: false
+      }
+    }
+  }
+</script>
