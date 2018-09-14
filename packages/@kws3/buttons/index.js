@@ -2,4 +2,4 @@ export { default as ConfirmButton } from './components/ConfirmButton/ConfirmButt
 
 export { default as DeleteButton } from './components/DeleteButton/DeleteButton.html';
 
-export { default as SubmitButton } from './components/Submit/SubmitButton.html';
+export { default as SubmitButton } from './components/SubmitButton/SubmitButton.html';

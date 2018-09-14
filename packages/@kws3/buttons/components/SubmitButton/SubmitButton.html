@@ -11,7 +11,8 @@
   import { Icon } from '@kws3/helpers';
 
   export default {
-    data: function(){
+    components: { Icon },
+    data(){
       return {
         classes: 'is-primary',
         text: 'Save Changes',
@@ -26,8 +27,7 @@
         },
         disabled: false
       }
-    },
-    components:{Icon}
+    }
   }
 
 </script>
