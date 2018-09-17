@@ -11,14 +11,14 @@
     <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
     <div class="columns">
       <div class="column">
-        <DeleteButton text="Delete" :color :size :icon_only/>
+        <DeleteButton text="Delete" {color} {size} {icon_only}/>
       </div>
       <div class="column">
         <pre><code>&lt;DeleteButton
   text="Delete"
   color="{color}"
   size="{size}"
-  icon_only="{icon_only}"
+  icon_only="&#123;{icon_only ? 'true' : 'false'}&#125;"
 /&gt;
 </code></pre>
 
