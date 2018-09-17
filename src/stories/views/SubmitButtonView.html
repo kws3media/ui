@@ -11,12 +11,38 @@
     <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
     <div class="columns">
       <div class="column">
-        <SubmitButton text="Save Details" :disabled/>
+        <div class="columns">
+          <div class="column">
+            <form on:submit="fakeSubmit(event)">
+              <SubmitButton {saved_text} {error_text} {text} {color} {size} {tracker} {disabled}/>
+              <span class="help">This will succeed.</span>
+            </form>
+          </div>
+          <div class="column">
+            <form on:submit="fakeSubmit2(event)">
+              <SubmitButton {saved_text} {error_text} {text} {color} {size} tracker={tracker2} {disabled}/>
+              <span class="help">This will fail, and turn red.</span>
+            </form>
+          </div>
+        </div>
+
+
+        <p>Expects a <code>tracker</code> object to be sent from outside, in this format:</p>
+        <pre><code>&#123;
+  saving: false,
+  saved: false,
+  error: false
+&#125;</code></pre>
+        <p>This tracker object can be manipulated from outside to change the state of the button.</p>
+        <p>For example, you can set <code>tracker.saving = true</code> before performing a network operation. And then set <code>tracker.saved = true</code> after the network request has completed.</p>
       </div>
       <div class="column">
         <pre><code>&lt;SubmitButton
-  text="Save Details"
-  disabled="{disabled}"
+  text="{text}"
+  saved_text="{saved_text}"
+  color="{color}"
+  size="{size}"
+  disabled="&#123;{disabled ? 'true' : 'false'}&#125;"
 /&gt;
 </code></pre>
 
@@ -47,11 +73,61 @@
     },
     data() {
       return {
-        pkg
+        pkg,
+        tracker:{
+          saving: false,
+          saved: false,
+          error: false
+        },
+        tracker2:{
+          saving: false,
+          saved: false,
+          error: false
+        }
       };
     },
 
     methods: {
+      fakeSubmit(e){
+        e.preventDefault();
+        console.log('here');
+        let {tracker} = this.get();
+        tracker.saving = true;
+        this.set({tracker});
+
+        setTimeout(() => {
+          tracker.saving = false;
+          tracker.saved = true;
+          this.set({tracker});
+
+          setTimeout(() => {
+            tracker.saved = false;
+            this.set({tracker});
+          }, 2000);
+
+
+        }, 2000);
+      },
+      fakeSubmit2(e){
+        e.preventDefault();
+        console.log('here');
+        let {tracker2} = this.get();
+        tracker2.saving = true;
+        this.set({tracker2});
+
+        setTimeout(() => {
+          tracker2.saving = false;
+          tracker2.error = true;
+          this.set({tracker2});
+
+          setTimeout(() => {
+            tracker2.error = false;
+            this.set({tracker2});
+          }, 2000);
+
+
+        }, 2000);
+      }
     }
   };
 </script>

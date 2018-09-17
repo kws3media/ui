@@ -1,6 +1,8 @@
-<button class="button {classes} {tracker.saving ? 'is-loading' : (tracker.error ? 'is-danger' : (tracker.saved ? 'is-success' : ''))}" type="submit" disabled="{disabled}" data-cy="{cy}">
+<button class="button {classes} is-{size} is-{color} {tracker.saving ? 'is-loading' : (tracker.error ? 'is-danger' : (tracker.saved ? 'is-success' : ''))}" type="submit" disabled="{disabled}" data-cy="{cy}">
   {#if tracker.saved}
     <Icon icon="check" size="{icon_size}" /> <span>{saved_text}</span>
+  {:elseif tracker.error}
+    <Icon icon="exclamation" size="{icon_size}" /> <span>{err_text}</span>
   {:else}
     <Icon icon="{icon}" size="{icon_size}" /> <span>{text}</span>
   {/if}
@@ -14,11 +16,13 @@
     components: { Icon },
     data(){
       return {
-        classes: 'is-primary',
+        classes: '',
+        size:'',
+        color: 'primary',
         text: 'Save Changes',
         saved_text: 'Saved',
+        error_text: 'Failed to Save',
         icon: 'save',
-        icon_size:'',
         cy:'submit',
         tracker:{
           saving: false,
@@ -26,6 +30,24 @@
           error: false
         },
         disabled: false
+      }
+    },
+    computed:{
+      err_text({text, error_text}){
+        if(error_text == ''){
+          return text;
+        }
+        return error_text;
+      },
+      icon_size({ size }){
+        switch(size){
+          case 'large':
+            return '';
+          break;
+          default:
+            return 'small';
+          break;
+        }
       }
     }
   }
