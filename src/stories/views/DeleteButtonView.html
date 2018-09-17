@@ -11,7 +11,23 @@
     <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
     <div class="columns">
       <div class="column">
-        <DeleteButton text="Delete" {color} {size} {icon_only}/>
+        <div class="columns">
+          <div class="column">
+            <DeleteButton text="Delete" {color} {size} {icon_only} context="pass" on:erase on:erased/>
+            <span class="help">This will succeed.</span>
+          </div>
+          <div class="column">
+            <DeleteButton text="Delete" {color} {size} {icon_only} context="fail" on:erase on:erased/>
+            <span class="help">This will fail.</span>
+          </div>
+        </div>
+
+        <p>Fires a <code>erase</code> event when confirmation is passed.</p>
+        <p>Fires a <code>erased</code> event after visual state has been reset following an action.</p>
+
+        <Message color="info">
+          Also takes a <code>context</code> property. This can let you differentiate between components when a page contains multiple instances of this component.
+        </Message>
       </div>
       <div class="column">
         <pre><code>&lt;DeleteButton
@@ -22,14 +38,65 @@
 /&gt;
 </code></pre>
 
+        <Message color="primary" style="margin-top:10px">
+          <p>In addition to the above options, the component also accepts the following properties:</p>
+          <ul>
+            <code>icon</code>,
+            <code>text</code>,
+            <code>doing_icon</code>,
+            <code>doing_text</code>,
+            <code>done_icon</code>,
+            <code>done_text</code>
+          </ul>
+        </Message>
+
       </div>
     </div>
 
     <hr>
 
-    <h2 class="title is-4">Usage</h2>
-    <p>Import the component:</p>
-    <pre><code>import &#123; DeleteButton &#125; from '@kws3/buttons'; </code></pre>
+    <h2 class="title is-4">Usage Example</h2>
+    <pre><code>
+  .....
+  &lt;DeleteButton on:do on:done /&gt;
+  ....
+
+  &lt;script>
+    import &#123; DeleteButton &#125; from '@kws3/buttons';
+    export default &#123;
+      ...
+      oncreate()&#123;
+        this.on('erase', (component) => &#123;
+          //set visual state to Doing
+          component.doing();
+          somePromise()
+          .then(() => &#123;
+            //set visual state to Done
+            //it will autmatically revert back to
+            //normal state after 3 seconds
+            component.done();
+          &#125;)
+          .catch(() => &#123;
+            //set visual state to Error
+            //it will autmatically revert back to
+            //normal state after 3 seconds
+            component.error();
+          &#125;)
+        &#125;);
+
+        this.on('erased', () => &#123;
+          //Change things on the page that should
+          //happen as a result of the
+          //action performed in somePromise()
+
+          //for example: remove the item deleted
+        &#125;);
+      &#125;
+      ...
+    &#125;
+  &lt;/script/&gt;
+
+  </code></pre>
   </div>
 
 
@@ -39,18 +106,41 @@
 <script>
 
   import { DeleteButton } from '@kws3/buttons';
+  import { Message } from '@kws3/helpers';
 
   import pkg from '@kws3/buttons/package.json';
   import Package from './Package.html';
 
+  function somePromise(context){
+    return new Promise((fulfil, reject) => {
+      setTimeout(() => {
+        context == 'pass' ? fulfil() : reject();
+      }, 2000);
+    })
+  }
+
   export default {
     components: {
-      DeleteButton, Package
+      DeleteButton, Package, Message
     },
     data() {
       return {
         pkg
       };
+    },
+    oncreate(){
+      this.on('erase', (component) => {
+          //set visual state to Doing
+          component.doing();
+          let { context } = component.get();
+          somePromise(context)
+          .then(() => {
+            component.done();
+          })
+          .catch(() => {
+            component.error();
+          })
+        });
     },
 
     methods: {

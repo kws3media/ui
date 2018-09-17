@@ -18,7 +18,7 @@ storiesOf('Buttons|ConfirmButton', module)
         'transparent', 'primary', 'info', 'warning',
         'success', 'danger', 'dark', 'light'
       ],
-      'danger'
+      'primary'
     );
 
     const size = select(
