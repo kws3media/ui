@@ -11,11 +11,33 @@ html {
 }
 
 .main {
-  padding: 1rem;
+  padding: 0rem;
+}
+.layout-header-section{
+  border-bottom: 1px solid $grey-lighter;
+}
+
+.layout-header-section,
+.layout-body-section{
+  padding-left:1rem;
+  padding-right:1rem;
 }
 
 p {
   margin: 0.5rem 0;
+}
+
+pre>code{
+  .tag{
+    padding: unset;
+    background: inherit;
+    white-space: inherit;
+    display: inherit;
+    line-height: inherit;
+    height: auto;
+    font-size: inherit;
+    border: none;
+  }
 }
 
 /* SCSS for stories */
