@@ -41,7 +41,9 @@
     },
     oncreate(){
       document.querySelectorAll('pre > code').forEach(element => {
-        element.classList.add('lang-html');
+        if(element.classList.length == 0){
+          element.classList.add('lang-html');
+        }
       });
 
       Prism.highlightAll();

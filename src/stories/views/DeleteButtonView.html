@@ -1,36 +1,33 @@
-<div class="main">
-  <div class="container">
+<Layout
+  title="DeleteButton"
+  subtitle="Delete Button with built-in confirmation."
+  {pkg}
+>
 
-    <Package {pkg} />
-
-    <h1 class="title is-2">DeleteButton</h1>
-    <p>Delete Button with built-in confirmation.</p>
-    <hr>
-
-    <h2 class="title is-4">Example</h2>
-    <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
-    <div class="columns">
-      <div class="column">
-        <div class="columns">
-          <div class="column">
-            <DeleteButton text="Delete" {color} {size} {icon_only} context="pass" on:erase on:erased/>
-            <span class="help">This will succeed.</span>
-          </div>
-          <div class="column">
-            <DeleteButton text="Delete" {color} {size} {icon_only} context="fail" on:erase on:erased/>
-            <span class="help">This will fail.</span>
-          </div>
+  <h2 class="title is-4">Example</h2>
+  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+  <div class="columns">
+    <div class="column">
+      <div class="columns">
+        <div class="column">
+          <DeleteButton text="Delete" {color} {size} {icon_only} context="pass" on:erase on:erased/>
+          <span class="help">This will succeed.</span>
         </div>
-
-        <p>Fires a <code>erase</code> event when confirmation is passed.</p>
-        <p>Fires a <code>erased</code> event after visual state has been reset following an action.</p>
-
-        <Message color="info">
-          Also takes a <code>context</code> property. This can let you differentiate between components when a page contains multiple instances of this component.
-        </Message>
+        <div class="column">
+          <DeleteButton text="Delete" {color} {size} {icon_only} context="fail" on:erase on:erased/>
+          <span class="help">This will fail.</span>
+        </div>
       </div>
-      <div class="column">
-        <pre><code>&lt;DeleteButton
+
+      <p>Fires a <code>erase</code> event when confirmation is passed.</p>
+      <p>Fires a <code>erased</code> event after visual state has been reset following an action.</p>
+
+      <Message color="info">
+        Also takes a <code>context</code> property. This can let you differentiate between components when a page contains multiple instances of this component.
+      </Message>
+    </div>
+    <div class="column">
+      <pre><code>&lt;DeleteButton
   text="Delete"
   color="{color}"
   size="{size}"
@@ -38,78 +35,77 @@
 /&gt;
 </code></pre>
 
-        <Message color="primary" style="margin-top:10px">
-          <p>In addition to the above options, the component also accepts the following properties:</p>
-          <ul>
-            <code>icon</code>,
-            <code>text</code>,
-            <code>doing_icon</code>,
-            <code>doing_text</code>,
-            <code>done_icon</code>,
-            <code>done_text</code>
-          </ul>
-        </Message>
+      <Message color="primary" style="margin-top:10px">
+        <p>In addition to the above options, the component also accepts the following properties:</p>
+        <ul>
+          <code>icon</code>,
+          <code>text</code>,
+          <code>doing_icon</code>,
+          <code>doing_text</code>,
+          <code>done_icon</code>,
+          <code>done_text</code>
+        </ul>
+      </Message>
 
-      </div>
     </div>
-
-    <hr>
-
-    <h2 class="title is-4">Usage Example</h2>
-    <pre><code>
-  .....
-  &lt;DeleteButton on:do on:done /&gt;
-  ....
-
-  &lt;script>
-    import &#123; DeleteButton &#125; from '@kws3/buttons';
-    export default &#123;
-      ...
-      oncreate()&#123;
-        this.on('erase', (component) => &#123;
-          //set visual state to Doing
-          component.doing();
-          somePromise()
-          .then(() => &#123;
-            //set visual state to Done
-            //it will autmatically revert back to
-            //normal state after 3 seconds
-            component.done();
-          &#125;)
-          .catch(() => &#123;
-            //set visual state to Error
-            //it will autmatically revert back to
-            //normal state after 3 seconds
-            component.error();
-          &#125;)
-        &#125;);
-
-        this.on('erased', () => &#123;
-          //Change things on the page that should
-          //happen as a result of the
-          //action performed in somePromise()
-
-          //for example: remove the item deleted
-        &#125;);
-      &#125;
-      ...
-    &#125;
-  &lt;/script/&gt;
-
-  </code></pre>
   </div>
 
+  <hr>
 
-</div>
+  <h2 class="title is-4">Usage Example</h2>
+  <pre><code>
+.....
+&lt;DeleteButton on:do on:done /&gt;
+....
+
+&lt;script>
+  import &#123; DeleteButton &#125; from '@kws3/buttons';
+  export default &#123;
+    ...
+    oncreate()&#123;
+      this.on('erase', (component) => &#123;
+        //set visual state to Doing
+        component.doing();
+        somePromise()
+        .then(() => &#123;
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.done();
+        &#125;)
+        .catch(() => &#123;
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.error();
+        &#125;)
+      &#125;);
+
+      this.on('erased', () => &#123;
+        //Change things on the page that should
+        //happen as a result of the
+        //action performed in somePromise()
+
+        //for example: remove the item deleted
+      &#125;);
+    &#125;
+    ...
+  &#125;
+&lt;/script&gt;
+
+</code></pre>
+
+
+</Layout>
 
 
 <script>
-
+  import Layout from '../layouts/Layout.html';
   import { DeleteButton } from '@kws3/buttons';
   import { Message } from '@kws3/helpers';
 
   import pkg from '@kws3/buttons/package.json';
-  import Package from './Package.html';
+
 
   function somePromise(context){
     return new Promise((fulfil, reject) => {
@@ -121,7 +117,7 @@
 
   export default {
     components: {
-      DeleteButton, Package, Message
+      Layout, DeleteButton, Message
     },
     data() {
       return {

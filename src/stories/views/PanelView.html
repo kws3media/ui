@@ -1,74 +1,72 @@
-<div class="main">
-  <div class="container">
+<Layout
+  title="Panel"
+  subtitle="A Panel component that allows wrapping elements."
+  {pkg}
+>
 
-    <Package {pkg} />
-
-    <h1 class="title is-2">Panel</h1>
-    <p>A Panel component that allows wrapping elements.</p>
-    <hr>
-    <h2 class="title is-4">Basic example</h2>
-    <div class="columns">
-      <div class="column">
-        <Panel title="Demo Panel">
-          <h1>This is a demo panel</h1>
-          <p>Lorem ipsum dolor sit amet consectetur</p>
-        </Panel>
-      </div>
-      <div class="column">
-        <pre><code>&lt;Panel title="Demo Panel"&gt;
+  <h2 class="title is-4">Basic example</h2>
+  <div class="columns">
+    <div class="column">
+      <Panel title="Demo Panel">
+        <h1>This is a demo panel</h1>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
+      </Panel>
+    </div>
+    <div class="column">
+      <pre><code>&lt;Panel title="Demo Panel"&gt;
   &lt;h1&gtThis is a demo panel&lt;/h1&gt;
   &lt;p&gt;Lorem ipsum dolor sit amet consectetur.&lt;/p&gt;
 &lt;/Panel&gt;</code></pre>
-      </div>
     </div>
-    <hr>
-    <h2 class="title is-4">Subtitle</h2>
-    <div class="columns">
-      <div class="column">
-        <Panel title="Demo Panel" subtitle="Panel has subtitle">
-          <h1>This is a demo panel</h1>
-          <p>Lorem ipsum dolor sit amet consectetur</p>
-        </Panel>
-      </div>
-      <div class="column">
-        <pre><code>&lt;Panel title="Demo Panel" subtitle="Panel has subtitle"&gt;
+  </div>
+  <hr>
+  <h2 class="title is-4">Subtitle</h2>
+  <div class="columns">
+    <div class="column">
+      <Panel title="Demo Panel" subtitle="Panel has subtitle">
+        <h1>This is a demo panel</h1>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
+      </Panel>
+    </div>
+    <div class="column">
+      <pre><code>&lt;Panel title="Demo Panel" subtitle="Panel has subtitle"&gt;
   &lt;h1&gtThis is a demo panel&lt;/h1&gt;
   &lt;p&gt;Lorem ipsum dolor sit amet consectetur.&lt;/p&gt;
 &lt;/Panel&gt;</code></pre>
-      </div>
     </div>
-    <hr>
-    <h2 class="title is-4">Collapsible Panel</h2>
-    <div class="columns">
-      <div class="column">
-        <Panel title="Demo Panel" collapsible={true}>
-          <h1>This is a demo panel</h1>
-          <p>Lorem ipsum dolor sit amet consectetur</p>
-        </Panel>
-      </div>
-      <div class="column">
-         <pre><code>&lt;Panel title="Demo Panel" collapsible=&#123;true&#125;&gt;
+  </div>
+  <hr>
+  <h2 class="title is-4">Collapsible Panel</h2>
+  <div class="columns">
+    <div class="column">
+      <Panel title="Demo Panel" collapsible={true}>
+        <h1>This is a demo panel</h1>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
+      </Panel>
+    </div>
+    <div class="column">
+        <pre><code>&lt;Panel title="Demo Panel" collapsible=&#123;true&#125;&gt;
   &lt;h1&gtThis is a demo panel&lt;/h1&gt;
   &lt;p&gt;Lorem ipsum dolor sit amet consectetur.&lt;/p&gt;
 &lt;/Panel&gt;</code></pre>
-      </div>
     </div>
-    <hr>
-    <h2 class="title is-4">Toolbar</h2>
-    <div class="columns">
-      <div class="column">
-        <Panel title="Demo Panel" has_toolbar={true}>
-          <div slot='toolbar'>
-            <span class="tag is-dark">
-              id: 123
-            </span>
-          </div>
-          <h1>This is a demo panel</h1>
-          <p>Lorem ipsum dolor sit amet consectetur</p>
-        </Panel>
-      </div>
-      <div class="column">
-        <pre><code>&lt;Panel title="Demo Panel" has_toolbar=&#123;true&#125;
+  </div>
+  <hr>
+  <h2 class="title is-4">Toolbar</h2>
+  <div class="columns">
+    <div class="column">
+      <Panel title="Demo Panel" has_toolbar={true}>
+        <div slot='toolbar'>
+          <span class="tag is-dark">
+            id: 123
+          </span>
+        </div>
+        <h1>This is a demo panel</h1>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
+      </Panel>
+    </div>
+    <div class="column">
+      <pre><code>&lt;Panel title="Demo Panel" has_toolbar=&#123;true&#125;
   &lt;div slot='toolbar'&gt;
     &lt;span class="tag is-dark"&gt;
       id: 123
@@ -76,24 +74,24 @@
   &lt;/div&gt;
   ...
 &lt;/Panel&gt;</code></pre>
-      </div>
     </div>
-    <hr>
-    <h2 class="title is-4">Toolbar - Center</h2>
-    <div class="columns">
-      <div class="column">
-        <Panel title="Demo Panel" has_center={true}>
-          <div slot='center'>
-            <span class="tag is-dark">
-              id: 123
-            </span>
-          </div>
-          <h1>This is a demo panel</h1>
-          <p>Lorem ipsum dolor sit amet consectetur</p>
-        </Panel>
-      </div>
-      <div class="column">
-        <pre><code>&lt;Panel title="Demo Panel" has_center=&#123;true&#125;
+  </div>
+  <hr>
+  <h2 class="title is-4">Toolbar - Center</h2>
+  <div class="columns">
+    <div class="column">
+      <Panel title="Demo Panel" has_center={true}>
+        <div slot='center'>
+          <span class="tag is-dark">
+            id: 123
+          </span>
+        </div>
+        <h1>This is a demo panel</h1>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
+      </Panel>
+    </div>
+    <div class="column">
+      <pre><code>&lt;Panel title="Demo Panel" has_center=&#123;true&#125;
   &lt;div slot='center'&gt;
     &lt;span class="tag is-dark"&gt;
       id: 123
@@ -101,41 +99,39 @@
   &lt;/div&gt;
   ...
 &lt;/Panel&gt;</code></pre>
-      </div>
     </div>
-    <hr>
-    <div class="columns">
-      <div class="column">
-        <h2 class="title is-4">Usage</h2>
-        <p>Import the component:</p>
-        <pre><code>import &#123; Panel &#125; from '@kws3/helpers'; </code></pre>
-        <p>Import the SCSS:</p>
-        <pre><code>@import 'path/to/node_modules/@kws3/helpers/components/Panel/styles';</code></pre>
-        <p>SCSS customization variables with default values:</p>
-        <pre><code>$kws-panel-background: #fff;
+  </div>
+  <hr>
+  <div class="columns">
+    <div class="column">
+      <h2 class="title is-4">Usage</h2>
+      <p>Import the component:</p>
+      <pre><code class="lang-js">import &#123; Panel &#125; from '@kws3/helpers'; </code></pre>
+      <p>Import the SCSS:</p>
+      <pre><code class="lang-css">@import 'path/to/node_modules/@kws3/helpers/components/Panel/styles';</code></pre>
+      <p>SCSS customization variables with default values:</p>
+      <pre><code class="lang-css">$kws-panel-background: #fff;
 $kws-panel-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
 $kws-panel-title-color: #000;
 $kws-panel-title-weight: 700;
 $kws-panel-caret-open-color: #888;
 $kws-panel-caret-closed-color: #00a4d8;</code></pre>
-      </div>
     </div>
-
   </div>
 
 
-</div>
+</Layout>
 
 
 <script>
-
+  import Layout from '../layouts/Layout.html';
   import { Panel } from '@kws3/helpers';
   import pkg from '@kws3/helpers/package.json';
-  import Package from './Package.html';
+
 
   export default {
     components: {
-      Panel, Package
+      Layout, Panel
     },
     data() {
       return {

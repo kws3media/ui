@@ -1,68 +1,62 @@
-<div class="main">
-  <div class="container">
+<Layout
+  title="Timepicker"
+  subtitle="A Timepicker component to pick time."
+  {pkg}
+>
 
-    <Package {pkg} />
-
-    <h1 class="title is-2">Icon</h1>
-    <p>A Timepicker component to pick time.</p>
-    <hr>
-
-    <h2 class="title is-4">Example</h2>
-    <div class="columns">
-      <div class="column is-4">
-        <div class="columns">
-          <div class="column">
-            <p>Pick a time</p>
-            <Timepicker bind:value="new_time" />
-          </div>
+  <h2 class="title is-4">Example</h2>
+  <div class="columns">
+    <div class="column is-4">
+      <div class="columns">
+        <div class="column">
+          <p>Pick a time</p>
+          <Timepicker bind:value="new_time" />
         </div>
-
       </div>
 
-      <div class="column">
-        <pre><code>&lt;Timepicker bind:value="new_time" /&gt;
-        </code></pre>
-
-      </div>
     </div>
 
-    <hr>
+    <div class="column">
+      <pre><code>&lt;Timepicker bind:value="new_time" /&gt;</code></pre>
 
-    <h2 class="title is-4">Usage</h2>
-    <p>Import the component:</p>
-    <pre><code>import Timepicker from '@kws3/timepicker'; </code></pre>
+    </div>
+  </div>
 
-    <Message color="warning" style="margin-top:1rem">
-      <strong>Requires <code>flatpickr</code> SCSS to be loaded first<br>
-      </strong>
-      <p>Import flatpickr style file to app.scss</p>
-      <pre><code>@import "path/to/node_modules/flatpickr/dist/flatpickr"; </code></pre>
-    </Message>
-    <p>Import the SCSS:</p>
-    <pre><code>@import 'path/to/node_modules/@kws3/timepicker/styles';</code></pre>
-    <pre><code>$kws-timepicker-boder-radius: 3px 3px !default;
+  <hr>
+
+  <h2 class="title is-4">Usage</h2>
+  <p>Import the component:</p>
+  <pre><code class="lang-js">import Timepicker from '@kws3/timepicker'; </code></pre>
+
+  <Message color="warning" style="margin-top:1rem">
+    <strong>Requires <code>flatpickr</code> SCSS to be loaded first<br>
+    </strong>
+    <p>Import flatpickr style file to app.scss</p>
+    <pre><code class="lang-css">@import "path/to/node_modules/flatpickr/dist/flatpickr"; </code></pre>
+  </Message>
+  <p>Import the SCSS:</p>
+  <pre><code class="lang-css">@import 'path/to/node_modules/@kws3/timepicker/styles';</code></pre>
+  <pre><code class="lang-css">$kws-timepicker-boder-radius: 3px 3px !default;
 $kws-timepicker-border: 1px solid $primary !default;
 $kws-timepicker-am-pm-color: $primary !default;</code></pre>
 
-  </div>
 
 
-</div>
+
+</Layout>
 
 
 <script>
-
+  import Layout from '../layouts/Layout.html';
   import Timepicker from '@kws3/timepicker';
   import { Message } from '@kws3/helpers';
   import pkg from '@kws3/timepicker/package.json';
-  import Package from './Package.html';
 
 
   export default {
     components: {
-      Timepicker,
-      Message,
-      Package
+      Layout, Timepicker,
+      Message
     },
     data() {
       return {

@@ -1,73 +1,72 @@
-<div class="main">
-  <div class="container">
+<Layout
+  title="Searchable Select"
+  subtitle="A select component that allows you to search by typing into it."
+  {pkg}
+>
 
-    <Package {pkg} />
-
-    <h1 class="title is-2">Searchable Select</h1>
-    <p>A select component that allows you to search by typing into it.</p>
-    <hr>
-    <div class="columns">
-      <div class="column is-6">
-        <h2 class="title is-4">Basic example</h2>
-        <SearchableSelect
-          data="{brands}"
-          placeholder="Choose a Brand..."
-          bind:value="selected_brand"
-          searchKey="name"
-          searchValue="id"
-        />
-        <br><br>
-        <pre><code>&lt;SearchableSelect
+  <div class="columns">
+    <div class="column is-6">
+      <h2 class="title is-4">Basic example</h2>
+      <SearchableSelect
+        data="{brands}"
+        placeholder="Choose a Brand..."
+        bind:value="selected_brand"
+        searchKey="name"
+        searchValue="id"
+      />
+      <br><br>
+      <pre><code>&lt;SearchableSelect
   data="&#123;brands&#125;"
   placeholder="Choose a Brand..."
   bind:value="selected_brand"
   searchKey="name"
   searchValue="id"
 /&gt;</code></pre>
-        <p>Here <code>brands</code> is an array of this format:</p>
-        <pre><code>[
+      <p>Here <code>brands</code> is an array of this format:</p>
+      <pre><code class="lang-js">[
   &#123; id: 1, name: 'LG'&#125;,
   &#123; id: 2, name: 'Samsung'&#125;,
   &#123; id: 3, name: 'Xiaomi'&#125;,
-  ...
+...
 ]</code></pre>
-        <p>
-          <code>searchKey</code> tells the component which key to search in, as you type.<br>
-          In the example above, we want to search the <code>name</code> key.
-        </p>
-        <p>
-          <code>searchValue</code> is the keys whose value will be set as the value of the select element once a corresponding entry has been selected.<br>
-          In the example above, we want the value set to <code>1</code> when we select <code>Apple</code>, <code>2</code> when we select <code>HTC</code> etc.
-        </p>
-      </div>
+      <p>
+        <code>searchKey</code> tells the component which key to search in, as you type.<br>
+        In the example above, we want to search the <code>name</code> key.
+      </p>
+      <p>
+        <code>searchValue</code> is the keys whose value will be set as the value of the select element once a corresponding entry has been selected.<br>
+        In the example above, we want the value set to <code>1</code> when we select <code>Apple</code>, <code>2</code> when we select <code>HTC</code> etc.
+      </p>
+    </div>
 
-      <div class="column">
-        <h2 class="title is-4">Usage</h2>
-        <p>Import the component:</p>
-        <pre><code>import SearchableSelect from '@kws3/searchable-select'; </code></pre>
-        <p>Import the SCSS:</p>
-        <pre><code>@import 'path/to/node_modules/@kws3/searchable-select/styles';</code></pre>
-        <p>SCSS customization variables with default values:</p>
-        <pre><code>$kws-ss-item-selected-bg-color:#0071bc;
+    <div class="column">
+      <h2 class="title is-4">Usage</h2>
+      <p>Import the component:</p>
+      <pre><code class="lang-js">import SearchableSelect from '@kws3/searchable-select'; </code></pre>
+      <p>Import the SCSS:</p>
+      <pre><code class="lang-css">@import 'path/to/node_modules/@kws3/searchable-select/styles';</code></pre>
+      <p>SCSS customization variables with default values:</p>
+      <pre><code class="lang-css">$kws-ss-item-selected-bg-color:#0071bc;
 $kws-ss-item-selected-text-color:#ffffff;
 $kws-ss-item-selecting-bg-color:#0071bc;
 $kws-ss-item-selecting-text-color:#ffffff;
 $kws-ss-dropdown-bg-color: #ffffff;
 $kws-ss-dropdown-text-color: #333;
 $kws-ss-caret-color: #0071bc;</code></pre>
-      </div>
     </div>
   </div>
-</div>
+
+</Layout>
 
 <script>
+  import Layout from '../layouts/Layout.html';
   import SearchableSelect from '@kws3/searchable-select';
   import pkg from '@kws3/searchable-select/package.json';
-  import Package from './Package.html';
+
 
   export default {
     components: {
-      SearchableSelect, Package
+      Layout, SearchableSelect
     },
     data() {
       return {

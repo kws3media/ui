@@ -28,7 +28,7 @@ p {
 }
 
 pre>code{
-  .tag{
+  .tag, .number{
     padding: unset;
     background: inherit;
     white-space: inherit;
@@ -37,7 +37,15 @@ pre>code{
     height: auto;
     font-size: inherit;
     border: none;
+    margin: inherit;
+    vertical-align: inherit;
+    text-align: inherit;
+
   }
+}
+
+pre:not([class*="language-"]){
+  visibility: hidden;
 }
 
 /* SCSS for stories */

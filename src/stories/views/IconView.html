@@ -1,69 +1,64 @@
-<div class="main">
-  <div class="container">
+<Layout
+  title="Icon"
+  subtitle="An Icon component to display FontAwesome icons."
+  {pkg}
+>
 
-    <Package {pkg} />
-
-    <h1 class="title is-2">Icon</h1>
-    <p>An Icon component to display FontAwesome icons.</p>
-    <hr>
-
-    <h2 class="title is-4">Example</h2>
-    <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
-    <div class="columns">
-      <div class="column is-4">
-        <div class="columns is-mobile is-centered is-multiline">
-          <div class="column is-5 has-text-centered"><Icon icon="check" {size} {color} /></div>
-          <div class="column is-5 has-text-centered"><Icon icon="plus" {size} {color} /></div>
-          <div class="column is-5 has-text-centered"><Icon icon="minus-circle" {size} {color} /></div>
-          <div class="column is-5 has-text-centered"><Icon icon="save" {size} {color} /></div>
-        </div>
-
+  <h2 class="title is-4">Example</h2>
+  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+  <div class="columns">
+    <div class="column is-4">
+      <div class="columns is-mobile is-centered is-multiline">
+        <div class="column is-5 has-text-centered"><Icon icon="check" {size} {color} /></div>
+        <div class="column is-5 has-text-centered"><Icon icon="plus" {size} {color} /></div>
+        <div class="column is-5 has-text-centered"><Icon icon="minus-circle" {size} {color} /></div>
+        <div class="column is-5 has-text-centered"><Icon icon="save" {size} {color} /></div>
       </div>
 
-      <div class="column">
-        <pre><code>&lt;Icon icon="check" color="{color}" size="{size}" /&gt;
+    </div>
+
+    <div class="column">
+      <pre><code>&lt;Icon icon="check" color="{color}" size="{size}" /&gt;
 &lt;Icon icon="plus" color="{color}" size="{size}" /&gt;
 &lt;Icon icon="minus-circle" color="{color}" size="{size}" /&gt;
 &lt;Icon icon="save" color="{color}" size="{size}" /&gt;</code></pre>
-        <Message type="info" style="margin-top:0.5em;">
-          <p><small>In addition to the above options, the component also accepts the following properties:</small></p>
-          <ul>
-            <li><code>icon_class</code> - to add a custom class</li>
-            <li><code>fa_class</code> - to add a custom FA class, like <code>fa-spin</code>, <code>fa-rotate-90</code> etc</li>
-            <li><code>fa_style</code> - to add custom raw css to the inner fontawesome <code>&lt;i&gt;</code></li>
-          </ul>
+      <Message type="info" style="margin-top:0.5em;">
+        <p><small>In addition to the above options, the component also accepts the following properties:</small></p>
+        <ul>
+          <li><code>icon_class</code> - to add a custom class</li>
+          <li><code>fa_class</code> - to add a custom FA class, like <code>fa-spin</code>, <code>fa-rotate-90</code> etc</li>
+          <li><code>fa_style</code> - to add custom raw css to the inner fontawesome <code>&lt;i&gt;</code></li>
+        </ul>
 
-        </Message>
-      </div>
+      </Message>
     </div>
-
-    <hr>
-
-    <h2 class="title is-4">Usage</h2>
-    <Message type="warning">
-      <strong>Requires FontAwesome version &lt;= 4.7.0,<br>
-        this can be either loaded from your bundle, or from a CDN
-      </strong>
-    </Message>
-    <p>Import the component:</p>
-    <pre><code>import &#123; Icon &#125; from '@kws3/helpers'; </code></pre>
-
   </div>
 
+  <hr>
 
-</div>
+  <h2 class="title is-4">Usage</h2>
+  <Message type="warning">
+    <strong>Requires FontAwesome version &lt;= 4.7.0,<br>
+      this can be either loaded from your bundle, or from a CDN
+    </strong>
+  </Message>
+  <p>Import the component:</p>
+  <pre><code class="lang-js">import &#123; Icon &#125; from '@kws3/helpers'; </code></pre>
+
+
+</Layout>
 
 
 <script>
-
+  import Layout from '../layouts/Layout.html';
   import { Icon, Message } from '@kws3/helpers';
   import pkg from '@kws3/helpers/package.json';
 
-  import Package from './Package.html';
+
 
   export default {
     components: {
-      Icon, Message, Package
+      Layout, Icon, Message
     },
     data() {
       return {

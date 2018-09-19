@@ -1,43 +1,40 @@
-<div class="main">
-  <div class="container">
+<Layout
+  title="SubmitButton"
+  subtitle="Button with programmatic support for different life-cycle states."
+  {pkg}
+>
 
-    <Package {pkg} />
-
-    <h1 class="title is-2">SubmitButton</h1>
-    <p>Button with programmatic support for different life-cycle states.</p>
-    <hr>
-
-    <h2 class="title is-4">Example</h2>
-    <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
-    <div class="columns">
-      <div class="column">
-        <div class="columns">
-          <div class="column">
-            <form on:submit="fakeSubmit(event)">
-              <SubmitButton {saved_text} {error_text} {text} {color} {size} {tracker} {disabled}/>
-              <span class="help">This will succeed.</span>
-            </form>
-          </div>
-          <div class="column">
-            <form on:submit="fakeSubmit2(event)">
-              <SubmitButton {saved_text} {error_text} {text} {color} {size} tracker={tracker2} {disabled}/>
-              <span class="help">This will fail.</span>
-            </form>
-          </div>
+  <h2 class="title is-4">Example</h2>
+  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+  <div class="columns">
+    <div class="column">
+      <div class="columns">
+        <div class="column">
+          <form on:submit="fakeSubmit(event)">
+            <SubmitButton {saved_text} {error_text} {text} {color} {size} {tracker} {disabled}/>
+            <span class="help">This will succeed.</span>
+          </form>
         </div>
+        <div class="column">
+          <form on:submit="fakeSubmit2(event)">
+            <SubmitButton {saved_text} {error_text} {text} {color} {size} tracker={tracker2} {disabled}/>
+            <span class="help">This will fail.</span>
+          </form>
+        </div>
+      </div>
 
 
-        <p>Expects a <code>tracker</code> object to be sent from outside, in this format:</p>
-        <pre><code>&#123;
+      <p>Expects a <code>tracker</code> object to be sent from outside, in this format:</p>
+      <pre><code class="lang-js">&#123;
   saving: false,
   saved: false,
   error: false
 &#125;</code></pre>
-        <p>This tracker object can be manipulated from outside to change the state of the button.</p>
-        <p>For example, you can set <code>tracker.saving = true</code> before performing a network operation. And then set <code>tracker.saved = true</code> after the network request has completed.</p>
-      </div>
-      <div class="column">
-        <pre><code>&lt;SubmitButton
+      <p>This tracker object can be manipulated from outside to change the state of the button.</p>
+      <p>For example, you can set <code>tracker.saving = true</code> before performing a network operation. And then set <code>tracker.saved = true</code> after the network request has completed.</p>
+    </div>
+    <div class="column">
+      <pre><code>&lt;SubmitButton
   text="{text}"
   saved_text="{saved_text}"
   color="{color}"
@@ -46,30 +43,29 @@
 /&gt;
 </code></pre>
 
-      </div>
     </div>
-
-    <hr>
-
-    <h2 class="title is-4">Usage</h2>
-    <p>Import the component:</p>
-    <pre><code>import &#123; SubmitButton &#125; from '@kws3/buttons'; </code></pre>
   </div>
 
+  <hr>
 
-</div>
+  <h2 class="title is-4">Usage</h2>
+  <p>Import the component:</p>
+  <pre><code class="lang-js">import &#123; SubmitButton &#125; from '@kws3/buttons'; </code></pre>
+
+
+</Layout>
 
 
 <script>
-
+  import Layout from '../layouts/Layout.html';
   import { SubmitButton } from '@kws3/buttons';
 
   import pkg from '@kws3/buttons/package.json';
-  import Package from './Package.html';
+
 
   export default {
     components: {
-      SubmitButton, Package
+      Layout, SubmitButton
     },
     data() {
       return {
