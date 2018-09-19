@@ -40,13 +40,15 @@
       }
     },
     oncreate(){
-      document.querySelectorAll('pre > code').forEach(element => {
-        if(element.classList.length == 0){
-          element.classList.add('lang-html');
-        }
-      });
+      setTimeout(() => {
+        document.querySelectorAll('pre > code').forEach(element => {
+          if(element.classList.length == 0){
+            element.classList.add('lang-html');
+          }
+        });
 
-      Prism.highlightAll();
+        Prism.highlightAll();
+      }, 0);
     }
   }
 
