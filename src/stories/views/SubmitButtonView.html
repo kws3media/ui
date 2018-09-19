@@ -25,23 +25,23 @@
 
 
       <p>Expects a <code>tracker</code> object to be sent from outside, in this format:</p>
-      <pre><code class="lang-js">&#123;
+      <Code lang="js">&#123;
   saving: false,
   saved: false,
   error: false
-&#125;</code></pre>
+&#125;</Code>
       <p>This tracker object can be manipulated from outside to change the state of the button.</p>
       <p>For example, you can set <code>tracker.saving = true</code> before performing a network operation. And then set <code>tracker.saved = true</code> after the network request has completed.</p>
     </div>
     <div class="column">
-      <pre><code>&lt;SubmitButton
+      <Code>&lt;SubmitButton
   text="{text}"
   saved_text="{saved_text}"
   color="{color}"
   size="{size}"
   disabled="&#123;{disabled ? 'true' : 'false'}&#125;"
 /&gt;
-</code></pre>
+</Code>
 
     </div>
   </div>
@@ -50,7 +50,7 @@
 
   <h2 class="title is-4">Usage</h2>
   <p>Import the component:</p>
-  <pre><code class="lang-js">import &#123; SubmitButton &#125; from '@kws3/buttons'; </code></pre>
+  <Code lang="js">import &#123; SubmitButton &#125; from '@kws3/buttons'; </Code>
 
 
 </Layout>
@@ -58,6 +58,8 @@
 
 <script>
   import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
   import { SubmitButton } from '@kws3/buttons';
 
   import pkg from '@kws3/buttons/package.json';
@@ -65,7 +67,7 @@
 
   export default {
     components: {
-      Layout, SubmitButton
+      Layout, Code, SubmitButton
     },
     data() {
       return {

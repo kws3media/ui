@@ -17,7 +17,7 @@
     </div>
 
     <div class="column">
-      <pre><code>&lt;Datepicker bind:value="new_date" /&gt;</code></pre>
+      <Code>&lt;Datepicker bind:value="new_date" /&gt;</Code>
 
     </div>
   </div>
@@ -26,18 +26,18 @@
 
   <h2 class="title is-4">Usage</h2>
   <p>Import the component:</p>
-  <pre><code class="lang-js">import Datepicker from '@kws3/datepicker'; </code></pre>
+  <Code lang="js">import Datepicker from '@kws3/datepicker'; </Code>
 
   <Message color="warning" style="margin-top:1rem">
     <strong>Requires <code>flatpickr</code> SCSS to be loaded first<br>
     </strong>
     <p>Import flatpickr style file to app.scss</p>
-    <pre><code class="lang-css">@import "path/to/node_modules/flatpickr/dist/flatpickr"; </code></pre>
+    <Code lang="css">@import "path/to/node_modules/flatpickr/dist/flatpickr"; </Code>
   </Message>
   <p>Import the component SCSS:</p>
-  <pre><code class="lang-css">@import 'path/to/node_modules/@kws3/datepicker/styles';</code></pre>
+  <Code lang="css">@import 'path/to/node_modules/@kws3/datepicker/styles';</Code>
   <p>SCSS customization variables with default values:</p>
-  <pre><code class="lang-css">$kws-datepicker-arrow-top-color: $primary;
+  <Code lang="css">$kws-datepicker-arrow-top-color: $primary;
 $kws-datepicker-arrow-bottom-color: $primary;
 
 $kws-datepicker-month-color: $white;
@@ -61,7 +61,7 @@ $kws-datepicker-day-bg-color: $primary;
 $kws-datepicker-day-border-color: $primary;
 
 $kws-datepicker-inner-container-border-radius: 3px 3px 0 0;
-$kws-datepicker-inner-container-border-bottom-color: 1px solid $primary;</code></pre>
+$kws-datepicker-inner-container-border-bottom-color: 1px solid $primary;</Code>
 
 
 </Layout>
@@ -69,6 +69,8 @@ $kws-datepicker-inner-container-border-bottom-color: 1px solid $primary;</code><
 
 <script>
   import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
   import Datepicker from '@kws3/datepicker';
   import {Message} from '@kws3/helpers';
   import pkg from '@kws3/datepicker/package.json';
@@ -77,7 +79,7 @@ $kws-datepicker-inner-container-border-bottom-color: 1px solid $primary;</code><
 
   export default {
     components: {
-      Layout, Datepicker, Message
+      Layout, Code, Datepicker, Message
     },
     data() {
       return {

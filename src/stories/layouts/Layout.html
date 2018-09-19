@@ -21,8 +21,7 @@
 </div>
 
 <script>
-  import 'prismjs/themes/prism-tomorrow.css';
-  import Prism from 'prismjs';
+
   import Package from '../helpers/Package.html';
 
   export default {
@@ -38,17 +37,6 @@
           version: '0.0.0'
         }
       }
-    },
-    oncreate(){
-      setTimeout(() => {
-        document.querySelectorAll('pre > code').forEach(element => {
-          if(element.classList.length == 0){
-            element.classList.add('lang-html');
-          }
-        });
-
-        Prism.highlightAll();
-      }, 0);
     }
   }
 

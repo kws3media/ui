@@ -27,13 +27,13 @@
       </Message>
     </div>
     <div class="column">
-      <pre><code>&lt;ConfirmButton
+      <Code>&lt;ConfirmButton
   text="Confirm"
   color="{color}"
   size="{size}"
   icon_only="&#123;{icon_only ? 'true' : 'false'}&#125;"
 /&gt;
-</code></pre>
+</Code>
 
       <Message color="primary" style="margin-top:10px">
         <p>In addition to the above options, the component also accepts the following properties:</p>
@@ -53,7 +53,7 @@
   <hr>
 
   <h2 class="title is-4">Usage Example</h2>
-  <pre><code>
+  <Code>
 .....
 &lt;ConfirmButton on:do on:done /&gt;
 ....
@@ -90,7 +90,7 @@
     ...
   &#125;
 &lt;/script&gt;
-  </code></pre>
+  </Code>
 
 </Layout>
 
@@ -98,6 +98,7 @@
 <script>
 
   import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
 
   import { ConfirmButton } from '@kws3/buttons';
   import { Message } from '@kws3/helpers';
@@ -114,7 +115,7 @@
 
   export default {
     components: {
-      Layout, ConfirmButton, Message
+      Layout, Code, ConfirmButton, Message
     },
     data() {
       return {

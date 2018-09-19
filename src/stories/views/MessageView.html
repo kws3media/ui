@@ -14,10 +14,10 @@
       </Message>
     </div>
     <div class="column">
-      <pre><code>&lt;Message color='{color}'&gt;
+      <Code>&lt;Message color='{color}'&gt;
   &lt;h1&gt;This is a Heading&lt;/h1&gt;
   &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Error.&lt;/p&gt;
-&lt;/Message&gt;</code></pre>
+&lt;/Message&gt;</Code>
     </div>
   </div>
 
@@ -26,7 +26,7 @@
     <div class="column">
       <h2 class="title is-4">Usage</h2>
       <p>Import the component:</p>
-      <pre><code class="lang-js">import &#123; Message &#125; from '@kws3/helpers'; </code></pre>
+      <Code lang="js">import &#123; Message &#125; from '@kws3/helpers'; </Code>
     </div>
   </div>
 
@@ -36,13 +36,15 @@
 
 <script>
   import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
   import { Message } from '@kws3/helpers';
   import pkg from '@kws3/helpers/package.json';
 
 
   export default {
     components: {
-      Layout, Message
+      Layout, Code, Message
     },
     data() {
       return {

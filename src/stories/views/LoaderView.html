@@ -11,13 +11,13 @@
       <Loader {color} {size} {large_loader} {type} />
     </div>
     <div class="column">
-      <pre><code>&lt;Loader
+      <Code>&lt;Loader
   color="{color}"
   size="{size}"
   type="{type}"
   large_loader="&#123;{ large_loader ? 'true' : 'false' }&#125;"
 /&gt;
-</code></pre>
+</Code>
       <Message type="info" style="margin-top:0.5em;">
         <ul>
           <li><strong>Note 1:</strong> <small>In addition to the above options, the component also accepts a <code>style</code> property. This lets you add custom css to the component.</small></li>
@@ -32,16 +32,16 @@
 
   <h2 class="title is-4">Usage</h2>
   <p>Import the component:</p>
-  <pre><code class="lang-js">import &#123; Loader &#125; from '@kws3/helpers'; </code></pre>
+  <Code lang="js">import &#123; Loader &#125; from '@kws3/helpers'; </Code>
   <p>Import the SCSS:</p>
-  <pre><code class="lang-css">@import 'path/to/node_modules/@kws3/helpers/components/Loader/styles';</code></pre>
+  <Code lang="css">@import 'path/to/node_modules/@kws3/helpers/components/Loader/styles';</Code>
   <p>SCSS customization variables with default values:</p>
-  <pre><code class="lang-css">$kws-loader-width: 2rem;
+  <Code lang="css">$kws-loader-width: 2rem;
 $kws-loader-height: 2rem;
 $kws-loader-width-large: ($kws-loader-width * 3);
 $kws-loader-height-large: ($kws-loader-height * 3);
 $kws-loader-color: #ccc;
-$kws-loader-overlay-background: rgba(0,0,0,0.15);</code></pre>
+$kws-loader-overlay-background: rgba(0,0,0,0.15);</Code>
 
 
 
@@ -50,6 +50,8 @@ $kws-loader-overlay-background: rgba(0,0,0,0.15);</code></pre>
 
 <script>
   import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
   import { Loader, Message } from '@kws3/helpers';
 
   import pkg from '@kws3/helpers/package.json';
@@ -57,7 +59,7 @@ $kws-loader-overlay-background: rgba(0,0,0,0.15);</code></pre>
 
   export default {
     components: {
-      Layout, Loader, Message
+      Layout, Code, Loader, Message
     },
     data() {
       return {

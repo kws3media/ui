@@ -1,0 +1,18 @@
+<pre><code class="lang-{lang}" ref:codearea><slot></slot></code></pre>
+
+<script>
+  import Prism from 'prismjs';
+  export default {
+    data(){
+      return {
+        lang:'html'
+      }
+    },
+    oncreate(){
+      setTimeout(() => {
+        this.refs.codearea && Prism.highlightElement(this.refs.codearea);
+      }, 0);
+
+    }
+  }
+</script>

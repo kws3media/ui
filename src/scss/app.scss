@@ -48,6 +48,9 @@ pre:not([class*="language-"]){
   visibility: hidden;
 }
 
+//PRISM JS
+@import "../../node_modules/prismjs/themes/prism-tomorrow.css";
+
 /* SCSS for stories */
 
 /*------------------*/

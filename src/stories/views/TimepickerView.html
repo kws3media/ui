@@ -17,7 +17,7 @@
     </div>
 
     <div class="column">
-      <pre><code>&lt;Timepicker bind:value="new_time" /&gt;</code></pre>
+      <Code>&lt;Timepicker bind:value="new_time" /&gt;</Code>
 
     </div>
   </div>
@@ -26,19 +26,19 @@
 
   <h2 class="title is-4">Usage</h2>
   <p>Import the component:</p>
-  <pre><code class="lang-js">import Timepicker from '@kws3/timepicker'; </code></pre>
+  <Code lang="js">import Timepicker from '@kws3/timepicker'; </Code>
 
   <Message color="warning" style="margin-top:1rem">
     <strong>Requires <code>flatpickr</code> SCSS to be loaded first<br>
     </strong>
     <p>Import flatpickr style file to app.scss</p>
-    <pre><code class="lang-css">@import "path/to/node_modules/flatpickr/dist/flatpickr"; </code></pre>
+    <Code lang="css">@import "path/to/node_modules/flatpickr/dist/flatpickr"; </Code>
   </Message>
   <p>Import the SCSS:</p>
-  <pre><code class="lang-css">@import 'path/to/node_modules/@kws3/timepicker/styles';</code></pre>
-  <pre><code class="lang-css">$kws-timepicker-boder-radius: 3px 3px !default;
+  <Code lang="css">@import 'path/to/node_modules/@kws3/timepicker/styles';</Code>
+  <Code lang="css">$kws-timepicker-boder-radius: 3px 3px !default;
 $kws-timepicker-border: 1px solid $primary !default;
-$kws-timepicker-am-pm-color: $primary !default;</code></pre>
+$kws-timepicker-am-pm-color: $primary !default;</Code>
 
 
 
@@ -48,6 +48,8 @@ $kws-timepicker-am-pm-color: $primary !default;</code></pre>
 
 <script>
   import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
   import Timepicker from '@kws3/timepicker';
   import { Message } from '@kws3/helpers';
   import pkg from '@kws3/timepicker/package.json';
@@ -55,7 +57,7 @@ $kws-timepicker-am-pm-color: $primary !default;</code></pre>
 
   export default {
     components: {
-      Layout, Timepicker,
+      Layout, Code, Timepicker,
       Message
     },
     data() {
