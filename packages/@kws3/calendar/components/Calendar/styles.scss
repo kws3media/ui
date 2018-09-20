@@ -1,0 +1,118 @@
+/* ---------------------------- */
+/* ---- Calendar component ---- */
+$kws-calendar-border-color: $grey-lighter !default;
+
+$kws-calendar-header-border-color: rgba(0, 0, 0, 0.3) !default;
+$kws-calendar-header-background: #f9f9f9 !default;
+$kws-calendar-header-weekend-opacity: 0.5 !default;
+
+$kws-calendar-month-background: #fff !default;
+$kws-calendar-month-today-background: $success !default;
+$kws-calendar-month-active-background: $info !default;
+$kws-calendar-month-off-opacity: 0.5 !default;
+
+$kws-calendar-day-background: #fff !default;
+$kws-calendar-day-today-background: #f2f8ff !default;
+
+.calendar-component{
+  position: relative;
+  .column{
+    text-align:center;
+  }
+  .calendar-body{
+    padding:10px;
+    position: relative;
+  }
+  .calendar-rows{
+    .columns{
+      .column{
+        border-left:1px solid $kws-calendar-border-color;
+        border-bottom:1px solid $kws-calendar-border-color;
+        text-align:left;
+        background:$kws-calendar-month-background;
+        cursor: pointer;
+        .date{
+          font-size: 1.2em;
+          color:#333;
+          text-align:right;
+          display: block;
+        }
+        &:last-child{
+          border-right:1px solid $kws-calendar-border-color;
+        }
+        &.off{
+          opacity: $kws-calendar-month-off-opacity;
+        }
+        &.today{
+          background:$kws-calendar-month-today-background;
+        }
+        &:active{
+          background:$kws-calendar-month-active-background;
+        }
+      }
+    }
+
+  }
+  .calendar-day{
+    position:absolute;
+    left:0;top:0;
+    bottom:0;right:0;
+    width:100%;
+    height:100%;
+    overflow-x: auto;
+    background: $kws-calendar-day-background;
+    border:1px solid $kws-calendar-border-color;
+    border-top:none;
+    &.today{
+      background:$kws-calendar-day-today-background;
+    }
+  }
+  .calendar-header{
+    border-bottom: 1px solid $kws-calendar-header-border-color;
+    background: $kws-calendar-header-background;
+    padding-bottom: 15px;
+    .columns{
+      h4{
+        position:relative;
+        display:inline-block;
+        padding:0.3em 0;
+        &.subtitle{
+          font-size:25px;
+          margin-bottom:0;
+          white-space: nowrap;
+        }
+        &.month, &.year{
+          font-size:27px;
+          background:rgba(0, 0, 0, 0.03);
+          border-radius:3px;
+          padding:0.2em 1em;
+        }
+        &.month{
+          margin-right:3px;
+        }
+        select{
+          font-size:16px;
+          position:absolute;
+          left:0;
+          top:0;
+          width:100%;
+          height:100%;
+          opacity:0;
+        }
+      }
+    }
+    .tabs, .button, .tag{
+      margin-top:7px;
+      text-decoration: none;
+    }
+
+  }
+  .calendar-weekdays{
+    .column{
+      font-size: 18px;
+      &.weekend{
+        opacity:$kws-calendar-header-weekend-opacity;
+      }
+    }
+  }
+}

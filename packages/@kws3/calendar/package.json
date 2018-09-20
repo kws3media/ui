@@ -1,0 +1,22 @@
+{
+  "name": "@kws3/calendar",
+  "version": "0.0.1",
+  "description": "A full page Calendar component",
+  "main": "index.js",
+  "dependencies": {
+    "@kws3/helpers":"^0.3.0"
+  },
+  "repository": "bitbucket:kws3-team/storybooks-frontend",
+  "demo_url": "https://ui.kws3.media/?selectedKind=Calendar%7CDefault",
+  "author": "Khaled Ahmed <me.khaled@gmail.com>",
+  "contributors": [
+    "Sharif Ahmed <me.sharifahmed@gmail.com>"
+  ],
+  "license": "Private",
+  "keywords": [
+    "calendar",
+    "fullpage",
+    "full",
+    "page"
+  ]
+}

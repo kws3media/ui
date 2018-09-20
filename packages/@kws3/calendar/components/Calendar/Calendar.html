@@ -1,0 +1,317 @@
+<div class="calendar-component {classes}">
+  {#if is_loading}
+    <div class="is-overlay is-inline-loader">
+      <Loader large_loader=true></Loader>
+    </div>
+  {/if}
+
+  <div class="calendar-header">
+    <div class="columns is-mobile header-top">
+      <div class="column">
+        <a href="#/" class="tag is-info is-large" on:click="today(event)">{#if viewMode == 'day'}Today{:else}This Month{/if}</a>
+      </div>
+      <div class="column">
+        <a href="#/" on:click="decrease(event)">
+          <Icon icon="angle-left" size="large" />
+        </a>
+      </div>
+      <div class="column">
+        <div class="columns is-mobile">
+          <div class="column">
+            {#if viewMode == 'day'}
+            <h4 class="subtitle is-pulled-right">
+              {months[current.month]} {current.date},
+            </h4>
+            {:else}
+            <h4 class="subtitle month">
+              <select bind:value="current.month">
+                {#each months as month, i}
+                <option value="{i}">{month}</option>
+                {/each}
+              </select>
+              {months[current.month]}
+            </h4>
+            {/if}
+          </div>
+          <div class="column">
+            {#if viewMode == 'day'}
+            <h4 class="subtitle is-pulled-left">
+              {current.year}
+            </h4>
+            {:else}
+            <h4 class="subtitle year">
+              <select bind:value="current.year">
+                {#each years as year}
+                <option value="{year}">{year}</option>
+                {/each}
+              </select>
+              {current.year}
+            </h4>
+            {/if}
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <a href="#/" on:click="increase(event)">
+          <Icon icon="angle-right" size="large" />
+        </a>
+      </div>
+      <div class="column">
+        {#if hasDayMode}
+          <div class="tabs is-toggle is-centered">
+            <ul>
+              <li class="{viewMode == 'day' ? '' : 'is-active'}"><a href="#/" on:click="switchMode('month', event)">Month</a></li>
+              <li class="{viewMode == 'day' ? 'is-active' : ''}"><a href="#/" on:click="switchMode('day', event)">Day</a></li>
+            </ul>
+          </div>
+        {/if}
+      </div>
+    </div>
+    <div class="calendar-weekdays">
+      <div class="columns is-mobile">
+        {#if viewMode == 'day'}
+          <div class="column {current.day == 0 || current.day == 6 ? 'weekend' : ''}">{days[current.day]}</div>
+        {:else}
+          <div class="column">Mon</div>
+          <div class="column">Tue</div>
+          <div class="column">Wed</div>
+          <div class="column">Thu</div>
+          <div class="column">Fri</div>
+          <div class="column weekend">Sat</div>
+          <div class="column weekend">Sun</div>
+        {/if}
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar-body">
+    <div class="calendar-rows">
+      {#each dates as _date, i}
+      <div class="columns is-mobile">
+        {#each dates[i] as date}
+        <div style="min-height:{month_box_min_height}px" class="column {(date.getMonth() !== current.month) ? 'off' : '' } {viewMode == 'month' ? is_today(date) : ''}"
+          on:click="dateChosen(date)">
+          <span class="date">{date.getDate()}</span>
+          <!-- RenderMonthDay -->
+          {#if !is_loading && viewMode != 'day'}
+            <svelte:component
+              this={monthComponent}
+              {date}
+              {data}
+            />
+          {/if}
+        </div>
+        {/each}
+      </div>
+      {/each}
+    </div>
+
+    {#if viewMode == 'day'}
+    <div class="calendar-day {is_today(current.raw)}">
+      <!-- RenderDay -->
+      {#if !is_loading}
+        <svelte:component
+          this={dayComponent}
+          date={current.raw}
+          {data}
+        />
+      {/if}
+    </div>
+    {/if}
+  </div>
+</div>
+
+
+
+<script>
+
+  import {Icon, Loader} from '@kws3/helpers';
+
+  function isLeapYear(year) {
+    return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0));
+  }
+
+  function getDaysInMonth(year, month) {
+    return [31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+  }
+
+  function addMonths(date, value) {
+    var d = new Date(date),
+      n = date.getDate();
+    d.setDate(1);
+    d.setMonth(d.getMonth() + value);
+    d.setDate(Math.min(n, getDaysInMonth(d.getFullYear(), d.getMonth())));
+    return d;
+  }
+
+  export default {
+    components: { Icon, Loader },
+    data() {
+      return {
+        is_loading: false,
+        data: [],
+        firstDayOfWeek: 1,
+        today: (new Date),
+        month_box_min_height: 50,
+        viewMode: 'month',
+        hasDayMode: true,
+        class:'',
+        days: [
+          'Sunday', 'Monday', 'Tuesday', 'Wednesday',
+          'Thursday', 'Friday', 'Saturday'
+        ],
+        months: [
+          'January', 'February', 'March',
+          'April', 'May', 'June',
+          'July', 'August', 'September',
+          'October', 'November', 'December'
+        ],
+        current: {
+          year: (new Date).getFullYear(),
+          month: (new Date).getMonth(),
+          date: (new Date).getDate(),
+          day: (new Date).getDay(),
+          raw: (new Date)
+        },
+        is_today(d) {
+          var today = new Date;
+          return (
+            d.getDate() == today.getDate() &&
+            d.getMonth() == today.getMonth() &&
+            d.getFullYear() == today.getFullYear()
+          ) ? 'today' : '';
+        }
+      }
+    },
+    onstate({ changed, current, previous }) {
+      var self = this;
+
+      if (changed.current) {
+        let _current = current['current'];
+        self.fire('dateChange', [_current, self.get().viewMode])
+      }
+    },
+    oncreate() {
+
+    },
+    computed: {
+      years({ current }) {
+        var currentyear = parseInt(current.year, 10),
+          ret = [];
+        for (var i = (currentyear - 5); i <= (currentyear + 5); i++) {
+          ret.push(i);
+        }
+        return ret;
+      },
+      dates({ current, firstDayOfWeek }) {
+
+        var totalDays = new Date(current.year, current.month, 0).getDate(); // of month
+        var firstDayOfMonth = new Date(current.year, current.month, 1).getDay(); // day of week the 1st is on
+
+
+
+        var days = [], weeks = [];
+
+        if (firstDayOfWeek > 0 && firstDayOfWeek < 7) {
+          firstDayOfMonth = firstDayOfMonth - firstDayOfWeek;
+          firstDayOfMonth = firstDayOfMonth < 0 ? 7 + firstDayOfMonth : firstDayOfMonth;
+        }
+
+        for (var i = 0, j = 1 - firstDayOfMonth; i < 42; i++ , j++) {
+          days.push(new Date(current.year, current.month, j));
+        }
+
+        var i, j, temparray, chunk = 7;
+        for (i = 0, j = days.length; i < j; i += chunk) {
+          temparray = days.slice(i, i + chunk);
+          weeks.push(temparray);
+        }
+
+        return weeks;
+      }
+    },
+    methods: {
+      dateChosen(d) {
+        var self = this,
+          current = {
+            year: d.getFullYear(),
+            month: d.getMonth(),
+            date: d.getDate(),
+            day: d.getDay(),
+            raw: d
+          };
+
+        if (self.get().hasDayMode) {
+          self.set({
+            'viewMode': 'day',
+            current
+          })
+        }
+
+        self.fire('dateChosen', d);
+      },
+      switchMode(n, e) {
+        e && e.preventDefault();
+        var self = this,
+          { current } = this.get();
+
+        self.set({
+          'viewMode': n,
+          current
+        })
+      },
+      today(e) {
+        e && e.preventDefault();
+        var current_date = new Date();
+        var current = {
+          year: current_date.getFullYear(),
+          month: current_date.getMonth(),
+          date: current_date.getDate(),
+          day: current_date.getDay(),
+          raw: current_date
+        };
+        this.set({ current });
+      },
+      increase(e) {
+        e && e.preventDefault();
+        var { current, viewMode: mode } = this.get(),
+          current_date = new Date(current.year, current.month, current.date);
+
+        if (mode == 'day') {
+          current_date.setDate(current_date.getDate() + 1);
+        } else {
+          current_date = addMonths(current_date, 1);
+        }
+
+        current = {
+          year: current_date.getFullYear(),
+          month: current_date.getMonth(),
+          date: current_date.getDate(),
+          day: current_date.getDay(),
+          raw: current_date
+        };
+        this.set({ current });
+      },
+      decrease(e) {
+        e && e.preventDefault();
+        var { current, viewMode: mode } = this.get(),
+          current_date = new Date(current.year, current.month, current.date);
+
+        if (mode == 'day') {
+          current_date.setDate(current_date.getDate() - 1);
+        } else {
+          current_date = addMonths(current_date, -1);
+        }
+
+        current = {
+          year: current_date.getFullYear(),
+          month: current_date.getMonth(),
+          date: current_date.getDate(),
+          day: current_date.getDay(),
+          raw: current_date
+        };
+        this.set({ current });
+      }
+    }
+  }
+</script>

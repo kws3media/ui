@@ -1,0 +1,50 @@
+<Layout
+  title="Calendar"
+  subtitle="A full page Calendar component"
+  {pkg}
+>
+
+  <Calendar
+    dayComponent={Day}
+    monthComponent={Month}
+    month_box_min_height="0"
+    on:dateChange
+    on:dateChosen
+  />
+
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
+  import Day from '../helpers/calendar/DayView.html';
+  import Month from '../helpers/calendar/MonthView.html';
+
+  import Calendar from '@kws3/calendar';
+  import pkg from '@kws3/calendar/package.json';
+
+
+  export default {
+    components: {
+      Layout, Code, Calendar
+    },
+    data() {
+      return {
+        pkg,
+        Day,
+        Month
+      };
+    },
+    oncreate(){
+      this.on('dateChosen', (p) => {
+        console.log(p);
+      })
+      this.on('dateChange', ([{day, month, year, date, raw}, mode]) => {
+        console.log(day, month, year, date, raw, mode);
+      })
+    }
+  };
+</script>
