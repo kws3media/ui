@@ -1,10 +1,10 @@
 <button class="button {classes} is-{size} is-{color} {tracker.saving ? 'is-loading' : (tracker.error ? 'is-danger' : (tracker.saved ? 'is-success' : ''))}" type="submit" disabled="{disabled}" data-cy="{cy}">
   {#if tracker.saved}
-    <Icon icon="check" size="{icon_size}" /> <span>{saved_text}</span>
+    <Icon icon="check" size="{icon_size}" /> {#if !icon_only} <span>{saved_text}</span> {/if}
   {:elseif tracker.error}
-    <Icon icon="exclamation" size="{icon_size}" /> <span>{err_text}</span>
+    <Icon icon="exclamation" size="{icon_size}" /> {#if !icon_only} <span>{err_text}</span> {/if}
   {:else}
-    <Icon icon="{icon}" size="{icon_size}" /> <span>{text}</span>
+    <Icon icon="{icon}" size="{icon_size}" /> {#if !icon_only} <span>{text}</span> {/if}
   {/if}
 </button>
 
@@ -29,6 +29,7 @@
           saved: false,
           error: false
         },
+        icon_only: false,
         disabled: false
       }
     },
