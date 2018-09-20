@@ -27,13 +27,12 @@
       </Message>
     </div>
     <div class="column">
-      <Code>&lt;DeleteButton
+      <Code>{ `<DeleteButton
   text="Delete"
-  color="{color}"
-  size="{size}"
-  icon_only="&#123;{icon_only ? 'true' : 'false'}&#125;"
-/&gt;
-</Code>
+  color="${color}"
+  size="${size}"
+  icon_only="${icon_only ? 'true' : 'false'}"
+/>`}</Code>
 
       <Message color="primary" style="margin-top:10px">
         <p>In addition to the above options, the component also accepts the following properties:</p>
@@ -53,47 +52,44 @@
   <hr>
 
   <h2 class="title is-4">Usage Example</h2>
-  <Code>
-.....
-&lt;DeleteButton on:do on:done /&gt;
+  <Code>{ `.....
+<DeleteButton on:do on:done />;
 ....
 
-&lt;script>
-  import &#123; DeleteButton &#125; from '@kws3/buttons';
-  export default &#123;
+<script>
+  import { DeleteButton } from '@kws3/buttons';
+  export default {
     ...
-    oncreate()&#123;
-      this.on('erase', (component) => &#123;
+    oncreate(){
+      this.on('erase', (component) => {
         //set visual state to Doing
         component.doing();
         somePromise()
-        .then(() => &#123;
+        .then(() => {
           //set visual state to Done
           //it will autmatically revert back to
           //normal state after 3 seconds
           component.done();
-        &#125;)
-        .catch(() => &#123;
+        })
+        .catch(() => {
           //set visual state to Error
           //it will autmatically revert back to
           //normal state after 3 seconds
           component.error();
-        &#125;)
-      &#125;);
+        })
+      });
 
-      this.on('erased', () => &#123;
+      this.on('erased', () => {
         //Change things on the page that should
         //happen as a result of the
         //action performed in somePromise()
 
         //for example: remove the item deleted
-      &#125;);
-    &#125;
+      });
+    }
     ...
-  &#125;
-&lt;/script&gt;
-
-</Code>
+  }
+</script>` }</Code>
 
 
 </Layout>

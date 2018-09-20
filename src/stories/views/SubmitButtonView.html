@@ -25,23 +25,22 @@
 
 
       <p>Expects a <code>tracker</code> object to be sent from outside, in this format:</p>
-      <Code lang="js">&#123;
+      <Code lang="js">{ `{
   saving: false,
   saved: false,
   error: false
-&#125;</Code>
+}` } </Code>
       <p>This tracker object can be manipulated from outside to change the state of the button.</p>
       <p>For example, you can set <code>tracker.saving = true</code> before performing a network operation. And then set <code>tracker.saved = true</code> after the network request has completed.</p>
     </div>
     <div class="column">
-      <Code>&lt;SubmitButton
-  text="{text}"
-  saved_text="{saved_text}"
-  color="{color}"
-  size="{size}"
-  disabled="&#123;{disabled ? 'true' : 'false'}&#125;"
-/&gt;
-</Code>
+      <Code>{ `<SubmitButton
+  text="${text}"
+  saved_text="${saved_text}"
+  color="${color}"
+  size="${size}"
+  disabled="${disabled ? 'true' : 'false'}"
+/>` }</Code>
 
     </div>
   </div>
@@ -50,7 +49,7 @@
 
   <h2 class="title is-4">Usage</h2>
   <p>Import the component:</p>
-  <Code lang="js">import &#123; SubmitButton &#125; from '@kws3/buttons'; </Code>
+  <Code lang="js">{ `import { SubmitButton } from '@kws3/buttons'; ` } </Code>
 
 
 </Layout>

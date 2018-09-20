@@ -11,13 +11,12 @@
       <Loader {color} {size} {large_loader} {type} />
     </div>
     <div class="column">
-      <Code>&lt;Loader
-  color="{color}"
-  size="{size}"
-  type="{type}"
-  large_loader="&#123;{ large_loader ? 'true' : 'false' }&#125;"
-/&gt;
-</Code>
+      <Code>{ `<Loader
+  color="${color}"
+  size="${size}"
+  type="${type}"
+  large_loader="${ large_loader ? 'true' : 'false' }"
+/>` }</Code>
       <Message type="info" style="margin-top:0.5em;">
         <ul>
           <li><strong>Note 1:</strong> <small>In addition to the above options, the component also accepts a <code>style</code> property. This lets you add custom css to the component.</small></li>
@@ -32,7 +31,7 @@
 
   <h2 class="title is-4">Usage</h2>
   <p>Import the component:</p>
-  <Code lang="js">import &#123; Loader &#125; from '@kws3/helpers'; </Code>
+  <Code lang="js">{ `import { Loader } from '@kws3/helpers'; `} </Code>
   <p>Import the SCSS:</p>
   <Code lang="css">@import 'path/to/node_modules/@kws3/helpers/components/Loader/styles';</Code>
   <p>SCSS customization variables with default values:</p>

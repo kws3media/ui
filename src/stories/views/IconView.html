@@ -18,10 +18,10 @@
     </div>
 
     <div class="column">
-      <Code>&lt;Icon icon="check" color="{color}" size="{size}" /&gt;
-&lt;Icon icon="plus" color="{color}" size="{size}" /&gt;
-&lt;Icon icon="minus-circle" color="{color}" size="{size}" /&gt;
-&lt;Icon icon="save" color="{color}" size="{size}" /&gt;</Code>
+      <Code>{ `<Icon icon="check" color="${color}" size="${size}" />
+<Icon icon="plus" color="${color}" size="${size}" />
+<Icon icon="minus-circle" color="${color}" size="${size}" />
+<Icon icon="save" color="${color}" size="${size}" /> ` }</Code>
       <Message type="info" style="margin-top:0.5em;">
         <p><small>In addition to the above options, the component also accepts the following properties:</small></p>
         <ul>
@@ -43,7 +43,7 @@
     </strong>
   </Message>
   <p>Import the component:</p>
-  <Code lang="js">import &#123; Icon &#125; from '@kws3/helpers'; </Code>
+  <Code lang="js">{ `import { Icon } from '@kws3/helpers'; `} </Code>
 
 
 </Layout>

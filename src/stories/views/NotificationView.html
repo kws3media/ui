@@ -13,9 +13,9 @@
       </Notification>
     </div>
     <div class="column">
-      <Code>&lt;Notification color="{color}"&gt;
-  &lt;p&gt;Your have 41 notifications.&lt;/p&gt;
-&lt;/Notification&gt;</Code>
+      <Code>{ `<Notification color="${color}">
+  <p>Your have 41 notifications.</p>
+</Notification>` }</Code>
     </div>
   </div>
   <hr>
@@ -27,16 +27,16 @@
       </Notification>
     </div>
     <div class="column">
-      <Code>&lt;Notification color="{color}" dismissable=&#123;true&#125;&gt;
-  &lt;p&gt;Your have 41 notifications. And you can dismiss this notification.&lt;/p&gt;
-&lt;/Notification&gt;</Code>
+      <Code>{ `<Notification color="${color}" dismissable={true}>
+  <p>Your have 41 notifications. And you can dismiss this notification.</p>
+</Notification>` }</Code>
     </div>
   </div>
   <div class="columns">
     <div class="column">
       <h2 class="title is-4">Usage</h2>
       <p>Import the component:</p>
-      <Code lang="js">import &#123; Notification &#125; from '@kws3/helpers'; </Code>
+      <Code lang="js">{ `import { Notification } from '@kws3/helpers'; `} </Code>
     </div>
   </div>
 

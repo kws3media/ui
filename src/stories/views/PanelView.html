@@ -13,10 +13,10 @@
       </Panel>
     </div>
     <div class="column">
-      <Code>&lt;Panel title="Demo Panel"&gt;
-  &lt;h1&gtThis is a demo panel&lt;/h1&gt;
-  &lt;p&gt;Lorem ipsum dolor sit amet consectetur.&lt;/p&gt;
-&lt;/Panel&gt;</Code>
+      <Code>{ `<Panel title="Demo Panel">
+  <h1>This is a demo panel</h1>
+  <p>Lorem ipsum dolor sit amet consectetur.</p>
+</Panel>` }</Code>
     </div>
   </div>
   <hr>
@@ -29,10 +29,10 @@
       </Panel>
     </div>
     <div class="column">
-      <Code>&lt;Panel title="Demo Panel" subtitle="Panel has subtitle"&gt;
-  &lt;h1&gtThis is a demo panel&lt;/h1&gt;
-  &lt;p&gt;Lorem ipsum dolor sit amet consectetur.&lt;/p&gt;
-&lt;/Panel&gt;</Code>
+      <Code>{ `<Panel title="Demo Panel" subtitle="Panel has subtitle">
+  <h1>This is a demo panel</h1>
+  <p>Lorem ipsum dolor sit amet consectetur.</p>
+</Panel>` }</Code>
     </div>
   </div>
   <hr>
@@ -45,10 +45,10 @@
       </Panel>
     </div>
     <div class="column">
-        <Code>&lt;Panel title="Demo Panel" collapsible=&#123;true&#125;&gt;
-  &lt;h1&gtThis is a demo panel&lt;/h1&gt;
-  &lt;p&gt;Lorem ipsum dolor sit amet consectetur.&lt;/p&gt;
-&lt;/Panel&gt;</Code>
+        <Code>{ `<Panel title="Demo Panel" collapsible={true}>
+  <h1>This is a demo panel</h1>
+  <p>Lorem ipsum dolor sit amet consectetur.</p>
+</Panel>` }</Code>
     </div>
   </div>
   <hr>
@@ -66,14 +66,14 @@
       </Panel>
     </div>
     <div class="column">
-      <Code>&lt;Panel title="Demo Panel" has_toolbar=&#123;true&#125;
-  &lt;div slot='toolbar'&gt;
-    &lt;span class="tag is-dark"&gt;
+      <Code>{ `<Panel title="Demo Panel" has_toolbar={true}
+  <div slot='toolbar'>
+    <span class="tag is-dark">
       id: 123
-    &lt;/span&gt;
-  &lt;/div&gt;
+    </span>
+  </div>
   ...
-&lt;/Panel&gt;</Code>
+</Panel>` }</Code>
     </div>
   </div>
   <hr>
@@ -91,14 +91,14 @@
       </Panel>
     </div>
     <div class="column">
-      <Code>&lt;Panel title="Demo Panel" has_center=&#123;true&#125;
-  &lt;div slot='center'&gt;
-    &lt;span class="tag is-dark"&gt;
+      <Code>{ `<Panel title="Demo Panel" has_center={true}
+  <div slot='center'>
+    <span class="tag is-dark">
       id: 123
-    &lt;/span&gt;
-  &lt;/div&gt;
+    </span>
+  </div>
   ...
-&lt;/Panel&gt;</Code>
+</Panel>` }</Code>
     </div>
   </div>
   <hr>
@@ -106,7 +106,7 @@
     <div class="column">
       <h2 class="title is-4">Usage</h2>
       <p>Import the component:</p>
-      <Code lang="js">import &#123; Panel &#125; from '@kws3/helpers'; </Code>
+      <Code lang="js">{ `import { Panel } from '@kws3/helpers'; `} </Code>
       <p>Import the SCSS:</p>
       <Code lang="css">@import 'path/to/node_modules/@kws3/helpers/components/Panel/styles';</Code>
       <p>SCSS customization variables with default values:</p>
