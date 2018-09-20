@@ -11,13 +11,13 @@
       <div class="columns">
         <div class="column">
           <form on:submit="fakeSubmit(event)">
-            <SubmitButton {saved_text} {error_text} {text} {color} {size} {tracker} {disabled}/>
+            <SubmitButton {saved_text} {error_text} {text} {color} {size} {tracker} {icon_only} {disabled}/>
             <span class="help">This will succeed.</span>
           </form>
         </div>
         <div class="column">
           <form on:submit="fakeSubmit2(event)">
-            <SubmitButton {saved_text} {error_text} {text} {color} {size} tracker={tracker2} {disabled}/>
+            <SubmitButton {saved_text} {error_text} {text} {color} {size} tracker={tracker2} {icon_only} {disabled}/>
             <span class="help">This will fail.</span>
           </form>
         </div>
@@ -39,7 +39,8 @@
   saved_text="${saved_text}"
   color="${color}"
   size="${size}"
-  disabled="${disabled ? 'true' : 'false'}"
+  icon_only="{${icon_only}}"
+  disabled="{${disabled }}"
 />` }</Code>
 
     </div>

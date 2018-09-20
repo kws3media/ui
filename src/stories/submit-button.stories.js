@@ -34,6 +34,8 @@ storiesOf('Buttons|SubmitButton', module)
     const savedText = text('saved_text', 'Saved');
     const errorText = text('error_text', 'Failed to Save');
 
+    const icon_only = boolean('icon_only', false);
+
     const disabled = boolean('disabled', false);
 
     return {
@@ -44,6 +46,7 @@ storiesOf('Buttons|SubmitButton', module)
         text: defaultText,
         saved_text: savedText,
         error_text: errorText,
+        icon_only,
         disabled
       },
     }
