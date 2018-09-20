@@ -5,7 +5,7 @@
     {/if}
   </p>
   <p class="control">
-    <button class="button is-{size} {doing ? main_color + ' is-loading' : (error ? 'is-danger is-shaking' : (done ? main_color : (confirm ? 'is-outlined ' + main_color : main_color)))}" type="button" on:click="doit()" disabled="{done || doing || error}">
+    <button class="button is-{size} {doing ? main_color + ' is-loading' : (error ? 'is-danger is-shaking' : (done ? main_color : (confirm ? 'is-outlined ' + main_color : main_color)))}" type="button" on:click="doit()" disabled="{done || doing || error || disabled}">
       {#if done}
         <Icon size="{icon_size}" icon="{done_icon}"/>{#if !icon_only} <span>{done_text}</span>{/if}
       {:elseif doing}
@@ -42,7 +42,8 @@
         done: false,
         error: false,
         context:null,
-        icon_only: false
+        icon_only: false,
+        disabled: false
       }
     },
     computed:{
@@ -100,7 +101,7 @@
         setTimeout(function(){
           self.set({done:false});
           self.fire('done');
-        }, 3000)
+        }, 1500)
       },
       error: function(){
         var self = this;
@@ -112,7 +113,8 @@
 
         setTimeout(function(){
           self.set({error:false});
-        }, 3000)
+          self.fire('error');
+        }, 1500)
 
       }
     }
