@@ -31,12 +31,15 @@ storiesOf('Buttons|ConfirmButton', module)
 
     const icon_only = boolean('icon_only', false);
 
+    const disabled = boolean('disabled', false);
+
     return {
       Component: ConfirmButtonView,
       data: {
         color,
         size,
-        icon_only
+        icon_only,
+        disabled
       },
     }
   });

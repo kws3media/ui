@@ -10,11 +10,11 @@
     <div class="column">
       <div class="columns">
         <div class="column">
-          <DeleteButton text="Delete" {color} {size} {icon_only} context="pass" on:erase on:erased/>
+          <DeleteButton text="Delete" {color} {size} {icon_only} {disabled} context="pass" on:erase on:erased on:error/>
           <span class="help">This will succeed.</span>
         </div>
         <div class="column">
-          <DeleteButton text="Delete" {color} {size} {icon_only} context="fail" on:erase on:erased/>
+          <DeleteButton text="Delete" {color} {size} {icon_only} {disabled} context="fail" on:erase on:erased on:error/>
           <span class="help">This will fail.</span>
         </div>
       </div>

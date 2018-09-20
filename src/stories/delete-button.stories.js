@@ -31,12 +31,15 @@ storiesOf('Buttons|DeleteButton', module)
 
     const icon_only = boolean('icon_only', false);
 
+    const disabled = boolean('disabled', false);
+
     return {
       Component: DeleteButtonView,
       data: {
         color,
         size,
-        icon_only
+        icon_only,
+        disabled
       },
     }
   });
