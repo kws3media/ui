@@ -24,7 +24,21 @@
       </ul>
       </Message>
     </div>
-    <div class="column">
+    <div class="column is-7">
+      <p>Import the SCSS:</p>
+      <Code lang="css">@import 'path/to/node_modules/@kws3/calendar/styles';</Code>
+      <p>SCSS customization variables with default values:</p>
+      <Code lang="css">{`$kws-calendar-border-color: $grey-lighter;
+$kws-calendar-header-border-color: $grey-lighter;
+$kws-calendar-header-background: #f9f9f9;
+$kws-calendar-header-weekend-opacity: 0.5;
+$kws-calendar-month-background: #fff;
+$kws-calendar-month-today-background: #f2f8ff;
+$kws-calendar-month-active-background: $info;
+$kws-calendar-month-off-opacity: 0.5;
+$kws-calendar-day-background: #fff;
+$kws-calendar-day-today-background: #f2f8ff;`}</Code>
+      <p>Use in svelte component:</p>
       <Code>{`<Calendar
     dayComponent={Day}
     monthComponent={Month}
