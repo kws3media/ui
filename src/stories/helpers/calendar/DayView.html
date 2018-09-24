@@ -1,6 +1,7 @@
 <div class="has-text-centered">
   <p>This is a day view</p>
   <p>{niceDate(date)}</p>
+  <button class="button is-dark" on:click="fire('dayViewEvent', event)">Fires an event inside DayView</button>
 </div>
 
 <script>

@@ -1,0 +1,83 @@
+<Layout
+  title="Calendar"
+  subtitle="A full page Calendar component"
+  {pkg}
+>
+
+  <h2 class="title is-4">Usage</h2>
+  <div class="columns">
+    <div class="column is-5">
+      <p>Expects a component to go into <code>dayComponent</code>. This is the component that renders each day in day mode.</p>
+      <p>Also expects a <code>monthComponent</code>. This component renders each day in month view.</p>
+      <hr>
+      <p>Fires <code>dateChange</code> and <code>dateChosen</code> events natively.</p>
+      <p>All events from the <code>dayComponent</code> and <code>monthComponent</code> are also forwarded up. <br/>So you can bind to events firing from the inner components directly <em>(this is not default svelte behaviour)</em>.</p>
+      <hr>
+      Other supported properties:
+      <Message>
+      <ul>
+        <li> - <code>hasDayMode</code>: <small>Whether component has a day mode, or just a month mode</small></li>
+        <li> - <code>viewMode</code>: <small>Starting view mode, defaults to <code>month</code></small></li>
+        <li> - <code>month_box_min_height</code>: <small>Minimum height of each box in month view</small></li>
+        <li> - <code>data</code>: <small>This is to be fetched from the server on key events and injected into the component.<br> This is then passed on to the inner components along with the current date.<br>
+        The inner components can then decide how to render the calendar data</small></li>
+      </ul>
+      </Message>
+    </div>
+    <div class="column">
+      <Code>{`<Calendar
+    dayComponent={Day}
+    monthComponent={Month}
+    month_box_min_height="0"
+    on:dateChange
+    on:dateChosen
+/>
+
+<script>
+  import Calendar from '@kws3/calendar';
+  import Day from 'path/to/dayView.html';
+  import Month from 'path/to/monthView.html';
+
+  export default {
+    data(){
+      return {
+        Day, Month
+      }
+    },
+    oncreate(){
+      this.on('dateChange', (date) = {
+        //fires when month changes in month view
+        //or day changes in day view
+      });
+      this.on('dateChosen', ([{date, day, month, year, raw}, viewMode]) => {
+        //fires when a day is clicked in month view
+      })
+    }
+  }
+</script>
+`}</Code>
+    </div>
+  </div>
+
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+  import {Message} from '@kws3/helpers';
+  import pkg from '@kws3/calendar/package.json';
+
+
+  export default {
+    components: {
+      Layout, Code, Message
+    },
+    data() {
+      return {
+        pkg
+      };
+    }
+  };
+</script>

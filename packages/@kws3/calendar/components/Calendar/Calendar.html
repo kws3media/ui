@@ -8,11 +8,11 @@
   <div class="calendar-header">
     <div class="columns is-mobile header-top">
       <div class="column">
-        <a href="#/" class="tag is-info is-large" on:click="today(event)">{#if viewMode == 'day'}Today{:else}This Month{/if}</a>
+        <a href="#/" class="button is-info" on:click="today(event)">{#if viewMode == 'day'}Today{:else}This Month{/if}</a>
       </div>
       <div class="column">
         <a href="#/" on:click="decrease(event)">
-          <Icon icon="angle-left" size="large" />
+          <Icon icon="angle-left" size="medium" />
         </a>
       </div>
       <div class="column">
@@ -53,16 +53,18 @@
       </div>
       <div class="column">
         <a href="#/" on:click="increase(event)">
-          <Icon icon="angle-right" size="large" />
+          <Icon icon="angle-right" size="medium" />
         </a>
       </div>
       <div class="column">
         {#if hasDayMode}
-          <div class="tabs is-toggle is-centered">
-            <ul>
-              <li class="{viewMode == 'day' ? '' : 'is-active'}"><a href="#/" on:click="switchMode('month', event)">Month</a></li>
-              <li class="{viewMode == 'day' ? 'is-active' : ''}"><a href="#/" on:click="switchMode('day', event)">Day</a></li>
-            </ul>
+          <div class="field has-addons">
+            <div class="control">
+              <a class="button {viewMode == 'day' ? '' : 'is-info'}" href="#/" on:click="switchMode('month', event)">Month</a>
+            </div>
+            <div class="control">
+              <a class="button {viewMode == 'day' ? 'is-info' : ''}" href="#/" on:click="switchMode('day', event)">Day</a>
+            </div>
           </div>
         {/if}
       </div>
@@ -94,8 +96,9 @@
           <span class="date">{date.getDate()}</span>
           <!-- RenderMonthDay -->
           {#if !is_loading && viewMode != 'day'}
-            <svelte:component
-              this={monthComponent}
+            <MonthHoc
+              on:*="fire('forwardEvent', event)"
+              target={monthComponent}
               {date}
               {data}
             />
@@ -110,11 +113,11 @@
     <div class="calendar-day {is_today(current.raw)}">
       <!-- RenderDay -->
       {#if !is_loading}
-        <svelte:component
-          this={dayComponent}
+        <DayHoc
+          on:*="fire('forwardEvent', event)"
+          target={dayComponent}
           date={current.raw}
-          {data}
-        />
+          {data} />
       {/if}
     </div>
     {/if}
@@ -125,7 +128,7 @@
 
 <script>
 
-  import {Icon, Loader} from '@kws3/helpers';
+  import {Icon, Loader, createHOC} from '@kws3/helpers';
 
   function isLeapYear(year) {
     return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0));
@@ -145,7 +148,11 @@
   }
 
   export default {
-    components: { Icon, Loader },
+    components: {
+      Icon, Loader,
+      MonthHoc: createHOC(),
+      DayHoc: createHOC(),
+    },
     data() {
       return {
         is_loading: false,
@@ -192,7 +199,9 @@
       }
     },
     oncreate() {
-
+      this.on('forwardEvent', (e) => {
+        this.fire(e.name, e.event);
+      })
     },
     computed: {
       years({ current }) {

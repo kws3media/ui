@@ -2,12 +2,12 @@
 /* ---- Calendar component ---- */
 $kws-calendar-border-color: $grey-lighter !default;
 
-$kws-calendar-header-border-color: rgba(0, 0, 0, 0.3) !default;
+$kws-calendar-header-border-color:$grey-lighter !default;
 $kws-calendar-header-background: #f9f9f9 !default;
 $kws-calendar-header-weekend-opacity: 0.5 !default;
 
 $kws-calendar-month-background: #fff !default;
-$kws-calendar-month-today-background: $success !default;
+$kws-calendar-month-today-background: #f2f8ff !default;
 $kws-calendar-month-active-background: $info !default;
 $kws-calendar-month-off-opacity: 0.5 !default;
 
@@ -20,7 +20,7 @@ $kws-calendar-day-today-background: #f2f8ff !default;
     text-align:center;
   }
   .calendar-body{
-    padding:10px;
+    padding:12px;
     position: relative;
   }
   .calendar-rows{
@@ -85,10 +85,10 @@ $kws-calendar-day-today-background: #f2f8ff !default;
           font-size:27px;
           background:rgba(0, 0, 0, 0.03);
           border-radius:3px;
-          padding:0.2em 1em;
+          padding:0.2em 0.4em;
         }
         &.month{
-          margin-right:3px;
+
         }
         select{
           font-size:16px;
@@ -101,9 +101,12 @@ $kws-calendar-day-today-background: #f2f8ff !default;
         }
       }
     }
-    .tabs, .button, .tag{
-      margin-top:7px;
-      text-decoration: none;
+    .header-top{
+      .column{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
   }
