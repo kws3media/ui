@@ -7,3 +7,5 @@ export { default as Notification } from './components/Notification/Notification.
 export { default as Icon } from './components/Icon/Icon.html';
 
 export { default as Panel } from './components/Panel/Panel.html';
+
+export {createHOC} from './components/HOC/HOC.js';
