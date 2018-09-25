@@ -1,0 +1,26 @@
+<div>
+  <input class="input" type='text' bind:value ref:input>
+</div>
+
+<script>
+  import maskInput from './src/maskInput'
+  export default {
+    data(){
+      return {
+        mask: []
+      }
+    },
+    onstate({changed, current, previous}){
+      if(changed.type){
+
+      }
+    },
+    oncreate(){
+      var self = this;
+      maskInput({
+        inputElement: self.refs.input,
+        mask: self.get().mask
+      })
+    }
+  }
+</script>
