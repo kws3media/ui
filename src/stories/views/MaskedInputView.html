@@ -1,0 +1,62 @@
+<Layout
+  title="Masked Input "
+  subtitle=""
+  {pkg}
+>
+
+  <h2 class="title is-4">Example</h2>
+  <div class="columns">
+    <div class="column is-6">
+      <label>Us Phone Number</label>
+      <MaskedInput mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]} bind:value="USPhone"/>
+      <span>{USPhone}</span>
+      <hr>
+      <label>Date</label>
+      <MaskedInput mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]} bind:value="date"/>
+      <span>{date}</span>
+
+    </div>
+    <div class="column">
+      <Code></Code>
+    </div>
+  </div>
+
+  <div class="columns">
+    <hr>
+    <div class="column">
+      <h2 class="title is-4">Usage</h2>
+      <p>Import the component:</p>
+      <Code lang="js">{ `import { MaskedInput } from '@kws3/masked-input'; `} </Code>
+    </div>
+  </div>
+
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
+  import pkg from '@kws3/masked-input/package.json';
+
+  import MaskedInput from '@kws3/masked-input';
+
+
+
+  export default {
+    components: {
+      Layout, Code, MaskedInput
+    },
+    data() {
+      return {
+        pkg,
+        USPhone: '',
+        date: ''
+      };
+    },
+
+    methods: {
+    }
+  };
+</script>
