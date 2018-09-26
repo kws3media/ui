@@ -9,19 +9,41 @@
     <div class="column is-6">
       <label>Us Phone Number</label>
       <MaskedInput
-        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-        showMask={true}
+        mask="{['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}"
+        {showMask}
         bind:value="USPhone"
       />
       <span>{USPhone}</span>
-      <hr>
+
+    </div>
+    <div class="column">
+      <Code>{ `
+<MaskedInput
+  mask="{['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}"
+  showMask={${showMask}}
+  bind:value="USPhone"
+/>` }</Code>
+    </div>
+  </div>
+  <hr>
+  <div class="columns">
+    <div class="column is-6">
       <label>Date</label>
-      <MaskedInput mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]} bind:value="date"/>
+      <MaskedInput
+        mask="{[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}"
+        {showMask}
+        bind:value="date"
+      />
       <span>{date}</span>
 
     </div>
     <div class="column">
-      <Code></Code>
+      <Code>{ `
+<MaskedInput
+  mask="{[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}"
+  showMask={${showMask}}
+  bind:value="date"
+/>` }</Code>
     </div>
   </div>
 
