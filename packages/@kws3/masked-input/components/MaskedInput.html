@@ -3,24 +3,33 @@
 </div>
 
 <script>
-  import maskInput from './src/maskInput'
+  import createTextMaskInputElement from './src/createTextMaskInputElement'
   export default {
     data(){
       return {
-        mask: []
-      }
-    },
-    onstate({changed, current, previous}){
-      if(changed.type){
-
+        mask: [],
+        showMask: false
       }
     },
     oncreate(){
       var self = this;
-      maskInput({
-        inputElement: self.refs.input,
-        mask: self.get().mask
+      let inputElement = self.refs.input;
+      let {mask,showMask } = self.get();
+      let textMaskConfig = {
+        inputElement,
+        mask,
+        showMask
+      }
+      const textMaskInputElement = createTextMaskInputElement(textMaskConfig);
+
+      textMaskInputElement.update(inputElement.value)
+
+      self.on('state', function(){
+        textMaskInputElement.update(inputElement.value)
+        self.set({value:inputElement.value })
       })
     }
   }
+
+
 </script>
