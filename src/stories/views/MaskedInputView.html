@@ -8,7 +8,11 @@
   <div class="columns">
     <div class="column is-6">
       <label>Us Phone Number</label>
-      <MaskedInput mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]} bind:value="USPhone"/>
+      <MaskedInput
+        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+        showMask={true}
+        bind:value="USPhone"
+      />
       <span>{USPhone}</span>
       <hr>
       <label>Date</label>
