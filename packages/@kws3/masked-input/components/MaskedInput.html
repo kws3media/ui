@@ -3,7 +3,7 @@
 </div>
 
 <script>
-  import createTextMaskInputElement from './src/createTextMaskInputElement'
+  import { createTextMaskInputElement } from 'text-mask-core'
   export default {
     data(){
       return {
@@ -24,7 +24,7 @@
 
       textMaskInputElement.update(inputElement.value)
 
-      self.on('state', function(){
+      self.on('state', function({changed, current}){
         textMaskInputElement.update(inputElement.value)
         self.set({value:inputElement.value })
       })
