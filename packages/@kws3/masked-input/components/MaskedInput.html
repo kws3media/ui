@@ -8,17 +8,19 @@
     data(){
       return {
         mask: [],
-        showMask: false
+        showMask: false,
+        guide: true
       }
     },
     oncreate(){
       var self = this;
       let inputElement = self.refs.input;
-      let {mask,showMask } = self.get();
+      let {mask,showMask, guide } = self.get();
       let textMaskConfig = {
         inputElement,
         mask,
-        showMask
+        showMask,
+        guide
       }
       const textMaskInputElement = createTextMaskInputElement(textMaskConfig);
 
