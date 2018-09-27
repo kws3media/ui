@@ -12,6 +12,7 @@ storiesOf('Forms|Masked Input', module)
   .add('Masked Input', () => {
 
     const showMask = boolean('showMask', false);
+    const guide = boolean('guide', true);
 
     const selectedMask = select(
       'Mask',
@@ -25,6 +26,7 @@ storiesOf('Forms|Masked Input', module)
       Component: MaskedInput,
       data: {
         showMask,
+        guide,
         selectedMask
       }
     }

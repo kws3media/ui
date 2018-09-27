@@ -10,7 +10,8 @@
       <label>{masks[selectedMask][0]}</label>
       <MaskedInput
         mask="{masks[selectedMask][1]}"
-        {showMask}
+        {showMask},
+        {guide}
         bind:value="USPhone"
       />
       <span>{USPhone}</span>
@@ -20,6 +21,7 @@
       <Code>{ `<MaskedInput
   mask="{${JSON.stringify(masks[selectedMask][1])}}"
   showMask={${showMask}}
+  guide={${guide}}
   bind:value="USPhone"
 />` }</Code>
     </div>
