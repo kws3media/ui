@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/svelte';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
 
 import "../scss/app.scss";
@@ -11,12 +11,21 @@ storiesOf('Forms|Masked Input', module)
   .addDecorator(withKnobs)
   .add('Masked Input', () => {
 
-    const showMask = boolean('disabled', false);
+    const showMask = boolean('showMask', false);
+
+    const selectedMask = select(
+      'Mask',
+      [
+        'USPhone', 'date', 'creditCard'
+      ],
+      'USPhone'
+    );
 
     return {
       Component: MaskedInput,
       data: {
-        showMask
+        showMask,
+        selectedMask
       }
     }
   })
