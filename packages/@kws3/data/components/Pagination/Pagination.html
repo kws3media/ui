@@ -1,0 +1,200 @@
+<div class="pagination_frame {frame ? 'has-frame' : ''}" data-cy="paginationFrame">
+  <div class="level">
+    <div class="level-left">
+      {#if showPerPage}
+        <div class="level-item pagination-showing">
+          <nav class="pagination {size ? 'is-'+size : ''}">
+            <ul class="pagination-list pagination-limit-chooser" data-cy="paginationLimit">
+              {#each Object.entries(_perPageOptions) as [k, v]}
+                <li>
+                  <button type="button" class="pagination-link {meta.limit == v ? 'is-current' : ''}" on:click="setLimit(v)">{k}</button>
+                </li>
+              {/each}
+            </ul>
+            <span>&nbsp;per page</span>
+          </nav>
+        </div>
+      {:else}
+        <div class="level-item">
+          {#if showTotal}
+            <strong>Total {meta.total} {entityName}</strong>
+          {:elseif showCurrent}
+            {#if meta.total > 0}Showing {(meta.offset * 1) + 1} to {(meta.offset * 1) + (meta.count * 1)}{/if}
+          {/if}
+        </div>
+      {/if}
+    </div>
+
+    {#if showCurrent && showTotal && !showPerPage}
+      <div class="level-item pagination-showing">
+        {#if meta.total > 0}
+          Showing {(meta.offset * 1) + 1} to {(meta.offset * 1) + (meta.count * 1)}
+        {/if}
+      </div>
+    {:elseif showPerPage && showCurrent}
+      <div class="level-item pagination-showing">
+        {#if meta.total > 0}
+          Showing {(meta.offset * 1) + 1} to {(meta.offset * 1) + (meta.count * 1)}
+          {#if showTotal}
+            |&nbsp;
+          {/if}
+        {/if}
+        {#if showTotal}
+          <strong>{meta.total} {entityName}</strong>
+        {/if}
+      </div>
+    {:elseif showPerPage && showTotal && !showCurrent}
+      <div class="level-item pagination-showing">
+        <strong>Total {meta.total} {entityName}</strong>
+      </div>
+    {/if}
+
+
+    <div class="level-right">
+      {#if meta.total > 0}
+      <nav class="pagination is-centered {size ? 'is-'+size : ''}">
+        <button type="button" on:click="prev()" class="pagination-previous {meta.offset == 0 ? 'is-disabled' : ''}">
+          <Icon size="{size}" icon="chevron-left" />
+        </button>
+        <button type="button" on:click="next()" class="pagination-next {((currentPage + 1) == totalPages) ? 'is-disabled' : ''}">
+          <Icon size="{size}" icon="chevron-right" />
+        </button>
+        <ul class="pagination-list" data-cy="paginationList">
+          {#each pages as page}
+            {#if page.p == 'sep'}
+              <li>
+                <span class="pagination-ellipsis">&hellip;</span>
+              </li>
+            {:else}
+              <li>
+                <button type="button" class="pagination-link {page.p == currentPage ? 'is-current' : ''}" on:click='goto(page.p+1)'>{page.p+1}</button>
+              </li>
+            {/if}
+          {/each}
+        </ul>
+      </nav>
+      {/if}
+    </div>
+  </div>
+</div>
+
+<script>
+  import {Icon} from '@kws3/helpers';
+
+  export default {
+    components:{
+      Icon
+    },
+    data: () => ({
+      meta:{
+        limit:0,
+        total:0,
+        count:0,
+        offset:0,
+        status:''
+      },
+      showTotal: true,
+      showCurrent: true,
+      showPerPage: true,
+      breakThreshold: 10,
+      entityName: 'entries',
+      size:'small',
+      frame: false,
+      perPageOptions:[20, 50, 100, 150, 200, 250]
+    }),
+    computed:{
+      _perPageOptions({perPageOptions, meta}){
+        let max = meta.total,
+        ppo = perPageOptions || [],
+        ppmax = Math.max(...ppo),
+        ret = {};
+
+        if(max < ppo[0]){
+          ret[ppo[0]] = ppo[0];
+        }else{
+          ppo.forEach((item) => {
+            if(item < max){
+              ret[item] = item
+            }
+          });
+
+          if(max < ppmax){
+            ret['All'] = max;
+          }
+        }
+
+        return ret;
+      },
+      pages: function({ totalPages, currentPage, breakThreshold }){
+        var pages = new Array(totalPages || 0),
+        total = pages.length,
+        ret = [];
+
+        for (var i = 0; i < total; i++){
+          if(total > breakThreshold){
+            if(i < 3){
+              ret.push({p: i});
+            }else if(i > (total - 4)){
+              ret.push({p: i});
+            }else if( i == Math.floor(total / 2)){
+              ret.push({p: i});
+            }else if(i == currentPage || i == (currentPage - 1) || i == (currentPage + 1)){
+              ret.push({p: i});
+            }
+          }else{
+            ret.push({p: i});
+          }
+        };
+
+        var prev = 0, items = [];
+        if(total > breakThreshold){
+          for(var j = 0; j < ret.length; j++){
+            var page = ret[j].p;
+            if(page != (prev + 1) && page != 0 ){
+              items.push({p:'sep'});
+            }
+            items.push(ret[j]);
+            prev = page;
+          }
+        }else{
+          items = ret;
+        }
+
+        return items;
+      },
+      currentPage: function({ meta }){
+        return Math.floor(meta.offset / meta.limit)
+      },
+      totalPages: function({ meta }){
+        return Math.ceil(meta.total / (meta.limit || 1));
+      }
+    },
+    methods:{
+      setLimit(limit){
+        let {currentPage} = this.get();
+        this.fire('setLimit', {currentPage, newLimit: limit});
+      },
+      goto: function(pagenum){
+        var { meta } = this.get(),
+        limit = meta.limit,
+        i = pagenum - 1,
+        offset = limit * i;
+        if(offset >= 0 && offset != meta.offset && offset < meta.total){
+          this.fire('paginate', {offset, limit});
+        }
+      },
+      prev: function(){
+        this.goto(this.get().currentPage);
+      },
+      next: function(){
+        this.goto(this.get().currentPage + 2);
+      },
+      first: function(){
+        this.goto(1);
+      },
+      last:function(){
+        this.goto(this.get().totalPages);
+      }
+    }
+  }
+</script>

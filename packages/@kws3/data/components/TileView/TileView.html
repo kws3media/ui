@@ -1,0 +1,87 @@
+<div class="columns is-multiline">
+  {#each data as row, i (row.id)}
+    <div class="column is-{column_size}">
+      <Transition {transition} y="{20}" delay="{20*i}">
+        <TileHOC
+          target={tileItemComponent}
+          on:*="fire('_forwardEvent', event)"
+          {isVisible}
+          {transforms}
+          {classNames}
+          {styles}
+          {row}
+        />
+      </Transition>
+    </div>
+  {/each}
+</div>
+
+<script>
+  import { fly } from 'svelte-transitions';
+  import Transition from './Transition.html';
+  import {createHOC} from '@kws3/helpers';
+
+  export default {
+    components:{
+      TileHOC: createHOC(),
+      Transition
+    },
+    data(){
+      return {
+        data:[],
+        transition: false,
+        tileItemComponent: null,
+        per_row: 3
+      }
+    },
+    computed: {
+      column_size: ({ per_row }) => (per_row < 12 ? Math.floor(12/per_row) : 12),
+      isVisible: function ({ visibilityMap }) {
+        return function (column) {
+          if (visibilityMap && typeof visibilityMap[column] != 'undefined' && visibilityMap[column] === false) {
+            return false;
+          }
+          return true;
+        }
+      },
+      transforms: function({ valueTransformers }){
+        return function(column, row){
+          if(valueTransformers && valueTransformers[column] && row){
+            return valueTransformers[column](row[column], row);
+          }
+
+          return row && row[column] ? row[column] : '';
+        }
+      },
+      classNames: function({ classTransformers }){
+        return function(column, row){
+          if(classTransformers && classTransformers[column] && row){
+            return classTransformers[column](row[column], row);
+          }
+
+          var map = {
+            title: 'title is-4',
+            subtitle: 'subtitle is-5'
+          }
+
+          return map[column] ? map[column] : '';
+        }
+      },
+      styles: function({ styleTransformers }){
+        return function(column, row){
+          if(styleTransformers && styleTransformers[column] && row){
+            return styleTransformers[column](row[column], row);
+          }
+
+          return '';
+        }
+      }
+    },
+    oncreate(){
+      this.on('_forwardEvent', (e) => {
+        this.fire(e.name, e.event);
+      });
+    }
+  }
+
+</script>

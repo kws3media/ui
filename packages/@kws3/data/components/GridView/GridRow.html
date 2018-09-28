@@ -1,0 +1,71 @@
+{#if transition}
+  <tr class="transible" transition:fly="{x:20, delay:(25*row_index)}">
+    {#each column_keys as column}
+      {#if isVisible(column)}
+        <CellHOC
+          target={resolveComponent(column, row)}
+          on:*="fire('_forwardEvent', event)"
+          {column}
+          {row}
+          {transforms}
+          {classNames}
+          {styles}
+        />
+      {/if}
+    {/each}
+  </tr>
+{:else}
+  <tr>
+    {#each column_keys as column}
+      {#if isVisible(column)}
+        <CellHOC
+          target={resolveComponent(column, row)}
+          on:*="fire('_forwardEvent', event)"
+          {column}
+          {row}
+          {transforms}
+          {classNames}
+          {styles}
+        />
+      {/if}
+    {/each}
+  </tr>
+{/if}
+
+<script>
+  import { fly } from 'svelte-transitions';
+  import GridCell from './GridCell.html';
+  import {createHOC} from '@kws3/helpers';
+
+  export default {
+    components:{
+      CellHOC: createHOC()
+    },
+    transitions:{fly},
+    data(){
+      return {
+        row_index:0,
+        row:{},
+        isVisible:{},
+        transforms:{},
+        classNames:{},
+        styles:{},
+        column_keys:[],
+        cellComponent:{}
+      }
+    },
+    computed:{
+      resolveComponent({cellComponent}){
+        return function(column, row){
+          return cellComponent(column, row) || GridCell;
+        }
+      }
+    },
+    oncreate(){
+      this.on('_forwardEvent', (e) => {
+        this.fire(e.name, e.event);
+      });
+    }
+  }
+
+</script>

@@ -1,0 +1,108 @@
+<div class="data-table">
+  <table class="table is-fullwidth {is_striped ? 'is-striped' : ''} is-bordered">
+    <thead>
+      <tr>
+        {#each column_keys as column}
+          {#if isVisible(column)}
+            <th>{columns[column]}</th>
+          {/if}
+        {/each}
+      </tr>
+    </thead>
+    <tbody>
+      {#each data as row, row_index (row.id)}
+        <RowHOC target={mainRowComponent}
+          on:*="fire('_forwardEvent', event)"
+          {row_index}
+          {transition}
+          {column_keys}
+          {isVisible}
+          {transforms}
+          {classNames}
+          {styles}
+          {cellComponent}
+          {row}
+        />
+      {/each}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  import GridRow from './GridRow.html';
+  import {createHOC} from '@kws3/helpers';
+
+  export default {
+    components:{
+      RowHOC: createHOC()
+    },
+    data(){
+      return {
+        data:[],
+        columns:{},
+        transition: false,
+        is_striped: true,
+        valueTransformers:{},
+        classTransformers:{},
+        styleTransformers:{},
+        visibilityMap:{},
+        cellComponentMap:{},
+        rowComponent: GridRow
+      }
+    },
+    oncreate(){
+      this.on('_forwardEvent', (e) => {
+        this.fire(e.name, e.event);
+      });
+    },
+    computed: {
+      mainRowComponent: ({rowComponent}) => (rowComponent ? rowComponent : GridRow),
+      column_keys: ({ columns }) => (columns ? Object.keys(columns) : []),
+      isVisible: function({ visibilityMap }){
+        return function(column){
+          if(visibilityMap && typeof visibilityMap[column] != 'undefined' && visibilityMap[column] === false){
+            return false;
+          }
+          return true;
+        }
+      },
+      transforms: function({ valueTransformers }){
+        return function(column, row){
+          if(valueTransformers && valueTransformers[column] && row){
+            return valueTransformers[column](row[column], row);
+          }
+
+          return row[column];
+        }
+      },
+      classNames: function({ classTransformers }){
+        return function(column, row){
+          if(classTransformers && classTransformers[column] && row){
+            return classTransformers[column](row[column], row);
+          }
+
+          return '';
+        }
+      },
+      styles: function({ styleTransformers }){
+        return function(column, row){
+          if(styleTransformers && styleTransformers[column] && row){
+            return styleTransformers[column](row[column], row);
+          }
+
+          return '';
+        }
+      },
+      cellComponent: function({cellComponentMap}){
+        return function(column, row){
+          if(cellComponentMap && cellComponentMap[column] && row){
+            return cellComponentMap[column](row[column], row);
+          }
+
+          return null;
+        }
+      }
+    }
+  }
+
+</script>

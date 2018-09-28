@@ -1,0 +1,136 @@
+<form on:submit="fire('dosearch', event)">
+  <div class="field has-addons">
+    <p class="control is-expanded">
+      <input class="input" type="text" placeholder="{placeholder}" bind:value="query">
+    </p>
+    {#if _filters && _filters.length}
+      {#each _filters as filter, i}
+        <SearchableSelect
+        data="{filter.options}"
+        placeholder="Any {filter.name.replace('_', ' ')}"
+        bind:value="filterVals[filter.name]"
+        searchKey="name"
+        searchValue="id"
+        classes="control"
+        style="max-width:{(1/(_filters.length + 2))*100}%" />
+      {/each}
+    {/if}
+    {#if changed}
+    <p class="control">
+      <button class="button is-danger" type="button" on:click="fire('doresetSearch')"><Icon icon="close" size="small" /></button>
+    </p>
+    {/if}
+    <p class="control">
+      <button class="button is-primary" type="submit"><Icon icon="search" size="small" /> <span>Search</span></button>
+    </p>
+  </div>
+</form>
+
+
+<script>
+
+  import {Icon} from '@kws3/helpers';
+  import SearchableSelect from './SearchableSelect.html';
+
+  export default {
+    components: {
+      Icon, SearchableSelect
+    },
+    data(){
+      return {
+        placeholder:'',
+        filters:{},
+        q:'',
+        query:'',
+        changed:false,
+        filterVals:{},
+        _filters:[]
+      }
+    },
+    onstate({ changed, current, previous }){
+      var self = this;
+
+      if( changed['query'] || (changed['filterVals']) ){
+        self.observeHandler();
+      }
+
+      if(changed['q']){
+        var { q } = current;
+         var qparts = q.split('~'),
+          qstr = qparts.shift(),
+          qfilters = {};
+        for (var i = 0; i < qparts.length; i++) {
+          var qqp = qparts[i].split(':');
+          qfilters[qqp[0]] = qqp[1];
+        }
+        self.set({
+          query: qstr,
+          filterVals: qfilters
+        });
+      }
+
+      if (changed['filters']) {
+        let { filters }  = current;
+        if (!filters) return;
+        var _filters = [];
+        for (let i in filters) {
+          _filters.push({
+            name: i,
+            options: filters[i]
+          });
+        }
+
+        self.set({ _filters: _filters });
+      }
+    },
+    oncreate(){
+      var self = this;
+
+      self.on('doresetSearch', function(){
+        var { filterVals } = self.get();
+        for(var i in filterVals){
+          filterVals[i] = ''
+        }
+        self.set({
+          query: '',
+          filterVals: filterVals
+        });
+
+        self.fire('resetSearch');
+
+      });
+
+      self.on('dosearch', function(e){
+        e.preventDefault();
+        var { query, filterVals } = self.get(),
+        ret = [];
+        ret.push(query);
+        for(var i in filterVals){
+          filterVals[i] && ret.push(i + ':' + filterVals[i])
+        }
+
+        self.fire('search', ret.join('~'));
+      })
+    },
+    methods:{
+      observeHandler(){
+        var self = this;
+
+        var { query, filterVals } = self.get(),
+        changed = false;
+
+        if(query !== ''){
+          changed = true;
+        }else{
+          for(var i in filterVals){
+            if(filterVals[i] !== ''){
+              changed = true;
+              break;
+            }
+          }
+        }
+        self.set({changed});
+      }
+    }
+  }
+</script>

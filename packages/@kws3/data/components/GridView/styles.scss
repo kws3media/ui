@@ -1,0 +1,30 @@
+$kws-gridview-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
+
+
+.data-table .table{
+  box-shadow: $kws-gridview-box-shadow;
+  &.is-bordered{
+    tr{
+      th:last-child, td:last-child{
+        border-right-width:0px;
+      }
+      th:first-child, td:first-child{
+        border-left-width:0px;
+      }
+    }
+    tr:first-child{
+      th, td{
+        border-top-width:0px;
+      }
+    }
+  }
+  .tag{
+    margin: 0 0.125rem 0.125rem 0;
+  }
+  td.is-icon{
+    width:25px;
+    .icon{
+      font-size: 1.3em;
+    }
+  }
+}
