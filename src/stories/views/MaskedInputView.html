@@ -19,7 +19,7 @@
     </div>
     <div class="column">
       <Code>{ `<MaskedInput
-  mask="{${JSON.stringify(masks[selectedMask][1])}}"
+  mask="{${maskString(masks[selectedMask][1])}}"
   showMask={${showMask}}
   guide={${guide}}
   bind:value="USPhone"
@@ -48,11 +48,24 @@
 
   import MaskedInput from '@kws3/masked-input';
 
+  function maskString(mask) {
+    let displayMask = mask
+      .toString()
+      .split(',')
+      .map((item) => {
+        return (item[0] === '/' && item.length > 1) ? item : `'${item}'`
+      })
+      .join(', ')
 
+      return `[${displayMask}]`
+  }
 
   export default {
     components: {
       Layout, Code, MaskedInput
+    },
+    helpers:{
+      maskString
     },
     data() {
       return {
@@ -68,6 +81,7 @@
     },
 
     methods: {
+
     }
   };
 </script>
