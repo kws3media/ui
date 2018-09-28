@@ -13,6 +13,8 @@ storiesOf('Forms|Masked Input', module)
 
     const showMask = boolean('showMask', false);
     const guide = boolean('guide', true);
+    const guideOnOutput = boolean('guideOnOutput', false);
+    const keepCharPositions = boolean('keepCharPositions', true);
 
     const selectedMask = select(
       'Mask',
@@ -27,7 +29,9 @@ storiesOf('Forms|Masked Input', module)
       data: {
         showMask,
         guide,
-        selectedMask
+        selectedMask,
+        guideOnOutput,
+        keepCharPositions
       }
     }
   })

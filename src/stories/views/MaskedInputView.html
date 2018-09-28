@@ -7,23 +7,50 @@
   <h2 class="title is-4">Example</h2>
   <div class="columns">
     <div class="column is-6">
-      <label>{masks[selectedMask][0]}</label>
-      <MaskedInput
-        mask="{masks[selectedMask][1]}"
-        {showMask},
-        {guide}
-        bind:value="USPhone"
-      />
-      <span>{USPhone}</span>
+      <div class="columns">
+        <div class="column is-6">
+          <label>{masks[selectedMask][0]} <small>(masked input)</small></label>
+          <MaskedInput
+            mask="{masks[selectedMask][1]}"
+            {showMask},
+            {guide}
+            {guideOnOutput}
+            {keepCharPositions}
+            bind:value="output"
+          />
+        </div>
+        <div class="column is-6">
+          <label>{masks[selectedMask][0]} <small>(normal input)</small></label>
+          <input class="input" type="text" bind:value="output"/>
+        </div>
+      </div>
+      <p>Output: <code>{output}</code></p>
+
+      <hr>
+      <p>Supported properties</p>
+      <Message color="info">
+        <ul>
+          <li>- <code>showMask</code> - <small>Display the mask as a placeholder in place of the regular placeholder when the input element value is empty</small></li>
+          <li>- <code>guide</code> - <small>When set to <code>true</code> (default), both placeholder characters and non-placeholder mask characters are shown</small></li>
+          <li>- <code>keepCharPositions</code> - <small>When set to <code>true</code> (default), deleting a character leaves an empty space to allow overwriting</small></li>
+          <li>- <code>guideOnOutput</code> - <small>Whether the output should contain guide characters</small></li>
+        </ul>
+      </Message>
 
     </div>
-    <div class="column">
+    <div class="column is-6">
       <Code>{ `<MaskedInput
   mask="{${maskString(masks[selectedMask][1])}}"
   showMask={${showMask}}
   guide={${guide}}
-  bind:value="USPhone"
+  guideOnOutput={${guideOnOutput}}
+  keepCharPositions={${keepCharPositions}}
+  bind:value="some_value"
 />` }</Code>
+      <Message>
+        <p>The following additional properties are also supported:</p>
+        <p><code>class</code>, <code>placeholder</code></p>
+      </Message>
     </div>
   </div>
 
@@ -32,7 +59,7 @@
     <div class="column">
       <h2 class="title is-4">Usage</h2>
       <p>Import the component:</p>
-      <Code lang="js">{ `import { MaskedInput } from '@kws3/masked-input'; `} </Code>
+      <Code lang="js">{ `import MaskedInput from '@kws3/masked-input'; `} </Code>
     </div>
   </div>
 
@@ -43,6 +70,7 @@
 <script>
   import Layout from '../layouts/Layout.html';
   import Code from '../helpers/Code.html';
+  import {Message} from '@kws3/helpers';
 
   import pkg from '@kws3/masked-input/package.json';
 
@@ -62,7 +90,7 @@
 
   export default {
     components: {
-      Layout, Code, MaskedInput
+      Layout, Code, Message, MaskedInput
     },
     helpers:{
       maskString
@@ -70,7 +98,7 @@
     data() {
       return {
         pkg,
-        USPhone: '',
+        output: '',
         date: ',',
         masks: {
           'USPhone': ['US Phone Number', ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]],
