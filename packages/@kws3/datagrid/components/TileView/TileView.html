@@ -1,9 +1,9 @@
 <div class="columns is-multiline">
   {#each data as row, row_index (row.id)}
     <div class="column is-{column_size}">
-      <Transition {transition} y="{20}" delay="{20*i}">
+      <Transition {transition} y="{20}" delay="{20*row_index}">
         <TileHOC
-          target={tileItemComponent}
+          target={mainTileComponent}
           on:*="fire('_forwardEvent', event)"
           {row_index}
           {column_keys}
@@ -19,6 +19,7 @@
 </div>
 
 <script>
+  import TileViewItem from './TileViewItem.html';
   import Transition from '@kws3/transitions';
   import {createHOC} from '@kws3/helpers';
 
@@ -36,6 +37,7 @@
       }
     },
     computed: {
+      mainTileComponent: ({tileItemComponent}) => (tileItemComponent ? tileItemComponent : TileViewItem),
       column_size: ({ per_row }) => (per_row < 12 ? Math.floor(12/per_row) : 12),
       column_keys: ({ columns }) => (columns ? Object.keys(columns) : []),
       isVisible: function ({ visibilityMap }) {
