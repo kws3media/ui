@@ -16,6 +16,23 @@ $kws-ss-caret-color: #0071bc !default;
   padding: 2px;
   overflow: hidden;
   cursor: pointer;
+  &.is-disabled {
+    background-color: #fff;
+    border-color: #fff;
+    box-shadow: none;
+    color: #7a7a7a;
+    cursor: not-allowed;
+    &:active,
+    &:focus,
+    &:hover {
+      border: none;
+    }
+  }
+
+  &.is-shadowless {
+    box-shadow: none;
+  }
+
   &,
   *,
   *:before,
@@ -112,21 +129,4 @@ $kws-ss-caret-color: #0071bc !default;
     position: fixed;
     left: -9999px;
   }
-}
-
-.is-disabled {
-  background-color: #fff;
-  border-color: #fff;
-  box-shadow: none;
-  color: #7a7a7a;
-  cursor: not-allowed;
-  &:active,
-  &:focus,
-  &:hover {
-    border: none;
-  }
-}
-
-.is-shadowless {
-  box-shadow: none;
 }
