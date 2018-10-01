@@ -4,7 +4,9 @@
   "description": "Components to display data",
   "main": "index.js",
   "dependencies": {
-    "@kws3/helpers": "^0.4.1"
+    "@kws3/helpers": "^0.4.1",
+    "@kws3/transitions": "^0.0.4",
+    "svelte-transitions": "^1.1.1"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
   "demo_url": "https://ui.kws3.media/?selectedKind=Data%7CCalendar&selectedStory=Example",

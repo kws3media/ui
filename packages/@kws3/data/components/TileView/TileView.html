@@ -1,10 +1,12 @@
 <div class="columns is-multiline">
-  {#each data as row, i (row.id)}
+  {#each data as row, row_index (row.id)}
     <div class="column is-{column_size}">
       <Transition {transition} y="{20}" delay="{20*i}">
         <TileHOC
           target={tileItemComponent}
           on:*="fire('_forwardEvent', event)"
+          {row_index}
+          {column_keys}
           {isVisible}
           {transforms}
           {classNames}
@@ -17,8 +19,7 @@
 </div>
 
 <script>
-  import { fly } from 'svelte-transitions';
-  import Transition from './Transition.html';
+  import Transition from '@kws3/transitions';
   import {createHOC} from '@kws3/helpers';
 
   export default {
@@ -36,6 +37,7 @@
     },
     computed: {
       column_size: ({ per_row }) => (per_row < 12 ? Math.floor(12/per_row) : 12),
+      column_keys: ({ columns }) => (columns ? Object.keys(columns) : []),
       isVisible: function ({ visibilityMap }) {
         return function (column) {
           if (visibilityMap && typeof visibilityMap[column] != 'undefined' && visibilityMap[column] === false) {
