@@ -3,17 +3,28 @@
     <p class="control is-expanded">
       <input class="input" type="text" placeholder="{placeholder}" bind:value="query">
     </p>
-    {#if _filters && _filters.length}
-      {#each _filters as filter, i}
-        <SearchableSelect
-        data="{filter.options}"
-        placeholder="Any {filter.name.replace('_', ' ')}"
-        bind:value="filterVals[filter.name]"
-        searchKey="name"
-        searchValue="id"
-        classes="control"
-        style="max-width:{(1/(_filters.length + 2))*100}%" />
-      {/each}
+    {#if _filters.length > 10}
+        {#each _filters as filter, i}
+          <SearchableSelect
+          data="{filter.options}"
+          placeholder="Any {filter.name.replace('_', ' ')}"
+          bind:value="filterVals[filter.name]"
+          searchKey="name"
+          searchValue="id"
+          classes="control"
+          style="max-width:{(1/(_filters.length + 2))*100}%" />
+        {/each}
+      {:else}
+        {#each _filters as filter, i}
+          <div class="select" data-cy="select-container">
+            <select bind:value="filterVals[filter.name]" class="is-radiusless" style="max-width:100%">
+              <option value="">Any {filter.name.replace('_', ' ')}</option>
+              {#each filter.options as option}
+                <option value="{option.id + ''}">{option.name}</option>
+              {/each}
+            </select>
+          </div>
+        {/each}
     {/if}
     {#if changed}
     <p class="control">
