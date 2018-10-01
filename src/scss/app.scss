@@ -55,6 +55,9 @@ pre:not([class*="language-"]){
 
 /*------------------*/
 
+//Transitions
+@import '../../packages/@kws3/transitions/styles';
+
 //searchable select
 @import '../../packages/@kws3/searchable-select/styles';
 
@@ -72,3 +75,9 @@ pre:not([class*="language-"]){
 
 //Calendar
 @import '../../packages/@kws3/calendar/styles';
+
+//grid
+@import '../../packages/@kws3/datagrid/components/GridView/styles';
+
+//pagination
+@import '../../packages/@kws3/datagrid/components/Pagination/styles';

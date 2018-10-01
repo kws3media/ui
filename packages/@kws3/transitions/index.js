@@ -1,1 +1,1 @@
-export { default as Transition } from './components/Transition.html';
+export { default } from './components/Transition.html';

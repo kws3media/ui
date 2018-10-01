@@ -6,6 +6,7 @@
   "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
   "license": "Private",
   "repository": "bitbucket:kws3-team/storybooks-frontend",
+  "demo_url":"https://ui.kws3.media/?selectedKind=Standalone%7CTransitions&selectedStory=Transitions",
   "keywords": [
     "transition helpers",
     "fade",

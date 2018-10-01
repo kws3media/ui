@@ -1,0 +1,125 @@
+<Layout
+  title="Transitions"
+  subtitle="A set of components to declaratively use Svelte transitions"
+  {pkg}
+>
+
+  <h2 class="title is-4">Example</h2>
+  <p>
+    <label class="checkbox">
+      <input type="checkbox" bind:checked="visible"/>
+      Show / Hide
+    </label>
+  </p>
+  <div class="columns">
+    <div class="column is-3">
+      {#if visible}
+        <Transition type="fly" {duration} {x} {y}>
+          <Message>Fly</Message>
+        </Transition>
+      {/if}
+    </div>
+    <div class="column is-3">
+      {#if visible}
+        <Transition type="fade" {duration}>
+          <Message>Fade</Message>
+        </Transition>
+      {/if}
+    </div>
+    <div class="column is-3">
+      {#if visible}
+        <Transition type="slide" {duration}>
+          <Message>Slide</Message>
+        </Transition>
+      {/if}
+    </div>
+    <div class="column is-3">
+      {#if visible}
+        <Transition type="scale" {duration} {from} {to}>
+          <Message>Scale</Message>
+        </Transition>
+      {/if}
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column is-3">
+      <Code>{ `<Transition
+  type="fly"
+  duration="{${duration}}"
+  x="{${x}}"
+  y="{${y}}"
+>
+  <Message>Fly</Message>
+</Transition>` }</Code>
+    </div>
+    <div class="column is-3">
+      <Code>{ `<Transition
+  type="fade"
+  duration="{${duration}}"
+>
+  <Message>Fade</Message>
+</Transition>` }</Code>
+    </div>
+    <div class="column is-3">
+      <Code>{ `<Transition
+  type="slide"
+  duration="{${duration}}"
+>
+  <Message>Slide</Message>
+</Transition>` }</Code>
+    </div>
+    <div class="column is-3">
+      <Code>{ `<Transition
+  type="scale"
+  duration="{${duration}}"
+  from="{${from}}"
+  to="{${to}}"
+>
+  <Message>Scale</Message>
+</Transition>` }</Code>
+    </div>
+  </div>
+
+  <p>As can be seen from code examples above, some transition types accept extra properties relating to the transition. For example, <code>fly</code> accepts <code>x</code>, and <code>scale</code> accepts <code>from</code>.</p>
+  <Message color="primary">
+    In addition to the properties in the examples. All transitions also accept the following properties:
+    <ul>
+      <li> - <code>delay</code> -  in milliseconds, delays the start of the transition</li>
+      <li> - <code>classes</code> -  CSS classes to to add to the wrapper element.</li>
+      <li> - <code>transition</code> -  boolean, if <code>false</code>, transition will not run, and behave as if its a static element.</li>
+    </ul>
+  </Message>
+
+  <hr>
+
+  <h2 class="title is-4">Usage</h2>
+  <p>Import the component:</p>
+  <Code lang="js">{ `import Transition from '@kws3/transitions'; `} </Code>
+  <p>Import the SCSS:</p>
+  <Code lang="css">@import 'path/to/node_modules/@kws3/transitions/styles';</Code>
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
+  import { Message } from '@kws3/helpers';
+  import Transition from '@kws3/transitions';
+  import pkg from '@kws3/transitions/package.json';
+
+
+
+  export default {
+    components: {
+      Layout, Code, Message, Transition
+    },
+    data() {
+      return {
+        pkg,
+        visible: false
+      };
+    }
+  };
+</script>
