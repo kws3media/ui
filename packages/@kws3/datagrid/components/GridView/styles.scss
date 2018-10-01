@@ -1,8 +1,14 @@
 $kws-gridview-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
+$kws-gridview-th-background: $table-background-color !default;
+$kws-gridview-th-text: $text !default;
 
 
 .data-table .table{
   box-shadow: $kws-gridview-box-shadow;
+  th{
+    background: $kws-gridview-th-background;
+    color: $kws-gridview-th-color;
+  }
   &.is-bordered{
     tr{
       th:last-child, td:last-child{
