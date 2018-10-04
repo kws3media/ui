@@ -1,30 +1,34 @@
 <form on:submit="fire('dosearch', event)">
   <div class="field has-addons">
-    <p class="control is-expanded">
-      <input class="input" type="text" placeholder="{placeholder}" bind:value="query">
-    </p>
-    {#if _filters.length > 10}
-        {#each _filters as filter, i}
-          <SearchableSelect
-          data="{filter.options}"
-          placeholder="Any {filter.name.replace('_', ' ')}"
-          bind:value="filterVals[filter.name]"
-          searchKey="name"
-          searchValue="id"
-          classes="control"
-          style="max-width:{(1/(_filters.length + 2))*100}%" />
-        {/each}
-      {:else}
-        {#each _filters as filter, i}
-          <div class="select" data-cy="select-container">
-            <select bind:value="filterVals[filter.name]" class="is-radiusless" style="max-width:100%">
-              <option value="">Any {filter.name.replace('_', ' ')}</option>
-              {#each filter.options as option}
-                <option value="{option.id + ''}">{option.name}</option>
-              {/each}
-            </select>
-          </div>
-        {/each}
+    {#if hasSearch}
+      <p class="control is-expanded">
+        <input class="input" type="text" placeholder="{placeholder}" bind:value="query">
+      </p>
+    {/if}
+    {#if hasFilters}
+      {#if _filters.length > 10}
+          {#each _filters as filter, i}
+            <SearchableSelect
+            data="{filter.options}"
+            placeholder="Any {filter.name.replace('_', ' ')}"
+            bind:value="filterVals[filter.name]"
+            searchKey="name"
+            searchValue="id"
+            classes="control"
+            style="max-width:{(1/(_filters.length + 2))*100}%" />
+          {/each}
+        {:else}
+          {#each _filters as filter, i}
+            <div class="select" data-cy="select-container">
+              <select bind:value="filterVals[filter.name]" class="is-radiusless" style="max-width:100%">
+                <option value="">Any {filter.name.replace('_', ' ')}</option>
+                {#each filter.options as option}
+                  <option value="{option.id + ''}">{option.name}</option>
+                {/each}
+              </select>
+            </div>
+          {/each}
+      {/if}
     {/if}
     {#if changed}
     <p class="control">
@@ -49,6 +53,8 @@
     },
     data(){
       return {
+        hasSearch: true,
+        hasFilters: true,
         placeholder:'',
         filters:{},
         q:'',
