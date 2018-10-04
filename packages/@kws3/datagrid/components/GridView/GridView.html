@@ -9,7 +9,7 @@
         {/each}
       </tr>
     </thead>
-    <tbody>
+    <tbody data-cy="grid-view-tbody">
       {#each data as row, row_index (row.id)}
         <RowHOC target={mainRowComponent}
           on:*="fire('_forwardEvent', event)"

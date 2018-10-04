@@ -1,4 +1,4 @@
-<div class="pagination_frame {frame ? 'has-frame' : ''}" data-cy="paginationFrame">
+<div class="pagination_frame {frame ? 'has-frame' : ''}" data-cy="pagination-frame">
   <div class="level">
     <div class="level-left">
       {#if showPerPage}
@@ -59,7 +59,7 @@
         <button type="button" on:click="next()" class="pagination-next {((currentPage + 1) == totalPages) ? 'is-disabled' : ''}">
           <Icon size="{size}" icon="chevron-right" />
         </button>
-        <ul class="pagination-list" data-cy="paginationList">
+        <ul class="pagination-list" data-cy="pagination-list">
           {#each pages as page}
             {#if page.p == 'sep'}
               <li>
