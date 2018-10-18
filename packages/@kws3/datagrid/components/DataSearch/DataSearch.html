@@ -15,11 +15,11 @@
             searchKey="name"
             searchValue="id"
             classes="control"
-            style="max-width:{(1/(_filters.length + 2))*100}%" />
+            style="{filterWidthStyle}" />
           {/each}
         {:else}
           {#each _filters as filter, i}
-            <div class="select" data-cy="select-container">
+            <div class="select" style="{filterWidthStyle}" data-cy="select-container">
               <select bind:value="filterVals[filter.name]" class="is-radiusless" style="max-width:100%">
                 <option value="">Any {filter.name.replace('_', ' ')}</option>
                 {#each filter.options as option}
@@ -62,6 +62,14 @@
         changed:false,
         filterVals:{},
         _filters:[]
+      }
+    },
+    computed:{
+      filterWidthStyle({hasSearch, _filters}){
+        if(hasSearch){
+          return `max-width:${(1/(_filters.length + 2))*100}%`;
+        }
+        return '';
       }
     },
     onstate({ changed, current, previous }){
