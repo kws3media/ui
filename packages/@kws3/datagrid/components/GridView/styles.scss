@@ -1,6 +1,8 @@
 $kws-gridview-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
 $kws-gridview-th-background: $table-background-color !default;
 $kws-gridview-th-color: $text !default;
+$kws-gridview-tag-margin: 0 0.125rem 0.125rem 0 !default;
+$kws-gridview-icon-size: 1.5em !default;
 
 
 .data-table .table{
@@ -25,12 +27,12 @@ $kws-gridview-th-color: $text !default;
     }
   }
   .tag{
-    margin: 0 0.125rem 0.125rem 0;
+    margin: $kws-gridview-tag-margin;
   }
   td.is-icon{
     width:25px;
     .icon{
-      font-size: 1.3em;
+      font-size: $kws-gridview-icon-size;
     }
   }
 }
