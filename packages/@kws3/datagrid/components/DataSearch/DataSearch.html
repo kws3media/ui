@@ -6,29 +6,27 @@
       </p>
     {/if}
     {#if hasFilters}
-      {#if _filters.length > 10}
-          {#each _filters as filter, i}
-            <SearchableSelect
-            data="{filter.options}"
-            placeholder="Any {filter.name.replace('_', ' ')}"
-            bind:value="filterVals[filter.name]"
-            searchKey="name"
-            searchValue="id"
-            classes="control"
-            style="{filterWidthStyle}" />
-          {/each}
+      {#each _filters as filter, i}
+        {#if filter.options.length > 10}
+          <SearchableSelect
+          data="{filter.options}"
+          placeholder="Any {filter.name.replace('_', ' ')}"
+          bind:value="filterVals[filter.name]"
+          searchKey="name"
+          searchValue="id"
+          classes="control"
+          style="{filterWidthStyle}" />
         {:else}
-          {#each _filters as filter, i}
-            <div class="select" style="{filterWidthStyle}" data-cy="select-container">
-              <select bind:value="filterVals[filter.name]" class="is-radiusless" style="max-width:100%">
-                <option value="">Any {filter.name.replace('_', ' ')}</option>
-                {#each filter.options as option}
-                  <option value="{option.id + ''}">{option.name}</option>
-                {/each}
-              </select>
-            </div>
-          {/each}
-      {/if}
+          <div class="select" style="{filterWidthStyle}" data-cy="select-container">
+            <select bind:value="filterVals[filter.name]" class="is-radiusless" style="max-width:100%">
+              <option value="">Any {filter.name.replace('_', ' ')}</option>
+              {#each filter.options as option}
+                <option value="{option.id + ''}">{option.name}</option>
+              {/each}
+            </select>
+          </div>
+        {/if}
+      {/each}
     {/if}
     {#if changed}
     <p class="control">
