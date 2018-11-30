@@ -1,0 +1,67 @@
+<div class="color-picker-wrapper">
+	<div class="field">
+    <div class="control {mini ? '' : 'has-icon'} { dragover && !disabled && !readonly ? 'dragover' : ''}" on:dragover on:drop on:dragleave>
+      {#if !mini}<Icon icon="hashtag" fa_style="color:#{color}" />{/if}
+      <input class="input { readonly && 'readonly'} { mini && 'mini'}" readonly="{!typeable || readonly || mini}" disabled="{disabled}" type="text" bind:value="color" use:colorpicker maxlength="6">
+      <span class="color-preview" style="background:#{color}"></span>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+  import colorpicker from "./actions";
+  import { Icon } from '@kws3/helpers';
+  export default {
+    components:{
+      Icon
+    },
+    data(){
+      return {
+        mini: false,
+        readonly: false,
+        typeable: true,
+        disabled: false,
+        color:'000000',
+        dragover: false
+      }
+    },
+    oncreate(){
+      var self = this;
+
+      self.on('dragover', function(event){
+        var { readonly, disabled} = self.get();
+        if(!readonly && !disabled){
+          self.set({dragover: true});
+        }
+        return false;
+      });
+
+      self.on('dragleave', function(event){
+        var { readonly, disabled} = self.get();
+        if(!readonly && !disabled){
+          self.set({dragover: false});
+        }
+        return false;
+      });
+
+      self.on('drop', function(event){
+        var { readonly, disabled} = self.get();
+
+        if(!readonly && !disabled){
+          var data = event.dataTransfer.getData('text');
+          self.set({
+            color: data,
+            dragover: false
+          });
+
+        }
+        return false;
+      });
+    },
+    actions:{
+      colorpicker
+    }
+  }
+</script>
