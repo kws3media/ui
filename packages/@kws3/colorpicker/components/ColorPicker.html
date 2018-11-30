@@ -2,7 +2,7 @@
 	<div class="field">
     <div class="control {mini ? '' : 'has-icon'} { dragover && !disabled && !readonly ? 'dragover' : ''}" on:dragover on:drop on:dragleave>
       {#if !mini}<Icon icon="hashtag" fa_style="color:#{color}" />{/if}
-      <input class="input { readonly && 'readonly'} { mini && 'mini'}" readonly="{!typeable || readonly || mini}" disabled="{disabled}" type="text" bind:value="color" use:colorpicker maxlength="6">
+      <input class="input { readonly ? 'readonly' : ''} { mini ? 'mini' : ''}" readonly="{!typeable || readonly || mini}" disabled="{disabled}" type="text" bind:value="color" use:colorpicker maxlength="6">
       <span class="color-preview" style="background:#{color}"></span>
     </div>
   </div>
