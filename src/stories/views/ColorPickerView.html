@@ -9,14 +9,14 @@
     <div class="column is-4">
       <div class="columns">
         <div class="column">
-          <ColorPicker bind:value="color" />
+          <ColorPicker bind:value="color" {disabled} {readonly}/>
         </div>
       </div>
 
     </div>
 
     <div class="column">
-      <Code>{ `<ColorPicker bind:value="color" /> ` }</Code>
+      <Code>{ `<ColorPicker bind:value="color" {disabled} {readonly} /> ` }</Code>
 
     </div>
   </div>
@@ -53,6 +53,8 @@
     data() {
       return {
         color: '',
+        disabled: false,
+        readonly: false,
         pkg
       };
     },
