@@ -13,22 +13,24 @@ html {
 .main {
   padding: 0rem;
 }
-.layout-header-section{
+
+.layout-header-section {
   border-bottom: 1px solid $grey-lighter;
 }
 
 .layout-header-section,
-.layout-body-section{
-  padding-left:1rem;
-  padding-right:1rem;
+.layout-body-section {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 p {
   margin: 0.5rem 0;
 }
 
-pre>code{
-  .tag, .number{
+pre>code {
+  .tag,
+  .number {
     padding: unset;
     background: inherit;
     white-space: inherit;
@@ -40,44 +42,36 @@ pre>code{
     margin: inherit;
     vertical-align: inherit;
     text-align: inherit;
-
   }
 }
 
-pre:not([class*="language-"]){
+pre:not([class*="language-"]) {
   visibility: hidden;
 }
 
 //PRISM JS
 @import "../../node_modules/prismjs/themes/prism-tomorrow.css";
-
 /* SCSS for stories */
 
 /*------------------*/
 
 //Transitions
 @import '../../packages/@kws3/transitions/styles';
-
 //searchable select
 @import '../../packages/@kws3/searchable-select/styles';
-
 //helpers - Panel
 @import '../../packages/@kws3/helpers/components/Panel/styles';
-
 //helpers - Loader
 @import '../../packages/@kws3/helpers/components/Loader/styles';
-
 @import "../../node_modules/flatpickr/dist/flatpickr";
-
 //Timepicker
 @import '../../packages/@kws3/timepicker/styles';
 @import '../../packages/@kws3/datepicker/styles';
-
 //Calendar
 @import '../../packages/@kws3/calendar/styles';
-
 //grid
 @import '../../packages/@kws3/datagrid/components/GridView/styles';
-
 //pagination
 @import '../../packages/@kws3/datagrid/components/Pagination/styles';
+//colorpicker
+@import '../../packages/@kws3/colorpicker/styles';

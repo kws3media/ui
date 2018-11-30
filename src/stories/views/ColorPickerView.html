@@ -1,0 +1,63 @@
+<Layout
+  title="ColorPicker"
+  subtitle="A ColorPicker component to pick time."
+  {pkg}
+>
+
+  <h2 class="title is-4">Example</h2>
+  <div class="columns">
+    <div class="column is-4">
+      <div class="columns">
+        <div class="column">
+          <ColorPicker bind:value="color" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="column">
+      <Code>{ `<ColorPicker bind:value="color" /> ` }</Code>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <h2 class="title is-4">Usage</h2>
+  <p>Import the component:</p>
+  <Code lang="js">import ColorPicker from '@kws3/colorpicker'; </Code>
+
+  <p>Import the SCSS:</p>
+  <Code lang="css">@import 'path/to/node_modules/@kws3/colorpicker/styles';</Code>
+
+
+
+
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
+  import ColorPicker from '@kws3/colorpicker';
+  import { Message } from '@kws3/helpers';
+  import pkg from '@kws3/colorpicker/package.json';
+
+
+  export default {
+    components: {
+      Layout, Code, ColorPicker
+    },
+    data() {
+      return {
+        color: '',
+        pkg
+      };
+    },
+
+    methods: {
+    }
+  };
+</script>
