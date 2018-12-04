@@ -10,14 +10,14 @@
       <div class="columns">
         <div class="column">
           <p>Pick a time</p>
-          <Timepicker bind:value="new_time" />
+          <Timepicker bind:value="new_time" {disabled}/>
         </div>
       </div>
 
     </div>
 
     <div class="column">
-      <Code>{ `<Timepicker bind:value="new_time" /> ` }</Code>
+      <Code>{ `<Timepicker bind:value="new_time" {disabled} /> ` }</Code>
 
     </div>
   </div>
@@ -63,6 +63,7 @@ $kws-timepicker-am-pm-color: $primary !default;</Code>
     data() {
       return {
         new_time: '',
+        disabled: false,
         pkg
       };
     },

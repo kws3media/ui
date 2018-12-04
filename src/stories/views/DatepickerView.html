@@ -10,14 +10,14 @@
       <div class="columns">
         <div class="column">
           <p>Pick a date</p>
-          <Datepicker bind:value="new_date" />
+          <Datepicker bind:value="new_date" {disabled} />
         </div>
       </div>
 
     </div>
 
     <div class="column">
-      <Code>{ `<Datepicker bind:value="new_date" />` }</Code>
+      <Code>{ `<Datepicker bind:value="new_date" {disabled} />` }</Code>
 
     </div>
   </div>
@@ -84,6 +84,7 @@ $kws-datepicker-inner-container-border-bottom-color: 1px solid $primary;</Code>
     data() {
       return {
         new_date: '',
+        disabled: false,
         pkg
       };
     }
