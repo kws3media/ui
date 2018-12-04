@@ -1,6 +1,6 @@
 {
   "name": "@kws3/calendar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A full page Calendar component",
   "main": "index.js",
   "dependencies": {
