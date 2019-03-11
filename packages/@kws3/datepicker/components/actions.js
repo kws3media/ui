@@ -4,6 +4,8 @@ export default function datepicker(node){
   var self = this,
     setting = false;
 
+  node.value = self.get().value;
+
   self.picker = flatpickr(node, {
     altInput: true,
     altFormat: 'd/m/Y',
