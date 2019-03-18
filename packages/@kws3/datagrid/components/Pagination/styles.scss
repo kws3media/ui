@@ -7,8 +7,8 @@ $kws-pagination-item-disabled-background: $white-ter !default;
 $kws-pagination-item-disabled-color: $grey !default;
 $kws-pagination-item-ellipsis-background: $white-bis !default;
 $kws-pagination-item-ellipsis-border-color: $grey-lighter !default;
-$kws-pagination-item-active-background: $success;
-$kws-pagination-item-active-color: #fff;
+$kws-pagination-item-active-background: $success !default;
+$kws-pagination-item-active-color: findColorInvert($kws-pagination-item-active-background) !default;
 
 $kws-pagination-frame-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
 $kws-pagination-frame-background: linear-gradient(#fff, #fafafa);
