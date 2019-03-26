@@ -1,0 +1,80 @@
+.toggle-button{
+  position: relative;
+  display: inline-block;
+  vertical-align:middle;
+  pointer-events: auto;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  .track{
+    transition: background-color 0.3s, border 0.3s;
+    display: inline-block;
+    width: 55px;
+    height: 31px;
+    border: solid 2px #E6E6E6;
+    border-radius: 20px;
+    background-color: #FFF;
+    content: ' ';
+    cursor: pointer;
+    .toggle-text{
+      position: absolute;
+      top: 10px;
+      font-weight: bold;
+      right: 10%;
+      font-size: 9px;
+      width:19px;
+      text-align:right;
+      user-select: none;
+    }
+    .handle{
+      transition: transform 0.3s cubic-bezier(0, 1.1, 1, 1.1);
+      position: absolute;
+      display: block;
+      width: 27px;
+      height: 27px;
+      border-radius: 27px;
+      background-color: #FFF;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.15);
+    }
+  }
+  &.on{
+    .track{
+      border-color: $success;
+      background-color: $success;
+      .toggle-text{
+        left: 10%;
+        right:auto;
+        text-align:left;
+        color: findColorInvert($success)
+      }
+    }
+    .handle{
+      transform: translate3d(25px, 0, 0);
+    }
+    &.is-info{
+      .track{
+        border-color: $info;
+        background-color: $info;
+        .toggle-text{
+          color: findColorInvert($info)
+        }
+      }
+    }
+    &.is-danger{
+      .track{
+        border-color: $danger;
+        background-color: $danger;
+        .toggle-text{
+          color: findColorInvert($danger)
+        }
+      }
+    }
+    &.is-primary{
+      .track{
+        border-color: $primary;
+        background-color: $primary;
+        .toggle-text{
+          color: findColorInvert($primary)
+        }
+      }
+    }
+  }
+}
