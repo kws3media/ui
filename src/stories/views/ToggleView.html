@@ -1,0 +1,74 @@
+<Layout
+  title="Toggle"
+  subtitle="Toggle button with text supports"
+  {pkg}
+>
+
+  <h2 class="title is-4">Example</h2>
+  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+  <div class="columns">
+    <div class="column">
+      <div class="columns">
+        <Toggle {color} {disabled}/>
+      </div>
+
+      <p>Fires a <code>erase</code> event when confirmation is passed.</p>
+      <p>Fires a <code>erased</code> event after visual state has been reset following an action.</p>
+
+      <Message color="info">
+        Also takes a <code>context</code> property. This can let you differentiate between components when a page contains multiple instances of this component.
+      </Message>
+    </div>
+    <div class="column">
+      <Code>{ `<Toggle
+  color="${color}"
+  disabled="{${disabled}}"
+/>`}</Code>
+
+      <Message color="primary" style="margin-top:10px">
+        <p>In addition to the above options, the component also accepts the following properties:</p>
+        <ul>
+          <code>icon</code>,
+          <code>text</code>,
+          <code>doing_icon</code>,
+          <code>doing_text</code>,
+          <code>done_icon</code>,
+          <code>done_text</code>
+        </ul>
+      </Message>
+
+    </div>
+  </div>
+
+  <hr>
+
+
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
+  import { Toggle } from '@kws3/buttons';
+  import { Message } from '@kws3/helpers';
+
+  import pkg from '@kws3/buttons/package.json';
+
+  export default {
+    components: {
+      Layout, Code, Toggle, Message
+    },
+    data() {
+      return {
+        pkg
+      };
+    },
+    oncreate(){
+    },
+
+    methods: {
+    }
+  };
+</script>
