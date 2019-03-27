@@ -8,39 +8,30 @@
   <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
   <div class="columns">
     <div class="column">
-      <div class="columns">
-        <Toggle {color} {disabled}/>
+      <div class="column">
+        <Toggle {color} {disabled} {on_text} {off_text}/>
       </div>
-
-      <p>Fires a <code>erase</code> event when confirmation is passed.</p>
-      <p>Fires a <code>erased</code> event after visual state has been reset following an action.</p>
-
-      <Message color="info">
-        Also takes a <code>context</code> property. This can let you differentiate between components when a page contains multiple instances of this component.
-      </Message>
     </div>
     <div class="column">
       <Code>{ `<Toggle
   color="${color}"
+  on_text="${on_text}"
+  off_text="${off_text}"
   disabled="{${disabled}}"
 />`}</Code>
-
-      <Message color="primary" style="margin-top:10px">
-        <p>In addition to the above options, the component also accepts the following properties:</p>
-        <ul>
-          <code>icon</code>,
-          <code>text</code>,
-          <code>doing_icon</code>,
-          <code>doing_text</code>,
-          <code>done_icon</code>,
-          <code>done_text</code>
-        </ul>
-      </Message>
 
     </div>
   </div>
 
   <hr>
+
+  <hr>
+
+  <h2 class="title is-4">Usage</h2>
+  <p>Import the component:</p>
+  <Code lang="js">{ `import { Toggle } from '@kws3/buttons'; `} </Code>
+  <p>Import the SCSS:</p>
+  <Code lang="css">@import 'path/to/node_modules/@kws3/buttons/components/toggle/styles';</Code>
 
 
 

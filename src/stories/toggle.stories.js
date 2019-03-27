@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/svelte';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean , text} from '@storybook/addon-knobs';
 
 import "../scss/app.scss";
 
@@ -15,11 +15,14 @@ storiesOf('Buttons|Toggle', module)
     const color = select(
       'color',
       [
-        'transparent', 'primary', 'info', 'warning',
-        'success', 'danger', 'dark', 'light'
+        'primary', 'info',
+        'success', 'danger',
       ],
-      'primary'
+      'success'
     );
+
+    const on_text = text('on_text', '');
+    const off_text = text('off_text', '');
 
     const disabled = boolean('disabled', false);
 
@@ -27,6 +30,8 @@ storiesOf('Buttons|Toggle', module)
       Component: ToggleView,
       data: {
         color,
+        on_text,
+        off_text,
         disabled
       },
     }
