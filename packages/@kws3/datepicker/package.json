@@ -1,6 +1,6 @@
 {
   "name": "@kws3/datepicker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Datepicker component for Svelte applications",
   "main": "index.js",
   "dependencies": {
