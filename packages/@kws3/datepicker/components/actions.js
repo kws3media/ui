@@ -1,12 +1,14 @@
 import flatpickr from 'flatpickr';
 
-export default function datepicker(node){
+export default function datepicker(node, opts){
   var self = this,
     setting = false;
 
   node.value = self.get().value;
 
-  self.picker = flatpickr(node, {
+  opts = opts || {};
+
+  self.picker = flatpickr(node, Object.assign({
     altInput: true,
     altFormat: 'd/m/Y',
     dateFormat: 'Y-m-d',
@@ -16,7 +18,7 @@ export default function datepicker(node){
       updateClassNames();
       setting = false;
     }
-  });
+  }, opts));
 
   self.set({ _setting: setting });
 
