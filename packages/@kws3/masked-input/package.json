@@ -1,6 +1,6 @@
 {
   "name": "@kws3/masked-input",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Input mask for Svelte",
   "main": "index.js",
   "dependencies": {
