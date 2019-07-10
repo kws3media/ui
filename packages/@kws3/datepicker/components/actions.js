@@ -53,7 +53,9 @@ export default function datepicker(node, opts){
 
   return {
     destroy() {
-      self.picker.destroy();
+      if(self && self.picker){
+        self.picker.destroy();
+      }
     }
   }
 }
