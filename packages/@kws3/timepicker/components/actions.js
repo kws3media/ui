@@ -4,6 +4,8 @@ export default function timepicker(node) {
   var self = this,
     setting = false;
 
+    node.value = self.get().value;
+
   self.picker = flatpickr(node, {
     altInput: true,
     altFormat: 'h:i K',
