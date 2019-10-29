@@ -8,7 +8,7 @@
     {#if hasFilters}
       {#each _filters as filter, i}
         <svelte:component
-          this={filterComponent}
+          this={usedFilterComponent}
           bind:filterVals
           {filter}
           {filterWidthStyle}
@@ -47,10 +47,11 @@
         changed:false,
         filterVals:{},
         _filters:[],
-        filterComponent: SearchFilter
+        filterComponent: null
       }
     },
     computed:{
+      usedFilterComponent: ({filterComponent}) => (filterComponent ? filterComponent : SearchFilter),
       filterWidthStyle({hasSearch, _filters}){
         if(hasSearch){
           return `max-width:${(1/(_filters.length + 2))*100}%`;
