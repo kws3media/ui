@@ -7,25 +7,12 @@
     {/if}
     {#if hasFilters}
       {#each _filters as filter, i}
-        {#if filter.options.length > 10}
-          <SearchableSelect
-          data="{filter.options}"
-          placeholder="Any {filter.name.replace(/_/g, ' ')}"
-          bind:value="filterVals[filter.name]"
-          searchKey="name"
-          searchValue="id"
-          classes="control"
-          style="{filterWidthStyle}" />
-        {:else}
-          <div class="select" style="{filterWidthStyle}" data-cy="select-container">
-            <select bind:value="filterVals[filter.name]" class="is-radiusless" style="max-width:100%">
-              <option value="">Any {filter.name.replace(/_/g, ' ')}</option>
-              {#each filter.options as option}
-                <option value="{option.id + ''}">{option.name}</option>
-              {/each}
-            </select>
-          </div>
-        {/if}
+        <svelte:component
+          this={filterComponent}
+          bind:filterVals
+          {filter}
+          {filterWidthStyle}
+        />
       {/each}
     {/if}
     {#if changed}
@@ -43,11 +30,11 @@
 <script>
 
   import {Icon} from '@kws3/helpers';
-  import SearchableSelect from '@kws3/searchable-select';
+  import SearchFilter from './SearchFilter.html';
 
   export default {
     components: {
-      Icon, SearchableSelect
+      Icon
     },
     data(){
       return {
@@ -59,7 +46,8 @@
         query:'',
         changed:false,
         filterVals:{},
-        _filters:[]
+        _filters:[],
+        filterComponent: SearchFilter
       }
     },
     computed:{

@@ -7,3 +7,4 @@ export { default as TileView } from './components/TileView/TileView.html';
 export { default as Pagination } from './components/Pagination/Pagination.html';
 
 export { default as DataSearch } from './components/DataSearch/DataSearch.html';
+export { default as SearchFilter } from './components/DataSearch/SearchFilter.html';
