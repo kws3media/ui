@@ -2,7 +2,7 @@
   <div class="field has-addons">
     {#if hasSearch}
       <p class="control is-expanded">
-        <input class="input" type="text" placeholder="{placeholder}" bind:value="query">
+        <input class="input {query != '' && query != undefined ? filter_in_use_class : filter_not_in_use_class}" type="text" placeholder="{placeholder}" bind:value="query">
       </p>
     {/if}
     {#if hasFilters}
@@ -12,6 +12,7 @@
           bind:filterVals
           {filter}
           {filterWidthStyle}
+          hilightClass={filterVals[filter.name] != '' && filterVals[filter.name] != undefined ? filter_in_use_class : filter_not_in_use_class}
         />
       {/each}
     {/if}
@@ -46,6 +47,8 @@
         query:'',
         changed:false,
         filterVals:{},
+        filter_in_use_class:'is-in-use',
+        filter_not_in_use_class:'is-not-in-use',
         _filters:[],
         filterComponent: null
       }

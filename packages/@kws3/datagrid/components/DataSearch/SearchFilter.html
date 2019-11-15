@@ -5,11 +5,11 @@
   bind:value="filterVals[filter.name]"
   searchKey="name"
   searchValue="id"
-  classes="control"
+  classes="control {hilightClass}"
   style="{filterWidthStyle}" />
 {:else}
-  <div class="select" style="{filterWidthStyle}" data-cy="select-container">
-    <select bind:value="filterVals[filter.name]" class="is-radiusless" style="max-width:100%">
+  <div class="select {hilightClass}" style="{filterWidthStyle}" data-cy="select-container">
+    <select bind:value="filterVals[filter.name]" class="is-radiusless {hilightClass}" style="max-width:100%">
       <option value="">Any {filter.name.replace(/_/g, ' ')}</option>
       {#each filter.options as option}
         <option value="{option.id + ''}">{option.name}</option>
@@ -30,7 +30,8 @@
       return {
         filter: {},
         filterVals: {},
-        filterWidthStyle: ''
+        filterWidthStyle: '',
+        hilightClass: ''
       }
     }
   }
