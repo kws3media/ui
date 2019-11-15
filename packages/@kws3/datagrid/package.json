@@ -1,6 +1,6 @@
 {
   "name": "@kws3/datagrid",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "Components to display data",
   "main": "index.js",
   "dependencies": {
