@@ -93,6 +93,7 @@
         }
 
         self.set({ _filters: _filters });
+        self.observeHandler();
       }
     },
     oncreate(){
@@ -122,7 +123,8 @@
         }
 
         self.fire('search', ret.join('~'));
-      })
+      });
+
     },
     methods:{
       observeHandler(){
@@ -135,7 +137,7 @@
           changed = true;
         }else{
           for(var i in filterVals){
-            if(filterVals[i] !== ''){
+            if(filterVals[i] !== '' && filterVals[i] != undefined){
               changed = true;
               break;
             }
