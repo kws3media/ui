@@ -1,11 +1,11 @@
 <div class="field {confirm ? 'has-addons' : ''} {classes}">
   <p class="control">
     {#if confirm}
-      <button class="button is-success is-outlined is-shadowless is-{size}" type="button" on:click="cancel()"> Cancel </button>
+      <button class="button is-success is-outlined is-shadowless is-{size}" type="button" on:click="cancel(event)"> Cancel </button>
     {/if}
   </p>
   <p class="control is-expanded">
-    <button class="button is-{size} {doing ? main_color + ' is-loading' : (error ? 'is-danger is-shaking' : (done ? main_color : (confirm ? 'is-outlined ' + main_color : main_color)))}" type="button" on:click="doit()" disabled="{done || doing || error || disabled}">
+    <button class="button is-{size} {doing ? main_color + ' is-loading' : (error ? 'is-danger is-shaking' : (done ? main_color : (confirm ? 'is-outlined ' + main_color : main_color)))}" type="button" on:click="doit(event)" disabled="{done || doing || error || disabled}">
       {#if done}
         <Icon size="{icon_size}" icon="{done_icon}"/>{#if !icon_only} <span>{done_text}</span>{/if}
       {:elseif doing}
@@ -67,10 +67,12 @@
       }
     },
     methods:{
-      cancel: function(){
+      cancel: function(e){
+        e && e.preventDefault();
         this.set({confirm:false});
       },
-      doit: function(){
+      doit: function(e){
+        e && e.preventDefault();
         var self = this,
         _confirm = self.get().confirm;
         if(!_confirm){
