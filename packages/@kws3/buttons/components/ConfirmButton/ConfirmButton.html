@@ -69,10 +69,12 @@
     methods:{
       cancel: function(e){
         e && e.preventDefault();
+        e && e.stopPropagation();
         this.set({confirm:false});
       },
       doit: function(e){
         e && e.preventDefault();
+        e && e.stopPropagation();
         var self = this,
         _confirm = self.get().confirm;
         if(!_confirm){
