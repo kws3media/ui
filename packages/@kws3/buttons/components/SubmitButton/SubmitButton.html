@@ -1,4 +1,4 @@
-<button class="button {classes} is-{size} is-{color} {tracker.saving ? 'is-loading' : (tracker.error ? 'is-danger' : (tracker.saved ? 'is-success' : ''))}" type="submit" disabled="{disabled}" data-cy="{cy}">
+<button class="button {classes} is-{size} {tracker.saving ? 'is-loading is-' + color : (tracker.error ? 'is-danger' : (tracker.saved ? 'is-success' : 'is-' + color))}" type="submit" disabled="{disabled}" data-cy="{cy}">
   {#if tracker.saved}
     <Icon icon="check" size="{icon_size}" /> {#if !icon_only} <span>{saved_text}</span> {/if}
   {:elseif tracker.error}
