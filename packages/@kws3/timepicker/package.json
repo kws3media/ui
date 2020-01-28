@@ -1,6 +1,6 @@
 {
   "name": "@kws3/timepicker",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A Timepicker component for Svelte applications",
   "main": "index.js",
   "dependencies": {
