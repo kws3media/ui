@@ -1,12 +1,14 @@
 import flatpickr from 'flatpickr';
 
-export default function timepicker(node) {
+export default function timepicker(node, opts) {
   var self = this,
     setting = false;
 
     node.value = self.get().value;
 
-  self.picker = flatpickr(node, {
+    opts = opts || {};
+
+  self.picker = flatpickr(node, Object.assign({
     altInput: true,
     altFormat: 'h:i K',
     dateFormat: 'H:i',
@@ -18,7 +20,7 @@ export default function timepicker(node) {
       updateClassNames();
       setting = false;
     }
-  });
+  }, opts));
 
   self.set({ _setting: setting });
 
