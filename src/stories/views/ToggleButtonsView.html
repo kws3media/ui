@@ -1,0 +1,98 @@
+<Layout
+  title="ToggleButtons"
+  subtitle="Segmented ToggleButtons Buttons"
+  {pkg}
+>
+
+  <h2 class="title is-4">Example</h2>
+  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+  <div class="columns">
+    <div class="column">
+      <div class="column">
+        <ToggleButtons
+          size=""
+          inner_class=""
+          options='{[
+            {"name": "Yes", "value": 1},
+            {"name": "No", "value": 0}
+          ]}'
+        />
+
+        <ToggleButtons
+          size=""
+          inner_class=""
+          options='{[
+            {"name": "Yes", "value": 1, subtitle: "Affirmative"},
+            {"name": "No", "value": 0, subtitle: "Negative"}
+          ]}'
+        />
+
+        <ToggleButtons
+          size=""
+          inner_class=""
+          options='{[
+            {"name": "Yes", "value": 1, icon: "check-circle"},
+            {"name": "No", "value": 0, icon: "ban"}
+          ]}'
+        />
+
+        <ToggleButtons
+          size=""
+          inner_class=""
+          options='{[
+            {"name": "Yes", "value": 1, icon: "check-circle", subtitle: "Affirmative"},
+            {"name": "No", "value": 0, icon: "ban", subtitle: "Negative"}
+          ]}'
+        />
+      </div>
+    </div>
+    <div class="column">
+      <Code>{ `<ToggleButtons size="small" color="${color}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}" />
+<ToggleButtons color="${color}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}" />
+<ToggleButtons size="medium" color="${color}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}" />
+<ToggleButtons size="large" color="${color}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}" />`}</Code>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <hr>
+
+  <h2 class="title is-4">Usage</h2>
+  <p>Import the component:</p>
+  <Code lang="js">{ `import { ToggleButtons } from '@kws3/controls'; `} </Code>
+  <p>Import the SCSS:</p>
+  <Code lang="css">@import 'path/to/node_modules/@kws3/controls/components/togglebuttons/styles';</Code>
+
+
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
+  import { ToggleButtons } from '@kws3/controls';
+  import { Message } from '@kws3/helpers';
+
+  import pkg from '@kws3/controls/package.json';
+
+  export default {
+    components: {
+      Layout, Code, ToggleButtons, Message
+    },
+    data() {
+      return {
+        pkg,
+        on: true
+      };
+    },
+    oncreate(){
+    },
+
+    methods: {
+    }
+  };
+</script>
