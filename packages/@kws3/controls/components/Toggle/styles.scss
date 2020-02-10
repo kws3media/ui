@@ -7,31 +7,32 @@
   .track{
     transition: background-color 0.3s, border 0.3s;
     display: inline-block;
-    width: 55px;
-    height: 31px;
+    width: 3.93rem;
+    height: 2.21rem;
     border: solid 2px #E6E6E6;
-    border-radius: 20px;
+    border-radius: 1.428rem;
     background-color: #FFF;
     content: ' ';
     cursor: pointer;
     .toggle-text{
       position: absolute;
-      top: 10px;
+      top: 0.714rem;
       font-weight: bold;
       right: 10%;
-      font-size: 9px;
+      font-size: 0.642rem;
       line-height:1em;
-      width:19px;
+      width:1.357rem;
       text-align:right;
       user-select: none;
+      margin:0;
     }
     .handle{
       transition: transform 0.3s cubic-bezier(0, 1.1, 1, 1.1);
       position: absolute;
       display: block;
-      width: 27px;
-      height: 27px;
-      border-radius: 27px;
+      width: 1.928rem;
+      height: 1.928rem;
+      border-radius: 1.928rem;
       background-color: #FFF;
       box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.15);
     }
@@ -48,7 +49,7 @@
       }
     }
     .handle{
-      transform: translate3d(25px, 0, 0);
+      transform: translate3d(1.785rem, 0, 0);
     }
     &.is-info{
       .track{

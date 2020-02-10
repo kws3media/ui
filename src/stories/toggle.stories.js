@@ -9,7 +9,7 @@ import ToggleView from './views/ToggleView.html';
 
 
 
-storiesOf('Buttons|Toggle', module)
+storiesOf('Forms|Other Controls', module)
   .addDecorator(withKnobs)
   .add('Toggle', () => {
     const color = select(
