@@ -1,3 +1,7 @@
+$kws-toggle-off-bg-color: #fff !default;
+$kws-toggle-handle-bg-color: #fff !default;
+$kws-toggle-border-color: #e6e6e6 !default;
+
 .toggle-button{
   position: relative;
   display: inline-block;
@@ -6,12 +10,12 @@
   -webkit-tap-highlight-color:rgba(0,0,0,0);
   .track{
     transition: background-color 0.3s, border 0.3s;
-    display: inline-block;
+    display: inline-flex;
     width: 3.93rem;
     height: 2.21rem;
-    border: solid 2px #E6E6E6;
+    border: solid 2px $kws-toggle-border-color;
     border-radius: 1.428rem;
-    background-color: #FFF;
+    background-color: $kws-toggle-off-bg-color;
     content: ' ';
     cursor: pointer;
     .toggle-text{
@@ -25,6 +29,7 @@
       text-align:right;
       user-select: none;
       margin:0;
+      color: findColorInvert($kws-toggle-off-bg-color);
     }
     .handle{
       transition: transform 0.3s cubic-bezier(0, 1.1, 1, 1.1);
@@ -33,7 +38,7 @@
       width: 1.928rem;
       height: 1.928rem;
       border-radius: 1.928rem;
-      background-color: #FFF;
+      background-color: $kws-toggle-handle-bg-color;
       box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.15);
     }
   }
@@ -51,30 +56,16 @@
     .handle{
       transform: translate3d(1.785rem, 0, 0);
     }
-    &.is-info{
-      .track{
-        border-color: $info;
-        background-color: $info;
-        .toggle-text{
-          color: findColorInvert($info)
-        }
-      }
-    }
-    &.is-danger{
-      .track{
-        border-color: $danger;
-        background-color: $danger;
-        .toggle-text{
-          color: findColorInvert($danger)
-        }
-      }
-    }
-    &.is-primary{
-      .track{
-        border-color: $primary;
-        background-color: $primary;
-        .toggle-text{
-          color: findColorInvert($primary)
+    @each $name, $pair in $colors{
+      $color: nth($pair, 1);
+      $color-invert: nth($pair, 2);
+      &.is-#{$name}{
+        .track{
+          border-color: $color;
+          background-color: $color;
+          .toggle-text{
+            color: $color-invert
+          }
         }
       }
     }
