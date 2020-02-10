@@ -1,0 +1,36 @@
+<div class="togglebox {class}">
+  <label class="label"><slot></slot></label>
+  <Toggle {on} {disabled} {color} class={toggle_class} {on_text} {off_text}  />
+</div>
+
+
+<script>
+  import {Toggle} from '@kws3/controls';
+
+  export default {
+    components:{
+      Toggle
+    },
+    data: function(){
+      return {
+        on: false,
+        disabled: false,
+        color:'',
+        class:'',
+        toggle_class:'',
+        on_text: '',
+        off_text: ''
+      }
+    },
+    methods:{
+      toggle(){
+        var {on, disabled} = this.get();
+        if(!disabled){
+          on = !on;
+          this.set({on});
+          this.fire('change');
+        }
+      }
+    }
+  };
+</script>
