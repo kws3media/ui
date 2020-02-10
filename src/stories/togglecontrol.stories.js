@@ -22,9 +22,19 @@ storiesOf('Forms|Other Controls', module)
       'success'
     );
 
+    const size = select(
+      'size',
+      [
+        'small',
+        '',
+        'medium',
+        'large'
+      ],
+      ''
+    );
+
     const on_text = text('on_text', '');
     const off_text = text('off_text', '');
-    const label1 = text('label1', 'Turn this on?');
 
     const disabled = boolean('disabled', false);
 
@@ -32,10 +42,10 @@ storiesOf('Forms|Other Controls', module)
       Component: ToggleControlView,
       data: {
         color,
+        size,
         on_text,
         off_text,
-        disabled,
-        label1
+        disabled
       },
     }
   });

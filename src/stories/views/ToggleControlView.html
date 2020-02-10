@@ -10,19 +10,28 @@
     <div class="column">
       <div class="column">
         <div class="field">
-          <ToggleControl  {color} {disabled} {on_text} {off_text} >
-            hello <small class="is-block">sdsd</small>
+          <label class="label">Some Input</label>
+          <div class="control">
+            <input type="text" class="input" disabled />
+          </div>
+        </div>
+        <div class="field">
+          <ToggleControl  {size} {color} {disabled} {on_text} {off_text} >
+            <span slot="label">Primary Label <small class="is-block help">Some secondary Text</small></span>
           </ToggleControl>
+        </div>
+        <div class="field">
+          <label class="label">Another Input</label>
+          <div class="control">
+            <input type="text" class="input" disabled />
+          </div>
         </div>
       </div>
     </div>
     <div class="column">
-      <Code>{ `<ToggleControl
-  color="${color}"
-  on_text="${on_text}"
-  off_text="${off_text}"
-  disabled="{${disabled}}"
->${label1}</ToggleControl>`}</Code>
+      <Code>{ `<ToggleControl color="${color}" size="${size}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}">
+  <span slot="label">Primary Label <small class="is-block help">Some secondary Text</small></span>
+</ToggleControl>`}</Code>
 
     </div>
   </div>
