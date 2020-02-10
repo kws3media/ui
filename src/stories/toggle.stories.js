@@ -17,6 +17,7 @@ storiesOf('Forms|Other Controls', module)
       [
         'primary', 'info',
         'success', 'danger',
+        'dark', 'light'
       ],
       'success'
     );
