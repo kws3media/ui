@@ -1,6 +1,6 @@
 <div class="togglebox {class}">
   <label class="label"><slot></slot></label>
-  <Toggle {on} {disabled} {color} class={toggle_class} {on_text} {off_text}  />
+  <Toggle {on} {size} {disabled} {color} class={toggle_class} {on_text} {off_text}  />
 </div>
 
 
@@ -19,7 +19,8 @@
         class:'',
         toggle_class:'',
         on_text: '',
-        off_text: ''
+        off_text: '',
+        size:''
       }
     },
     methods:{

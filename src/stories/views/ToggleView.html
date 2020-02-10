@@ -9,16 +9,20 @@
   <div class="columns">
     <div class="column">
       <div class="column">
-        <Toggle {color} {disabled} {on_text} {off_text}/>
+        <Toggle bind:on {color} {disabled} {on_text} {off_text} size="small" />
+        <br/><br/>
+        <Toggle bind:on {color} {disabled} {on_text} {off_text}/>
+        <br/><br/>
+        <Toggle bind:on {color} {disabled} {on_text} {off_text} size="medium" />
+        <br/><br/>
+        <Toggle bind:on {color} {disabled} {on_text} {off_text} size="large" />
       </div>
     </div>
     <div class="column">
-      <Code>{ `<Toggle
-  color="${color}"
-  on_text="${on_text}"
-  off_text="${off_text}"
-  disabled="{${disabled}}"
-/>`}</Code>
+      <Code>{ `<Toggle size="small" color="${color}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}" />
+<Toggle color="${color}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}" />
+<Toggle size="medium" color="${color}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}" />
+<Toggle size="large" color="${color}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}" />`}</Code>
 
     </div>
   </div>
@@ -53,7 +57,8 @@
     },
     data() {
       return {
-        pkg
+        pkg,
+        on: true
       };
     },
     oncreate(){

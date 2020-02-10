@@ -8,36 +8,37 @@ $kws-toggle-border-color: #e6e6e6 !default;
   vertical-align:middle;
   pointer-events: auto;
   -webkit-tap-highlight-color:rgba(0,0,0,0);
+  font-size:1rem;
   .track{
     transition: background-color 0.3s, border 0.3s;
     display: inline-flex;
-    width: 3.93rem;
-    height: 2.21rem;
+    align-items: center;
+    width: 3.93em;
+    height: 2.21em;
     border: solid 2px $kws-toggle-border-color;
-    border-radius: 1.428rem;
+    border-radius: 1.428em;
     background-color: $kws-toggle-off-bg-color;
     content: ' ';
     cursor: pointer;
     .toggle-text{
-      position: absolute;
-      top: 0.714rem;
+      flex-grow: 1;
+      flex-shrink: 0;
       font-weight: bold;
-      right: 10%;
-      font-size: 0.642rem;
+      font-size: 0.642em;
       line-height:1em;
-      width:1.357rem;
+      display:block;
       text-align:right;
       user-select: none;
-      margin:0;
+      margin:0 4px 0 4px;
       color: findColorInvert($kws-toggle-off-bg-color);
     }
     .handle{
       transition: transform 0.3s cubic-bezier(0, 1.1, 1, 1.1);
       position: absolute;
       display: block;
-      width: 1.928rem;
-      height: 1.928rem;
-      border-radius: 1.928rem;
+      width: 1.928em;
+      height: 1.928em;
+      border-radius: 1.928em;
       background-color: $kws-toggle-handle-bg-color;
       box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.15);
     }
@@ -54,7 +55,7 @@ $kws-toggle-border-color: #e6e6e6 !default;
       }
     }
     .handle{
-      transform: translate3d(1.785rem, 0, 0);
+      transform: translate3d(1.785em, 0, 0);
     }
     @each $name, $pair in $colors{
       $color: nth($pair, 1);
@@ -69,5 +70,14 @@ $kws-toggle-border-color: #e6e6e6 !default;
         }
       }
     }
+  }
+  &.is-small{
+    font-size:0.75rem;
+  }
+  &.is-medium{
+    font-size:1.25rem;
+  }
+  &.is-large{
+    font-size:1.5rem;
   }
 }
