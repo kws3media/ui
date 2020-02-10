@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "description": "Helper Controls for Svelte",
   "main": "index.js",
-  "dependencies": {
-  },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
   "demo_url": "https://ui.kws3.media/?selectedKind=Forms%7COther%20Controls",
   "author": "Khaled Ahmed <me.khaled@gmail.com>",
