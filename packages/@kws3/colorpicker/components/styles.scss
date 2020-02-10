@@ -128,6 +128,16 @@
     z-index: 4;
     box-shadow: 0 .125rem .1875rem rgba(0, 0, 0, 0.1), 0 0 0 .0625rem rgba(0, 0, 0, 0.1);
   }
+  .control.mini{
+    max-width: 2.25rem;
+    .color-preview{
+      right:auto;
+      left:0.25rem;
+      top:0.25rem;
+      height:1.75rem;
+      width:1.75rem;
+    }
+  }
   i {
     text-shadow: 0 .0625rem .0625rem rgba(0, 0, 0, 0.4);
   }
@@ -138,7 +148,7 @@
     padding-right: 2rem;
   }
   input.mini {
-    max-width: 2rem;
+    max-width: 2.25rem;
     padding-right: .5rem;
   }
   .dragover input {

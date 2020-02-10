@@ -18,11 +18,14 @@ storiesOf('Forms|ColorPicker', module)
 
     const readonly = boolean('readonly', false);
 
+    const mini = boolean('mini', false);
+
     return {
       Component: ColorPickerView,
       data: {
         disabled,
-        readonly
+        readonly,
+        mini
       },
     }
   });
