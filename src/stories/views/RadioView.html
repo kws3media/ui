@@ -1,0 +1,100 @@
+<Layout
+  title="Radio"
+  subtitle="Custom radio control"
+  {pkg}
+>
+
+  <h2 class="title is-4">Example</h2>
+  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+  <div class="columns">
+    <div class="column is-3">
+      <Code>{ `<Radio>Label</Radio>`}</Code>
+      <Radio on:change bind:group='normal' value='small' {color} {disabled} size="small">Small</Radio>
+      <br/>
+      <Radio on:change bind:group='normal' value='normal' {color} {disabled}>Normal</Radio>
+      <br/>
+      <Radio on:change bind:group='normal' value='medium' {color} {disabled} size="medium">Medium</Radio>
+      <br/>
+      <Radio on:change bind:group='normal' value='large' {color} {disabled} size="large">Large</Radio>
+    </div>
+    <div class="column is-3">
+      <Code>{ `circle={true}`}</Code>
+      <Radio on:change bind:group='circle' value='small' {color} {disabled} size="small" circle={true}>Small</Radio>
+      <br/>
+      <Radio on:change bind:group='circle' value='normal' {color} {disabled} circle={true}>Normal</Radio>
+      <br/>
+      <Radio on:change bind:group='circle' value='medium' {color} {disabled} size="medium" circle={true}>Medium</Radio>
+      <br/>
+      <Radio on:change bind:group='circle' value='large' {color} {disabled} size="large" circle={true}>Large</Radio>
+  </div>
+    <div class="column is-3">
+      <Code>{ `inverted={true}`}</Code>
+      <Radio on:change bind:group='inverted' value='small' {color} {disabled} size="small" inverted={true}>Small Inverted</Radio>
+      <br/>
+      <Radio on:change bind:group='inverted' value='normal' {color} {disabled} inverted={true}>Normal Inverted</Radio>
+      <br/>
+      <Radio on:change bind:group='inverted' value='medium' {color} {disabled} size="medium" inverted={true}>Medium Inverted</Radio>
+      <br/>
+      <Radio on:change bind:group='inverted' value='large' {color} {disabled} size="large" inverted={true}>Large Inverted</Radio>
+    </div>
+    <div class="column is-3">
+      <Code>{ `circle={true} inverted={true}`}</Code>
+      <Radio on:change bind:group='circle_inverted' value='small' {color} {disabled} size="small" inverted={true} circle={true}>Small Inverted</Radio>
+      <br/>
+      <Radio on:change bind:group='circle_inverted' value='normal' {color} {disabled} inverted={true} circle={true}>Normal Inverted</Radio>
+      <br/>
+      <Radio on:change bind:group='circle_inverted' value='medium' {color} {disabled} size="medium" inverted={true} circle={true}>Medium Inverted</Radio>
+      <br/>
+      <Radio on:change bind:group='circle_inverted' value='large' {color} {disabled} size="large" inverted={true} circle={true}>Large Inverted</Radio>
+    </div>
+  </div>
+
+  <Code>{ `<Radio on:change bind:group="some_key" value="some value" color="${color}" disabled="{${disabled}}" />`}</Code>
+
+  <hr>
+
+  <hr>
+
+  <h2 class="title is-4">Usage</h2>
+  <p>Import the component:</p>
+  <Code lang="js">{ `import { Radio } from '@kws3/controls'; `} </Code>
+  <p>Import the SCSS:</p>
+  <Code lang="css">@import 'path/to/node_modules/@kws3/controls/components/radio/styles';</Code>
+  <p>SCSS customization variables with default values:</p>
+  <Code lang="css">$kws-checkbox-default-check-color: #333 !default;
+$kws-checkbox-default-border-color: #dbdbdb !default;</Code>
+
+
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
+  import { Radio } from '@kws3/controls';
+  import { Message } from '@kws3/helpers';
+
+  import pkg from '@kws3/controls/package.json';
+
+  export default {
+    components: {
+      Layout, Code, Radio, Message
+    },
+    data() {
+      return {
+        pkg,
+        normal: 'small',
+        circle: 'normal',
+        inverted: 'medium',
+        circle_inverted: 'large'
+      };
+    },
+    oncreate(){
+    },
+
+    methods: {
+    }
+  };
+</script>

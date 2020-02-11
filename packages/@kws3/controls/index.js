@@ -5,3 +5,5 @@ export { default as ToggleControl } from './components/ToggleControl/ToggleContr
 export { default as ToggleButtons } from './components/ToggleButtons/ToggleButtons.html';
 
 export { default as Checkbox } from './components/Checkbox/Checkbox.html';
+
+export { default as Radio } from './components/Radio/Radio.html';

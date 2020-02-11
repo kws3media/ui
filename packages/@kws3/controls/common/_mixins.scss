@@ -1,0 +1,7 @@
+$_kwsControlModules: () !default !global;
+@mixin exports($name) {
+  @if not index($_kwsControlModules, $name) {
+    $_kwsControlModules: append($_kwsControlModules, $name) !global;
+    @content;
+  }
+}

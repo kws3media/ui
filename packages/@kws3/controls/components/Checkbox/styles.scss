@@ -1,98 +1,136 @@
+@import '../../common/_mixins';
+
 $kws-checkbox-default-check-color: #333 !default;
 $kws-checkbox-default-border-color: #dbdbdb !default;
 
-.kws-checkbox{
-  position: relative;
-  font-size:1rem;
-  margin: 0.25em 0.5em 0.25em 0;
-  input[type="checkbox"], input[type="radio"]{
-    outline: 0;
-    user-select: none;
-    display: inline-block;
-    position: absolute;
-    opacity: 0;
-  }
-  .kws-checkbox-label{
-    display: inline;
-    cursor: pointer;
-    vertical-align: middle;
-    padding: .2em 0;
-    padding-left: 1.25em;
-    &:before, &:after{
-      position: absolute;
-      left: 0;
-      top: 0em;
-      content: '';
-    }
-    &:before{
-      border: 0.05em solid $kws-checkbox-default-border-color;
-      width: 1em;
-      height: 1em;
-      top:0.25em;
-      border-radius: 0.14em;
-    }
-    &:after{
-      box-sizing: border-box;
-      transform: translateY(0rem) rotate(45deg);
-      border:none;
-      width: .3em;
-      height: .6em;
-      top: .4em;
-      left: .38em;
+@include exports("KWSCheckbox"){
+  .kws-checkbox{
+    position: relative;
+    font-size:1rem;
+    margin: 0.25em 0.5em 0.25em 0;
+    input[type="checkbox"], input[type="radio"]{
+      outline: 0;
+      user-select: none;
       display: inline-block;
+      position: absolute;
+      opacity: 0;
     }
-  }
-  input[type="checkbox"]:checked+.kws-checkbox-label, input[type="radio"]:checked+.kws-checkbox-label{
-    &:after{
-      border: .1em solid $kws-checkbox-default-check-color;
-      border-top: 0;
-      border-left: 0;
-    }
-  }
-
-  input[type="checkbox"]:disabled+.kws-checkbox-label, input[type="radio"]:disabled+.kws-checkbox-label{
-    opacity:0.5;
-    cursor: not-allowed;
-  }
-
-  @each $name, $pair in $colors{
-    $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
-    &.is-#{$name} input[type="checkbox"]:checked+.kws-checkbox-label, &.is-#{$name} input[type="radio"]:checked+.kws-checkbox-label{
-      &:after{
-        border-color: $color;
+    .kws-checkbox-label{
+      display: inline;
+      cursor: pointer;
+      vertical-align: middle;
+      padding: .2em 0;
+      padding-left: 1.25em;
+      &:before, &:after{
+        position: absolute;
+        left: 0;
+        top: 0em;
+        content: '';
       }
-    }
-    &.is-#{$name}.is-inverted input[type="checkbox"]+.kws-checkbox-label, &.is-#{$name}.is-inverted input[type="radio"]+.kws-checkbox-label{
       &:before{
-        border-color: $color;
-      }
-    }
-    &.is-#{$name}.is-inverted input[type="checkbox"]:checked+.kws-checkbox-label, &.is-#{$name}.is-inverted input[type="radio"]:checked+.kws-checkbox-label{
-      &:before{
-        background: $color;
+        border: 0.05em solid $kws-checkbox-default-border-color;
+        width: 1em;
+        height: 1em;
+        top:0.25em;
+        border-radius: 0.14em;
       }
       &:after{
-        border-color: $color-invert;
+        box-sizing: border-box;
+        transform: translateY(0rem) rotate(45deg);
+        border:none;
+        width: .3em;
+        height: .6em;
+        top: .4em;
+        left: .38em;
+        display: inline-block;
       }
     }
-  }
-
-  &.is-circle{
-    input[type="checkbox"]+.kws-checkbox-label, input[type="radio"]+.kws-checkbox-label{
-      &:before{
-        border-radius: 50%;
+    input[type="checkbox"]:checked+.kws-checkbox-label{
+      &:after{
+        border: .1em solid $kws-checkbox-default-check-color;
+        border-top: 0;
+        border-left: 0;
       }
     }
-  }
+    input[type="radio"]:checked+.kws-checkbox-label{
+      &:after{
+        transform: none;
+        border:0.25em solid #fff;
+        background: $kws-checkbox-default-check-color;
+        width: 1em;
+        height: 1em;
+        top:0.25em;
+        left:0;
+        border-radius:0.14em;
+        box-shadow: 0 0 0 0.05em $kws-checkbox-default-border-color;
+      }
+    }
 
-  &.is-small{
-    font-size:0.75rem;
-  }
-  &.is-medium{
-    font-size:1.25rem;
-  }
-  &.is-large{
-    font-size:1.5rem;
+    input[type="checkbox"]:disabled+.kws-checkbox-label, input[type="radio"]:disabled+.kws-checkbox-label{
+      opacity:0.5;
+      cursor: not-allowed;
+    }
+
+    @each $name, $pair in $colors{
+      $color: nth($pair, 1);
+      $color-invert: nth($pair, 2);
+      &.is-#{$name} input[type="checkbox"]:checked+.kws-checkbox-label{
+        &:after{
+          border-color: $color;
+        }
+      }
+      &.is-#{$name} input[type="radio"]:checked+.kws-checkbox-label{
+        &:after{
+          background-color: $color;
+        }
+      }
+
+      &.is-#{$name}.is-inverted input[type="checkbox"]+.kws-checkbox-label, &.is-#{$name}.is-inverted input[type="radio"]+.kws-checkbox-label{
+        &:before{
+          border-color: $color;
+        }
+      }
+      &.is-#{$name}.is-inverted input[type="checkbox"]:checked+.kws-checkbox-label{
+        &:before{
+          background: $color;
+        }
+        &:after{
+          border-color: $color-invert;
+        }
+      }
+      &.is-#{$name}.is-inverted input[type="radio"]:checked+.kws-checkbox-label{
+        &:before{
+          background: $color;
+        }
+        &:after{
+          background-color: $color-invert;
+          border-color:$color;
+          box-shadow: none;
+        }
+      }
+    }
+
+    &.is-circle{
+      input[type="checkbox"]+.kws-checkbox-label, input[type="radio"]+.kws-checkbox-label{
+        &:before{
+          border-radius: 50%;
+        }
+      }
+      input[type="radio"]+.kws-checkbox-label{
+        &:after{
+          border-radius: 50%;
+        }
+      }
+    }
+
+    &.is-small{
+      font-size:0.75rem;
+    }
+    &.is-medium{
+      font-size:1.25rem;
+    }
+    &.is-large{
+      font-size:1.5rem;
+    }
   }
 }
