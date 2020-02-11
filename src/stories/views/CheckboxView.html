@@ -8,15 +8,17 @@
   <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
   <div class="columns">
     <div class="column is-3">
-        <Checkbox on:change bind:checked {color} {disabled} size="small">Small</Checkbox>
-        <br/>
-        <Checkbox on:change bind:checked {color} {disabled}>Normal</Checkbox>
-        <br/>
-        <Checkbox on:change bind:checked {color} {disabled} size="medium">Medium</Checkbox>
-        <br/>
-        <Checkbox on:change bind:checked {color} {disabled} size="large">Large</Checkbox>
+      <Code>{ `<Checkbox>Label</Checkbox>`}</Code>
+      <Checkbox on:change bind:checked {color} {disabled} size="small">Small</Checkbox>
+      <br/>
+      <Checkbox on:change bind:checked {color} {disabled}>Normal</Checkbox>
+      <br/>
+      <Checkbox on:change bind:checked {color} {disabled} size="medium">Medium</Checkbox>
+      <br/>
+      <Checkbox on:change bind:checked {color} {disabled} size="large">Large</Checkbox>
     </div>
     <div class="column is-3">
+      <Code>{ `circle={true}`}</Code>
       <Checkbox on:change bind:checked {color} {disabled} size="small" circle={true}>Small</Checkbox>
       <br/>
       <Checkbox on:change bind:checked {color} {disabled} circle={true}>Normal</Checkbox>
@@ -26,6 +28,7 @@
       <Checkbox on:change bind:checked {color} {disabled} size="large" circle={true}>Large</Checkbox>
   </div>
     <div class="column is-3">
+      <Code>{ `inverted={true}`}</Code>
       <Checkbox on:change bind:checked {color} {disabled} size="small" inverted={true}>Small Inverted</Checkbox>
       <br/>
       <Checkbox on:change bind:checked {color} {disabled} inverted={true}>Normal Inverted</Checkbox>
@@ -35,6 +38,7 @@
       <Checkbox on:change bind:checked {color} {disabled} size="large" inverted={true}>Large Inverted</Checkbox>
     </div>
     <div class="column is-3">
+      <Code>{ `circle={true} inverted={true}`}</Code>
       <Checkbox on:change bind:checked {color} {disabled} size="small" inverted={true} circle={true}>Small Inverted</Checkbox>
       <br/>
       <Checkbox on:change bind:checked {color} {disabled} inverted={true} circle={true}>Normal Inverted</Checkbox>
@@ -45,6 +49,8 @@
     </div>
   </div>
 
+  <Code>{ `<Checkbox on:change bind:checked color="${color}" disabled="{${disabled}}" />`}</Code>
+
   <hr>
 
   <hr>
@@ -54,6 +60,9 @@
   <Code lang="js">{ `import { Checkbox } from '@kws3/controls'; `} </Code>
   <p>Import the SCSS:</p>
   <Code lang="css">@import 'path/to/node_modules/@kws3/controls/components/checkbox/styles';</Code>
+  <p>SCSS customization variables with default values:</p>
+  <Code lang="css">$kws-checkbox-default-check-color: #333 !default;
+$kws-checkbox-default-border-color: #dbdbdb !default;</Code>
 
 
 
