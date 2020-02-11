@@ -1,11 +1,11 @@
 <div class="toggle-buttons field has-addons {class}">
   {#each options as option}
-    <div class="control {inner_class}">
+    <div class="control {fullwidth ? 'is-expanded': ''} {inner_class}">
       <button
         type="button"
         {disabled}
         on:click="setValue(option.value)"
-        class="button is-{size} {value == option.value ? ('is-active ' + (option.active_class ? option.active_class : active_class)) : inactive_class}"
+        class="button is-{size}  {fullwidth ? 'is-fullwidth': ''} {value == option.value ? ('is-active ' + (option.active_class ? option.active_class : active_class)) : inactive_class}"
         style="height:auto"
       >
         <span>
@@ -38,7 +38,8 @@
         inner_class:'',
         active_class: 'is-primary',
         inactive_class: 'is-outlined',
-        size: ''
+        size: '',
+        fullwidth: false
       }
     },
     methods:{

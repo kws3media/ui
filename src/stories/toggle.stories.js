@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/svelte';
 import { withKnobs, select, boolean , text} from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import "../scss/app.scss";
 
@@ -35,5 +36,8 @@ storiesOf('Forms|Other Controls', module)
         off_text,
         disabled
       },
+      on:{
+        change:action('change')
+      }
     }
   });

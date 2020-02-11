@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/svelte';
 import { withKnobs, select, boolean , text} from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import "../scss/app.scss";
 
@@ -12,14 +13,14 @@ import ToggleButtonsView from './views/ToggleButtonsView.html';
 storiesOf('Forms|Other Controls', module)
   .addDecorator(withKnobs)
   .add('ToggleButtons', () => {
-    const color = select(
-      'color',
+    const active_class = select(
+      'active_class',
       [
-        'primary', 'info',
-        'success', 'danger',
-        'dark', 'light'
+        'is-primary', 'is-info',
+        'is-success', 'is-danger',
+        'is-dark', 'is-light'
       ],
-      'success'
+      'is-success'
     );
 
     const size = select(
@@ -33,19 +34,20 @@ storiesOf('Forms|Other Controls', module)
       ''
     );
 
-    const on_text = text('on_text', '');
-    const off_text = text('off_text', '');
-
     const disabled = boolean('disabled', false);
+    const fullwidth = boolean('fullwidth', false);
 
     return {
       Component: ToggleButtonsView,
       data: {
-        color,
+        fullwidth,
+        active_class,
         size,
-        on_text,
-        off_text,
         disabled
       },
+      on:{
+        change: action('change'),
+      }
+
     }
   });
