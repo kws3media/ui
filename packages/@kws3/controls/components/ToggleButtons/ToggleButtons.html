@@ -5,7 +5,7 @@
         type="button"
         {disabled}
         on:click="setValue(option.value)"
-        class="button is-{size}  {fullwidth ? 'is-fullwidth': ''} {value == option.value ? ('is-active ' + (option.active_class ? option.active_class : active_class)) : inactive_class}"
+        class="button is-{size}  {fullwidth ? 'is-fullwidth': ''} {value == option.value ? ('is-active ' + (option.active_class ? option.active_class : active_class)) : (option.inactive_class ? option.inactive_class : inactive_class)}"
         style="height:auto"
       >
         <span>

@@ -67,13 +67,28 @@
           on:change
         />
 
+        <h2 class="title is-5 is-marginless">Custom Active and Inactive classes</h2>
+        <ToggleButtons
+          bind:value
+          {size}
+          {active_class}
+          {disabled}
+          {fullwidth}
+          options='{[
+            {"name": "Yes", "value": 1, icon: "check-circle", subtitle: "Affirmative", active_class:"is-success", inactive_class:"is-outlined is-success"},
+            {"name": "No", "value": 0, icon: "ban", subtitle: "Negative", active_class:"is-danger", inactive_class:"is-outlined is-danger"},
+            {"name": "Maybe", "value": null, icon: "question", subtitle: "¯\\_(ツ)_/¯", active_class:"is-info", inactive_class:"is-outlined is-info"}
+          ]}'
+          on:change
+        />
+
     </div>
     <div class="column">
       <Code>{ `<ToggleButtons
   on:change
   bind:value
-  size="{${size}}"
-  active_class="{${active_class}}"
+  size="${size}"
+  active_class="${active_class}"
   disabled="{${disabled}}"
   fullwidth="{${fullwidth}}"
   options='{[
@@ -83,6 +98,15 @@
   ]}'
 />`}</Code>
 
+      <h2 class="title is-5 is-marginless">Custom Active and Inactive classes</h2>
+      <Code>{ `<ToggleButtons
+  ...
+  options='{[
+    {..., active_class:"is-success", inactive_class:"is-outlined is-success"},
+    {..., active_class:"is-danger", inactive_class:"is-outlined is-danger"},
+    {..., active_class:"is-info", inactive_class:"is-outlined is-info"}
+  ]}'
+/>`}</Code>
     </div>
   </div>
 
