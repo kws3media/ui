@@ -89,6 +89,12 @@ $kws-checkbox-default-border-color: #dbdbdb !default;
       }
     }
 
+    input[type="checkbox"]:focus+.kws-checkbox-label, input[type="radio"]:focus+.kws-checkbox-label{
+      &:before{
+        border-style:dashed;
+      }
+    }
+
     input[type="checkbox"]:disabled+.kws-checkbox-label, input[type="radio"]:disabled+.kws-checkbox-label,
     input[type="checkbox"]:disabled ~ .icon, input[type="radio"]:disabled ~ .icon{
       opacity:0.5;
