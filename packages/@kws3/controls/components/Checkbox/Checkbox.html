@@ -1,11 +1,23 @@
-<label class="checkbox kws-checkbox is-{size} is-{color} {inverted ? 'is-inverted' : ''} {circle ? 'is-circle' : ''} {class}">
+<label class="checkbox kws-checkbox is-{size} is-{color} {has_icon ? 'has-icon' : ''} {inverted ? 'is-inverted' : ''} {circle ? 'is-circle' : ''} {class}">
   <input type="checkbox" {disabled} bind:checked on:change />
   <span class="kws-checkbox-label"><slot></slot></span>
+  {#if has_icon}
+    <Icon {icon} size="small" />
+  {/if}
 </label>
 
 
 <script>
+  import {Icon} from '@kws3/helpers';
   export default {
+    components:{
+      Icon
+    },
+    computed:{
+      has_icon({icon}){
+        return icon && icon != '';
+      }
+    },
     data: function(){
       return {
         class:'',
@@ -13,7 +25,8 @@
         color:'primary',
         inverted: false,
         circle: false,
-        checked: false
+        checked: false,
+        icon: 'check'
       }
     }
   };
