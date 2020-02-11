@@ -1,0 +1,20 @@
+<label class="checkbox kws-checkbox is-{size} is-{color} {inverted ? 'is-inverted' : ''} {circle ? 'is-circle' : ''} {class}">
+  <input type="checkbox" {disabled} bind:checked on:change />
+  <span class="kws-checkbox-label"><slot></slot></span>
+</label>
+
+
+<script>
+  export default {
+    data: function(){
+      return {
+        class:'',
+        size: '',
+        color:'primary',
+        inverted: false,
+        circle: false,
+        checked: false
+      }
+    }
+  };
+</script>
