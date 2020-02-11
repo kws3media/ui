@@ -4,33 +4,63 @@
   {pkg}
 >
 
-  <h2 class="title is-4">Example</h2>
-  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+  <p>To be used with <code>&lt;Toggle&gt;</code> & <code>&lt;ToggleButtons&gt;</code> components, so that they can be lined up with a <code>&lt;label class="label"&gt;</code> in existing forms.</p>
+  <p>It is a wrapper component with no functionality of it's own.</p>
+  <hr class="is-small" />
   <div class="columns">
-    <div class="column">
-      <div class="column">
-        <div class="field">
-          <label class="label">Some Input</label>
-          <div class="control">
-            <input type="text" class="input" disabled />
-          </div>
+    <div class="column is-6">
+      <div class="field">
+        <label class="label">Some Input</label>
+        <div class="control">
+          <input type="text" class="input" disabled />
         </div>
-        <div class="field">
-          <ToggleControl  {size} {color} {disabled} {on_text} {off_text} >
-            <span slot="label">Primary Label <small class="is-block help">Some secondary Text</small></span>
-          </ToggleControl>
+      </div>
+      <div class="field">
+        <ToggleControl>
+          <label class="label">Primary Label <small class="is-block help">Some secondary Text</small></label>
+          <Toggle  />
+        </ToggleControl>
+      </div>
+      <div class="field">
+        <label class="label">Another Input</label>
+        <div class="control">
+          <input type="text" class="input" disabled />
         </div>
-        <div class="field">
-          <label class="label">Another Input</label>
-          <div class="control">
-            <input type="text" class="input" disabled />
-          </div>
-        </div>
+      </div>
+      <div class="field">
+        <ToggleControl>
+          <label class="label">Primary Label <small class="is-block help">Some secondary Text</small></label>
+          <ToggleButtons
+            options='{[
+              {"name": "Yes", "value": 1},
+              {"name": "No", "value": 0},
+              {"name": "Maybe", "value": null}
+            ]}'
+          />
+        </ToggleControl>
       </div>
     </div>
     <div class="column">
-      <Code>{ `<ToggleControl color="${color}" size="${size}" on_text="${on_text}" off_text="${off_text}" disabled="{${disabled}}">
-  <span slot="label">Primary Label <small class="is-block help">Some secondary Text</small></span>
+      <Code>{ `<ToggleControl>
+  <label class="label">
+    Primary Label
+    <small class="is-block help">Some secondary Text</small>
+  </label>
+  <Toggle  />
+</ToggleControl>`}</Code>
+
+      <Code>{ `<ToggleControl>
+  <label class="label">
+    Primary Label
+    <small class="is-block help">Some secondary Text</small>
+  </label>
+  <ToggleButtons
+    options='{[
+      {"name": "Yes", "value": 1},
+      {"name": "No", "value": 0},
+      {"name": "Maybe", "value": null}
+    ]}'
+  />
 </ToggleControl>`}</Code>
 
     </div>
@@ -55,14 +85,14 @@
   import Layout from '../layouts/Layout.html';
   import Code from '../helpers/Code.html';
 
-  import { ToggleControl } from '@kws3/controls';
+  import { ToggleControl, Toggle, ToggleButtons } from '@kws3/controls';
   import { Message } from '@kws3/helpers';
 
   import pkg from '@kws3/controls/package.json';
 
   export default {
     components: {
-      Layout, Code, ToggleControl, Message
+      Layout, Code, ToggleControl, Toggle, ToggleButtons, Message
     },
     data() {
       return {
