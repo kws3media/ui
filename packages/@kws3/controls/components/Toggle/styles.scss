@@ -1,5 +1,7 @@
 $kws-toggle-off-bg-color: #fff !default;
 $kws-toggle-handle-bg-color: #fff !default;
+$kws-toggle-track-bg-color: #333 !default;
+$kws-toggle-track-bg-color-invert: findColorInvert($kws-toggle-track-bg-color) !default;
 $kws-toggle-border-color: #e6e6e6 !default;
 
 .toggle-button{
@@ -45,13 +47,13 @@ $kws-toggle-border-color: #e6e6e6 !default;
   }
   &.on{
     .track{
-      border-color: $success;
-      background-color: $success;
+      border-color: $kws-toggle-track-bg-color;
+      background-color: $kws-toggle-track-bg-color;
       .toggle-text{
         left: 10%;
         right:auto;
         text-align:left;
-        color: findColorInvert($success)
+        color: $kws-toggle-track-bg-color-invert;
       }
     }
     .handle{

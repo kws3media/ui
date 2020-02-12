@@ -16,11 +16,12 @@ storiesOf('Forms|Other Controls', module)
     const color = select(
       'color',
       [
+        '',
         'primary', 'info',
         'success', 'danger',
         'dark', 'light'
       ],
-      'success'
+      ''
     );
 
     const on_text = text('on_text', '');
