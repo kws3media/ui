@@ -4,6 +4,8 @@ $kws-checkbox-default-check-color: #333 !default;
 $kws-checkbox-default-check-color-invert: findColorInvert($kws-checkbox-default-check-color) !default;
 $kws-checkbox-default-border-color: #dbdbdb !default;
 
+$kws-theme-colors: $colors !default;
+
 @include exports("KWSCheckbox"){
   .kws-checkbox{
     position: relative;
@@ -125,7 +127,7 @@ $kws-checkbox-default-border-color: #dbdbdb !default;
       cursor: not-allowed;
     }
 
-    @each $name, $pair in $colors{
+    @each $name, $pair in $kws-theme-colors{
       $color: nth($pair, 1);
       $color-invert: nth($pair, 2);
       &.is-#{$name} input[type="checkbox"]:checked+.kws-checkbox-label{

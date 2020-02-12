@@ -4,6 +4,8 @@ $kws-toggle-track-bg-color: #333 !default;
 $kws-toggle-track-bg-color-invert: findColorInvert($kws-toggle-track-bg-color) !default;
 $kws-toggle-border-color: #e6e6e6 !default;
 
+$kws-theme-colors: $colors !default;
+
 .toggle-button{
   position: relative;
   display: inline-block;
@@ -59,7 +61,7 @@ $kws-toggle-border-color: #e6e6e6 !default;
     .handle{
       transform: translate3d(1.785em, 0, 0);
     }
-    @each $name, $pair in $colors{
+    @each $name, $pair in $kws-theme-colors{
       $color: nth($pair, 1);
       $color-invert: nth($pair, 2);
       &.is-#{$name}{
