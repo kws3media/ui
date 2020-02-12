@@ -221,12 +221,15 @@
       self.scrollHandler = function(e){
         e.stopImmediatePropagation();
         e.stopPropagation();
-        if(e.target == document){
+        var {open, scrollTarget} = self.get();
+        if (!scrollTarget) {
+          scrollTarget = win;
+        } else if (typeof scrollTarget === 'string') {
+          scrollTarget = doc.getElementById(scrollTarget);
+        }
+        if(open && e.target == scrollTarget){
           self.close();
         }
-        rAF(function () {
-          self.updateBounds();
-        });
       }
 
 
