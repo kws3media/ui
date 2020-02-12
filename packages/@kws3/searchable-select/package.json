@@ -1,6 +1,6 @@
 {
   "name": "@kws3/searchable-select",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A Searchable Select component for Svelte applications",
   "main": "index.js",
   "dependencies": {
