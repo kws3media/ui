@@ -52,7 +52,38 @@
   <Code>{ `<Checkbox on:change bind:checked color="${color}" disabled="{${disabled}}" />`}</Code>
 
   <hr>
-
+  <h2 class="title is-4">Icons in checkbox</h2>
+  <p>By default it uses the <code>check</code> icon. But any icon can be sent. Also, an empty value can be sent as an icon, and it will render the tick mark using html.</p>
+  <div class="columns">
+    <div class="column">
+      <Checkbox on:change bind:checked {color} {disabled} icon="">Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="" circle={true}>Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="" inverted={true}>Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="" inverted={true} circle={true}>Agree</Checkbox>
+      <Code>{ `icon=""`}</Code>
+    </div>
+    <div class="column">
+      <Checkbox on:change bind:checked {color} {disabled} icon="angle-double-right">Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="angle-double-right" circle={true}>Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="angle-double-right" inverted={true}>Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="angle-double-right" inverted={true} circle="{true}">Agree</Checkbox>
+      <Code>{ `icon="angle-double-right"`}</Code>
+    </div>
+    <div class="column">
+      <Checkbox on:change bind:checked {color} {disabled} icon="chevron-right">Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="chevron-right" circle={true}>Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="chevron-right" inverted={true}>Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="chevron-right" inverted={true} circle="{true}">Agree</Checkbox>
+      <Code>{ `icon="chevron-right"`}</Code>
+    </div>
+    <div class="column">
+      <Checkbox on:change bind:checked {color} {disabled} icon="arrow-right">Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="arrow-right" circle={true}>Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="arrow-right" inverted={true}>Agree</Checkbox>
+      <Checkbox on:change bind:checked {color} {disabled} icon="arrow-right" inverted={true} circle="{true}">Agree</Checkbox>
+      <Code>{ `icon="arrow-right"`}</Code>
+    </div>
+  </div>
   <hr>
 
   <h2 class="title is-4">Usage</h2>
