@@ -205,6 +205,9 @@
       self.clickHandler = function(e){
         e.stopImmediatePropagation();
         var el = self.refs.searchableselect;
+        if(!el){
+          return;
+        }
 
         var dropdown = el.querySelector('.dropdown');
 
