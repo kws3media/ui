@@ -252,7 +252,7 @@
           }
 
 
-          
+
         }
       })
 
@@ -406,6 +406,9 @@
 
         var el = self.refs.searchableselect;
         var { open }  = self.get();
+        if(!self.refs || !self.refs.dropdown){
+          return;
+        }
 
         var highlightedElement = self.refs.dropdown.querySelector('.selecting');
         var selectedElement = self.refs.dropdown.querySelector('.selected');
