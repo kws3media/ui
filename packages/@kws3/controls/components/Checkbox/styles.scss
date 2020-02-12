@@ -1,6 +1,7 @@
 @import '../../common/_mixins';
 
 $kws-checkbox-default-check-color: #333 !default;
+$kws-checkbox-default-check-color-invert: findColorInvert($kws-checkbox-default-check-color) !default;
 $kws-checkbox-default-border-color: #dbdbdb !default;
 
 @include exports("KWSCheckbox"){
@@ -86,6 +87,29 @@ $kws-checkbox-default-border-color: #dbdbdb !default;
         left:0;
         border-radius:0.14em;
         box-shadow: 0 0 0 0.05em $kws-checkbox-default-border-color;
+      }
+    }
+
+    &.is-inverted input[type="checkbox"]:checked+.kws-checkbox-label{
+      &:before{
+        background: $kws-checkbox-default-check-color;
+      }
+      &:after{
+        border-color: $kws-checkbox-default-check-color-invert;
+      }
+    }
+    &.is-inverted input[type="checkbox"]:checked ~ .icon{
+      color: $kws-checkbox-default-check-color-invert;
+    }
+
+    &.is-inverted input[type="radio"]:checked+.kws-checkbox-label{
+      &:before{
+        background: $kws-checkbox-default-check-color;
+      }
+      &:after{
+        background-color: $kws-checkbox-default-check-color-invert;
+        border-color:$kws-checkbox-default-check-color;
+        box-shadow: none;
       }
     }
 
