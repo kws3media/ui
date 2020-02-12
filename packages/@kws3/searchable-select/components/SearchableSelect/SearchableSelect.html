@@ -68,6 +68,7 @@
       selected.style.display = 'block';
 
       self.on('state', ({ changed, current }) => {
+        console.log('changed')
         if (changed.open) {
         let { open, value } = current;
 
@@ -217,13 +218,25 @@
 
       self.scrollHandler = function(e){
         e.stopImmediatePropagation();
+        e.stopPropagation();
         rAF(function () {
           self.updateBounds();
         });
       }
+      
+      self.wheelHandler = function(e){
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+
+        if(e.target.offsetParent.parentElement.id != 'searchableselect-dropdown-container'){
+          self.close();
+        }
+       
+      }
 
 
       self.on('update', function({ changed, current }){
+
 
          if (changed.open) {
 
@@ -234,14 +247,16 @@
             scrollTarget = doc.getElementById(scrollTarget);
           }
 
-
+         
           if (open) {
             doc.addEventListener('click', self.clickHandler);
             scrollTarget.addEventListener('scroll', self.scrollHandler);
+            scrollTarget.addEventListener('wheel', self.wheelHandler);
 
           } else {
             doc.removeEventListener('click', self.clickHandler);
             scrollTarget.removeEventListener('scroll', self.scrollHandler);
+            scrollTarget.removeEventListener('wheel', self.wheelHandler);
           }
 
 
