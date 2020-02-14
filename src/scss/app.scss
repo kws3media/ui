@@ -63,6 +63,9 @@ pre:not([class*="language-"]) {
 @import '../../packages/@kws3/helpers/components/Panel/styles';
 //helpers - Loader
 @import '../../packages/@kws3/helpers/components/Loader/styles';
+//helpers - Modal
+@import '../../packages/@kws3/helpers/components/Modal/styles';
+
 @import "../../node_modules/flatpickr/dist/flatpickr";
 //Timepicker
 @import '../../packages/@kws3/timepicker/styles';
