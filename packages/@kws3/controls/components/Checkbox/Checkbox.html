@@ -1,4 +1,4 @@
-<label class="checkbox kws-checkbox is-{size} is-{color} {has_icon ? 'has-icon' : ''} {inverted ? 'is-inverted' : ''} {circle ? 'is-circle' : ''} {class}">
+<label class="checkbox kws-checkbox is-{size} is-{color} {has_icon ? 'has-icon' : ''} {inverted ? 'is-inverted' : ''} {circle ? 'is-circle' : ''} {class}" style="{style}">
   <input type="checkbox" {disabled} bind:checked on:change />
   <span class="kws-checkbox-label"><slot></slot></span>
   {#if has_icon}
@@ -21,6 +21,7 @@
     data: function(){
       return {
         class:'',
+        style:'',
         size: '',
         color:'',
         inverted: false,

@@ -1,4 +1,4 @@
-<label class="radio kws-checkbox is-{size} is-{color} {inverted ? 'is-inverted' : ''} {circle ? 'is-circle' : ''} {class}">
+<label class="radio kws-checkbox is-{size} is-{color} {inverted ? 'is-inverted' : ''} {circle ? 'is-circle' : ''} {class}" style="{style}">
   <input type="radio" {disabled} bind:group {value} on:change />
   <span class="kws-checkbox-label"><slot></slot></span>
 </label>
@@ -10,6 +10,7 @@
       return {
         value: null,
         class:'',
+        style:'',
         size: '',
         color:'',
         inverted: false,
