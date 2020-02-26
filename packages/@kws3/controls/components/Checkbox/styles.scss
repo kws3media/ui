@@ -29,6 +29,7 @@ $kws-theme-colors: $colors !default;
       opacity:0;
       display: inline-flex;
       align-items: center;
+      margin:0 !important;
       .fa{
         font-size: 0.7em;
       }
