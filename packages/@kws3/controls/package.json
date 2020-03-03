@@ -1,10 +1,10 @@
 {
   "name": "@kws3/controls",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Helper Controls for Svelte",
   "main": "index.js",
   "dependencies": {
-    "@kws3/helpers": "^0.5.0"
+    "@kws3/helpers": "^0.5.1"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
   "demo_url": "https://ui.kws3.media/?selectedKind=Forms%7COther%20Controls",
