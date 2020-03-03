@@ -1,4 +1,9 @@
-<div class="message is-{color}" style="{style}">
+<div class="message is-{color} is-{size}" style="{style}">
+  {#if title || has_title}
+    <div class="message-header">
+      <slot name="title"><p>{title}</p></slot>
+    </div>
+  {/if}
   <div class="message-body" style="{inner_style}">
     <slot></slot>
   </div>
@@ -8,9 +13,12 @@
   export default {
     data(){
       return {
+        size:'',
         color:'info',
         style:'',
-        inner_style:''
+        inner_style:'',
+        title: null,
+        has_title: false
       }
     },
     onstate({changed, current, previous}){
