@@ -13,6 +13,7 @@
           {filter}
           {filterWidthStyle}
           hilightClass={filterVals[filter.name] != '' && filterVals[filter.name] != undefined ? filter_in_use_class : filter_not_in_use_class}
+          {filter_label_map}
         />
       {/each}
     {/if}
@@ -50,7 +51,8 @@
         filter_in_use_class:'is-in-use',
         filter_not_in_use_class:'is-not-in-use',
         _filters:[],
-        filterComponent: null
+        filterComponent: null,
+        filter_label_map:{},
       }
     },
     computed:{
