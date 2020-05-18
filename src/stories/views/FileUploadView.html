@@ -5,7 +5,7 @@
 >
 
   <div class="columns">
-    <div class="column is-4">
+    <div class="column">
       <h2 class="title is-4">Example</h2>
       <FileUpload
         on:file_chosen
@@ -15,7 +15,8 @@
       />
       <br><br>
 <Code>{ `<FileUpload
-  on:file_chosen max="1048579"
+  on:file_chosen
+  max="1048579"
   allowed="{['png', 'jpg', 'jpeg']}"
   message="Upload new avatar..."
 />`}</Code>
@@ -27,10 +28,6 @@
       <Code lang="js">{ `import { FileUpload } from '@kws3/controls'; `} </Code>
       <p>Import the SCSS:</p>
       <Code lang="css">@import 'path/to/node_modules/@kws3/controls/components/fileupload/styles';</Code>
-      <p>SCSS customization variables with default values:</p>
-      <Code lang="css">$kws-checkbox-default-check-color: #333 !default;
-    $kws-checkbox-default-check-color-invert: findColorInvert($kws-checkbox-default-check-color) !default;
-    $kws-checkbox-default-border-color: #dbdbdb !default;</Code>
     </div>
   </div>
 
