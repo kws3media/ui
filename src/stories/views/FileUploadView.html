@@ -20,6 +20,37 @@
   allowed="{['png', 'jpg', 'jpeg']}"
   message="Upload new avatar..."
 />`}</Code>
+
+<br><br>
+
+<Code>{ `<script>
+  .....
+  export default {
+    ...
+    oncreate(){
+      ...
+      this.on('file_chosen', (comp) => {
+        var file = comp.getFile();
+        var size = file.size;
+
+        comp.progress(0);
+
+        UploadImage(
+          Id,
+          file.file,
+          (e) => comp.progress(e.loaded) // uploaded bytes
+        )
+        .then((r) => {
+          comp.uploaded(); // success
+        })
+        .catch((r) => {
+          comp.error('Error'); //error
+        });
+      });
+      ...
+    }
+  };
+  </script>`}</Code>
     </div>
 
     <div class="column">
@@ -29,6 +60,12 @@
       <p>Import the SCSS:</p>
       <Code lang="css">@import 'path/to/node_modules/@kws3/controls/components/fileupload/styles';</Code>
     </div>
+  </div>
+
+
+
+  <div class="columns">
+
   </div>
 
 </Layout>
@@ -53,6 +90,25 @@
       };
     },
     oncreate(){
+
+      this.on('file_chosen', (comp) => {
+        var file = comp.getFile();
+        var size = file.size;
+
+        comp.progress(0);
+
+        UploadImage(
+          Id,
+          file.file,
+          (e) => comp.progress(e.loaded) // uoploded bytes
+        )
+        .then((r) => {
+          comp.uploaded(); // success
+        })
+        .catch((r) => {
+          comp.error('Error'); //error
+        });
+      });
     },
 
     methods: {
