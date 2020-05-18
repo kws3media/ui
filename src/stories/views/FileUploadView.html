@@ -8,7 +8,7 @@
     <div class="column">
       <h2 class="title is-4">Example</h2>
       <hr>
-      <label class="is-text-5">Upload Successful</label>
+      <label class="is-text-5">{error_state ? 'Error on upload' : 'Upload Successful'}</label>
       <br>
       <FileUpload
         on:file_chosen
@@ -17,14 +17,6 @@
         message="Upload new avatar..."
       />
       <br>
-      <label class="is-text-5">Error on upload</label>
-      <br>
-      <FileUpload
-        on:file_chosen="fire('file_chosen_error')"
-        max="1048579"
-        allowed="{['png', 'jpg', 'jpeg']}"
-        message="Upload new avatar..."
-      />
 <Code>{ `<FileUpload
   on:file_chosen
   max="1048579"
@@ -99,10 +91,11 @@
     data() {
       return {
         pkg,
+        error_state: false
       };
     },
     oncreate(){
-
+      let {error_state} = this.get();
       this.on('file_chosen', (comp) => {
         var file = comp.getFile();
         var size = file.size;
@@ -112,7 +105,11 @@
 
         let inter_val = setInterval(() => {
           if(progress > size){
-            comp.uploaded()
+            if(error_state){
+              comp.error('Error on Upload')
+            }else{
+              comp.uploaded()
+            }
             progress = 0;
             clearInterval(inter_val)
             return;
@@ -121,8 +118,6 @@
           comp.progress(progress)
         }, 50)
       });
-
-
     },
 
     methods: {

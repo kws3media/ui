@@ -1,6 +1,5 @@
 import { storiesOf } from '@storybook/svelte';
-import { withKnobs, select, boolean , text} from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 
 import "../scss/app.scss";
 
@@ -26,15 +25,14 @@ storiesOf('Forms|Other Controls', module)
 
 
     const disabled = boolean('disabled', false);
+    const error_state = boolean('error_state', false);
 
     return {
       Component: FileUploadView,
       data: {
         color,
-        disabled
-      },
-      on:{
-        change:action('change')
+        disabled,
+        error_state
       }
     }
   });
