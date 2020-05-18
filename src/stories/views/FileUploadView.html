@@ -4,40 +4,35 @@
   {pkg}
 >
 
-  <h2 class="title is-4">Example</h2>
-  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
   <div class="columns">
-    <div class="column is-3">
-      <FileUpload on:file_chosen max="1048579" allowed="{['png', 'jpg', 'jpeg']}" message="Upload new avatar..." />
+    <div class="column is-4">
+      <h2 class="title is-4">Example</h2>
+      <FileUpload
+        on:file_chosen
+        max="1048579"
+        allowed="{['png', 'jpg', 'jpeg']}"
+        message="Upload new avatar..."
+      />
+      <br><br>
+<Code>{ `<FileUpload
+  on:file_chosen max="1048579"
+  allowed="{['png', 'jpg', 'jpeg']}"
+  message="Upload new avatar..."
+/>`}</Code>
     </div>
-    <div class="column is-3">
 
+    <div class="column">
+      <h2 class="title is-4">Usage</h2>
+      <p>Import the component:</p>
+      <Code lang="js">{ `import { FileUpload } from '@kws3/controls'; `} </Code>
+      <p>Import the SCSS:</p>
+      <Code lang="css">@import 'path/to/node_modules/@kws3/controls/components/fileupload/styles';</Code>
+      <p>SCSS customization variables with default values:</p>
+      <Code lang="css">$kws-checkbox-default-check-color: #333 !default;
+    $kws-checkbox-default-check-color-invert: findColorInvert($kws-checkbox-default-check-color) !default;
+    $kws-checkbox-default-border-color: #dbdbdb !default;</Code>
+    </div>
   </div>
-    <div class="column is-3">
-
-    </div>
-    <div class="column is-3">
-
-    </div>
-  </div>
-
-  <Code>{ `<FileUpload on:file_chosen max="1048579" allowed="{['png', 'jpg', 'jpeg']}" message="Upload new avatar..." />`}</Code>
-
-  <hr>
-
-  <hr>
-
-  <h2 class="title is-4">Usage</h2>
-  <p>Import the component:</p>
-  <Code lang="js">{ `import { Radio } from '@kws3/controls'; `} </Code>
-  <p>Import the SCSS:</p>
-  <Code lang="css">@import 'path/to/node_modules/@kws3/controls/components/radio/styles';</Code>
-  <p>SCSS customization variables with default values:</p>
-  <Code lang="css">$kws-checkbox-default-check-color: #333 !default;
-$kws-checkbox-default-check-color-invert: findColorInvert($kws-checkbox-default-check-color) !default;
-$kws-checkbox-default-border-color: #dbdbdb !default;</Code>
-
-
 
 </Layout>
 
