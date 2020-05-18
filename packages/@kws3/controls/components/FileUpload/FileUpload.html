@@ -1,0 +1,218 @@
+<div class="file-upload {classes} is-{_error ? 'danger' : ''} {(disabled || _is_uploading || _is_finished) ? 'is-disabled' : ''} {_is_finished ? 'is-success' : ''}">
+  <div class="file-upload-inner">
+    <div class="up-icon">
+      {#if _is_uploading}
+        <span class="loader"></span>
+      {:elseif _is_finished}
+        <Icon size="" icon="check-circle" fa_class="fa-lg" />
+      {:else}
+        <Icon size="" icon="arrow-circle-up" fa_class="fa-lg" />
+      {/if}
+    </div>
+    <div class="file">
+      {#if _is_uploading}
+        <div class="upload-progress">
+          <div class="progress-inner">
+            <div class="bar" style="width:{progress}%"></div>
+          </div>
+        </div>
+        <div class="progress-caption">{progress}% - Uploading...</div>
+      {:elseif _is_finished}
+        <div class="filename">Upload complete!</div>
+      {:else}
+        <div class="filename">{_filename}</div>
+      {/if}
+    </div>
+    <input ref:uploadInput type="file" name="file" on:change="updateFile()" disabled="{(disabled || _is_uploading || _is_finished)}">
+  </div>
+  <div class="level is-mobile">
+    {#if _error}
+      <div class="level-item" style="max-width:100%">
+        <span class="help is-{_error ? 'danger' : ''}">{_error_message}</span>
+      </div>
+    {:else}
+      <div class="level-left">
+        <div class="level-item">
+          <span class="help">Max size: {maxFileSize}</span>
+        </div>
+      </div>
+      <div class="level-item" style="max-width:100%">
+        <span class="help is-warning">{info}</span>
+      </div>
+      <div class="level-right">
+        <span class="help">{fileTypes}</span>
+      </div>
+    {/if}
+  </div>
+</div>
+
+<script>
+import { Icon } from '@kws3/helpers';
+
+var formatFileSize = (n) => {
+  if(n===undefined||/\D/.test(n)){return "N/A"}
+  if(n>1073741824){return Math.round(n/1073741824,1)+" GB"}
+  if(n>1048576){return Math.round(n/1048576,1)+" MB"}
+  if(n>1024){return Math.round(n/1024,1)+" KB"}
+  return n+" b"
+}
+
+export default {
+  components:{
+    Icon,
+    },
+  data(){
+    return {
+      message: 'Choose File...',
+      info: '',
+      max:5000000,
+      allowed:'*',
+      classes:'', //is-primary, is-success etc
+      disabled: false,
+      _filename:'No file selected',
+      _error: false,
+      _error_message: '',
+      _is_uploading: false,
+      _is_finished: false,
+      _total: 0,
+      _uploaded:0
+    };
+  },
+  computed:{
+    fileTypes({ allowed }){
+      if(allowed != '*' && typeof allowed.length != 'undefined'){
+        return allowed.join(', ');
+      }
+      return '';
+    },
+    progress({ _total, _uploaded }){
+      return Math.floor((_uploaded / _total) * 100);
+    },
+    maxFileSize({ max }){
+      return formatFileSize(max)
+    }
+  },
+  oncreate(){
+    this.uploadField = this.refs.uploadInput;
+    this.set({_filename: this.get().message});
+  },
+  methods:{
+    updateFile(){
+      var el = this.uploadField,
+      val = el.value,
+      { max, allowed }  = this.get(),
+      maxSize = max,
+      ext = '',
+      size = 0,
+      file = null,
+      valid = true;
+
+      this.FormData = new FormData();
+
+      this.set({
+        '_error': false,
+        '_error_message': ''
+      })
+
+      try{file=el.files[0];}catch(e){}
+
+      if(val === ''){
+        val = "No file selected";
+      }else{
+        if(file){
+          size = file.fileSize||file.size
+        }else{
+          size = 0
+        }
+        val = val.split(/[\/\\]+/);
+        val = val[(val.length - 1)];
+        ext = val.split(/\./);
+        ext = ext[(ext.length - 1)];
+        ext = ext.toLowerCase();
+        if(size == 0){
+          valid = false;
+          val = "No file selected";
+        }
+
+        //check if file extension is allowed
+        if(allowed != '*'){
+          if(typeof allowed.length != 'undefined'){
+            if(allowed.indexOf(ext) === -1){
+              valid = false;
+              this.set({
+                '_error': true,
+                '_error_message': 'Files of type '+ext+' are not allowed.\n Allowed file types: ' + this.get().fileTypes,
+              });
+              el.value = "";
+              val = "No file selected";
+            }
+          }
+        }
+
+        //check if file size exceeds
+        if(maxSize > 0){
+          if(size > maxSize){
+            valid = false;
+            this.set({
+              '_error': true,
+              '_error_message': 'File size is too large. Maximum allowed file size is ' + formatFileSize(maxSize),
+            });
+            el.value = "";
+            val = "No file selected";
+          }
+        }
+
+      }
+
+      this.set({_filename: val});
+      if (valid) {
+        this.set({_total: size});
+        this.FormData.append("userfile", file);
+        this.fire('file_chosen', this);
+      }
+
+    },
+    getFile(){
+      return {
+        name: this.get()._filename,
+        size: this.get()._total,
+        file: this.FormData
+      };
+    },
+    progress(uploaded_amount){
+      this.set({
+        '_is_uploading': true,
+        '_uploaded': uploaded_amount
+      });
+    },
+    uploaded(){
+      this.set({
+        '_is_uploading': false,
+        '_is_finished': true
+      });
+      setTimeout(() => {
+        this.set({
+          '_is_finished': false,
+          '_total': 0,
+          '_uploaded': 0,
+          '_filename': this.get().message
+        });
+        this.FormData = null;
+        this.uploadField.value = '';
+        this.uploadField.files = null;
+      }, 3000)
+    },
+    error(msg){
+      this.set({
+        '_is_uploading': false,
+        '_error': true,
+        '_error_message': msg,
+        '_filename': this.get().message
+      });
+      this.FormData = null;
+      this.uploadField.value = '';
+      this.uploadField.files = null;
+    }
+  }
+}
+</script>
