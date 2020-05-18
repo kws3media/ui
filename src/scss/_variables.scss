@@ -17,3 +17,10 @@ $link:#1a77ba;
 $title-color:$primary;
 $title-weight:300;
 $subtitle-weight:300;
+
+
+//easings
+$easeOutQuad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+$easeOutSine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+$easeOutCustom: cubic-bezier(0.100, 0.820, 0.250, 1.000);
