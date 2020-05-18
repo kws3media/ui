@@ -12,7 +12,7 @@ import FileUploadView from './views/FileUploadView.html';
 
 storiesOf('Forms|Other Controls', module)
   .addDecorator(withKnobs)
-  .add('Radio', () => {
+  .add('FileUpload', () => {
     const color = select(
       'color',
       [
