@@ -12,17 +12,6 @@ import FileUploadView from './views/FileUploadView.html';
 storiesOf('Forms|Other Controls', module)
   .addDecorator(withKnobs)
   .add('FileUpload', () => {
-    const color = select(
-      'color',
-      [
-        '',
-        'primary', 'info',
-        'success', 'danger',
-        'dark', 'light'
-      ],
-      ''
-    );
-
 
     const disabled = boolean('disabled', false);
     const error_state = boolean('error_state', false);
@@ -30,7 +19,6 @@ storiesOf('Forms|Other Controls', module)
     return {
       Component: FileUploadView,
       data: {
-        color,
         disabled,
         error_state
       }
