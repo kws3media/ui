@@ -1,6 +1,6 @@
 {
   "name": "@kws3/controls",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Helper Controls for Svelte",
   "main": "index.js",
   "dependencies": {
