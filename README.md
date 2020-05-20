@@ -11,7 +11,7 @@
  > npm install
  > npm run bootstrap
  ```
- It will download all dependencies for packages
+ It will download internal dependencies and all dependencies for packages
 
  Then run HMR
   ```bash
