@@ -8,28 +8,30 @@
 ## Development
  After pulling repo run
  ```bash
- npm run bootstrap
+ > npm install
+ > npm run bootstrap
  ```
  It will download all dependencies for packages
 
  Then run HMR
   ```bash
- npm run dev:hmr
+ > npm run dev:hmr
  ```
  App will run on http://localhost:9009/
 
 ## See package list
 To see packages run
  ```bash
- npm run list
+ > npm run list
  ```
 
 
 ## Publish a package
 To publish packages run
  ```bash
- npm run publish
+ > npm run publish
  ```
+ and follow the prompts on the screen
 
  It will automatically track updated packages and bump versions by asking user from cli
 
