@@ -6,6 +6,10 @@
 ### Packages [view](https://npm.kws3.media/)
 
 ## Development
+Install `Lerna` globally
+ ```bash
+ > npm install -g lerna
+ ```
  After pulling repo run
  ```bash
  > npm install
@@ -16,7 +20,7 @@
  Then run HMR
   ```bash
  > npm run dev:hmr
- ```
+ ``
  App will run on http://localhost:9009/
 
 ## See package list
@@ -35,3 +39,4 @@ To publish packages run
 
  It will automatically track updated packages and bump versions by asking user from cli
 
+`
