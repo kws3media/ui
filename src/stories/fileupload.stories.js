@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/svelte';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import "../scss/app.scss";
 
@@ -21,6 +22,11 @@ storiesOf('Forms|Other Controls', module)
       data: {
         disabled,
         error_state
+      },
+      on:{
+        file_chosen: action('file_chosen'),
+        file_uploaded: action('file_uploaded'),
+        file_upload_error: action('file_upload_error')
       }
     }
   });

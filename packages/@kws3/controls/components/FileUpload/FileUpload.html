@@ -63,6 +63,7 @@ export default {
     },
   data(){
     return {
+      key: '',
       message: 'Choose File...',
       info: '',
       max:5000000,
@@ -177,9 +178,11 @@ export default {
 
     },
     getFile(){
+      var {name, key, _total} = this.get();
       return {
-        name: this.get()._filename,
-        size: this.get()._total,
+        name,
+        key,
+        size: _total,
         file: this.FormData
       };
     },
@@ -204,6 +207,7 @@ export default {
         this.FormData = null;
         this.uploadField.value = '';
         this.uploadField.files = null;
+        this.fire('file_uploaded', this);
       }, 3000)
     },
     error(msg){
@@ -216,6 +220,7 @@ export default {
       this.FormData = null;
       this.uploadField.value = '';
       this.uploadField.files = null;
+      this.fire('file_upload_error', this);
     }
   }
 }

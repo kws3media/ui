@@ -12,6 +12,8 @@
       <br>
       <FileUpload
         on:file_chosen
+        on:file_uploaded
+        on:file_upload_error
         max="1048579"
         allowed="{['png', 'jpg', 'jpeg']}"
         message="Upload new avatar..."
@@ -21,6 +23,8 @@
       <br>
 <Code>{ `<FileUpload
   on:file_chosen
+  on:file_uploaded
+  on:file_upload_error
   max="1048579"
   allowed="{['png', 'jpg', 'jpeg']}"
   message="Upload new avatar..."
