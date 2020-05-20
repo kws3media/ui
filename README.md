@@ -8,7 +8,12 @@
 ## Development
  After pulling repo run
  ```bash
- npm bootstrap
+ npm run bootstrap
+ ```
+ it will download all package's dependencies
+ then run
+  ```bash
+ npm run dev:hmr
  ```
  App will run on localhost:9009
 
@@ -16,13 +21,15 @@
 ## Show
 To see packages run
  ```bash
- npm list
+ npm run list
  ```
 
 
 ## Publish
 To publish packages run
  ```bash
- npm publish
+ npm run publish
  ```
+
+ It will automatically track packages and bump versions by asking from cli
 
