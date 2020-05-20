@@ -98,6 +98,10 @@ export default {
   },
   methods:{
     updateFile(){
+      if(!this.uploadField){
+        this.uploadField = this.refs.uploadInput;
+      }
+
       var el = this.uploadField,
       val = el.value,
       { max, allowed }  = this.get(),
