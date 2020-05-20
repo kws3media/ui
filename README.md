@@ -10,26 +10,26 @@
  ```bash
  npm run bootstrap
  ```
- it will download all package's dependencies
- then run
+ It will download all dependencies for packages
+
+ Then run HMR
   ```bash
  npm run dev:hmr
  ```
- App will run on localhost:9009
+ App will run on http://localhost:9009/
 
-
-## Show
+## See package list
 To see packages run
  ```bash
  npm run list
  ```
 
 
-## Publish
+## Publish a package
 To publish packages run
  ```bash
  npm run publish
  ```
 
- It will automatically track packages and bump versions by asking from cli
+ It will automatically track updated packages and bump versions by asking user from cli
 
