@@ -20,7 +20,7 @@ Install `Lerna` globally
  Then run HMR
   ```bash
  > npm run dev:hmr
- ``
+ ```
  App will run on http://localhost:9009/
 
 ## See package list
@@ -38,5 +38,3 @@ To publish packages run
  and follow the prompts on the screen
 
  It will automatically track updated packages and bump versions by asking user from cli
-
-`
