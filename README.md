@@ -15,7 +15,7 @@
 
  ## Run
   ```bash
- npm run dev:hmr
+ > npm run dev:hmr
  ```
  App will run on localhost:9009
 
