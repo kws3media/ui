@@ -1,0 +1,14 @@
+{
+  "name": "@kws3/kws-starter",
+  "version": "0.0.0",
+  "description": "Kws3 CLI to bootstrap application templates",
+  "main": "src/index.js",
+  "author": "Khaled Ahmed <me.khaled@gmail.com>",
+  "contributors": [
+    "Sharif Ahmed <me.sharifahmed@gmail.com>"
+  ],
+  "license": "Private",
+  "keywords": [
+    "cli", "starter"
+  ]
+}
