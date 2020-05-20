@@ -1,6 +1,6 @@
 {
   "name": "@kws3/kws-starter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Kws3 CLI to bootstrap application templates",
   "main": "src/index.js",
   "bin": {
