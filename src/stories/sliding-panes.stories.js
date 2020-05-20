@@ -8,8 +8,8 @@ import View from './views/SlidingPanesView.html';
 
 
 
-storiesOf('Forms|Searchable Select', module)
-  .add('Searchable Select', () => {
+storiesOf('Standalone|Sliding Panes', module)
+  .add('Sliding Panes', () => {
     return {
       Component: View
     }
