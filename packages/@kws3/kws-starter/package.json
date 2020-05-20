@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Kws3 CLI to bootstrap application templates",
   "main": "src/index.js",
+  "bin": {
+    "kws-starter": "bin.js"
+  },
   "author": "Khaled Ahmed <me.khaled@gmail.com>",
   "contributors": [
     "Sharif Ahmed <me.sharifahmed@gmail.com>"
@@ -11,5 +14,10 @@
   "keywords": [
     "cli",
     "starter"
-  ]
+  ],
+  "dependencies": {
+    "degit": "^2.8.0",
+    "enquirer": "^2.3.5",
+    "sade": "^1.7.3"
+  }
 }
