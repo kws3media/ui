@@ -1,0 +1,5 @@
+{
+  "api": "kws3media/kws-api-starter",
+  "fe-routed": "kws3media/kws-fe-routed-starter",
+  "fe-unrouted": "kws3media/kws-fe-unrouted-starter"
+}
