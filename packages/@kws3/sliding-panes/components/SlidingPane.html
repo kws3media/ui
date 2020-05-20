@@ -1,0 +1,67 @@
+<div bind:clientHeight="_height" class="sliding-pane {v_center ? 'v-centered' : ''} {h_center ? 'h-centered' : ''} {active ? 'is-active' : ''} {class}" style="{style}">
+  <div ref:slideInner class="sliding-pane-inner {v_center ? 'v-centered' : ''} {h_center ? 'h-centered' : ''}">
+    <Panel>
+      <slot></slot>
+    </Panel>
+  </div>
+</div>
+
+<script>
+  import rAF from '../../utils/rAF';
+  import {Panel} from '@kws3/helpers';
+
+  export default {
+    components:{
+      Panel
+    },
+    data(){
+      return {
+        active: false,
+        class: '',
+        style:'',
+        v_center: false,
+        h_center: false,
+        track_height: false
+      }
+    },
+    onupdate({changed, current}) {
+      if(current.active && current.track_height && (changed.active || changed._height)){
+        rAF(() => {
+          this.fireSizeChange()
+        });
+      }
+    },
+    oncreate(){
+      this.pollForRender()
+    },
+    methods: {
+      pollForRender(){
+        if(this.refs.slideInner && typeof this.refs.slideInner != 'undefined'){
+          this.init()
+        }else{
+          setTimeout(() => {
+            this.pollForRender();
+          }, 200);
+        }
+      },
+      init(){
+        this.fireSizeChange();
+      },
+      fireSizeChange(){
+        var {v_center, h_center, active, track_height} = this.get();
+        if(track_height && active){
+          if(!this.refs.slideInner || typeof this.refs.slideInner == 'undefined'){
+            this.pollForRender();
+          }else{
+            rAF(() => {
+              var h1 = this.refs.slideInner.scrollHeight,
+              h2 = this.refs.slideInner.clientHeight;
+              this.fire('heightChange', {height: Math.max(h1, h2)});
+            });
+          }
+
+        }
+      }
+    }
+  }
+</script>
