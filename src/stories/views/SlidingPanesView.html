@@ -7,21 +7,39 @@
   <div class="columns">
     <div class="column is-6">
       <h2 class="title is-4">Basic example</h2>
+      <SlidingPaneSet style="height:500px">
 
+        <SlidingPane active={true} track_height on:heightChange>
+
+        </SlidingPane>
+
+        <SlidingPane active={false} track_height on:heightChange>
+
+        </SlidingPane>
+
+        <SlidingPane active={false} track_height on:heightChange>
+
+        </SlidingPane>
+
+      </SlidingPaneSet>
       <br><br>
-      <Code>{ ` `}</Code>
-      <p>Here <code>brands</code> is an array of this format:</p>
+
 
     </div>
 
+
+  </div>
+
+  <div class="columns">
     <div class="column">
-      <h2 class="title is-4">Usage</h2>
-      <p>Import the component:</p>
-      <Code lang="js">{ `import {SlidingPane, SlidingPaneSet} from '@kws3/sliding-panes'; `} </Code>
-      <p>Import the SCSS:</p>
-      <Code lang="css">@import 'path/to/node_modules/@kws3/sliding-panes/styles';</Code>
+      <Code>{ ` `}</Code>
+        <h2 class="title is-4">Usage</h2>
+        <p>Import the component:</p>
+        <Code lang="js">{ `import {SlidingPane, SlidingPaneSet} from '@kws3/sliding-panes'; `} </Code>
+        <p>Import the SCSS:</p>
+        <Code lang="css">@import 'path/to/node_modules/@kws3/sliding-panes/styles';</Code>
 
-    </div>
+      </div>
   </div>
 
 </Layout>
