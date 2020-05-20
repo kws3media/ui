@@ -14,9 +14,8 @@
  This will ensure all dependencies are in the right place
 
  ## Run
-To start developing
- ```bash
- > npm run dev:hmr
+  ```bash
+ npm run dev:hmr
  ```
  App will run on localhost:9009
 
@@ -34,4 +33,6 @@ To publish packages run
  > npm run publish
  ```
  and follow the prompts on the screen
+
+ It will automatically track packages and bump versions by asking from cli
 
