@@ -12,5 +12,5 @@ Install
 Run
 ---
 ```bash
-> kws-gen --views=name
+> kws-gen --view=name
 ```
