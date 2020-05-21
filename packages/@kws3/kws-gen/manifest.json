@@ -1,0 +1,14 @@
+{
+  "views_output": "src/views",
+  "templates": [
+    {
+      "Add_temp": "templates/views/ADD.html"
+    },
+    {
+      "_temp": "templates/views/LIST.html"
+    },
+    {
+      "View_temp": "templates/views/VIEW.html"
+    }
+  ]
+}
