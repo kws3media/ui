@@ -1,0 +1,63 @@
+<div class="page-content">
+
+  <PageTitle page="{page}">
+    <a class="button is-info is-inverted is-pulled-right" href="#<%= section_url %>s">
+      <Icon icon="long-arrow-left" size="small" />
+      <span>Back to All <%= section_name %>s</span>
+    </a>
+  </PageTitle>
+
+  <ViewScaffold {is_loading} {is_error} {error_message}>
+
+    {#if tracker.error}
+    <Notification type="danger">
+      {error_message}
+    </Notification>
+    {/if}
+
+
+
+  </ViewScaffold>
+</div>
+
+<script>
+  import Model from '../../models/<%= section_url %>';
+  import { Icon, Notification } from '@kws3/helpers';
+  import ViewScaffold from '../helpers/ViewScaffold.html';
+  import PageTitle from '../helpers/PageTitle.html';
+
+  export default {
+    components: {
+
+      Icon,
+      Notification,
+    },
+
+    data() {
+      return {
+        is_loading: true,
+        is_error: false,
+        error_message: '',
+        data: {},
+        meta: {},
+        tracker: {
+          saving: false,
+          saved: false,
+          error: false,
+        },
+        page: {
+          title: 'View <%= section_url %>',
+          subtitle: 'Change <%= section_url %> details',
+          icon: 'vcard-o',
+          icon_badge: 'pencil'
+        }
+      }
+    },
+    oncreate() {
+    },
+    methods: {
+
+    }
+  }
+
+</script>

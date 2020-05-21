@@ -1,0 +1,47 @@
+<div class="page-content">
+
+  <PageTitle {page}></PageTitle>
+
+  <ViewScaffold {is_loading} {is_error} {error_message}>
+
+  </ViewScaffold>
+
+</div>
+
+<script>
+
+  import Model from '../../models/<%= section_url %>s';
+  import { Icon } from '@kws3/helpers';
+  import ViewScaffold from '../helpers/ViewScaffold.html';
+  import PageTitle from '../helpers/PageTitle.html';
+  export default {
+    components: {
+      Icon
+    },
+    data() {
+      return {
+        is_loading: true,
+        is_error: false,
+        error_message: '',
+        meta: {},
+        data: [],
+        Model: Model,
+        View: '_COMPONENT_',
+        entity_name: '<%= section_name %>s',
+        route_prefix: '<%= section_url %>s/',
+        has_additional_buttons: true,
+        search_placeholder: '',
+        columns: '',
+        page: {
+          title: '_COMPONENT_',
+          icon: 'vcard-o',
+          subtitle: 'All <%= section_url %>s in the system'
+        },
+
+      }
+    },
+
+    oncreate() {
+    }
+  }
+</script>
