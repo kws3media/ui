@@ -8,18 +8,25 @@
     <div class="column">
       <h2 class="title is-4">Example</h2>
       <hr>
-      <label class="is-text-5">{error_state ? 'Error on upload' : 'Upload Successful'}</label>
+      <label class="is-text-5"><span class="has-text-weight-bold">Demo:</span> {error_state ? 'Error on upload' : 'Upload Successful'}</label>
       <br>
-      <FileUpload
-        on:file_chosen
-        on:file_uploaded
-        on:file_upload_error
-        max="1048579"
-        allowed="{['png', 'jpg', 'jpeg']}"
-        message="Upload new avatar..."
-        {disabled}
-        classes=""
-      />
+      <div>
+        <div class="is-text-centered">
+          <figure class="image is-128x128" style="margin: 0 auto 20px auto">
+              <img src="{image || ''}" alt="" />
+          </figure>
+        </div>
+        <FileUpload
+          on:file_chosen
+          on:file_uploaded
+          on:file_upload_error
+          max="1048579"
+          allowed="{['png', 'jpg', 'jpeg']}"
+          message="Upload new avatar..."
+          {disabled}
+          classes=""
+        />
+      </div>
       <br>
 <Code>{ `<FileUpload
   on:file_chosen
@@ -100,7 +107,8 @@
       return {
         pkg,
         error_state: false,
-        disabled: false
+        disabled: false,
+        image:''
       };
     },
     oncreate(){
@@ -118,6 +126,12 @@
               comp.error('Error on Upload')
             }else{
               comp.uploaded()
+              var reader = new FileReader();
+              reader.readAsDataURL(file.file.get('userfile'))
+
+              reader.onload = () => {
+                  this.set({image:reader.result })
+              };
             }
             progress = 0;
             clearInterval(inter_val)
