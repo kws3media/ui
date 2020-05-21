@@ -1,5 +1,5 @@
 {
-  "views_output": "src/views",
+  "views_output": "src/components/views",
   "templates": [
     {
       "Add_temp": "templates/views/ADD.html"
