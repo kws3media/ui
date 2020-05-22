@@ -1,6 +1,6 @@
 {
   "name": "@kws3/kws-gen",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.0",
   "description": "Kws3 CLI to Generate Views, Routes stuffs",
   "main": "src/index.js",
   "bin": {
