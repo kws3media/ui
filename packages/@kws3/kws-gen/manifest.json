@@ -1,14 +1,17 @@
 {
-  "views_output": "src/components/views",
+  "views_output": "src/views",
   "templates": [
     {
       "Add_temp": "templates/views/ADD.html"
     },
     {
-      "_temp": "templates/views/LIST.html"
+      "_temps": "templates/views/LIST.html"
     },
     {
       "View_temp": "templates/views/VIEW.html"
     }
-  ]
+  ],
+  "route_file": "src/routes/routes.js",
+  "route_template": "templates/routes/ROUTES.js"
+
 }
