@@ -17,6 +17,8 @@ var section_name = sectionName(view_name);
 const CURR_DIR = process.cwd();
 var templates = menifest['templates'];
 var views_output = menifest['views_output'];
+var route_file = menifest['route_file'];
+var route_template = menifest['route_template'];
 
 
 async function main() {
@@ -37,6 +39,20 @@ async function main() {
       fs.writeFileSync(writePath, contents, 'utf8');
     }
   })
+
+  // appending routes to routes file
+
+  var r_temp =  fs.readFileSync(route_template, 'utf8');
+  var r_file =  fs.readFileSync(CURR_DIR+'/'+route_file, 'utf8');
+  r_temp = template.render(r_temp, { section_url, section_name });
+  r_temp = r_file.replace('///////routes///////', r_temp);
+  var writePath = path.join(CURR_DIR, route_file);
+  fs.writeFileSync(writePath, r_temp, 'utf8');
+
+
+
+
+
 
 }
 
