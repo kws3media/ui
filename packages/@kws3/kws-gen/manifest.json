@@ -11,7 +11,7 @@
       "View_temp": "templates/views/VIEW.html"
     }
   ],
-  "route_file": "src/routes/routes.js",
+  "route_file": "src/config/routes.js",
   "route_template": "templates/routes/ROUTES.js"
 
 }
