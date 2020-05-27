@@ -1,5 +1,31 @@
+const path = require('path');
 const child_process = require('child_process');
-const {readdirSync} = require('sander');
+const {readdirSync, existsSync} = require('sander');
+
+function loadLocalConfig(filename){
+  var filename = filename || 'kws-cli.json',
+  fullpath = path.join(process.cwd(), filename);
+  if(existsSync(fullpath)){
+    const localConfig = require(fullpath);
+    var processed = {};
+    if(localConfig.generators){
+      var _temp = Object.assign({}, localConfig.generators);
+      processed.generate = {
+        description: 'Generate various project components',
+        tasks: _temp
+      }
+    }
+    if(localConfig.scripts){
+      var _temp = Object.assign({}, localConfig.scripts);
+      processed['execute'] = {
+        description: 'Execute various project related commands',
+        tasks: _temp
+      }
+    }
+    return processed;
+  }
+  return {};
+}
 
 function exec(command) {
   return new Promise((fulfil, reject) => {
@@ -31,7 +57,7 @@ function checkDirIsEmpty(dir) {
   }
 }
 
-function niceRepoOptions(manifest){
+function niceOptions(manifest){
   var out = [];
   Object.entries(manifest).forEach(([k, v]) => {
     var st = '* ' + k;
@@ -53,13 +79,21 @@ function getKeyFromNiceOption(option){
 
 function getValueFromNiceOption(option, value_key, manifest){
   var k = getKeyFromNiceOption(option);
-  return (manifest[k] && manifest[k][value_key]) ? manifest[k][value_key] : null;
+  if(manifest[k]){
+    if(value_key && manifest[k][value_key]){
+      return manifest[k][value_key];
+    }else{
+      return manifest[k];
+    }
+  }
+  return null;
 }
 
 module.exports = {
   exec,
   checkDirIsEmpty,
-  niceRepoOptions,
+  loadLocalConfig,
+  niceOptions,
   getKeyFromNiceOption,
   getValueFromNiceOption
 };

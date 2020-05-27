@@ -2,7 +2,7 @@ const _manifest = require('../manifest.json');
 const {Select, Input} = require('enquirer');
 const {rimrafSync} = require('sander');
 const chalk = require('chalk');
-const {exec, checkDirIsEmpty, niceRepoOptions, getValueFromNiceOption} = require('./utils.js');
+const {exec, checkDirIsEmpty, niceOptions, getValueFromNiceOption} = require('./utils.js');
 
 const supported_protocols = {
   'git': 'git@github.com:',
@@ -28,7 +28,7 @@ async function main(){
     const prompt = new Select({
       name: 'repo',
       message: 'Pick a repo to start on',
-      choices: niceRepoOptions(manifest)
+      choices: niceOptions(manifest)
     });
 
     prompt.run()
