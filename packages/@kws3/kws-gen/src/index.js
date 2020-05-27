@@ -9,6 +9,7 @@ var {argv} = require("yargs");
 
 
 var section_url, section_name, templates, views_output;
+const CURR_DIR = process.cwd();
 
 async function main() {
 
@@ -44,7 +45,6 @@ async function main() {
       var view_name = res.name;
       section_url = view_name.toLowerCase();
       section_name = sectionName(view_name);
-      const CURR_DIR = process.cwd();
       templates = menifest['templates'];
       views_output = menifest['views_output'];
       var route_file = path.join(CURR_DIR, menifest['route_file']);
@@ -92,7 +92,6 @@ function sectionName(string) {
 }
 
 function normalizeString(string) {
-  console.log(string)
   return string.replace(/\s+/g, ' ');
 }
 
