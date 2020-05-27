@@ -17,7 +17,7 @@ async function main() {
     'Create Model',
     'Create Views' ,
     'Update Routes',
-    'Update Routes Handler',
+    'Update Route Handler',
     'Create MVC',
   ]
 
@@ -137,19 +137,23 @@ export default routeMap;`);
 
 function injectRouteHandler(file, temp) {
   var stats =  fs.statSync(file);
-  var temp_path = path.join(__dirname, temp)
+  var temp_path = path.join(__dirname, temp);
+  var dont_write = false;
   if (stats.isFile()) {
     var r_temp =  fs.readFileSync(temp_path, 'utf8');
     var r_file =  fs.readFileSync(file, 'utf8');
     r_temp = template.render(r_temp, { section_url, section_name });
-    var _temp = r_file.replace(/lazyViews:\{([\sA-Za-z:()=>'./,-_0-1]+)\}/g, function(a,b){
+    var _temp = r_file.replace(/lazyViews:\{([\sA-Za-z:()=>'./,-_0-1]+)/g, function(a,b){
       let views = normalizeString(b);
       let new_views = normalizeString(r_temp);
       if(views.indexOf(new_views) != -1){
-        return b
+        console.log(chalk.yellow('route handler "'+section_url+'s" already exists'));
+        dont_write = true;
       }
-      return b+r_temp
+      return `lazyViews:{${b+r_temp}`
     });
+
+    if(dont_write) return;
     fs.writeFileSync(file, _temp, 'utf8');
     console.log(file+" "+chalk.green('updated'))
   }
@@ -176,4 +180,3 @@ function createFile(writePath, contents) {
     console.log(writePath+" "+chalk.green('created'))
   }
 }
-
