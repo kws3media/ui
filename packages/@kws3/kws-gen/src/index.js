@@ -7,7 +7,6 @@ var chalk = require("chalk");
 var {argv} = require("yargs");
 
 
-
 var view_name = argv.view;
 var folder_name = argv.folder ? argv.folder : '';
 
@@ -66,8 +65,9 @@ function sectionName(string) {
 
 function injectRoutes(file, temp, patt) {
   var stats =  fs.statSync(file);
+  var temp_path = path.join(__dirname, temp)
   if (stats.isFile()) {
-    var r_temp =  fs.readFileSync(temp, 'utf8');
+    var r_temp =  fs.readFileSync(temp_path, 'utf8');
     var r_file =  fs.readFileSync(file, 'utf8');
     r_temp = template.render(r_temp, { section_url, section_name });
     r_temp = r_file.replace(patt, r_temp);
