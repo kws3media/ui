@@ -2,7 +2,7 @@
 var fs = require("fs");
 var path = require("path");
 var template = require("./utils/template");
-var menifest = require("./manifest.json");
+var menifest = require("../manifest.json");
 var chalk = require("chalk");
 var {argv} = require("yargs");
 
