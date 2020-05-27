@@ -25,27 +25,14 @@ var model_output = path.join(CURR_DIR, menifest['model_output']);
 var model_template = menifest['model_template'];
 
 async function main() {
-  // templates.forEach(function (temp) {
-  //   var [name, _path] = Object.entries(temp)[0];
 
-  //   name = name.replace('_temp', section_name)
-  //   var temp_path = path.join(__dirname, _path);
-  //   var stats = fs.statSync(temp_path);
-
-  //   if (stats.isFile()) {
-  //     var contents = fs.readFileSync(temp_path, 'utf8');
-  //     contents = template.render(contents, { section_url, section_name })
-
-  //     var writePath = path.join(CURR_DIR, views_output + '/' + name + '.html');
-  //     createFile(writePath, contents);
-  //   }
-  // })
-
+  // creating views
+  // createViews()
   // appending routes to routes file
-  // injectRoutes(route_file, route_template, '///////routes///////');
+  injectRoutes(route_file, route_template);
 
   // appending route handler to routes file
-  injectRouteHandler(route_handler_file, route_handler_template, '///////route_handler///////');
+  // injectRouteHandler(route_handler_file, route_handler_template);
 
   //creating model
   // createModelFile(model_output, model_template);
@@ -60,31 +47,51 @@ function sectionName(string) {
 }
 
 function normalizeString(string) {
+  console.log(string)
   return string.replace(/\s+/g, ' ');
 }
 
-function injectRoutes(file, temp, patt) {
+function createViews(){
+  templates.forEach(function (temp) {
+    var [name, _path] = Object.entries(temp)[0];
+
+    name = name.replace('_temp', section_name)
+    var temp_path = path.join(__dirname, _path);
+    var stats = fs.statSync(temp_path);
+
+    if (stats.isFile()) {
+      var contents = fs.readFileSync(temp_path, 'utf8');
+      contents = template.render(contents, { section_url, section_name })
+
+      var writePath = path.join(CURR_DIR, views_output + '/' + name + '.html');
+      createFile(writePath, contents);
+    }
+  })
+}
+
+function injectRoutes(file, temp) {
   var stats =  fs.statSync(file);
   var temp_path = path.join(__dirname, temp)
   if (stats.isFile()) {
     var r_temp =  fs.readFileSync(temp_path, 'utf8');
     var r_file =  fs.readFileSync(file, 'utf8');
     r_temp = template.render(r_temp, { section_url, section_name });
-    // r_temp = r_file.replace(patt, r_temp);
-    var _temp = r_file.replace(/lazyViews:\{([\sA-Za-z:()=>'./,-_0-1]+)\}/g, function(a,b){
-      let views = normalizeString(b);
-      let new_views = normalizeString(r_temp);
-      if(views.indexOf(new_views) != -1){
-        return b
-      }
-      return b+r_temp
-    });
+
+    // check if same routes exists
+    if(r_file.indexOf("routeMap['"+section_url+"s']") != -1){
+      console.log(chalk.yellow('route "'+section_url+'s" already exists'));
+      return;
+    }
+    var _temp = r_file.replace('export default routeMap;', `
+${r_temp}
+export default routeMap;`);
+
     fs.writeFileSync(file, _temp, 'utf8');
-    // console.log(file+" "+chalk.green('updated'))
+    console.log(file+" "+chalk.green('updated'))
   }
 }
 
-function injectRouteHandler(file, temp, patt) {
+function injectRouteHandler(file, temp) {
   var stats =  fs.statSync(file);
   var temp_path = path.join(__dirname, temp)
   if (stats.isFile()) {
