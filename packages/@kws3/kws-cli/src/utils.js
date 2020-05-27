@@ -51,9 +51,9 @@ function getKeyFromNiceOption(option){
   return option.split("\n")[0].split('->')[0].replace('*', '').trim();
 }
 
-function getRepoUrlFromOption(option, manifest){
+function getValueFromNiceOption(option, value_key, manifest){
   var k = getKeyFromNiceOption(option);
-  return manifest[k] ? manifest[k].repo : null;
+  return (manifest[k] && manifest[k][value_key]) ? manifest[k][value_key] : null;
 }
 
 module.exports = {
@@ -61,5 +61,5 @@ module.exports = {
   checkDirIsEmpty,
   niceRepoOptions,
   getKeyFromNiceOption,
-  getRepoUrlFromOption
+  getValueFromNiceOption
 };

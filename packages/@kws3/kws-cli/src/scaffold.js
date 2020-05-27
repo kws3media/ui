@@ -2,7 +2,7 @@ const _manifest = require('../manifest.json');
 const {Select, Input} = require('enquirer');
 const {rimrafSync} = require('sander');
 const chalk = require('chalk');
-const {exec, checkDirIsEmpty, niceRepoOptions, getRepoUrlFromOption} = require('./utils.js');
+const {exec, checkDirIsEmpty, niceRepoOptions, getValueFromNiceOption} = require('./utils.js');
 
 const supported_protocols = {
   'git': 'git@github.com:',
@@ -22,7 +22,7 @@ async function main(){
   checkDirIsEmpty(destination);
 
   if(repo && repo_keys.indexOf(repo) != -1){
-    prepare(getRepoUrlFromOption(repo, manifest));
+    prepare(getValueFromNiceOption(repo, 'repo', manifest));
   }
   else{
     const prompt = new Select({
@@ -32,7 +32,7 @@ async function main(){
     });
 
     prompt.run()
-    .then(answer => prepare(getRepoUrlFromOption(answer, manifest)))
+    .then(answer => prepare(getValueFromNiceOption(answer, 'repo', manifest)))
     .catch(console.error);
   }
 }
