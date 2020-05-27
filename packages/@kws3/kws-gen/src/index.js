@@ -36,8 +36,16 @@ async function main() {
 
       var writePath = path.join(CURR_DIR, views_output + '/' + name + '.html');
 
-      fs.writeFileSync(writePath, contents, 'utf8');
-      console.log(writePath+" "+chalk.green('created'))
+      var _stats;
+      try {
+        _stats = fs.statSync(writePath);
+        console.log(writePath+" "+chalk.yellow('already exists'))
+
+      } catch (e) {
+          fs.writeFileSync(writePath, contents, 'utf8');
+          console.log(writePath+" "+chalk.green('created'))
+      }
+
     }
   })
 
