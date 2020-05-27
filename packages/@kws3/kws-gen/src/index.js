@@ -17,7 +17,7 @@ async function main() {
     'Create Model',
     'Create Views' ,
     'Update Routes',
-    'Update Routes Handler',
+    'Update Route Handler',
     'Create MVC',
   ]
 
@@ -143,7 +143,7 @@ function injectRouteHandler(file, temp) {
     var r_temp =  fs.readFileSync(temp_path, 'utf8');
     var r_file =  fs.readFileSync(file, 'utf8');
     r_temp = template.render(r_temp, { section_url, section_name });
-    var _temp = r_file.replace(/lazyViews:\{([\sA-Za-z:()=>'./,-_0-1]+)\}/g, function(a,b){
+    var _temp = r_file.replace(/lazyViews:\{([\sA-Za-z:()=>'./,-_0-1]+)/g, function(a,b){
       let views = normalizeString(b);
       let new_views = normalizeString(r_temp);
       if(views.indexOf(new_views) != -1){
@@ -180,4 +180,3 @@ function createFile(writePath, contents) {
     console.log(writePath+" "+chalk.green('created'))
   }
 }
-
