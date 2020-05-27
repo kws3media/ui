@@ -2,7 +2,13 @@ const path = require('path');
 const child_process = require('child_process');
 const {readdirSync, existsSync} = require('sander');
 
-function loadLocalConfig(filename){
+const asyncForEach = async (array, callback) => {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array)
+  }
+}
+
+function loadLocalConfig(filename, withHidden){
   var filename = filename || 'kws-cli.json',
   fullpath = path.join(process.cwd(), filename);
   if(existsSync(fullpath)){
@@ -17,8 +23,14 @@ function loadLocalConfig(filename){
     }
     if(localConfig.scripts){
       var _temp = Object.assign({}, localConfig.scripts);
-      processed['execute'] = {
+      processed['exec'] = {
         description: 'Execute various project related commands',
+        tasks: _temp
+      }
+    }
+    if(localConfig['post-scaffold'] && withHidden){
+      var _temp = Object.assign({}, localConfig['post-scaffold']);
+      processed['post-scaffold'] = {
         tasks: _temp
       }
     }
@@ -90,6 +102,7 @@ function getValueFromNiceOption(option, value_key, manifest){
 }
 
 module.exports = {
+  asyncForEach,
   exec,
   checkDirIsEmpty,
   loadLocalConfig,

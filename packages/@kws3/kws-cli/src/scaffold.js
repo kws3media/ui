@@ -2,7 +2,8 @@ const _manifest = require('../manifest.json');
 const {Select, Input} = require('enquirer');
 const {rimrafSync} = require('sander');
 const chalk = require('chalk');
-const {exec, checkDirIsEmpty, niceOptions, getValueFromNiceOption} = require('./utils.js');
+const {exec, checkDirIsEmpty, loadLocalConfig, niceOptions, getValueFromNiceOption} = require('./utils.js');
+const {runAll} = require('./runCommand.js')
 
 const supported_protocols = {
   'git': 'git@github.com:',
@@ -74,7 +75,17 @@ async function download(repo, protocol){
   await exec(`git clone ${supported_protocols[protocol]}${repo} --progress --verbose --depth 1 ${destination}`);
   console.log(chalk.bold.underline(`Clearing .git folder`));
   rimrafSync(`${destination}.git`);
-  console.log(chalk.green.bold.inverse(`✔ ✔ ✔ Done ✔ ✔ ✔ `));
+  console.log(chalk.green.bold(`Project files scaffolded`));
+
+  console.log(chalk.bold('Checking for post-scaffold tasks'));
+  const localConfig = loadLocalConfig(null, true);
+  if(localConfig['post-scaffold']){
+    await runAll(localConfig['post-scaffold']['tasks']);
+  }
+
+  console.log(chalk.green.bold.inverse(`✔ ✔ ✔ Scaffolding complete ✔ ✔ ✔ `));
+
+
 }
 
 module.exports = main;
