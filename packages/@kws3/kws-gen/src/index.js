@@ -21,6 +21,9 @@ var route_template = menifest['route_template'];
 var route_handler_file = path.join(CURR_DIR, menifest['route_handler_file']);
 var route_handler_template = menifest['route_handler_template'];
 
+var model_output = path.join(CURR_DIR, menifest['model_output']);
+var model_template = menifest['model_template'];
+
 async function main() {
   templates.forEach(function (temp) {
     var [name, _path] = Object.entries(temp)[0];
@@ -34,17 +37,7 @@ async function main() {
       contents = template.render(contents, { section_url, section_name })
 
       var writePath = path.join(CURR_DIR, views_output + '/' + name + '.html');
-
-      var _stats;
-      try {
-        _stats = fs.statSync(writePath);
-        console.log(writePath+" "+chalk.yellow('already exists'))
-
-      } catch (e) {
-          fs.writeFileSync(writePath, contents, 'utf8');
-          console.log(writePath+" "+chalk.green('created'))
-      }
-
+      createFile(writePath, contents);
     }
   })
 
@@ -52,7 +45,10 @@ async function main() {
   injectRoutes(route_file, route_template, '///////routes///////');
 
   // appending route handler to routes file
-  injectRoutes(route_handler_file, route_handler_template, '///////route_handler///////')
+  injectRoutes(route_handler_file, route_handler_template, '///////route_handler///////');
+
+  //creating model
+  createModelFile(model_output, model_template);
 
 }
 
@@ -75,3 +71,24 @@ function injectRoutes(file, temp, patt) {
     console.log(file+" "+chalk.green('updated'))
   }
 }
+
+function createModelFile(file, temp) {
+
+  var temp_path = path.join(__dirname, temp)
+  var temp =  fs.readFileSync(temp_path, 'utf8');
+  temp = template.render(temp, { section_url, section_name });
+  var writePath = path.join(file,  section_url+'s.js');
+  createFile(writePath, temp)
+}
+
+function createFile(writePath, contents) {
+  var stats;
+  try {
+    stats = fs.statSync(writePath);
+    console.log(writePath+" "+chalk.yellow('already exists'))
+  } catch (e) {
+    fs.writeFileSync(writePath, contents, 'utf8');
+    console.log(writePath+" "+chalk.green('created'))
+  }
+}
+
