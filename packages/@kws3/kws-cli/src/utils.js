@@ -47,8 +47,12 @@ function niceRepoOptions(manifest){
   return out;
 }
 
+function getKeyFromNiceOption(option){
+  return option.split("\n")[0].split('->')[0].replace('*', '').trim();
+}
+
 function getRepoUrlFromOption(option, manifest){
-  var k = option.split('->')[0].replace('*', '').trim();
+  var k = getKeyFromNiceOption(option);
   return manifest[k] ? manifest[k].repo : null;
 }
 
@@ -56,5 +60,6 @@ module.exports = {
   exec,
   checkDirIsEmpty,
   niceRepoOptions,
+  getKeyFromNiceOption,
   getRepoUrlFromOption
 };
