@@ -4,38 +4,83 @@ var path = require("path");
 var template = require("./utils/template");
 var menifest = require("../manifest.json");
 var chalk = require("chalk");
+const {Select, prompt} = require('enquirer');
 var {argv} = require("yargs");
 
 
-var view_name = argv.view;
-var folder_name = argv.folder ? argv.folder : '';
-
-
-var section_url = view_name.toLowerCase();
-var section_name = sectionName(view_name);
-const CURR_DIR = process.cwd();
-var templates = menifest['templates'];
-var views_output = menifest['views_output'];
-var route_file = path.join(CURR_DIR, menifest['route_file']);
-var route_template = menifest['route_template'];
-var route_handler_file = path.join(CURR_DIR, menifest['route_handler_file']);
-var route_handler_template = menifest['route_handler_template'];
-
-var model_output = path.join(CURR_DIR, menifest['model_output']);
-var model_template = menifest['model_template'];
+var section_url, section_name, templates, views_output;
 
 async function main() {
 
-  // creating views
-  // createViews()
-  // appending routes to routes file
-  injectRoutes(route_file, route_template);
+  let options = [
+    'Create Model',
+    'Create Views' ,
+    'Update Routes',
+    'Update Routes Handler',
+    'Create MVC',
+  ]
 
-  // appending route handler to routes file
-  // injectRouteHandler(route_handler_file, route_handler_template);
+  if(options){
+    const prompt = new Select({
+      name: 'options',
+      message: 'select pls',
+      choices: options
+    });
 
-  //creating model
-  // createModelFile(model_output, model_template);
+    prompt.run()
+    .then(answer => populate(answer))
+    .catch(console.error);
+
+  }
+
+  async function populate(answer){
+
+    const view_name = await prompt({
+      type: 'input',
+      name: 'name',
+      message: 'Enter view, model or routes name?'
+    }).then(res => {
+
+      var view_name = res.name;
+      section_url = view_name.toLowerCase();
+      section_name = sectionName(view_name);
+      const CURR_DIR = process.cwd();
+      templates = menifest['templates'];
+      views_output = menifest['views_output'];
+      var route_file = path.join(CURR_DIR, menifest['route_file']);
+      var route_template = menifest['route_template'];
+      var route_handler_file = path.join(CURR_DIR, menifest['route_handler_file']);
+      var route_handler_template = menifest['route_handler_template'];
+
+      var model_output = path.join(CURR_DIR, menifest['model_output']);
+      var model_template = menifest['model_template'];
+      let run_all = answer == 'Create MVC' ? true : false;
+
+
+        if(answer == 'Create Views' || run_all){
+            //creating views
+            createViews()
+        }
+        if(answer == 'Update Routes' || run_all){
+
+          // appending routes to routes file
+          injectRoutes(route_file, route_template);
+        }
+        if(answer == 'Update Routes Handler' || run_all){
+          // appending route handler to routes file
+          injectRouteHandler(route_handler_file, route_handler_template);
+        }
+        if(answer == 'Create Model' || run_all){
+          //creating model
+          createModelFile(model_output, model_template);
+        }
+    })
+
+
+  }
+
+
+
 
 }
 
