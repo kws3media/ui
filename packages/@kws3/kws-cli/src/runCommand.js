@@ -3,6 +3,34 @@ const chalk = require('chalk');
 const {exec, asyncForEach} = require('./utils.js');
 
 
+async function collectAndRun(cmd, name){
+  var _cmd = null,
+  name = name || null;
+  description = null;
+  if(typeof cmd == 'string'){
+    _cmd = cmd;
+    name = cmd;
+  }else if(cmd.command){
+    _cmd = cmd.command;
+    name = cmd.name || name || _cmd;
+    description = cmd.description || null;
+  }
+
+  if(cmd.Input){
+    const prompt = new Input(cmd.Input);
+    var result = await prompt.run();
+    console.log(result);
+    return;
+  }
+
+  console.log(chalk.bold.green.underline('Running ' + name));
+  if(description){
+    console.log(chalk.bold.green(description));
+  }
+
+  await exec(_cmd);
+}
+
 async function runSingle(cmd, name){
   var _cmd = null,
   name = name || null;
@@ -27,12 +55,7 @@ async function runSingle(cmd, name){
   }
 
   if(allow_running){
-    console.log(chalk.bold.green.underline('Running ' + name));
-    if(description){
-      console.log(chalk.bold.green(description));
-    }
-
-    await exec(_cmd);
+    await collectAndRun(cmd, name)
   }
 
 }

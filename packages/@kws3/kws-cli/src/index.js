@@ -1,7 +1,8 @@
-const {Select, Input} = require('enquirer');
+const {Select} = require('enquirer');
 const chalk = require('chalk');
-const {exec, niceOptions, getKeyFromNiceOption, getValueFromNiceOption, loadLocalConfig} = require('./utils.js');
+const {niceOptions, getKeyFromNiceOption, getValueFromNiceOption, loadLocalConfig} = require('./utils.js');
 const scaffold = require('./scaffold.js');
+const {runSingle} = require('./runCommand.js');
 
 const argv = process.argv.slice(2),
 task_type_to_perform = argv[0],
@@ -26,13 +27,13 @@ async function main(){
     });
 
     prompt.run()
-    .then(answer => handle(getKeyFromNiceOption(answer)))
+    .then(async (answer) => await handle(getKeyFromNiceOption(answer)))
     .catch(console.error);
   }
 
 }
 
-function handle(task_type){
+async function handle(task_type){
   if(task_type == 'scaffold'){
     scaffold().catch((err) => console.log(chalk.red.bold(err.message)));
   }else{
@@ -44,9 +45,11 @@ function handle(task_type){
       choices: niceOptions(subtask_keys)
     });
 
-    prompt.run()
-    .then(answer => console.log(getValueFromNiceOption(answer, null, subtask_keys)))
-    .catch(console.error);
+    let answer = await prompt.run();
+
+    let name = getKeyFromNiceOption(answer),
+    cmd = getValueFromNiceOption(answer, null, subtask_keys);
+    await runSingle(cmd, name);
   }
 }
 
