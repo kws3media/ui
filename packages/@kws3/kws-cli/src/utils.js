@@ -96,7 +96,7 @@ function getKeyFromNiceOption(option){
 function getValueFromNiceOption(option, value_key, manifest){
   var k = getKeyFromNiceOption(option);
   if(manifest[k]){
-    if(value_key && manifest[k][value_key]){
+    if(value_key && typeof manifest[k][value_key] != 'undefined'){
       return manifest[k][value_key];
     }else{
       return manifest[k];

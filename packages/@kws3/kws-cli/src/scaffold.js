@@ -10,7 +10,7 @@ const supported_protocols = {
   'https': 'https://github.com/'
 };
 
-const manifest = Object.assign(_manifest, {'CUSTOM REPO': {description: 'Lets you type in a custom repo url'}}),
+const manifest = Object.assign(_manifest, {'CUSTOM REPO': {description: 'Lets you type in a custom repo url', repo: null}}),
 argv = process.argv.slice(3),
 repo = argv[0],
 protocol = argv[1],
