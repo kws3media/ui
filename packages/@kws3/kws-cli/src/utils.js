@@ -75,7 +75,7 @@ function checkDirIsEmpty(dir) {
 function niceOptions(manifest){
   var out = [];
   Object.entries(manifest).forEach(([k, v]) => {
-    var st = '* ' + k;
+    var st = '⇨  ' + k;
     if(v && typeof v.name != 'undefined'){
       st += ' -> ' + v.name;
     }
@@ -90,7 +90,7 @@ function niceOptions(manifest){
 }
 
 function getKeyFromNiceOption(option){
-  return option.split("\n")[0].split('->')[0].replace('*', '').trim();
+  return option.split("\n")[0].split('->')[0].replace('⇨', '').trim();
 }
 
 function getValueFromNiceOption(option, value_key, manifest){
