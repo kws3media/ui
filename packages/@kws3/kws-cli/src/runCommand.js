@@ -1,3 +1,4 @@
+const {Select, Confirm, Input, Form, Snippet} = require('enquirer');
 const chalk = require('chalk');
 const {exec, asyncForEach} = require('./utils.js');
 
@@ -15,12 +16,25 @@ async function runSingle(cmd, name){
     description = cmd.description || null;
   }
 
-  console.log(chalk.bold.green.underline('Running ' + name));
-  if(description){
-    console.log(chalk.bold.green(description));
+  var allow_running = true;
+  if(cmd.skippable){
+    const prompt = new Confirm({
+      name: name,
+      message: 'Run '+name+'? ' + (description ? `(${description})` : '')
+    });
+
+    allow_running = await prompt.run();
   }
 
-  await exec(_cmd);
+  if(allow_running){
+    console.log(chalk.bold.green.underline('Running ' + name));
+    if(description){
+      console.log(chalk.bold.green(description));
+    }
+
+    await exec(_cmd);
+  }
+
 }
 
 async function runAll(cmds){
