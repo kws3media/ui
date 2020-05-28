@@ -77,7 +77,7 @@ function niceOptions(manifest){
       st += ' -> ' + v.name;
     }
     if(v && typeof v.description != 'undefined'){
-      st += ' \n  ' + v.description;
+      st += ' \n  -- ' + v.description;
     }
     out.push(st);
   });

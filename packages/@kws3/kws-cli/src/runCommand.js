@@ -17,7 +17,7 @@ async function collectAndRun(cmd, name){
   }
 
   if(cmd.Input){
-    const options = cmd.Input,
+    const options = injectValidation(cmd.Input),
     prompt = new Input(options);
 
     var result = await prompt.run();
@@ -78,7 +78,7 @@ async function runAll(cmds){
 }
 
 function applyCommand(options, command, answer){
-  if(typeof answer === 'object' && answer !== null){
+  if(isObject(answer)){
 
   }else{
     const key = options.name,
@@ -92,16 +92,27 @@ function injectValidation(obj){
     let old_validate = obj.validate;
     obj.validate = function(value){
       let ret = true;
-      Object.entries(old_validate).forEach(([k, v]) => {
-        if(v == 'required' && !value[k]){
-          ret = chalk.red(`${k} is required`);
+      if(isObject(value)){
+        Object.entries(old_validate).forEach(([k, v]) => {
+          if(v == 'required' && (!value[k] || value[k].trim() == '')){
+            ret = chalk.red(`${k} is required`);
+          }
+        });
+      }else{
+        if(Object.values(old_validate).includes('required') && (!value || value.trim() == '')){
+          ret = chalk.red(`${Object.keys(old_validate)[0]} is required`);
         }
-      });
+      }
+
       return ret;
     }
   }
 
   return obj;
+}
+
+function isObject(obj){
+  return typeof object === 'object' && object !== null;
 }
 
 
