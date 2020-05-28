@@ -17,13 +17,13 @@ async function collectAndRun(cmd, name){
   }
 
   if(cmd.Input){
-    const prompt = new Input(cmd.Input);
-    var result = await prompt.run();
-    console.log(result);
-    return;
-  }
+    const options = cmd.Input,
+    prompt = new Input(options);
 
-  if(cmd.Form){
+    var result = await prompt.run();
+    _cmd = applyCommand(options, _cmd, result);
+
+  }else if(cmd.Form){
     const options = injectValidation(cmd.Form),
     prompt = new Form(options);
     var result = await prompt.run();
@@ -75,6 +75,16 @@ async function runAll(cmds){
       await runSingle(el, k)
     }
   );
+}
+
+function applyCommand(options, command, answer){
+  if(typeof answer === 'object' && answer !== null){
+
+  }else{
+    const key = options.name,
+    regex = new RegExp('\\$\\{'+key+'\\}', 'g');
+    return command.replace(regex, answer);
+  }
 }
 
 function injectValidation(obj){
