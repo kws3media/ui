@@ -29,6 +29,13 @@ async function collectAndRun(cmd, name){
 
     var result = await prompt.run();
     _cmd = applyCommand(options, _cmd, result);
+
+  }else if(cmd.Select){
+    const options = injectValidation(cmd.Select),
+    prompt = new Select(options);
+
+    var result = await prompt.run();
+    _cmd = applyCommand(options, _cmd, result);
   }
 
   console.log(chalk.bold.green.underline('Running ' + name));
