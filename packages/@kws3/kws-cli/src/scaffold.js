@@ -73,17 +73,18 @@ function validate(repo, protocol){
 async function download(repo, protocol){
   console.log(chalk.bold.underline(`Cloning ${supported_protocols[protocol]}${repo}`));
   await exec(`git clone ${supported_protocols[protocol]}${repo} --progress --verbose --depth 1 ${destination}`);
-  console.log(chalk.bold.underline(`Clearing .git folder`));
-  rimrafSync(`${destination}.git`);
-  console.log(chalk.green.bold(`Project files scaffolded`));
 
-  console.log(chalk.bold('Checking for post-scaffold tasks'));
+  console.log(chalk.bold.underline("\nClearing .git folder"));
+  rimrafSync(`${destination}.git`);
+  console.log(chalk.green.bold("Project files scaffolded\n"));
+
+  console.log(chalk.bold("Checking for post-scaffold tasks\n"));
   const localConfig = loadLocalConfig(null, true);
   if(localConfig['post-scaffold']){
     await runAll(localConfig['post-scaffold']['tasks']);
   }
 
-  console.log(chalk.green.bold.inverse(`✔ ✔ ✔ Scaffolding complete ✔ ✔ ✔ `));
+  console.log(chalk.green.bold.inverse("\n✔ ✔ ✔ Scaffolding complete ✔ ✔ ✔ \n"));
 
 
 }

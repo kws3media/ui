@@ -41,7 +41,9 @@ function loadLocalConfig(filename, withHidden){
 
 function exec(command) {
   return new Promise((fulfil, reject) => {
+    console.log("\n------------------------------------------");
     const cp = child_process.exec(command, (err, stdout, stderr) => {
+      console.log("------------------------------------------\n");
       if (err) {
         reject(err);
         return;
@@ -55,6 +57,7 @@ function exec(command) {
     cp.stderr.on('data', function(data) {
       process.stdout.write(data);
     });
+
   });
 }
 
