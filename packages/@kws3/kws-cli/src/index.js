@@ -6,6 +6,7 @@ const {runSingle} = require('./runCommand.js');
 
 const argv = process.argv.slice(2),
 task_type_to_perform = argv[0],
+sub_task_type_to_perform = argv[1],
 localConfig = loadLocalConfig();
 
 let task_types = {
@@ -38,17 +39,26 @@ async function handle(task_type){
     scaffold().catch((err) => console.log(chalk.red.bold(err.message)));
   }else{
     const subsection = task_types[task_type],
-    subtask_keys = subsection.tasks;
-    const prompt = new Select({
-      name: 'repo',
-      message: 'Pick ' + task_type + ' command:',
-      choices: niceOptions(subtask_keys)
-    });
+    subtasks = subsection.tasks,
+    subtask_keys = Object.keys(subtasks);
 
-    let answer = await prompt.run();
+    let answer = null;
+
+    if(sub_task_type_to_perform && subtask_keys.indexOf(sub_task_type_to_perform) != -1){
+      answer = sub_task_type_to_perform;
+    }else{
+      const prompt = new Select({
+        name: 'repo',
+        message: 'Pick ' + task_type + ' command:',
+        choices: niceOptions(subtasks)
+      });
+
+      answer = await prompt.run();
+    }
+
 
     let name = getKeyFromNiceOption(answer),
-    cmd = getValueFromNiceOption(answer, null, subtask_keys);
+    cmd = getValueFromNiceOption(answer, null, subtasks);
     await runSingle(cmd, name);
   }
 }
