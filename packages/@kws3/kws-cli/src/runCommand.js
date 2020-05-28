@@ -26,9 +26,9 @@ async function collectAndRun(cmd, name){
   }else if(cmd.Form){
     const options = injectValidation(cmd.Form),
     prompt = new Form(options);
+
     var result = await prompt.run();
-    console.log(result);
-    return;
+    _cmd = applyCommand(options, _cmd, result);
   }
 
   console.log(chalk.bold.green.underline('Running ' + name));
@@ -78,13 +78,19 @@ async function runAll(cmds){
 }
 
 function applyCommand(options, command, answer){
-  if(isObject(answer)){
-
-  }else{
-    const key = options.name,
-    regex = new RegExp('\\$\\{'+key+'\\}', 'g');
-    return command.replace(regex, answer);
+  let processObj = answer;
+  if(!isObject(answer)){
+    const key = options.name;
+    processObj = {};
+    processObj[key] = answer;
   }
+  Object.entries(processObj).forEach(([k, v]) => {
+    const key = k,
+    regex = new RegExp('\\$\\{'+key+'\\}', 'g');
+    command = command.replace(regex, v);
+  });
+
+  return command;
 }
 
 function injectValidation(obj){
@@ -112,7 +118,7 @@ function injectValidation(obj){
 }
 
 function isObject(obj){
-  return typeof object === 'object' && object !== null;
+  return typeof obj === 'object' && obj !== null;
 }
 
 
