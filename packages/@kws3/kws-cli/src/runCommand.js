@@ -23,6 +23,14 @@ async function collectAndRun(cmd, name){
     return;
   }
 
+  if(cmd.Form){
+    const options = injectValidation(cmd.Form),
+    prompt = new Form(options);
+    var result = await prompt.run();
+    console.log(result);
+    return;
+  }
+
   console.log(chalk.bold.green.underline('Running ' + name));
   if(description){
     console.log(chalk.bold.green(description));
@@ -67,6 +75,23 @@ async function runAll(cmds){
       await runSingle(el, k)
     }
   );
+}
+
+function injectValidation(obj){
+  if(obj.validate){
+    let old_validate = obj.validate;
+    obj.validate = function(value){
+      let ret = true;
+      Object.entries(old_validate).forEach(([k, v]) => {
+        if(v == 'required' && !value[k]){
+          ret = chalk.red(`${k} is required`);
+        }
+      });
+      return ret;
+    }
+  }
+
+  return obj;
 }
 
 
