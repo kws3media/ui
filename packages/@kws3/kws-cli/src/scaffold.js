@@ -2,7 +2,7 @@ const _manifest = require('../manifest.json');
 const {Select, Input} = require('enquirer');
 const {rimrafSync} = require('sander');
 const chalk = require('chalk');
-const {exec, checkDirIsEmpty, loadLocalConfig, niceOptions, getValueFromNiceOption} = require('./utils.js');
+const {exec, checkDirIsEmpty, loadLocalConfig, niceOptions, getValueFromNiceOption, getKeyFromNiceOption} = require('./utils.js');
 const {runAll} = require('./runCommand.js')
 
 const supported_protocols = {
@@ -45,11 +45,11 @@ function prepare(repo){
     const prompt = new Select({
       name: 'repo',
       message: 'Pick a protocol',
-      choices: protocol_keys
+      choices: niceOptions(supported_protocols)
     });
 
     prompt.run()
-    .then(answer => validate(repo, answer))
+    .then(answer => validate(repo, getKeyFromNiceOption(answer, null, supported_protocols)))
     .catch(console.error);
   }
 

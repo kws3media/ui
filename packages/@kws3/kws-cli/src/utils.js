@@ -82,6 +82,7 @@ function niceOptions(manifest){
     if(v && typeof v.description != 'undefined'){
       st += ' \n  -- ' + v.description;
     }
+    st += "\n";
     out.push(st);
   });
 
