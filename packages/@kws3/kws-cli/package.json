@@ -21,6 +21,7 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "enquirer": "^2.3.5",
-    "sander": "^0.6.0"
+    "sander": "^0.6.0",
+    "update-notifier": "^4.1.0"
   }
 }
