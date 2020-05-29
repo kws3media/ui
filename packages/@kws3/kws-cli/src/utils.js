@@ -61,12 +61,10 @@ function exec(command) {
   });
 }
 
-function checkDirIsEmpty(dir) {
+function dirIsEmpty(dir) {
   try {
     const files = readdirSync(dir);
-    if (files.length > 0) {
-      throw new Error(`Destination directory is not empty, aborting.`);
-    }
+    return files.length == 0;
   } catch (err) {
     if (err.code !== 'ENOENT') throw err;
   }
@@ -131,7 +129,7 @@ function isObject(obj){
 module.exports = {
   asyncForEach,
   exec,
-  checkDirIsEmpty,
+  dirIsEmpty,
   loadLocalConfig,
   niceOptions,
   getKeyFromNiceOption,

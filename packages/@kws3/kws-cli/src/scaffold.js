@@ -2,7 +2,7 @@ const _manifest = require('../manifest.json');
 const {Select, Input} = require('enquirer');
 const {rimrafSync} = require('sander');
 const chalk = require('chalk');
-const {exec, checkDirIsEmpty, loadLocalConfig, niceOptions, getValueFromNiceOption, getKeyFromNiceOption} = require('./utils.js');
+const {exec, dirIsEmpty, loadLocalConfig, niceOptions, getValueFromNiceOption, getKeyFromNiceOption} = require('./utils.js');
 const {runAll} = require('./runCommand.js');
 
 const PLATFORM = process.platform,
@@ -55,7 +55,10 @@ function platformMatches(platforms){
 
 async function main(){
 
-  checkDirIsEmpty(destination);
+  if(!dirIsEmpty(destination)){
+    throw new Error(`Destination directory is not empty, aborting.`);
+    return;
+  }
 
   if(repo && repo_keys.indexOf(repo) != -1){
     prepare(getValueFromNiceOption(repo, 'repo', manifest));

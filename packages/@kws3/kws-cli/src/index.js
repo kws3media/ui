@@ -2,7 +2,7 @@ const UpdateNotifier = require('update-notifier');
 const pkg = require('../package.json');
 const {Select} = require('enquirer');
 const chalk = require('chalk');
-const {niceOptions, getKeyFromNiceOption, getValueFromNiceOption, loadLocalConfig} = require('./utils.js');
+const {niceOptions, getKeyFromNiceOption, getValueFromNiceOption, loadLocalConfig, dirIsEmpty} = require('./utils.js');
 const scaffold = require('./scaffold.js');
 const {runSingle} = require('./runCommand.js');
 
@@ -13,7 +13,7 @@ localConfig = loadLocalConfig();
 
 const Notifier = UpdateNotifier({
   pkg,
-	updateCheckInterval: 0
+	updateCheckInterval: 86400
 });
 
 if(Notifier.update){
@@ -24,6 +24,9 @@ if(Notifier.update){
 let task_types = {
   scaffold: {description: 'Seed a new project with a template'}
 };
+if(!dirIsEmpty('./')){
+  task_types = {};
+}
 
 task_types = Object.assign(task_types, localConfig);
 
