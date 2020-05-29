@@ -49,7 +49,7 @@ Example Format for project based kws-cli.json files
     // more tasks can be added here
   },
 
-  "generators":{ // commands in here will show in the "Generate" subsection, use this to generate project files
+  "generators":{ // commands in here will show in the "generate" subsection, use this to generate project files
     "create-somefile": "touch somefile.js",
   },
 
