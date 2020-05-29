@@ -44,7 +44,8 @@ Example Format for project based kws-cli.json files
     "composer-install":{
       "command": "composer install", // the actual command that will run
       "description": "Install all packages from composer",
-      "skippable": true // will allow user to skip this
+      "skippable": true // will allow user to skip this,
+      "platforms": ["unix", "win"] //optional, will only run on the specified platforms
     }
     // more tasks can be added here
   },
@@ -58,6 +59,14 @@ Example Format for project based kws-cli.json files
   }
 }
 ```
+
+Supported platform options for post-scaffold commands:
+
+ - string (`"linux"`) or array (`["linux", "win32"]`)
+ - grouped platforms for easier typing: for example:
+   - you can type `"win"` or `"windows"` to target windows only
+   - type `"unix"` to target all unix based platforms
+
 ---
 ## Supported command formats
 

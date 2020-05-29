@@ -3,7 +3,14 @@ const {Select, Input} = require('enquirer');
 const {rimrafSync} = require('sander');
 const chalk = require('chalk');
 const {exec, checkDirIsEmpty, loadLocalConfig, niceOptions, getValueFromNiceOption, getKeyFromNiceOption} = require('./utils.js');
-const {runAll} = require('./runCommand.js')
+const {runAll} = require('./runCommand.js');
+
+const PLATFORM = process.platform,
+grouped_plaforms = {
+  windows: ['win32'],
+  win: ['win32'],
+  unix: ['linux', 'darwin', 'freebsd', 'openbsd']
+};
 
 const supported_protocols = {
   'git': 'git@github.com:',
@@ -17,6 +24,34 @@ protocol = argv[1],
 repo_keys = Object.keys(manifest),
 protocol_keys = Object.keys(supported_protocols),
 destination = './';
+
+function platformMatches(platforms){
+  if(Array.isArray(platforms)){
+    for (let i = 0; i < platforms.length; i++) {
+      const el = platforms[i];
+      if(el == PLATFORM){
+        return true;
+      }else{
+        if(typeof grouped_plaforms[el] != 'undefined'){
+          if(grouped_plaforms[el].includes(PLATFORM)){
+            return true;
+          }
+        }
+      }
+    }
+  }else if(typeof platforms == 'string'){
+    if(platforms == PLATFORM){
+      return true;
+    }else{
+      if(typeof grouped_plaforms[platforms] != 'undefined'){
+        if(grouped_plaforms[platforms].includes(PLATFORM)){
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
 
 async function main(){
 
@@ -81,7 +116,19 @@ async function download(repo, protocol){
   console.log(chalk.bold("Checking for post-scaffold tasks\n"));
   const localConfig = loadLocalConfig(null, true);
   if(localConfig['post-scaffold']){
-    await runAll(localConfig['post-scaffold']['tasks']);
+    let filtered = {};
+    Object.entries(localConfig['post-scaffold']['tasks'])
+    .forEach(([k, v]) => {
+      if(typeof v.platforms != 'undefined'){
+        if(platformMatches(v.platforms)){
+          filtered[k] = v;
+        }
+      }else{
+        filtered[k] = v;
+      }
+    });
+
+    await runAll(filtered);
   }
 
   console.log(chalk.green.bold.inverse("\n✔ ✔ ✔ Scaffolding complete ✔ ✔ ✔ \n"));
