@@ -36,6 +36,12 @@ async function main(){
   if(task_type_to_perform && task_type_keys.indexOf(task_type_to_perform) != -1){
     handle(task_type_to_perform);
   }else{
+
+    if(task_type_keys.length == 0){
+      console.log(chalk.red.bold("Destination directory is not empty, so cannot scaffold"))
+      throw new Error(`Also, no kws-cli.json file present in folder`);
+    }
+
     const prompt = new Select({
       name: 'repo',
       message: 'Pick something you would like to do:',
