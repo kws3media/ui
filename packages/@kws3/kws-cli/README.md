@@ -38,7 +38,7 @@ For example:
 
 Example Format for project based kws-cli.json files
 ---
-```json
+```js
 {
   "post-scaffold":{ // commands in here will run after project has been scaffolded
     "composer-install":{
@@ -53,7 +53,7 @@ Example Format for project based kws-cli.json files
     "create-somefile": "touch somefile.js",
   },
 
-  "scripts":{ // commands in here will show in the "ecec" subsection, use this to run adhoc scripts, such as migrations etc
+  "scripts":{ // commands in here will show in the "exec" subsection, use this to run adhoc scripts, such as migrations etc
     "migrate": "src/vendor/bin/phpmig migrate",
   }
 }
@@ -61,13 +61,13 @@ Example Format for project based kws-cli.json files
 ---
 ##Supported command formats
 ###One liners
-```json
+```js
   {
     "create-somefile": "touch somefile.js"
   }
 ```
 ###One liners with name and description
-```json
+```js
   {
     "create-somefile": {
       "name": "Generate somefile.js",
@@ -80,7 +80,7 @@ Example Format for project based kws-cli.json files
 There are 3 supported ways of collecting user input before running a command
 #### 1. Input
 Displays a text box to collect user input and makes it available to the command. example:
-```json
+```js
  {
   "migration":{
     "name": "Generate new migration file",
@@ -98,7 +98,7 @@ Displays a text box to collect user input and makes it available to the command.
 ```
 #### 2. Select
 Displays a list of predefined options for user to choose from. example:
-```json
+```js
  {
   "initiate-tests":{
     "name": "Start running test",
@@ -117,7 +117,7 @@ Displays a list of predefined options for user to choose from. example:
 ```
 #### 3. Form
 Sometimes you need to collect more than 1 piece of information to use in a command, use a form in those cases. example:
-```json
+```js
  {
   "fill-package": {
     "description": "Fills the project name, version and SALT etc",
