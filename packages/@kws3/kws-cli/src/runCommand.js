@@ -1,6 +1,6 @@
 const {Select, Confirm, Input, Form, Snippet} = require('enquirer');
 const chalk = require('chalk');
-const {exec, asyncForEach} = require('./utils.js');
+const {exec, isObject, asyncForEach, niceOptions, getKeyFromNiceOption} = require('./utils.js');
 
 
 async function collectAndRun(cmd, name){
@@ -31,11 +31,12 @@ async function collectAndRun(cmd, name){
     _cmd = applyCommand(options, _cmd, result);
 
   }else if(cmd.Select){
-    const options = injectValidation(cmd.Select),
-    prompt = new Select(options);
+    const options = injectValidation(cmd.Select);
+    options.choices = niceOptions(options.choices);
+    const prompt = new Select(options);
 
     var result = await prompt.run();
-    _cmd = applyCommand(options, _cmd, result);
+    _cmd = applyCommand(options, _cmd, getKeyFromNiceOption(result));
   }
 
   console.log(chalk.bold.green.underline('Running ' + name));
@@ -122,10 +123,6 @@ function injectValidation(obj){
   }
 
   return obj;
-}
-
-function isObject(obj){
-  return typeof obj === 'object' && obj !== null;
 }
 
 

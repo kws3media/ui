@@ -74,17 +74,36 @@ function checkDirIsEmpty(dir) {
 
 function niceOptions(manifest){
   var out = [];
-  Object.entries(manifest).forEach(([k, v]) => {
-    var st = '⇨  ' + k;
-    if(v && typeof v.name != 'undefined'){
-      st += ' -> ' + v.name;
-    }
-    if(v && typeof v.description != 'undefined'){
-      st += ' \n  -- ' + v.description;
-    }
-    st += "\n";
-    out.push(st);
-  });
+  if(isObject(manifest) && !Array.isArray(manifest)){
+    Object.entries(manifest).forEach(([k, v]) => {
+      var st = '⇨  ' + k;
+      if(v && typeof v.name != 'undefined'){
+        st += ' -> ' + v.name;
+      }
+      if(v && typeof v.description != 'undefined'){
+        st += ' \n  -- ' + v.description;
+      }
+      st += "\n";
+      out.push(st);
+    });
+  }else{
+    manifest.forEach((v) => {
+      var st;
+      if(typeof v == 'string'){
+        st = '⇨  ' + v;
+      }else if(typeof v.name != 'undefined'){
+        st = '⇨  ' + v.name;
+      }
+      if(v && typeof v.description != 'undefined'){
+        st += ' \n  -- ' + v.description;
+      }else if(v && typeof v.message != 'undefined'){
+        st += ' \n  -- ' + v.message;
+      }
+      st += "\n";
+      out.push(st);
+    });
+  }
+
 
   return out;
 }
@@ -105,6 +124,10 @@ function getValueFromNiceOption(option, value_key, manifest){
   return null;
 }
 
+function isObject(obj){
+  return typeof obj === 'object' && obj !== null;
+}
+
 module.exports = {
   asyncForEach,
   exec,
@@ -112,5 +135,6 @@ module.exports = {
   loadLocalConfig,
   niceOptions,
   getKeyFromNiceOption,
-  getValueFromNiceOption
+  getValueFromNiceOption,
+  isObject
 };
