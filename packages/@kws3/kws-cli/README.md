@@ -59,14 +59,17 @@ Example Format for project based kws-cli.json files
 }
 ```
 ---
-##Supported command formats
-###One liners
+## Supported command formats
+
+### One liners
+
 ```js
   {
     "create-somefile": "touch somefile.js"
   }
 ```
-###One liners with name and description
+### One liners with name and description
+
 ```js
   {
     "create-somefile": {
@@ -76,7 +79,7 @@ Example Format for project based kws-cli.json files
     }
   }
 ```
-###Commands that need to collect user input
+### Commands that need to collect user input
 There are 3 supported ways of collecting user input before running a command
 #### 1. Input
 Displays a text box to collect user input and makes it available to the command. example:
