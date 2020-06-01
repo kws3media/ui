@@ -1,5 +1,6 @@
 const {Select, Confirm, Input, Form, Snippet} = require('enquirer');
 const chalk = require('chalk');
+const path = require('path');
 const {exec, isObject, asyncForEach, niceOptions, getKeyFromNiceOption} = require('./utils.js');
 
 
@@ -97,6 +98,8 @@ function applyCommand(options, command, answer){
     regex = new RegExp('\\$\\{'+key+'\\}', 'g');
     command = command.replace(regex, v);
   });
+
+  command = command.replace(/[\\\/]/g, path.sep);
 
   return command;
 }
