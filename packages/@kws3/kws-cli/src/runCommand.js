@@ -17,6 +17,8 @@ async function collectAndRun(cmd, name){
     description = cmd.description || null;
   }
 
+  _cmd = _cmd.replace(/[\\\/]/g, path.sep);
+
   if(cmd.Input){
     const options = injectValidation(cmd.Input),
     prompt = new Input(options);
@@ -98,8 +100,6 @@ function applyCommand(options, command, answer){
     regex = new RegExp('\\$\\{'+key+'\\}', 'g');
     command = command.replace(regex, v);
   });
-
-  command = command.replace(/[\\\/]/g, path.sep);
 
   return command;
 }
