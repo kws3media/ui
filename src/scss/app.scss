@@ -56,36 +56,36 @@ pre:not([class*="language-"]) {
 /*------------------*/
 
 //Transitions
-@import '../../packages/kws3/transitions/styles.scss';
+@import '../../packages/@kws3/transitions/styles.scss';
 //searchable select
-@import '../../packages/kws3/searchable-select/styles.scss';
+@import '../../packages/@kws3/searchable-select/styles.scss';
 //helpers - Panel
-@import '../../packages/kws3/helpers/components/Panel/styles.scss';
+@import '../../packages/@kws3/helpers/components/Panel/styles.scss';
 //helpers - Loader
-@import '../../packages/kws3/helpers/components/Loader/styles.scss';
+@import '../../packages/@kws3/helpers/components/Loader/styles.scss';
 //helpers - Modal
-@import '../../packages/kws3/helpers/components/Modal/styles.scss';
+@import '../../packages/@kws3/helpers/components/Modal/styles.scss';
 
 @import "../../node_modules/flatpickr/dist/flatpickr";
 //Timepicker
-@import '../../packages/kws3/timepicker/styles.scss';
-@import '../../packages/kws3/datepicker/styles.scss';
+@import '../../packages/@kws3/timepicker/styles.scss';
+@import '../../packages/@kws3/datepicker/styles.scss';
 //Calendar
-@import '../../packages/kws3/calendar/styles.scss';
+@import '../../packages/@kws3/calendar/styles.scss';
 //grid
-@import '../../packages/kws3/datagrid/components/GridView/styles.scss';
+@import '../../packages/@kws3/datagrid/components/GridView/styles.scss';
 //pagination
-@import '../../packages/kws3/datagrid/components/Pagination/styles.scss';
+@import '../../packages/@kws3/datagrid/components/Pagination/styles.scss';
 //colorpicker
-@import '../../packages/kws3/colorpicker/styles.scss';
+@import '../../packages/@kws3/colorpicker/styles.scss';
 //Buttons - Toggle
-@import '../../packages/kws3/controls/components/toggle/styles.scss';
-@import '../../packages/kws3/controls/components/togglebuttons/styles.scss';
-@import '../../packages/kws3/controls/components/togglecontrol/styles.scss';
-@import '../../packages/kws3/controls/components/checkbox/styles.scss';
-@import '../../packages/kws3/controls/components/radio/styles.scss';
-@import '../../packages/kws3/controls/components/fileupload/styles.scss';
+@import '../../packages/@kws3/controls/components/toggle/styles.scss';
+@import '../../packages/@kws3/controls/components/togglebuttons/styles.scss';
+@import '../../packages/@kws3/controls/components/togglecontrol/styles.scss';
+@import '../../packages/@kws3/controls/components/checkbox/styles.scss';
+@import '../../packages/@kws3/controls/components/radio/styles.scss';
+@import '../../packages/@kws3/controls/components/fileupload/styles.scss';
 
 
 //sliding panes
-@import '../../packages/kws3/sliding-panes/styles.scss';
+@import '../../packages/@kws3/sliding-panes/styles.scss';
