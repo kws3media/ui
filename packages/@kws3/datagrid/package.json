@@ -1,12 +1,12 @@
 {
   "name": "@kws3/datagrid",
-  "version": "1.3.13",
+  "version": "1.3.14",
   "description": "Components to display data",
   "main": "index.js",
   "dependencies": {
-    "@kws3/helpers": "^0.5.1",
-    "@kws3/searchable-select": "^0.1.7",
-    "@kws3/transitions": "^1.0.0",
+    "@kws3/helpers": "^0.5.2",
+    "@kws3/searchable-select": "^0.1.8",
+    "@kws3/transitions": "^1.0.1",
     "svelte-transitions": "^1.1.1"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",

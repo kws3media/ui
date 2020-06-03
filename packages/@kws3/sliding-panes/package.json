@@ -1,6 +1,6 @@
 {
   "name": "@kws3/sliding-panes",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Sliding panes component for Svelte applications",
   "main": "index.js",
   "scripts": {
