@@ -1,10 +1,10 @@
 {
   "name": "@kws3/searchable-select",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A Searchable Select component for Svelte applications",
   "main": "index.js",
   "dependencies": {
-    "@kws3/keyboard-event-handlers": "0.0.4",
+    "@kws3/keyboard-event-handlers": "^0.0.5",
     "@kws3/utils": "^0.5.2"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
