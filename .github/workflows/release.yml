@@ -1,7 +1,7 @@
 on: ['deployment', 'repository_dispatch']
 jobs:
   deploy:
-    name: Setuo build and deploy
+    name: Setup build and deploy
     runs-on: ubuntu-latest
     steps:
     - name: Public IP
