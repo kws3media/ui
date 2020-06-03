@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@kws3/utils": "^0.0.1"
+    "@kws3/utils": "^0.5.2"
   },
   "repository": "github:kws3-team/storybooks-frontend",
   "demo_url": "https://ui.kws3.media/?selectedKind=Standalone%SlidingPanes&selectedStory=SlidingPanes",
