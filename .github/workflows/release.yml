@@ -47,7 +47,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.6'
-    - run: npm ci
+    - run: npm install
     - run: npm run bootstrap
     - run: npm run build:dist
     - run: npm run deploy:dist
