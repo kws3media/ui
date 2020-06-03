@@ -8,7 +8,7 @@ A full page Calendar component for Svelte apps.
 
 ## Import SCSS
 
-`@import "../../node_modules/@kws3/calendar/styles";`
+`@import "../../node_modules/@kws3/calendar/styles.scss";`
 
 ## Default SCSS variables
 

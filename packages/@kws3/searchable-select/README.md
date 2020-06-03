@@ -8,7 +8,7 @@ A Searchable Select component for Svelte apps.
 
 ## Import SCSS
 
-`@import "../../node_modules/@kws3/searchable-select/styles";`
+`@import "../../node_modules/@kws3/searchable-select/styles.scss";`
 
 ## Default SCSS variables
 

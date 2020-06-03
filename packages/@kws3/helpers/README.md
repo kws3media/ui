@@ -11,7 +11,7 @@ Import component:
 `import { Panel } from '@kws3/helpers';`
 
 Import Sass:
-`@import '../node_modules/@kws3/helpers/components/Panel/styles';`
+`@import '../node_modules/@kws3/helpers/components/Panel/styles.scss';`
 
 Sass variables with default values:
 
@@ -29,7 +29,7 @@ Import component:
 `import { Loader } from '@kws3/helpers';`
 
 Import Sass:
-`@import '../node_modules/@kws3/helpers/components/Loader/styles';`
+`@import '../node_modules/@kws3/helpers/components/Loader/styles.scss';`
 
 Sass variables with default values:
 
