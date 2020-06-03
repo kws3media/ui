@@ -1,6 +1,6 @@
 {
   "packages": [
-    "packages/@kws3/*"
+    "packages/kws3/*"
   ],
   "version": "independent"
 }
