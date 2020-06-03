@@ -54,5 +54,6 @@ jobs:
 
 
     - name: remove whitelisted ip
+      if: ${{ always() }}
       run: doctl compute firewall remove-rules d82b3d3e-ded9-4dec-9e26-2769742ddb3e --inbound-rules protocol:tcp,ports:22,address:${{ steps.ip.outputs.ipv4 }}
 
