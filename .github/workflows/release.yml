@@ -47,8 +47,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.6'
-    - run: npm install
-    - run: npm run bootstrap
+    - run: npm ci
+    - run: npx lerna bootstrap --hoist --no-ci
     - run: npm run build:dist
     - run: npm run deploy:dist
 
