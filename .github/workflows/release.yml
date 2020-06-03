@@ -47,6 +47,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.6.0'
+    - run: cat ./.ftppass
     - run: npm ci
     - run: npx lerna bootstrap --hoist --no-ci
     - run: npm run build:dist
