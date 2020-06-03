@@ -29,7 +29,7 @@ jobs:
       with:
         path: ./.ftppass
         contents: |
-          echo '{"livekey":{"username": "root","passphrase": "","keyLocation": "id_rsa"}}'
+          {"livekey":{"username": "root","passphrase": "","keyLocation": "id_rsa"}}
         write-mode: overwrite
 
     - name: Write npmrc file
@@ -48,6 +48,7 @@ jobs:
       with:
         node-version: '10.6.0'
     - run: cat ./.ftppass
+    - run: cat ./.npmrc
     - run: npm ci
     - run: npx lerna bootstrap --hoist --no-ci
     - run: npm run build:dist
