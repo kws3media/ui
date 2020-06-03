@@ -16,3 +16,29 @@ jobs:
     - name: whitelist ip
       run: doctl compute firewall add-rules d82b3d3e-ded9-4dec-9e26-2769742ddb3e --inbound-rules protocol:tcp,ports:22,address:${{ steps.ip.outputs.ipv4 }}
     
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{secrets.DEPLOY_KEY}}
+        
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        ref: master
+        
+    - name: write ftp pass file
+      uses: DamianReeves/write-file-action
+      with:
+        path: ./.ftppass
+        contents: |
+          echo '{"livekey":{"username": "root","passphrase": "","keyLocation": "id_rsa"}}'
+        write-mode: append
+        
+    - name: test file availability
+      shell: bash
+      run: |
+        ls -la
+        
+    - name: remove whitelisted ip
+      run: doctl compute firewall remove-rules d82b3d3e-ded9-4dec-9e26-2769742ddb3e --inbound-rules protocol:tcp,ports:22,address:${{ steps.ip.outputs.ipv4 }}
+    
