@@ -1,39 +1,58 @@
-<Layout
-  title="Sliding Panes"
-  subtitle="Sliding panes component for Svelte applications"
-  {pkg}
->
+<Layout title="Sliding Panes" subtitle="Sliding panes component for Svelte applications" {pkg}>
 
   <div class="columns">
-    <div class="column is-6">
+    <div class="column">
       <h2 class="title is-4">Basic example</h2>
-      <div style="height:100%;width:100%;">
-        <SlidingPaneSet style="height:{pane_height}px" >
+      <Panel>
+        <Message color="grey" inner_style="border-width:0" style="margin: -1rem -1.3rem -0.8rem;">
+          <div id="stepsHolder">
+            <ul class="steps has-content-centered is-horizontal">
+              <!-- {#each viewState.views as viewName, idx}
+              <li class="steps-segment {viewState.current == viewName ? 'is-active' : ''}" on:click="jumpToPanel(viewName)">
+                <span class="steps-marker">{idx + 1}</span>
+                <div class="steps-content">
+                  <p>{viewState.titles[idx]}</p>
+                </div>
+              </li>
+            {/each} -->
+            </ul>
+          </div>
+        </Message>
+        <div style="height:100%;width:100%;">
+          <SlidingPaneSet style="height:{pane_height}px">
 
-          <SlidingPane active={true} v_center={true} h_center={true} track_height on:heightChange>
-            <div class="buttons">
-              <button class="button is-info">Info</button>
-              <button class="button is-success">Success</button>
-              <button class="button is-warning">Warning</button>
-              <button class="button is-danger">Danger</button>
+            <SlidingPane active={true} v_center={true} h_center={true} track_height on:heightChange>
+              <div class="buttons">
+                <button class="button is-info">Info</button>
+                <button class="button is-success">Success</button>
+                <button class="button is-warning">Warning</button>
+                <button class="button is-danger">Danger</button>
+              </div>
+            </SlidingPane>
+
+            <SlidingPane active={false} track_height on:heightChange>
+
+            </SlidingPane>
+
+            <SlidingPane active={false} track_height on:heightChange>
+
+            </SlidingPane>
+
+          </SlidingPaneSet>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="buttons is-right">
+              <button class="button is-info" on:click="changeStep(-1)">
+                <Icon icon='arrow-left' />
+              </button>
+              <button class="button is-success" on:click="changeStep(+1)">
+                <Icon icon='arrow-right' />
+              </button>
             </div>
-          </SlidingPane>
-
-          <SlidingPane active={false} track_height on:heightChange>
-            <div class="buttons">
-              <button class="button is-info">Info</button>
-              <button class="button is-success">Success</button>
-              <button class="button is-warning">Warning</button>
-              <button class="button is-danger">Danger</button>
-            </div>
-          </SlidingPane>
-
-          <SlidingPane active={false} track_height on:heightChange>
-
-          </SlidingPane>
-
-        </SlidingPaneSet>
-      </div>
+          </div>
+        </div>
+      </Panel>
       <br><br>
 
 
@@ -45,13 +64,13 @@
   <div class="columns">
     <div class="column">
       <Code>{ ` `}</Code>
-        <h2 class="title is-4">Usage</h2>
-        <p>Import the component:</p>
-        <Code lang="js">{ `import {SlidingPane, SlidingPaneSet} from '@kws3/sliding-panes'; `} </Code>
-        <p>Import the SCSS:</p>
-        <Code lang="css">@import 'path/to/node_modules/@kws3/sliding-panes/styles.scss';</Code>
+      <h2 class="title is-4">Usage</h2>
+<p>Import the component:</p>
+<Code lang="js">{ `import {SlidingPane, SlidingPaneSet} from '@kws3/sliding-panes'; `} </Code>
+<p>Import the SCSS:</p>
+<Code lang="css">@import 'path/to/node_modules/@kws3/sliding-panes/styles.scss';</Code>
 
-      </div>
+    </div>
   </div>
 
 </Layout>
@@ -60,24 +79,41 @@
   import Layout from '../layouts/Layout.html';
   import Code from '../helpers/Code.html';
 
-  import {SlidingPane, SlidingPaneSet} from '@kws3/sliding-panes';
+  import { SlidingPane, SlidingPaneSet } from '@kws3/sliding-panes';
   import pkg from '@kws3/sliding-panes/package.json';
+  import { Panel, Message, Icon } from '@kws3/helpers';
 
 
   export default {
     components: {
-      Layout, Code, SlidingPane, SlidingPaneSet
+      Layout, Code, SlidingPane, SlidingPaneSet,
+      Panel, Message, Icon
     },
     data() {
       return {
-        pane_height: 225,
+        pane_height: 300,
+        steps:[
+          {key:'step_one', name: 'Step One'},
+          {key:'step_two', name: 'Step Two'},
+          {key:'step_three', name: 'Step Three'},
+          {key:'step_four', name: 'Step Four'}
+        ],
+        active_index: 0,
         pkg
       };
     },
-    oncreate(){
+    oncreate() {
       this.on('heightChange', ({ height }) => {
         this.set({ pane_height: height })
       });
+    },
+    methods: {
+      changeStep(){
+        let {steps, active_index} = this.get();
+        let max = steps.length - 1;
+        active_index = Math.max(0, Math.min(active_index + i, max));
+        this.set({active_index})
+      }
     },
   };
 </script>
