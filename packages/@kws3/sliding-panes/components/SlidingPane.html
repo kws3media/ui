@@ -1,19 +1,13 @@
 <div bind:clientHeight="_height" class="sliding-pane {v_center ? 'v-centered' : ''} {h_center ? 'h-centered' : ''} {active ? 'is-active' : ''} {class}" style="{style}">
   <div ref:slideInner class="sliding-pane-inner {v_center ? 'v-centered' : ''} {h_center ? 'h-centered' : ''}">
-    <Panel>
-      <slot></slot>
-    </Panel>
+    <slot></slot>
   </div>
 </div>
 
 <script>
   import {rAF} from '@kws3/utils';
-  import {Panel} from '@kws3/helpers';
 
   export default {
-    components:{
-      Panel
-    },
     data(){
       return {
         active: false,
