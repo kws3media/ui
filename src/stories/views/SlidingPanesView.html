@@ -7,21 +7,33 @@
   <div class="columns">
     <div class="column is-6">
       <h2 class="title is-4">Basic example</h2>
-      <SlidingPaneSet style="height:500px">
+      <div style="height:100%;width:100%;">
+        <SlidingPaneSet style="height:{pane_height}px" >
 
-        <SlidingPane active={true} track_height on:heightChange>
+          <SlidingPane active={true} v_center={true} h_center={true} track_height on:heightChange>
+            <div class="buttons">
+              <button class="button is-info">Info</button>
+              <button class="button is-success">Success</button>
+              <button class="button is-warning">Warning</button>
+              <button class="button is-danger">Danger</button>
+            </div>
+          </SlidingPane>
 
-        </SlidingPane>
+          <SlidingPane active={false} track_height on:heightChange>
+            <div class="buttons">
+              <button class="button is-info">Info</button>
+              <button class="button is-success">Success</button>
+              <button class="button is-warning">Warning</button>
+              <button class="button is-danger">Danger</button>
+            </div>
+          </SlidingPane>
 
-        <SlidingPane active={false} track_height on:heightChange>
+          <SlidingPane active={false} track_height on:heightChange>
 
-        </SlidingPane>
+          </SlidingPane>
 
-        <SlidingPane active={false} track_height on:heightChange>
-
-        </SlidingPane>
-
-      </SlidingPaneSet>
+        </SlidingPaneSet>
+      </div>
       <br><br>
 
 
@@ -58,22 +70,14 @@
     },
     data() {
       return {
-        brands: [
-          {id: 1, name: "LG"},
-          {id: 2, name: "Samsung"},
-          {id: 3, name: "Xiaomi"},
-          {id: 4, name: "Nokia"},
-          {id: 5, name: "Oppo"},
-          {id: 6, name: "Vivo"},
-          {id: 7, name: "Huawei"},
-          {id: 8, name: "Sony"},
-          {id: 9, name: "HTC"},
-          {id: 10, name: "Blackberry"},
-          {id: 11, name: "Apple"}
-        ],
-        selected_brand: '',
+        pane_height: 225,
         pkg
       };
-    }
+    },
+    oncreate(){
+      this.on('heightChange', ({ height }) => {
+        this.set({ pane_height: height })
+      });
+    },
   };
 </script>
