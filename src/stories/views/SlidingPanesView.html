@@ -7,21 +7,21 @@
         <Message color="grey" inner_style="border-width:0" style="margin: -1rem -1.3rem -0.8rem;">
           <div id="stepsHolder">
             <ul class="steps has-content-centered is-horizontal">
-              <!-- {#each viewState.views as viewName, idx}
-              <li class="steps-segment {viewState.current == viewName ? 'is-active' : ''}" on:click="jumpToPanel(viewName)">
+              {#each steps as step, idx}
+              <li class="steps-segment {active_index == idx ? 'is-active' : ''}">
                 <span class="steps-marker">{idx + 1}</span>
                 <div class="steps-content">
-                  <p>{viewState.titles[idx]}</p>
+                  <p>{steps[active_index].name}</p>
                 </div>
               </li>
-            {/each} -->
+              {/each}
             </ul>
           </div>
         </Message>
         <div style="height:100%;width:100%;">
           <SlidingPaneSet style="height:{pane_height}px">
 
-            <SlidingPane active={true} v_center={true} h_center={true} track_height on:heightChange>
+            <SlidingPane active={steps[active_index].key == 'step_one'} v_center={true} h_center={true} track_height on:heightChange>
               <div class="buttons">
                 <button class="button is-info">Info</button>
                 <button class="button is-success">Success</button>
@@ -30,12 +30,16 @@
               </div>
             </SlidingPane>
 
-            <SlidingPane active={false} track_height on:heightChange>
-
+            <SlidingPane active={steps[active_index].key == 'step_two'} v_center={true} h_center={true} track_height on:heightChange>
+              <Message>
+                <p class="title is-3">Ah, You wont believe that is 2nd step</p>
+              </Message>
             </SlidingPane>
 
-            <SlidingPane active={false} track_height on:heightChange>
-
+            <SlidingPane active={steps[active_index].key == 'step_three'} v_center={true} h_center={true} track_height on:heightChange>
+              <Message color="warning">
+                <p class="title is-3">Oh, noo, You reached at 3rd step</p>
+              </Message>
             </SlidingPane>
 
           </SlidingPaneSet>
@@ -91,12 +95,11 @@
     },
     data() {
       return {
-        pane_height: 300,
+        pane_height: 400,
         steps:[
           {key:'step_one', name: 'Step One'},
           {key:'step_two', name: 'Step Two'},
-          {key:'step_three', name: 'Step Three'},
-          {key:'step_four', name: 'Step Four'}
+          {key:'step_three', name: 'Step Three'}
         ],
         active_index: 0,
         pkg
@@ -108,11 +111,11 @@
       });
     },
     methods: {
-      changeStep(){
+      changeStep(i){
         let {steps, active_index} = this.get();
-        let max = steps.length - 1;
-        active_index = Math.max(0, Math.min(active_index + i, max));
-        this.set({active_index})
+        let max = steps.length;
+        let _index = Math.max(0, Math.min(active_index + i, max - 1 ));
+        this.set({active_index: _index})
       }
     },
   };
