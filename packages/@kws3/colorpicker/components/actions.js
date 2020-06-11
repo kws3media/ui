@@ -592,7 +592,7 @@ export default function (node) {
   self.colorpicker = new colorPicker(node);
 
 
-  self.on('state', function ({ changed, current }) {
+  self.on('update', function ({ changed, current }) {
     if (changed.color) {
       if (setting) return;
       self.colorpicker.set('#' + current.color);
