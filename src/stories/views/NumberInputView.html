@@ -1,0 +1,79 @@
+<Layout
+  title="NumberInput"
+  subtitle="Custom clickable number input"
+  {pkg}
+>
+
+  <h2 class="title is-4">Example</h2>
+  <p>Use <strong>Knobs</strong> to check out all available options on this component</p>
+  <div class="columns">
+    <div class="column is-4">
+      <Code>{ `<NumberInput />`}</Code>
+      <NumberInput {disabled} {size} on:change />
+    </div>
+    <div class="column is-4">
+      <Code>{ `min={5}
+max={10}
+step={0.5}`}</Code>
+      <NumberInput {disabled} {size} min={5} max={10} step={0.5} on:change />
+    </div>
+    <div class="column is-4">
+      <Code>{ `minus_icon="arrow-down"
+minus_button_color="warning"
+plus_icon="chevron-up"
+plus_icon_color=""
+plus_button_color="success"`}</Code>
+      <NumberInput
+        {disabled}
+        {size}
+        minus_icon="arrow-down"
+        minus_button_color="warning"
+        plus_icon="chevron-up"
+        plus_icon_color=""
+        plus_button_color="success"
+        on:change
+      />
+    </div>
+  </div>
+
+
+  <Code>{ `<NumberInput on:change bind:value="some value" size="${size}" disabled="{${disabled}}" />`}</Code>
+
+  <hr>
+
+  <hr>
+
+  <h2 class="title is-4">Usage</h2>
+  <p>Import the component:</p>
+  <Code lang="js">{ `import { NumberInput } from '@kws3/controls'; `} </Code>
+
+
+
+</Layout>
+
+
+<script>
+  import Layout from '../layouts/Layout.html';
+  import Code from '../helpers/Code.html';
+
+  import { NumberInput } from '@kws3/controls';
+  import { Message } from '@kws3/helpers';
+
+  import pkg from '@kws3/controls/package.json';
+
+  export default {
+    components: {
+      Layout, Code, NumberInput, Message
+    },
+    data() {
+      return {
+        pkg,
+      };
+    },
+    oncreate(){
+    },
+
+    methods: {
+    }
+  };
+</script>

@@ -1,0 +1,80 @@
+<div class="field has-addons">
+  <div class="control">
+    <button type="button" class="button is-{size} is-{minus_button_color}" style="box-shadow:none;" on:click="count(-1)" disabled="{disabled || value <= min}">
+      <Icon icon="{minus_icon}" size="small" icon_class="has-text-{minus_icon_color}"/>
+    </button>
+  </div>
+  <div class="control is-expanded">
+    <input class="input has-text-centered is-{size}" {disabled} type="number" min="{min}" max="{max}" step="{step}" bind:value on:change />
+  </div>
+  <div class="control">
+    <button type="button" class="button is-{size} is-{plus_button_color}" style="box-shadow:none;" on:click="count(+1)" disabled="{disabled || value>=max}">
+      <Icon icon="{plus_icon}" size="small" icon_class="has-text-{plus_icon_color}"/>
+    </button>
+  </div>
+</div>
+
+<style>
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  input[type=number]::-moz-inner-spin-button,
+  input[type=number]::-moz-outer-spin-button {
+      -moz-appearance: none;
+      margin: 0;
+  }
+  input[type=number]::inner-spin-button,
+  input[type=number]::outer-spin-button {
+      appearance: none;
+      margin: 0;
+  }
+</style>
+
+<script>
+  import {Icon} from '@kws3/helpers';
+
+  export default {
+    components: {
+      Icon
+    },
+    data() {
+      return {
+        size:'',
+        value: null,
+        step: 1,
+        min: 0,
+        max: 100,
+        disabled: false,
+        minus_icon:'minus',
+        minus_icon_color:'danger',
+        minus_button_color: '',
+        plus_icon:'plus',
+        plus_icon_color:'success',
+        plus_button_color: '',
+      }
+    },
+    oncreate(){
+      this.on('state', ({changed, current}) => {
+        if(changed.value){
+          let {value, min, max} = current;
+
+          if(value<min) value=min;
+          if(value>max) value=max;
+
+          this.set({value});
+        }
+      });
+    },
+    methods:{
+      count(i){
+        let {step, value} = this.get();
+        value = (Number(value) + (i*step));
+        if(step%1 != 0) value = value.toFixed(1);
+        this.set({value});
+        this.fire('change');
+      }
+    }
+  }
+</script>

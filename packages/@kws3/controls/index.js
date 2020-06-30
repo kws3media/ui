@@ -8,5 +8,7 @@ export { default as Checkbox } from './components/Checkbox/Checkbox.html';
 
 export { default as Radio } from './components/Radio/Radio.html';
 
+export { default as NumberInput } from './components/NumberInput/NumberInput.html';
+
 export { default as FileUpload } from './components/FileUpload/FileUpload.html';
 
