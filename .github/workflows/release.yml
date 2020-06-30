@@ -4,11 +4,6 @@ jobs:
     name: Setup build and deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-      
     - name: Public IP
       id: ip
       uses: haythem/public-ip@v1
