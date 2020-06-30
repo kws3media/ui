@@ -5,7 +5,7 @@
     </button>
   </div>
   <div class="control is-expanded">
-    <input class="input has-text-centered is-{size}" {disabled} type="number" min="{min}" max="{max}" step="{step}" bind:value on:change />
+    <input class="input has-text-centered is-{size}" {disabled} type="number" min="{min}" max="{max}" step="{step}" bind:value on:change on:input="validateInput()"/>
   </div>
   <div class="control">
     <button type="button" class="button is-{size} is-{plus_button_color}" style="box-shadow:none;" on:click="count(+1)" disabled="{disabled || value>=max}">
@@ -56,16 +56,16 @@
       }
     },
     oncreate(){
-      this.on('state', ({changed, current}) => {
-        if(changed.value){
-          let {value, min, max} = current;
+      // this.on('state', ({changed, current}) => {
+      //   if(changed.value){
+      //     let {value, min, max} = current;
 
-          if(value < min) value = min;
-          if(value > max) value = max;
+      //     if(value < min) value = min;
+      //     if(value > max) value = max;
 
-          this.set({value});
-        }
-      });
+      //     this.set({value});
+      //   }
+      // });
     },
     methods:{
       count(i){
@@ -74,6 +74,14 @@
         if(step % 1 != 0) value = value.toFixed(1);
         this.set({value});
         this.fire('change');
+      },
+      validateInput(){
+        let {value, min, max} = this.get();
+
+        if(value < min) value = min;
+        if(value > max) value = max;
+
+        this.set({value});
       }
     }
   }
