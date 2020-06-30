@@ -60,8 +60,8 @@
         if(changed.value){
           let {value, min, max} = current;
 
-          if(value<min) value=min;
-          if(value>max) value=max;
+          if(value < min) value = min;
+          if(value > max) value = max;
 
           this.set({value});
         }
@@ -70,8 +70,8 @@
     methods:{
       count(i){
         let {step, value} = this.get();
-        value = (Number(value) + (i*step));
-        if(step%1 != 0) value = value.toFixed(1);
+        value = (Number(value) + (i * step));
+        if(step % 1 != 0) value = value.toFixed(1);
         this.set({value});
         this.fire('change');
       }
