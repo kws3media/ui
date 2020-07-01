@@ -68,10 +68,13 @@
         _has_focus: 0
       }
     },
-    onstate({changed, current}){
-      if(changed.value && !current._has_focus){
-        this.validateInput();
-      }
+    oncreate(){
+      this.on('state', ({changed, current}) => {
+        if(changed.value && !current._has_focus){
+          this.validateInput();
+        }
+      });
+      this.validateInput();
     },
     methods:{
       isFocused(){
