@@ -4,8 +4,7 @@
   "description": "Helper Controls for Svelte",
   "main": "index.js",
   "dependencies": {
-    "@kws3/helpers": "^0.5.2",
-    "@kws3/utils": "^0.5.2"
+    "@kws3/helpers": "^0.5.2"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
   "demo_url": "https://ui.kws3.media/?selectedKind=Forms%7COther%20Controls",

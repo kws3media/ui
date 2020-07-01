@@ -15,7 +15,13 @@
       <Code>{ `min={5}
 max={10}
 step={0.5}`}</Code>
-      <NumberInput {disabled} {size} min={5} max={10} step={0.5} on:change />
+      <NumberInput {disabled} {size} bind:value='a_number' min={5} max={10} step={0.5} on:change />
+      <div class="field">
+        <label class="label">For testing external binding</label>
+        <div class="control">
+          <input type="number" bind:value='a_number' />
+        </div>
+      </div>
     </div>
     <div class="column is-4">
       <Code>{ `minus_icon="arrow-down"
@@ -68,6 +74,7 @@ plus_button_color="success"`}</Code>
     data() {
       return {
         pkg,
+        a_number: 6
       };
     },
     oncreate(){
