@@ -92,6 +92,7 @@
         if(value > max) value = max;
 
         this.set({value});
+        this.fire('change');
       }
     }
   }
