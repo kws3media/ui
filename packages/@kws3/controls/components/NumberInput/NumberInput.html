@@ -14,7 +14,6 @@
       step="{step}"
       {disabled}
       bind:value
-      on:change
       on:blur="validateInput()"
     />
   </div>
@@ -45,7 +44,6 @@
 
 <script>
   import {Icon} from '@kws3/helpers';
-  import {debounce} from '@kws3/utils';
 
   export default {
     components: {
@@ -69,9 +67,12 @@
     },
     oncreate(){
       let self = this;
-      self.refs.input.oncut = self.refs.input.onpaste = (e) => {
-        //e.preventDefault();
-        self.validateInput();
+
+      self.refs.input.onpaste = (e) => {
+        e.preventDefault();
+        let {min, max} = self.get();
+        let value = e.clipboardData.getData('text');
+        this.validateInput(value);
       };
     },
     methods:{
@@ -83,8 +84,10 @@
         this.set({value});
         this.fire('change');
       },
-      validateInput(){
+      validateInput(val){
         let {value, min, max} = this.get();
+
+        value = val || value;
 
         if(value < min) value = min;
         if(value > max) value = max;
