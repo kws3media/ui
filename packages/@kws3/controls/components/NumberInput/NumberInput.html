@@ -70,7 +70,6 @@
 
       self.refs.input.onpaste = (e) => {
         e.preventDefault();
-        let {min, max} = self.get();
         let value = e.clipboardData.getData('text');
         this.validateInput(value);
       };
