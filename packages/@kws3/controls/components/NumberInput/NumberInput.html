@@ -6,6 +6,7 @@
   </div>
   <div class="control is-expanded">
     <input
+      ref:input
       class="input has-text-centered is-{size} is-{((value<min) || (value>max)) ? 'danger' : ''}"
       type="number"
       min="{min}"
@@ -65,6 +66,13 @@
         plus_icon_color:'success',
         plus_button_color: '',
       }
+    },
+    oncreate(){
+      let self = this;
+      self.refs.input.oncut = self.refs.input.onpaste = (e) => {
+        e.preventDefault();
+        self.validateInput();
+      };
     },
     methods:{
       count(i){
