@@ -70,7 +70,7 @@
     oncreate(){
       let self = this;
       self.refs.input.oncut = self.refs.input.onpaste = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         self.validateInput();
       };
     },
