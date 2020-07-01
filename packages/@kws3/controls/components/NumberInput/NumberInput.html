@@ -69,7 +69,7 @@
     },
     onstate({changed, current}){
       if(changed.value && !current._has_focus){
-        this.validateInput(1);
+        this.validateInput();
       }
     },
     methods:{
@@ -88,7 +88,7 @@
         this.set({value});
         this.fire('change');
       },
-      validateInput(from_state){
+      validateInput(){
         let {value, min, max} = this.get();
 
         if(typeof value == 'undefined' || value === null) value = min;
