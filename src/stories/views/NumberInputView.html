@@ -10,6 +10,8 @@
     <div class="column is-4">
       <Code>{ `<NumberInput />`}</Code>
       <NumberInput {disabled} {size} on:change />
+      <Code>{ `<NumberInput fullwidth={true} />`}</Code>
+      <NumberInput fullwidth={true} {disabled} {size} on:change />
     </div>
     <div class="column is-4">
       <Code>{ `min={5}
@@ -17,7 +19,7 @@ max={10}
 step={0.5}`}</Code>
       <NumberInput {disabled} {size} bind:value='a_number' min={5} max={10} step={0.5} on:change />
       <div class="field">
-        <label class="label">For testing external binding</label>
+        <label>For testing external binding validation:</label>
         <div class="control">
           <input type="number" bind:value='a_number' />
         </div>
