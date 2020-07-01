@@ -6,7 +6,7 @@
   </div>
   <div class="control is-expanded">
     <input
-      class="input has-text-centered is-{size}"
+      class="input has-text-centered is-{size} is-{((value<min) || (value>max)) ? 'danger' : ''}"
       type="number"
       min="{min}"
       max="{max}"
