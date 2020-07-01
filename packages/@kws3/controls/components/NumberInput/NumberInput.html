@@ -68,7 +68,8 @@
     },
     methods:{
       count(i){
-        let {step, value} = this.get();
+        let {step, value, min} = this.get();
+        if(typeof value == 'undefined' || value === null) value = min;
         value = (Number(value) + (i * step));
         if(step % 1 != 0) value = value.toFixed(1);
         this.set({value});
