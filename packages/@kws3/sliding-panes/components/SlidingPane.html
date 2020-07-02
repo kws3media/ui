@@ -48,6 +48,9 @@
             this.pollForRender();
           }else{
             rAF(() => {
+              if(!this.refs.slideInner || typeof this.refs.slideInner == 'undefined'){
+                return;
+              }
               var h1 = this.refs.slideInner.scrollHeight,
               h2 = this.refs.slideInner.clientHeight;
               this.fire('heightChange', {height: Math.max(h1, h2)});
