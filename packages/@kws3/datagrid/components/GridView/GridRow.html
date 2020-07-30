@@ -1,5 +1,5 @@
 {#if transition}
-  <tr class="transible" transition:fly="{x:20, delay:(25*row_index)}">
+  <tr class="transible" transition:fly="{x:20, delay:(25*row_index)}" on:click="fire('rowClick', row)">
     {#each column_keys as column}
       {#if isVisible(column)}
         <CellHOC
@@ -15,7 +15,7 @@
     {/each}
   </tr>
 {:else}
-  <tr>
+  <tr on:click="fire('rowClick', row)">
     {#each column_keys as column}
       {#if isVisible(column)}
         <CellHOC
