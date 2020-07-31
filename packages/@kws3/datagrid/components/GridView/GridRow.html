@@ -1,5 +1,5 @@
 {#if transition}
-  <tr class="transible" transition:fly="{x:20, delay:(25*row_index)}" on:click="fire('rowClick', row)">
+  <tr class="transible" transition:fly="{x:20, delay:(25*row_index)}" on:click="rowClick(this)">
     {#each column_keys as column}
       {#if isVisible(column)}
         <CellHOC
@@ -15,7 +15,7 @@
     {/each}
   </tr>
 {:else}
-  <tr on:click="fire('rowClick', row)">
+  <tr on:click="rowClick(this)">
     {#each column_keys as column}
       {#if isVisible(column)}
         <CellHOC
@@ -47,6 +47,7 @@
         row_index:0,
         row:{},
         isVisible:{},
+        clickableRows: false,
         transforms:{},
         classNames:{},
         styles:{},
@@ -65,6 +66,15 @@
       this.on('_forwardEvent', (e) => {
         this.fire(e.name, e.event);
       });
+    },
+    methods:{
+      rowClick(el){
+        let {clickableRows, row} = this.get();
+        if(clickableRows){
+          el && el.classList.add('is-selected');
+          this.fire('rowClick', {comp: this, row});
+        }
+      }
     }
   }
 
