@@ -1,10 +1,10 @@
-<div class="message is-{color} is-{size}" style="{style}">
+<div class="message is-{color} is-{size} {classes}" style="{style}">
   {#if title || has_title}
-    <div class="message-header">
+    <div class="message-header {header_classes}">
       <slot name="title"><p>{title}</p></slot>
     </div>
   {/if}
-  <div class="message-body" style="{inner_style}">
+  <div class="message-body {inner_classes}" style="{inner_style}">
     <slot></slot>
   </div>
 </div>
@@ -17,6 +17,9 @@
         color:'info',
         style:'',
         inner_style:'',
+        classes:'',
+        header_classes:'',
+        inner_classes:'',
         title: null,
         has_title: false
       }
