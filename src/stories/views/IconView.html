@@ -53,6 +53,8 @@
   import Layout from '../layouts/Layout.html';
   import Code from '../helpers/Code.html';
 
+  import store from '../store.js';
+
   import { Icon, Message } from '@kws3/helpers';
   import pkg from '@kws3/helpers/package.json';
 
@@ -62,6 +64,7 @@
     components: {
       Layout, Code, Icon, Message
     },
+    store: () => store,
     data() {
       return {
         pkg
