@@ -1,5 +1,5 @@
-<span class="icon {size ? 'is-'+size : ''} {color ? 'has-text-'+color : ''} {icon_class}">
-  <i class="{familyClass}{icon} {internal_size} {fa_class}" style="{fa_style}"></i>
+<span class="icon {size ? 'is-'+size : ''} {color ? 'has-text-'+color : ''} {icon_class}" style="{icon_style}">
+  <i class="{familyClass}{icon} {internal_size} {_used_inner_class}" style="{_used_inner_style}"></i>
 </span>
 
 <style>
@@ -25,12 +25,20 @@ export default {
       color: null,
       icon: '',
       icon_class:'',
-      fa_class: '',
-      fa_style:'',
+      fa_class: null, // @deprecated
+      fa_style: null, // @deprecated
+      inner_class: null,
+      inner_style: null,
       family: null
     }
   },
   computed:{
+    _used_inner_class({inner_class, fa_class}){
+      return inner_class || fa_class || '';
+    },
+    _used_inner_style({inner_style, fa_style}){
+      return inner_style || fa_style || '';
+    },
     familyClass({usedFamily}){
       switch(usedFamily){
         case 'fa':
