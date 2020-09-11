@@ -29,7 +29,8 @@ export default {
       fa_style: null, // @deprecated
       inner_class: null,
       inner_style: null,
-      family: null
+      family: null,
+      _system_settings: null
     }
   },
   computed:{
@@ -49,14 +50,14 @@ export default {
         break;
       }
     },
-    usedFamily({$settings, family}){
+    usedFamily({_system_settings, family}){
       if(family){
         return family;
       }
 
       let _family = 'fa';
-      if($settings && typeof $settings.icon_family != 'undefined' && $settings.icon_family){
-        return $settings.icon_family;
+      if(_system_settings && typeof _system_settings.icon_family != 'undefined' && _system_settings.icon_family){
+        return _system_settings.icon_family;
       }
       return _family;
     },
@@ -75,6 +76,12 @@ export default {
           return 'fa-lg'
         break;
       }
+    }
+  },
+  oncreate(){
+    if(this.store){
+      let {system_settings} = this.store.get();
+      this.set({_system_settings: system_settings});
     }
   }
 }

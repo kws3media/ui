@@ -25,6 +25,27 @@
 
   <hr class="is-small" />
 
+  <h2 class="title is-4 has-text-centered">iconscout.com/unicons</h2>
+
+  <div class="columns">
+    <div class="column is-4">
+      <div class="columns is-mobile is-centered is-multiline">
+        <div class="column is-5 has-text-centered"><Icon family="unicons" icon="check" {size} {color} /></div>
+        <div class="column is-5 has-text-centered"><Icon family="unicons" icon="plus" {size} {color} /></div>
+        <div class="column is-5 has-text-centered"><Icon family="unicons" icon="minus-circle" {size} {color} /></div>
+        <div class="column is-5 has-text-centered"><Icon family="unicons" icon="save" {size} {color} /></div>
+      </div>
+    </div>
+    <div class="column">
+      <Code>{ `<Icon family="unicons" icon="check" color="${color}" size="${size}" />
+<Icon family="unicons" icon="plus" color="${color}" size="${size}" />
+<Icon family="unicons" icon="minus-circle" color="${color}" size="${size}" />
+<Icon family="unicons" icon="save" color="${color}" size="${size}" /> ` }</Code>
+    </div>
+  </div>
+
+  <hr class="is-small" />
+
   <h2 class="title is-4 has-text-centered">css.gg</h2>
 
   <div class="columns">
@@ -32,14 +53,14 @@
       <div class="columns is-mobile is-centered is-multiline">
         <div class="column is-5 has-text-centered"><Icon family="gg" icon="check" {size} {color} /></div>
         <div class="column is-5 has-text-centered"><Icon family="gg" icon="math-plus" {size} {color} /></div>
-        <div class="column is-5 has-text-centered"><Icon family="gg" icon="block" {size} {color} /></div>
+        <div class="column is-5 has-text-centered"><Icon family="gg" icon="remove" {size} {color} /></div>
         <div class="column is-5 has-text-centered"><Icon family="gg" icon="drive" {size} {color} /></div>
       </div>
     </div>
     <div class="column">
       <Code>{ `<Icon family="gg" icon="check" color="${color}" size="${size}" />
 <Icon family="gg" icon="math-plus" color="${color}" size="${size}" />
-<Icon family="gg" icon="block" color="${color}" size="${size}" />
+<Icon family="gg" icon="remove" color="${color}" size="${size}" />
 <Icon family="gg" icon="drive" color="${color}" size="${size}" /> ` }</Code>
     </div>
   </div>
@@ -65,6 +86,10 @@
       this can be either loaded from your bundle, or from a CDN
     </strong>
     <hr class="is-small" />
+    <strong>For Unicons icons, requires css loading as mentioned in https://iconscout.com/unicons<br>
+      this can be either loaded from your bundle, or from a CDN
+    </strong>
+    <hr class="is-small" />
     <strong>For GG icons, requires css loading as mentioned in https://css.gg/<br>
       this can be either loaded from your bundle, or from a CDN
     </strong>
@@ -80,8 +105,6 @@
   import Layout from '../layouts/Layout.html';
   import Code from '../helpers/Code.html';
 
-  import store from '../store.js';
-
   import { Icon, Message } from '@kws3/helpers';
   import pkg from '@kws3/helpers/package.json';
 
@@ -91,7 +114,6 @@
     components: {
       Layout, Code, Icon, Message
     },
-    store: () => store,
     data() {
       return {
         pkg
