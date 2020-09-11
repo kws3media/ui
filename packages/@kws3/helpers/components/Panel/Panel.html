@@ -22,7 +22,7 @@
           <h2 class="subtitle is-6">{@html subtitle}</h2>
         </div>
         <span class="collapsor level-item">
-          <i class="fa fa-caret-right"></i>
+          <Icon icon="{collapse_icon}" />
         </span>
       </div>
     </div>
@@ -36,13 +36,17 @@
 </div>
 
 <script>
+import {Icon} from '@kws3/helpers';
+
 export default {
+  components:{Icon},
   data: function(){
     return {
       title:'',
       subtitle:'',
       style:'',
       inner_style:'',
+      collapse_icon: 'caret-right',
       collapsible: false,
       collapsed: false,
       relative: false,
