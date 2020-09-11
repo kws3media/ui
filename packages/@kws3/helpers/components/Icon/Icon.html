@@ -15,6 +15,19 @@
   .icon .gg.fa-3x{
     transform: scale(2);
   }
+
+  .icon .uil{
+    font-size: inherit;
+  }
+  .icon .uil.fa-lg{
+    font-size: 1.33333333em;
+  }
+  .icon .uil.fa-2x{
+    font-size: 2em;
+  }
+  .icon .uil.fa-3x{
+    font-size: 3em;
+  }
 </style>
 
 <script>
@@ -25,6 +38,7 @@ export default {
       color: null,
       icon: '',
       icon_class:'',
+      icon_style: '',
       fa_class: null, // @deprecated
       fa_style: null, // @deprecated
       inner_class: null,
@@ -42,11 +56,14 @@ export default {
     },
     familyClass({usedFamily}){
       switch(usedFamily){
-        case 'fa':
-          return 'fa fa-'
-        break;
         case 'gg':
           return 'gg gg-'
+        break;
+        case 'unicons':
+          return 'uil uil-'
+        break;
+        default:
+          return 'fa fa-'
         break;
       }
     },
@@ -81,7 +98,10 @@ export default {
   oncreate(){
     if(this.store){
       let {system_settings} = this.store.get();
-      this.set({_system_settings: system_settings});
+      setTimeout(() => {
+        this.set({_system_settings: system_settings});
+      }, 100);
+      return;
     }
   }
 }
