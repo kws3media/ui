@@ -1,6 +1,21 @@
 <span class="icon {size ? 'is-'+size : ''} {color ? 'has-text-'+color : ''} {icon_class}">
-  <i class="fa fa-{icon} {internal_size} {fa_class}" style="{fa_style}"></i>
+  <i class="{familyClass}{icon} {internal_size} {fa_class}" style="{fa_style}"></i>
 </span>
+
+<style>
+  .icon .gg{
+    transform: scale(1);
+  }
+  .icon .gg.fa-lg{
+    transform: scale(1.5);
+  }
+  .icon .gg.fa-2x{
+    transform: scale(2);
+  }
+  .icon .gg.fa-3x{
+    transform: scale(2.5);
+  }
+</style>
 
 <script>
 export default {
@@ -11,10 +26,32 @@ export default {
       icon: '',
       icon_class:'',
       fa_class: '',
-      fa_style:''
+      fa_style:'',
+      family: null
     }
   },
   computed:{
+    familyClass({usedFamily}){
+      switch(usedFamily){
+        case 'fa':
+          return 'fa fa-'
+        break;
+        case 'gg':
+          return 'gg gg-'
+        break;
+      }
+    },
+    usedFamily({$settings, family}){
+      if(family){
+        return family;
+      }
+
+      let _family = 'fa';
+      if($settings && typeof $settings.icon_family != 'undefined' && $settings.icon_family){
+        return $settings.icon_family;
+      }
+      return _family;
+    },
     internal_size({size}){
       switch (size) {
         case 'small':
