@@ -35,4 +35,9 @@ $kws-gridview-icon-size: 1.5em !default;
       font-size: $kws-gridview-icon-size;
     }
   }
+  &.is-hoverable{
+    tr{
+      cursor: pointer;
+    }
+  }
 }

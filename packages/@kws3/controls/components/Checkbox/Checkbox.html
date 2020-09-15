@@ -2,7 +2,7 @@
   <input type="checkbox" {disabled} bind:checked on:change />
 <span class="kws-checkbox-label" style="{label_style}"><slot></slot></span>
   {#if has_icon}
-    <Icon {icon} size="small" />
+    <Icon family={icon_family} {icon} size="small" />
   {/if}
 </label>
 
@@ -28,7 +28,8 @@
         inverted: false,
         circle: false,
         checked: false,
-        icon: 'check'
+        icon: 'check',
+        icon_family: null
       }
     }
   };

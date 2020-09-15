@@ -1,5 +1,5 @@
 <div class="data-table">
-  <table class="table is-fullwidth {is_striped ? 'is-striped' : ''} is-bordered">
+  <table class="table is-fullwidth {is_striped ? 'is-striped' : ''} {clickableRows ? 'is-hoverable' : ''} is-bordered">
     <thead>
       <tr>
         {#each column_keys as column}
@@ -16,6 +16,7 @@
           {row_index}
           {transition}
           {column_keys}
+          {clickableRows}
           {isVisible}
           {transforms}
           {classNames}
@@ -45,6 +46,7 @@
         meta:{},
         transition: false,
         is_striped: true,
+        clickableRows: false,
         valueTransformers:{},
         classTransformers:{},
         styleTransformers:{},
