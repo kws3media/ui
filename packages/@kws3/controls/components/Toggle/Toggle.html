@@ -1,4 +1,4 @@
-<div class="toggle-button is-{color} is-{size} {class} {on ? 'on' : ''} {disabled ? 'disabled' : ''}" on:click="toggle()">
+<div class="toggle-button is-{color} is-{size} {class} {on ? 'on' : ''} {disabled ? 'disabled' : ''}" on:click="toggle()" data-cy="{cy}">
   <div class="track">
     <p class="toggle-text"> {on ? on_text : off_text}</p>
     <div class="handle"></div>
@@ -21,7 +21,8 @@
         class:'',
         on_text: '',
         off_text: '',
-        size:''
+        size:'',
+        cy: ''
       }
     },
     methods:{

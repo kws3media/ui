@@ -1,16 +1,17 @@
 {#if filter.options.length > 10}
   <SearchableSelect
   data="{filter.options}"
-  placeholder="Any {filter_label_map[filter.name] ? filter_label_map[filter.name] : filter.name.replace(/_/g, ' ')}"
+  placeholder="Any {name}"
   bind:value="filterVals[filter.name]"
   searchKey="name"
   searchValue="id"
   classes="control {hilightClass}"
-  style="{filterWidthStyle}" />
+  style="{filterWidthStyle}"
+  {cy} />
 {:else}
   <div class="select {hilightClass}" style="{filterWidthStyle}" data-cy="select-container">
-    <select bind:value="filterVals[filter.name]" class="is-radiusless {hilightClass}" style="max-width:100%">
-      <option value="">Any {filter_label_map[filter.name] ? filter_label_map[filter.name] : filter.name.replace(/_/g, ' ')}</option>
+    <select bind:value="filterVals[filter.name]" class="is-radiusless {hilightClass}" style="max-width:100%" data-cy="{cy}">
+      <option value="">Any {name}</option>
       {#each filter.options as option}
         <option value="{option.id + ''}">{option.name}</option>
       {/each}
@@ -34,6 +35,10 @@
         hilightClass: '',
         filter_label_map:{}
       }
+    },
+    computed:{
+      name: ({filter_label_map, filter}) => filter_label_map[filter.name] ? filter_label_map[filter.name] : filter.name.replace(/_/g, ' '),
+      cy: ({name}) => name ? name.replace(/\s+/g, '-').toLowerCase() : ''
     }
   }
 

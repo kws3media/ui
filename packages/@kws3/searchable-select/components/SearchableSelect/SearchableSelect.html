@@ -12,7 +12,7 @@
   <input type='text' bind:value='filter' on:focus='open()' on:enter on:uparrow on:downarrow on:escape>
 
 
-  <ul ref:dropdown class='dropdown {open ? ' open ' : ' '} {dd_class}'>
+  <ul ref:dropdown class='dropdown {open ? ' open ' : ' '} {dd_class}' data-cy='{cy}'>
     <li class="{selected && highlighted < 0 ? 'selected' : ''}" on:click="select(null)">{placeholder}</li>
     {#each items as item, i}
     <li class='{highlighted == i ? ' selecting ' : ' '} {selected == i ? 'selected ' : ' '}' on:click='select(item, i)'>
@@ -43,6 +43,7 @@
         style: '',
         classes: '',
         dd_class: '',
+        cy: '',
         scrollTarget: null,
         searchKey: null, //which key to search in each data object
         searchValue: null, //which key to search in each data object

@@ -1,4 +1,4 @@
-<div class="togglebox {class}" {style}>
+<div class="togglebox {class}" {style} data-cy="{cy}">
   <slot></slot>
 </div>
 
@@ -8,7 +8,8 @@
     data: function(){
       return {
         class:'',
-        style:''
+        style:'',
+        cy: ''
       }
     }
   };
