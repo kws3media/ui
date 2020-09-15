@@ -1,4 +1,4 @@
-<div class="panel {collapsible ? 'collapsible' : ''} {collapsed ? 'collapsed' : ''}" style="{style}">
+<div class="panel {collapsible ? 'collapsible' : ''} {collapsed ? 'collapsed' : ''}" style="{style}" data-cy="{cy}">
   {#if title != ''}
   <div class="panel-heading" on:click="toggle()">
     <div class="level is-mobile">
@@ -46,6 +46,7 @@ export default {
       subtitle:'',
       style:'',
       inner_style:'',
+      cy: '',
       collapse_icon: 'caret-right',
       collapsible: false,
       collapsed: false,

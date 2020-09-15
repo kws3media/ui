@@ -1,6 +1,6 @@
 <svelte:window on:resize="close()" />
 <div ref:searchableselect class='searchableselect input is-shadowless {disabled ? ' is-disabled ' : ' '} {classes}' on:click="open()"
-  style="{style}">
+  style="{style}" data-cy="select-container">
 
 
   <span class="name-wrapper">
