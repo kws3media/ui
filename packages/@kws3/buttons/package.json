@@ -1,6 +1,6 @@
 {
   "name": "@kws3/buttons",
-  "version": "0.4.13",
+  "version": "0.4.14",
   "description": "Functional button components for use with Svelte applications.",
   "main": "index.js",
   "scripts": {
