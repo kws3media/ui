@@ -1,13 +1,13 @@
 {
   "name": "@kws3/buttons",
-  "version": "0.4.12",
+  "version": "0.4.13",
   "description": "Functional button components for use with Svelte applications.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@kws3/helpers": "^0.5.7"
+    "@kws3/helpers": "^0.5.8"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
   "demo_url": "https://ui.kws3.media/?selectedKind=Buttons%7CConfirmButton",
