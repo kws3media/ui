@@ -1,11 +1,11 @@
 {
   "name": "@kws3/datagrid",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Components to display data",
   "main": "index.js",
   "dependencies": {
-    "@kws3/helpers": "^0.5.6",
-    "@kws3/searchable-select": "^0.1.9",
+    "@kws3/helpers": "^0.5.7",
+    "@kws3/searchable-select": "^0.1.10",
     "@kws3/transitions": "^1.0.1",
     "svelte-transitions": "^1.1.1"
   },
