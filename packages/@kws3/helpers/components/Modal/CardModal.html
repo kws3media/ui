@@ -1,4 +1,4 @@
-<div class="modal {class} {is_active ? 'is-active' : ''}" style="{style}">
+<div class="modal {class} {is_active ? 'is-active' : ''}" style="{style}" data-cy="{cy}">
   <div class="modal-background" on:click="fire('clickOutside')"></div>
   <div class="modal-card is-{size} {inner_class}" style="{inner_style}">
     <div class="modal-card-head">
@@ -34,7 +34,8 @@
         style:'',
         inner_style:'',
         class:'',
-        inner_class:''
+        inner_class:'',
+        cy: ''
       }
     },
     oncreate(){
