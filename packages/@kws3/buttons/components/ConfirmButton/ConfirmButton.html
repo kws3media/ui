@@ -1,4 +1,4 @@
-<div class="field {confirm ? 'has-addons' : ''} {classes}">
+<div class="field {confirm ? 'has-addons' : ''} {classes}" data-cy="{cy}">
   <p class="control">
     {#if confirm}
       <button class="button is-success is-outlined is-shadowless is-{size} {button_class}" type="button" on:click="cancel(event)"> Cancel </button>
@@ -34,6 +34,7 @@
         size:'',
         icon: 'check',
         color: 'info',
+        cy: '',
         doing_icon: 'hourglass',
         doing_text: 'Please Wait...',
         done_icon: 'check',
