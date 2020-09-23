@@ -9,8 +9,9 @@
     transform: translate3d(-100%, 0, 0);
     backface-visibility: hidden;
     transform-style: preserve-3d;
-    transition: transform 0.4s $easeOutCustom, opacity 0.1s;
+    transition: transform 0.4s $easeOutCustom, opacity 0.4s $easeOutCustom;
     transform-origin: left top;
+    opacity:0;
     .sliding-pane-inner{
       width:100%;
       height:auto;
@@ -38,6 +39,7 @@
       opacity:1;
       & ~ .sliding-pane{
         transform: translate3d(100%, 0, 0);
+        opacity:0;
       }
     }
   }
