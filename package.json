@@ -13,57 +13,32 @@
     "publish": "lerna publish",
     "list": "lerna list"
   },
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.m?js$": "babel-jest",
-      "^.+\\.html$": "svelte-jest"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "html"
-    ]
-  },
   "dependencies": {
-    "bulma": "0.6.2",
+    "bulma": "^0.9.1",
     "global": "^4.3.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@storybook/addon-actions": "4.0.0-alpha.20",
-    "@storybook/addon-backgrounds": "4.0.0-alpha.20",
-    "@storybook/addon-centered": "4.0.0-alpha.20",
-    "@storybook/addon-knobs": "4.0.0-alpha.20",
-    "@storybook/addon-links": "4.0.0-alpha.20",
-    "@storybook/addon-notes": "4.0.0-alpha.20",
-    "@storybook/addon-options": "4.0.0-alpha.20",
-    "@storybook/addon-storyshots": "4.0.0-alpha.20",
-    "@storybook/addon-storysource": "4.0.0-alpha.20",
-    "@storybook/addon-viewport": "4.0.0-alpha.20",
-    "@storybook/addons": "4.0.0-alpha.20",
-    "@storybook/svelte": "4.0.0-alpha.20",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
+    "@storybook/addon-actions": "6.1.5",
+    "@storybook/addon-backgrounds": "6.1.5",
+    "@storybook/addon-knobs": "6.1.5",
+    "@storybook/addon-viewport": "6.1.5",
+    "@storybook/addons": "6.1.5",
+    "@storybook/source-loader": "6.1.5",
+    "@storybook/svelte": "6.1.5",
     "css-loader": "^0.28.7",
     "grunt": "^0.4.5",
-    "grunt-gitinfo": "^0.1.8",
+    "grunt-gitinfo": "^0.1.9",
     "grunt-sftp-deploy": "^0.2.5",
     "grunt-text-replace": "^0.4.0",
     "jest": "^23.5.0",
     "lerna": "^3.3.0",
     "moment": "^2.22.2",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.3",
     "prismjs": "^1.15.0",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.19.0",
-    "svelte": "^2.13.4",
-    "svelte-jest": "^0.2.0",
-    "svelte-loader": "^2.11.0"
+    "style-loader": "^0.19.1",
+    "svelte": "^3.29.7",
+    "svelte-loader": "^2.13.6"
   }
 }
