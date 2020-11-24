@@ -43,7 +43,7 @@ module.exports = function (grunt) {
         },
         cache: false,
         src: './build/',
-        dest: '/var/www/html/ui.kws3.media/',  // this is on the remote host
+        dest: '/var/www/html/ui-v2.kws3.media/',  // this is on the remote host
         exclusions: ['./build/**/.DS_Store', './build/**/Thumbs.db'],
         serverSep: '/',
         concurrency: 20,
