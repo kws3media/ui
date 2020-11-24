@@ -16,11 +16,9 @@ export var rAF = window.requestAnimationFrame ||
   window.mozRequestAnimationFrame ||
   window.oRequestAnimationFrame ||
   window.msRequestAnimationFrame ||
-  function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
-
+  function (callback, element) {
     window.setTimeout(callback, 1000 / 60);
-
-};
+  };
 
 export function debounce(fn, threshold, isAsap) {
   var timeout, result;
