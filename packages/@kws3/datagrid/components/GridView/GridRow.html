@@ -1,5 +1,17 @@
 {#if transition}
-  <tr class="transible" transition:fly="{x:20, delay:(25*row_index)}" on:click="rowClick(this)">
+  <tr class="transible {checked ? 'is-selected' : ''}" transition:fly="{x:20, delay:(25*row_index)}" on:click="rowClick(this)">
+    {#if bulk_actions}
+      <td style="vertical-align:middle;" class="{checked ? 'has-background-primary' : ''}">
+        <Checkbox
+          size="medium"
+          color="white"
+          style="margin:0;"
+          inverted={true}
+          bind:checked
+          on:change="changed()"
+        />
+      </td>
+    {/if}
     {#each column_keys as column}
       {#if isVisible(column)}
         <CellHOC
@@ -16,6 +28,18 @@
   </tr>
 {:else}
   <tr on:click="rowClick(this)">
+    {#if bulk_actions}
+      <td style="vertical-align:middle;">
+        <Checkbox
+          size="medium"
+          color="white"
+          style="margin:0;"
+          inverted={false}
+          bind:checked
+          on:change="changed()"
+        />
+      </td>
+    {/if}
     {#each column_keys as column}
       {#if isVisible(column)}
         <CellHOC
@@ -36,10 +60,12 @@
   import { fly } from 'svelte-transitions';
   import GridCell from './GridCell.html';
   import {createHOC} from '@kws3/helpers';
+  import {Checkbox} from '@kws3/controls';
 
   export default {
     components:{
-      CellHOC: createHOC()
+      CellHOC: createHOC(),
+      Checkbox
     },
     transitions:{fly},
     data(){
@@ -52,7 +78,9 @@
         classNames:{},
         styles:{},
         column_keys:[],
-        cellComponent:{}
+        cellComponent:{},
+        checked: false,
+        selectedIds: []
       }
     },
     computed:{
@@ -66,6 +94,17 @@
       this.on('_forwardEvent', (e) => {
         this.fire(e.name, e.event);
       });
+
+      this.on('state', ({changed, current}) => {
+        if(changed.selectedIds){
+          let {row} = this.get();
+          let checked = false;
+          if(current.selectedIds.indexOf(row.id) != -1){
+            checked = true;
+          }
+          this.set({checked});
+        }
+      })
     },
     methods:{
       rowClick(el){
@@ -74,6 +113,9 @@
           el && el.classList.add('is-selected');
           this.fire('rowClick', {comp: this, row});
         }
+      },
+      changed(){
+        this.fire('selectCheckbox', this);
       }
     }
   }

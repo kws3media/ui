@@ -1,7 +1,19 @@
 <div class="data-table" data-cy="data-table">
-  <table class="table is-fullwidth {is_striped ? 'is-striped' : ''} {clickableRows ? 'is-hoverable' : ''} is-bordered">
+  <table class="table is-fullwidth {is_striped ? 'is-striped' : ''} {clickableRows ? 'is-hoverable' : ''}  {is_marginless ? 'is-marginless' : ''} is-bordered">
     <thead>
       <tr>
+        {#if bulk_actions}
+          <th>
+            <Checkbox
+              size="medium"
+              color="primary"
+              style="margin:0;"
+              inverted={true}
+              bind:checked="selectAll"
+              on:change="changed(this)"
+            />
+          </th>
+        {/if}
         {#each column_keys as column}
           {#if isVisible(column)}
             <th>{columns[column]}</th>
@@ -24,6 +36,9 @@
           {cellComponent}
           {row}
           {meta}
+          {bulk_actions}
+          {selectedIds}
+          checked={selectAll}
         />
       {/each}
     </tbody>
@@ -33,10 +48,12 @@
 <script>
   import GridRow from './GridRow.html';
   import {createHOC} from '@kws3/helpers';
+  import {Checkbox} from '@kws3/controls';
 
   export default {
     components:{
-      RowHOC: createHOC()
+      RowHOC: createHOC(),
+      Checkbox
     },
     data(){
       return {
@@ -47,6 +64,10 @@
         transition: false,
         is_striped: true,
         clickableRows: false,
+        is_marginless: false,
+        bulk_actions: false,
+        selectAll: false,
+        selectedIds: [],
         valueTransformers:{},
         classTransformers:{},
         styleTransformers:{},
@@ -106,6 +127,12 @@
 
           return null;
         }
+      }
+    },
+    methods:{
+      changed(comp){
+        let {checked} = comp.get();
+        this.fire('toggleSelectAll', checked);
       }
     }
   }
