@@ -1,13 +1,13 @@
 {
   "name": "@kws3/sliding-panes",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Sliding panes component for Svelte applications",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@kws3/utils": "^0.5.3"
+    "@kws3/utils": "^0.5.4"
   },
   "repository": "github:kws3-team/storybooks-frontend",
   "demo_url": "https://ui-v2.kws3.media/?selectedKind=Standalone%SlidingPanes&selectedStory=SlidingPanes",

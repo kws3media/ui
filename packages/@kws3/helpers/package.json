@@ -1,6 +1,6 @@
 {
   "name": "@kws3/helpers",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "description": "Helper components for Svelte applications",
   "main": "index.js",
   "scripts": {

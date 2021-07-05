@@ -1,10 +1,10 @@
 {
   "name": "@kws3/calendar",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "A full page Calendar component",
   "main": "index.js",
   "dependencies": {
-    "@kws3/helpers": "^0.5.10"
+    "@kws3/helpers": "^0.5.11"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
   "demo_url": "https://ui-v2.kws3.media/?selectedKind=Standalone%7CCalendar&selectedStory=Example",
