@@ -10,7 +10,7 @@
     "svelte-transitions": "^1.1.1"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
-  "demo_url": "https://ui.kws3.media/?selectedKind=Data%7CCalendar&selectedStory=Example",
+  "demo_url": "https://ui-v2.kws3.media/?selectedKind=Data%7CCalendar&selectedStory=Example",
   "author": "Khaled Ahmed <me.khaled@gmail.com>",
   "contributors": [
     "Sharif Ahmed <me.sharifahmed@gmail.com>"

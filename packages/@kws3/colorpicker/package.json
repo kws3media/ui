@@ -7,7 +7,7 @@
     "@kws3/helpers": "^0.5.9"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
-  "demo_url": "https://ui.kws3.media/?selectedKind=Forms%7CColorPicker",
+  "demo_url": "https://ui-v2.kws3.media/?selectedKind=Forms%7CColorPicker",
   "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
   "contributors": [
     "Khaled Ahmed <me.khaled@gmail.com>"

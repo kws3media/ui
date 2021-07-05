@@ -10,7 +10,7 @@
     "@kws3/helpers": "^0.5.9"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
-  "demo_url": "https://ui.kws3.media/?selectedKind=Buttons%7CConfirmButton",
+  "demo_url": "https://ui-v2.kws3.media/?selectedKind=Buttons%7CConfirmButton",
   "keywords": [
     "buttons",
     "confirm",

@@ -6,8 +6,7 @@
   "dependencies": {
     "flatpickr": "^3.0.6"
   },
-  "repository": "bitbucket:kws3-team/storybooks-frontend",
-  "demo_url": "https://ui.kws3.media/?selectedKind=Forms%7CTimepicker",
+  "demo_url": "https://ui-v2.kws3.media/?selectedKind=Forms%7CTimepicker",
   "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
   "contributors": [
     "Khaled Ahmed <me.khaled@gmail.com>"
