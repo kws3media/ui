@@ -10,7 +10,9 @@
   "contributors": [
     "Sharif Ahmed <me.sharifahmed@gmail.com>"
   ],
-  "license": "Private",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "cli",
     "starter",

@@ -21,5 +21,8 @@
   "contributors": [
     "Khaled Ahmed <me.khaled@gmail.com>"
   ],
-  "license": "Private"
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d9ab2c44810b51c669196121dda57cbaa4afe9ca"
 }

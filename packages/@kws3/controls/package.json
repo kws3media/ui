@@ -12,11 +12,14 @@
   "contributors": [
     "Sharif Ahmed <me.sharifahmed@gmail.com>"
   ],
-  "license": "Private",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "toggle",
     "checkbox",
     "radio",
     "togglebuttons"
-  ]
+  ],
+  "gitHead": "d9ab2c44810b51c669196121dda57cbaa4afe9ca"
 }
