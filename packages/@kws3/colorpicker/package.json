@@ -1,10 +1,10 @@
 {
   "name": "@kws3/colorpicker",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "A ColorPicker component for Svelte applications",
   "main": "index.js",
   "dependencies": {
-    "@kws3/helpers": "^0.5.9"
+    "@kws3/helpers": "^0.5.10"
   },
   "repository": "bitbucket:kws3-team/storybooks-frontend",
   "demo_url": "https://ui-v2.kws3.media/?selectedKind=Forms%7CColorPicker",
