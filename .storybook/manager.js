@@ -13,12 +13,12 @@ addons.setConfig({
   // panelPosition: 'right',
   // sidebarAnimations: true,
   // enableShortcuts: true,
-  // isToolshown: true,
+  isToolshown: true,
   // theme: undefined,
   // selectedPanel: undefined,
   // initialActive: 'sidebar',
   // showRoots: false,
-  // name: 'UI | KWS3 Media',
-  // url:'https://kws3.media',
-  // hierarchyRootSeparator: /\|/
+  name: 'UI | KWS3 Media',
+  url:'https://kws3.media',
+  hierarchyRootSeparator: /\|/
 });
