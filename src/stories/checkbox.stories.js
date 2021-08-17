@@ -8,17 +8,23 @@ export default {
   argTypes:{
     color: {
       control: { type: "select", options: ["primary", "primary", "success", "danger", "warning", "dark", "light"] },
-    }
+    },
   },
   parameters: { actions: { argTypesRegex: '^on.*' } },
 }
 
-const Template = (args) => ({ Component: CheckboxView, props: args });
+const Template = (args) => ({
+  Component: CheckboxView,
+  props: args,
+  on: {
+    change: action('changed'),
+  },
+});
 
 export const Checkbox = Template.bind({});
 Checkbox.args = {
-  color : "",
-  checked : false,
+  color : "primary",
+  checked : true,
   disabled : false
 };
 
