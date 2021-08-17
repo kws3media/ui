@@ -15,7 +15,7 @@ export default {
       control: {type:"select", options:["small", "medium", "large"]}
     }
   },
-  parameters: { actions: { "onChange": 'changed' } },
+  parameters: { actions: { "onClick": 'clicked' } },
 }
 
 const Template = (args) => ({
@@ -27,10 +27,5 @@ const Template = (args) => ({
 });
 
 export const DeleteButton = Template.bind({});
-DeleteButton.args = {
-  color : "primary",
-  size:"",
-  icon_only : false,
-  disabled : false
-};
+DeleteButton.args = {};
 
