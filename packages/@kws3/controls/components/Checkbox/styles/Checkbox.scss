@@ -1,0 +1,171 @@
+$kws-checkbox-default-check-color: #333 !default;
+$kws-checkbox-default-check-color-invert: findColorInvert($kws-checkbox-default-check-color) !default;
+$kws-checkbox-default-border-color: #dbdbdb !default;
+
+$kws-theme-colors: $colors !default;
+
+.kws-checkbox{
+  position: relative;
+  font-size:1rem;
+  margin: 0.25em 0.5em 0.25em 0;
+  input[type="checkbox"]{
+    outline: 0;
+    user-select: none;
+    display: inline-block;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .kws-checkbox-label{
+    display: inline;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: .2em 0;
+    padding-left: 1.25em;
+    &:before, &:after{
+      position: absolute;
+      left: 0;
+      top: 0em;
+      content: '';
+    }
+    &:before{
+      border: 0.05em solid $kws-checkbox-default-border-color;
+      width: 1em;
+      height: 1em;
+      top:0.25em;
+      border-radius: 0.14em;
+    }
+    &:after{
+      box-sizing: border-box;
+      transform: translateY(0rem) rotate(45deg);
+      border:none;
+      width: .3em;
+      height: .6em;
+      top: .4em;
+      left: .38em;
+      display: inline-block;
+    }
+  }
+  &.has-icon{
+    .kws-checkbox-label:after{
+      display: none !important;
+    }
+  }
+  input[type="checkbox"]:checked+.kws-checkbox-label{
+    &:after{
+      border: .1em solid $kws-checkbox-default-check-color;
+      border-top: 0;
+      border-left: 0;
+    }
+  }
+
+  &.is-inverted input[type="checkbox"]:checked+.kws-checkbox-label{
+    &:before{
+      background: $kws-checkbox-default-check-color;
+    }
+    &:after{
+      border-color: $kws-checkbox-default-check-color-invert;
+    }
+  }
+
+
+  input[type="checkbox"]:focus+.kws-checkbox-label{
+    &:before{
+      border-style:dashed;
+    }
+  }
+
+
+
+  @each $name, $pair in $kws-theme-colors{
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+    &.is-#{$name} input[type="checkbox"]:checked+.kws-checkbox-label{
+      &:after{
+        border-color: $color;
+      }
+    }
+
+    &.is-#{$name}.is-inverted input[type="checkbox"]+.kws-checkbox-label{
+      &:before{
+        border-color: $color;
+      }
+    }
+    &.is-#{$name}.is-inverted input[type="checkbox"]:checked+.kws-checkbox-label{
+      &:before{
+        background: $color;
+      }
+      &:after{
+        border-color: $color-invert;
+      }
+    }
+  }
+
+  &.is-circle{
+    input[type="checkbox"]+.kws-checkbox-label{
+      &:before{
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &.is-small{
+    font-size:0.75rem;
+  }
+  &.is-medium{
+    font-size:1.25rem;
+  }
+  &.is-large{
+    font-size:1.5rem;
+  }
+}
+
+
+:global{
+  .kws-checkbox{
+    .icon{
+      position: absolute;
+      width:1em;
+      height:1em;
+      top:0.25em;
+      left:0;
+      font-size:1em;
+      color:$kws-checkbox-default-check-color;
+      opacity:0;
+      display: inline-flex;
+      align-items: center;
+      margin:0 !important;
+      .icon-i{
+        font-size: 0.7em;
+      }
+    }
+
+    input[type="checkbox"]:checked ~ .icon{
+      opacity:1;
+    }
+
+    &.is-inverted input[type="checkbox"]:checked ~ .icon{
+      color: $kws-checkbox-default-check-color-invert;
+    }
+
+    input[type="checkbox"]:disabled+.kws-checkbox-label,
+    input[type="checkbox"]:disabled ~ .icon{
+      opacity:0.5;
+      cursor: not-allowed;
+    }
+
+    @each $name, $pair in $kws-theme-colors{
+      $color: nth($pair, 1);
+      $color-invert: nth($pair, 2);
+      &.is-#{$name} input[type="checkbox"]:checked ~ .icon{
+        color: $color;
+      }
+
+      &.is-#{$name}.is-inverted input[type="checkbox"]:checked ~ .icon{
+        color: $color-invert;
+      }
+    }
+
+
+  }
+}

@@ -1,0 +1,98 @@
+<span
+  class="icon {size ? 'is-' + size : ''} {color
+    ? 'has-text-' + color
+    : ''} {icon_class}"
+  style="{icon_style}">
+  <i
+    class="icon-i {familyClass}{icon} {internal_size} {_used_inner_class}"
+    style="{_used_inner_style}"></i>
+</span>
+
+<style>
+  .icon .gg {
+    transform: scale(0.75);
+  }
+  .icon .gg.fa-lg {
+    transform: scale(1);
+  }
+  .icon .gg.fa-2x {
+    transform: scale(1.5);
+  }
+  .icon .gg.fa-3x {
+    transform: scale(2);
+  }
+
+  .icon .uil {
+    font-size: 1.25em;
+  }
+  .icon .uil.fa-lg {
+    font-size: 1.5em;
+  }
+  .icon .uil.fa-2x {
+    font-size: 2em;
+  }
+  .icon .uil.fa-3x {
+    font-size: 3em;
+  }
+</style>
+
+<script context="module">
+  let family;
+
+  export function setDefaultIconType(type) {
+    family = type;
+  }
+</script>
+
+<script>
+  export let size = null,
+    color = null,
+    icon = "",
+    icon_class = "",
+    icon_style = "",
+    inner_class = null,
+    inner_style = null;
+
+  let _used_inner_class,
+    _used_inner_style,
+    familyClass,
+    internal_size,
+    usedFamily;
+
+  $: {
+    _used_inner_class = inner_class || "";
+    _used_inner_style = inner_style || "";
+    usedFamily = family ? family : "fa";
+  }
+
+  $: {
+    switch (usedFamily) {
+      case "gg":
+        familyClass = "gg gg-";
+        break;
+      case "unicons":
+        familyClass = "uil uil-";
+        break;
+      default:
+        familyClass = "fa fa-";
+        break;
+    }
+  }
+
+  $: {
+    switch (size) {
+      case "small":
+        internal_size = "";
+        break;
+      case "medium":
+        internal_size = "fa-2x";
+        break;
+      case "large":
+        internal_size = "fa-3x";
+        break;
+      default:
+        internal_size = "fa-lg";
+        break;
+    }
+  }
+</script>

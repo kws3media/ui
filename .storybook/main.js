@@ -20,6 +20,9 @@ module.exports = {
         'sass-loader'
       ]
     });
+
+    config.resolve.modules.push(path.resolve('./packages'));
+
     return config;
   },
 };
