@@ -22,7 +22,7 @@ const Template = (args) => ({
   Component: DeleteButtonView,
   props: args,
   on: {
-    do: action('clicked'),
+    click: action('clicked'),
   },
 });
 
