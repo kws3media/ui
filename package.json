@@ -14,9 +14,10 @@
     "list": "lerna list"
   },
   "dependencies": {
+    "@types/prismjs": "^1.16.6",
     "bulma": "^0.9.3",
     "global": "^4.3.2",
-    "sass": "^1.37.5"
+    "sass": "^1.38.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.3.7",
