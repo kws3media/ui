@@ -4,11 +4,11 @@ module.exports = {
   stories: ['../src/stories/**/*.stories.*'],
   logLevel: 'debug',
   addons: [
-    '@storybook/addon-knobs',
+    '@storybook/addon-essentials',
     '@storybook/addon-actions',
     '@storybook/addon-backgrounds',
     '@storybook/addon-viewport',
-    '@storybook/addon-essentials'
+    '@storybook/addon-knobs',
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({

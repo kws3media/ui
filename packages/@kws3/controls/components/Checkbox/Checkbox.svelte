@@ -14,7 +14,7 @@
 </label>
 
 <script>
-  import Icon from '@kws3/helpers';
+  import {Icon} from '@kws3/helpers';
 
   export let classes = "",
     style = "",

@@ -8,9 +8,10 @@ export let lang = 'html';
 export let codearea;
 const __this = {};
 
-/*onMount(() => {
+onMount(() => {
+  console.log(codearea);
   setTimeout(() => {
-      codearea && Prism.highlightElement(codearea);
+      //codearea && Prism.highlightElement(codearea);
     }, 0);
-});*/
+});
 </script>
