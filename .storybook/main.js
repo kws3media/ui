@@ -6,9 +6,14 @@ module.exports = {
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-actions',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+      },
+    },
     '@storybook/addon-backgrounds',
     '@storybook/addon-viewport',
-    '@storybook/addon-knobs',
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({
