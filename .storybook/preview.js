@@ -4,6 +4,7 @@ export const parameters = {
   layout:'centered',
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: { hideNoControlsWarning: true },
-  docs: { page: null }
+  docs: { page: null },
+  options: { showPanel: true },
 }
 
