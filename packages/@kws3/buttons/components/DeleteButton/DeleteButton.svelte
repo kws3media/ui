@@ -6,8 +6,16 @@
 
   export const classes = "",
     button_class = "",
-    text = "Delete",
-    size = "",
+    text = "Delete";
+
+  /**
+   * Size of the modal `medium` `large`
+   * @type {string}
+   * @defaultvalue empty
+   */
+    export const size = "";
+
+    export const
     icon = "minus-circle",
     color = "danger",
     cy = "",
