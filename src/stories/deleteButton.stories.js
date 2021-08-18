@@ -1,12 +1,14 @@
 import { action } from '@storybook/addon-actions';
 import "../scss/app.scss";
 
-import DeleteButtonView from './views/DeleteButtonView.svelte';
+//import DeleteButtonView from './views/DeleteButtonView.svelte';
 import DeleteButtonDocumentation from './views/DeleteButtonDocumentation.mdx'
+
+import { DeleteButton as Component } from '@kws3/buttons';
 
 export default {
   title: 'Buttons/Delete Button',
-  component: DeleteButtonView,
+  component: Component,
   props: {
     text: 'Squared text',
   },
@@ -26,7 +28,7 @@ export default {
 }
 
 const Template = (args) => ({
-  Component: DeleteButtonView,
+  Component: Component,
   props: args,
   on: {
     click: action('clicked'),
