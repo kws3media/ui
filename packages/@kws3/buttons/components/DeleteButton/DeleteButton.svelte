@@ -9,7 +9,7 @@
     text = "Delete";
 
   /**
-   * Size of the modal `medium` `large`
+   * Size of the Button `small`, `medium` and `large`
    * @type {string}
    * @defaultvalue empty
    */
