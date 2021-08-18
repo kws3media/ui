@@ -2,11 +2,14 @@ import { action } from '@storybook/addon-actions';
 import "../scss/app.scss";
 
 import DeleteButtonView from './views/DeleteButtonView.svelte';
-
+import DeleteButtonDocumentation from './views/DeleteButtonDocumentation.mdx'
 
 export default {
-  title: 'Buttons/DeleteButton',
+  title: 'Buttons/Delete Button',
   component: DeleteButtonView,
+  props: {
+    text: 'Squared text',
+  },
   argTypes:{
     color: {
       control: { type: "select", options: ["primary", "primary", "success", "danger", "warning", "dark", "light"] },
@@ -15,7 +18,11 @@ export default {
       control: {type:"select", options:["small", "medium", "large"]}
     }
   },
-  parameters: { actions: { "onClick": 'clicked' } },
+  parameters: {
+    docs: {
+      page: DeleteButtonDocumentation,
+    }
+  },
 }
 
 const Template = (args) => ({
