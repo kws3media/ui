@@ -34,10 +34,13 @@ p {
   margin: 0.5rem 0;
 }
 
+
 pre>code {
   .tag,
   .number {
-    padding: unset;
+    padding-left: 0rem;
+    padding-right: 0.2rem;
+    /*padding: unset;
     background: inherit;
     white-space: inherit;
     display: inherit;
@@ -47,17 +50,17 @@ pre>code {
     border: none;
     margin: inherit;
     vertical-align: inherit;
-    text-align: inherit;
+    text-align: inherit;*/
   }
 }
 
-pre:not([class*="language-"]) {
+/*pre:not([class*="language-"]) {
   visibility: hidden;
-}
+}*/
 
 
 //PRISM JS
-@import "../../node_modules/prismjs/themes/prism-tomorrow.css";
+//@import "../../node_modules/prismjs/themes/prism-tomorrow.css";
 /* SCSS for stories */
 
 // /*------------------*/

@@ -4,14 +4,14 @@ module.exports = {
   stories: ['../src/stories/index.stories.js', '../src/stories/**/*.stories.*'],
   logLevel: 'debug',
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-actions',
     {
       name: '@storybook/addon-docs',
       options: {
         configureJSX: true,
       },
     },
+    '@storybook/addon-essentials',
+    '@storybook/addon-actions',
     '@storybook/addon-backgrounds',
     '@storybook/addon-viewport',
   ],

@@ -1,19 +1,84 @@
-import { Story, Preview, Meta, ArgsTable } from '@storybook/addon-docs';
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
 import { DeleteButton } from '@kws3/buttons';
+let args = {
+  color:'primary',
+  size:'small',
+  text: 'Button'
+};
 
 <Meta title="Buttons/DeleteButton" component={DeleteButton} />
 
+
+<Description markdown={dedent`
 # DeleteButton
 ## Delete Button with built-in confirmation.
+`}/>
+
+<div class="columns" >
+  <div class="column" >
+    <Story id="buttons-delete-button" name="DeleteButton" {...args} />
+  </div>
+  <div class="column" >
+    <Story id="buttons-delete-button" name="Delete Button">
+      {(args) => <DeleteButton {...args} />}
+    </Story>
+  </div>
+</div>
 
 
-<Story id="buttons-delete-button" name="DeleteButton" args={{color:"warning"}}>
+### Example source code
+<Source
+  language='html'
+  code={ dedent`<DeleteButton text="Delete" color="primary" size="small" icon_only="true" disabled="false" />`}
+/>
 
-</Story>
-
-<Story id="buttons-delete-button" name="Delete Button">
-  {(args) => <DeleteButton {...args} />}
-</Story>
-
-
+### Usage Example
+<Source
+  language="html"
+  code={
+    dedent`<DeleteButton
+          {text}
+          {icon}
+          {doing_icon}
+          {done_icon}
+          {doing_text}
+          {done_text}
+          {color}
+          {size}
+          {icon_only}
+          {disabled}
+          on:erase={eraseDo}
+        />
+    <script>
+      import { DeleteButton } from '@kws3/buttons';
+      export let color = "primary";
+      export let disabled = false;
+      export let size="";
+      export let icon_only = false;
+      export let text = "Delete";
+      export let icon = "minus-circle";
+      export let doing_icon = "hourglass";
+      export let done_icon = "check";
+      export let doing_text = "Doing";
+      export let done_text = "Deleted";
+      function eraseDo(event, success = true){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.error();
+        })
+      }
+    </script>`
+  }
+/>
 <ArgsTable of={DeleteButton} />
