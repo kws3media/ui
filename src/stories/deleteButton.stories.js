@@ -36,5 +36,16 @@ const Template = (args) => ({
 });
 
 export const DeleteButton = Template.bind({});
-DeleteButton.args = {};
+DeleteButton.args = {
+  color : "primary",
+  disabled : false,
+  size : "medium",
+  icon_only : false,
+  text : "Delete",
+  icon : "minus-circle",
+  doing_icon : "hourglass",
+  done_icon : "check",
+  doing_text : "Doing",
+  done_text : "Deleted"
+};
 
