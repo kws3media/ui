@@ -31,7 +31,8 @@ const Template = (args) => ({
   Component: Component,
   props: args,
   on: {
-    click: action('clicked'),
+    erase : eraseDo,
+    erased: action("Erased")
   },
 });
 
@@ -49,3 +50,14 @@ DeleteButton.args = {
   done_text : "Deleted"
 };
 
+function eraseDo(event, success = true){
+  let {doing, done, error} = event.detail;
+  doing();
+  setTimeout(() => {
+    if(success){
+      done();
+    } else {
+      error();
+    }
+  }, 2000)
+}
