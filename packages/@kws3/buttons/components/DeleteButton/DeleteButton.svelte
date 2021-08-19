@@ -4,6 +4,11 @@
 
   const fire = createEventDispatcher();
 
+  /**
+   * A Button Component
+   * @component
+   */
+
   export const classes = "",
     button_class = "",
     text = "Delete";
@@ -15,17 +20,65 @@
    */
     export const size = "";
 
-    export const
-    icon = "minus-circle",
-    color = "danger",
-    cy = "",
-    doing_icon = "hourglass",
-    doing_text = "Deleting...",
-    done_icon = "check",
-    done_text = "Deleted",
-    context = null,
-    icon_only = false,
-    disabled = false;
+  /**
+   * Icon of the Button - can use any fa icon
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export const icon = "minus-circle";
+
+  /**
+   * Color of the Button `primary`, `success`, `warning`, `danger`, `info`, `light`
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export const color = "danger";
+
+  export const cy = "";
+
+  /**
+   * Icon showing after confirm - can use any fa icon
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export const doing_icon = "hourglass";
+
+  /**
+   * Text showing after confirm
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export const doing_text = "Deleting...";
+
+  /**
+   * Icon showing after success - can use any fa icon
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export const done_icon = "check";
+
+  /**
+   * Text showing after success - can use any fa icon
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export const done_text = "Deleted";
+
+  export const context = null;
+
+  /**
+   * Boolean - true/false
+   * @type {boolean}
+   * @defaultvalue empty
+   */
+  export const icon_only = false;
+
+  /**
+   * Boolean - true/false
+   * @type {boolean}
+   * @defaultvalue empty
+   */
+  export const disabled = false;
 
   $: properties = { ...$$props };
 
