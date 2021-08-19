@@ -7,13 +7,75 @@ let args = {
   text: 'Button'
 };
 
-<Meta title="Buttons/DeleteButton" component={DeleteButton} />
+<Meta
+  title="Buttons/DeleteButton"
+  component={DeleteButton}
+  args={{ color: 'warning', size: 'small' }}
+  argTypes={{
+    color: {
+      control: { type: 'select' }
+    },
+    size:{
+      control: {type:"select"}
+    },
+    classes:{
+      control: {type:"text"}
+    },
+    button_class:{
+      control: {type:"text"}
+    },
+    text:{
+      control: {type:"text"}
+    },
+    icon:{
+      control: {type:"text"}
+    },
+    cy:{
+      control: {type:"text"}
+    },
+    doing_icon:{
+      control: {type:"text"}
+    },
+    doing_text:{
+      control: {type:"text"}
+    },
+    done_icon:{
+      control: {type:"text"}
+    },
+    done_text:{
+      control: {type:"text"}
+    },
+    context:{
+      control: {type:"text"}
+    },
+    icon_only:{
+      control: {type:"radio"}
+    },
+    disabled:{
+      control: {type:"radio"}
+    }
+  }}
+/>
 
+export const Template = (args) => ({
+  Component: DeleteButton,
+  props: args,
+  on: {
+    erase : eraseDo,
+    erased: action("Erased")
+  },
+});
 
 <div class="columns" >
   <div class="column is-4" ></div>
   <div class="column" >
-    <Story id="buttons-delete-button--delete-button" name="DeleteButton" {...args} />
+    <Story
+      id="buttons-delete-button--delete-button"
+      name="Buttons"
+      args={{color : 'warning', size : 'small'}}
+      >
+      {Template.bind({})}
+    </Story>
   </div>
 </div>
 

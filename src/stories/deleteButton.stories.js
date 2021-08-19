@@ -40,7 +40,7 @@ export const DeleteButton = Template.bind({});
 DeleteButton.args = {
   color : "primary",
   disabled : false,
-  size : "medium",
+  size : "",
   icon_only : false,
   text : "Delete",
   icon : "minus-circle",
