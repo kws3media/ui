@@ -1,0 +1,77 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { DeleteButton as Button } from '@kws3/buttons';
+
+<Meta
+  title="Buttons/DeleteButton"
+  component={Button}
+  args={{
+    color : "primary",
+    disabled : false,
+    size : "",
+    icon_only : false,
+    text : "Delete",
+    icon : "minus-circle",
+    doing_icon : "hourglass",
+    done_icon : "check",
+    doing_text : "Doing",
+    done_text : "Deleted"
+  }}
+  argTypes={{
+    color: {
+      options: ["primary", "primary", "success", "danger", "warning", "dark", "light"],
+      control: { type: 'select' }
+    },
+    size:{
+      options:["small", "medium", "large"],
+      control: {type:"select"}
+    }
+  }}
+/>
+
+export const Template = (args) => <Button {...args} />
+
+<Canvas>
+  <Story
+  name="DeleteButton"
+  args={{
+    color : "primary",
+    disabled : false,
+    size : "",
+    icon_only : false,
+    text : "Delete",
+    icon : "minus-circle",
+    doing_icon : "hourglass",
+    done_icon : "check",
+    doing_text : "Doing",
+    done_text : "Deleted"
+  }}
+  >
+  {{
+    component:Button,
+    props:{
+      text:"Delete"
+    }
+  }}
+  </Story>
+</Canvas>
+
+<ArgsTable story="DeleteButton" />
+
+## Stories helper
+
+Amd here's how `rounded` looks in MDX:
+
+# Storybook for Svelte Delete Button
+
+Storybook supports every major view layer:
+React, Vue, Angular, Ember, React Native, etc.
+
+Svelte is working out of the box without modification.
+How you like them apples?!
+
+Just like in React, we first declare our component.
+
+## More info
+
+For more info, check out the [Storybook Docs README](https://github.com/storybookjs/storybook/tree/next/addons/docs).
