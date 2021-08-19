@@ -10,22 +10,19 @@ let args = {
 <Meta title="Buttons/DeleteButton" component={DeleteButton} />
 
 
+<div class="columns" >
+  <div class="column is-4" ></div>
+  <div class="column" >
+    <Story id="buttons-delete-button--delete-button" name="DeleteButton" {...args} />
+  </div>
+</div>
+
+<ArgsTable of={DeleteButton} />
+
 <Description markdown={dedent`
 # DeleteButton
 ## Delete Button with built-in confirmation.
 `}/>
-
-<div class="columns" >
-  <div class="column" >
-    <Story id="buttons-delete-button--delete-button" name="DeleteButton" {...args} />
-  </div>
-  <div class="column" >
-    <Story id="buttons-delete-button--delete-button" name="Delete Button">
-      {(args) => <DeleteButton {...args} />}
-    </Story>
-  </div>
-</div>
-
 
 ### Example source code
 <Source
@@ -82,5 +79,5 @@ let args = {
   }
 />
 
-<ArgsTable of={DeleteButton} />
+
 
