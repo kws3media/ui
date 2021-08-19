@@ -57,14 +57,7 @@ let args = {
   }}
 />
 
-export const Template = (args) => ({
-  Component: DeleteButton,
-  props: args,
-  on: {
-    erase : eraseDo,
-    erased: action("Erased")
-  },
-});
+export const Template = (args) => <DeleteButton {...args} />
 
 <div class="columns" >
   <div class="column is-4" ></div>
@@ -79,7 +72,9 @@ export const Template = (args) => ({
   </div>
 </div>
 
-<ArgsTable of={DeleteButton} />
+<ArgsTable
+  of={DeleteButton}
+/>
 
 <Description markdown={dedent`
 # DeleteButton
