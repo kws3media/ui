@@ -17,10 +17,10 @@ let args = {
 
 <div class="columns" >
   <div class="column" >
-    <Story id="buttons-delete-button" name="DeleteButton" {...args} />
+    <Story id="buttons-delete-button--delete-button" name="DeleteButton" {...args} />
   </div>
   <div class="column" >
-    <Story id="buttons-delete-button" name="Delete Button">
+    <Story id="buttons-delete-button--delete-button" name="Delete Button">
       {(args) => <DeleteButton {...args} />}
     </Story>
   </div>
@@ -81,4 +81,6 @@ let args = {
     </script>`
   }
 />
+
 <ArgsTable of={DeleteButton} />
+
