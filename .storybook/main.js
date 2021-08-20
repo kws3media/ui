@@ -1,4 +1,5 @@
 const path = require('path');
+const autoPreprocess = require('svelte-preprocess');
 
 module.exports = {
   stories: ['../src/stories/index.stories.js', '../src/stories/**/*.stories.*'],
@@ -25,6 +26,11 @@ module.exports = {
         'sass-loader'
       ]
     });
+
+    const svelteLoader = config.module.rules.find(
+      r => r.loader && r.loader.includes('svelte-loader'),
+    );
+    svelteLoader.options.preprocess = autoPreprocess({});
 
     config.resolve.modules.push(path.resolve('./packages'));
 
