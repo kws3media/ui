@@ -1,13 +1,12 @@
 import { action } from '@storybook/addon-actions';
 import "../scss/app.scss";
 import { DocsPage, DocsContainer } from '@storybook/addon-docs';
-//import DeleteButtonView from './views/DeleteButtonView.svelte';
 import DeleteButtonDocumentation from './views/DeleteButtonDocumentation.mdx'
 
 import { DeleteButton as Component } from '@kws3/buttons';
 
 export default {
-  title: 'Buttons/Delete Button 1',
+  title: 'Buttons/Delete Button 3',
   component: Component,
   props: {
     text: 'Squared text',
@@ -22,15 +21,7 @@ export default {
   },
   parameters: {
     docs: {
-      container: DocsContainer,
-      page: DocsPage,
-      description: {
-        component: '## Some component _markdown_',
-      },
-      source: {
-        type: 'code',
-        //code: '<DeleteButton />',
-      },
+      page: DeleteButtonDocumentation,
     }
   },
 }
@@ -44,8 +35,8 @@ const Template = (args) => ({
   },
 });
 
-export const DeleteButton1 = Template.bind({});
-DeleteButton1.args = {
+export const DeleteButton3 = Template.bind({});
+DeleteButton3.args = {
   color : "primary",
   disabled : false,
   size : "",
@@ -57,13 +48,7 @@ DeleteButton1.args = {
   doing_text : "Doing",
   done_text : "Deleted"
 };
-DeleteButton1.parameters = {
-  docs: {
-    description: {
-      story: 'Some story **markdown**',
-    },
-  },
-};
+
 
 function eraseDo(event, success = true){
   let {doing, done, error} = event.detail;
