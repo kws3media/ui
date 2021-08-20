@@ -27,6 +27,7 @@
     "@storybook/addon-viewport": "6.3.7",
     "@storybook/addons": "6.3.7",
     "@storybook/source-loader": "6.3.7",
+    "@storybook/addon-docs": "6.3.7",
     "@storybook/svelte": "6.3.7",
     "css-loader": "^0.28.7",
     "grunt": "^0.4.5",

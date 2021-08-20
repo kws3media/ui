@@ -1,22 +1,37 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import { DeleteButton as Button } from '@kws3/buttons';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  color : "primary",
+  disabled : false,
+  size : "",
+  icon_only : false,
+  text : "Delete Me",
+  icon : "minus-circle",
+  doing_icon : "hourglass",
+  done_icon : "check",
+  doing_text : "Doing",
+  done_text : "Deleted"
+};
+
+export function eraseDo(event, success = true){
+  let {doing, done, error} = event.detail;
+  doing();
+  setTimeout(() => {
+    if(success){
+      done();
+    } else {
+      error();
+    }
+  }, 2000)
+}
 
 <Meta
   title="Buttons/Delete Button 2"
   component={Button}
-  args={{
-    color : "primary",
-    disabled : false,
-    size : "",
-    icon_only : false,
-    text : "Delete",
-    icon : "minus-circle",
-    doing_icon : "hourglass",
-    done_icon : "check",
-    doing_text : "Doing",
-    done_text : "Deleted"
-  }}
+  args={args}
   argTypes={{
     color: {
       options: ["primary", "primary", "success", "danger", "warning", "dark", "light"],
@@ -24,54 +39,86 @@ import { DeleteButton as Button } from '@kws3/buttons';
     },
     size:{
       options:["small", "medium", "large"],
-      control: {type:"select"}
+      control: {type:"select"},
     }
   }}
 />
 
-export const Template = (args) => <Button {...args} />
+<Description markdown={dedent`
+# DeleteButton
+## Delete Button with built-in confirmation.
+`}/>
 
 <Canvas>
   <Story
   name="Delete Button 2"
-  args={{
-    color : "primary",
-    disabled : false,
-    size : "",
-    icon_only : false,
-    text : "Delete Me?",
-    icon : "minus-circle",
-    doing_icon : "hourglass",
-    done_icon : "check",
-    doing_text : "Doing",
-    done_text : "Deleted"
-  }}
+  args={args}
   >
-  {{
-    component:Button,
-    props:{
-      text:"Delete Me"
-    }
-  }}
+  {(args) => ({
+    Component: Button,
+    props: args,
+    on: {
+      erase : eraseDo,
+      erased: action("Erased")
+    },
+  })}
   </Story>
 </Canvas>
 
 <ArgsTable story="Delete Button 2" />
 
-## Stories helper
+### Example source code
+<Source
+  language='html'
+  code={ dedent`<DeleteButton text="Delete" color="primary" size="small" icon_only="true" disabled="false" />`}
+/>
 
-Amd here's how `rounded` looks in MDX:
+### Usage Example
+<Source
+  language="html"
+  code={
+    dedent`<DeleteButton
+          {text}
+          {icon}
+          {doing_icon}
+          {done_icon}
+          {doing_text}
+          {done_text}
+          {color}
+          {size}
+          {icon_only}
+          {disabled}
+          on:erase={eraseDo}
+        />
+    <script>
+      import { DeleteButton } from '@kws3/buttons';
+      export let color = "primary";
+      export let disabled = false;
+      export let size="";
+      export let icon_only = false;
+      export let text = "Delete";
+      export let icon = "minus-circle";
+      export let doing_icon = "hourglass";
+      export let done_icon = "check";
+      export let doing_text = "Doing";
+      export let done_text = "Deleted";
+      function eraseDo(event, success = true){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.error();
+        })
+      }
+    </script>`
+  }
+/>
 
-# Storybook for Svelte Delete Button
-
-Storybook supports every major view layer:
-React, Vue, Angular, Ember, React Native, etc.
-
-Svelte is working out of the box without modification.
-How you like them apples?!
-
-Just like in React, we first declare our component.
-
-## More info
-
-For more info, check out the [Storybook Docs README](https://github.com/storybookjs/storybook/tree/next/addons/docs).
