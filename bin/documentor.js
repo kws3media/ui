@@ -4,8 +4,25 @@ const sveltedocParser = require("sveltedoc-parser");
 
 const { readFileSync, writeFileSync } = fs;
 
-let file =
-  "./packages/@kws3/ui/buttons/components/ConfirmButton/ConfirmButton.svelte";
+args = process.argv.slice(2);
+let file = args[0];
+
+try {
+  checkFileIsValid(file);
+} catch (e) {
+  console.log(e);
+  return;
+}
+
+function checkFileIsValid(file) {
+  let parts = file.split("."),
+    extension = parts.pop();
+  if (extension.toLowerCase() != "svelte") {
+    throw new Error(
+      "Only svelte files can be documented, this is a " + extension + " file"
+    );
+  }
+}
 
 let configFile = "./.prettierrc";
 
