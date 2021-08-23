@@ -1,0 +1,6 @@
+{
+  "license": "MIT",
+  "main": "plugin.js",
+  "name": "prettier-plugin-kws3",
+  "version": "1.0.0"
+}
