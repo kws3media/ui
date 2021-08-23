@@ -5,6 +5,7 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "[javascript]": {
+    "editor.defaultFormatter":"esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.quickSuggestions": { "comments": true }
   },
