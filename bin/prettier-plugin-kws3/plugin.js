@@ -84,6 +84,7 @@ let getExportDeclarations = (AST) => {
 
           node.declaration.declarations.map((declaration) => {
             if (declaration.init.type == "ArrowFunctionExpression") {
+              //eg: @function `add(x, y)` - Add function
               functions.push(
                 makeFunctionDoc(
                   declaration.id.name,
@@ -136,6 +137,7 @@ let getExportDeclarations = (AST) => {
         }
 
         if (node.declaration.type == "FunctionDeclaration") {
+          //eg: @function `add(x, y)` - Add function
           functions.push(
             makeFunctionDoc(
               node.declaration.id.name,
