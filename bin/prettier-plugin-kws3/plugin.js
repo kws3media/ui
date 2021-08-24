@@ -173,7 +173,9 @@ let setTopComments = (node) => {
   return (
     "\n  @component\n  " +
     rebuildMultilineText(comp) +
-    (params.length ? "\n\n  " + params.join("\n  ") : "") +
+    (params.length
+      ? "\n\n  " + params.join("\n  ")
+      : "\n\n  @param [_] - No properties on this component") +
     (COMPONENT_FEATURES.events.length
       ? "\n\n  ### Events\n  " + COMPONENT_FEATURES.events.join("\n  ")
       : "") +
