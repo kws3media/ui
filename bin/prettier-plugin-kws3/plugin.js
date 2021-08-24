@@ -92,75 +92,61 @@ let getExportDeclarations = (AST) => {
             let type = TYPE || typeof value;
             let defaultValue = DEFAULT_VALUE || declaration.init.value;
 
-            if (!defaultValue) {
-              if (type == "number") {
-                defaultValue += "";
-              } else if (type == "string") {
-                defaultValue = '""';
-              }
-            } else {
-              if (type == "string") {
-                defaultValue = '"' + defaultValue + '"';
-              }
-            }
-
             let description = COMMENT
               ? COMMENT
               : `${name.charAt(0).toUpperCase() + name.slice(1)} property`;
+
             if (KIND == "const") {
               description = "`CONST` " + description;
             }
 
-            //eg: @param {boolean} [is_active=false] - Show or hide item, default `false`
-            params.push(
-              "@param {" +
-                type +
-                "} [" +
-                name +
-                "=" +
-                defaultValue +
-                "] - " +
-                description +
-                ", Default: `" +
-                defaultValue +
-                "`"
-            );
-          });
+            if (declaration.init.type == "ArrowFunctionExpression") {
+              functions.push(
+                makeFunctionDoc(name, declaration.init.params, description)
+              );
+            } else {
+              if (!defaultValue) {
+                if (type == "number") {
+                  defaultValue += "";
+                } else if (type == "string") {
+                  defaultValue = '""';
+                }
+              } else {
+                if (type == "string") {
+                  defaultValue = '"' + defaultValue + '"';
+                }
+              }
 
-          //TODO: Arrow function declaration exports
+              //eg: @param {boolean} [is_active=false] - Show or hide item, default `false`
+              params.push(
+                "@param {" +
+                  type +
+                  "} [" +
+                  name +
+                  "=" +
+                  defaultValue +
+                  "] - " +
+                  description +
+                  ", Default: `" +
+                  defaultValue +
+                  "`"
+              );
+            }
+          });
         }
 
         if (node.declaration.type == "FunctionDeclaration") {
-          let props = [];
           let description = "";
-
-          if (typeof node.declaration.params != "undefined") {
-            node.declaration.params.forEach((e) => {
-              switch (e.type) {
-                //eg function (x) {}
-                case "Identifier":
-                  props.push(e.name);
-                  break;
-
-                //eg: function (x = 1) {}
-                case "AssignmentPattern":
-                  props.push(e.left.name + " = " + e.right.value);
-                  break;
-              }
-            });
-          }
-
           if (typeof node.leadingComments != "undefined") {
             description = getCommentParsed(node).description;
           }
 
           functions.push(
-            "@function `" +
-              node.declaration.id.name +
-              "(" +
-              props.join(", ") +
-              ")`" +
-              (description ? " - " + description : "")
+            makeFunctionDoc(
+              node.declaration.id.name,
+              node.declaration.params,
+              description
+            )
           );
         }
       }
@@ -203,6 +189,35 @@ let setTopComments = (node) => {
   );
 };
 
+let makeFunctionDoc = (name, params, description) => {
+  let props = [];
+
+  if (typeof params != "undefined") {
+    params.forEach((e) => {
+      switch (e.type) {
+        //eg function (x) {}
+        case "Identifier":
+          props.push(e.name);
+          break;
+
+        //eg: function (x = 1) {}
+        case "AssignmentPattern":
+          props.push(e.left.name + " = " + e.right.value);
+          break;
+      }
+    });
+  }
+
+  return (
+    "@function `" +
+    name +
+    "(" +
+    props.join(", ") +
+    ")`" +
+    (description ? " - " + description : "")
+  );
+};
+
 let getTag = (tags, tagName) => {
   if (typeof tags != "undefined" && Object.values(tags).length > 0) {
     let list = tags.filter((item) => item.tag == tagName);
@@ -225,6 +240,7 @@ let rebuildMultilineText = (item) => {
 function getRegexp(tagName) {
   return new RegExp(`<${tagName}([^]*?)>([^]*?)<\/${tagName}>`, "g");
 }
+
 function snipSCSS(text) {
   return text.replace(getRegexp("style"), (match, attributes, content) => {
     return `<style${attributes}></style>`;
