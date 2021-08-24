@@ -1,11 +1,24 @@
+<!--
+  @component
+
+
+  @param {object} [size=null] - Size property, Default: `null`
+  @param {object} [color=null] - Color property, Default: `null`
+  @param {string} [icon=""] - Icon property, Default: `""`
+  @param {string} [icon_class=""] - Icon_class property, Default: `""`
+  @param {string} [icon_style=""] - Icon_style property, Default: `""`
+  @param {object} [inner_class=null] - Inner_class property, Default: `null`
+  @param {object} [inner_style=null] - Inner_style property, Default: `null`
+
+-->
 <span
   class="icon {size ? 'is-' + size : ''} {color
     ? 'has-text-' + color
     : ''} {icon_class}"
-  style="{icon_style}">
+  style={icon_style}>
   <i
     class="icon-i {familyClass}{icon} {internal_size} {_used_inner_class}"
-    style="{_used_inner_style}"></i>
+    style={_used_inner_style} />
 </span>
 
 <style>
