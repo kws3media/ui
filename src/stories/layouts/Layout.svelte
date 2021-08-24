@@ -32,8 +32,11 @@
   </div>
 </div>
 
+<ConfirmButton />
+
 <script>
   import Package from "../helpers/Package.svelte";
+  import ConfirmButton from "../../../packages/@kws3/ui/buttons/components/ConfirmButton/ConfirmButton.svelte";
 
   export let title = "",
     subtitle = "",
