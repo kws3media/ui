@@ -1,3 +1,10 @@
+<!--
+  @component
+  
+
+  @param {undefined} [pkg=undefined] - Pkg property, Default: `undefined`
+
+-->
 <div class="field is-grouped">
   <div class="control">
     <span class="tags has-addons">
@@ -14,5 +21,5 @@
 </div>
 
 <script>
-  export let pkg = {name:'unknown', version: '0.0.0'};
+  export let pkg = { name: "unknown", version: "0.0.0" };
 </script>

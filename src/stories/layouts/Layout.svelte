@@ -1,3 +1,15 @@
+<!--
+  @component
+
+
+  @param {string} [title=""] - Title property, Default: `""`
+  @param {string} [subtitle=""] - Subtitle property, Default: `""`
+  @param {undefined} [pkg=undefined] - Pkg property, Default: `undefined`
+
+  ### Slots
+  - `<slot name="default"  />`
+
+-->
 <div>
   <div class="main">
     <div class="container">
@@ -13,21 +25,23 @@
 
       <div class="columns is-marginless layout-body-section">
         <div class="column">
-          <slot></slot>
+          <slot />
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<ConfirmButton />
+
 <script>
+  import Package from "../helpers/Package.svelte";
+  import ConfirmButton from "../../../packages/@kws3/ui/buttons/components/ConfirmButton/ConfirmButton.svelte";
 
-  import Package from '../helpers/Package.svelte';
-
-  export let title = '',
-      subtitle = '',
-      pkg = {
-        name:'unknown',
-        version: '0.0.0'
-      };
+  export let title = "",
+    subtitle = "",
+    pkg = {
+      name: "unknown",
+      version: "0.0.0",
+    };
 </script>

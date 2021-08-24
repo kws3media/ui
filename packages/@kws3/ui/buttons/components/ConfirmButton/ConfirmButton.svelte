@@ -1,3 +1,27 @@
+<!--
+  @component
+  
+
+  @param {string} [classes=""] - Classes property, Default: `""`
+  @param {string} [button_class=""] - Button_class property, Default: `""`
+  @param {string} [text=""] - Text property, Default: `""`
+  @param {string} [size=""] - Size property, Default: `""`
+  @param {string} [icon="check"] - Icon property, Default: `"check"`
+  @param {string} [color="info"] - Color property, Default: `"info"`
+  @param {string} [cy=""] - Cy property, Default: `""`
+  @param {string} [doing_icon="hourglass"] - Doing_icon property, Default: `"hourglass"`
+  @param {string} [doing_text="Please Wait..."] - Doing_text property, Default: `"Please Wait..."`
+  @param {string} [done_icon="check"] - Done_icon property, Default: `"check"`
+  @param {string} [done_text="Done"] - Done_text property, Default: `"Done"`
+  @param {boolean} [confirm=false] - Confirm property, Default: `false`
+  @param {boolean} [icon_only=false] - Icon_only property, Default: `false`
+  @param {boolean} [disabled=false] - Disabled property, Default: `false`
+
+  ### Events
+  - `done`
+  - `error`
+
+-->
 <div class="field {confirm ? 'has-addons' : ''} {classes}" data-cy={cy}>
   <p class="control">
     {#if confirm}

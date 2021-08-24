@@ -1,28 +1,25 @@
 {
-  "name": "@kws3/buttons",
-  "version": "0.5.2",
-  "description": "Functional button components for use with Svelte applications.",
+  "name": "@kws3/ui",
+  "version": "0.0.1",
+  "description": "UI components for use with Svelte v3 applications.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "@kws3/helpers": "^0.5.12"
-  },
-  "repository": "bitbucket:kws3-team/storybooks-frontend",
-  "demo_url": "https://ui-v2.kws3.media/?selectedKind=Buttons%7CConfirmButton",
+  "repository": "github:kws3media/storybooks-frontend",
+  "demo_url": "https://ui.kws3.media/",
   "keywords": [
-    "buttons",
-    "confirm",
-    "delete",
-    "submit"
+    "components",
+    "svelte3",
+    "ui"
   ],
-  "author": "Sharif Ahmed <me.sharifahmed@gmail.com>",
+  "author": "Khaled Ahmed <me.khaled@gmail.com>",
   "contributors": [
-    "Khaled Ahmed <me.khaled@gmail.com>"
+    "Sharif Ahmed <me.sharifahmed@gmail.com>",
+    "Sabir <sabirveli@gmail.com>",
+    "Suneesh S K <suneeshsk3@gmail.com>"
   ],
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "aa130458bafb83ff2ef5863cac57b7af3de55f28"
+  }
 }
