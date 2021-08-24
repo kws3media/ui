@@ -3,17 +3,19 @@
   
 
   @param {string} [size=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
-  @param {string} [color="info"] - size doc, should apply to size only, and not get copied to others in block, Default: `"info"`
-  @param {string} [style=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
-  @param {string} [inner_style=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
-  @param {string} [classes=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
-  @param {string} [header_classes=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
-  @param {string} [inner_classes=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
-  @param {object} [title=null] - size doc, should apply to size only, and not get copied to others in block, Default: `null`
-  @param {boolean} [has_title=false] - size doc, should apply to size only, and not get copied to others in block, Default: `false`
-  @param {boolean} [dismissable=false] - size doc, should apply to size only, and not get copied to others in block, Default: `false`
-  @param {undefined} [thisShouldbeanObject=undefined] - ThisShouldbeanObject property, Default: `undefined`
-  @param {object} [thisShouldbeAnotherObject=undefined] - ThisShouldbeAnotherObject property, Default: `undefined`
+  @param {string} [color="info"] - Color property, Default: `"info"`
+  @param {string} [style=""] - Style property, Default: `""`
+  @param {string} [inner_style=""] - Inner_style property, Default: `""`
+  @param {string} [classes=""] - Classes property, Default: `""`
+  @param {string} [header_classes=""] - Header_classes property, Default: `""`
+  @param {array} [inner_classes=[]] - Inner_classes property, Default: `[]`
+  @param {object} [title={}] - Title property, Default: `{}`
+  @param {boolean} [has_title=false] - Has_title property, Default: `false`
+  @param {boolean} [dismissable=false] - Dismissable property, Default: `false`
+  @param {undefined} [today=undefined] - Today property, Default: `undefined`
+  @param {Date} [tomorrow=new Date()] - tomorrow property docs, Default: `new Date()`
+  @param {object} [thisShouldbeanObject={}] - ThisShouldbeanObject property, Default: `{}`
+  @param {object} [thisShouldbeAnotherObject={}] - ThisShouldbeAnotherObject property, Default: `{}`
   @param {number} [oneItem=1] - one Item doc, Default: `1`
   @param {function} [add(x, y = null)] - adds 2 numbers
   @param {function} [divide(x, y = 20)] - divides 2 number
@@ -56,13 +58,29 @@
   export let size = "",
     color = "info",
     style = "",
+    /**
+     * this is inner_style docs
+     */
     inner_style = "",
     classes = "",
     header_classes = "",
-    inner_classes = "",
+    inner_classes = [],
     title = null,
     has_title = false,
-    dismissable = false;
+    dismissable = false,
+    /**
+     * today property docs
+     * @type {Date}
+     * @default "new Date()"
+     */
+    today = new Date();
+
+  /**
+   * tomorrow property docs
+   * @type {Date}
+   * @default "new Date()"
+   */
+  export let tomorrow = new Date();
 
   export let thisShouldbeanObject = {};
 
