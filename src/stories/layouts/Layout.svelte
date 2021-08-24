@@ -32,11 +32,13 @@
   </div>
 </div>
 
-<ConfirmButton />
+<Message />
+<Icon icon />
 
 <script>
   import Package from "../helpers/Package.svelte";
-  import ConfirmButton from "../../../packages/@kws3/ui/buttons/components/ConfirmButton/ConfirmButton.svelte";
+  import { Message } from "../../../packages/@kws3/ui";
+  import { Icon } from "../../../packages/@kws3/ui";
 
   export let title = "",
     subtitle = "",
