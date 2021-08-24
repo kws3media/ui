@@ -1,6 +1,6 @@
 <!--
   @component
-
+  
 
   @param {string} [size=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
   @param {string} [color="info"] - size doc, should apply to size only, and not get copied to others in block, Default: `"info"`
@@ -14,8 +14,8 @@
   @param {boolean} [dismissable=false] - size doc, should apply to size only, and not get copied to others in block, Default: `false`
   @param {number} [oneItem=1] - one Item doc, Default: `1`
 
-  @function `add(x, y = null)` - Add function
-  @function `divide(x, y = 20)` - Divide function
+  @function `add(x, y = null)` - adds 2 numbers
+  @function `divide(x, y = 20)` - divides 2 number
 
   ### Slots
   - `<slot name="title"  />`
@@ -56,10 +56,18 @@
    */
   export let oneItem = 1;
 
+  /**
+   * adds 2 numbers
+   */
   export function add(x, y = null) {
     return x + y;
   }
 
+  /**
+   * divides 2 number
+   * @param x
+   * @param y
+   */
   export let divide = (x, y = 20) => {
     return x / y;
   };
