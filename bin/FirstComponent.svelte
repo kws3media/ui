@@ -1,8 +1,12 @@
 <!--
   @component
-
+  
 
   @param [_] - No properties on this component
+
+  ### Events
+  - `clicked`
+  - `erase`
 
 -->
 <div>

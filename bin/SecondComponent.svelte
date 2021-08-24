@@ -1,15 +1,16 @@
 <!--
   @component
-  
+  Some description of the component
 
   @param [_] - No properties on this component
 
   ### Events
   - `clicked`
-  - `mouseLeft`
+  - `mouseLeft` - some docs for mouseLeft
+  - `focus`
 
 -->
-<div on:click={click} on:mouseleave={msl}>s</div>
+<div on:focus on:click={click} on:mouseleave={msl}>s</div>
 
 <script>
   import { createEventDispatcher } from "svelte";
@@ -23,6 +24,9 @@
   }
 
   function msl() {
+    /**
+     * some docs for mouseLeft
+     */
     fire("mouseLeft");
   }
 </script>
