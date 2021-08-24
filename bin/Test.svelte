@@ -12,6 +12,8 @@
   @param {object} [title=null] - size doc, should apply to size only, and not get copied to others in block, Default: `null`
   @param {boolean} [has_title=false] - size doc, should apply to size only, and not get copied to others in block, Default: `false`
   @param {boolean} [dismissable=false] - size doc, should apply to size only, and not get copied to others in block, Default: `false`
+  @param {undefined} [thisShouldbeanObject=undefined] - ThisShouldbeanObject property, Default: `undefined`
+  @param {object} [thisShouldbeAnotherObject=undefined] - ThisShouldbeAnotherObject property, Default: `undefined`
   @param {number} [oneItem=1] - one Item doc, Default: `1`
   @param {function} [add(x, y = null)] - adds 2 numbers
   @param {function} [divide(x, y = 20)] - divides 2 number
@@ -61,6 +63,13 @@
     title = null,
     has_title = false,
     dismissable = false;
+
+  export let thisShouldbeanObject = {};
+
+  /**
+   * @type {object}
+   */
+  export let thisShouldbeAnotherObject = { done: false };
 
   /**
    * one Item doc
