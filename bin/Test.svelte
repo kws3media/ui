@@ -13,18 +13,19 @@
   @param {boolean} [has_title=false] - size doc, should apply to size only, and not get copied to others in block, Default: `false`
   @param {boolean} [dismissable=false] - size doc, should apply to size only, and not get copied to others in block, Default: `false`
   @param {number} [oneItem=1] - one Item doc, Default: `1`
-
-  @function `add(x, y = null)` - adds 2 numbers
-  @function `divide(x, y = 20)` - divides 2 number
+  @param {function} [add(x, y = null)] - adds 2 numbers
+  @param {function} [divide(x, y = 20)] - divides 2 number
 
   ### Slots
-  - `<slot name="title"  />`
+  - `<slot name="title"  />` - Title slot, falls back to a text node
   - `<slot name="default"  />`
+  - `<slot name="another" {size} {inner_color} />` - another slot
 
 -->
 <div class="message is-{color} is-{size} {classes}" {style} bind:this={_comp}>
   {#if title || has_title}
     <div class="message-header {header_classes}">
+      <!--Title slot, falls back to a text node-->
       <slot name="title"><p>{title}</p></slot>
       {#if dismissable}
         <button class="delete" on:click={dismiss} />
@@ -34,6 +35,8 @@
   <div class="message-body {inner_classes}" style={inner_style}>
     <slot />
   </div>
+  <!--another slot-->
+  <slot name="another" {size} inner_color={color} />
 </div>
 
 <script context="module">
