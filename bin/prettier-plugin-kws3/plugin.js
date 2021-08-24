@@ -46,9 +46,8 @@ let modifyAST = (AST) => {
   return AST;
 };
 
-let getExportDeclarations = (AST) => {
+let getParams = (AST) => {
   let params = [];
-  let functions = [];
 
   walk(AST.instance, {
     enter(node) {
@@ -85,7 +84,7 @@ let getExportDeclarations = (AST) => {
           node.declaration.declarations.map((declaration) => {
             if (declaration.init.type == "ArrowFunctionExpression") {
               //eg: @function `add(x, y)` - Add function
-              functions.push(
+              params.push(
                 makeFunctionDoc(
                   declaration.id.name,
                   declaration.init.params,
@@ -138,7 +137,7 @@ let getExportDeclarations = (AST) => {
 
         if (node.declaration.type == "FunctionDeclaration") {
           //eg: @function `add(x, y)` - Add function
-          functions.push(
+          params.push(
             makeFunctionDoc(
               node.declaration.id.name,
               node.declaration.params,
@@ -150,7 +149,7 @@ let getExportDeclarations = (AST) => {
     },
   });
 
-  return { params, functions };
+  return params;
 };
 
 let getCommentParsed = (comments) => {
@@ -169,13 +168,12 @@ let setTopComments = (node) => {
   _parsed = _parsed.pop();
 
   let comp = getTag(_parsed.tags, "component");
-  let props = getExportDeclarations(ACTUAL_AST);
+  let params = getParams(ACTUAL_AST);
 
   return (
     "\n  @component\n  " +
     rebuildMultilineText(comp) +
-    (props.params.length ? "\n\n  " + props.params.join("\n  ") : "") +
-    (props.functions.length ? "\n\n  " + props.functions.join("\n  ") : "") +
+    (params.length ? "\n\n  " + params.join("\n  ") : "") +
     (COMPONENT_FEATURES.events.length
       ? "\n\n  ### Events\n  " + COMPONENT_FEATURES.events.join("\n  ")
       : "") +
@@ -215,11 +213,11 @@ let makeFunctionDoc = (name, params, comments) => {
   }
 
   return (
-    "@function `" +
+    "@param {function} [" +
     name +
     "(" +
     props.join(", ") +
-    ")`" +
+    ")]" +
     (description ? " - " + description : "")
   );
 };
