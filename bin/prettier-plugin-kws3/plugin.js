@@ -46,8 +46,9 @@ let modifyAST = (AST) => {
   return AST;
 };
 
-let getParms = (AST) => {
-  let items = [];
+let getExportDeclarations = (AST) => {
+  let params = [];
+  let functions = [];
 
   walk(AST.instance, {
     enter(node) {
@@ -111,7 +112,7 @@ let getParms = (AST) => {
             }
 
             //eg: @param {boolean} [is_active=false] - Show or hide item, default `false`
-            items.push(
+            params.push(
               "@param {" +
                 type +
                 "} [" +
@@ -130,7 +131,7 @@ let getParms = (AST) => {
         }
 
         if (node.declaration.type == "FunctionDeclaration") {
-          let params = [];
+          let props = [];
           let description = "";
 
           if (typeof node.declaration.params != "undefined") {
@@ -138,12 +139,12 @@ let getParms = (AST) => {
               switch (e.type) {
                 //eg function (x) {}
                 case "Identifier":
-                  params.push(e.name);
+                  props.push(e.name);
                   break;
 
                 //eg: function (x = 1) {}
                 case "AssignmentPattern":
-                  params.push(e.left.name + " = " + e.right.value);
+                  props.push(e.left.name + " = " + e.right.value);
                   break;
               }
             });
@@ -153,12 +154,12 @@ let getParms = (AST) => {
             description = getCommentParsed(node).description;
           }
 
-          items.push(
-            "@function [" +
+          functions.push(
+            "@function `" +
               node.declaration.id.name +
               "(" +
-              params.join(", ") +
-              ")]" +
+              props.join(", ") +
+              ")`" +
               (description ? " - " + description : "")
           );
         }
@@ -166,7 +167,7 @@ let getParms = (AST) => {
     },
   });
 
-  return items;
+  return { params, functions };
 };
 
 let getCommentParsed = (node) => {
@@ -185,13 +186,13 @@ let setTopComments = (node) => {
   _parsed = _parsed.pop();
 
   let comp = getTag(_parsed.tags, "component");
-  let parms = getParms(ACTUAL_AST);
+  let props = getExportDeclarations(ACTUAL_AST);
 
   return (
     "\n  @component\n  " +
     rebuildMultilineText(comp) +
-    "\n\n  " +
-    parms.join("\n  ") +
+    (props.params.length ? "\n\n  " + props.params.join("\n  ") : "") +
+    (props.functions.length ? "\n\n  " + props.functions.join("\n  ") : "") +
     (COMPONENT_FEATURES.events.length
       ? "\n\n  ### Events\n  " + COMPONENT_FEATURES.events.join("\n  ")
       : "") +
