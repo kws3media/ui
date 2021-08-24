@@ -81,7 +81,7 @@ let getParams = (AST) => {
           //declarations are an array
           //eg: export let size = "", height = "";
 
-          node.declaration.declarations.map((declaration) => {
+          node.declaration.declarations.map((declaration, index) => {
             if (declaration.init.type == "ArrowFunctionExpression") {
               //eg: @function `add(x, y)` - Add function
               params.push(
@@ -100,6 +100,16 @@ let getParams = (AST) => {
               let description = COMMENT
                 ? COMMENT
                 : `${name.charAt(0).toUpperCase() + name.slice(1)} property`;
+
+              if (node.declaration.declarations.length > 1 && COMMENT != "") {
+                if (index === 0) {
+                  description = COMMENT;
+                } else {
+                  description = `${
+                    name.charAt(0).toUpperCase() + name.slice(1)
+                  } property`;
+                }
+              }
 
               if (KIND == "const") {
                 description = "`CONST` " + description;
