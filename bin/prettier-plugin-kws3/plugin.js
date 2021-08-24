@@ -10,6 +10,11 @@ let commentparser = require("comment-parser");
 
 let ACTUAL_AST = {};
 
+let EXPRESSION_MAP = {
+  ArrayExpression: "array",
+  ObjectExpression: "object",
+};
+
 let modifyAST = (AST) => {
   let componentDocsFound = false;
 
@@ -94,7 +99,8 @@ let getParams = (AST) => {
             } else {
               let name = declaration.id.name;
               let value = declaration.init.value;
-              let type = TYPE || typeof value;
+              let type =
+                TYPE || EXPRESSION_MAP[declaration.init.type] || typeof value;
               let defaultValue = DEFAULT_VALUE || declaration.init.value;
 
               let description = COMMENT
@@ -120,6 +126,10 @@ let getParams = (AST) => {
                   defaultValue += "";
                 } else if (type == "string") {
                   defaultValue = '""';
+                } else if (type == "array") {
+                  defaultValue = "[]";
+                } else if (type == "object") {
+                  defaultValue = "{}";
                 }
               } else {
                 if (type == "string") {
