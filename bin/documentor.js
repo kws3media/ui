@@ -82,10 +82,13 @@ function fillEvents(doc) {
   let events = [];
   if (doc.events.length) {
     doc.events.forEach((e) => {
-      if (typeof e.parent == "undefined" && e.visibility == "public") {
+      if (/*typeof e.parent == "undefined" && */ e.visibility == "public") {
         let eventText = `- \`${e.name}\``;
         let hasDescription = false;
-        if (e.description) {
+
+        //forwarded events pick up @component from the top when running on already documented file
+        //so we need to filter those out
+        if (e.description && !e.description.startsWith("@")) {
           hasDescription = true;
           eventText += ` - ${e.description}`;
         }
