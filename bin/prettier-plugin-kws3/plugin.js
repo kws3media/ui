@@ -65,7 +65,7 @@ let getExportDeclarations = (AST) => {
 
           if (typeof node.leadingComments != "undefined") {
             //eg: "*\r\n * Title of the component\r\n * @type {string}\r\n * @defaultvalue empty\r\n "
-            let _parsedComment = getCommentParsed(node),
+            let _parsedComment = getCommentParsed([...node.leadingComments]),
               typeTag = getTag(_parsedComment.tags, "type"),
               dvTag = getTag(_parsedComment.tags, "default"),
               dvTag2 = getTag(_parsedComment.tags, "defaultvalue");
@@ -82,29 +82,29 @@ let getExportDeclarations = (AST) => {
           //declarations are an array
           //eg: export let size = "", height = "";
 
-          //so we should keep the format
-          //eg: export let size = "";
-          //eg: export let height = "";
-
           node.declaration.declarations.map((declaration) => {
-            let name = declaration.id.name;
-            let value = declaration.init.value;
-            let type = TYPE || typeof value;
-            let defaultValue = DEFAULT_VALUE || declaration.init.value;
-
-            let description = COMMENT
-              ? COMMENT
-              : `${name.charAt(0).toUpperCase() + name.slice(1)} property`;
-
-            if (KIND == "const") {
-              description = "`CONST` " + description;
-            }
-
             if (declaration.init.type == "ArrowFunctionExpression") {
               functions.push(
-                makeFunctionDoc(name, declaration.init.params, description)
+                makeFunctionDoc(
+                  declaration.id.name,
+                  declaration.init.params,
+                  node.leadingComments
+                )
               );
             } else {
+              let name = declaration.id.name;
+              let value = declaration.init.value;
+              let type = TYPE || typeof value;
+              let defaultValue = DEFAULT_VALUE || declaration.init.value;
+
+              let description = COMMENT
+                ? COMMENT
+                : `${name.charAt(0).toUpperCase() + name.slice(1)} property`;
+
+              if (KIND == "const") {
+                description = "`CONST` " + description;
+              }
+
               if (!defaultValue) {
                 if (type == "number") {
                   defaultValue += "";
@@ -136,16 +136,11 @@ let getExportDeclarations = (AST) => {
         }
 
         if (node.declaration.type == "FunctionDeclaration") {
-          let description = "";
-          if (typeof node.leadingComments != "undefined") {
-            description = getCommentParsed(node).description;
-          }
-
           functions.push(
             makeFunctionDoc(
               node.declaration.id.name,
               node.declaration.params,
-              description
+              node.leadingComments
             )
           );
         }
@@ -156,8 +151,8 @@ let getExportDeclarations = (AST) => {
   return { params, functions };
 };
 
-let getCommentParsed = (node) => {
-  let comment = node.leadingComments.pop().value;
+let getCommentParsed = (comments) => {
+  let comment = comments.pop().value;
   let _parsedComment = commentparser.parse("/**\n" + comment + "*/");
   return _parsedComment.pop();
 };
@@ -189,8 +184,17 @@ let setTopComments = (node) => {
   );
 };
 
-let makeFunctionDoc = (name, params, description) => {
+let makeFunctionDoc = (name, params, comments) => {
   let props = [];
+  let description = "";
+
+  if (typeof comments != "undefined") {
+    description = getCommentParsed([...comments]).description;
+  }
+
+  description = description
+    ? description
+    : `${name.charAt(0).toUpperCase() + name.slice(1)} function`;
 
   if (typeof params != "undefined") {
     params.forEach((e) => {
