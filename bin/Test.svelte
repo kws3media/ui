@@ -36,6 +36,14 @@
   </div>
 </div>
 
+<script context="module">
+  let family;
+
+  export function setDefaultIconType(type) {
+    family = type;
+  }
+</script>
+
 <script>
   /**
    * size doc, should apply to size only, and not get copied to others in block
