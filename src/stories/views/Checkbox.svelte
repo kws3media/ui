@@ -254,7 +254,8 @@
   import Layout from "../layouts/Layout.svelte";
   import Code from "../helpers/Code.svelte";
   import { Checkbox } from "@kws3/ui";
-  import pkg from "@kws3/ui/controls/package.json";
+
+  let pkg = {};
 
   export let color = "primary",
     checked = false,
