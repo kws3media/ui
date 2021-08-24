@@ -64,11 +64,8 @@ let getParms = (AST) => {
 
           if (typeof node.leadingComments != "undefined") {
             //eg: "*\r\n * Title of the component\r\n * @type {string}\r\n * @defaultvalue empty\r\n "
-            let comment = node.leadingComments.pop().value;
-            let _parsedComment = commentparser.parse("/**\n" + comment + "*/");
-            _parsedComment = _parsedComment.pop();
-
-            let typeTag = getTag(_parsedComment.tags, "type"),
+            let _parsedComment = getCommentParsed(node),
+              typeTag = getTag(_parsedComment.tags, "type"),
               dvTag = getTag(_parsedComment.tags, "default"),
               dvTag2 = getTag(_parsedComment.tags, "defaultvalue");
 
@@ -130,13 +127,52 @@ let getParms = (AST) => {
           });
 
           //TODO: Arrow function declaration exports
-          //TODO: Named function declaration exports
+        }
+
+        if (node.declaration.type == "FunctionDeclaration") {
+          let params = [];
+          let description = "";
+
+          if (typeof node.declaration.params != "undefined") {
+            node.declaration.params.forEach((e) => {
+              switch (e.type) {
+                //eg function (x) {}
+                case "Identifier":
+                  params.push(e.name);
+                  break;
+
+                //eg: function (x = 1) {}
+                case "AssignmentPattern":
+                  params.push(e.left.name + " = " + e.right.value);
+                  break;
+              }
+            });
+          }
+
+          if (typeof node.leadingComments != "undefined") {
+            description = getCommentParsed(node).description;
+          }
+
+          items.push(
+            "@function [" +
+              node.declaration.id.name +
+              "(" +
+              params.join(", ") +
+              ")]" +
+              (description ? " - " + description : "")
+          );
         }
       }
     },
   });
 
   return items;
+};
+
+let getCommentParsed = (node) => {
+  let comment = node.leadingComments.pop().value;
+  let _parsedComment = commentparser.parse("/**\n" + comment + "*/");
+  return _parsedComment.pop();
 };
 
 let setTopComments = (node) => {
