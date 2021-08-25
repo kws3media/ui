@@ -6,10 +6,10 @@ export const parameters = {
   docs: { page: null },
   options: { showPanel: true },
   themes: {
-    clearable: false,
+    //clearable: false,
     default: "Light",
     list: [
-      { name: "Light", class: "theme-kws-light", color: "#F8F8F8" },
+      { name: "Light", class: "theme-kws-light", color: "#F6F6F6" },
       { name: "Dark", class: "theme-kws-dark", color: "#333333" },
     ],
     onChange: (theme) => {
