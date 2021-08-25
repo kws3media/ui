@@ -1,31 +1,42 @@
-import { action } from '@storybook/addon-actions';
-import CheckboxView from './views/Checkbox.svelte';
+import { action } from "@storybook/addon-actions";
+import CheckboxView from "./views/Checkbox.svelte";
 import "../scss/app.scss";
+import CanvasDecorator from "./CanvasDecorator.svelte";
 
 export default {
-  title: 'Controls/Checkbox',
+  title: "Controls/Checkbox",
   component: CheckboxView,
-  argTypes:{
+  argTypes: {
     color: {
-      control: { type: "select", options: ["primary", "primary", "success", "danger", "warning", "dark", "light"] },
+      control: {
+        type: "select",
+        options: [
+          "primary",
+          "primary",
+          "success",
+          "danger",
+          "warning",
+          "dark",
+          "light",
+        ],
+      },
     },
   },
-  parameters: { actions: { argTypesRegex: '^on.*' } },
-}
+  parameters: { actions: { argTypesRegex: "^on.*" } },
+};
 
 const Template = (args) => ({
   Component: CheckboxView,
   props: args,
   on: {
-    change: action('changed'),
+    change: action("changed"),
   },
 });
 
 export const Checkbox = Template.bind({});
 Checkbox.args = {
-  color : "primary",
-  checked : true,
-  disabled : false
+  color: "primary",
+  checked: true,
+  disabled: false,
 };
-
-
+//Checkbox.decorators = [() => CanvasDecorator];

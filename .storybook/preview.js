@@ -1,10 +1,20 @@
-
-import "../src/scss/app.scss";
+import "./../src/scss/app.scss";
 export const parameters = {
-  layout:'centered',
+  layout: "centered",
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: { hideNoControlsWarning: true },
   docs: { page: null },
   options: { showPanel: true },
-}
-
+  themes: {
+    clearable: false,
+    default: "Light",
+    list: [
+      { name: "Light", class: "theme-kws-light", color: "#F8F8F8" },
+      { name: "Dark", class: "theme-kws-dark", color: "#333333" },
+    ],
+    onChange: (theme) => {
+      console.log("THEME:", theme);
+      // todo : if needed
+    },
+  },
+};

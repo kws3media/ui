@@ -160,3 +160,36 @@ pre>code {
 //     }
 //   }
 // }
+
+.theme-kws-light{
+  color:#333333;
+  background-color: #F8F8F8;
+  pre{
+    background-color: #333333;
+    color:#F8F8F8;
+  }
+}
+
+.theme-kws-dark{
+  color:#F8F8F8;
+  background-color: #333333;
+  .title {
+    color: #F8F8F8;
+  }
+  .subtitle {
+    color: #F8F8F8;
+  }
+  .sbdocs > .sb-nodocs > div{
+    background:#F8F8F8 !important;
+    color: #333333;
+  }
+  .sbdocs-wrapper{
+    background:#333333;
+  }
+  .sbdocs-h1, .sbdocs-h2, .sbdocs-h3, .sbdocs-h4, .sbdocs-h5, .sbdocs-h6, strong{
+    color: #F8F8F8;
+  }
+  .docblock-argstable{
+    background: #F8F8F8;
+  }
+}
