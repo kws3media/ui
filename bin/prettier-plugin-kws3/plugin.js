@@ -69,17 +69,10 @@ let getParams = (AST) => {
 
           if (typeof node.leadingComments != "undefined") {
             //eg: "*\r\n * Title of the component\r\n * @type {string}\r\n * @defaultvalue empty\r\n "
-            let _parsedComment = getCommentParsed([...node.leadingComments]),
-              typeTag = getTag(_parsedComment.tags, "type"),
-              dvTag = getTag(_parsedComment.tags, "default"),
-              dvTag2 = getTag(_parsedComment.tags, "defaultvalue");
+            let _parsedComment = getCommentParsed([...node.leadingComments]);
 
-            TYPE = typeTag ? typeTag.type : undefined;
-            DEFAULT_VALUE = dvTag ? dvTag.name : undefined;
-            if (typeof DEFAULT_VALUE == "undefined") {
-              DEFAULT_VALUE = dvTag2 ? dvTag2.name : undefined;
-            }
-
+            TYPE = _parsedComment.type;
+            DEFAULT_VALUE = _parsedComment.default_value;
             COMMENT = _parsedComment.description;
           }
 
@@ -175,7 +168,23 @@ let getParams = (AST) => {
 let getCommentParsed = (comments) => {
   let comment = comments.pop().value;
   let _parsedComment = commentparser.parse("/**\n" + comment + "*/");
-  return _parsedComment.pop();
+
+  _parsedComment = _parsedComment.pop();
+
+  let typeTag = getTag(_parsedComment.tags, "type"),
+    dvTag = getTag(_parsedComment.tags, "default"),
+    dvTag2 = getTag(_parsedComment.tags, "defaultvalue");
+
+  let DEFAULT_VALUE = dvTag ? dvTag.name : undefined;
+  if (typeof DEFAULT_VALUE == "undefined") {
+    DEFAULT_VALUE = dvTag2 ? dvTag2.name : undefined;
+  }
+
+  return {
+    type: typeTag ? typeTag.type : undefined,
+    description: _parsedComment.description,
+    default_value: DEFAULT_VALUE,
+  };
 };
 
 let setTopComments = (node) => {
