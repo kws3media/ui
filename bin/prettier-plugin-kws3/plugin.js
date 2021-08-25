@@ -97,9 +97,23 @@ let getParams = (AST) => {
                 if (index === 0) {
                   description = COMMENT;
                 } else {
-                  description = `${
-                    name.charAt(0).toUpperCase() + name.slice(1)
-                  } property`;
+                  let declarationComment = getCommentParsed(
+                    declaration.leadingComments
+                  );
+
+                  description = declarationComment.description
+                    ? declarationComment.description
+                    : `${
+                        name.charAt(0).toUpperCase() + name.slice(1)
+                      } property`;
+
+                  type = declarationComment.type
+                    ? declarationComment.type
+                    : type;
+
+                  defaultValue = declarationComment.default_value
+                    ? declarationComment.default_value
+                    : defaultValue;
                 }
               }
 
