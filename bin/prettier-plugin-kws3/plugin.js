@@ -62,19 +62,12 @@ let getParams = (AST) => {
           //if we put 2 comment blocks befor export property
           //then we only take last item into the action
 
-          let COMMENT = "",
-            KIND = node.declaration.kind,
-            TYPE,
-            DEFAULT_VALUE;
-
-          if (typeof node.leadingComments != "undefined") {
-            //eg: "*\r\n * Title of the component\r\n * @type {string}\r\n * @defaultvalue empty\r\n "
-            let _parsedComment = getCommentParsed([...node.leadingComments]);
-
-            TYPE = _parsedComment.type;
-            DEFAULT_VALUE = _parsedComment.default_value;
-            COMMENT = _parsedComment.description;
-          }
+          let KIND = node.declaration.kind,
+            {
+              type: TYPE,
+              default_value: DEFAULT_VALUE,
+              description: COMMENT,
+            } = getCommentParsed(node.leadingComments);
 
           //declarations are an array
           //eg: export let size = "", height = "";
@@ -166,25 +159,31 @@ let getParams = (AST) => {
 };
 
 let getCommentParsed = (comments) => {
-  let comment = comments.pop().value;
-  let _parsedComment = commentparser.parse("/**\n" + comment + "*/");
+  let type,
+    default_value,
+    description = "";
 
-  _parsedComment = _parsedComment.pop();
+  if (typeof comments != "undefined") {
+    let _comments = [...comments];
+    let _comment = _comments.pop().value;
+    let _parsedComment = commentparser.parse("/**\n" + _comment + "*/");
 
-  let typeTag = getTag(_parsedComment.tags, "type"),
-    dvTag = getTag(_parsedComment.tags, "default"),
-    dvTag2 = getTag(_parsedComment.tags, "defaultvalue");
+    _parsedComment = _parsedComment.pop();
 
-  let DEFAULT_VALUE = dvTag ? dvTag.name : undefined;
-  if (typeof DEFAULT_VALUE == "undefined") {
-    DEFAULT_VALUE = dvTag2 ? dvTag2.name : undefined;
+    let typeTag = getTag(_parsedComment.tags, "type"),
+      dvTag = getTag(_parsedComment.tags, "default"),
+      dvTag2 = getTag(_parsedComment.tags, "defaultvalue");
+
+    type = typeTag ? typeTag.type : undefined;
+    description = _parsedComment.description;
+
+    default_value = dvTag ? dvTag.name : undefined;
+    if (typeof default_value == "undefined") {
+      default_value = dvTag2 ? dvTag2.name : undefined;
+    }
   }
 
-  return {
-    type: typeTag ? typeTag.type : undefined,
-    description: _parsedComment.description,
-    default_value: DEFAULT_VALUE,
-  };
+  return { type, description, default_value };
 };
 
 let setTopComments = (node) => {
@@ -221,11 +220,7 @@ let setTopComments = (node) => {
 
 let makeFunctionDoc = (name, params, comments) => {
   let props = [];
-  let description = "";
-
-  if (typeof comments != "undefined") {
-    description = getCommentParsed([...comments]).description;
-  }
+  let { description } = getCommentParsed(comments);
 
   description = description
     ? description
