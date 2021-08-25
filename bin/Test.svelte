@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [size=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
   @param {string} [color="info"] - Color property, Default: `"info"`
@@ -13,7 +13,7 @@
   @param {boolean} [has_title=false] - Has_title property, Default: `false`
   @param {boolean} [dismissable=false] - Dismissable property, Default: `false`
   @param {Date} [today=new Date()] - today property docs, Default: `new Date()`
-  @param {function} [subtract(x, y = 15)] - size doc, should apply to size only, and not get copied to others in block
+  @param {function} [subtract(x, y = 15)] - subtract 2 number
   @param {Date} [tomorrow=new Date()] - tomorrow property docs, Default: `new Date()`
   @param {object} [thisShouldbeanObject={}] - ThisShouldbeanObject property, Default: `{}`
   @param {object} [thisShouldbeAnotherObject={}] - ThisShouldbeAnotherObject property, Default: `{}`

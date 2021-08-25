@@ -79,7 +79,7 @@ let getParams = (AST) => {
                 makeFunctionDoc(
                   declaration.id.name,
                   declaration.init.params,
-                  node.leadingComments
+                  declaration.leadingComments || node.leadingComments
                 )
               );
             } else {
