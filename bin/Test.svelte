@@ -5,20 +5,23 @@
   @param {string} [size=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
   @param {string} [color="info"] - Color property, Default: `"info"`
   @param {string} [style=""] - Style property, Default: `""`
-  @param {string} [inner_style=""] - Inner_style property, Default: `""`
+  @param {string} [inner_style=""] - this is inner_style docs, Default: `""`
   @param {string} [classes=""] - Classes property, Default: `""`
   @param {string} [header_classes=""] - Header_classes property, Default: `""`
   @param {array} [inner_classes=[]] - Inner_classes property, Default: `[]`
   @param {object} [title={}] - Title property, Default: `{}`
   @param {boolean} [has_title=false] - Has_title property, Default: `false`
   @param {boolean} [dismissable=false] - Dismissable property, Default: `false`
-  @param {undefined} [today=undefined] - Today property, Default: `undefined`
+  @param {Date} [today=new Date()] - today property docs, Default: `new Date()`
   @param {Date} [tomorrow=new Date()] - tomorrow property docs, Default: `new Date()`
   @param {object} [thisShouldbeanObject={}] - ThisShouldbeanObject property, Default: `{}`
   @param {object} [thisShouldbeAnotherObject={}] - ThisShouldbeAnotherObject property, Default: `{}`
   @param {number} [oneItem=1] - one Item doc, Default: `1`
   @param {function} [add(x, y = null)] - adds 2 numbers
   @param {function} [divide(x, y = 20)] - divides 2 number
+
+  ### Module
+  @param {function} [setDefaultIconType(type)] - SetDefaultIconType function
 
   ### Slots
   - `<slot name="title"  />` - Title slot, falls back to a text node
