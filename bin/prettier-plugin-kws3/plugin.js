@@ -54,7 +54,7 @@ let modifyAST = (AST) => {
 let getParams = (AST) => {
   let params = [];
 
-  walk(AST.instance, {
+  walk(AST, {
     enter(node) {
       if (node.type == "ExportNamedDeclaration") {
         if (node.declaration.type == "VariableDeclaration") {
@@ -188,7 +188,8 @@ let setTopComments = (node) => {
   _parsed = _parsed.pop();
 
   let comp = getTag(_parsed.tags, "component");
-  let params = getParams(ACTUAL_AST);
+  let params = getParams(ACTUAL_AST.instance);
+  let moduleParams = getParams(ACTUAL_AST.module);
 
   return (
     "\n  @component\n  " +
@@ -196,6 +197,9 @@ let setTopComments = (node) => {
     (params.length
       ? "\n\n  " + params.join("\n  ")
       : "\n\n  @param [_] - No properties on this component") +
+    (moduleParams.length
+      ? "\n\n  ### Module\n  " + moduleParams.join("\n  ")
+      : "") +
     (COMPONENT_FEATURES.events.length
       ? "\n\n  ### Events\n  " + COMPONENT_FEATURES.events.join("\n  ")
       : "") +
