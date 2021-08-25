@@ -13,6 +13,7 @@
   @param {boolean} [has_title=false] - Has_title property, Default: `false`
   @param {boolean} [dismissable=false] - Dismissable property, Default: `false`
   @param {Date} [today=new Date()] - today property docs, Default: `new Date()`
+  @param {function} [subtract(x, y = 15)] - size doc, should apply to size only, and not get copied to others in block
   @param {Date} [tomorrow=new Date()] - tomorrow property docs, Default: `new Date()`
   @param {object} [thisShouldbeanObject={}] - ThisShouldbeanObject property, Default: `{}`
   @param {object} [thisShouldbeAnotherObject={}] - ThisShouldbeAnotherObject property, Default: `{}`
@@ -76,7 +77,15 @@
      * @type {Date}
      * @default "new Date()"
      */
-    today = new Date();
+    today = new Date(),
+    /**
+     * subtract 2 number
+     * @param x
+     * @param y
+     */
+    subtract = (x, y = 15) => {
+      return x - y;
+    };
 
   /**
    * tomorrow property docs
