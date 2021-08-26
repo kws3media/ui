@@ -1,0 +1,52 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Message } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  size : "",
+  color : "info",
+  style : "",
+  inner_style : "",
+  classes : "",
+  header_classes : "",
+  inner_classes : "",
+  title : "Message Box",
+  has_title : true,
+  dismissable : false
+};
+
+<Meta
+  title="Helpers/Message"
+  component={Message}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Message
+## Message components for showing alerts.
+`}/>
+
+<Canvas>
+  <Story
+  name="Message"
+  args={args}
+  >
+  {(args) => ({
+    Component: Message,
+    props: args,
+    on: {
+      close: action("Closed"),
+      open: action("Opened")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Message" />
+
+### Example source code
+<Source
+  language='html'
+  code={ dedent`<Message size="medium" color="info" >Your message here!!!</Message>`}
+/>
