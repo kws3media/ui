@@ -4,24 +4,23 @@ import { Panel } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  title = "Demo Panel",
-  subtitle = "",
-  style = "",
-  inner_style = "",
-  cy = "",
-  collapse_icon = "caret-right",
-  collapsible = false,
-  collapsed = false,
-  relative = false,
-  has_toolbar = true,
-  has_center = true;
-};
+  title : "Demo Panel",
+  subtitle : "",
+  style : "",
+  inner_style : "",
+  cy : "",
+  collapse_icon : "caret-right",
+  collapsible : false,
+  collapsed : false,
+  relative : false,
+  has_toolbar : true,
+  has_center : true
+}
 
 <Meta
   title="Helpers/Panel"
   component={Panel}
   args={args}
-  argTypes={}
 />
 
 <Description markdown={dedent`
