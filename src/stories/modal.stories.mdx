@@ -7,19 +7,13 @@ export let args={
   size : "medium",
   is_active : true,
   closable:true,
+  close_on_click_outside : true,
+  style : "",
+  inner_style : "",
+  classes : "",
+  inner_class : "",
+  cy : ""
 };
-
-export function eraseDo(event, success = true){
-  let {doing, done, error} = event.detail;
-  doing();
-  setTimeout(() => {
-    if(success){
-      done();
-    } else {
-      error();
-    }
-  }, 2000)
-}
 
 <Meta
   title="Helpers/Modal"
@@ -45,7 +39,11 @@ export function eraseDo(event, success = true){
   >
   {(args) => ({
     Component: Modal,
-    props: args
+    props: args,
+    on: {
+      close: action("Closed"),
+      open: action("Opened")
+    },
   })}
   </Story>
 </Canvas>
