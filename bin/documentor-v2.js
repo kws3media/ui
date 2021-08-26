@@ -69,6 +69,8 @@ function parseDoc(doc) {
     name: "",
     events: [],
     slots: [],
+    params: [],
+    moduleParams: [],
   };
 
   obj.name = doc.name || "";
