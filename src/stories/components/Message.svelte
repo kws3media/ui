@@ -9,7 +9,8 @@
   {title}
   {has_title}
   {dismissable}>
-  Your message here!!!
+  <h1>This is a Heading</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 </Message>
 
 <script>

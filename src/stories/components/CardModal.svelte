@@ -10,13 +10,14 @@
   {classes}
   {inner_class}
   {cy}>
-  Your have 41 notifications
+  <h1>This is a Heading</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 </CardModal>
 
 <button
   class="button is-primary"
   type="button"
-  on:click={() => (is_active = true)}>Open Model</button>
+  on:click={() => (is_active = true)}>Open Card Model</button>
 
 <script>
   import { CardModal } from "@kws3/ui";
