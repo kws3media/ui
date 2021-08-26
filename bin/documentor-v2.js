@@ -166,21 +166,47 @@ function fillData(doc) {
         }
       }
 
-      params.push(
-        "@param {" +
-          d.type.text +
-          "} [" +
-          d.name +
-          "=" +
-          defaultValue +
-          "] - " +
-          description +
-          ", Default: `" +
-          defaultValue +
-          "`"
-      );
+      switch (type) {
+        case "function":
+          let props = [];
+
+          if (typeof d.keywords != "undefined" && d.keywords.length) {
+            d.keywords.forEach((p) => {
+              if (p.name == "param") {
+                props.push(p.description);
+              }
+            });
+          }
+
+          params.push(
+            "@param {function} [" +
+              d.name +
+              "(" +
+              props.join(", ") +
+              ")]" +
+              (description ? " - " + description : "")
+          );
+          break;
+
+        default:
+          params.push(
+            "@param {" +
+              type +
+              "} [" +
+              d.name +
+              "=" +
+              defaultValue +
+              "] - " +
+              description +
+              ", Default: `" +
+              defaultValue +
+              "`"
+          );
+      }
     });
   }
+
+  console.log(params);
 
   return params;
 }
