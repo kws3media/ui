@@ -1,0 +1,58 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Modal } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  size : "",
+  is_active : false
+};
+
+export function eraseDo(event, success = true){
+  let {doing, done, error} = event.detail;
+  doing();
+  setTimeout(() => {
+    if(success){
+      done();
+    } else {
+      error();
+    }
+  }, 2000)
+}
+
+<Meta
+  title="Helpers/Modal"
+  component={Modal}
+  args={args}
+  argTypes={{
+    size: {
+      options: ["medium", "large"],
+      control: { type: 'select' }
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# Modal
+## Modal components for showing popups.
+`}/>
+
+<Canvas>
+  <Story
+  name="Modal"
+  args={args}
+  >
+  {(args) => ({
+    Component: Modal,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Modal" />
+
+### Example source code
+<Source
+  language='html'
+  code={ dedent`<Modal size="medium" is_active="true" />`}
+/>
