@@ -33,9 +33,18 @@
 </div>
 
 <script>
-  export let size = "",
-    color = "info",
-    style = "",
+  /**
+   * Size of the Message `small`, `medium` and `large`
+   * @type {'small'|'medium'|'large'}
+   */
+  export let size = "";
+
+  /**
+   * Color of the Message box `primary`, `warning`, `info`, `danger`
+   * @type {'primary'|'warning'|'info'|'danger'}
+   */
+  export let color = "info";
+  export let style = "",
     inner_style = "",
     classes = "",
     header_classes = "",

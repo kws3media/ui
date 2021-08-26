@@ -1,0 +1,54 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import Notification from './components/Notification.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  color : "info",
+  style : "",
+  light : false,
+  dismissable : false
+};
+
+<Meta
+  title="Helpers/Notification"
+  component={Notification}
+  args={args}
+  argTypes={{
+    color: {
+      options: ["primary", "primary", "success", "danger", "warning", "dark", "light"],
+      control: { type: 'select' }
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# Notification
+## Notification components.
+`}/>
+
+<Canvas>
+  <Story
+  name="Notification"
+  args={Notification}
+  >
+  {(args) => ({
+    Component: Notification,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Notification" />
+
+### Dismissable
+<Source
+  language='html'
+  code={ dedent`<Notification color="danger" dismissable={true} ></Notification>`}
+/>
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`import { Notification } from '@kws3/ui';`}
+/>
