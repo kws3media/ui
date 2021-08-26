@@ -74,7 +74,8 @@ function parseDoc(doc) {
   obj.name = doc.name || "";
   obj.events = fillEvents(doc);
   obj.slots = fillSlots(doc);
-  obj.params = fillData(doc);
+  obj.params = fillData(doc, false);
+  obj.moduleParams = fillData(doc, true);
 
   return obj;
 }
@@ -137,11 +138,13 @@ function fillSlots(doc) {
   return slots;
 }
 
-function fillData(doc) {
+function fillData(doc, is_static) {
   let params = [];
 
   if (doc.data.length) {
-    doc.data.forEach((d) => {
+    let data = doc.data.filter((i) => i.static === is_static);
+
+    data.forEach((d) => {
       let description = d.description || "";
       let defaultValue = d.defaultValue || null;
       let type = d.type.text;
@@ -205,8 +208,6 @@ function fillData(doc) {
       }
     });
   }
-
-  console.log(params);
 
   return params;
 }
