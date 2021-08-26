@@ -1,11 +1,11 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import { Modal } from '@kws3/ui';
+import Modal from './components/Modal.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
   size : "medium",
-  is_active : true,
+  is_active : false,
   closable:true,
   close_on_click_outside : true,
   style : "",
@@ -53,5 +53,14 @@ export let args={
 ### Example source code
 <Source
   language='html'
-  code={ dedent`<Modal size="medium" is_active="true" />`}
+  code={ dedent`<Modal size="medium" is_active="true" >
+      <h1>This is a Heading</h1>
+      <p>Lorem ipsum.</p>
+    </Modal>`}
+/>
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`import { Modal } from '@kws3/ui';`}
 />
