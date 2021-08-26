@@ -1,0 +1,78 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Icon } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  size : "medium",
+  color : "primary",
+  icon : "plus",
+  icon_class : "",
+  icon_style : "",
+  inner_class : "",
+  inner_style : ""
+};
+
+<Meta
+  title="Helpers/Icon"
+  component={Icon}
+  args={args}
+  argTypes={{
+    color: {
+      options: ["primary", "primary", "success", "danger", "warning", "dark", "light"],
+      control: { type: 'select' }
+    },
+    size:{
+      options:["small", "medium", "large"],
+      control: {type:"select"},
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# Icon
+## An Icon component to display supported icons.
+`}/>
+
+<Canvas>
+  <Story
+  name="Icon"
+  args={args}
+  >
+  {(args) => ({
+    Component: Icon,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Icon" />
+
+### fontawesome.io
+<Source
+  language='html'
+  code={ dedent`<Icon icon="check" color="" size="" />`}
+/>
+
+### iconscout.com/unicons
+<Source
+  language='html'
+  code={ dedent`<Icon family="unicons" icon="check" color="" size="" />`}
+/>
+
+### css.gg
+<Source
+  language='html'
+  code={ dedent`<Icon family="gg" icon="check" color="" size="" />`}
+/>
+
+### Usage
+#### Requires FontAwesome version <= 4.7.0, this can be either loaded from your bundle, or from a CDN
+#### For Unicons icons, requires css loading as mentioned in https://iconscout.com/unicons this can be either loaded from your bundle, or from a CDN
+#### For GG icons, requires css loading as mentioned in https://css.gg/ this can be either loaded from your bundle, or from a CDN
+
+### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { Icon } from '@kws3/ui';`}
+/>
