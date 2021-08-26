@@ -5,7 +5,11 @@ export const parameters = {
   controls: { hideNoControlsWarning: true },
   docs: { page: null },
   options: { showPanel: true },
-  themes: {
+  backgrounds: { disable: true },
+};
+
+/*
+themes: {
     //clearable: false,
     default: "Light",
     list: [
@@ -17,4 +21,4 @@ export const parameters = {
       // todo : if needed
     },
   },
-};
+*/

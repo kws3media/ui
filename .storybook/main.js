@@ -13,8 +13,6 @@ module.exports = {
     },
     "@storybook/addon-essentials",
     "@storybook/addon-actions",
-    "storybook-addon-themes",
-    //"@storybook/addon-backgrounds/register",
     "@storybook/addon-viewport",
   ],
   webpackFinal: async (config) => {
