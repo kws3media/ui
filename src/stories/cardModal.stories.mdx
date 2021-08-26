@@ -1,0 +1,55 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { CardModal } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  title : "Card Modal",
+  size : "Medium",
+  is_active : true,
+  closable : true,
+  close_on_click_outside : false,
+  has_footer : true,
+  style : "",
+  inner_style : "",
+  classes : "",
+  inner_class : "",
+  cy : ""
+};
+
+<Meta
+  title="Helpers/CardModal"
+  component={CardModal}
+  args={args}
+  argTypes={{
+    size: {
+      options: ["medium", "large"],
+      control: { type: 'select' }
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# CardModal
+## CardModal components for showing popups.
+`}/>
+
+<Canvas>
+  <Story
+  name="CardModal"
+  args={args}
+  >
+  {(args) => ({
+    Component: CardModal,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="CardModal" />
+
+### Example source code
+<Source
+  language='html'
+  code={ dedent`<CardModal size="medium" is_active="true" />`}
+/>

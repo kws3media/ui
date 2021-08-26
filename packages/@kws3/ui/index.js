@@ -10,4 +10,5 @@ export { default as DeleteButton } from "./buttons/components/DeleteButton/Delet
 //export { default as SubmitButton } from './buttons/components/SubmitButton/SubmitButton.svelte';
 
 export { default as Modal } from "./helpers/components/Modal.svelte";
+export { default as CardModal } from "./helpers/components/CardModal.svelte";
 export { default as Panel } from "./helpers/components/Panel/Panel.svelte";
