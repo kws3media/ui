@@ -176,24 +176,7 @@ function fillData(doc, is_static) {
 
       switch (type) {
         case "function":
-          let props = [];
-
-          if (typeof d.keywords != "undefined" && d.keywords.length) {
-            d.keywords.forEach((p) => {
-              if (p.name == "param") {
-                props.push(p.description);
-              }
-            });
-          }
-
-          params.push(
-            "@param {function} [" +
-              d.name +
-              "(" +
-              props.join(", ") +
-              ")]" +
-              (description ? " - " + description : "")
-          );
+          params.push(makeFunctionDoc(d));
           break;
 
         default:
@@ -217,29 +200,36 @@ function fillData(doc, is_static) {
   //methods
   if (doc.methods.length) {
     let methods = doc.methods.filter((i) => i.static === is_static);
-
-    methods.forEach((m) => {
-      let props = [];
-      let description =
-        m.description ||
-        `${m.name.charAt(0).toUpperCase() + m.name.slice(1)} function`;
-
-      if (typeof m.params != "undefined" && m.params.length) {
-        m.params.forEach((p) => {
-          props.push(p.name + (p.defaultValue ? " = " + p.defaultValue : ""));
-        });
-      }
-
-      params.push(
-        "@param {function} [" +
-          m.name +
-          "(" +
-          props.join(", ") +
-          ")]" +
-          (description ? " - " + description : "")
-      );
+    methods.forEach((d) => {
+      params.push(makeFunctionDoc(d));
     });
   }
 
   return params;
+}
+
+function makeFunctionDoc(e) {
+  let props = [];
+  let description =
+    " - " +
+    (e.description ||
+      `${e.name.charAt(0).toUpperCase() + e.name.slice(1)} function`);
+
+  if (typeof e.params != "undefined" && e.params.length) {
+    e.params.forEach((i) => {
+      props.push(i.name + (i.defaultValue ? " = " + i.defaultValue : ""));
+    });
+  } else {
+    if (typeof e.keywords != "undefined" && e.keywords.length) {
+      e.keywords.forEach((i) => {
+        if (i.name == "param") {
+          props.push(i.description);
+        }
+      });
+    }
+  }
+
+  return (
+    "@param {function} [" + e.name + "(" + props.join(", ") + ")]" + description
+  );
 }
