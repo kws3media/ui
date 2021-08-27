@@ -160,17 +160,11 @@ function fillData(doc, is_static) {
           let description = getDescription(d, "property");
 
           params.push(
-            "@param {" +
-              type +
-              "} [" +
-              d.name +
-              "=" +
-              defaultValue +
-              "] - " +
-              description +
-              ", Default: `" +
-              defaultValue +
-              "`"
+            "@param " +
+              ("{" + type + "}") +
+              (" [" + d.name + "=" + defaultValue + "]") +
+              (" - " + description) +
+              (", Default: `" + defaultValue + "`")
           );
       }
     });
@@ -207,7 +201,7 @@ function makeFunctionDoc(e) {
   }
 
   return (
-    "@param {function}" +
+    "@param {function} " +
     ("[" + (e.name + "(" + props.join(", ") + ")") + "]") +
     (description ? " - " + description : "")
   );
