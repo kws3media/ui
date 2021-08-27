@@ -1,7 +1,8 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import Message from './components/Message.svelte'
+import { Message } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
+import MessageDecorator from "./decorators/MessageDecorator.svelte";
 
 export let args={
   size : "",
@@ -30,6 +31,7 @@ export let args={
       control: {type:"select"},
     }
   }}
+  decorators={[() => MessageDecorator]}
 />
 
 <Description markdown={dedent`

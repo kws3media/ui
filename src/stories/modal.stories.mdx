@@ -1,11 +1,12 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import Modal from './components/Modal.svelte';
+import { Modal } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
+import ModalDecorator from "./decorators/ModalDecorator.svelte";
 
 export let args={
   size : "medium",
-  is_active : false,
+  is_active : true,
   closable:true,
   close_on_click_outside : true,
   style : "",
@@ -25,6 +26,7 @@ export let args={
       control: { type: 'select' }
     }
   }}
+  decorators={[(args) => ModalDecorator]}
 />
 
 <Description markdown={dedent`
