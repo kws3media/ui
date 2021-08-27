@@ -13,3 +13,4 @@ export { default as Modal } from "./helpers/components/Modal.svelte";
 export { default as CardModal } from "./helpers/components/CardModal.svelte";
 export { default as Panel } from "./helpers/components/Panel/Panel.svelte";
 export { default as Notification } from "./helpers/components/Notification.svelte";
+export { default as Loader } from "./helpers/components/Loader/Loader.svelte";
