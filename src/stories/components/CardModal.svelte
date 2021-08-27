@@ -1,7 +1,7 @@
 <KwsCardModal
   {title}
   {size}
-  {is_active}
+  bind:is_active
   {closable}
   {close_on_click_outside}
   {has_footer}
