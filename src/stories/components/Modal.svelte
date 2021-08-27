@@ -1,4 +1,4 @@
-<Modal
+<KwsModal
   {size}
   {is_active}
   {closable}
@@ -10,7 +10,7 @@
   {cy}>
   <h1>This is a Heading</h1>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-</Modal>
+</KwsModal>
 
 <button
   class="button is-primary"
@@ -18,7 +18,7 @@
   on:click={() => (is_active = true)}>Open Model</button>
 
 <script>
-  import { Modal } from "@kws3/ui";
+  import { Modal as KwsModal } from "@kws3/ui";
   export let size = "";
   export let is_active = false;
   export let closable = true;

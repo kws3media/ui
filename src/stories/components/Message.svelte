@@ -1,4 +1,4 @@
-<Message
+<KwsMessage
   {size}
   {color}
   {style}
@@ -11,10 +11,10 @@
   {dismissable}>
   <h1>This is a Heading</h1>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-</Message>
+</KwsMessage>
 
 <script>
-  import { Message } from "@kws3/ui";
+  import { Message as KwsMessage } from "@kws3/ui";
 
   export let size = "medium";
   export let color = "info";
