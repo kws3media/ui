@@ -148,31 +148,7 @@ function fillData(doc, is_static) {
     let data = doc.data.filter((i) => i.static === is_static);
 
     data.forEach((d) => {
-      let description =
-        d.description ||
-        `${d.name.charAt(0).toUpperCase() + d.name.slice(1)} property`;
-      let defaultValue = d.defaultValue || null;
       let type = d.type.text;
-
-      if (d.kind == "const") {
-        description = "`CONST` " + description;
-      }
-
-      if (!defaultValue) {
-        if (type == "number") {
-          defaultValue += "";
-        } else if (type == "string") {
-          defaultValue = '""';
-        } else if (type == "array") {
-          defaultValue = "[]";
-        } else if (type == "object") {
-          defaultValue = "{}";
-        }
-      } else {
-        if (type == "string") {
-          defaultValue = '"' + defaultValue + '"';
-        }
-      }
 
       switch (type) {
         case "function":
@@ -180,6 +156,15 @@ function fillData(doc, is_static) {
           break;
 
         default:
+          let defaultValue = getDefaultValue(d);
+          let description =
+            d.description ||
+            `${d.name.charAt(0).toUpperCase() + d.name.slice(1)} property`;
+
+          if (d.kind == "const") {
+            description = "`CONST` " + description;
+          }
+
           params.push(
             "@param {" +
               type +
@@ -232,4 +217,37 @@ function makeFunctionDoc(e) {
   return (
     "@param {function} [" + e.name + "(" + props.join(", ") + ")]" + description
   );
+}
+
+function getDefaultValue(e) {
+  let defaultValue = e.defaultValue;
+  let type = e.type.text;
+
+  if (typeof defaultValue == "undefined") {
+    if (typeof e.keywords != "undefined" && e.keywords.length) {
+      e.keywords.forEach((i) => {
+        if (["default", "defaultValue", "defaultvalue"].indexOf(i.name) != -1) {
+          defaultValue = i.description;
+        }
+      });
+    }
+  }
+
+  if (typeof defaultValue == "undefined") {
+    if (type == "number") {
+      defaultValue += "";
+    } else if (type == "string") {
+      defaultValue = '""';
+    } else if (type == "array") {
+      defaultValue = "[]";
+    } else if (type == "object") {
+      defaultValue = "{}";
+    }
+  } else {
+    if (type == "string") {
+      defaultValue = '"' + defaultValue + '"';
+    }
+  }
+
+  return defaultValue;
 }
