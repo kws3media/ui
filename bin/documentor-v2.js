@@ -143,6 +143,7 @@ function fillSlots(doc) {
 function fillData(doc, is_static) {
   let params = [];
 
+  //data
   if (doc.data.length) {
     let data = doc.data.filter((i) => i.static === is_static);
 
@@ -208,6 +209,34 @@ function fillData(doc, is_static) {
               "`"
           );
       }
+    });
+  }
+
+  //methods
+  if (doc.methods.length) {
+    let methods = doc.methods.filter((i) => i.static === is_static);
+
+    methods.forEach((m) => {
+      let props = [];
+      let description =
+        " - " +
+        (m.description ||
+          `${m.name.charAt(0).toUpperCase() + m.name.slice(1)} function`);
+
+      if (typeof m.params != "undefined" && m.params.length) {
+        m.params.forEach((p) => {
+          props.push(p.name + (p.defaultValue ? " = " + p.defaultValue : ""));
+        });
+      }
+
+      params.push(
+        "@param {function} [" +
+          m.name +
+          "(" +
+          props.join(", ") +
+          ")]" +
+          description
+      );
     });
   }
 
