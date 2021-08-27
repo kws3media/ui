@@ -1,0 +1,118 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { ConfirmButton as Button } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  color : "primary",
+  disabled : false,
+  size : "",
+  icon_only : false,
+  text : "Do it?",
+  icon : "minus-circle",
+  doing_icon : "hourglass",
+  done_icon : "check",
+  doing_text : "Doing",
+  done_text : "Deleted"
+};
+
+export function confirmDo(event, success = true){
+    let {doing, done, error} = event.detail;
+    doing();
+    setTimeout(() => {
+      if(success){
+        done();
+      } else {
+        error();
+      }
+    }, 2000)
+  }
+
+<Meta
+  title="Buttons/Confirm Button"
+  component={Button}
+  args={args}
+  argTypes={{
+    color: {
+      options: ["primary", "primary", "success", "danger", "warning", "dark", "light"],
+      control: { type: 'select' }
+    },
+    size:{
+      options:["small", "medium", "large"],
+      control: {type:"select"},
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# ConfirmButton
+## Confirm Button with built-in confirmation.
+`}/>
+
+<Canvas>
+  <Story
+  name="Confirm Button"
+  args={args}
+  >
+  {(args) => ({
+    Component: Button,
+    props: args,
+    on: {
+      do : confirmDo,
+      done: action("Confirmed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Confirm Button" />
+
+### Example source code
+<Source
+  language='html'
+  code={ dedent`<ConfirmButton text="Do It?" color="primary" size="small" icon_only="true" disabled="false" />`}
+/>
+
+### Usage Example
+<Source
+  language="html"
+  code={
+    dedent`<ConfirmButton
+          {color}
+          {disabled}
+          {size}
+          {icon_only}
+          {text}
+          {icon}
+          {doing_icon}
+          {done_icon}
+          {doing_text}
+          {done_text}
+          on:erase={eraseDo}
+        />
+    <script>
+      import { DeleteButton } from '@kws3/buttons';
+      export let color = "primary";
+      export let disabled = false;
+      export let size = "";
+      export let icon_only = false;
+      export let text = "Do it?";
+      export let icon = "minus-circle";
+      export let doing_icon = "hourglass";
+      export let done_icon = "check";
+      export let doing_text = "Doing";
+      export let done_text = "Deleted";
+      function confirmDo(event, success = true){
+        let {doing, done, error} = event.detail;
+        doing();
+        setTimeout(() => {
+          if(success){
+            done();
+          } else {
+            error();
+          }
+        }, 2000)
+      }
+    </script>`
+  }
+/>
