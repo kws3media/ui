@@ -1,0 +1,77 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Loader } from "@kws3/ui";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  color : "transparent",
+  size : "small",
+  style : "",
+  type : "",
+  large_loader : false
+}
+
+<Meta
+  title="Helpers/Loader"
+  component={Loader}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Loader
+## Graphic to display a loading status to users.
+`}/>
+
+<Canvas>
+  <Story
+  name="Loader"
+  args={args}
+  >
+  {(args) => ({
+    Component: Loader,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Loader" />
+
+
+### Usage
+##### Example source code:
+<Source
+  language='html'
+  code={ dedent`
+    <Loader
+      color="transparent"
+      size="medium"
+      type=""
+      large_loader="false"
+    />
+  `}
+/>
+
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { Loader } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+<Source
+  language='javascript'
+  code={ dedent`@import 'path/to/node_modules/@kws3/ui/helpers/components/Loader/styles.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws-loader-width: 2rem;
+    $kws-loader-height: 2rem;
+    $kws-loader-width-large: ($kws-loader-width * 3);
+    $kws-loader-height-large: ($kws-loader-height * 3);
+    $kws-loader-color: #ccc;
+    $kws-loader-overlay-background: rgba(0,0,0,0.15);
+  `}
+/>
