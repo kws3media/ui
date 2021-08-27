@@ -1,6 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import { Panel } from '@kws3/ui';
+import Panel from './components/Panel.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
@@ -41,3 +41,30 @@ export let args={
 </Canvas>
 
 <ArgsTable story="Panel" />
+
+
+### Usage
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { Panel } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+<Source
+  language='javascript'
+  code={ dedent`@import 'path/to/node_modules/@kws3/ui/helpers/components/Panel/styles.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws-panel-background: #fff;
+    $kws-panel-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+    $kws-panel-title-color: #000;
+    $kws-panel-title-weight: 700;
+    $kws-panel-caret-open-color: #888;
+    $kws-panel-caret-closed-color: #00a4d8;
+  `}
+/>
