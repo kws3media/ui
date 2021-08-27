@@ -50,7 +50,7 @@ sveltedocParser
         Object.assign(
           {
             parser: "svelte",
-            plugins: ["./bin/prettier-plugin-kws3"],
+            plugins: ["./bin/prettier-plugin-kws3-v2"],
             pluginSearchDirs: ["./bin/"],
           },
           options
@@ -178,7 +178,6 @@ function fillData(doc, is_static) {
     });
   }
 
-  console.log(params);
   return params;
 }
 
