@@ -1,7 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import CheckboxView from "./views/Checkbox.svelte";
 import "../scss/app.scss";
-import CanvasDecorator from "./CanvasDecorator.svelte";
 
 export default {
   title: "Controls/Checkbox",
