@@ -157,13 +157,7 @@ function fillData(doc, is_static) {
 
         default:
           let defaultValue = getDefaultValue(d);
-          let description =
-            d.description ||
-            `${d.name.charAt(0).toUpperCase() + d.name.slice(1)} property`;
-
-          if (d.kind == "const") {
-            description = "`CONST` " + description;
-          }
+          let description = getDescription(d, "property");
 
           params.push(
             "@param {" +
@@ -190,15 +184,13 @@ function fillData(doc, is_static) {
     });
   }
 
+  console.log(params);
   return params;
 }
 
 function makeFunctionDoc(e) {
   let props = [];
-  let description =
-    " - " +
-    (e.description ||
-      `${e.name.charAt(0).toUpperCase() + e.name.slice(1)} function`);
+  let description = getDescription(e, "function");
 
   if (typeof e.params != "undefined" && e.params.length) {
     e.params.forEach((i) => {
@@ -215,7 +207,9 @@ function makeFunctionDoc(e) {
   }
 
   return (
-    "@param {function} [" + e.name + "(" + props.join(", ") + ")]" + description
+    "@param {function}" +
+    ("[" + (e.name + "(" + props.join(", ") + ")") + "]") +
+    (description ? " - " + description : "")
   );
 }
 
@@ -250,4 +244,16 @@ function getDefaultValue(e) {
   }
 
   return defaultValue;
+}
+
+function getDescription(e, suffix = "") {
+  let description =
+    e.description ||
+    `${e.name.charAt(0).toUpperCase() + e.name.slice(1)} ${suffix}`;
+
+  if (e.kind == "const") {
+    description = "`CONST` " + description;
+  }
+
+  return description;
 }
