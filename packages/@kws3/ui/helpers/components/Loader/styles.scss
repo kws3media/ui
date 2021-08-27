@@ -1,0 +1,48 @@
+$kws-loader-width: 2rem !default;
+$kws-loader-height: 2rem !default;
+$kws-loader-width-large: ($kws-loader-width * 3) !default;
+$kws-loader-height-large: ($kws-loader-height * 3) !default;
+$kws-loader-color: #ccc !default;
+$kws-loader-overlay-background: rgba(0,0,0,0.15) !default;
+
+.kws-loader{
+  .hero-body{
+    position:relative;
+    &:after{
+      @include loader();
+      border-left-color:$kws-loader-color;
+      border-bottom-color:$kws-loader-color;
+      position: absolute !important;
+      width:$kws-loader-width;
+      height:$kws-loader-height;
+      left: calc(50% - (#{$kws-loader-width} / 2));
+      top: calc(50% - (#{$kws-loader-height} / 2));
+    }
+  }
+  &.is-large-loader{
+    .hero-body:after{
+      width:$kws-loader-width-large;
+      height:$kws-loader-height-large;
+      left: calc(50% - (#{$kws-loader-width-large} / 2));
+      top: calc(50% - (#{$kws-loader-height-large} / 2));
+    }
+  }
+}
+
+:global(.is-overlay){
+  z-index:4;
+  .kws-loader{
+    padding:0;
+    height:100%;
+    width:100%;
+    position:relative;
+    background:$kws-loader-overlay-background;
+    z-index:3;
+    .hero-body{
+      padding:0;
+      :global(.icon){
+        text-shadow:none;
+      }
+    }
+  }
+}
