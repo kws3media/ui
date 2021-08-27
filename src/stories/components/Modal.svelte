@@ -15,7 +15,7 @@
 <button
   class="button is-primary"
   type="button"
-  on:click={() => (is_active = true)}>Open Model</button>
+  on:click={() => (is_active = true)}>Open Modal</button>
 
 <script>
   import { Modal as KwsModal } from "@kws3/ui";
