@@ -1,4 +1,4 @@
-<CardModal
+<KwsCardModal
   {title}
   {size}
   {is_active}
@@ -12,7 +12,7 @@
   {cy}>
   <h1>This is a Heading</h1>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-</CardModal>
+</KwsCardModal>
 
 <button
   class="button is-primary"
@@ -20,7 +20,7 @@
   on:click={() => (is_active = true)}>Open Card Model</button>
 
 <script>
-  import { CardModal } from "@kws3/ui";
+  import { CardModal as KwsCardModal } from "@kws3/ui";
   export let title = "Card Modal",
     size = "",
     is_active = false,
