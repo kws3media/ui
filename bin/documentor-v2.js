@@ -148,7 +148,9 @@ function fillData(doc, is_static) {
     let data = doc.data.filter((i) => i.static === is_static);
 
     data.forEach((d) => {
-      let description = d.description || "";
+      let description =
+        d.description ||
+        `${d.name.charAt(0).toUpperCase() + d.name.slice(1)} property`;
       let defaultValue = d.defaultValue || null;
       let type = d.type.text;
 
@@ -219,9 +221,8 @@ function fillData(doc, is_static) {
     methods.forEach((m) => {
       let props = [];
       let description =
-        " - " +
-        (m.description ||
-          `${m.name.charAt(0).toUpperCase() + m.name.slice(1)} function`);
+        m.description ||
+        `${m.name.charAt(0).toUpperCase() + m.name.slice(1)} function`;
 
       if (typeof m.params != "undefined" && m.params.length) {
         m.params.forEach((p) => {
@@ -235,7 +236,7 @@ function fillData(doc, is_static) {
           "(" +
           props.join(", ") +
           ")]" +
-          description
+          (description ? " - " + description : "")
       );
     });
   }
