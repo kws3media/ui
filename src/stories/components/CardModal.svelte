@@ -17,7 +17,7 @@
 <button
   class="button is-primary"
   type="button"
-  on:click={() => (is_active = true)}>Open Card Model</button>
+  on:click={() => (is_active = true)}>Open Card Modal</button>
 
 <script>
   import { CardModal as KwsCardModal } from "@kws3/ui";
