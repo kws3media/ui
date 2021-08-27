@@ -5,9 +5,9 @@ export { Icon };
 
 export { default as Message } from "./helpers/components/Message.svelte";
 export { default as Checkbox } from "./controls/components/Checkbox/Checkbox.svelte";
-//export { default as ConfirmButton } from './buttons/components/ConfirmButton/ConfirmButton.svelte';
+export { default as ConfirmButton } from "./buttons/components/ConfirmButton/ConfirmButton.svelte";
 export { default as DeleteButton } from "./buttons/components/DeleteButton/DeleteButton.svelte";
-//export { default as SubmitButton } from './buttons/components/SubmitButton/SubmitButton.svelte';
+export { default as SubmitButton } from "./buttons/components/SubmitButton/SubmitButton.svelte";
 
 export { default as Modal } from "./helpers/components/Modal.svelte";
 export { default as CardModal } from "./helpers/components/CardModal.svelte";
