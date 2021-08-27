@@ -48,6 +48,6 @@
     "svelte": "^3.42.3",
     "svelte-loader": "^3.1.2",
     "svelte-preprocess": "^4.8.0",
-    "sveltedoc-parser": "^4.1.0"
+    "sveltedoc-parser": "ekhaled/sveltedoc-parser#integration"
   }
 }
