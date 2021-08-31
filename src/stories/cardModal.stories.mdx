@@ -1,6 +1,7 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import CardModal from './components/CardModal.svelte';
+import { CardModal } from "@kws3/ui";
+import CardModalDecorator from './components/CardModal.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
@@ -21,12 +22,6 @@ export let args={
   title="Helpers/Modal/CardModal"
   component={CardModal}
   args={args}
-  argTypes={{
-    size: {
-      options: ["medium", "large"],
-      control: { type: 'select' }
-    }
-  }}
 />
 
 <Description markdown={dedent`
@@ -40,24 +35,13 @@ export let args={
   args={args}
   >
   {(args) => ({
-    Component: CardModal,
+    Component: CardModalDecorator,
     props: args
   })}
   </Story>
 </Canvas>
 
 <ArgsTable story="CardModal" />
-
-### Example source code
-<Source
-  language='html'
-  code={ dedent`
-  <CardModal size="medium" is_active="true" >
-    <h1>This is a Heading</h1>
-    <p>Lorem ipsum.</p>
-  </Modal>
-  `}
-/>
 
 ### Usage
 <Source

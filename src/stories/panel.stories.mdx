@@ -29,11 +29,6 @@ export let args={
 ## A Panel component that allows wrapping elements.
 `}/>
 
-export const Template = (args) => ({
-  Component: PanelDecorator,
-  props: args,
-});
-
 <Canvas>
   <Story
   name="Panel"
@@ -50,16 +45,6 @@ export const Template = (args) => ({
 
 
 ### Usage
-##### Example source code:
-<Source
-  language='html'
-  code={ dedent`
-  <Panel title="Demo Panel" collapsible={true}>
-    <h1>This is a demo panel</h1>
-    <p>Lorem ipsum dolor sit amet consectetur.</p>
-  </Panel>`}
-/>
-
 ##### Import the component:
 <Source
   language='javascript'

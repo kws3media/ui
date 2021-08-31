@@ -2,7 +2,7 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import { SubmitButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
-import SubmitButtonDecorator from "./decorators/SubmitButtonDecorator.svelte";
+import SubmitButtonDecorator from "./components/SubmitButton.svelte";
 
 export let args={
   classes : "",
@@ -74,17 +74,11 @@ export function eraseDo(event, success = true){
 
 <ArgsTable story="Submit Button" />
 
-### Example source code
-<Source
-  language='html'
-  code={ dedent`<DeleteButton text="Delete" color="primary" size="small" icon_only="true" disabled="false" />`}
-/>
-
 ### Usage Example
 <Source
   language="html"
   code={
-    dedent`<DeleteButton
+    dedent`<SubmitButton
           {text}
           {icon}
           {doing_icon}
@@ -98,7 +92,7 @@ export function eraseDo(event, success = true){
           on:erase={eraseDo}
         />
     <script>
-      import { DeleteButton } from '@kws3/buttons';
+      import { SubmitButton } from '@kws3/ui';
       export let color = "primary";
       export let disabled = false;
       export let size="";

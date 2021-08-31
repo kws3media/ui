@@ -2,7 +2,7 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import { Modal } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
-import ModalDecorator from "./decorators/ModalDecorator.svelte";
+import ModalDecorator from "./components/Modal.svelte";
 
 export let args={
   size : "",
@@ -41,22 +41,13 @@ export const Template = (args) => ({
     Component: ModalDecorator,
     props: args,
     on: {
-      Click:action("Opened"),
+      click:action("Opened"),
     },
   })}
   </Story>
 </Canvas>
 
 <ArgsTable story="Modal" />
-
-### Example source code
-<Source
-  language='html'
-  code={ dedent`<Modal size="medium" is_active="true" >
-      <h1>This is a Heading</h1>
-      <p>Lorem ipsum.</p>
-    </Modal>`}
-/>
 
 ### Usage
 <Source

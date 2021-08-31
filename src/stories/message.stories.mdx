@@ -2,7 +2,7 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import { Message } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
-import MessageDecorator from "./decorators/MessageDecorator.svelte";
+import MessageDecorator from "./components/Message.svelte";
 
 export let args={
   size : "",
@@ -12,7 +12,7 @@ export let args={
   classes : "",
   header_classes : "",
   inner_classes : "",
-  title : "",
+  title : "This is a message box",
   has_title : false,
   dismissable : false
 };
@@ -21,17 +21,6 @@ export let args={
   title="Helpers/Message"
   component={Message}
   args={args}
-  argTypes={{
-    color: {
-      options: ["primary", "primary", "success", "danger", "warning", "dark", "light"],
-      control: { type: 'select' }
-    },
-    size:{
-      options:["small", "medium", "large"],
-      control: {type:"select"},
-    }
-  }}
-  decorators={[() => MessageDecorator]}
 />
 
 <Description markdown={dedent`
@@ -45,26 +34,13 @@ export let args={
   args={args}
   >
   {(args) => ({
-    Component: Message,
+    Component: MessageDecorator,
     props: args,
-    on: {
-      close: action("Closed"),
-      open: action("Opened")
-    },
   })}
   </Story>
 </Canvas>
 
 <ArgsTable story="Message" />
-
-### Example source code
-<Source
-  language='html'
-  code={ dedent`
-  <Message size="medium" color="info" >
-    Your message here!!!
-  </Message>`}
-/>
 
 ### Usage
 <Source

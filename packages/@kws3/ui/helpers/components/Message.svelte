@@ -40,18 +40,24 @@
   export let size = "";
 
   /**
-   * Color of the Message box `primary`, `warning`, `info`, `danger`
-   * @type {'primary'|'warning'|'info'|'danger'}
+   * Color of the Message box `primary`, `warning`, `info`, `danger`, `dark`, `light`
+   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "info";
-  export let style = "",
-    inner_style = "",
-    classes = "",
-    header_classes = "",
-    inner_classes = "",
-    title = null,
-    has_title = false,
-    dismissable = false;
+
+  /**
+   * Inline style for modal content
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let style = "";
+  export let inner_style = "";
+  export let classes = "";
+  export let header_classes = "";
+  export let inner_classes = "";
+  export let title = "";
+  export let has_title = false;
+  export let dismissable = false;
 
   let _comp;
 
