@@ -10,11 +10,6 @@ let commentparser = require("comment-parser");
 
 let ACTUAL_AST = {};
 
-let EXPRESSION_MAP = {
-  ArrayExpression: "array",
-  ObjectExpression: "object",
-};
-
 let modifyAST = (AST) => {
   let componentDocsFound = false;
 
@@ -51,155 +46,6 @@ let modifyAST = (AST) => {
   return AST;
 };
 
-let getParams = (AST) => {
-  let params = [];
-
-  walk(AST, {
-    enter(node) {
-      if (node.type == "ExportNamedDeclaration") {
-        if (node.declaration.type == "VariableDeclaration") {
-          //comments are an array
-          //if we put 2 comment blocks befor export property
-          //then we only take last item into the action
-
-          let KIND = node.declaration.kind,
-            {
-              type: TYPE,
-              default_value: DEFAULT_VALUE,
-              description: COMMENT,
-            } = getCommentParsed(node.leadingComments);
-
-          //declarations are an array
-          //eg: export let size = "", height = "";
-
-          node.declaration.declarations.map((declaration, index) => {
-            if (declaration.init.type == "ArrowFunctionExpression") {
-              //eg: @function `add(x, y)` - Add function
-              params.push(
-                makeFunctionDoc(
-                  declaration.id.name,
-                  declaration.init.params,
-                  declaration.leadingComments || node.leadingComments
-                )
-              );
-            } else {
-              let name = declaration.id.name;
-              let value = declaration.init.value;
-              let type =
-                TYPE || EXPRESSION_MAP[declaration.init.type] || typeof value;
-              let defaultValue = DEFAULT_VALUE || declaration.init.value;
-
-              let description = COMMENT
-                ? COMMENT
-                : `${name.charAt(0).toUpperCase() + name.slice(1)} property`;
-
-              if (node.declaration.declarations.length > 1 && COMMENT != "") {
-                if (index === 0) {
-                  description = COMMENT;
-                } else {
-                  let declarationComment = getCommentParsed(
-                    declaration.leadingComments
-                  );
-
-                  description = declarationComment.description
-                    ? declarationComment.description
-                    : `${
-                        name.charAt(0).toUpperCase() + name.slice(1)
-                      } property`;
-
-                  type = declarationComment.type
-                    ? declarationComment.type
-                    : type;
-
-                  defaultValue = declarationComment.default_value
-                    ? declarationComment.default_value
-                    : defaultValue;
-                }
-              }
-
-              if (KIND == "const") {
-                description = "`CONST` " + description;
-              }
-
-              if (!defaultValue) {
-                if (type == "number") {
-                  defaultValue += "";
-                } else if (type == "string") {
-                  defaultValue = '""';
-                } else if (type == "array") {
-                  defaultValue = "[]";
-                } else if (type == "object") {
-                  defaultValue = "{}";
-                }
-              } else {
-                if (type == "string") {
-                  defaultValue = '"' + defaultValue + '"';
-                }
-              }
-
-              //eg: @param {boolean} [is_active=false] - Show or hide item, default `false`
-              params.push(
-                "@param {" +
-                  type +
-                  "} [" +
-                  name +
-                  "=" +
-                  defaultValue +
-                  "] - " +
-                  description +
-                  ", Default: `" +
-                  defaultValue +
-                  "`"
-              );
-            }
-          });
-        }
-
-        if (node.declaration.type == "FunctionDeclaration") {
-          //eg: @function `add(x, y)` - Add function
-          params.push(
-            makeFunctionDoc(
-              node.declaration.id.name,
-              node.declaration.params,
-              node.leadingComments
-            )
-          );
-        }
-      }
-    },
-  });
-
-  return params;
-};
-
-let getCommentParsed = (comments) => {
-  let type,
-    default_value,
-    description = "";
-
-  if (typeof comments != "undefined") {
-    let _comments = [...comments];
-    let _comment = _comments.pop().value;
-    let _parsedComment = commentparser.parse("/**\n" + _comment + "*/");
-
-    _parsedComment = _parsedComment.pop();
-
-    let typeTag = getTag(_parsedComment.tags, "type"),
-      dvTag = getTag(_parsedComment.tags, "default"),
-      dvTag2 = getTag(_parsedComment.tags, "defaultvalue");
-
-    type = typeTag ? typeTag.type : undefined;
-    description = _parsedComment.description;
-
-    default_value = dvTag ? dvTag.name : undefined;
-    if (typeof default_value == "undefined") {
-      default_value = dvTag2 ? dvTag2.name : undefined;
-    }
-  }
-
-  return { type, description, default_value };
-};
-
 let setTopComments = (node) => {
   //convert comment text into js comment format
   let _comment = commenting(node.data, { extension: ".js" });
@@ -210,8 +56,8 @@ let setTopComments = (node) => {
   _parsed = _parsed.pop();
 
   let comp = getTag(_parsed.tags, "component");
-  let params = getParams(ACTUAL_AST.instance);
-  let moduleParams = getParams(ACTUAL_AST.module);
+  let params = COMPONENT_FEATURES.params;
+  let moduleParams = COMPONENT_FEATURES.moduleParams;
 
   return (
     "\n  @component\n  " +
@@ -229,40 +75,6 @@ let setTopComments = (node) => {
       ? "\n\n  ### Slots\n  " + COMPONENT_FEATURES.slots.join("\n  ")
       : "") +
     "\n\n"
-  );
-};
-
-let makeFunctionDoc = (name, params, comments) => {
-  let props = [];
-  let { description } = getCommentParsed(comments);
-
-  description = description
-    ? description
-    : `${name.charAt(0).toUpperCase() + name.slice(1)} function`;
-
-  if (typeof params != "undefined") {
-    params.forEach((e) => {
-      switch (e.type) {
-        //eg function (x) {}
-        case "Identifier":
-          props.push(e.name);
-          break;
-
-        //eg: function (x = 1) {}
-        case "AssignmentPattern":
-          props.push(e.left.name + " = " + e.right.value);
-          break;
-      }
-    });
-  }
-
-  return (
-    "@param {function} [" +
-    name +
-    "(" +
-    props.join(", ") +
-    ")]" +
-    (description ? " - " + description : "")
   );
 };
 

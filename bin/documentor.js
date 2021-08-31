@@ -36,7 +36,7 @@ sveltedocParser
     version: 3,
     fileContent: source,
     encoding: "utf8",
-    features: ["name", "events", "slots"],
+    features: ["name", "events", "slots", "data", "methods"],
   })
   .then((componentDoc) => {
     global.COMPONENT_FEATURES = parseDoc(componentDoc);
@@ -69,11 +69,15 @@ function parseDoc(doc) {
     name: "",
     events: [],
     slots: [],
+    params: [],
+    moduleParams: [],
   };
 
   obj.name = doc.name || "";
   obj.events = fillEvents(doc);
   obj.slots = fillSlots(doc);
+  obj.params = fillData(doc, false);
+  obj.moduleParams = fillData(doc, true);
 
   return obj;
 }
@@ -134,4 +138,115 @@ function fillSlots(doc) {
   }
 
   return slots;
+}
+
+function fillData(doc, is_static) {
+  let params = [];
+
+  //data
+  if (doc.data.length) {
+    let data = doc.data.filter((i) => i.static === is_static);
+
+    data.forEach((d) => {
+      let type = d.type.text;
+
+      switch (type) {
+        case "function":
+          params.push(makeFunctionDoc(d));
+          break;
+
+        default:
+          let defaultValue = getDefaultValue(d);
+          let description = getDescription(d, "property");
+
+          params.push(
+            "@param " +
+              ("{" + type + "}") +
+              (" [" + d.name + "=" + defaultValue + "]") +
+              (" - " + description) +
+              (", Default: `" + defaultValue + "`")
+          );
+      }
+    });
+  }
+
+  //methods
+  if (doc.methods.length) {
+    let methods = doc.methods.filter((i) => i.static === is_static);
+    methods.forEach((d) => {
+      params.push(makeFunctionDoc(d));
+    });
+  }
+
+  return params;
+}
+
+function makeFunctionDoc(e) {
+  let props = [];
+  let description = getDescription(e, "function");
+
+  if (typeof e.params != "undefined" && e.params.length) {
+    e.params.forEach((i) => {
+      props.push(i.name + (i.defaultValue ? " = " + i.defaultValue : ""));
+    });
+  } else {
+    if (typeof e.keywords != "undefined" && e.keywords.length) {
+      e.keywords.forEach((i) => {
+        if (i.name == "param") {
+          props.push(i.description);
+        }
+      });
+    }
+  }
+
+  return (
+    "@param {function} " +
+    ("[" + (e.name + "(" + props.join(", ") + ")") + "]") +
+    (description ? " - " + description : "")
+  );
+}
+
+function getDefaultValue(e) {
+  let defaultValue = e.defaultValue;
+  let type = e.type.text;
+
+  if (typeof defaultValue == "undefined") {
+    if (typeof e.keywords != "undefined" && e.keywords.length) {
+      e.keywords.forEach((i) => {
+        if (["default", "defaultValue", "defaultvalue"].indexOf(i.name) != -1) {
+          defaultValue = i.description;
+        }
+      });
+    }
+  }
+
+  if (typeof defaultValue == "undefined") {
+    if (type == "number") {
+      defaultValue += "";
+    } else if (type == "string") {
+      defaultValue = '""';
+    } else if (type == "array") {
+      defaultValue = "[]";
+    } else if (type == "object") {
+      defaultValue = "{}";
+    }
+  } else {
+    if (type == "string") {
+      defaultValue = '"' + defaultValue + '"';
+    }
+  }
+
+  return defaultValue;
+}
+
+function getDescription(e, suffix = "") {
+  let description =
+    e.description ||
+    `${e.name.charAt(0).toUpperCase() + e.name.slice(1)} ${suffix}`;
+
+  if (e.kind == "const") {
+    description = "`CONST` " + description;
+  }
+
+  return description;
 }
