@@ -2,7 +2,7 @@
   @component
   This is a modal component.
 
-  @param {string} [size="empty"] - Size of the modal `medium` `large`, Default: `"empty"`
+  @param {string} [size="empty"] - Size of the modal `small` `medium` `large`, Default: `"empty"`
   @param {boolean} [is_active=false] - Show or hide modal, Default: `false`
   @param {boolean} [closable=true] - Show close button, Default: `true`
   @param {boolean} [close_on_click_outside=false] - Close modal on click outside, Default: `false`
@@ -52,7 +52,7 @@
 <script>
   /**
    * Size of the modal `medium` `large`
-   * @type {string}
+   * @type {'small'|'medium'|'large'}
    * @defaultvalue empty
    */
   export let size = "";

@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import ModalDecorator from "./decorators/ModalDecorator.svelte";
 
 export let args={
-  size : "medium",
+  size : "",
   is_active : false,
   closable:true,
   close_on_click_outside : true,
@@ -20,12 +20,6 @@ export let args={
   title="Helpers/Modal"
   component={Modal}
   args={args}
-  argTypes={{
-    size: {
-      options: ["medium", "large"],
-      control: { type: 'select' }
-    }
-  }}
 />
 
 <Description markdown={dedent`
