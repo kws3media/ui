@@ -46,17 +46,59 @@
   export let color = "info";
 
   /**
-   * Inline style for modal content
+   * Inline style for message content
    * @type {string}
    * @defaultvalue empty
    */
   export let style = "";
+
+  /**
+   * CSS classes for message content
+   * @type {string}
+   * @defaultvalue empty
+   */
   export let inner_style = "";
+
+  /**
+   * CSS classes for message box
+   * @type {string}
+   * @defaultvalue empty
+   */
   export let classes = "";
+
+  /**
+   * CSS classes for message header
+   * @type {string}
+   * @defaultvalue empty
+   */
   export let header_classes = "";
+
+  /**
+   * CSS classes for message body
+   * @type {string}
+   * @defaultvalue empty
+   */
   export let inner_classes = "";
+
+  /**
+   * Title for message box
+   * @type {string}
+   * @defaultvalue empty
+   */
   export let title = "";
+
+  /**
+   * Meesage box has title
+   * @type {boolean}
+   * @defaultvalue false
+   */
   export let has_title = false;
+
+  /**
+   * Show close button
+   * @type {boolean}
+   * @defaultvalue false
+   */
   export let dismissable = false;
 
   let _comp;

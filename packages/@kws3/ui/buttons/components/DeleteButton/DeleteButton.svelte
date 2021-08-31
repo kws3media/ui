@@ -36,18 +36,29 @@
   const fire = createEventDispatcher();
 
   /**
-   * A Button Component
-   * @component
-   */
-
-  export const classes = "",
-    button_class = "",
-    text = "Delete";
-
-  /**
-   * Size of the Button `small`, `medium` and `large`
+   * CSS classes
    * @type {string}
    * @defaultvalue empty
+   */
+  export const classes = "";
+
+  /**
+   * CSS classes for button
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export const button_class = "";
+
+  /**
+   * Button text
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export const text = "Delete";
+
+  /**
+   * Size of the Button `small`, `medium`, `large`
+   * @type {'small'|'medium'|'large'}
    */
   export const size = "";
 
@@ -59,12 +70,16 @@
   export const icon = "minus-circle";
 
   /**
-   * Color of the Button `primary`, `success`, `warning`, `danger`, `info`, `light`
-   * @type {string}
-   * @defaultvalue empty
+   * Color of the Button `primary`, `warning`, `info`, `danger`, `dark`, `light`
+   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export const color = "danger";
 
+  /**
+   * data-cy attribute for cypress
+   * @type {string}
+   * @defaultvalue empty
+   */
   export const cy = "";
 
   /**
@@ -95,6 +110,11 @@
    */
   export const done_text = "Deleted";
 
+  /**
+   * Context property
+   * @type {object}
+   * @defaultvalue empty
+   */
   export const context = null;
 
   /**
