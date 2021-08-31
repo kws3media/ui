@@ -1,10 +1,11 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import Panel from './components/Panel.svelte';
+import { Panel } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
+import PanelDecorator from './components/Panel.svelte';
 
 export let args={
-  title : "Demo Panel",
+  title : "",
   subtitle : "",
   style : "",
   inner_style : "",
@@ -28,13 +29,18 @@ export let args={
 ## A Panel component that allows wrapping elements.
 `}/>
 
+export const Template = (args) => ({
+  Component: PanelDecorator,
+  props: args,
+});
+
 <Canvas>
   <Story
   name="Panel"
   args={args}
   >
   {(args) => ({
-    Component: Panel,
+    Component: PanelDecorator,
     props: args,
   })}
   </Story>

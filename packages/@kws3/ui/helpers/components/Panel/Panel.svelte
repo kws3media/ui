@@ -1,3 +1,25 @@
+<!--
+  @component
+
+
+  @param {string} [title=""] - Title of the panel, Default: `""`
+  @param {string} [subtitle=""] - Subtitle property, Default: `""`
+  @param {string} [style=""] - Style property, Default: `""`
+  @param {string} [inner_style=""] - Inner_style property, Default: `""`
+  @param {string} [cy=""] - Cy property, Default: `""`
+  @param {string} [collapse_icon="caret-right"] - Collapse_icon property, Default: `"caret-right"`
+  @param {boolean} [collapsible=false] - Collapsible property, Default: `false`
+  @param {boolean} [collapsed=false] - Collapsed property, Default: `false`
+  @param {boolean} [relative=false] - Relative property, Default: `false`
+  @param {boolean} [has_toolbar=true] - Has_toolbar property, Default: `true`
+  @param {boolean} [has_center=true] - Has_center property, Default: `true`
+
+  ### Slots
+  - `<slot name="center"  />`
+  - `<slot name="toolbar"  />`
+  - `<slot name="default"  />`
+
+-->
 <div class:collapsible class:collapsed class="panel" {style} data-cy={cy}>
   {#if title != ""}
     <div class="panel-heading" on:click={toggle}>
@@ -40,17 +62,82 @@
 <script>
   import Icon from "../Icon.svelte";
 
-  export let title = "",
-    subtitle = "",
-    style = "",
-    inner_style = "",
-    cy = "",
-    collapse_icon = "caret-right",
-    collapsible = false,
-    collapsed = false,
-    relative = false,
-    has_toolbar = true,
-    has_center = true;
+  /**
+   * Title of the panel
+   * @type {string}
+   * @defaultvalue ""
+   */
+  export let title = "";
+
+  /**
+   * Subtitle of the panel
+   * @type {string}
+   * @defaultvalue ""
+   */
+  export let subtitle = "";
+
+  /**
+   * Inline style for Panel
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let style = "";
+
+  /**
+   * Inline style for Panel Content
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let inner_style = "";
+
+  /**
+   * data-cy attribute for cypress
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let cy = "";
+
+  /**
+   * Collapse icon
+   * @type {string}
+   * @defaultvalue "caret-right"
+   */
+  export let collapse_icon = "caret-right";
+
+  /**
+   * Collapsible property
+   * @type {boolean}
+   * @defaultvalue false
+   */
+  export let collapsible = false;
+
+  /**
+   * Collapsed property
+   * @type {boolean}
+   * @defaultvalue false
+   */
+  export let collapsed = false;
+
+  /**
+   * Relative property
+   * @type {boolean}
+   * @defaultvalue false
+   */
+  export let relative = false;
+
+  /**
+   * Toolbar property
+   * @type {boolean}
+   * @defaultvalue true
+   */
+  export let has_toolbar = true;
+
+  /**
+   * Has Center property
+   * @type {boolean}
+   * @defaultvalue true
+   */
+  export let has_center = true;
 
   function toggle() {
     if (collapsible) {
