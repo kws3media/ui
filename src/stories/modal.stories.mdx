@@ -6,7 +6,7 @@ import ModalDecorator from "./decorators/ModalDecorator.svelte";
 
 export let args={
   size : "medium",
-  is_active : true,
+  is_active : false,
   closable:true,
   close_on_click_outside : true,
   style : "",
@@ -26,7 +26,6 @@ export let args={
       control: { type: 'select' }
     }
   }}
-  decorators={[(args) => ModalDecorator]}
 />
 
 <Description markdown={dedent`
@@ -34,17 +33,21 @@ export let args={
 ## Modal components for showing popups.
 `}/>
 
+export const Template = (args) => ({
+  Component: ModalDecorator,
+  props: args,
+});
+
 <Canvas>
   <Story
   name="Modal"
   args={args}
   >
   {(args) => ({
-    Component: Modal,
+    Component: ModalDecorator,
     props: args,
     on: {
-      close: action("Closed"),
-      open: action("Opened")
+      Click:action("Opened"),
     },
   })}
   </Story>
