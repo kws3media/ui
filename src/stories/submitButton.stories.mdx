@@ -1,6 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import { SubmitButton as Button } from '@kws3/ui';
+import { SubmitButton } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import SubmitButtonDecorator from "./components/SubmitButton.svelte";
 
@@ -13,42 +13,14 @@ export let args={
   error_text : "Failed to Save",
   icon : "save",
   cy : "submit",
-  tracker : {
-    saving: false,
-    saved: false,
-    error: false,
-  },
   icon_only : false,
   disabled : false
 };
 
-export function eraseDo(event, success = true){
-  let {doing, done, error} = event.detail;
-  doing();
-  setTimeout(() => {
-    if(success){
-      done();
-    } else {
-      error();
-    }
-  }, 2000)
-}
-
 <Meta
   title="Buttons/Submit Button"
-  component={Button}
+  component={SubmitButton}
   args={args}
-  argTypes={{
-    color: {
-      options: ["primary", "primary", "success", "danger", "warning", "dark", "light"],
-      control: { type: 'select' }
-    },
-    size:{
-      options:["small", "medium", "large"],
-      control: {type:"select"},
-    }
-  }}
-  decorators={[() => SubmitButtonDecorator]}
 />
 
 <Description markdown={dedent`
@@ -62,63 +34,19 @@ export function eraseDo(event, success = true){
   args={args}
   >
   {(args) => ({
-    Component: Button,
+    Component: SubmitButtonDecorator,
     props: args,
-    on: {
-      erase : eraseDo,
-      erased: action("Erased")
-    },
   })}
   </Story>
 </Canvas>
 
 <ArgsTable story="Submit Button" />
 
-### Usage Example
+### Usage
+#### Import the component:
 <Source
-  language="html"
+  language="javascript"
   code={
-    dedent`<SubmitButton
-          {text}
-          {icon}
-          {doing_icon}
-          {done_icon}
-          {doing_text}
-          {done_text}
-          {color}
-          {size}
-          {icon_only}
-          {disabled}
-          on:erase={eraseDo}
-        />
-    <script>
-      import { SubmitButton } from '@kws3/ui';
-      export let color = "primary";
-      export let disabled = false;
-      export let size="";
-      export let icon_only = false;
-      export let text = "Delete";
-      export let icon = "minus-circle";
-      export let doing_icon = "hourglass";
-      export let done_icon = "check";
-      export let doing_text = "Doing";
-      export let done_text = "Deleted";
-      function eraseDo(event, success = true){
-        let {doing, done, error} = event.detail;
-        doing();
-        somePromise().then(() => {
-          //set visual state to Done
-          //it will autmatically revert back to
-          //normal state after 3 seconds
-          component.done();
-        })
-        .catch(() => {
-          //set visual state to Error
-          //it will autmatically revert back to
-          //normal state after 3 seconds
-          component.error();
-        })
-      }
-    </script>`
+    dedent`import { SubmitButton } from '@kws3/buttons';`
   }
 />

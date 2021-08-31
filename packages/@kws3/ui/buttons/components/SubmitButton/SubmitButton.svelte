@@ -41,21 +41,83 @@
 <script>
   import { Icon } from "@kws3/ui";
 
-  export let classes = "",
-    size = "",
-    color = "primary",
-    text = "Save Changes",
-    saved_text = "Saved",
-    error_text = "Failed to Save",
-    icon = "save",
-    cy = "submit",
-    tracker = {
-      saving: false,
-      saved: false,
-      error: false,
-    },
-    icon_only = false,
-    disabled = false;
+  /**
+   * CSS classes
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let classes = "";
+
+  /**
+   * Size of the Button `small`, `medium`, `large`
+   * @type {'small'|'medium'|'large'}
+   */
+  export let size = "";
+
+  /**
+   * Color of the Button `primary`, `warning`, `info`, `danger`, `dark`, `light`
+   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   */
+  export let color = "primary";
+
+  /**
+   * Button text
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let text = "Save Changes";
+
+  /**
+   * Text shows after success
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let saved_text = "Saved";
+
+  /**
+   * Text shows after process complete
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let error_text = "Failed to Save";
+
+  /**
+   * Icon of the Button - can use any fa icon
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let icon = "save";
+
+  /**
+   * data-cy attribute for cypress
+   * @type {string}
+   * @defaultvalue empty
+   */
+  export let cy = "submit";
+
+  /**
+   * Display icon only - true/false
+   * @type {boolean}
+   * @defaultvalue empty
+   */
+  export let icon_only = false;
+
+  /**
+   * Button disable - true/false
+   * @type {boolean}
+   * @defaultvalue empty
+   */
+  export let disabled = false;
+
+  /**
+   * Tracker property
+   * @type {object}
+   */
+  export let tracker = {
+    saving: false,
+    saved: false,
+    error: false,
+  };
 
   $: err_text = error_text == "" ? text : error_text;
   $: icon_size = size == "large" ? "" : "small";

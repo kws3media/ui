@@ -1,9 +1,56 @@
-<form action="" on:submit|preventDefault={success}>
-  <div><slot /></div>
-</form>
+<div class="columns">
+  <div class="column">
+    <form action="" on:submit|preventDefault={success}>
+      <KwsButton
+        {text}
+        {saved_text}
+        {error_text}
+        {color}
+        {size}
+        {icon_only}
+        {disabled}
+        bind:tracker={success_tracker} />
+      <p class="is-block mt-2">This will succeed.</p>
+    </form>
+  </div>
+  <div class="column">
+    <form action="" on:submit|preventDefault={failed}>
+      <KwsButton
+        {text}
+        {saved_text}
+        {error_text}
+        {color}
+        {size}
+        {icon_only}
+        {disabled}
+        bind:tracker={failed_tracker} />
+      <p class="is-block mt-2">This will fail.</p>
+    </form>
+  </div>
+</div>
 
 <script>
-  export let success_tracker = {
+  import { SubmitButton as KwsButton } from "@kws3/ui";
+
+  let colors = [
+      "transparent",
+      "primary",
+      "info",
+      "warning",
+      "success",
+      "danger",
+      "light",
+      "dark",
+    ],
+    sizes = ["default", "small", "medium", "large"],
+    color = "primary",
+    size = "",
+    text = "Save Changes",
+    saved_text = "Saved",
+    error_text = "Failed to Save",
+    icon_only = false,
+    disabled = false,
+    success_tracker = {
       saving: false,
       saved: false,
       error: false,
@@ -33,7 +80,7 @@
     }, 1000);
   }
 
-  export function failed() {
+  function failed() {
     failed_tracker = {
       saving: true,
       saved: false,
