@@ -32,18 +32,7 @@
 <script>
   import { SubmitButton as KwsButton } from "@kws3/ui";
 
-  let colors = [
-      "transparent",
-      "primary",
-      "info",
-      "warning",
-      "success",
-      "danger",
-      "light",
-      "dark",
-    ],
-    sizes = ["default", "small", "medium", "large"],
-    color = "primary",
+  export let color = "primary",
     size = "",
     text = "Save Changes",
     saved_text = "Saved",
@@ -80,7 +69,7 @@
     }, 1000);
   }
 
-  function failed() {
+  export function failed() {
     failed_tracker = {
       saving: true,
       saved: false,
