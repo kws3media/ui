@@ -43,7 +43,7 @@
      */
     classes = "",
     /**
-     * Inline styles
+     * Supported classes
      * @type {string}
      */
     style = "",
