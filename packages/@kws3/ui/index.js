@@ -16,3 +16,4 @@ export { default as SubmitButton } from "./buttons/components/SubmitButton/Submi
 export { default as Checkbox } from "./controls/components/Checkbox/Checkbox.svelte";
 export { default as FileUpload } from "./controls/components/FileUpload/FileUpload.svelte";
 export { default as NumberInput } from "./controls/components/NumberInput.svelte";
+export { default as Radio } from "./controls/components/Radio/Radio.svelte";

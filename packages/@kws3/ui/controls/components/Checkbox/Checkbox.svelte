@@ -54,63 +54,54 @@
   /**
    * CSS classes
    * @type {string}
-   * @defaultvalue empty
    */
   export let classes = "";
 
   /**
    * Inline styles
    * @type {string}
-   * @defaultvalue empty
    */
   export let style = "";
 
   /**
    * Inverted Property
    * @type {boolean}
-   * @defaultvalue false
    */
   export let inverted = false;
 
   /**
    * Circle checkbox
    * @type {boolean}
-   * @defaultvalue false
    */
   export let circle = false;
 
   /**
    * Checkbox checked Property
    * @type {boolean}
-   * @defaultvalue false
    */
   export let checked = false;
 
   /**
    * Boolean - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export let disabled = false;
 
   /**
    * Icon of the checkbox
    * @type {string}
-   * @defaultvalue check
    */
   export let icon = "check";
 
   /**
    * Inline style of Checkbox label
    * @type {string}
-   * @defaultvalue check
    */
   export let label_style = "";
 
   /**
    * Family of Icon - fa, gg or unicons
    * @type {string}
-   * @defaultvalue check
    */
   export let icon_family = null;
 
