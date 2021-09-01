@@ -1,0 +1,75 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Checkbox } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  classes : "",
+  style : "",
+  label_style : "",
+  size : "large",
+  color : "primary",
+  inverted : false,
+  circle : false,
+  checked : true,
+  disabled : false,
+  icon : "check",
+  icon_family : null
+};
+
+<Meta
+  title="Controls/Checkbox"
+  component={Checkbox}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Checkbox
+## Custom checkbox control
+`}/>
+
+<Canvas>
+  <Story
+  name="Checkbox"
+  args={args}
+  >
+  {(args) => ({
+    Component: Checkbox,
+    props: args,
+    on: {
+      change : action("Changed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Checkbox" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Checkbox } from '@kws3/controls';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import 'path/to/node_modules/@kws3/ui/controls/components/Checkbox/styles/Checkbox.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-checkbox-default-check-color: #333 !default;
+      $kws-checkbox-default-check-color-invert: findColorInvert($kws-checkbox-default-check-color) !default;
+      $kws-checkbox-default-border-color: #dbdbdb !default;
+    `
+  }
+/>
