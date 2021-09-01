@@ -82,49 +82,42 @@
   /**
    * Key property
    * @type {string}
-   * @defaultvalue empty
    */
   export let key = "";
 
   /**
    * Message displayed in uploader
    * @type {string}
-   * @defaultvalue empty
    */
   export let message = "Choose File...";
 
   /**
    * Display helper information
    * @type {string}
-   * @defaultvalue empty
    */
   export let info = "";
 
   /**
    * Maximum allowed size
    * @type {number}
-   * @defaultvalue 5000000
    */
   export let max = 5000000;
 
   /**
-   * Allowed types
-   * @type {string}
-   * @defaultvalue empty
+   * Allowed file types - accepts the string `"*"`, or an array of file type suffixes
+   * @type {any}
    */
   export let allowed = "*";
 
   /**
    * CSS classes
    * @type {string}
-   * @defaultvalue empty
    */
   export let classes = "";
 
   /**
    * Uploader disable - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export let disabled = false;
 
@@ -159,7 +152,7 @@
 
   $: {
     fileTypes =
-      allowed != "*" && typeof allowed.length != "undefined"
+      allowed != "*" && Array.isArray(allowed) && allowed.length
         ? allowed.join(", ")
         : "";
     _progress = Math.floor((_uploaded / _total) * 100);
