@@ -1,0 +1,93 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { FileUpload } from '@kws3/ui';
+import FileUploadDecorator from './FileUpload.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  key : "",
+  message : "Choose File...",
+  info : "",
+  max : 5000000,
+  allowed : "*",
+  classes : "",
+  disabled : false
+};
+
+<Meta
+  title="Forms/Controls/FileUpload"
+  component={FileUpload}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# FileUpload
+## Custom file upload control
+`}/>
+
+<Canvas>
+  <Story
+  name="FileUpload"
+  args={args}
+  >
+  {(args) => ({
+    Component: FileUploadDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="FileUpload" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { FileUpload } from '@kws3/ui';`
+  }
+/>
+
+#### Example:
+<Source
+  language="html"
+  code={
+    dedent`
+    <FileUpload
+      on:file_chosen={(event) => onFileChosen(event)}
+      on:file_uploaded
+      on:file_upload_error
+      max="1048579"
+      allowed={["png", "jpg", "jpeg"]}
+      message="Upload new avatar..."
+      {disabled}
+      classes="" />
+    <script>
+      import { FileUpload } from "@kws3/ui";
+      function onFileChosen(event){
+        event.preventDefault();
+        let {getFile, progress, uploaded, error} = event.detail;
+        var file = getFile();
+        var size = file.size;
+        progress(0);
+        uploadImage(
+          file.file,
+          function(e){
+            progress(e.loaded);
+          }
+        ).then(function(r){
+          data = r.response
+          uploaded();
+        })
+        .catch(function(r){
+          var user_message = "Failed to upload!";
+          if (typeof r != 'undefined' && typeof r.response != 'undefined' && typeof r.response.records != 'undefined'){
+              user_message = r.response.records.userMessage;
+          }
+          error(user_message);
+        });
+      }
+    </script>
+  `
+  }
+/>
