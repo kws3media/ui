@@ -1,0 +1,74 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Radio } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  value : null,
+  classes : "",
+  style : "",
+  label_style : "",
+  size : "",
+  color : "",
+  inverted : false,
+  circle : false,
+  disabled : false,
+  group : false
+};
+
+<Meta
+  title="Forms/Controls/Radio"
+  component={Radio}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Radio
+## Custom Radio control
+`}/>
+
+<Canvas>
+  <Story
+  name="Radio"
+  args={args}
+  >
+  {(args) => ({
+    Component: Radio,
+    props: args,
+    on: {
+      change : action("Changed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Radio" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Radio } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import 'path/to/node_modules/@kws3/ui/controls/components/Radio/styles/Radio.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-radio-default-check-color: #333 !default;
+      $kws-radio-default-check-color-invert: findColorInvert($kws-radio-default-check-color) !default;
+      $kws-radio-default-border-color: #dbdbdb !default;
+    `
+  }
+/>
