@@ -1,7 +1,7 @@
-import WelcomeView from './views/Welcome.svelte';
+import WelcomeView from "./Welcome.svelte";
 
 export default {
-  title: 'Welcome',
+  title: "Welcome",
   component: WelcomeView,
   parameters: {
     previewTabs: {
@@ -20,4 +20,3 @@ const Template = ({ onClick, ...args }) => ({
 });
 
 export const Welcome = Template.bind({});
-
