@@ -1,6 +1,6 @@
 <div class="columns">
   <div class="column">
-    <FileUpload
+    <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event)}
       on:file_uploaded
       on:file_upload_error
@@ -15,7 +15,7 @@
 </div>
 
 <script>
-  import { FileUpload } from "@kws3/ui";
+  import { FileUpload as KwsFileUpload } from "@kws3/ui";
   export let key = "",
     message = "Choose File...",
     info = "",
