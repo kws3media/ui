@@ -1,0 +1,44 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import { action } from '@storybook/addon-actions';
+import dedent from 'ts-dedent';
+import <%= section_name %> from './components/<%= section_name %>.svelte';
+
+export let args={};
+
+<Meta
+  title="Helpers/<%= section_name %>"
+  component={<%= section_name %>}
+  args={args}
+  argTypes={{}}
+/>
+
+<Description markdown={dedent`
+# <%= section_name %>
+## <%= section_name %> components.
+`}/>
+
+<Canvas>
+  <Story
+  name="<%= section_name %>"
+  args={args}
+  >
+  {(args) => ({
+    Component: <%= section_name %>,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="<%= section_name %>" />
+
+### Dismissable
+<Source
+  language='html'
+  code={ dedent`<<%= section_name %>></<%= section_name %>>`}
+/>
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`import { <%= section_name %> } from '@kws3/ui';`}
+/>

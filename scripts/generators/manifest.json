@@ -1,0 +1,4 @@
+{
+  "story_output": "src/stories",
+  "story_template": "../templates/story/STORY.stories.mdx"
+}
