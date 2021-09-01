@@ -10,7 +10,8 @@ var section_url, section_url_plural, section_name, section_name_plural;
 const CURR_DIR = process.cwd();
 const argv = process.argv.slice(2),
   option = argv[0],
-  name = argv[1];
+  name = argv[1],
+  section_category = argv[2] || "New";
 
 async function main() {
   if (option == "help") {
@@ -78,6 +79,7 @@ function createStoryFile(file, temp) {
     section_url_plural,
     section_name,
     section_name_plural,
+    section_category,
   });
   var writePath = path.join(file, section_url + ".stories.mdx");
   createFile(writePath, temp);

@@ -3,14 +3,18 @@
     "story":{
       "name": "Generate story",
       "description":"Will generate a story file",
-      "command": "node scripts/generators story ${story} --colors",
-      "Input":{
-        "name": "story",
+      "command": "node scripts/generators story ${story} ${category} --colors",
+
+      "Form":{
         "validate": {
-          "story": "required"
+          "story": "required",
+          "category": "required"
         },
-        "message": "What is the story name?",
-        "initial": ""
+        "message": "Please provide the following information:",
+        "choices": [
+          { "name": "story", "message": "Story Name", "initial": "" },
+          { "name": "category", "message": "Category Name", "initial": "New" }
+        ]
       }
     }
   }
