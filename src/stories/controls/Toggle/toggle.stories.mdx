@@ -1,0 +1,74 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Toggle } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  on : false,
+  disabled : false,
+  color : "",
+  classes : "",
+  on_text : "",
+  off_text : "",
+  size : "",
+  cy : ""
+};
+
+<Meta
+  title="Forms/Controls/Toggle"
+  component={Toggle}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Toggle
+## Toggle button with text supports
+`}/>
+
+<Canvas>
+  <Story
+  name="Toggle"
+  args={args}
+  >
+  {(args) => ({
+    Component: Toggle,
+    props: args,
+    on: {
+      change : action("Changed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Toggle" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Toggle } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import 'path/to/node_modules/@kws3/ui/controls/components/Toggle/styles/Toggle.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-toggle-off-bg-color: #fff !default;
+      $kws-toggle-handle-bg-color: #fff !default;
+      $kws-toggle-track-bg-color: #333 !default;
+      $kws-toggle-track-bg-color-invert: findColorInvert($kws-toggle-track-bg-color) !default;
+      $kws-toggle-border-color: #e6e6e6 !default;
+    `
+  }
+/>
