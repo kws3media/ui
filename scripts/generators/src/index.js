@@ -11,7 +11,9 @@ const CURR_DIR = process.cwd();
 const argv = process.argv.slice(2),
   option = argv[0],
   name = argv[1],
-  section_category = argv[2] || "New";
+  section_category = argv[2] || "New",
+  section_has_decorator = argv[3].toLowerCase() == "yes" ? true : false,
+  section_decorator_has_slot = argv[4].toLowerCase() == "yes" ? true : false;
 
 async function main() {
   if (option == "help") {
@@ -80,6 +82,8 @@ function createStoryFile(file, temp) {
     section_name,
     section_name_plural,
     section_category,
+    section_has_decorator,
+    section_decorator_has_slot,
   });
   var writePath = path.join(file, section_url + ".stories.mdx");
   createFile(writePath, temp);

@@ -3,7 +3,7 @@
     "story":{
       "name": "Generate story",
       "description":"Will generate a story file",
-      "command": "node scripts/generators story ${story} ${category} --colors",
+      "command": "node scripts/generators story ${story} ${category} ${decorator} ${slot} --colors",
 
       "Form":{
         "validate": {
@@ -13,7 +13,9 @@
         "message": "Please provide the following information:",
         "choices": [
           { "name": "story", "message": "Story Name", "initial": "" },
-          { "name": "category", "message": "Category Name", "initial": "New" }
+          { "name": "category", "message": "Category Name", "initial": "New" },
+          { "name": "decorator", "message": "Does this need a decorator?", "initial": "No", "choices": ["Yes", "No"]},
+          { "name": "slot", "message": "Does the Decorator use Slots?", "initial": "No", "choices": ["Yes", "No"]}
         ]
       }
     }
