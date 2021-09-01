@@ -1,0 +1,58 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { NumberInput } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  input : null,
+  value : null,
+  step : 1,
+  min : 0,
+  max : 100,
+  disabled : false,
+  fullwidth : false,
+  minus_icon : "minus",
+  minus_icon_color : "danger",
+  minus_button_color : "",
+  plus_icon : "plus",
+  plus_icon_color : "success",
+  plus_button_color : "",
+  _has_focus : 0
+};
+
+<Meta
+  title="Forms/Controls/NumberInput"
+  component={NumberInput}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# NumberInput
+## Custom clickable number input
+`}/>
+
+<Canvas>
+  <Story
+  name="NumberInput"
+  args={args}
+  >
+  {(args) => ({
+    Component: NumberInput,
+    props: args,
+    on: {
+      change : action("Changed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="NumberInput" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { NumberInput } from '@kws3/ui';`
+  }
+/>
