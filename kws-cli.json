@@ -1,0 +1,17 @@
+{
+  "generators":{
+    "story":{
+      "name": "Generate story",
+      "description":"Will generate a story file",
+      "command": "node scripts/generators story ${story} --colors",
+      "Input":{
+        "name": "story",
+        "validate": {
+          "story": "required"
+        },
+        "message": "What is the story name?",
+        "initial": ""
+      }
+    }
+  }
+}
