@@ -2,6 +2,7 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import { action } from '@storybook/addon-actions';
 import dedent from 'ts-dedent';
 import <%= section_name %> from './components/<%= section_name %>.svelte';
+import Decorator from "./decorators/DefaultDecorator.svelte";
 
 export let args={};
 
@@ -17,14 +18,20 @@ export let args={};
 ## <%= section_name %> components.
 `}/>
 
+export const Template = (args) => ({
+  Component: Decorator,
+  props: args
+});
+
 <Canvas>
   <Story
   name="<%= section_name %>"
   args={args}
   >
   {(args) => ({
-    Component: <%= section_name %>,
-    props: args
+    Component: Decorator,
+    props: args,
+    on: {}
   })}
   </Story>
 </Canvas>

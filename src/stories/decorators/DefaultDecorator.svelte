@@ -1,0 +1,3 @@
+<slot />
+
+<script></script>
