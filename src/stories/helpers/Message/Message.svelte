@@ -16,9 +16,9 @@
 <script>
   import { Message as KwsMessage } from "@kws3/ui";
 
-  export let size = "medium";
-  export let color = "info";
-  export let style = "",
+  export let size = "medium",
+    color = "info",
+    style = "",
     inner_style = "",
     classes = "",
     header_classes = "",
