@@ -1,25 +1,31 @@
 {
   "generators": {
-    "oldStyleSelect":{
+    "oldStyleSelect": {
       "name": "Select: Test backward compat",
       "command": "node -e \"console.log('${output}')\"",
-      "Select":{
+      "Select": {
         "name": "output",
         "validate": {
           "output": "required"
         },
         "message": "select any item",
         "choices": {
-          "lint":{"description": "should output 'lint'"},
-          "functional":{"description": "should output 'functional'"},
-          "coverage":{"description": "should output 'coverage'"}
+          "lint": {
+            "description": "should output 'lint'"
+          },
+          "functional": {
+            "description": "should output 'functional'"
+          },
+          "coverage": {
+            "description": "should output 'coverage'"
+          }
         }
       }
     },
-    "oldStyleInput":{
+    "oldStyleInput": {
       "name": "Input: Test backward compat",
       "command": "node -e \"console.log('${output}')\"",
-      "Input":{
+      "Input": {
         "name": "output",
         "validate": {
           "output": "required"
@@ -28,18 +34,26 @@
         "initial": ""
       }
     },
-    "oldStyleForm":{
+    "oldStyleForm": {
       "name": "Form: Test backward compat",
       "command": "node -e \"console.log('${output}', '${another_output}')\"",
-      "Form":{
+      "Form": {
         "validate": {
           "output": "required",
           "another_output": "required"
         },
         "message": "Please provide the following information:",
         "choices": [
-          { "name": "output", "message": "Type anything", "initial": "" },
-          { "name": "another_output", "message": "Type anything", "initial": "" }
+          {
+            "name": "output",
+            "message": "Type anything",
+            "initial": ""
+          },
+          {
+            "name": "another_output",
+            "message": "Type anything",
+            "initial": ""
+          }
         ]
       }
     },
@@ -137,6 +151,7 @@
           ]
         },
         {
+          "when": {"field": "decorator", "condition": "equal", "value":"Yes"},
           "type": "select",
           "name": "slot",
           "message": "Does the Decorator use Slots?",

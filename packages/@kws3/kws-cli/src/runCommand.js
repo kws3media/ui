@@ -28,8 +28,10 @@ async function collectAndRun(cmd, name) {
   if (cmd.Questions) {
     var _result = {};
     for (var question of cmd.Questions) {
-      var { options, result } = await prompt(question);
-      Object.assign(_result, formatResult(result, options));
+      var res = await prompt(question, _result);
+      if (res) {
+        Object.assign(_result, formatResult(res.result, res.options));
+      }
     }
     _cmd = applyCommand(_cmd, _result);
   } else {
@@ -79,8 +81,25 @@ async function runAll(cmds) {
   });
 }
 
-async function prompt(obj) {
-  var type, options, prompt, result;
+async function prompt(obj, answers) {
+  var type,
+    options,
+    prompt,
+    result,
+    flag = true;
+
+  if (obj.when) {
+    var { field, condition, value } = obj.when;
+    flag = false;
+    //TODO: condition
+    if (answers[field] == value) {
+      flag = true;
+    }
+  }
+
+  if (!flag) {
+    return;
+  }
 
   if (obj.type) {
     type = obj.type;
