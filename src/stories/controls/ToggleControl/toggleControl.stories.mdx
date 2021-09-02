@@ -57,23 +57,6 @@ export let args={
   language="html"
   code={
     dedent`
-    <ToggleButtons
-      ...
-      options='{[
-        {..., active_class:"is-success", inactive_class:"is-outlined is-success"},
-        {..., active_class:"is-danger", inactive_class:"is-outlined is-danger"},
-        {..., active_class:"is-info", inactive_class:"is-outlined is-info"}
-      ]}'
-    />
-    `
-  }
-/>
-
-#### Custom Active and Inactive classes
-<Source
-  language="html"
-  code={
-    dedent`
     <ToggleControl>
       <label for="some-primary-text" class="label">
         Primary Label
