@@ -1,5 +1,107 @@
 {
   "generators": {
+    "oldStyleSelect":{
+      "name": "Select: Test backward compat",
+      "command": "node -e \"console.log('${output}')\"",
+      "Select":{
+        "name": "output",
+        "validate": {
+          "output": "required"
+        },
+        "message": "select any item",
+        "choices": {
+          "lint":{"description": "should output 'lint'"},
+          "functional":{"description": "should output 'functional'"},
+          "coverage":{"description": "should output 'coverage'"}
+        }
+      }
+    },
+    "oldStyleInput":{
+      "name": "Input: Test backward compat",
+      "command": "node -e \"console.log('${output}')\"",
+      "Input":{
+        "name": "output",
+        "validate": {
+          "output": "required"
+        },
+        "message": "Type anything",
+        "initial": ""
+      }
+    },
+    "oldStyleForm":{
+      "name": "Form: Test backward compat",
+      "command": "node -e \"console.log('${output}', '${another_output}')\"",
+      "Form":{
+        "validate": {
+          "output": "required",
+          "another_output": "required"
+        },
+        "message": "Please provide the following information:",
+        "choices": [
+          { "name": "output", "message": "Type anything", "initial": "" },
+          { "name": "another_output", "message": "Type anything", "initial": "" }
+        ]
+      }
+    },
+    "overrideTest": {
+      "name": "Override test",
+      "description": "Can we override Mammootty",
+      "command": "node -e \"console.log('${story}', '${category}', '${decorator}', '${slot}', '|Mammootty is ${mammootty}|')\"",
+      "Questions": [
+        {
+          "type": "form",
+          "validate": {
+            "story": "required",
+            "category": "required"
+          },
+          "message": "Please provide the following information:",
+          "choices": [
+            {
+              "name": "story",
+              "message": "Story Name",
+              "initial": ""
+            },
+            {
+              "name": "category",
+              "message": "Category Name",
+              "initial": "New"
+            },
+            {
+              "name": "mammootty",
+              "message": "Mammootty",
+              "initial": "Superb"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "name": "decorator",
+          "message": "Does this need a decorator?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "select",
+          "name": "slot",
+          "message": "Does the Decorator use Slots?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "select",
+          "name": "mammootty",
+          "message": "Describe him?",
+          "choices": [
+            "Brilliant",
+            "Excellent"
+          ]
+        }
+      ]
+    },
     "story": {
       "name": "Generate story",
       "description": "Will generate a story file",
