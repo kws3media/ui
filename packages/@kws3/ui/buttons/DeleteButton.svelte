@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [classes=""] - `CONST` CSS classes, Default: `""`
   @param {string} [button_class=""] - `CONST` CSS classes for button, Default: `""`
@@ -30,7 +30,7 @@
   on:done={({ detail }) => fire("erased", detail)} />
 
 <script>
-  import ConfirmButton from "../ConfirmButton/ConfirmButton.svelte";
+  import ConfirmButton from "./ConfirmButton.svelte";
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();

@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the panel, Default: `""`
   @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
@@ -60,7 +60,7 @@
 </div>
 
 <script>
-  import Icon from "../Icon.svelte";
+  import Icon from "./Icon.svelte";
 
   /**
    * Title of the panel
