@@ -38,26 +38,23 @@
   /**
    * CSS classes
    * @type {string}
-   * @defaultvalue empty
    */
   export const classes = "";
 
   /**
    * CSS classes for button
    * @type {string}
-   * @defaultvalue empty
    */
   export const button_class = "";
 
   /**
    * Button text
    * @type {string}
-   * @defaultvalue empty
    */
   export const text = "Delete";
 
   /**
-   * Size of the Button `small`, `medium`, `large`
+   * Size of the Button
    * @type {'small'|'medium'|'large'}
    */
   export const size = "";
@@ -65,12 +62,11 @@
   /**
    * Icon of the Button - can use any fa icon
    * @type {string}
-   * @defaultvalue empty
    */
   export const icon = "minus-circle";
 
   /**
-   * Color of the Button `primary`, `warning`, `info`, `danger`, `dark`, `light`
+   * Color of the Button
    * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export const color = "danger";
@@ -78,56 +74,48 @@
   /**
    * data-cy attribute for cypress
    * @type {string}
-   * @defaultvalue empty
    */
   export const cy = "";
 
   /**
    * Icon showing after confirm - can use any fa icon
    * @type {string}
-   * @defaultvalue empty
    */
   export const doing_icon = "hourglass";
 
   /**
    * Text showing after confirm
    * @type {string}
-   * @defaultvalue empty
    */
   export const doing_text = "Deleting...";
 
   /**
    * Icon showing after success - can use any fa icon
    * @type {string}
-   * @defaultvalue empty
    */
   export const done_icon = "check";
 
   /**
    * Text showing after success - can use any fa icon
    * @type {string}
-   * @defaultvalue empty
    */
   export const done_text = "Deleted";
 
   /**
    * Context property
    * @type {object}
-   * @defaultvalue empty
    */
   export const context = null;
 
   /**
    * Boolean - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export const icon_only = false;
 
   /**
    * Boolean - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export const disabled = false;
 

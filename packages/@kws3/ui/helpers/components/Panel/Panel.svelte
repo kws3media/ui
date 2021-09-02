@@ -65,77 +65,66 @@
   /**
    * Title of the panel
    * @type {string}
-   * @defaultvalue ""
    */
   export let title = "";
 
   /**
    * Subtitle of the panel
    * @type {string}
-   * @defaultvalue ""
    */
   export let subtitle = "";
 
   /**
    * Inline style for Panel
    * @type {string}
-   * @defaultvalue empty
    */
   export let style = "";
 
   /**
    * Inline style for Panel Content
    * @type {string}
-   * @defaultvalue empty
    */
   export let inner_style = "";
 
   /**
    * data-cy attribute for cypress
    * @type {string}
-   * @defaultvalue empty
    */
   export let cy = "";
 
   /**
    * Collapse icon
    * @type {string}
-   * @defaultvalue "caret-right"
    */
   export let collapse_icon = "caret-right";
 
   /**
    * Collapsible property
    * @type {boolean}
-   * @defaultvalue false
    */
   export let collapsible = false;
 
   /**
    * Collapsed property
    * @type {boolean}
-   * @defaultvalue false
    */
   export let collapsed = false;
 
   /**
    * Relative property
    * @type {boolean}
-   * @defaultvalue false
    */
   export let relative = false;
 
   /**
    * Toolbar property
    * @type {boolean}
-   * @defaultvalue true
    */
   export let has_toolbar = true;
 
   /**
    * Has Center property
    * @type {boolean}
-   * @defaultvalue true
    */
   export let has_center = true;
 

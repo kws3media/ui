@@ -45,7 +45,7 @@
      */
     disabled = false,
     /**
-     * Color of the Button `primary`, `warning`, `success`, `info`, `danger`, `dark`, `light`
+     * Color of the Toggle
      * @type {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
@@ -65,7 +65,7 @@
      */
     off_text = "",
     /**
-     * Size of the Radio Button `small`, `medium`, `large`
+     * Size of the Toggle Button
      * @type {'small'|'medium'|'large'}
      */
     size = "",

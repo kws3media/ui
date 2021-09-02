@@ -23,7 +23,7 @@
 
 <script>
   /**
-   * Color of the Message box `primary`, `warning`, `info`, `danger`
+   * Color of the Notification box
    * @type {'primary'|'warning'|'info'|'danger'|'light'|'dark'}
    */
   export let color = "info";
@@ -31,21 +31,18 @@
   /**
    * Inline style for modal content
    * @type {string}
-   * @defaultvalue empty
    */
   export let style = "";
 
   /**
    * Light Notification
    * @type {boolean}
-   * @defaultvalue false
    */
   export let light = false;
 
   /**
    * Show close button
    * @type {boolean}
-   * @defaultvalue false
    */
   export let dismissable = false;
 

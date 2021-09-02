@@ -44,18 +44,17 @@
   /**
    * CSS classes
    * @type {string}
-   * @defaultvalue empty
    */
   export let classes = "";
 
   /**
-   * Size of the Button `small`, `medium`, `large`
+   * Size of the Button
    * @type {'small'|'medium'|'large'}
    */
   export let size = "";
 
   /**
-   * Color of the Button `primary`, `warning`, `info`, `danger`, `dark`, `light`
+   * Color of the Button
    * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "primary";
@@ -63,49 +62,42 @@
   /**
    * Button text
    * @type {string}
-   * @defaultvalue empty
    */
   export let text = "Save Changes";
 
   /**
    * Text shows after success
    * @type {string}
-   * @defaultvalue empty
    */
   export let saved_text = "Saved";
 
   /**
    * Text shows after process complete
    * @type {string}
-   * @defaultvalue empty
    */
   export let error_text = "Failed to Save";
 
   /**
    * Icon of the Button - can use any fa icon
    * @type {string}
-   * @defaultvalue empty
    */
   export let icon = "save";
 
   /**
    * data-cy attribute for cypress
    * @type {string}
-   * @defaultvalue empty
    */
   export let cy = "submit";
 
   /**
    * Display icon only - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export let icon_only = false;
 
   /**
    * Button disable - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export let disabled = false;
 

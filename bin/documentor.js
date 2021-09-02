@@ -209,6 +209,7 @@ function makeFunctionDoc(e) {
 function getDefaultValue(e) {
   let defaultValue = e.defaultValue;
   let type = e.type.text;
+  let kind = e.type.kind;
 
   if (typeof defaultValue == "undefined") {
     if (typeof e.keywords != "undefined" && e.keywords.length) {
@@ -233,6 +234,19 @@ function getDefaultValue(e) {
   } else {
     if (type == "string") {
       defaultValue = '"' + defaultValue + '"';
+    }
+    if (kind == "union") {
+      /**
+       * for a union type
+       * ensure all options are strings before
+       * casting default value as string
+       */
+      if (e.type.type && e.type.type.length) {
+        let nonStrings = e.type.type.filter((i) => i.type != "string");
+        if (nonStrings.length == 0) {
+          defaultValue = '"' + defaultValue + '"';
+        }
+      }
     }
   }
 

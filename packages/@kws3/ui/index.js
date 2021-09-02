@@ -18,3 +18,5 @@ export { default as FileUpload } from "./controls/components/FileUpload/FileUplo
 export { default as NumberInput } from "./controls/components/NumberInput.svelte";
 export { default as Radio } from "./controls/components/Radio/Radio.svelte";
 export { default as Toggle } from "./controls/components/Toggle/Toggle.svelte";
+export { default as ToggleButtons } from "./controls/components/ToggleButtons.svelte";
+export { default as ToggleControl } from "./controls/components/ToggleControl.svelte";
