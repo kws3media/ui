@@ -1,18 +1,18 @@
 <!--
   @component
+  
 
-
-  @param {string} [classes=""] - Classes property, Default: `""`
-  @param {string} [size=""] - Size property, Default: `""`
-  @param {string} [color="primary"] - Color property, Default: `"primary"`
-  @param {string} [text="Save Changes"] - Text property, Default: `"Save Changes"`
-  @param {string} [saved_text="Saved"] - Saved_text property, Default: `"Saved"`
-  @param {string} [error_text="Failed to Save"] - Error_text property, Default: `"Failed to Save"`
-  @param {string} [icon="save"] - Icon property, Default: `"save"`
-  @param {string} [cy="submit"] - Cy property, Default: `"submit"`
+  @param {string} [classes=""] - CSS classes, Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
+  @param {string} [saved_text="Saved"] - Text shows after success, Default: `"Saved"`
+  @param {string} [error_text="Failed to Save"] - Text shows after process complete, Default: `"Failed to Save"`
+  @param {string} [icon="save"] - Icon of the Button - can use any fa icon, Default: `"save"`
+  @param {string} [cy="submit"] - data-cy attribute for cypress, Default: `"submit"`
+  @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
   @param {object} [tracker={}] - Tracker property, Default: `{}`
-  @param {boolean} [icon_only=false] - Icon_only property, Default: `false`
-  @param {boolean} [disabled=false] - Disabled property, Default: `false`
 
 -->
 <button

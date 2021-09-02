@@ -2,15 +2,15 @@
   @component
   This is a modal component.
 
-  @param {string} [size="empty"] - Size of the modal `small` `medium` `large`, Default: `"empty"`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
   @param {boolean} [is_active=false] - Show or hide modal, Default: `false`
   @param {boolean} [closable=true] - Show close button, Default: `true`
   @param {boolean} [close_on_click_outside=false] - Close modal on click outside, Default: `false`
-  @param {string} [style="empty"] - Inline style for modal, Default: `"empty"`
-  @param {string} [inner_style="empty"] - Inline style for modal content, Default: `"empty"`
-  @param {string} [classes="empty"] - CSS classes for modal, Default: `"empty"`
-  @param {string} [inner_class="empty"] - CSS classes for modal content, Default: `"empty"`
-  @param {string} [cy="empty"] - data-cy attribute for cypress, Default: `"empty"`
+  @param {string} [style=""] - Inline style for modal, Default: `""`
+  @param {string} [inner_style=""] - Inline style for modal content, Default: `""`
+  @param {string} [classes=""] - CSS classes for modal, Default: `""`
+  @param {string} [inner_class=""] - CSS classes for modal content, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 
   ### Slots
   - `<slot name="default"  />` - Slot for disply modal contents

@@ -1,17 +1,17 @@
 <!--
   @component
+  
 
-
-  @param {object} [value=null] - Value property, Default: `null`
-  @param {string} [classes=""] - Classes property, Default: `""`
-  @param {string} [style=""] - Style property, Default: `""`
-  @param {string} [label_style=""] - Label_style property, Default: `""`
-  @param {string} [size=""] - Size property, Default: `""`
-  @param {string} [color=""] - Color property, Default: `""`
-  @param {boolean} [inverted=false] - Inverted property, Default: `false`
-  @param {boolean} [circle=false] - Circle property, Default: `false`
-  @param {boolean} [disabled=false] - Disabled property, Default: `false`
-  @param {boolean} [group=false] - Group property, Default: `false`
+  @param {string} [value="null"] - value of radio button, Default: `"null"`
+  @param {string} [classes=""] - CSS classes, Default: `""`
+  @param {string} [style=""] - Supported classes, Default: `""`
+  @param {string} [label_style=""] - Inline style of Radio label, Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Radio Button, Default: `""`
+  @param {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Radio button, Default: `""`
+  @param {boolean} [inverted=false] - Inverted - true/false, Default: `false`
+  @param {boolean} [circle=false] - Circle radio button(Default : Square) - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {boolean} [group=false] - Group radio - true/false, Default: `false`
 
   ### Events
   - `change`

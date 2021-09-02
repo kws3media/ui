@@ -1,12 +1,12 @@
 <!--
   @component
+  
 
-
-  @param {string} [color="transparent"] - Color property, Default: `"transparent"`
-  @param {string} [size="medium"] - Size property, Default: `"medium"`
-  @param {string} [type=""] - Type property, Default: `""`
-  @param {string} [style=""] - Style property, Default: `""`
-  @param {boolean} [large_loader=false] - Large_loader property, Default: `false`
+  @param {'transparent'|'warning'|'info'|'danger'|'primary'} [color="transparent"] - Color of the Loader, Default: `"transparent"`
+  @param {'small'|'medium'|'large'} [size="medium"] - size of the Loader, Default: `"medium"`
+  @param {string} [type=""] - Type of loader, Default: `""`
+  @param {string} [style=""] - Inline Style of loader, Default: `""`
+  @param {boolean} [large_loader=false] - Large loader, Default: `false`
 
 -->
 <div

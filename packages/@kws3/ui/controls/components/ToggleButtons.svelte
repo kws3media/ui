@@ -1,17 +1,17 @@
 <!--
   @component
+  
 
-
-  @param {boolean} [on=false] - `CONST` On property, Default: `false`
+  @param {boolean} [on=false] - `CONST` Toggle On - true/false, Default: `false`
   @param {object} [value=null] - Value property, Default: `null`
-  @param {boolean} [disabled=false] - Disabled property, Default: `false`
-  @param {array} [options=[]] - Options property, Default: `[]`
-  @param {string} [classes=""] - Classes property, Default: `""`
-  @param {string} [inner_class=""] - Inner_class property, Default: `""`
-  @param {string} [active_class="is-primary"] - Active_class property, Default: `"is-primary"`
-  @param {string} [inactive_class="is-outlined"] - Inactive_class property, Default: `"is-outlined"`
-  @param {string} [size=""] - Size property, Default: `""`
-  @param {boolean} [fullwidth=false] - Fullwidth property, Default: `false`
+  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {object} [options={}] - Array of options, Default: `{}`
+  @param {string} [classes=""] - Additional classes, Default: `""`
+  @param {string} [inner_class=""] - Additional internal classes, Default: `""`
+  @param {string} [active_class="is-primary"] - Active class, Default: `"is-primary"`
+  @param {string} [inactive_class="is-outlined"] - Inactive class, Default: `"is-outlined"`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
+  @param {boolean} [fullwidth=false] - Full width of toggle button, Default: `false`
 
   ### Events
   - `change`
