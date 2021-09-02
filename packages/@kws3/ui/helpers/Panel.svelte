@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the panel, Default: `""`
   @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
@@ -54,13 +54,13 @@
     <div
       class="panel-block is-clearfix"
       style="{inner_style} {relative ? 'position:relative' : ''}">
-      <slot />
+      <!--Used for panel content--><slot />
     </div>
   </div>
 </div>
 
 <script>
-  import Icon from "../Icon.svelte";
+  import { Icon } from "@kws3/ui";
 
   /**
    * Title of the panel
