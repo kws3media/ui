@@ -90,42 +90,36 @@
   /**
    * Modal has footer
    * @type {boolean}
-   * @defaultvalue false
    */
   export let has_footer = true;
 
   /**
    * Inline style for modal
    * @type {string}
-   * @defaultvalue empty
    */
   export let style = "";
 
   /**
    * Inline style for modal content
    * @type {string}
-   * @defaultvalue empty
    */
   export let inner_style = "";
 
   /**
    * CSS classes for modal
    * @type {string}
-   * @defaultvalue empty
    */
   export let classes = "";
 
   /**
    * CSS classes for modal content
    * @type {string}
-   * @defaultvalue empty
    */
   export let inner_class = "";
 
   /**
    * data-cy attribute for cypress
    * @type {string}
-   * @defaultvalue empty
    */
   export let cy = "";
 

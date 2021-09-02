@@ -58,12 +58,40 @@
 </script>
 
 <script>
+  /**
+   * Size of the Icon `small`, `medium` and `large`
+   * @type {'small'|'medium'|'large'}
+   */
   export let size = null,
+    /**
+     * Color of the Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
+     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
     color = null,
+    /**
+     * Icon name to display
+     * @type {string}
+     */
     icon = "",
+    /**
+     * CSS classes for icon
+     * @type {string}
+     */
     icon_class = "",
+    /**
+     * Inline style of icon
+     * @type {string}
+     */
     icon_style = "",
+    /**
+     * Inner class of icon
+     * @type {string}
+     */
     inner_class = null,
+    /**
+     * Inline style for Icon
+     * @type {string}
+     */
     inner_style = null;
 
   let _used_inner_class,

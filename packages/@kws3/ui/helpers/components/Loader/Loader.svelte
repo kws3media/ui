@@ -25,12 +25,28 @@
    * @type {'transparent'|'warning'|'info'|'danger'|'primary'}
    */
   export let color = "transparent";
+
   /**
-   * size of the Loader
+   * size of the Loader `small` `medium` `large`
    * @type {'small'|'medium'|'large'}
    */
   export let size = "medium";
+
+  /**
+   * Type of loader
+   * @type {string}
+   */
   export let type = "";
+
+  /**
+   * Inline Style of loader
+   * @type {string}
+   */
   export let style = "";
+
+  /**
+   * Large loader
+   * @type {boolean}
+   */
   export let large_loader = false;
 </script>

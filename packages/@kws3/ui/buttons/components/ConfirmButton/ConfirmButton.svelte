@@ -88,21 +88,18 @@
   /**
    * CSS classes
    * @type {string}
-   * @defaultvalue empty
    */
   export let classes = "";
 
   /**
    * CSS classes for button
    * @type {string}
-   * @defaultvalue empty
    */
   export let button_class = "";
 
   /**
    * Button text
    * @type {string}
-   * @defaultvalue empty
    */
   export let text = "";
 
@@ -115,7 +112,6 @@
   /**
    * Icon of the Button - can use any fa icon
    * @type {string}
-   * @defaultvalue empty
    */
   export let icon = "check";
 
@@ -128,56 +124,48 @@
   /**
    * data-cy attribute for cypress
    * @type {string}
-   * @defaultvalue empty
    */
   export let cy = "";
 
   /**
    * Icon shows during process
    * @type {string}
-   * @defaultvalue empty
    */
   export let doing_icon = "hourglass";
 
   /**
    * Text shows during process
    * @type {string}
-   * @defaultvalue empty
    */
   export let doing_text = "Please Wait...";
 
   /**
    * Icon shows after process complete
    * @type {string}
-   * @defaultvalue empty
    */
   export let done_icon = "check";
 
   /**
    * Text shows after process complete
    * @type {string}
-   * @defaultvalue empty
    */
   export let done_text = "Done";
 
   /**
    * Boolean - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export let confirm = false;
 
   /**
    * Display icon only - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export let icon_only = false;
 
   /**
    * Button disable - true/false
    * @type {boolean}
-   * @defaultvalue empty
    */
   export let disabled = false;
 

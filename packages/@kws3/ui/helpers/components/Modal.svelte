@@ -53,63 +53,54 @@
   /**
    * Size of the modal `medium` `large`
    * @type {'small'|'medium'|'large'}
-   * @defaultvalue empty
    */
   export let size = "";
 
   /**
    * Show or hide modal
    * @type {boolean}
-   * @defaultvalue false
    */
   export let is_active = false;
 
   /**
    * Show close button
    * @type {boolean}
-   * @defaultvalue true
    */
   export let closable = true;
 
   /**
    * Close modal on click outside
    * @type {boolean}
-   * @defaultvalue false
    */
   export let close_on_click_outside = false;
 
   /**
    * Inline style for modal
    * @type {string}
-   * @defaultvalue empty
    */
   export let style = "";
 
   /**
    * Inline style for modal content
    * @type {string}
-   * @defaultvalue empty
    */
   export let inner_style = "";
 
   /**
    * CSS classes for modal
    * @type {string}
-   * @defaultvalue empty
    */
   export let classes = "";
 
   /**
    * CSS classes for modal content
    * @type {string}
-   * @defaultvalue empty
    */
   export let inner_class = "";
 
   /**
    * data-cy attribute for cypress
    * @type {string}
-   * @defaultvalue empty
    */
   export let cy = "";
 
