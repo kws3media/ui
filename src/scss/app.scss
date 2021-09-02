@@ -56,9 +56,9 @@ pre.prismjs>code {
 // //searchable select
 // @import '../../packages/@kws3/searchable-select/styles.scss';
 // //helpers - Panel
- @import '../../packages/@kws3/ui/helpers/components/Panel/styles.scss';
+ @import '../../packages/@kws3/ui/styles/Panel.scss';
 // //helpers - Loader
-@import '../../packages/@kws3/ui/helpers/components/Loader/styles.scss';
+@import '../../packages/@kws3/ui/styles/Loader.scss';
 // //helpers - Modal
 // @import '../../packages/@kws3/helpers/components/Modal/styles.scss';
 
@@ -75,12 +75,12 @@ pre.prismjs>code {
 // //colorpicker
 // @import '../../packages/@kws3/colorpicker/styles.scss';
 // //Buttons - Toggle
-@import '../../packages/@kws3/ui/controls/components/Toggle/styles/Toggle.scss';
+@import '../../packages/@kws3/ui/styles/Toggle.scss';
 // @import '../../packages/@kws3/controls/components/ToggleButtons/styles.scss';
 // @import '../../packages/@kws3/controls/components/ToggleControl/styles.scss';
-@import '../../packages/@kws3/ui/controls/components/Checkbox/styles/Checkbox.scss';
-@import '../../packages/@kws3/ui/controls/components/Radio/styles/Radio.scss';
-@import '../../packages/@kws3/ui/controls/components/FileUpload/styles/FileUpload.scss';
+@import '../../packages/@kws3/ui/styles/Checkbox.scss';
+@import '../../packages/@kws3/ui/styles/Radio.scss';
+@import '../../packages/@kws3/ui/styles/FileUpload.scss';
 
 
 // //sliding panes
