@@ -29,16 +29,12 @@ async function collectAndRun(cmd, name) {
     var _result = {};
     for (var question of cmd.Questions) {
       var { options, result } = await prompt(question);
-      if (isObject(result)) {
-        Object.assign(_result, result);
-      } else {
-        _result[options.name] = result;
-      }
+      Object.assign(_result, formatResult(result, options));
     }
     _cmd = applyCommand(_cmd, _result);
   } else {
     var { options, result } = await prompt(cmd);
-    _cmd = applyCommand(_cmd, result, options);
+    _cmd = applyCommand(_cmd, formatResult(result, options));
   }
 
   console.log(chalk.bold.green.underline("Running " + name));
@@ -121,14 +117,18 @@ async function prompt(obj) {
   return { options, result };
 }
 
-function applyCommand(command, answer, options) {
-  let processObj = answer;
-  if (!isObject(answer)) {
-    const key = options.name;
-    processObj = {};
-    processObj[key] = answer;
+function formatResult(result, options) {
+  var _result = {};
+  if (isObject(result)) {
+    Object.assign(_result, result);
+  } else {
+    _result[options.name] = result;
   }
-  Object.entries(processObj).forEach(([k, v]) => {
+  return _result;
+}
+
+function applyCommand(command, answer) {
+  Object.entries(answer).forEach(([k, v]) => {
     const key = k,
       regex = new RegExp("\\$\\{" + key + "\\}", "g");
     command = command.replace(regex, v);
