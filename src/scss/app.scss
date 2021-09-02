@@ -16,44 +16,29 @@ html {
   overflow-x: scroll;
 }
 
-.main {
-  padding: 0rem;
-}
-
-.layout-header-section {
-  border-bottom: 1px solid $grey-lighter;
-}
-
-.layout-header-section,
-.layout-body-section {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
 p {
   margin: 0.5rem 0;
 }
 
-
-pre>code {
+pre.prismjs>code {
+  font-size: 1.1em;
   .tag,
   .number {
-    padding-left: 0rem;
-    padding-right: 0.2rem;
-    background: none;
-    /*padding: unset;
+    padding: unset;
+    display: inline;
+    height:auto;
+    min-width:unset;
     background: inherit;
     white-space: inherit;
-    display: inherit;
     line-height: inherit;
-    height: auto;
     font-size: inherit;
     border: none;
     margin: inherit;
     vertical-align: inherit;
-    text-align: inherit;*/
+    text-align: inherit;
   }
 }
+
 
 /*pre:not([class*="language-"]) {
   visibility: hidden;
