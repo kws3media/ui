@@ -1,0 +1,75 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { ToggleButtons } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  on : true,
+  value : "",
+  disabled : false,
+  options : [
+    {"name": "Yes", "value": 1, icon: "check-circle", subtitle: "Affirmative"},
+    {"name": "No", "value": 0, icon: "ban", subtitle: "Negative"},
+    {"name": "Maybe", "value": null, icon: "question", subtitle: "¯\_(ツ)_/¯"}
+  ],
+  classes : "",
+  inner_class : "",
+  active_class : "is-primary",
+  inactive_class : "is-outlined",
+  size : "",
+  fullwidth : false
+};
+
+<Meta
+  title="Forms/Controls/ToggleButtons"
+  component={ToggleButtons}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# ToggleButtons
+## Toggle button with text supports
+`}/>
+
+<Canvas>
+  <Story
+  name="ToggleButtons"
+  args={args}
+  >
+  {(args) => ({
+    Component: ToggleButtons,
+    props: args,
+    on: {
+      change : action("Changed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ToggleButtons" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { ToggleButtons  } from '@kws3/ui';`
+  }
+/>
+
+#### Custom Active and Inactive classes
+<Source
+  language="html"
+  code={
+    dedent`
+    <ToggleButtons
+      ...
+      options='{[
+        {..., active_class:"is-success", inactive_class:"is-outlined is-success"},
+        {..., active_class:"is-danger", inactive_class:"is-outlined is-danger"},
+        {..., active_class:"is-info", inactive_class:"is-outlined is-info"}
+      ]}'
+    />
+    `
+  }
+/>
