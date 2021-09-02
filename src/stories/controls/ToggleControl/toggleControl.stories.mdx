@@ -1,0 +1,107 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { ToggleControl } from '@kws3/ui';
+import ToggleControlDecorator from './ToggleControl.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  classes : "",
+  style : "",
+  cy : ""
+};
+
+<Meta
+  title="Forms/Controls/ToggleControl"
+  component={ToggleControl}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# ToggleControl
+## To be used when using Toggle within a form
+#### To be used with &lt;Toggle&gt; & &lt;ToggleButtons&gt; components, so that they can be lined up with a &lt;label class="label"&gt; in existing forms.
+#### It is a wrapper component with no functionality of it's own.
+`}/>
+
+
+
+
+<Canvas>
+  <Story
+  name="ToggleControl"
+  args={args}
+  >
+  {(args) => ({
+    Component: ToggleControlDecorator,
+    props: args,
+    on: {
+      change : action("Changed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ToggleControl" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { ToggleControl  } from '@kws3/ui';`
+  }
+/>
+
+#### Custom Active and Inactive classes
+<Source
+  language="html"
+  code={
+    dedent`
+    <ToggleButtons
+      ...
+      options='{[
+        {..., active_class:"is-success", inactive_class:"is-outlined is-success"},
+        {..., active_class:"is-danger", inactive_class:"is-outlined is-danger"},
+        {..., active_class:"is-info", inactive_class:"is-outlined is-info"}
+      ]}'
+    />
+    `
+  }
+/>
+
+#### Custom Active and Inactive classes
+<Source
+  language="html"
+  code={
+    dedent`
+    <ToggleControl>
+      <label for="some-primary-text" class="label">
+        Primary Label
+        <small class="is-block help">Some secondary Text</small>
+      </label>
+      <Toggle  />
+    </ToggleControl>
+    `
+  }
+/>
+
+<Source
+  language="html"
+  code={
+    dedent`
+    <ToggleControl>
+      <label for="some-secondary-text" class="label">
+        Secondary Label
+        <small class="is-block help">Some secondary Text</small>
+      </label>
+      <ToggleButtons
+        options='{[
+          {"name": "Yes", "value": 1},
+          {"name": "No", "value": 0},
+          {"name": "Maybe", "value": null}
+        ]}'
+      />
+    </ToggleControl>
+    `
+  }
+/>
