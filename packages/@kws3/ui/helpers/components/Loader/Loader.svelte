@@ -27,7 +27,7 @@
   export let color = "transparent";
 
   /**
-   * size of the Loader `small` `medium` `large`
+   * size of the Loader
    * @type {'small'|'medium'|'large'}
    */
   export let size = "medium";

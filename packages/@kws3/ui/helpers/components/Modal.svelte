@@ -51,7 +51,7 @@
 
 <script>
   /**
-   * Size of the modal `medium` `large`
+   * Size of the modal
    * @type {'small'|'medium'|'large'}
    */
   export let size = "";

@@ -34,13 +34,13 @@
 
 <script>
   /**
-   * Size of the Message `small`, `medium` and `large`
+   * Size of the Message
    * @type {'small'|'medium'|'large'}
    */
   export let size = "";
 
   /**
-   * Color of the Message box `primary`, `warning`, `info`, `danger`, `dark`, `light`
+   * Color of the Message box
    * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "info";

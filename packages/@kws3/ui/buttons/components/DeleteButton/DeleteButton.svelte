@@ -54,7 +54,7 @@
   export const text = "Delete";
 
   /**
-   * Size of the Button `small`, `medium`, `large`
+   * Size of the Button
    * @type {'small'|'medium'|'large'}
    */
   export const size = "";
@@ -66,7 +66,7 @@
   export const icon = "minus-circle";
 
   /**
-   * Color of the Button `primary`, `warning`, `info`, `danger`, `dark`, `light`
+   * Color of the Button
    * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export const color = "danger";

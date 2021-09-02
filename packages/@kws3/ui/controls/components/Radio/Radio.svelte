@@ -53,12 +53,12 @@
      */
     label_style = "",
     /**
-     * Size of the Radio Button `small`, `medium`, `large`
+     * Size of the Radio Button
      * @type {'small'|'medium'|'large'}
      */
     size = "",
     /**
-     * Color of the Button `primary`, `warning`, `success`, `info`, `danger`, `dark`, `light`
+     * Color of the Radio button
      * @type {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",

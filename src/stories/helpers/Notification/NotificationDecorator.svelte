@@ -1,8 +1,8 @@
-<KwsNotification {color} {style} {light} {dismissable}
-  >Your have 41 notifications</KwsNotification>
+<Notification {color} {style} {light} {dismissable}
+  >Your have 41 notifications</Notification>
 
 <script>
-  import { Notification as KwsNotification } from "@kws3/ui";
+  import { Notification } from "@kws3/ui";
   export let color = "info";
   export let style = "";
   export let light = false;

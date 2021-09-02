@@ -60,7 +60,7 @@
   export let title = "";
 
   /**
-   * Size of the modal `medium` `large`
+   * Size of the modal
    * @type {'small'|'medium'|'large'}
    * @defaultvalue empty
    */

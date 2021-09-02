@@ -48,13 +48,13 @@
   export let classes = "";
 
   /**
-   * Size of the Button `small`, `medium`, `large`
+   * Size of the Button
    * @type {'small'|'medium'|'large'}
    */
   export let size = "";
 
   /**
-   * Color of the Button `primary`, `warning`, `info`, `danger`, `dark`, `light`
+   * Color of the Button
    * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "primary";
