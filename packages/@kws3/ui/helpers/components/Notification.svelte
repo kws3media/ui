@@ -1,11 +1,11 @@
 <!--
   @component
+  
 
-
-  @param {string} [color="info"] - Color property, Default: `"info"`
-  @param {string} [style=""] - Style property, Default: `""`
-  @param {boolean} [light=false] - Light property, Default: `false`
-  @param {boolean} [dismissable=false] - Dismissable property, Default: `false`
+  @param {'primary'|'warning'|'info'|'danger'|'light'|'dark'} [color="info"] - Color of the Notification box, Default: `"info"`
+  @param {string} [style=""] - Inline style for modal content, Default: `""`
+  @param {boolean} [light=false] - Light Notification, Default: `false`
+  @param {boolean} [dismissable=false] - Show close button, Default: `false`
 
   ### Slots
   - `<slot name="default"  />`

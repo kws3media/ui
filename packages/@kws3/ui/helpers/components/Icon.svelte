@@ -1,14 +1,17 @@
 <!--
   @component
+  
 
+  @param {'small'|'medium'|'large'} [size="null"] - Size of the Icon, Default: `"null"`
+  @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color="null"] - Color of the Icon, Default: `"null"`
+  @param {string} [icon=""] - Icon name to display, Default: `""`
+  @param {string} [icon_class=""] - CSS classes for icon, Default: `""`
+  @param {string} [icon_style=""] - Inline style of icon, Default: `""`
+  @param {string} [inner_class="null"] - Inner class of icon, Default: `"null"`
+  @param {string} [inner_style="null"] - Inline style for Icon, Default: `"null"`
 
-  @param {object} [size=null] - Size property, Default: `null`
-  @param {object} [color=null] - Color property, Default: `null`
-  @param {string} [icon=""] - Icon property, Default: `""`
-  @param {string} [icon_class=""] - Icon_class property, Default: `""`
-  @param {string} [icon_style=""] - Icon_style property, Default: `""`
-  @param {object} [inner_class=null] - Inner_class property, Default: `null`
-  @param {object} [inner_style=null] - Inner_style property, Default: `null`
+  ### Module
+  @param {function} [setDefaultIconType(type)] - SetDefaultIconType function
 
 -->
 <span

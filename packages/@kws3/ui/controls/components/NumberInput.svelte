@@ -1,21 +1,21 @@
 <!--
   @component
+  
 
-
-  @param {string} [size=""] - Size property, Default: `""`
-  @param {object} [input=null] - Input property, Default: `null`
-  @param {object} [value=null] - Value property, Default: `null`
-  @param {number} [step=1] - Step property, Default: `1`
-  @param {number} [min=0] - Min property, Default: `0`
-  @param {number} [max=100] - Max property, Default: `100`
-  @param {boolean} [disabled=false] - Disabled property, Default: `false`
-  @param {boolean} [fullwidth=false] - Fullwidth property, Default: `false`
-  @param {string} [minus_icon="minus"] - Minus_icon property, Default: `"minus"`
-  @param {string} [minus_icon_color="danger"] - Minus_icon_color property, Default: `"danger"`
-  @param {string} [minus_button_color=""] - Minus_button_color property, Default: `""`
-  @param {string} [plus_icon="plus"] - Plus_icon property, Default: `"plus"`
-  @param {string} [plus_icon_color="success"] - Plus_icon_color property, Default: `"success"`
-  @param {string} [plus_button_color=""] - Plus_button_color property, Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Button `small`, `medium`, `large`, Default: `""`
+  @param {object} [input=null] - Input Property, Default: `null`
+  @param {number} [value=null] - Default value, Default: `null`
+  @param {number} [step=1] - Steps increasing/decreasing, Default: `1`
+  @param {number} [min=0] - Starting number, Default: `0`
+  @param {number} [max=100] - Maximum number, Default: `100`
+  @param {boolean} [disabled=false] - Disable - true/false, Default: `false`
+  @param {boolean} [fullwidth=false] - Full width of container - true/false, Default: `false`
+  @param {string} [minus_icon="minus"] - Icon of the Minus button, Default: `"minus"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `"danger"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `""`
+  @param {string} [plus_icon="plus"] - Icon of the Plus button, Default: `"plus"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `"success"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `""`
   @param {number} [_has_focus=0] - _has_focus property, Default: `0`
 
   ### Events

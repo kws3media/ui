@@ -1,18 +1,18 @@
 <!--
   @component
-
+  
 
   @param {string} [title=""] - Title of the panel, Default: `""`
-  @param {string} [subtitle=""] - Subtitle property, Default: `""`
-  @param {string} [style=""] - Style property, Default: `""`
-  @param {string} [inner_style=""] - Inner_style property, Default: `""`
-  @param {string} [cy=""] - Cy property, Default: `""`
-  @param {string} [collapse_icon="caret-right"] - Collapse_icon property, Default: `"caret-right"`
+  @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
+  @param {string} [style=""] - Inline style for Panel, Default: `""`
+  @param {string} [inner_style=""] - Inline style for Panel Content, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [collapse_icon="caret-right"] - Collapse icon, Default: `"caret-right"`
   @param {boolean} [collapsible=false] - Collapsible property, Default: `false`
   @param {boolean} [collapsed=false] - Collapsed property, Default: `false`
   @param {boolean} [relative=false] - Relative property, Default: `false`
-  @param {boolean} [has_toolbar=true] - Has_toolbar property, Default: `true`
-  @param {boolean} [has_center=true] - Has_center property, Default: `true`
+  @param {boolean} [has_toolbar=true] - Toolbar property, Default: `true`
+  @param {boolean} [has_center=true] - Has Center property, Default: `true`
 
   ### Slots
   - `<slot name="center"  />`

@@ -1,15 +1,15 @@
 <!--
   @component
+  
 
-
-  @param {boolean} [on=false] - On property, Default: `false`
-  @param {boolean} [disabled=false] - Disabled property, Default: `false`
-  @param {string} [color=""] - Color property, Default: `""`
-  @param {string} [classes=""] - Classes property, Default: `""`
-  @param {string} [on_text=""] - On_text property, Default: `""`
-  @param {string} [off_text=""] - Off_text property, Default: `""`
-  @param {string} [size=""] - Size property, Default: `""`
-  @param {string} [cy=""] - Cy property, Default: `""`
+  @param {boolean} [on=false] - Toggle On - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
+  @param {string} [classes=""] - Supported classes, Default: `""`
+  @param {string} [on_text=""] - On Text, Default: `""`
+  @param {string} [off_text=""] - Off Text, Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 
 -->
 <div
