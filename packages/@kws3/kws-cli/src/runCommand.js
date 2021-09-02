@@ -26,10 +26,16 @@ async function collectAndRun(cmd, name) {
   _cmd = _cmd.replace(/[\\\/]/g, path.sep);
 
   if (cmd.Questions) {
+    var _result = {};
     for (var question of cmd.Questions) {
       var { options, result } = await prompt(question);
-      _cmd = applyCommand(options, _cmd, result);
+      if (isObject(result)) {
+        Object.assign(_result, result);
+      } else {
+        _result[options.name] = result;
+      }
     }
+    _cmd = applyCommand(null, _cmd, _result);
   } else {
     var { options, result } = await prompt(cmd);
     _cmd = applyCommand(options, _cmd, result);
