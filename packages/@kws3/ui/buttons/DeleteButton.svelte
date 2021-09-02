@@ -30,7 +30,7 @@
   on:done={({ detail }) => fire("erased", detail)} />
 
 <script>
-  import ConfirmButton from "./ConfirmButton.svelte";
+  import { ConfirmButton } from "@kws3/ui";
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
