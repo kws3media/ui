@@ -1,10 +1,10 @@
 <!--
   @component
+  
 
-
-  @param {string} [classes=""] - Classes property, Default: `""`
-  @param {string} [style=""] - Style property, Default: `""`
-  @param {string} [cy=""] - Cy property, Default: `""`
+  @param {string} [classes=""] - Supported classes, Default: `""`
+  @param {string} [style=""] - Inline styles, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 
   ### Slots
   - `<slot name="default"  />`

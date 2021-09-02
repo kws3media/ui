@@ -1,21 +1,21 @@
 <!--
   @component
+  
 
-
-  @param {string} [classes=""] - Classes property, Default: `""`
-  @param {string} [button_class=""] - Button_class property, Default: `""`
-  @param {string} [text=""] - Text property, Default: `""`
-  @param {string} [size=""] - Size property, Default: `""`
-  @param {string} [icon="check"] - Icon property, Default: `"check"`
-  @param {string} [color="info"] - Color property, Default: `"info"`
-  @param {string} [cy=""] - Cy property, Default: `""`
-  @param {string} [doing_icon="hourglass"] - Doing_icon property, Default: `"hourglass"`
-  @param {string} [doing_text="Please Wait..."] - Doing_text property, Default: `"Please Wait..."`
-  @param {string} [done_icon="check"] - Done_icon property, Default: `"check"`
-  @param {string} [done_text="Done"] - Done_text property, Default: `"Done"`
-  @param {boolean} [confirm=false] - Confirm property, Default: `false`
-  @param {boolean} [icon_only=false] - Icon_only property, Default: `false`
-  @param {boolean} [disabled=false] - Disabled property, Default: `false`
+  @param {string} [classes=""] - CSS classes, Default: `""`
+  @param {string} [button_class=""] - CSS classes for button, Default: `""`
+  @param {string} [text=""] - Button text, Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {string} [icon="check"] - Icon of the Button - can use any fa icon, Default: `"check"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Button, Default: `"info"`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [doing_icon="hourglass"] - Icon shows during process, Default: `"hourglass"`
+  @param {string} [doing_text="Please Wait..."] - Text shows during process, Default: `"Please Wait..."`
+  @param {string} [done_icon="check"] - Icon shows after process complete, Default: `"check"`
+  @param {string} [done_text="Done"] - Text shows after process complete, Default: `"Done"`
+  @param {boolean} [confirm=false] - Boolean - true/false, Default: `false`
+  @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
 
   ### Events
   - `done`

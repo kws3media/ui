@@ -1,3 +1,23 @@
+<!--
+  @component
+  
+
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
+  @param {string} [style=""] - Inline style for message content, Default: `""`
+  @param {string} [inner_style=""] - CSS classes for message content, Default: `""`
+  @param {string} [classes=""] - CSS classes for message box, Default: `""`
+  @param {string} [header_classes=""] - CSS classes for message header, Default: `""`
+  @param {string} [inner_classes=""] - CSS classes for message body, Default: `""`
+  @param {string} [title=""] - Title for message box, Default: `""`
+  @param {boolean} [has_title=false] - Meesage box has title, Default: `false`
+  @param {boolean} [dismissable=false] - Show close button, Default: `false`
+
+  ### Slots
+  - `<slot name="title"  />`
+  - `<slot name="default"  />`
+
+-->
 <div class="message is-{color} is-{size} {classes}" {style} bind:this={_comp}>
   {#if title || has_title}
     <div class="message-header {header_classes}">

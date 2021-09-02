@@ -1,18 +1,18 @@
 <!--
   @component
+  
 
-
-  @param {string} [classes=""] - Classes property, Default: `""`
-  @param {string} [style=""] - Style property, Default: `""`
-  @param {string} [label_style=""] - Label_style property, Default: `""`
-  @param {string} [size=""] - Size property, Default: `""`
-  @param {string} [color=""] - Color property, Default: `""`
-  @param {boolean} [inverted=false] - Inverted property, Default: `false`
-  @param {boolean} [circle=false] - Circle property, Default: `false`
-  @param {boolean} [checked=false] - Checked property, Default: `false`
-  @param {boolean} [disabled=false] - Disabled property, Default: `false`
-  @param {string} [icon="check"] - Icon property, Default: `"check"`
-  @param {object} [icon_family=null] - Icon_family property, Default: `null`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Button, Default: `""`
+  @param {string} [classes=""] - CSS classes, Default: `""`
+  @param {string} [style=""] - Inline styles, Default: `""`
+  @param {boolean} [inverted=false] - Inverted Property, Default: `false`
+  @param {boolean} [circle=false] - Circle checkbox, Default: `false`
+  @param {boolean} [checked=false] - Checkbox checked Property, Default: `false`
+  @param {boolean} [disabled=false] - Boolean - true/false, Default: `false`
+  @param {string} [icon="check"] - Icon of the checkbox, Default: `"check"`
+  @param {string} [label_style=""] - Inline style of Checkbox label, Default: `""`
+  @param {string} [icon_family="null"] - Family of Icon - fa, gg or unicons, Default: `"null"`
 
   ### Events
   - `change`

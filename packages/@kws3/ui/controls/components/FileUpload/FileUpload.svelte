@@ -1,12 +1,12 @@
 <!--
   @component
-
+  
 
   @param {string} [key=""] - Key property, Default: `""`
   @param {string} [message="Choose File..."] - Message displayed in uploader, Default: `"Choose File..."`
   @param {string} [info=""] - Display helper information, Default: `""`
   @param {number} [max=5000000] - Maximum allowed size, Default: `5000000`
-  @param {string} [allowed="*"] - Allowed types, Default: `"*"`
+  @param {any} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
   @param {string} [classes=""] - CSS classes, Default: `""`
   @param {boolean} [disabled=false] - Uploader disable - true/false, Default: `false`
 

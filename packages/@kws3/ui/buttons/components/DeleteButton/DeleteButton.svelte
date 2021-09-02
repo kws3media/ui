@@ -1,21 +1,21 @@
 <!--
   @component
+  
 
-
-  @param {string} [classes=""] - `CONST` A Button Component, Default: `""`
-  @param {string} [button_class=""] - `CONST` Button_class property, Default: `""`
-  @param {string} [text="Delete"] - `CONST` Text property, Default: `"Delete"`
-  @param {string} [size="empty"] - `CONST` Size of the Button `small`, `medium` and `large`, Default: `"empty"`
-  @param {string} [icon="empty"] - `CONST` Icon of the Button - can use any fa icon, Default: `"empty"`
-  @param {string} [color="empty"] - `CONST` Color of the Button `primary`, `success`, `warning`, `danger`, `info`, `light`, Default: `"empty"`
-  @param {string} [cy=""] - `CONST` Cy property, Default: `""`
-  @param {string} [doing_icon="empty"] - `CONST` Icon showing after confirm - can use any fa icon, Default: `"empty"`
-  @param {string} [doing_text="empty"] - `CONST` Text showing after confirm, Default: `"empty"`
-  @param {string} [done_icon="empty"] - `CONST` Icon showing after success - can use any fa icon, Default: `"empty"`
-  @param {string} [done_text="empty"] - `CONST` Text showing after success - can use any fa icon, Default: `"empty"`
-  @param {object} [context={}] - `CONST` Context property, Default: `{}`
-  @param {boolean} [icon_only=empty] - `CONST` Boolean - true/false, Default: `empty`
-  @param {boolean} [disabled=empty] - `CONST` Boolean - true/false, Default: `empty`
+  @param {string} [classes=""] - `CONST` CSS classes, Default: `""`
+  @param {string} [button_class=""] - `CONST` CSS classes for button, Default: `""`
+  @param {string} [text="Delete"] - `CONST` Button text, Default: `"Delete"`
+  @param {'small'|'medium'|'large'} [size=""] - `CONST` Size of the Button, Default: `""`
+  @param {string} [icon="minus-circle"] - `CONST` Icon of the Button - can use any fa icon, Default: `"minus-circle"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="danger"] - `CONST` Color of the Button, Default: `"danger"`
+  @param {string} [cy=""] - `CONST` data-cy attribute for cypress, Default: `""`
+  @param {string} [doing_icon="hourglass"] - `CONST` Icon showing after confirm - can use any fa icon, Default: `"hourglass"`
+  @param {string} [doing_text="Deleting..."] - `CONST` Text showing after confirm, Default: `"Deleting..."`
+  @param {string} [done_icon="check"] - `CONST` Icon showing after success - can use any fa icon, Default: `"check"`
+  @param {string} [done_text="Deleted"] - `CONST` Text showing after success - can use any fa icon, Default: `"Deleted"`
+  @param {object} [context=null] - `CONST` Context property, Default: `null`
+  @param {boolean} [icon_only=false] - `CONST` Boolean - true/false, Default: `false`
+  @param {boolean} [disabled=false] - `CONST` Boolean - true/false, Default: `false`
 
   ### Events
   - `error`
