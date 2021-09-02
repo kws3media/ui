@@ -35,10 +35,10 @@ async function collectAndRun(cmd, name) {
         _result[options.name] = result;
       }
     }
-    _cmd = applyCommand(null, _cmd, _result);
+    _cmd = applyCommand(_cmd, _result);
   } else {
     var { options, result } = await prompt(cmd);
-    _cmd = applyCommand(options, _cmd, result);
+    _cmd = applyCommand(_cmd, result, options);
   }
 
   console.log(chalk.bold.green.underline("Running " + name));
@@ -121,7 +121,7 @@ async function prompt(obj) {
   return { options, result };
 }
 
-function applyCommand(options, command, answer) {
+function applyCommand(command, answer, options) {
   let processObj = answer;
   if (!isObject(answer)) {
     const key = options.name;
