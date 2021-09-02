@@ -61,19 +61,20 @@ export function eraseDo(event, success = true){
 <Source
   language="html"
   code={
-    dedent`<DeleteButton
-          {text}
-          {icon}
-          {doing_icon}
-          {done_icon}
-          {doing_text}
-          {done_text}
-          {color}
-          {size}
-          {icon_only}
-          {disabled}
-          on:erase={eraseDo}
-        />
+    dedent`
+    <DeleteButton
+      {text}
+      {icon}
+      {doing_icon}
+      {done_icon}
+      {doing_text}
+      {done_text}
+      {color}
+      {size}
+      {icon_only}
+      {disabled}
+      on:erase={eraseDo}
+    />
     <script>
       import { DeleteButton } from '@kws3/ui';
       export let color = "primary";
