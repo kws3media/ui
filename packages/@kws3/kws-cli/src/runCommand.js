@@ -27,10 +27,12 @@ async function collectAndRun(cmd, name) {
 
   if (cmd.Questions) {
     for (var question of cmd.Questions) {
-      _cmd = await prompt(question, _cmd);
+      var { options, result } = await prompt(question);
+      _cmd = applyCommand(options, _cmd, result);
     }
   } else {
-    _cmd = await prompt(cmd, _cmd);
+    var { options, result } = await prompt(cmd);
+    _cmd = applyCommand(options, _cmd, result);
   }
 
   console.log(chalk.bold.green.underline("Running " + name));
@@ -75,8 +77,8 @@ async function runAll(cmds) {
   });
 }
 
-async function prompt(obj, _cmd) {
-  var type;
+async function prompt(obj) {
+  var type, options, prompt, result;
 
   if (obj.type) {
     type = obj.type;
@@ -88,29 +90,29 @@ async function prompt(obj, _cmd) {
 
   switch (type) {
     case "input":
-      var options = injectValidation(obj.Input || obj);
-      var prompt = new Input(options);
-      var result = await prompt.run();
-      _cmd = applyCommand(options, _cmd, result);
+      options = injectValidation(obj.Input || obj);
+      prompt = new Input(options);
+      result = await prompt.run();
       break;
 
     case "form":
-      var options = injectValidation(obj.Form || obj);
-      var prompt = new Form(options);
-      var result = await prompt.run();
-      _cmd = applyCommand(options, _cmd, result);
+      options = injectValidation(obj.Form || obj);
+      prompt = new Form(options);
+      result = await prompt.run();
       break;
 
     case "select":
-      var options = injectValidation(obj.Select || obj);
+      options = injectValidation(obj.Select || obj);
       options.choices = niceOptions(options.choices);
-      var prompt = new Select(options);
-      var result = await prompt.run();
-      _cmd = applyCommand(options, _cmd, getKeyFromNiceOption(result));
+
+      prompt = new Select(options);
+
+      result = await prompt.run();
+      result = getKeyFromNiceOption(result);
       break;
   }
 
-  return _cmd;
+  return { options, result };
 }
 
 function applyCommand(options, command, answer) {
