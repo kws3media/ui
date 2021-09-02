@@ -14,6 +14,20 @@
         "showReuseMessage": true,
         "clear": true
       }
+    },
+    {
+      "label": "Document ALL svelte files",
+      "type": "shell",
+      "command": "node bin/documentAll.js",
+      "problemMatcher": [],
+      "presentation":{
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
     }
   ]
 }
