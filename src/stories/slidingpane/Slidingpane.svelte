@@ -1,4 +1,4 @@
-<div style="height:100%;width:100%;">
+<div style="height:100%;width:800px;">
   <SlidingPaneSet style="height:{pane_height}px">
     <SlidingPane
       active={steps[active_index].key == "step_one"}
