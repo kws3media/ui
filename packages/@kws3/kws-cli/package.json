@@ -8,7 +8,8 @@
   },
   "author": "Khaled Ahmed <me.khaled@gmail.com>",
   "contributors": [
-    "Sharif Ahmed <me.sharifahmed@gmail.com>"
+    "Sharif Ahmed <me.sharifahmed@gmail.com>",
+    "Suneesh S K <suneeshsk3@gmail.com>"
   ],
   "publishConfig": {
     "access": "public"
