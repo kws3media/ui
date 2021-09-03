@@ -154,7 +154,8 @@ Sometimes you need to collect more than 1 piece of information to use in a comma
 ```
 
 #### 4. Questions
-Sometimes you need to use all together, use a questions in those cases. example:
+Sometimes you need more than one type of field, use questions in those cases to supply an array of fields that will be displayed sequentially.
+You can even use conditions to skip questions based on previous answers. example:
 ```js
  {
   "fill-package": {
@@ -191,7 +192,8 @@ Sometimes you need to use all together, use a questions in those cases. example:
         ]
       },
       {
-        "when": {"field": "author", "condition": "eq", "value":"Yes"}, //conditions: eq, xeq, gt, gte, lt, lte
+        "when": {"field": "author", "condition": "eq", "value":"Yes"},
+        //conditions: eq, xeq, gt, gte, lt, lte
         "type": "input",
         "name": "author_name",
         "validate": {
