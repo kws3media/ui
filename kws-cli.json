@@ -120,7 +120,7 @@
     "story": {
       "name": "Generate story",
       "description": "Will generate a story file",
-      "command": "node scripts/generators story ${story} ${category} ${decorator} ${slot} --colors",
+      "command": "node scripts/generators story ${story} ${category} ${decorator} --colors",
       "Questions": [
         {
           "type": "form",
@@ -146,16 +146,6 @@
           "type": "select",
           "name": "decorator",
           "message": "Does this need a decorator?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "when": {"field": "decorator", "condition": "eq", "value":"Yes"},
-          "type": "select",
-          "name": "slot",
-          "message": "Does the Decorator use Slots?",
           "choices": [
             "Yes",
             "No"
