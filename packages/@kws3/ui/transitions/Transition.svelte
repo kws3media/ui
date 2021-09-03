@@ -37,10 +37,10 @@
 {/if}
 
 <script>
-  import Fly from "./helpers/Fly.svelte";
-  import Fade from "./helpers/Fade.svelte";
-  import Slide from "./helpers/Slide.svelte";
-  import Scale from "./helpers/Scale.svelte";
+  import Fly from "./components/Fly.svelte";
+  import Fade from "./components/Fade.svelte";
+  import Slide from "./components/Slide.svelte";
+  import Scale from "./components/Scale.svelte";
 
   let TransitionComponents = {
     fly: Fly,

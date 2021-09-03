@@ -1,7 +1,9 @@
-<div>
-  <div class="field">
-    <div class="control">
-      <Checkbox bind:checked={show_transition}>Show/Hide</Checkbox>
+<div class="columns">
+  <div class="column">
+    <div class="field">
+      <div class="control">
+        <Checkbox bind:checked={show_transition}>Show/Hide</Checkbox>
+      </div>
     </div>
   </div>
 </div>
