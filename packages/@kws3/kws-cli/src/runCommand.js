@@ -91,9 +91,28 @@ async function prompt(obj, answers) {
   if (obj.when) {
     var { field, condition, value } = obj.when;
     flag = false;
-    //TODO: condition
-    if (answers[field] == value) {
-      flag = true;
+
+    if (typeof answers[field] != "undefined") {
+      switch (condition) {
+        case "eq":
+          if (answers[field] == value) flag = true;
+          break;
+        case "xeq":
+          if (answers[field] != value) flag = true;
+          break;
+        case "gt":
+          if (answers[field] > value) flag = true;
+          break;
+        case "gte":
+          if (answers[field] >= value) flag = true;
+          break;
+        case "lt":
+          if (answers[field] < value) flag = true;
+          break;
+        case "lte":
+          if (answers[field] <= value) flag = true;
+          break;
+      }
     }
   }
 

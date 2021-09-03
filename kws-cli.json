@@ -151,7 +151,7 @@
           ]
         },
         {
-          "when": {"field": "decorator", "condition": "equal", "value":"Yes"},
+          "when": {"field": "decorator", "condition": "eq", "value":"Yes"},
           "type": "select",
           "name": "slot",
           "message": "Does the Decorator use Slots?",
