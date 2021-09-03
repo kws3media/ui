@@ -158,7 +158,7 @@ Sometimes you need to use all together, use a questions in those cases. example:
 ```js
  {
   "fill-package": {
-    "description": "Fills the project name, version and SALT etc",
+    "description": "Fills the project name, version and author etc",
     "command": "fictional-command --p=${package_name} --v=${package_version} --a=${author} --n=${author_name}",
     "Questions": [
       {
