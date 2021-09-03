@@ -1,0 +1,48 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { RangeSlider } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  min : 0,
+  max : 100,
+  value : 50,
+  classes : ""
+};
+
+<Meta
+  title="Forms/Controls/Range Slider"
+  component={RangeSlider}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Range Slider
+## Custom Range Slider
+`}/>
+
+<Canvas>
+  <Story
+  name="Range Slider"
+  args={args}
+  >
+  {(args) => ({
+    Component: RangeSlider,
+    props: args,
+    on: {
+      change : action("Changed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Range Slider" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { RangeSlider } from '@kws3/ui';`
+  }
+/>
