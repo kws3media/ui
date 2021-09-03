@@ -21,5 +21,6 @@ export { default as Radio } from "./controls/Radio.svelte";
 export { default as Toggle } from "./controls/Toggle.svelte";
 export { default as ToggleButtons } from "./controls/ToggleButtons.svelte";
 export { default as ToggleControl } from "./controls/ToggleControl.svelte";
+export { default as RangeSlider } from "./controls/RangeSlider.svelte";
 
 export { default as Transition } from "./transitions/Transition.svelte";
