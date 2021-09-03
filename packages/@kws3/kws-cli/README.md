@@ -152,3 +152,55 @@ Sometimes you need to collect more than 1 piece of information to use in a comma
   }
  }
 ```
+
+#### 4. Questions
+Sometimes you need to use all together, use a questions in those cases. example:
+```js
+ {
+  "fill-package": {
+    "description": "Fills the project name, version and SALT etc",
+    "command": "fictional-command --p=${package_name} --v=${package_version} --a=${author} --n=${author_name}",
+    "Questions": [
+      {
+        "type": "form",
+        "validate": {
+          "package_name": "required",
+          "package_version": "required"
+        },
+        "message": "Please provide the following information:",
+        "choices": [
+          {
+            "name": "package_name",
+            "message": "Package Name",
+            "initial": ""
+          },
+          {
+            "name": "package_version",
+            "message": "Package version",
+            "initial": "0.0.1"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "name": "author",
+        "message": "Does this need a author?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "when": {"field": "author", "condition": "eq", "value":"Yes"},
+        "type": "input",
+        "name": "author_name",
+        "validate": {
+          "author_name": "required"
+        },
+        "message": "Author name",
+        "initial": ""
+      }
+    ]
+  }
+ }
+```
