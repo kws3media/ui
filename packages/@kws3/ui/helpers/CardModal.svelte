@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
@@ -55,35 +55,30 @@
   /**
    * Title of the modal
    * @type {string}
-   * @defaultvalue ""
    */
   export let title = "";
 
   /**
    * Size of the modal
    * @type {'small'|'medium'|'large'}
-   * @defaultvalue empty
    */
   export let size = "";
 
   /**
    * Show or hide modal
    * @type {boolean}
-   * @defaultvalue false
    */
   export let is_active = false;
 
   /**
    * Show close button
    * @type {boolean}
-   * @defaultvalue true
    */
   export let closable = true;
 
   /**
    * Close modal on click outside
    * @type {boolean}
-   * @defaultvalue false
    */
   export let close_on_click_outside = false;
 
