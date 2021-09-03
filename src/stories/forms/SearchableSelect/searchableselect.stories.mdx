@@ -1,0 +1,93 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { SearchableSelect } from '@kws3/ui';
+import SearchableSelectDecorator from './SearchableSelect.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  value : "",
+  filter : "",
+  style : "",
+  classes : "",
+  dd_class : "",
+  cy : "",
+  searchKey : null,
+  searchValue : null,
+  data : [],
+  open : false,
+  disabled : false,
+  placeholder : ""
+};
+
+<Meta
+  title="Forms/SearchableSelect"
+  component={SearchableSelect}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# SearchableSelect
+## A select component that allows you to search by typing into it.
+`}/>
+
+<Canvas>
+  <Story
+  name="SearchableSelect"
+  args={args}
+  >
+  {(args) => ({
+    Component: SearchableSelectDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="SearchableSelect" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { SearchableSelect } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import 'path/to/node_modules/@kws3/ui/styles/SearchableSelect.scss';`
+  }
+/>
+
+#### Data format
+<Source
+  language="javascript"
+  code={
+    dedent`
+    [
+      { id: 1, name: 'LG'},
+      { id: 2, name: 'Samsung'},
+      { id: 3, name: 'Xiaomi'},
+    ...
+    ]
+    `
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-ss-item-selected-bg-color:#0071bc;
+      $kws-ss-item-selected-text-color:#ffffff;
+      $kws-ss-item-selecting-bg-color:#0071bc;
+      $kws-ss-item-selecting-text-color:#ffffff;
+      $kws-ss-dropdown-bg-color: #ffffff;
+      $kws-ss-dropdown-text-color: #333;
+      $kws-ss-caret-color: #0071bc;
+    `
+  }
+/>

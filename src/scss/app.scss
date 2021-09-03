@@ -54,7 +54,7 @@ pre.prismjs>code {
 // //Transitions
 // @import '../../packages/@kws3/transitions/styles.scss';
 // //searchable select
-// @import '../../packages/@kws3/searchable-select/styles.scss';
+@import '../../packages/@kws3/ui/styles/SearchableSelect.scss';
 // //helpers - Panel
 @import '../../packages/@kws3/ui/styles/Panel.scss';
 // //helpers - Loader
