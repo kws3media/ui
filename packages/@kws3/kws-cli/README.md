@@ -191,7 +191,7 @@ Sometimes you need to use all together, use a questions in those cases. example:
         ]
       },
       {
-        "when": {"field": "author", "condition": "eq", "value":"Yes"}, //conditions: eq, xeq, gt, gte, lt, lt
+        "when": {"field": "author", "condition": "eq", "value":"Yes"}, //conditions: eq, xeq, gt, gte, lt, lte
         "type": "input",
         "name": "author_name",
         "validate": {
