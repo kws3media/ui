@@ -30,12 +30,12 @@
 
 <script>
   import { onMount, createEventDispatcher } from "svelte";
-  import { rAF } from "@kws3/utils";
+  import { rAF } from "../utils";
 
   const fire = createEventDispatcher();
 
   /**
-   * Active - true/false
+   * Active step - true/false
    * @type {boolean}
    */
   export let active = false,
