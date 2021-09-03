@@ -2,7 +2,7 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import { action } from '@storybook/addon-actions';
 import dedent from 'ts-dedent';
 import { <%= section_name %> } from '@kws3/ui';
-<% if (section_has_decorator) { %>import Decorator from "./_index/DefaultDecorator.svelte";<% } %>
+<% if (section_has_decorator) { %>import <%= section_name %>Decorator from "./_index/DefaultDecorator.svelte";<% } %>
 
 export let args = {
 };
@@ -20,20 +20,13 @@ export let args = {
 ## <%= section_name %> component.
 `}/>
 
-<% if (section_has_decorator) { %>
-export const Template = (args) => ({
-  Component: Decorator,
-  props: args
-});
-<% } %>
-
 <Canvas>
   <Story
   name="<%= section_name %>"
   args={args}
   >
   {(args) => ({
-    <% if (section_has_decorator) { if (section_decorator_has_slot) { %>Component: <%= section_name %>,<% } else { %>Component: Decorator,<% } } else { %>Component: <%= section_name %>,<% } %>
+    Component: <% if (section_has_decorator) { %><%= section_name %>Decorator<% } else { %><%= section_name %><% } %>
     props: args,
     on: {}
   })}
