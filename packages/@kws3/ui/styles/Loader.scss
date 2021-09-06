@@ -18,6 +18,17 @@ $kws-loader-overlay-background: rgba(0,0,0,0.15) !default;
       left: calc(50% - (#{$kws-loader-width} / 2));
       top: calc(50% - (#{$kws-loader-height} / 2));
     }
+
+    @each $name, $pair in $colors{
+      $color: nth($pair, 1);
+      &.is-#{$name}{
+        &:after{
+          border-left-color:$color !important;
+          border-bottom-color:$color !important;
+        }
+      }
+    }
+
   }
   &.is-large-loader{
     .hero-body:after{
