@@ -23,25 +23,31 @@
 
   function openAlert() {
     if (useNative) {
-      alert("hello");
+      alert("This is an alert");
     } else {
-      KwsDialog.alert("hello", $$props);
+      KwsDialog.alert("This is an alert", $$props);
     }
   }
 
-  function openConfirm() {
+  async function openConfirm() {
+    let agreed = null;
     if (useNative) {
-      confirm("agree?");
+      agreed = confirm("Agree with everything?");
     } else {
-      KwsDialog.confirm("agree?", $$props);
+      agreed = await KwsDialog.confirm("Agree with everything?", $$props);
     }
+
+    console.log(agreed);
   }
 
-  function openPrompt() {
+  async function openPrompt() {
+    let age = null;
     if (useNative) {
-      prompt("How old are you?");
+      age = prompt("How old are you?");
     } else {
-      KwsDialog.prompt("How old are you?", $$props);
+      age = await KwsDialog.prompt("How old are you?", $$props);
     }
+
+    console.log(age);
   }
 </script>

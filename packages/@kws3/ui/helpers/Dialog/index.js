@@ -1,15 +1,37 @@
 import Dialog from "./Dialog.svelte";
 
-export function alert(msg, options) {
-  console.log("alert: ", msg, options);
+function createDialog(msg, props) {
+  props = Object.assign(props, { _text: msg });
+
+  const promise = new Promise((fulfil) => {
+    const dialog = new Dialog({
+      target: document.body,
+      props,
+      intro: true,
+    });
+
+    dialog.$on("_done", ({ detail }) => {
+      fulfil(detail);
+      dialog.$destroy();
+    });
+  });
+
+  return promise;
 }
 
-export function prompt(msg, options) {
-  console.log("prompt: ", msg);
+export function alert(msg, props) {
+  props._type = "alert";
+  return createDialog(msg, props);
 }
 
-export function confirm(msg, options) {
-  console.log("confirm: ", msg);
+export function prompt(msg, props) {
+  props._type = "prompt";
+  return createDialog(msg, props);
+}
+
+export function confirm(msg, props) {
+  props._type = "confirm";
+  return createDialog(msg, props);
 }
 
 Dialog.alert = alert;

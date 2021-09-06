@@ -22,24 +22,43 @@
     {#if icon && icon != ""}
       <Icon {icon} size={icon_size} color={icon_color} />
     {/if}
-    {@html text}
+    {@html _text}
+    {#if _type == "prompt"}
+      <input type="text" class="input" bind:value={inputValue} />
+    {/if}
   </p>
+  <div slot="footer" style="width:100%">
+    <div class="field is-grouped is-grouped-right">
+      {#if _type != "alert"}
+        <div class="control">
+          <button on:click={cancel} class="button is-{cancel_button_color}"
+            >{#if cancel_button_icon != ""}<Icon
+                icon={cancel_button_icon}
+                size="small" />{/if}<span>{cancel_button_text}</span></button>
+        </div>
+      {/if}
+      <div class="control">
+        <button on:click={ok} class="button is-{ok_button_color}"
+          >{#if ok_button_icon != ""}<Icon
+              icon={ok_button_icon}
+              size="small" />{/if}<span>{ok_button_text}</span></button>
+      </div>
+    </div>
+  </div>
 </CardModal>
 
 <script>
+  import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
   import { CardModal } from "@kws3/ui";
+
+  const fire = createEventDispatcher();
 
   /**
    * Title for dialog box
    * @type {string}
    */
   export let title = "",
-    /**
-     * Text inside dialog box
-     * @type {string}
-     */
-    text = "",
     /**
      * Size of the modal
      * @type {'small'|'medium'|'large'}
@@ -75,5 +94,62 @@
      */
     cancel_button_icon = "ban";
 
-  let is_active = true;
+  let is_active = true,
+    inputValue = null;
+
+  /**
+   * Determines the type of dialog.
+   *
+   * For internal use only - not part of config object
+   */
+  export let _type = "",
+    /**
+     * Text inside dialog box
+     *
+     * For internal use only - not part of config object
+     * @type {string}
+     */
+    _text = "";
+
+  function cancel() {
+    /**
+     * For internal use, not part of any configuration
+     */
+    fire("_done", getCancelPayload());
+  }
+
+  function ok() {
+    /**
+     * For internal use, not part of any configuration
+     */
+    fire("_done", getOkPayload());
+  }
+
+  function getOkPayload() {
+    switch (_type) {
+      case "alert":
+        return;
+        break;
+      case "confirm":
+        return true;
+        break;
+      case "prompt":
+        return inputValue;
+        break;
+    }
+  }
+
+  function getCancelPayload() {
+    switch (_type) {
+      case "alert":
+        return;
+        break;
+      case "confirm":
+        return false;
+        break;
+      case "prompt":
+        return null;
+        break;
+    }
+  }
 </script>
