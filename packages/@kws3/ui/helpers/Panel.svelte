@@ -23,8 +23,8 @@
 <div
   class:collapsible
   class:collapsed
-  class="panel {outer_class}"
-  style={outer_style}
+  class="panel {klass}"
+  {style}
   data-cy={cy}>
   {#if title != "" || has_title}
     <div class="panel-heading" on:click={toggle}>
@@ -76,13 +76,9 @@
      */
     subtitle = "",
     /**
-     * Additional class for Panel container
+     * Inline style for Panel Container
      */
-    outer_class = "",
-    /**
-     * Inline style for Panel container
-     */
-    outer_style = "",
+    style = "",
     /**
      * Additional class for Panel content
      */
@@ -120,9 +116,15 @@
      */
     has_center = true,
     /**
-     * Meesage box has title
+     * Panel has title
      */
     has_title = false;
+
+  /**
+   * Panel container class
+   */
+  let klass = "";
+  export { klass as class };
 
   function toggle() {
     if (collapsible) {
