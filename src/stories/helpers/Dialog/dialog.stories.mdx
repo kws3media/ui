@@ -1,10 +1,10 @@
-import { Story, Preview, Meta, Source, Description, Canvas  } from '@storybook/addon-docs';
-import { action } from '@storybook/addon-actions';
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import { Dialog } from '@kws3/ui';
+import { Dialog } from "@kws3/ui";
 import DialogDecorator from "./Dialog.svelte";
+import { action } from '@storybook/addon-actions';
 
-export let args = {
+export let args={
 };
 
 <Meta
@@ -15,7 +15,7 @@ export let args = {
 
 <Description markdown={dedent`
 # Dialog
-## Native dialog replacement helpers
+## Message components for showing alerts.
 `}/>
 
 <Canvas>
@@ -26,11 +26,11 @@ export let args = {
   {(args) => ({
     Component: DialogDecorator,
     props: args,
-    on: {}
   })}
   </Story>
 </Canvas>
 
+<ArgsTable story="Dialog" />
 
 ### Usage
 <Source
