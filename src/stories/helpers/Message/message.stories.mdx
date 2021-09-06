@@ -7,11 +7,12 @@ import { action } from '@storybook/addon-actions';
 export let args={
   size : "",
   color : "info",
+  class : "",
   style : "",
+  inner_class : "",
   inner_style : "",
   classes : "",
   header_classes : "",
-  inner_classes : "",
   title : "This is a message box",
   has_title : false,
   dismissable : false
@@ -21,6 +22,16 @@ export let args={
   title="Helpers/Message"
   component={Message}
   args={args}
+  argTypes={{
+    color: {
+      options: ['primary','warning','info','danger','dark','light'],
+      control: 'select'
+    },
+    size: {
+      options: ['', 'small', 'medium', 'large'],
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`

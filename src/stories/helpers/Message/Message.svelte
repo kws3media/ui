@@ -1,11 +1,12 @@
 <KwsMessage
   {size}
   {color}
+  class={klass}
   {style}
+  {inner_class}
   {inner_style}
   {classes}
   {header_classes}
-  {inner_classes}
   {title}
   {has_title}
   {dismissable}>
@@ -22,8 +23,11 @@
     inner_style = "",
     classes = "",
     header_classes = "",
-    inner_classes = "",
+    inner_class = "",
     title = null,
     has_title = false,
     dismissable = false;
+
+  let klass = "";
+  export { klass as class };
 </script>

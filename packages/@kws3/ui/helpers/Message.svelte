@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
@@ -8,7 +8,7 @@
   @param {string} [inner_style=""] - CSS classes for message content, Default: `""`
   @param {string} [classes=""] - CSS classes for message box, Default: `""`
   @param {string} [header_classes=""] - CSS classes for message header, Default: `""`
-  @param {string} [inner_classes=""] - CSS classes for message body, Default: `""`
+  @param {string} [inner_class=""] - CSS classes for message body, Default: `""`
   @param {string} [title=""] - Title for message box, Default: `""`
   @param {boolean} [has_title=false] - Meesage box has title, Default: `false`
   @param {boolean} [dismissable=false] - Show close button, Default: `false`
@@ -18,24 +18,32 @@
   - `<slot name="default"  />`
 
 -->
-<div class="message is-{color} is-{size} {classes}" {style} bind:this={_comp}>
-  {#if title || has_title}
-    <div class="message-header {header_classes}">
+<div
+  class="message is-{color} is-{size} {classes} {klass}"
+  {style}
+  bind:this={_comp}>
+  <div class="{title || has_title ? 'message-header' : ''} {header_classes}">
+    {#if title || has_title}
+      <!--
+        Used for message title.
+        Can use the slot title like..
+        &lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;
+      -->
       <slot name="title"><p>{title}</p></slot>
-      {#if dismissable}
-        <button class="delete" on:click={dismiss} />
-      {/if}
-    </div>
-  {/if}
-  <div class="message-body {inner_classes}" style={inner_style}>
-    <slot />
+    {/if}
+    {#if dismissable}
+      <button class="delete is-pulled-right" on:click={dismiss} />
+    {/if}
+  </div>
+  <div class="message-body {inner_class}" style={inner_style}>
+    <!--Used for message content--><slot />
   </div>
 </div>
 
 <script>
   /**
    * Size of the Message
-   * @type {'small'|'medium'|'large'}
+   * @type {''|'small'|'medium'|'large'}
    */
   export let size = "",
     /**
@@ -67,7 +75,7 @@
      * CSS classes for message body
      * @type {string}
      */
-    inner_classes = "",
+    inner_class = "",
     /**
      * Title for message box
      * @type {string}
@@ -83,6 +91,13 @@
      * @type {boolean}
      */
     dismissable = false;
+
+  /**
+   * Additional class for message box
+   * @type {string}
+   */
+  let klass = "";
+  export { klass as class };
 
   let _comp;
 
