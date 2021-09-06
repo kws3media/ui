@@ -57,7 +57,7 @@
    *
    * @description
    * import {Icon} from `@kws3/ui`;
-   * Icon.setDefaultIconType("fa")
+   * Icon.setDefaultIconType("fa");
    */
   export function setDefaultIconType(type) {
     family = type;
