@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [size=""] - Size of the Icon ('small'|'medium'|'large'), Default: `""`
   @param {string} [color=""] - Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'), Default: `""`
@@ -102,8 +102,14 @@
     usedFamily = family ? family : "fa";
 
     switch (usedFamily) {
-      case "la":
-        familyClass = "la la-";
+      case "lar":
+        familyClass = "lar la-";
+        break;
+      case "las":
+        familyClass = "las la-";
+        break;
+      case "lab":
+        familyClass = "lab la-";
         break;
       case "gg":
         familyClass = "gg gg-";
