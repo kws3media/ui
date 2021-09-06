@@ -4,7 +4,8 @@
 
   @param {string} [title=""] - Title of the panel, Default: `""`
   @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
-  @param {string} [outer_style=""] - Inline style for Panel, Default: `""`
+  @param {string} [style=""] - Inline style for Panel Container, Default: `""`
+  @param {string} [inner_class=""] - Additional class for Panel content, Default: `""`
   @param {string} [inner_style=""] - Inline style for Panel Content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [collapse_icon="caret-right"] - Collapse icon, Default: `"caret-right"`
@@ -13,11 +14,13 @@
   @param {boolean} [relative=false] - Relative property, Default: `false`
   @param {boolean} [has_toolbar=true] - Toolbar property, Default: `true`
   @param {boolean} [has_center=true] - Has Center property, Default: `true`
+  @param {boolean} [has_title=false] - Panel has title, Default: `false`
+  @param {string} [class=""] - `CONST` Panel container class, Default: `""`
 
   ### Slots
-  - `<slot name="center"  />`
-  - `<slot name="toolbar"  />`
-  - `<slot name="default"  />`
+  - `<slot name="center"  />` - Used for center aligned title content
+  - `<slot name="toolbar"  />` - Used for right aligned toolbars
+  - `<slot name="default"  />` - Used for panel content
 
 -->
 <div
