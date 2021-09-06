@@ -26,7 +26,7 @@
   class="panel {outer_class}"
   style={outer_style}
   data-cy={cy}>
-  {#if title != ""}
+  {#if title != "" || has_title}
     <div class="panel-heading" on:click={toggle}>
       <div class="level is-mobile">
         <div class="level-left">
@@ -118,7 +118,11 @@
     /**
      * Has Center property
      */
-    has_center = true;
+    has_center = true,
+    /**
+     * Meesage box has title
+     */
+    has_title = false;
 
   function toggle() {
     if (collapsible) {
