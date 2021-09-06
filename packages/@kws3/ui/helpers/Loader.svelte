@@ -22,6 +22,7 @@
 <script>
   /**
    * Spinner color (grey | light | warning | info | danger | primary | success)
+   * @link https://bulma.io/documentation/helpers/color-helpers/
    */
   export let spinner_color = "grey",
     /**
