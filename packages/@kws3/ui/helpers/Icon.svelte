@@ -1,14 +1,14 @@
 <!--
   @component
-  
+
 
   @param {string} [size=""] - Size of the Icon ('small'|'medium'|'large'), Default: `""`
   @param {string} [color=""] - Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'), Default: `""`
   @param {string} [icon=""] - Icon name to display, Default: `""`
   @param {string} [style=""] - Inline style of icon, Default: `""`
-  @param {object} [inner_class=null] - Inner class of icon, Default: `null`
-  @param {object} [inner_style=null] - Inline style for Icon, Default: `null`
-  @param {string} [class=""] - `CONST` Class property, Default: `""`
+  @param {string} [inner_class=""] - Inner class of icon, Default: `""`
+  @param {string} [inner_style=""] - Inline style for Icon, Default: `""`
+  @param {string} [class=""] - `CONST` CSS classes for icon, Default: `""`
 
   ### Module
   @param {function} [setDefaultIconType(type)] - It can set default icon type
@@ -84,16 +84,16 @@
     /**
      * Inner class of icon
      */
-    inner_class = null,
+    inner_class = "",
     /**
      * Inline style for Icon
      */
-    inner_style = null;
+    inner_style = "";
 
-  let klass = "";
   /**
    * CSS classes for icon
    */
+  let klass = "";
   export { klass as class };
 
   let _used_inner_class,
