@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [spinner_color="grey"] - Spinner color (grey | light | warning | info | danger | primary | success), Default: `"grey"`
   @param {string} [spinner_size="medium"] - Spinner size (small | medium | large), Default: `"medium"`
@@ -61,11 +61,11 @@
     typeof background_size == "string" &&
     background_size.length
   ) {
-    style =
-      style.length && style.charAt(style.length - 1) != ";"
-        ? style + ";"
-        : style;
+    let height = "height: " + background_size + ";";
 
-    style = style + "height: " + background_size + ";";
+    style =
+      (style.length && style.charAt(style.length - 1) != ";"
+        ? style + ";"
+        : style) + height;
   }
 </script>
