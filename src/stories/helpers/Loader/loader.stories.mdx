@@ -4,17 +4,31 @@ import { Loader } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  color : "transparent",
-  size : "small",
-  style : "",
-  type : "",
-  large_loader : false
+  color: "transparent",
+  background_size: "small",
+  spinner_size: "small",
+  style: "",
+  is_inline: false
 }
 
 <Meta
   title="Helpers/Loader"
   component={Loader}
   args={args}
+  argTypes={{
+    color: {
+      options: ['transparent', 'warning', 'info', 'danger', 'primary'],
+      control: 'select'
+    },
+    background_size: {
+      options: ['small', 'medium', 'large', 'halfheight', 'fullheight'],
+      control: 'select'
+    },
+    spinner_size: {
+      options: ['small', 'medium', 'large'],
+      control: 'select'
+    },
+  }}
 />
 
 <Description markdown={dedent`

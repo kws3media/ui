@@ -1,52 +1,43 @@
 <!--
   @component
-  
 
-  @param {'transparent'|'warning'|'info'|'danger'|'primary'} [color="transparent"] - Color of the Loader, Default: `"transparent"`
-  @param {'small'|'medium'|'large'} [size="medium"] - size of the Loader, Default: `"medium"`
-  @param {string} [type=""] - Type of loader, Default: `""`
-  @param {string} [style=""] - Inline Style of loader, Default: `""`
-  @param {boolean} [large_loader=false] - Large loader, Default: `false`
+  @param {string} [color="transparent"] - Color of the Loader (transparent | warning | info | danger | primary), Default: `"transparent"`
+  @param {string} [background_size="medium"] - Background size of the Loader (small | medium | large), Default: `"medium"`
+  @param {string} [spinner_size="medium"] - Spinner size of the Loader (small | medium | large), Default: `"medium"`
+  @param {boolean} [is_inline=false] - Loader is inline, Default: `false`
+  @param {string} [style=""] - Inline CSS styles for loader, Default: `""`
 
 -->
+
 <div
-  class="kws-loader hero is-{color} is-{size} {large_loader
-    ? 'is-large-loader'
-    : ''}"
+  class="kws-loader hero is-{background_color} is-{background_size} has-spinner-{spinner_size}"
   {style}>
-  <div class="hero-body" style={type == "inline" ? "padding:1rem" : ""}>
-    &nbsp;
-  </div>
+  <div class="hero-body" style={is_inline ? "padding:1rem" : ""}>&nbsp;</div>
 </div>
 
 <script>
   /**
-   * Color of the Loader
-   * @type {'transparent'|'warning'|'info'|'danger'|'primary'}
+   * Spinner color (transparent | warning | info | danger | primary)
    */
-  export let color = "transparent";
-
-  /**
-   * size of the Loader
-   * @type {'small'|'medium'|'large'}
-   */
-  export let size = "medium";
-
-  /**
-   * Type of loader
-   * @type {string}
-   */
-  export let type = "";
-
-  /**
-   * Inline Style of loader
-   * @type {string}
-   */
-  export let style = "";
-
-  /**
-   * Large loader
-   * @type {boolean}
-   */
-  export let large_loader = false;
+  export let spinner_color = "transparent",
+    /**
+     * Spinner size (small | medium | large)
+     */
+    spinner_size = "medium",
+    /**
+     * Background color (small | medium | large)
+     */
+    background_color = "transparent",
+    /**
+     * Background size (small | medium | large)
+     */
+    background_size = "medium",
+    /**
+     * Loader is inline
+     */
+    is_inline = false,
+    /**
+     * Inline CSS styles for loader
+     */
+    style = "";
 </script>
