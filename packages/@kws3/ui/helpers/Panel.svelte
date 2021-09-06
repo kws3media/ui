@@ -107,19 +107,23 @@
      */
     collapsed = false,
     /**
-     * Indicates whether the Panel has position:relative or not
+     * Indicates whether the Panel has position: relative or not
+     *
+     * You might need this if there are absolutely positioned elements inside the Panel
      */
     relative = false,
     /**
-     * Toolbar property
+     * Used to show or hide toolbar slot contents (slot=“toolbar”)
      */
     has_toolbar = true,
     /**
-     * Has Center property
+     * Used to show or hide centre slot contents (slot=“center”)
      */
     has_center = true,
     /**
-     * Panel has title
+     * Determines whether to display title area
+     *
+     * Can be used to display title area even when there is no title content
      */
     has_title = false;
 
