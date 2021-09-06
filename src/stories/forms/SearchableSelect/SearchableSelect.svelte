@@ -1,10 +1,17 @@
 <KwsSearchableSelect
   scrollTarget="contentArea"
   data={brands}
-  placeholder="Choose a Brand..."
   bind:value={selected_brand}
   searchKey="name"
-  searchValue="name" />
+  searchValue="name"
+  {placeholder}
+  {filter}
+  {style}
+  {classes}
+  {dd_class}
+  {cy}
+  {open}
+  {disabled} />
 
 <script>
   import { SearchableSelect as KwsSearchableSelect } from "@kws3/ui";
@@ -23,4 +30,13 @@
       { id: 11, name: "Apple" },
     ],
     selected_brand = "Blackberry";
+
+  export let filter = "",
+    style = "",
+    classes = "",
+    dd_class = "",
+    cy = "",
+    open = false,
+    disabled = false,
+    placeholder = "Choose a Brand...";
 </script>

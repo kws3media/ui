@@ -1,7 +1,9 @@
 <KwsPanel
   {title}
   {subtitle}
-  {style}
+  {outer_class}
+  {outer_style}
+  {inner_class}
   {inner_style}
   {cy}
   {collapse_icon}
@@ -9,7 +11,8 @@
   {collapsed}
   {relative}
   {has_toolbar}
-  {has_center}>
+  {has_center}
+  {has_title}>
   <h1>This is a demo panel</h1>
   <p>Lorem ipsum dolor sit amet consectetur.</p>
 </KwsPanel>
@@ -18,7 +21,9 @@
   import { Panel as KwsPanel } from "@kws3/ui";
   export let title = "Demo Panel",
     subtitle = "",
-    style = "",
+    outer_class = "",
+    outer_style = "",
+    inner_class = "",
     inner_style = "",
     cy = "",
     collapse_icon = "caret-right",
@@ -26,5 +31,6 @@
     collapsed = false,
     relative = false,
     has_toolbar = true,
-    has_center = true;
+    has_center = true,
+    has_title = false;
 </script>
