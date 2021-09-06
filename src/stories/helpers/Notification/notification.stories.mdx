@@ -16,6 +16,12 @@ export let args={
   title="Helpers/Notification"
   component={Notification}
   args={args}
+   argTypes={{
+    color: {
+      options: ['primary','success','warning','info','danger','light','dark'],
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`

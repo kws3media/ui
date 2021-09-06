@@ -24,7 +24,7 @@
 <script>
   /**
    * Color of the Notification box
-   * @type {'primary'|'warning'|'info'|'danger'|'light'|'dark'}
+   * @type {'primary'|'success'|'warning'|'info'|'danger'|'light'|'dark'}
    */
   export let color = "info";
 
