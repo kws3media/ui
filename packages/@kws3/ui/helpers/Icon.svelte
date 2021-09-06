@@ -1,6 +1,6 @@
 <!--
   @component
-
+  
 
   @param {string} [size=""] - Size of the Icon ('small'|'medium'|'large'), Default: `""`
   @param {string} [color=""] - Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'), Default: `""`
@@ -17,8 +17,8 @@
 
 <span class="icon is-{size} has-text-{color} {klass}" {style}>
   <i
-    class="icon-i {familyClass}{icon} {internal_size} {_used_inner_class}"
-    style={_used_inner_style} />
+    class="icon-i {familyClass}{icon} {internal_size} {inner_class}"
+    style={inner_style} />
 </span>
 
 <style>
@@ -96,19 +96,11 @@
   let klass = "";
   export { klass as class };
 
-  let _used_inner_class,
-    _used_inner_style,
-    familyClass,
-    internal_size,
-    usedFamily;
+  let familyClass, internal_size, usedFamily;
 
   $: {
-    _used_inner_class = inner_class || "";
-    _used_inner_style = inner_style || "";
     usedFamily = family ? family : "fa";
-  }
 
-  $: {
     switch (usedFamily) {
       case "la":
         familyClass = "la la-";
