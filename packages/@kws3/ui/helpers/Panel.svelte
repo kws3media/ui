@@ -107,7 +107,7 @@
      */
     collapsed = false,
     /**
-     * Relative property
+     * Indicates whether the Panel has position:relative or not
      */
     relative = false,
     /**
