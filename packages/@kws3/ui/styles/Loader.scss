@@ -51,7 +51,7 @@ $kws-loader-overlay-background: rgba(0,0,0,0.15) !default;
   }
 }
 
-:global(.is-overlay){
+.is-overlay{
   z-index:4;
   .kws-loader{
     padding:0;
