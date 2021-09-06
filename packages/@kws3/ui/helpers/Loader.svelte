@@ -53,4 +53,19 @@
      * Inline CSS styles for loader
      */
     style = "";
+
+  let bg_size = ["small", "medium", "large", "halfheight", "fullheight"];
+
+  $: if (
+    bg_size.indexOf(background_size) == -1 &&
+    typeof background_size == "string" &&
+    background_size.length
+  ) {
+    style =
+      style.length && style.charAt(style.length - 1) != ";"
+        ? style + ";"
+        : style;
+
+    style = style + "height: " + background_size + ";";
+  }
 </script>
