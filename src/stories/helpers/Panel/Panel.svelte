@@ -1,7 +1,9 @@
 <KwsPanel
   {title}
   {subtitle}
-  {style}
+  {outer_class}
+  {outer_style}
+  {inner_class}
   {inner_style}
   {cy}
   {collapse_icon}
@@ -18,7 +20,9 @@
   import { Panel as KwsPanel } from "@kws3/ui";
   export let title = "Demo Panel",
     subtitle = "",
-    style = "",
+    outer_class = "",
+    outer_style = "",
+    inner_class = "",
     inner_style = "",
     cy = "",
     collapse_icon = "caret-right",

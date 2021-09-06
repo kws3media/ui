@@ -4,7 +4,7 @@
 
   @param {string} [title=""] - Title of the panel, Default: `""`
   @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
-  @param {string} [style=""] - Inline style for Panel, Default: `""`
+  @param {string} [outer_style=""] - Inline style for Panel, Default: `""`
   @param {string} [inner_style=""] - Inline style for Panel Content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [collapse_icon="caret-right"] - Collapse icon, Default: `"caret-right"`
@@ -20,7 +20,12 @@
   - `<slot name="default"  />`
 
 -->
-<div class:collapsible class:collapsed class="panel" {style} data-cy={cy}>
+<div
+  class:collapsible
+  class:collapsed
+  class="panel {outer_class}"
+  style={outer_style}
+  data-cy={cy}>
   {#if title != ""}
     <div class="panel-heading" on:click={toggle}>
       <div class="level is-mobile">
@@ -31,13 +36,13 @@
         </div>
         <div class="level-item">
           {#if has_center}
-            <slot name="center" />
+            <!--Used for center aligned title content--><slot name="center" />
           {/if}
         </div>
         <div class="level-right">
           {#if has_toolbar}
             <div class="level-item">
-              <slot name="toolbar" />
+              <!--Used for right aligned toolbars--><slot name="toolbar" />
             </div>
           {/if}
           <div class="level-item">
@@ -52,7 +57,7 @@
   {/if}
   <div class="panel-content-outer">
     <div
-      class="panel-block is-clearfix"
+      class="panel-block is-clearfix {inner_class}"
       style="{inner_style} {relative ? 'position:relative' : ''}">
       <!--Used for panel content--><slot />
     </div>
@@ -61,72 +66,59 @@
 
 <script>
   import { Icon } from "@kws3/ui";
-
   /**
    * Title of the panel
    * @type {string}
    */
-  export let title = "";
-
-  /**
-   * Subtitle of the panel
-   * @type {string}
-   */
-  export let subtitle = "";
-
-  /**
-   * Inline style for Panel
-   * @type {string}
-   */
-  export let style = "";
-
-  /**
-   * Inline style for Panel Content
-   * @type {string}
-   */
-  export let inner_style = "";
-
-  /**
-   * data-cy attribute for cypress
-   * @type {string}
-   */
-  export let cy = "";
-
-  /**
-   * Collapse icon
-   * @type {string}
-   */
-  export let collapse_icon = "caret-right";
-
-  /**
-   * Collapsible property
-   * @type {boolean}
-   */
-  export let collapsible = false;
-
-  /**
-   * Collapsed property
-   * @type {boolean}
-   */
-  export let collapsed = false;
-
-  /**
-   * Relative property
-   * @type {boolean}
-   */
-  export let relative = false;
-
-  /**
-   * Toolbar property
-   * @type {boolean}
-   */
-  export let has_toolbar = true;
-
-  /**
-   * Has Center property
-   * @type {boolean}
-   */
-  export let has_center = true;
+  export let title = "",
+    /**
+     * Subtitle of the panel
+     */
+    subtitle = "",
+    /**
+     * Additional class for Panel container
+     */
+    outer_class = "",
+    /**
+     * Inline style for Panel container
+     */
+    outer_style = "",
+    /**
+     * Additional class for Panel content
+     */
+    inner_class = "",
+    /**
+     * Inline style for Panel Content
+     */
+    inner_style = "",
+    /**
+     * data-cy attribute for cypress
+     */
+    cy = "",
+    /**
+     * Collapse icon
+     */
+    collapse_icon = "caret-right",
+    /**
+     * Collapsible property
+     */
+    collapsible = false,
+    /**
+     * Collapsed property
+     */
+    collapsed = false,
+    /**
+     * Relative property
+     */
+    relative = false,
+    /**
+     * Toolbar property
+     */
+    has_toolbar = true,
+    /**
+     * Has Center property
+     */
+    has_center = true;
 
   function toggle() {
     if (collapsible) {
