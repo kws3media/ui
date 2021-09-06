@@ -79,15 +79,15 @@
      */
     subtitle = "",
     /**
-     * Inline style for Panel Container
+     * Inline CSS for Panel Container
      */
     style = "",
     /**
-     * Additional class for Panel content
+     * Optional class for Panel Content
      */
     inner_class = "",
     /**
-     * Inline style for Panel Content
+     * Inline CSS for Panel Content
      */
     inner_style = "",
     /**
@@ -95,15 +95,15 @@
      */
     cy = "",
     /**
-     * Collapse icon
+     * Icon indicating whether Panel is collapsible
      */
     collapse_icon = "caret-right",
     /**
-     * Collapsible property
+     * Determines whether panel is collapsible
      */
     collapsible = false,
     /**
-     * Collapsed property
+     * Determines whether Panel is currently collapsed or not
      */
     collapsed = false,
     /**
