@@ -2,7 +2,7 @@
   @component
 
 
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
   @param {string} [style=""] - Inline style for message content, Default: `""`
   @param {string} [inner_style=""] - CSS classes for message content, Default: `""`
@@ -12,10 +12,13 @@
   @param {string} [title=""] - Title for message box, Default: `""`
   @param {boolean} [has_title=false] - Meesage box has title, Default: `false`
   @param {boolean} [dismissable=false] - Show close button, Default: `false`
+  @param {string} [class=""] - `CONST` Additional class for message box, Default: `""`
 
   ### Slots
-  - `<slot name="title"  />`
-  - `<slot name="default"  />`
+  - `<slot name="title"  />` - Used for message title.
+Can use the slot title like..<br/>
+&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;
+  - `<slot name="default"  />` - Used for message content
 
 -->
 <div
@@ -26,8 +29,8 @@
     {#if title || has_title}
       <!--
         Used for message title.
-        Can use the slot title like..
-        &lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;
+        Can use the slot title like..<br/>
+        <code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
       -->
       <slot name="title"><p>{title}</p></slot>
     {/if}
