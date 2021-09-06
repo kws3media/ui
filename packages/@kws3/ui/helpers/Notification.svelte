@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'primary'|'warning'|'info'|'danger'|'light'|'dark'} [color="info"] - Color of the Notification box, Default: `"info"`
   @param {string} [style=""] - Inline style for modal content, Default: `""`
@@ -12,13 +12,13 @@
 
 -->
 <div
-  class="notification is-{color} {light ? 'is-light' : ''}"
+  class="notification is-{color} {light ? 'is-light' : ''} {klass}"
   {style}
   bind:this={_comp}>
   {#if dismissable}
     <button class="delete" on:click={dismiss} />
   {/if}
-  <slot />
+  <!--Used for notification content--><slot />
 </div>
 
 <script>
@@ -30,21 +30,24 @@
 
   /**
    * Inline style for modal content
-   * @type {string}
    */
   export let style = "";
 
   /**
    * Light Notification
-   * @type {boolean}
    */
   export let light = false;
 
   /**
    * Show close button
-   * @type {boolean}
    */
   export let dismissable = false;
+
+  /**
+   * Additional class for Notification container
+   */
+  let klass = "";
+  export { klass as class };
 
   let _comp;
   function dismiss() {
