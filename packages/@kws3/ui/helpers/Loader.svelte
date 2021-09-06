@@ -39,6 +39,7 @@
     background_color = "transparent",
     /**
      * Background size (small | medium | large | halfheight | fullheight)
+     * It can also accept css units such as 10px | 5rem | 100vh
      */
     background_size = "medium",
     /**
