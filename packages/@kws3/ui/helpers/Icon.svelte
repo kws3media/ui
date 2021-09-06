@@ -1,9 +1,9 @@
 <!--
   @component
+  
 
-
-  @param {object} [size=null] - Size of the Icon ('small'|'medium'|'large'), Default: `null`
-  @param {object} [color=null] - Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'), Default: `null`
+  @param {string} [size=""] - Size of the Icon ('small'|'medium'|'large'), Default: `""`
+  @param {string} [color=""] - Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'), Default: `""`
   @param {string} [icon=""] - Icon name to display, Default: `""`
   @param {string} [style=""] - Inline style of icon, Default: `""`
   @param {object} [inner_class=null] - Inner class of icon, Default: `null`
@@ -54,7 +54,9 @@
 
   /**
    * It can set default icon type
-   * import {Icon} from '@kws3/ui';
+   *
+   * @description
+   * import {Icon} from `@kws3/ui`;
    * Icon.setDefaultIconType("fa")
    */
   export function setDefaultIconType(type) {
