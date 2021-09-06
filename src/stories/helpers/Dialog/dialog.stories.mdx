@@ -11,13 +11,11 @@ export let args = {
   title="Helpers/Dialog"
   component={Dialog}
   args={args}
-  argTypes={{
-  }}
 />
 
 <Description markdown={dedent`
 # Dialog
-## Dialog component.
+## Native dialog replacement helpers
 `}/>
 
 <Canvas>
@@ -26,7 +24,7 @@ export let args = {
   args={args}
   >
   {(args) => ({
-    Component: DialogDecorator
+    Component: DialogDecorator,
     props: args,
     on: {}
   })}
