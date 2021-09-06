@@ -1,24 +1,21 @@
 <!--
   @component
-  
 
-  @param {'small'|'medium'|'large'} [size="null"] - Size of the Icon, Default: `"null"`
-  @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color="null"] - Color of the Icon, Default: `"null"`
+
+  @param {object} [size=null] - Size of the Icon ('small'|'medium'|'large'), Default: `null`
+  @param {object} [color=null] - Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'), Default: `null`
   @param {string} [icon=""] - Icon name to display, Default: `""`
-  @param {string} [icon_class=""] - CSS classes for icon, Default: `""`
-  @param {string} [icon_style=""] - Inline style of icon, Default: `""`
-  @param {string} [inner_class="null"] - Inner class of icon, Default: `"null"`
-  @param {string} [inner_style="null"] - Inline style for Icon, Default: `"null"`
+  @param {string} [style=""] - Inline style of icon, Default: `""`
+  @param {object} [inner_class=null] - Inner class of icon, Default: `null`
+  @param {object} [inner_style=null] - Inline style for Icon, Default: `null`
+  @param {string} [class=""] - `CONST` Class property, Default: `""`
 
   ### Module
-  @param {function} [setDefaultIconType(type)] - SetDefaultIconType function
+  @param {function} [setDefaultIconType(type)] - It can set default icon type
 
 -->
-<span
-  class="icon {size ? 'is-' + size : ''} {color
-    ? 'has-text-' + color
-    : ''} {icon_class}"
-  style={icon_style}>
+
+<span class="icon is-{size} has-text-{color} {klass}" {style}>
   <i
     class="icon-i {familyClass}{icon} {internal_size} {_used_inner_class}"
     style={_used_inner_style} />
@@ -55,6 +52,11 @@
 <script context="module">
   let family;
 
+  /**
+   * It can set default icon type
+   * import {Icon} from '@kws3/ui';
+   * Icon.setDefaultIconType("fa")
+   */
   export function setDefaultIconType(type) {
     family = type;
   }
@@ -62,40 +64,35 @@
 
 <script>
   /**
-   * Size of the Icon
-   * @type {'small'|'medium'|'large'}
+   * Size of the Icon ('small'|'medium'|'large')
    */
-  export let size = null,
+  export let size = "",
     /**
-     * Color of the Icon
-     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light')
      */
-    color = null,
+    color = "",
     /**
      * Icon name to display
-     * @type {string}
      */
     icon = "",
     /**
-     * CSS classes for icon
-     * @type {string}
-     */
-    icon_class = "",
-    /**
      * Inline style of icon
-     * @type {string}
      */
-    icon_style = "",
+    style = "",
     /**
      * Inner class of icon
-     * @type {string}
      */
     inner_class = null,
     /**
      * Inline style for Icon
-     * @type {string}
      */
     inner_style = null;
+
+  let klass = "";
+  /**
+   * CSS classes for icon
+   */
+  export { klass as class };
 
   let _used_inner_class,
     _used_inner_style,
@@ -111,6 +108,9 @@
 
   $: {
     switch (usedFamily) {
+      case "la":
+        familyClass = "la la-";
+        break;
       case "gg":
         familyClass = "gg gg-";
         break;
