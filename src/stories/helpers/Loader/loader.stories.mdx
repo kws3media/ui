@@ -4,9 +4,10 @@ import { Loader } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  color: "transparent",
-  background_size: "small",
+  spinner_color: "grey",
   spinner_size: "small",
+  background_color: "transparent",
+  background_size: "small",
   style: "",
   is_inline: false
 }
@@ -16,16 +17,20 @@ export let args={
   component={Loader}
   args={args}
   argTypes={{
-    color: {
-      options: ['transparent', 'warning', 'info', 'danger', 'primary'],
-      control: 'select'
-    },
-    background_size: {
-      options: ['small', 'medium', 'large', 'halfheight', 'fullheight'],
+    spinner_color: {
+      options: ['grey', 'light', 'warning', 'info', 'danger', 'primary', 'success', 'link'],
       control: 'select'
     },
     spinner_size: {
       options: ['small', 'medium', 'large'],
+      control: 'select'
+    },
+    background_color: {
+      options: ['transparent', 'warning', 'info', 'danger', 'primary', 'success', 'link'],
+      control: 'select'
+    },
+    background_size: {
+      options: ['small', 'medium', 'large', 'halfheight', 'fullheight'],
       control: 'select'
     },
   }}
