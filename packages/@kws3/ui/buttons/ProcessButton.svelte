@@ -106,7 +106,7 @@
 
   function done({ detail }) {
     /**
-     * fires an event on error
+     * fires an event on complete
      */
     fire("done", detail);
   }
