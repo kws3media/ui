@@ -2,12 +2,11 @@
   @component
   
 
-  @param {string} [classes=""] - CSS classes, Default: `""`
   @param {string} [button_class=""] - CSS classes for button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {string} [icon="check"] - Icon of the Button - can use any fa icon, Default: `"check"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Button, Default: `"info"`
+  @param {string} [size=""] - Size of the Button, Default: `""`
+  @param {string} [icon="check"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
+  @param {string} [color="info"] - Color of the Button, Default: `"info"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [doing_icon="hourglass"] - Icon shows during process, Default: `"hourglass"`
   @param {string} [doing_text="Please Wait..."] - Text shows during process, Default: `"Please Wait..."`
@@ -16,13 +15,14 @@
   @param {boolean} [confirm=false] - Boolean - true/false, Default: `false`
   @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
+  @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events
   - `done`
   - `error`
 
 -->
-<div class="field {confirm ? 'has-addons' : ''} {classes}" data-cy={cy}>
+<div class="field {confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
   <p class="control">
     {#if confirm}
       <button
@@ -86,88 +86,75 @@
   const fire = createEventDispatcher();
 
   /**
-   * CSS classes
-   * @type {string}
-   */
-  export let classes = "";
-
-  /**
    * CSS classes for button
-   * @type {string}
    */
   export let button_class = "";
 
   /**
    * Button text
-   * @type {string}
    */
   export let text = "";
 
   /**
    * Size of the Button
-   * @type {'small'|'medium'|'large'}
    */
   export let size = "";
 
   /**
-   * Icon of the Button - can use any fa icon
-   * @type {string}
+   * Icon of the Button - use any fa/gg/unicorn icons
    */
   export let icon = "check";
 
   /**
    * Color of the Button
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "info";
 
   /**
    * data-cy attribute for cypress
-   * @type {string}
    */
   export let cy = "";
 
   /**
    * Icon shows during process
-   * @type {string}
    */
   export let doing_icon = "hourglass";
 
   /**
    * Text shows during process
-   * @type {string}
    */
   export let doing_text = "Please Wait...";
 
   /**
    * Icon shows after process complete
-   * @type {string}
    */
   export let done_icon = "check";
 
   /**
    * Text shows after process complete
-   * @type {string}
    */
   export let done_text = "Done";
 
   /**
    * Boolean - true/false
-   * @type {boolean}
    */
   export let confirm = false;
 
   /**
    * Display icon only - true/false
-   * @type {boolean}
    */
   export let icon_only = false;
 
   /**
    * Button disable - true/false
-   * @type {boolean}
    */
   export let disabled = false;
+
+  /**
+   * CSS class for button container
+   */
+  let klass = "";
+  export { klass as class };
 
   let _doing = false,
     _done = false,

@@ -7,6 +7,7 @@ export let args={
   color : "primary",
   disabled : false,
   size : "",
+  class : "",
   icon_only : false,
   text : "Delete Me",
   icon : "minus-circle",
@@ -32,6 +33,16 @@ export function eraseDo(event, success = true){
   title="Buttons/Delete Button"
   component={Button}
   args={args}
+  argTypes={{
+    color: {
+      options: ['primary','success','warning','info','danger','dark','light'],
+      control: 'select'
+    },
+    size: {
+      options: ['','small', 'medium', 'large'],
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
