@@ -17,7 +17,7 @@
 
 -->
 
-<CardModal {title} {size} {is_active} closable={false}>
+<CardModal title={titleToUse} {size} {is_active} closable={false}>
   <p slot="default">
     {#if icon && icon != ""}
       <Icon {icon} size={icon_size} color={icon_color} />
@@ -97,6 +97,8 @@
   let is_active = true,
     inputValue = null;
 
+  $: titleToUse = title != "" ? title : capitaliseFirstLetter(_type);
+
   /**
    * Determines the type of dialog.
    *
@@ -151,5 +153,9 @@
         return null;
         break;
     }
+  }
+
+  function capitaliseFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
   }
 </script>
