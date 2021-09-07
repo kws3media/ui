@@ -25,12 +25,12 @@
 
 <script>
   /**
-   * Spinner color (grey | light | warning | info | danger | primary | success)
+   * Color of the Spinner (grey | light | warning | info | danger | primary | success)
    * @link https://bulma.io/documentation/helpers/color-helpers/
    */
   export let spinner_color = "grey",
     /**
-     * Spinner size (small | medium | large)
+     * Size of the Spinner (small | medium | large)
      */
     spinner_size = "medium",
     /**
