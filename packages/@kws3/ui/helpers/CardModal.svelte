@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
@@ -74,37 +74,37 @@
      */
     size = "",
     /**
-     * Show or hide modal
+     * Determines whether modal is displayed or not
      * @type {boolean}
      */
     is_active = false,
     /**
-     * Show close button
+     * If this is set to false, the modal cannot be dismissed at all
      * @type {boolean}
      */
     closable = true,
     /**
-     * Close modal on click outside
+     * Determines if a closable modal can be dismissed by clicking anywhere outside the modal
      * @type {boolean}
      */
     close_on_click_outside = false,
     /**
-     * Modal has footer
+     * Determines if modal has footer space
      * @type {boolean}
      */
     has_footer = true,
     /**
-     * Inline style for modal
+     * Inline CSS for modal
      * @type {string}
      */
     style = "",
     /**
-     * Inline style for modal content
+     * Inline CSS for modal content
      * @type {string}
      */
     inner_style = "",
     /**
-     * CSS classes for modal content
+     * Optional CSS classes for the modal content
      * @type {string}
      */
     inner_class = "",
@@ -115,7 +115,7 @@
     cy = "";
 
   /**
-   * Additional class for modal
+   * Optional class for modal
    * @type {string}
    */
   let klass = "";
