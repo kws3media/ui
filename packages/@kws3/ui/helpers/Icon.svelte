@@ -67,10 +67,12 @@
 <script>
   /**
    * Size of the Icon ('small'|'medium'|'large')
+   * * @type {'small'|'medium'|'large'}
    */
   export let size = "",
     /**
-     * Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light')
+     * Color of the Icon
+     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
