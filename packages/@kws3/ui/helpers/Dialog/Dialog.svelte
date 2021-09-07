@@ -16,7 +16,7 @@
   @param {string} [cancel_button_icon="ban"] - Icon on the Cancel button, Default: `"ban"`
 
 -->
-
+<svelte:window on:keydown={window_keydown} />
 <CardModal title={titleToUse} {size} {is_active} closable={false}>
   <p slot="default">
     {#if icon && icon != ""}
@@ -59,7 +59,7 @@
   import { tick, onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
   import { CardModal } from "@kws3/ui";
-  import { isEnterKey, capitaliseFirstLetter } from "@kws3/ui/utils";
+  import { isEnterKey, isEscKey, capitaliseFirstLetter } from "@kws3/ui/utils";
 
   const fire = createEventDispatcher();
 
@@ -179,6 +179,12 @@
       case "prompt":
         return null;
         break;
+    }
+  }
+
+  function window_keydown(e) {
+    if (is_active && isEscKey(e)) {
+      cancel();
     }
   }
 </script>
