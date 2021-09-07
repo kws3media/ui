@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size="small"] - Size of the modal, Default: `"small"`
@@ -118,7 +118,7 @@ Only visible when the
      */
     has_footer = true,
     /**
-     * Inline CSS for modal
+     * Inline CSS for modal container
      * @type {string}
      */
     style = "",

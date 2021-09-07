@@ -22,8 +22,7 @@
 
   <div class="modal-content is-{size} {inner_class}" style={inner_style}>
     <div class="box">
-      <!-- Used for the Modal content-->
-      <slot />
+      <!-- Used for the Modal content--><slot />
     </div>
   </div>
   {#if closable}
@@ -49,6 +48,7 @@
 <script>
   /**
    * Size of the modal
+   * @type {'small'|'medium'|'large'}
    */
   export let size = "small",
     /**
@@ -57,6 +57,8 @@
     is_active = false,
     /**
      * If this is set to false, the modal cannot be closed using the UI
+     *
+     * Only programmatic closing is possible
      */
     closable = true,
     /**
@@ -64,7 +66,7 @@
      */
     close_on_click_outside = false,
     /**
-     * Inline CSS for modal
+     * Inline CSS for modal container
      */
     style = "",
     /**
