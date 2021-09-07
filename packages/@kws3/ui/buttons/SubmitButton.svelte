@@ -2,7 +2,6 @@
   @component
   
 
-  @param {string} [classes=""] - CSS classes, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
@@ -13,18 +12,19 @@
   @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
   @param {object} [tracker={}] - Tracker property, Default: `{}`
+  @param {string} [class=""] - `CONST` CSS classes, Default: `""`
   @param {function} [saving()] - call this function on form saving state
   @param {function} [saved(callback)] - call this function after form saved
   @param {function} [error(callback)] - call this function on form error state
 
   ### Events
-  - `saved`
-  - `error`
+  - `saved` - It fires after saved state
+  - `error` - It fires after error state
 
 -->
 <button
   type="submit"
-  class="button {classes} is-{size} {tracker.saving
+  class="button {klass} is-{size} {tracker.saving
     ? 'is-loading is-' + color
     : tracker.error
     ? 'is-danger'
@@ -52,14 +52,10 @@
   const fire = createEventDispatcher();
 
   /**
-   * CSS classes
+   * Size of the Button
+   * @type {'small'|'medium'|'large'}
    */
-  export let classes = "",
-    /**
-     * Size of the Button
-     * @type {'small'|'medium'|'large'}
-     */
-    size = "",
+  export let size = "",
     /**
      * Color of the Button
      * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
@@ -102,8 +98,11 @@
       error: false,
     };
 
-  $: err_text = error_text == "" ? text : error_text;
-  $: icon_size = size == "large" ? "" : "small";
+  /**
+   * CSS classes
+   */
+  let klass = "";
+  export { klass as class };
 
   /**
    * call this function on form saving state
@@ -132,6 +131,9 @@
         saved: false,
         error: false,
       };
+      /**
+       * It fires after saved state
+       */
       fire("saved");
       callback && callback();
     }, 1000);
@@ -153,10 +155,16 @@
         saved: false,
         error: false,
       };
+      /**
+       * It fires after error state
+       */
       fire("error");
       callback && callback();
     }, 1000);
   }
+
+  $: err_text = error_text == "" ? text : error_text;
+  $: icon_size = size == "large" ? "" : "small";
 
   // reviwed
 </script>
