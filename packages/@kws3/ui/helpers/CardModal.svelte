@@ -51,72 +51,76 @@
   </div>
 </div>
 
+<style lang="scss">
+  @media screen and (min-width: 769px), print {
+    .modal-card {
+      min-width: 640px;
+      &.is-medium {
+        width: 70%;
+      }
+      &.is-large {
+        width: 90%;
+      }
+    }
+  }
+</style>
+
 <script>
   /**
    * Title of the modal
    * @type {string}
    */
-  export let title = "";
-
-  /**
-   * Size of the modal
-   * @type {'small'|'medium'|'large'}
-   */
-  export let size = "";
-
-  /**
-   * Show or hide modal
-   * @type {boolean}
-   */
-  export let is_active = false;
-
-  /**
-   * Show close button
-   * @type {boolean}
-   */
-  export let closable = true;
-
-  /**
-   * Close modal on click outside
-   * @type {boolean}
-   */
-  export let close_on_click_outside = false;
-
-  /**
-   * Modal has footer
-   * @type {boolean}
-   */
-  export let has_footer = true;
-
-  /**
-   * Inline style for modal
-   * @type {string}
-   */
-  export let style = "";
-
-  /**
-   * Inline style for modal content
-   * @type {string}
-   */
-  export let inner_style = "";
-
-  /**
-   * CSS classes for modal
-   * @type {string}
-   */
-  export let classes = "";
-
-  /**
-   * CSS classes for modal content
-   * @type {string}
-   */
-  export let inner_class = "";
-
-  /**
-   * data-cy attribute for cypress
-   * @type {string}
-   */
-  export let cy = "";
+  export let title = "",
+    /**
+     * Size of the modal
+     * @type {'small'|'medium'|'large'}
+     */
+    size = "",
+    /**
+     * Show or hide modal
+     * @type {boolean}
+     */
+    is_active = false,
+    /**
+     * Show close button
+     * @type {boolean}
+     */
+    closable = true,
+    /**
+     * Close modal on click outside
+     * @type {boolean}
+     */
+    close_on_click_outside = false,
+    /**
+     * Modal has footer
+     * @type {boolean}
+     */
+    has_footer = true,
+    /**
+     * Inline style for modal
+     * @type {string}
+     */
+    style = "",
+    /**
+     * Inline style for modal content
+     * @type {string}
+     */
+    inner_style = "",
+    /**
+     * CSS classes for modal
+     * @type {string}
+     */
+    classes = "",
+    /**
+     * CSS classes for modal content
+     * @type {string}
+     */
+    inner_class = "",
+    /**
+     * data-cy attribute for cypress
+     * @type {string}
+     */
+    cy = "";
 
   function clickOutside() {
     if (close_on_click_outside && closable) {
