@@ -18,20 +18,30 @@
 -->
 <svelte:window on:keydown={window_keydown} />
 <CardModal title={titleToUse} {size} {is_active} closable={false}>
-  <p slot="default">
-    {#if icon && icon != ""}
-      <Icon {icon} size={icon_size} color={icon_color} />
-    {/if}
-    {@html _text}
-    {#if _type == "prompt"}
-      <input
-        bind:this={input_box}
-        on:keyup={(e) => isEnterKey(e) && ok()}
-        type="text"
-        class="input"
-        bind:value={inputValue} />
-    {/if}
-  </p>
+  <div slot="default">
+    <div class="media">
+      {#if icon && icon != ""}
+        <div class="media-left">
+          <Icon {icon} size={icon_size} color={icon_color} />
+        </div>
+      {/if}
+      <div class="media-content">
+        <span class="is-block">{@html _text}</span>
+        {#if _type == "prompt"}
+          <div class="field" style="margin-top:0.5rem;">
+            <div class="control">
+              <input
+                bind:this={input_box}
+                on:keyup={(e) => isEnterKey(e) && ok()}
+                type="text"
+                class="input"
+                bind:value={input_value} />
+            </div>
+          </div>
+        {/if}
+      </div>
+    </div>
+  </div>
   <div slot="footer" style="width:100%">
     <div class="field is-grouped is-grouped-right">
       {#if _type != "alert"}
@@ -72,7 +82,12 @@
      * Size of the modal
      * @type {'small'|'medium'|'large'}
      */
-    size = "",
+    size = "small",
+    /**
+     * Default value inside text input displayed on `prompt()`
+     * @type {string}
+     */
+    input_value = "",
     /**
      * Icon on the dialog
      * @type {string}
@@ -114,13 +129,12 @@
         ok_button.focus();
         break;
       case "prompt":
-        input_box.focus();
+        input_box.select();
         break;
     }
   });
 
   let is_active = true,
-    inputValue = null,
     input_box,
     ok_button;
 
@@ -163,7 +177,7 @@
         return true;
         break;
       case "prompt":
-        return inputValue;
+        return input_value;
         break;
     }
   }
