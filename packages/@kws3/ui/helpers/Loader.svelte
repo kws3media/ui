@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [spinner_color="grey"] - Color of the Spinner, Default: `"grey"`
   @param {'small'|'medium'|'large'} [spinner_size="medium"] - Size of the Spinner, Default: `"medium"`
@@ -15,7 +15,7 @@
 <div class={has_overlay ? "is-overlay" : ""}>
   <div
     class="kws-loader hero is-{background_color} is-{background_size} {klass}"
-    {_style}>
+    style={_style}>
     <div
       class="hero-body is-{spinner_color} is-{spinner_size}"
       style={is_inline ? "padding:1rem" : ""}>
@@ -43,7 +43,8 @@
     background_color = "transparent",
     /**
      * Size of the Spinner container.  It can also accept css units such as 10px | 5rem | 100vh
-     * @type {'small' | 'medium' | 'large' | 'halfheight' | 'fullheight'}
+     *
+     * (small | medium | large | halfheight | fullheight)
      */
     background_size = "medium",
     /**
