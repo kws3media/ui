@@ -17,10 +17,7 @@
 
 -->
 
-<div
-  class="modal {classes} {is_active ? 'is-active' : ''}"
-  {style}
-  data-cy={cy}>
+<div class="modal {klass} {is_active ? 'is-active' : ''}" {style} data-cy={cy}>
   <div class="modal-background" on:click={clickOutside} />
 
   <div class="modal-content is-{size} {inner_class}" style={inner_style}>
@@ -52,57 +49,43 @@
 <script>
   /**
    * Size of the modal
-   * @type {'small'|'medium'|'large'}
    */
-  export let size = "small";
+  export let size = "small",
+    /**
+     * Determines whether modal is displayed or not
+     */
+    is_active = false,
+    /**
+     * If this is set to false, the modal cannot be closed using the UI
+     */
+    closable = true,
+    /**
+     * Determines if a closable modal can be closed by clicking anywhere outside the modal
+     */
+    close_on_click_outside = false,
+    /**
+     * Inline CSS for modal
+     */
+    style = "",
+    /**
+     * Inline CSS for modal content
+     */
+    inner_style = "",
+    /**
+     * CSS classes for modal content
+     */
+    inner_class = "",
+    /**
+     * data-cy attribute for cypress
+     */
+    cy = "";
 
   /**
-   * Determines whether modal is displayed or not
-   * @type {boolean}
-   */
-  export let is_active = false;
-
-  /**
-   * If this is set to false, the modal cannot be closed using the UI
-   * @type {boolean}
-   */
-  export let closable = true;
-
-  /**
-   * Determines if a closable modal can be closed by clicking anywhere outside the modal
-   * @type {boolean}
-   */
-  export let close_on_click_outside = false;
-
-  /**
-   * Inline CSS for modal
+   * CSS class for modal container
    * @type {string}
    */
-  export let style = "";
-
-  /**
-   * Inline CSS for modal content
-   * @type {string}
-   */
-  export let inner_style = "";
-
-  /**
-   * CSS classes for modal
-   * @type {string}
-   */
-  export let classes = "";
-
-  /**
-   * CSS classes for modal content
-   * @type {string}
-   */
-  export let inner_class = "";
-
-  /**
-   * data-cy attribute for cypress
-   * @type {string}
-   */
-  export let cy = "";
+  let klass = "";
+  export { klass as class };
 
   function clickOutside() {
     if (close_on_click_outside && closable) {
