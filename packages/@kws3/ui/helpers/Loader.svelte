@@ -15,7 +15,7 @@
 -->
 <div class={has_overlay ? "is-overlay" : ""}>
   <div
-    class="kws-loader hero is-{background_color} is-{background_size}"
+    class="kws-loader hero is-{background_color} is-{background_size} {klass}"
     {_style}>
     <div
       class="hero-body is-{spinner_color} is-{spinner_size}"
@@ -59,6 +59,13 @@
      * Inline CSS for Loader
      */
     style = "";
+
+  /**
+   * CSS class for Loader
+   * @type {string}
+   */
+  let klass = "";
+  export { klass as class };
 
   let bg_size = ["small", "medium", "large", "halfheight", "fullheight"],
     _height = "",
