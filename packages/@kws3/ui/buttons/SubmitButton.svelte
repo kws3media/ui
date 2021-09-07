@@ -43,73 +43,54 @@
 
   /**
    * CSS classes
-   * @type {string}
    */
-  export let classes = "";
-
-  /**
-   * Size of the Button
-   * @type {'small'|'medium'|'large'}
-   */
-  export let size = "";
-
-  /**
-   * Color of the Button
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let color = "primary";
-
-  /**
-   * Button text
-   * @type {string}
-   */
-  export let text = "Save Changes";
-
-  /**
-   * Text shows after success
-   * @type {string}
-   */
-  export let saved_text = "Saved";
-
-  /**
-   * Text shows after process complete
-   * @type {string}
-   */
-  export let error_text = "Failed to Save";
-
-  /**
-   * Icon of the Button - can use any fa icon
-   * @type {string}
-   */
-  export let icon = "save";
-
-  /**
-   * data-cy attribute for cypress
-   * @type {string}
-   */
-  export let cy = "submit";
-
-  /**
-   * Display icon only - true/false
-   * @type {boolean}
-   */
-  export let icon_only = false;
-
-  /**
-   * Button disable - true/false
-   * @type {boolean}
-   */
-  export let disabled = false;
-
-  /**
-   * Tracker property
-   * @type {object}
-   */
-  export let tracker = {
-    saving: false,
-    saved: false,
-    error: false,
-  };
+  export let classes = "",
+    /**
+     * Size of the Button
+     * @type {'small'|'medium'|'large'}
+     */
+    size = "",
+    /**
+     * Color of the Button
+     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    color = "primary",
+    /**
+     * Button text
+     */
+    text = "Save Changes",
+    /**
+     * Text shows after success
+     */
+    saved_text = "Saved",
+    /**
+     * Text shows after failed
+     */
+    error_text = "Failed to Save",
+    /**
+     * Icon of the Button - can use any fa icon
+     */
+    icon = "save",
+    /**
+     * data-cy attribute for cypress
+     */
+    cy = "submit",
+    /**
+     * Display icon only - true/false
+     */
+    icon_only = false,
+    /**
+     * Button disable - true/false
+     */
+    disabled = false,
+    /**
+     * Tracker property
+     */
+    tracker = {
+      saving: false,
+      saved: false,
+      error: false,
+    };
 
   $: err_text = error_text == "" ? text : error_text;
   $: icon_size = size == "large" ? "" : "small";
