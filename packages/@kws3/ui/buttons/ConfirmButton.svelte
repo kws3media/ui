@@ -167,6 +167,9 @@
       return;
     }
     if (_confirm) {
+      /**
+       * fires an event on doing
+       */
       fire("do", { doing, done, error });
     }
   }
