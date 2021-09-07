@@ -4,7 +4,7 @@ import { Icon } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  size : "medium",
+  size : "",
   color : "primary",
   icon : "save",
   class : "",
@@ -19,11 +19,9 @@ export let args={
   args={args}
   argTypes={{
     color: {
-      options: ["primary", "primary", "success", "danger", "warning", "dark", "light"],
       control: { type: 'select' }
     },
     size:{
-      options:["small", "medium", "large"],
       control: {type:"select"},
     }
   }}
