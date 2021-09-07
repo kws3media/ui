@@ -4,8 +4,8 @@
 
   @param {string} [title=""] - Title text of the Dialog box, Default: `""`
   @param {string} [help_text=""] - Additional text to provide further context to the user, Default: `""`
-  @param {'small'|'medium'|'large'} [size="small"] - Size of the dialog box, Default: `"small"`
-  @param {string} [input_value=""] - Default value inside text input displayed on `prompt()` dialogs, Default: `""`
+  @param {'small'|'medium'|'large'} [size="small"] - Size of the Dialog box, Default: `"small"`
+  @param {string} [input_value=""] - Default value inside text input displayed on `prompt()` Dialogs, Default: `""`
   @param {string} [icon=""] - Icon in the Dialog box, Default: `""`
   @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [icon_color="primary"] - Color of the Icon in the Dialog box, Default: `"primary"`
   @param {'small'|'medium'|'large'} [icon_size=""] - Size of the Icon in the Dialog box, Default: `""`
@@ -15,10 +15,10 @@
   @param {string} [cancel_button_text="Cancel"] - Text to be displayed in the Cancel button, Default: `"Cancel"`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [cancel_button_color=""] - Color of Cancel button, Default: `""`
   @param {string} [cancel_button_icon="ban"] - Icon in the Cancel button, Default: `"ban"`
-  @param {string} [_type=""] - Determines the type of dialog.
+  @param {string} [_type=""] - Determines the type of Dialog.
 
 For internal use only - not part of config object, Default: `""`
-  @param {string} [_text=""] - Text inside dialog box
+  @param {string} [_text=""] - Text inside Dialog box
 
 For internal use only - not part of config object, Default: `""`
 
@@ -98,12 +98,12 @@ For internal use only - not part of config object, Default: `""`
      */
     help_text = "",
     /**
-     * Size of the dialog box
+     * Size of the Dialog box
      * @type {'small'|'medium'|'large'}
      */
     size = "small",
     /**
-     * Default value inside text input displayed on `prompt()` dialogs
+     * Default value inside text input displayed on `prompt()` Dialogs
      * @type {string}
      */
     input_value = "",
@@ -173,13 +173,13 @@ For internal use only - not part of config object, Default: `""`
   $: titleToUse = title != "" ? title : capitaliseFirstLetter(_type);
 
   /**
-   * Determines the type of dialog.
+   * Determines the type of Dialog.
    *
    * For internal use only - not part of config object
    */
   export let _type = "",
     /**
-     * Text inside dialog box
+     * Text inside Dialog box
      *
      * For internal use only - not part of config object
      * @type {string}
