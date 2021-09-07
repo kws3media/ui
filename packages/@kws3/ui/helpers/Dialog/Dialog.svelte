@@ -26,6 +26,7 @@
     {#if _type == "prompt"}
       <input
         bind:this={input_box}
+        on:keyup={(e) => isEnterKey(e) && ok()}
         type="text"
         class="input"
         bind:value={inputValue} />
@@ -58,6 +59,7 @@
   import { tick, onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
   import { CardModal } from "@kws3/ui";
+  import { isEnterKey, capitaliseFirstLetter } from "@kws3/ui/utils";
 
   const fire = createEventDispatcher();
 
@@ -178,9 +180,5 @@
         return null;
         break;
     }
-  }
-
-  function capitaliseFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
   }
 </script>
