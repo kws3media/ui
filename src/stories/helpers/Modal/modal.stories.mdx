@@ -20,6 +20,12 @@ export let args={
   title="Helpers/Modal"
   component={Modal}
   args={args}
+  argTypes={{
+    size: {
+      options: ['', 'small', 'medium', 'large'],
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
