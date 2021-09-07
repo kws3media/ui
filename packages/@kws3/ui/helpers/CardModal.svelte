@@ -1,6 +1,6 @@
 <!--
   @component
-
+  
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
@@ -15,9 +15,9 @@
   @param {string} [class=""] - `CONST` Additional class for modal, Default: `""`
 
   ### Slots
-  - `<slot name="title"  />`
-  - `<slot name="default"  />`
-  - `<slot name="footer"  />`
+  - `<slot name="title"  />` - Used for the title of Modal
+  - `<slot name="default"  />` - Used for the Modal content
+  - `<slot name="footer"  />` - Used for the footer of Modal
 
 -->
 <div class="modal {klass} {is_active ? 'is-active' : ''}" {style} data-cy={cy}>
