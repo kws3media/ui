@@ -1,0 +1,91 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Dialog } from "@kws3/ui";
+import DialogDecorator from "./Dialog.svelte";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  title: "",
+  help_text:"",
+  size : "small",
+  input_value: "",
+  icon: "",
+  icon_color : "primary",
+  icon_size:""
+};
+
+<Meta
+  title="Helpers/Dialog"
+  component={Dialog}
+  args={args}
+  argTypes={{
+    title:{},
+    help_text:{},
+    size:{
+      control: {type: "select"},
+    },
+    input_value:{},
+    icon:{},
+    icon_color: {
+      control: { type: "select"}
+    },
+    icon_size: {
+      control: { type: "select"}
+    },
+    ok_button_text:{},
+    ok_button_color: {
+      control: { type: "select"}
+    },
+    ok_button_icon:{},
+    cancel_button_text:{},
+    cancel_button_color: {
+      control: { type: "select"}
+    },
+    cancel_button_icon:{}
+  }}
+/>
+
+<Description markdown={dedent`
+# Dialog
+## Message components for showing alerts.
+`}/>
+
+<Canvas>
+  <Story
+  name="Dialog"
+  args={args}
+  >
+  {(args) => ({
+    Component: DialogDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Dialog" />
+
+The signature of the helper functions are almost identical to their native counterparts.
+
+The main differences are:
+ 1. They return a `Promise`. The `Promise` fulfils with the same values as the native functions.
+ 2. They accept an extra argument with a configuration object
+
+Valid values for the configuration object are in the table above.
+
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`
+  import { Dialog } from '@kws3/ui';
+  //---
+  //alert example
+  let alert_done = await Dialog.alert('This is an alert', {title: "someTitle"});
+  //---
+  //confirm example
+  let accepted = await Dialog.confirm("Agree with everything?", {ok_button_text: "Yes", cancel_button_text: "No"})
+  //---
+  //prompt example
+  let age = await Dialog.prompt("How old are you?");
+  `}
+/>

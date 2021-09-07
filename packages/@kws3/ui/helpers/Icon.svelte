@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'small'|'medium'|'large'} [size="null"] - Size of the Icon, Default: `"null"`
   @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color="null"] - Color of the Icon, Default: `"null"`
