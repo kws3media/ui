@@ -34,24 +34,25 @@
      */
     spinner_size = "medium",
     /**
-     * Background color (transparent | warning | info | danger | primary | success | link)
+     * Backgound color of the Spinner container (transparent | warning | info | danger | primary | success | link)
      */
     background_color = "transparent",
     /**
-     * Background size (small | medium | large | halfheight | fullheight)
-     * It can also accept css units such as 10px | 5rem | 100vh
+     * Size of the Spinner container.  It can also accept css units such as 10px | 5rem | 100vh
+     *
+     * (small | medium | large | halfheight | fullheight)
      */
     background_size = "medium",
     /**
-     * Loader is inline
+     * Determines if the Loader is inline or not
      */
     is_inline = false,
     /**
-     * Loader has overlay
+     * Determines if loader has overlay
      */
     is_overlay = false,
     /**
-     * Inline CSS styles for loader
+     * Inline CSS for Loader
      */
     style = "";
 
