@@ -24,7 +24,11 @@
     {/if}
     {@html _text}
     {#if _type == "prompt"}
-      <input type="text" class="input" bind:value={inputValue} />
+      <input
+        bind:this={input_box}
+        type="text"
+        class="input"
+        bind:value={inputValue} />
     {/if}
   </p>
   <div slot="footer" style="width:100%">
@@ -38,7 +42,10 @@
         </div>
       {/if}
       <div class="control">
-        <button on:click={ok} class="button is-{ok_button_color}"
+        <button
+          bind:this={ok_button}
+          on:click={ok}
+          class="button is-{ok_button_color}"
           >{#if ok_button_icon != ""}<Icon
               icon={ok_button_icon}
               size="small" />{/if}<span>{ok_button_text}</span></button>
@@ -48,7 +55,7 @@
 </CardModal>
 
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { tick, onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
   import { CardModal } from "@kws3/ui";
 
@@ -94,8 +101,26 @@
      */
     cancel_button_icon = "ban";
 
+  onMount(async () => {
+    await tick();
+
+    switch (_type) {
+      case "alert":
+        ok_button.focus();
+        break;
+      case "confirm":
+        ok_button.focus();
+        break;
+      case "prompt":
+        input_box.focus();
+        break;
+    }
+  });
+
   let is_active = true,
-    inputValue = null;
+    inputValue = null,
+    input_box,
+    ok_button;
 
   $: titleToUse = title != "" ? title : capitaliseFirstLetter(_type);
 
