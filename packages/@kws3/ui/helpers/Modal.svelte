@@ -54,7 +54,7 @@
    * Size of the modal
    * @type {'small'|'medium'|'large'}
    */
-  export let size = "";
+  export let size = "small";
 
   /**
    * Show or hide modal
