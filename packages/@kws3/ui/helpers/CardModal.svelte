@@ -1,6 +1,6 @@
 <!--
   @component
-
+  
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
@@ -10,9 +10,9 @@
   @param {boolean} [has_footer=true] - Modal has footer, Default: `true`
   @param {string} [style=""] - Inline style for modal, Default: `""`
   @param {string} [inner_style=""] - Inline style for modal content, Default: `""`
-  @param {string} [classes=""] - CSS classes for modal, Default: `""`
   @param {string} [inner_class=""] - CSS classes for modal content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [class=""] - `CONST` Additional class for modal, Default: `""`
 
   ### Slots
   - `<slot name="title"  />`
@@ -20,10 +20,7 @@
   - `<slot name="footer"  />`
 
 -->
-<div
-  class="modal {classes} {is_active ? 'is-active' : ''}"
-  {style}
-  data-cy={cy}>
+<div class="modal {klass} {is_active ? 'is-active' : ''}" {style} data-cy={cy}>
   <div class="modal-background" on:click={clickOutside} />
 
   <div class="modal-card is-{size} {inner_class}" style={inner_style}>
@@ -107,11 +104,6 @@
      */
     inner_style = "",
     /**
-     * CSS classes for modal
-     * @type {string}
-     */
-    classes = "",
-    /**
      * CSS classes for modal content
      * @type {string}
      */
@@ -121,6 +113,13 @@
      * @type {string}
      */
     cy = "";
+
+  /**
+   * Additional class for modal
+   * @type {string}
+   */
+  let klass = "";
+  export { klass as class };
 
   function clickOutside() {
     if (close_on_click_outside && closable) {
