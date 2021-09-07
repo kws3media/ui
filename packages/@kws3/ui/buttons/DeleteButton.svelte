@@ -24,7 +24,7 @@
 
 -->
 <ConfirmButton
-  {classes}
+  class={klass}
   {button_class}
   {text}
   {size}
@@ -49,13 +49,9 @@
   const fire = createEventDispatcher();
 
   /**
-   * CSS classes
+   * Additional class for button
    */
-  export let classes = "",
-    /**
-     * CSS classes for button
-     */
-    button_class = "",
+  export let button_class = "",
     /**
      * Button text
      */
@@ -104,6 +100,12 @@
      * Disabled - true/false
      */
     disabled = false;
+
+  /**
+   * CSS class for button container
+   */
+  let klass = "";
+  export { klass as class };
 
   // reviwed
 </script>

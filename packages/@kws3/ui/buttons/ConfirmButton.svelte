@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [classes=""] - CSS classes, Default: `""`
   @param {string} [button_class=""] - CSS classes for button, Default: `""`
@@ -22,7 +22,7 @@
   - `error`
 
 -->
-<div class="field {confirm ? 'has-addons' : ''} {classes}" data-cy={cy}>
+<div class="field {confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
   <p class="control">
     {#if confirm}
       <button
@@ -84,12 +84,6 @@
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
-
-  /**
-   * CSS classes
-   * @type {string}
-   */
-  export let classes = "";
 
   /**
    * CSS classes for button
@@ -168,6 +162,12 @@
    * @type {boolean}
    */
   export let disabled = false;
+
+  /**
+   * CSS class for button container
+   */
+  let klass = "";
+  export { klass as class };
 
   let _doing = false,
     _done = false,
