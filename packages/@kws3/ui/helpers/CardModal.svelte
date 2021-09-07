@@ -1,18 +1,18 @@
 <!--
   @component
-
+  
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
-  @param {boolean} [is_active=false] - Show or hide modal, Default: `false`
-  @param {boolean} [closable=true] - Show close button, Default: `true`
-  @param {boolean} [close_on_click_outside=false] - Close modal on click outside, Default: `false`
-  @param {boolean} [has_footer=true] - Modal has footer, Default: `true`
-  @param {string} [style=""] - Inline style for modal, Default: `""`
-  @param {string} [inner_style=""] - Inline style for modal content, Default: `""`
-  @param {string} [inner_class=""] - CSS classes for modal content, Default: `""`
+  @param {boolean} [is_active=false] - Determines whether modal is displayed or not, Default: `false`
+  @param {boolean} [closable=true] - If this is set to false, the modal cannot be dismissed at all, Default: `true`
+  @param {boolean} [close_on_click_outside=false] - Determines if a closable modal can be dismissed by clicking anywhere outside the modal, Default: `false`
+  @param {boolean} [has_footer=true] - Determines if modal has footer space, Default: `true`
+  @param {string} [style=""] - Inline CSS for modal, Default: `""`
+  @param {string} [inner_style=""] - Inline CSS for modal content, Default: `""`
+  @param {string} [inner_class=""] - Optional CSS classes for the modal content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [class=""] - `CONST` Additional class for modal, Default: `""`
+  @param {string} [class=""] - `CONST` Optional class for modal, Default: `""`
 
   ### Slots
   - `<slot name="title"  />` - Used for the title of Modal
