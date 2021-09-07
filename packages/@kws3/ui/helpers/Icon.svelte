@@ -83,6 +83,7 @@
      * Icon family, defaults to global family set via `setDefaultIconType()`
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
+     * @type {'fa'|'lar'|'las'|'gg'|'unicons'}
      */
     family = "",
     /**
