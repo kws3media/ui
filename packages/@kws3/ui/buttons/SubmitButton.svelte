@@ -106,7 +106,7 @@
     };
   }
 
-  export function saved() {
+  export function saved(callback) {
     tracker = {
       saving: false,
       saved: true,
@@ -120,10 +120,11 @@
         error: false,
       };
       fire("saved");
+      callback && callback();
     }, 1000);
   }
 
-  export function error() {
+  export function error(callback) {
     tracker = {
       saving: false,
       saved: false,
@@ -137,6 +138,7 @@
         error: false,
       };
       fire("error");
+      callback && callback();
     }, 1000);
   }
 
