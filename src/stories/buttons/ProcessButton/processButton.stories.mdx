@@ -2,6 +2,7 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import { ProcessButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
+import ProcessButtonDecorator from "./ProcessButton.svelte";
 
 export let args={
   button_class : "",
@@ -19,18 +20,6 @@ export let args={
   disabled : false,
   class : ""
 };
-
-export function onDoing(event, success = true){
-  let {doing, done, error} = event.detail;
-  doing();
-  setTimeout(() => {
-    if(success){
-      done();
-    } else {
-      error();
-    }
-  }, 2000)
-}
 
 <Meta
   title="Buttons/Process Button"
@@ -59,12 +48,8 @@ export function onDoing(event, success = true){
   args={args}
   >
   {(args) => ({
-    Component: Button,
-    props: args,
-    on: {
-      doing : onDoing,
-      done: action("Done")
-    },
+    Component: ProcessButtonDecorator,
+    props: args
   })}
   </Story>
 </Canvas>
