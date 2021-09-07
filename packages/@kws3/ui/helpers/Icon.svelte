@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'small'|'medium'|'large'} [size=""] - Size of the Icon ('small'|'medium'|'large')
 *, Default: `""`
