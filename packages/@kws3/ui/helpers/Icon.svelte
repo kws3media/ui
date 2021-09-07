@@ -50,7 +50,7 @@
 </style>
 
 <script context="module">
-  let family;
+  let globalFamily;
 
   /**
    * It can set default icon type
@@ -60,7 +60,7 @@
    * Icon.setDefaultIconType("fa");
    */
   export function setDefaultIconType(type) {
-    family = type;
+    globalFamily = type;
   }
 </script>
 
@@ -79,6 +79,12 @@
      * Icon name to display
      */
     icon = "",
+    /**
+     * Icon family, defaults to global family set via `setDefaultIconType()`
+     *
+     * Ultimately defaults to `fa`, if family is not set anywhere
+     */
+    family = "",
     /**
      * Inline style of icon
      */
@@ -101,7 +107,8 @@
   let familyClass, internal_size, usedFamily;
 
   $: {
-    usedFamily = family ? family : "fa";
+    usedFamily =
+      family && family != "" ? family : globalFamily ? globalFamily : "fa";
 
     switch (usedFamily) {
       case "lar":
