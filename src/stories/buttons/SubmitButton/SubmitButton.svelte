@@ -9,7 +9,7 @@
         {size}
         {icon_only}
         {disabled}
-        bind:tracker={success_tracker} />
+        bind:this={BUTTON_1} />
       <p class="is-block mt-2">This will succeed.</p>
     </form>
   </div>
@@ -23,7 +23,7 @@
         {size}
         {icon_only}
         {disabled}
-        bind:tracker={failed_tracker} />
+        bind:this={BUTTON_2} />
       <p class="is-block mt-2">This will fail.</p>
     </form>
   </div>
@@ -38,53 +38,22 @@
     saved_text = "Saved",
     error_text = "Failed to Save",
     icon_only = false,
-    disabled = false,
-    success_tracker = {
-      saving: false,
-      saved: false,
-      error: false,
-    },
-    failed_tracker = {
-      saving: false,
-      saved: false,
-      error: false,
-    };
+    disabled = false;
+
+  let BUTTON_1 = null;
+  let BUTTON_2 = null;
 
   export function success() {
-    success_tracker = {
-      saving: true,
-      saved: false,
-      error: false,
-    };
-
+    BUTTON_1.saving();
     setTimeout(() => {
-      success_tracker = {
-        saving: false,
-        saved: true,
-        error: false,
-      };
-      setTimeout(() => {
-        success_tracker.saved = false;
-      }, 2000);
+      BUTTON_1.saved();
     }, 1000);
   }
 
   export function failed() {
-    failed_tracker = {
-      saving: true,
-      saved: false,
-      error: false,
-    };
-
+    BUTTON_2.saving();
     setTimeout(() => {
-      failed_tracker = {
-        saving: false,
-        saved: false,
-        error: true,
-      };
-      setTimeout(() => {
-        failed_tracker.error = false;
-      }, 2000);
+      BUTTON_2.error();
     }, 1000);
   }
 </script>

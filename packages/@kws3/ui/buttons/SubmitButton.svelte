@@ -2,28 +2,35 @@
   @component
   
 
-  @param {string} [classes=""] - CSS classes, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
   @param {string} [saved_text="Saved"] - Text shows after success, Default: `"Saved"`
-  @param {string} [error_text="Failed to Save"] - Text shows after process complete, Default: `"Failed to Save"`
+  @param {string} [error_text="Failed to Save"] - Text shows after failed, Default: `"Failed to Save"`
   @param {string} [icon="save"] - Icon of the Button - can use any fa icon, Default: `"save"`
   @param {string} [cy="submit"] - data-cy attribute for cypress, Default: `"submit"`
   @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
   @param {object} [tracker={}] - Tracker property, Default: `{}`
+  @param {string} [class=""] - `CONST` CSS classes, Default: `""`
+  @param {function} [saving()] - call this function on form saving state
+  @param {function} [saved(callback)] - call this function after form saved
+  @param {function} [error(callback)] - call this function on form error state
+
+  ### Events
+  - `saved` - It fires after saved state
+  - `error` - It fires after error state
 
 -->
 <button
-  class="button {classes} is-{size} {tracker.saving
+  type="submit"
+  class="button {klass} is-{size} {tracker.saving
     ? 'is-loading is-' + color
     : tracker.error
     ? 'is-danger'
     : tracker.saved
     ? 'is-success'
     : 'is-' + color}"
-  type="submit"
   {disabled}
   data-cy={cy}>
   {#if tracker.saved}
@@ -40,76 +47,121 @@
 
 <script>
   import { Icon } from "@kws3/ui";
+  import { createEventDispatcher } from "svelte";
 
-  /**
-   * CSS classes
-   * @type {string}
-   */
-  export let classes = "";
+  const fire = createEventDispatcher();
 
   /**
    * Size of the Button
    * @type {'small'|'medium'|'large'}
    */
-  export let size = "";
+  export let size = "",
+    /**
+     * Color of the Button
+     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    color = "primary",
+    /**
+     * Button text
+     */
+    text = "Save Changes",
+    /**
+     * Text shows after success
+     */
+    saved_text = "Saved",
+    /**
+     * Text shows after failed
+     */
+    error_text = "Failed to Save",
+    /**
+     * Icon of the Button - can use any fa icon
+     */
+    icon = "save",
+    /**
+     * data-cy attribute for cypress
+     */
+    cy = "submit",
+    /**
+     * Display icon only - true/false
+     */
+    icon_only = false,
+    /**
+     * Button disable - true/false
+     */
+    disabled = false,
+    /**
+     * Tracker property
+     */
+    tracker = {
+      saving: false,
+      saved: false,
+      error: false,
+    };
 
   /**
-   * Color of the Button
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * CSS classes
    */
-  export let color = "primary";
+  let klass = "";
+  export { klass as class };
 
   /**
-   * Button text
-   * @type {string}
+   * call this function on form saving state
    */
-  export let text = "Save Changes";
+  export function saving() {
+    tracker = {
+      saving: true,
+      saved: false,
+      error: false,
+    };
+  }
 
   /**
-   * Text shows after success
-   * @type {string}
+   * call this function after form saved
    */
-  export let saved_text = "Saved";
+  export function saved(callback) {
+    tracker = {
+      saving: false,
+      saved: true,
+      error: false,
+    };
+
+    setTimeout(() => {
+      tracker = {
+        saving: false,
+        saved: false,
+        error: false,
+      };
+      /**
+       * It fires after saved state
+       */
+      fire("saved");
+      callback && callback();
+    }, 1000);
+  }
 
   /**
-   * Text shows after process complete
-   * @type {string}
+   * call this function on form error state
    */
-  export let error_text = "Failed to Save";
+  export function error(callback) {
+    tracker = {
+      saving: false,
+      saved: false,
+      error: true,
+    };
 
-  /**
-   * Icon of the Button - can use any fa icon
-   * @type {string}
-   */
-  export let icon = "save";
-
-  /**
-   * data-cy attribute for cypress
-   * @type {string}
-   */
-  export let cy = "submit";
-
-  /**
-   * Display icon only - true/false
-   * @type {boolean}
-   */
-  export let icon_only = false;
-
-  /**
-   * Button disable - true/false
-   * @type {boolean}
-   */
-  export let disabled = false;
-
-  /**
-   * Tracker property
-   * @type {object}
-   */
-  export let tracker = {
-    saving: false,
-    saved: false,
-    error: false,
-  };
+    setTimeout(() => {
+      tracker = {
+        saving: false,
+        saved: false,
+        error: false,
+      };
+      /**
+       * It fires after error state
+       */
+      fire("error");
+      callback && callback();
+    }, 1000);
+  }
 
   $: err_text = error_text == "" ? text : error_text;
   $: icon_size = size == "large" ? "" : "small";
