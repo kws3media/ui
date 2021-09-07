@@ -1,23 +1,32 @@
 <!--
   @component
-
+  
 
   @param {string} [title=""] - Title of the modal, Default: `""`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
+  @param {'small'|'medium'|'large'} [size="small"] - Size of the modal, Default: `"small"`
   @param {boolean} [is_active=false] - Determines whether modal is displayed or not, Default: `false`
-  @param {boolean} [closable=true] - If this is set to false, the modal cannot be dismissed at all, Default: `true`
-  @param {boolean} [close_on_click_outside=false] - Determines if a closable modal can be dismissed by clicking anywhere outside the modal, Default: `false`
+  @param {boolean} [closable=true] - If this is set to false, the modal cannot be closed using the UI
+
+Only programmatic closing is possible, Default: `true`
+  @param {boolean} [close_on_click_outside=false] - Determines if a closable modal can be closed by clicking anywhere outside the modal, Default: `false`
   @param {boolean} [has_footer=true] - Determines if modal has footer space, Default: `true`
   @param {string} [style=""] - Inline CSS for modal, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for modal content, Default: `""`
-  @param {string} [inner_class=""] - Optional CSS classes for the modal content, Default: `""`
+  @param {string} [inner_class=""] - CSS classes for the modal content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [class=""] - `CONST` Optional class for modal, Default: `""`
+  @param {string} [class=""] - `CONST` CSS classes for modal, Default: `""`
 
   ### Slots
   - `<slot name="title"  />` - Used for the title of Modal
+
+This can be used instead of the `title`
+property, to send a `HTMLElement` in,
+instead of just plain text
   - `<slot name="default"  />` - Used for the Modal content
   - `<slot name="footer"  />` - Used for the footer of Modal
+
+Only visible when the
+`has_footer` property is `true`
 
 -->
 <div class="modal {klass} {is_active ? 'is-active' : ''}" {style} data-cy={cy}>
@@ -26,7 +35,14 @@
   <div class="modal-card is-{size} {inner_class}" style={inner_style}>
     <div class="modal-card-head">
       <div class="modal-card-title">
-        <!--Used for the title of Modal--><slot name="title">{title}</slot>
+        <!--
+          Used for the title of Modal
+
+          This can be used instead of the `title`
+          property, to send a `HTMLElement` in,
+          instead of just plain text
+        --><slot
+          name="title">{title}</slot>
       </div>
       {#if closable}
         <button
@@ -42,7 +58,13 @@
 
     {#if has_footer}
       <div class="modal-card-foot">
-        <!--Used for the footer of Modal--><slot name="footer" />
+        <!--
+          Used for the footer of Modal
+
+          Only visible when the
+          `has_footer` property is `true`
+        --><slot
+          name="footer" />
       </div>
     {/if}
   </div>
@@ -80,6 +102,8 @@
     is_active = false,
     /**
      * If this is set to false, the modal cannot be closed using the UI
+     *
+     * Only programmatic closing is possible
      * @type {boolean}
      */
     closable = true,
