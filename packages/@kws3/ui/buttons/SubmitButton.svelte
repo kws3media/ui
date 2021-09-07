@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [classes=""] - CSS classes, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
@@ -16,6 +16,7 @@
 
 -->
 <button
+  type="submit"
   class="button {classes} is-{size} {tracker.saving
     ? 'is-loading is-' + color
     : tracker.error
@@ -23,7 +24,6 @@
     : tracker.saved
     ? 'is-success'
     : 'is-' + color}"
-  type="submit"
   {disabled}
   data-cy={cy}>
   {#if tracker.saved}
@@ -40,6 +40,9 @@
 
 <script>
   import { Icon } from "@kws3/ui";
+  import { createEventDispatcher } from "svelte";
+
+  const fire = createEventDispatcher();
 
   /**
    * CSS classes
@@ -94,6 +97,48 @@
 
   $: err_text = error_text == "" ? text : error_text;
   $: icon_size = size == "large" ? "" : "small";
+
+  export function saving() {
+    tracker = {
+      saving: true,
+      saved: false,
+      error: false,
+    };
+  }
+
+  export function saved() {
+    tracker = {
+      saving: false,
+      saved: true,
+      error: false,
+    };
+
+    setTimeout(() => {
+      tracker = {
+        saving: false,
+        saved: false,
+        error: false,
+      };
+      fire("saved");
+    }, 1000);
+  }
+
+  export function error() {
+    tracker = {
+      saving: false,
+      saved: false,
+      error: true,
+    };
+
+    setTimeout(() => {
+      tracker = {
+        saving: false,
+        saved: false,
+        error: false,
+      };
+      fire("error");
+    }, 1000);
+  }
 
   // reviwed
 </script>
