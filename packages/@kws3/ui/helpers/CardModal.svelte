@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size="small"] - Size of the modal, Default: `"small"`
@@ -14,7 +14,7 @@ Only programmatic closing is possible, Default: `true`
   @param {string} [inner_style=""] - Inline CSS for modal content, Default: `""`
   @param {string} [inner_class=""] - CSS classes for the modal content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [class=""] - `CONST` CSS classes for modal, Default: `""`
+  @param {string} [class=""] - CSS classes for modal, Default: `""`
 
   ### Slots
   - `<slot name="title"  />` - Used for the title of Modal
