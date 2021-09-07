@@ -13,7 +13,7 @@
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 
   ### Slots
-  - `<slot name="default"  />` - Slot for display modal contents
+  - `<slot name="default"  />` - Used for the Modal content
 
 -->
 
@@ -25,7 +25,7 @@
 
   <div class="modal-content is-{size} {inner_class}" style={inner_style}>
     <div class="box">
-      <!-- Slot for display modal contents-->
+      <!-- Used for the Modal content-->
       <slot />
     </div>
   </div>
