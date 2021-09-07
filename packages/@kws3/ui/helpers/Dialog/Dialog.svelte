@@ -1,8 +1,9 @@
 <!--
   @component
-
+  
 
   @param {string} [title=""] - Title text of the Dialog box, Default: `""`
+  @param {string} [help_text=""] - Additional text to provide further context to the user, Default: `""`
   @param {'small'|'medium'|'large'} [size="small"] - Size of the dialog box, Default: `"small"`
   @param {string} [input_value=""] - Default value inside text input displayed on `prompt()` dialogs, Default: `""`
   @param {string} [icon=""] - Icon in the Dialog box, Default: `""`
