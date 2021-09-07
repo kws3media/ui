@@ -1,0 +1,121 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { ProcessButton as Button } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  button_class : "",
+  text : "Click Me",
+  size : "",
+  icon : "check",
+  color : "primary",
+  cy : "",
+  doing_icon : "hourglass",
+  doing_text : "Doing...",
+  done_icon : "check",
+  done_text : "Done",
+  context : null,
+  icon_only : false,
+  disabled : false
+};
+
+export function onDoing(event, success = true){
+  let {doing, done, error} = event.detail;
+  doing();
+  setTimeout(() => {
+    if(success){
+      done();
+    } else {
+      error();
+    }
+  }, 2000)
+}
+
+<Meta
+  title="Buttons/Process Button"
+  component={Button}
+  args={args}
+  argTypes={{
+    color: {
+      options: ['primary','success','warning','info','danger','dark','light'],
+      control: 'select'
+    },
+    size: {
+      options: ['default','small', 'medium', 'large'],
+      control: 'select'
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# ProcessButton
+## Process Button with built-in confirmation.
+`}/>
+
+<Canvas>
+  <Story
+  name="Process Button"
+  args={args}
+  >
+  {(args) => ({
+    Component: Button,
+    props: args,
+    on: {
+      doing : onDoing,
+      done: action("Done")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Process Button" />
+
+### Usage
+<Source
+  language="html"
+  code={
+    dedent`
+    <ProcessButton
+      {text}
+      {icon}
+      {doing_icon}
+      {done_icon}
+      {doing_text}
+      {done_text}
+      {color}
+      {size}
+      {icon_only}
+      {disabled}
+      on:doing={onDoing}
+    />
+    <script>
+      import { ProcessButton } from '@kws3/ui';
+      export let color = "primary";
+      export let disabled = false;
+      export let size="";
+      export let icon_only = false;
+      export let text = "Click Me";
+      export let icon = "check";
+      export let doing_icon = "hourglass";
+      export let done_icon = "check";
+      export let doing_text = "Doing";
+      export let done_text = "Done";
+      function eraseDo(event, success = true){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.error();
+        })
+      }
+    </script>`
+  }
+/>
