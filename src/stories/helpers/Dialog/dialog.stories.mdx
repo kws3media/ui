@@ -5,7 +5,10 @@ import DialogDecorator from "./Dialog.svelte";
 import { action } from '@storybook/addon-actions';
 
 export let args={
+  title: "",
   size : "small",
+  input_value: "",
+  icon: "",
   icon_color : "primary",
   icon_size:""
 };
@@ -15,21 +18,29 @@ export let args={
   component={Dialog}
   args={args}
   argTypes={{
+    title:{},
+    help_text:{},
     size:{
       control: {type: "select"},
     },
+    input_value:{},
+    icon:{},
     icon_color: {
       control: { type: "select"}
     },
     icon_size: {
       control: { type: "select"}
     },
+    ok_button_text:{},
     ok_button_color: {
       control: { type: "select"}
     },
+    ok_button_icon:{},
+    cancel_button_text:{},
     cancel_button_color: {
       control: { type: "select"}
     },
+    cancel_button_icon:{}
   }}
 />
 

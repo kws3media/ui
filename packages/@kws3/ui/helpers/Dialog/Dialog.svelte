@@ -49,6 +49,9 @@ For internal use only - not part of config object, Default: `""`
               </div>
             </div>
           {/if}
+          {#if help_text && help_text != ""}
+            <span class="help">{help_text}</span>
+          {/if}
         </div>
       </div>
     </div>
@@ -89,6 +92,10 @@ For internal use only - not part of config object, Default: `""`
    * @type {string}
    */
   export let title = "",
+    /**
+     * Additional text to provide further context to the user
+     */
+    help_text = "",
     /**
      * Size of the dialog box
      * @type {'small'|'medium'|'large'}
