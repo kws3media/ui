@@ -15,6 +15,7 @@
   @param {boolean} [confirm=false] - Boolean - true/false, Default: `false`
   @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
+  @param {boolean} [can_confirm=true] - ask confirm question if it is true, Default: `true`
   @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events

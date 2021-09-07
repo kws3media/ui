@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [button_class=""] - Additional class for button, Default: `""`
   @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
@@ -18,9 +18,9 @@
   @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events
-  - `error`
-  - `doing`
-  - `done`
+  - `doing` - fires an event on doing
+  - `done` - fires an event on error
+  - `error` - fires an event on error
 
 -->
 <ConfirmButton
@@ -39,9 +39,9 @@
   {context}
   {icon_only}
   {disabled}
-  on:error
-  on:do={({ detail }) => fire("doing", detail)}
-  on:done={({ detail }) => fire("done", detail)} />
+  on:error={error}
+  on:do={doing}
+  on:done={done} />
 
 <script>
   import { ConfirmButton } from "@kws3/ui";
@@ -107,6 +107,27 @@
    */
   let klass = "";
   export { klass as class };
+
+  function doing({ detail }) {
+    /**
+     * fires an event on doing
+     */
+    fire("doing", detail);
+  }
+
+  function done({ detail }) {
+    /**
+     * fires an event on error
+     */
+    fire("done", detail);
+  }
+
+  function error(e) {
+    /**
+     * fires an event on error
+     */
+    fire("error", e);
+  }
 
   // reviwed
 </script>
