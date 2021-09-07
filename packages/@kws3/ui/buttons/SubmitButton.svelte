@@ -1,18 +1,25 @@
 <!--
   @component
-
+  
 
   @param {string} [classes=""] - CSS classes, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
   @param {string} [saved_text="Saved"] - Text shows after success, Default: `"Saved"`
-  @param {string} [error_text="Failed to Save"] - Text shows after process complete, Default: `"Failed to Save"`
+  @param {string} [error_text="Failed to Save"] - Text shows after failed, Default: `"Failed to Save"`
   @param {string} [icon="save"] - Icon of the Button - can use any fa icon, Default: `"save"`
   @param {string} [cy="submit"] - data-cy attribute for cypress, Default: `"submit"`
   @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
   @param {object} [tracker={}] - Tracker property, Default: `{}`
+  @param {function} [saving()] - call this function on form saving state
+  @param {function} [saved(callback)] - call this function after form saved
+  @param {function} [error(callback)] - call this function on form error state
+
+  ### Events
+  - `saved`
+  - `error`
 
 -->
 <button
@@ -98,6 +105,9 @@
   $: err_text = error_text == "" ? text : error_text;
   $: icon_size = size == "large" ? "" : "small";
 
+  /**
+   * call this function on form saving state
+   */
   export function saving() {
     tracker = {
       saving: true,
@@ -106,6 +116,9 @@
     };
   }
 
+  /**
+   * call this function after form saved
+   */
   export function saved(callback) {
     tracker = {
       saving: false,
@@ -124,6 +137,9 @@
     }, 1000);
   }
 
+  /**
+   * call this function on form error state
+   */
   export function error(callback) {
     tracker = {
       saving: false,
