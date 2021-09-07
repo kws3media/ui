@@ -1,16 +1,18 @@
 <!--
   @component
-  This is a modal component.
+  
 
-  @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
-  @param {boolean} [is_active=false] - Show or hide modal, Default: `false`
-  @param {boolean} [closable=true] - Show close button, Default: `true`
-  @param {boolean} [close_on_click_outside=false] - Close modal on click outside, Default: `false`
-  @param {string} [style=""] - Inline style for modal, Default: `""`
-  @param {string} [inner_style=""] - Inline style for modal content, Default: `""`
-  @param {string} [classes=""] - CSS classes for modal, Default: `""`
+  @param {'small'|'medium'|'large'} [size="small"] - Size of the modal, Default: `"small"`
+  @param {boolean} [is_active=false] - Determines whether modal is displayed or not, Default: `false`
+  @param {boolean} [closable=true] - If this is set to false, the modal cannot be closed using the UI
+
+Only programmatic closing is possible, Default: `true`
+  @param {boolean} [close_on_click_outside=false] - Determines if a closable modal can be closed by clicking anywhere outside the modal, Default: `false`
+  @param {string} [style=""] - Inline CSS for modal container, Default: `""`
+  @param {string} [inner_style=""] - Inline CSS for modal content, Default: `""`
   @param {string} [inner_class=""] - CSS classes for modal content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [class=""] - CSS class for modal container, Default: `""`
 
   ### Slots
   - `<slot name="default"  />` - Used for the Modal content
