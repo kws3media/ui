@@ -42,9 +42,9 @@
      */
     background_color = "transparent",
     /**
-     * Size of the Spinner container.  It can also accept css units such as 10px | 5rem | 100vh
+     * Size of the Spinner container.  It can also accept css units
      *
-     * (small | medium | large | halfheight | fullheight)
+     * **Examples:** `small` | `medium` | `large` | `halfheight` | `fullheight` | `10px` | `5rem` | `100vh`
      */
     background_size = "medium",
     /**
