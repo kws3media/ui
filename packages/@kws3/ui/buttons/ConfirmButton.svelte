@@ -1,6 +1,6 @@
 <!--
   @component
-
+  
 
   @param {string} [button_class=""] - CSS classes for button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
@@ -19,8 +19,8 @@
   @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events
-  - `done`
-  - `error`
+  - `done` - fires an event on complete
+  - `error` - fires an event on error
 
 -->
 <div class="field {_confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
@@ -89,72 +89,59 @@
   /**
    * CSS classes for button
    */
-  export let button_class = "";
-
-  /**
-   * Button text
-   */
-  export let text = "";
-
-  /**
-   * Size of the Button
-   */
-  export let size = "";
-
-  /**
-   * Icon of the Button - use any fa/gg/unicorn icons
-   */
-  export let icon = "check";
-
-  /**
-   * Color of the Button
-   */
-  export let color = "info";
-
-  /**
-   * data-cy attribute for cypress
-   */
-  export let cy = "";
-
-  /**
-   * Icon shows during process
-   */
-  export let doing_icon = "hourglass";
-
-  /**
-   * Text shows during process
-   */
-  export let doing_text = "Please Wait...";
-
-  /**
-   * Icon shows after process complete
-   */
-  export let done_icon = "check";
-
-  /**
-   * Text shows after process complete
-   */
-  export let done_text = "Done";
-
-  /**
-   * Boolean - true/false
-   */
-  export let confirm = false;
-
-  /**
-   * Display icon only - true/false
-   */
-  export let icon_only = false;
-
-  /**
-   * Button disable - true/false
-   */
-  export let disabled = false;
-
-  /**
-   * ask confirm question if it is true
-   */
-  export let can_confirm = true;
+  export let button_class = "",
+    /**
+     * Button text
+     */
+    text = "",
+    /**
+     * Size of the Button
+     */
+    size = "",
+    /**
+     * Icon of the Button - use any fa/gg/unicorn icons
+     */
+    icon = "check",
+    /**
+     * Color of the Button
+     */
+    color = "info",
+    /**
+     * data-cy attribute for cypress
+     */
+    cy = "",
+    /**
+     * Icon shows during process
+     */
+    doing_icon = "hourglass",
+    /**
+     * Text shows during process
+     */
+    doing_text = "Please Wait...",
+    /**
+     * Icon shows after process complete
+     */
+    done_icon = "check",
+    /**
+     * Text shows after process complete
+     */
+    done_text = "Done",
+    /**
+     * Boolean - true/false
+     */
+    confirm = false,
+    /**
+     * Display icon only - true/false
+     */
+    icon_only = false,
+    /**
+     * Button disable - true/false
+     */
+    disabled = false,
+    /**
+     * ask confirm question if it is true
+     */
+    can_confirm = true;
 
   /**
    * CSS class for button container
@@ -172,6 +159,7 @@
   function cancel() {
     confirm = false;
   }
+
   function doit() {
     let _confirm = can_confirm ? confirm : true;
     if (!_confirm) {
@@ -189,6 +177,7 @@
     _done = false;
     _error = false;
   }
+
   function done() {
     _doing = false;
     _done = true;
@@ -196,9 +185,13 @@
 
     setTimeout(() => {
       _done = false;
+      /**
+       * fires an event on complete
+       */
       fire("done");
     }, 1500);
   }
+
   function error() {
     _done = false;
     _doing = false;
@@ -206,6 +199,9 @@
 
     setTimeout(() => {
       _error = false;
+      /**
+       * fires an event on error
+       */
       fire("error");
     }, 1500);
   }
