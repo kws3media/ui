@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
@@ -26,7 +26,7 @@
   <div class="modal-card is-{size} {inner_class}" style={inner_style}>
     <div class="modal-card-head">
       <div class="modal-card-title">
-        <slot name="title">{title}</slot>
+        <!--Used for the title of Modal--><slot name="title">{title}</slot>
       </div>
       {#if closable}
         <button
@@ -37,12 +37,12 @@
     </div>
 
     <div class="modal-card-body">
-      <slot />
+      <!--Used for the Modal content--><slot />
     </div>
 
     {#if has_footer}
       <div class="modal-card-foot">
-        <slot name="footer" />
+        <!--Used for the footer of Modal--><slot name="footer" />
       </div>
     {/if}
   </div>
