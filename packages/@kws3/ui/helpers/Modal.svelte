@@ -13,7 +13,7 @@
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 
   ### Slots
-  - `<slot name="default"  />` - Slot for disply modal contents
+  - `<slot name="default"  />` - Slot for display modal contents
 
 -->
 
@@ -25,7 +25,7 @@
 
   <div class="modal-content is-{size} {inner_class}" style={inner_style}>
     <div class="box">
-      <!-- Slot for disply modal contents-->
+      <!-- Slot for display modal contents-->
       <slot />
     </div>
   </div>
@@ -57,31 +57,31 @@
   export let size = "small";
 
   /**
-   * Show or hide modal
+   * Determines whether modal is displayed or not
    * @type {boolean}
    */
   export let is_active = false;
 
   /**
-   * Show close button
+   * If this is set to false, the modal cannot be closed using the UI
    * @type {boolean}
    */
   export let closable = true;
 
   /**
-   * Close modal on click outside
+   * Determines if a closable modal can be closed by clicking anywhere outside the modal
    * @type {boolean}
    */
   export let close_on_click_outside = false;
 
   /**
-   * Inline style for modal
+   * Inline CSS for modal
    * @type {string}
    */
   export let style = "";
 
   /**
-   * Inline style for modal content
+   * Inline CSS for modal content
    * @type {string}
    */
   export let inner_style = "";
