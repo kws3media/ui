@@ -7,7 +7,7 @@
   {has_footer}
   {style}
   {inner_style}
-  {classes}
+  class={klass}
   {inner_class}
   {cy}>
   <h1>This is a Heading</h1>
@@ -29,7 +29,9 @@
     has_footer = true,
     style = "",
     inner_style = "",
-    classes = "",
     inner_class = "",
     cy = "";
+
+  let klass = "";
+  export { klass as class };
 </script>
