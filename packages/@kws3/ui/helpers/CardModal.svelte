@@ -79,12 +79,12 @@
      */
     is_active = false,
     /**
-     * If this is set to false, the modal cannot be dismissed at all
+     * If this is set to false, the modal cannot be closed using the UI
      * @type {boolean}
      */
     closable = true,
     /**
-     * Determines if a closable modal can be dismissed by clicking anywhere outside the modal
+     * Determines if a closable modal can be closed by clicking anywhere outside the modal
      * @type {boolean}
      */
     close_on_click_outside = false,
@@ -104,7 +104,7 @@
      */
     inner_style = "",
     /**
-     * Optional CSS classes for the modal content
+     * CSS classes for the modal content
      * @type {string}
      */
     inner_class = "",
@@ -115,7 +115,7 @@
     cy = "";
 
   /**
-   * Optional class for modal
+   * CSS classes for modal
    * @type {string}
    */
   let klass = "";
