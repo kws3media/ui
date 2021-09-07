@@ -38,7 +38,7 @@
      */
     spinner_size = "medium",
     /**
-     * Backgound color of the Spinner container (transparent | warning | info | danger | primary | success | link)
+     * Backgound color of the Spinner container
      * @type {'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'}
      */
     background_color = "transparent",
