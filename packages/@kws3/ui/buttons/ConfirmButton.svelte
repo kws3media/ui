@@ -19,6 +19,7 @@
   @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events
+  - `do` - fires an event on doing
   - `done` - fires an event on complete
   - `error` - fires an event on error
 
@@ -168,10 +169,18 @@
     }
     if (_confirm) {
       /**
-       * fires an event on doing
+       * sveltedoc do not list events, if it is inside a if block
+       * so just doing a hack here
        */
-      fire("do", { doing, done, error });
+      readyToDo();
     }
+  }
+
+  function readyToDo() {
+    /**
+     * fires an event on doing
+     */
+    fire("do", { doing, done, error });
   }
 
   function doing() {
