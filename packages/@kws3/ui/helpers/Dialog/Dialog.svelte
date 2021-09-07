@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title for dialog box, Default: `""`
   @param {'small'|'medium'|'large'} [size="small"] - Size of the dialog box, Default: `"small"`
@@ -83,7 +83,7 @@ For internal use only - not part of config object, Default: `""`
   const fire = createEventDispatcher();
 
   /**
-   * Title for dialog box
+   * Title text of the Dialog box
    * @type {string}
    */
   export let title = "",
@@ -98,21 +98,21 @@ For internal use only - not part of config object, Default: `""`
      */
     input_value = "",
     /**
-     * Icon on the dialog
+     * Icon in the Dialog box
      */
     icon = "",
     /**
-     * Color of the Icon
+     * Color of the Icon in the Dialog box
      * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     icon_color = "primary",
     /**
-     * Size of the Icon
+     * Size of the Icon in the Dialog box
      * @type {'small'|'medium'|'large'}
      */
     icon_size = "",
     /**
-     * Text to be displayed on the OK button
+     * Text to be displayed in the OK button
      */
     ok_button_text = "Ok",
     /**
@@ -121,12 +121,12 @@ For internal use only - not part of config object, Default: `""`
      */
     ok_button_color = "primary",
     /**
-     * Icon on the OK button
+     * Icon in the OK button
      * @type {string}
      */
     ok_button_icon = "check",
     /**
-     * Text to be displayed on the Cancel button
+     * Text to be displayed in the Cancel button
      */
     cancel_button_text = "Cancel",
     /**
@@ -135,7 +135,7 @@ For internal use only - not part of config object, Default: `""`
      */
     cancel_button_color = "",
     /**
-     * Icon on the Cancel button
+     * Icon in the Cancel button
      * @type {string}
      */
     cancel_button_icon = "ban";
