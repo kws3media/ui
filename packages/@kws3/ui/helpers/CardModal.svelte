@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the modal, Default: `""`
@@ -72,7 +72,7 @@
      * Size of the modal
      * @type {'small'|'medium'|'large'}
      */
-    size = "",
+    size = "small",
     /**
      * Determines whether modal is displayed or not
      * @type {boolean}
