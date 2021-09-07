@@ -16,7 +16,7 @@
 <div class={has_overlay ? "is-overlay" : ""}>
   <div
     class="kws-loader hero is-{background_color} is-{background_size}"
-    {style}>
+    {_style}>
     <div
       class="hero-body is-{spinner_color} is-{spinner_size}"
       style={is_inline ? "padding:1rem" : ""}>
@@ -60,18 +60,20 @@
      */
     style = "";
 
-  let bg_size = ["small", "medium", "large", "halfheight", "fullheight"];
+  let bg_size = ["small", "medium", "large", "halfheight", "fullheight"],
+    _height = "",
+    _style = "";
 
   $: if (
     bg_size.indexOf(background_size) == -1 &&
     typeof background_size == "string" &&
     background_size.length
   ) {
-    let height = "height: " + background_size + ";";
+    _height = "height: " + background_size + ";";
 
-    style =
+    _style =
       (style.length && style.charAt(style.length - 1) != ";"
         ? style + ";"
-        : style) + height;
+        : style) + _height;
   }
 </script>
