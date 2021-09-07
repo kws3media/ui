@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [button_class=""] - CSS classes for button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
@@ -22,9 +22,9 @@
   - `error`
 
 -->
-<div class="field {confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
+<div class="field {_confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
   <p class="control">
-    {#if confirm}
+    {#if _confirm}
       <button
         class="button is-success is-outlined is-shadowless is-{size} {button_class}"
         type="button"
@@ -57,7 +57,7 @@
         {#if !icon_only}
           <span>{doing_text}</span>
         {/if}
-      {:else if confirm}
+      {:else if _confirm}
         <span>
           {#if !icon_only}
             Are you sure
@@ -151,6 +151,11 @@
   export let disabled = false;
 
   /**
+   * ask confirm question if it is true
+   */
+  export let can_confirm = true;
+
+  /**
    * CSS class for button container
    */
   let klass = "";
@@ -167,7 +172,7 @@
     confirm = false;
   }
   function doit() {
-    let _confirm = confirm;
+    let _confirm = can_confirm ? confirm : true;
     if (!_confirm) {
       confirm = true;
       return;
@@ -203,6 +208,8 @@
       fire("error");
     }, 1500);
   }
+
+  $: _confirm = can_confirm && confirm;
 
   // reviwed
 </script>
