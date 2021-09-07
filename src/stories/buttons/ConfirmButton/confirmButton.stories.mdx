@@ -33,6 +33,16 @@ export function confirmDo(event, success = true){
   title="Buttons/Confirm Button"
   component={Button}
   args={args}
+  argTypes={{
+    color: {
+      options: ['primary','success','warning','info','danger','dark','light'],
+      control: 'select'
+    },
+    size: {
+      options: ['','small', 'medium', 'large'],
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`

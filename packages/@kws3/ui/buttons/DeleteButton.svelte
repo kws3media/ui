@@ -2,8 +2,7 @@
   @component
 
 
-  @param {string} [classes=""] - CSS classes, Default: `""`
-  @param {string} [button_class=""] - CSS classes for button, Default: `""`
+  @param {string} [button_class=""] - Additional class for button, Default: `""`
   @param {string} [text="Delete"] - Button text, Default: `"Delete"`
   @param {string} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="minus-circle"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"minus-circle"`
@@ -16,6 +15,7 @@
   @param {object} [context=null] - Context property, Default: `null`
   @param {boolean} [icon_only=false] - Icon Only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events
   - `error`
