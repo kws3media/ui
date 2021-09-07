@@ -1,20 +1,20 @@
 <!--
   @component
+  
 
-
-  @param {string} [button_class=""] - Additional class for button, Default: `""`
-  @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
-  @param {string} [size=""] - Size of the Button, Default: `""`
-  @param {string} [icon="check"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {string} [color="primary"] - Color of the Button, Default: `"primary"`
-  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
-  @param {string} [doing_text="Doing..."] - Text showing after confirm, Default: `"Doing..."`
-  @param {string} [done_icon="check"] - Icon showing after success - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {string} [done_text="Done"] - Text showing after success, Default: `"Done"`
-  @param {object} [context=null] - Context property, Default: `null`
-  @param {boolean} [icon_only=false] - Icon Only - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {string} [button_class=""] - `CONST` Additional class for button, Default: `""`
+  @param {string} [text="Click Me"] - `CONST` Button text, Default: `"Click Me"`
+  @param {string} [size=""] - `CONST` Size of the Button, Default: `""`
+  @param {string} [icon="check"] - `CONST` Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
+  @param {string} [color="primary"] - `CONST` Color of the Button, Default: `"primary"`
+  @param {string} [cy=""] - `CONST` data-cy attribute for cypress, Default: `""`
+  @param {string} [doing_icon="hourglass"] - `CONST` Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
+  @param {string} [doing_text="Doing..."] - `CONST` Text showing after confirm, Default: `"Doing..."`
+  @param {string} [done_icon="check"] - `CONST` Icon showing after success - use any fa/gg/unicorn icons, Default: `"check"`
+  @param {string} [done_text="Done"] - `CONST` Text showing after success, Default: `"Done"`
+  @param {object} [context=null] - `CONST` Context property, Default: `null`
+  @param {boolean} [icon_only=false] - `CONST` Icon Only - true/false, Default: `false`
+  @param {boolean} [disabled=false] - `CONST` Disabled - true/false, Default: `false`
   @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events
@@ -24,21 +24,8 @@
 
 -->
 <ConfirmButton
+  {...properties}
   can_confirm={false}
-  class={klass}
-  {button_class}
-  {text}
-  {size}
-  {icon}
-  {color}
-  {cy}
-  {doing_icon}
-  {doing_text}
-  {done_icon}
-  {done_text}
-  {context}
-  {icon_only}
-  {disabled}
   on:error={error}
   on:do={doing}
   on:done={done} />
@@ -52,7 +39,7 @@
   /**
    * Additional class for button
    */
-  export let button_class = "",
+  export const button_class = "",
     /**
      * Button text
      */
@@ -105,8 +92,10 @@
   /**
    * CSS class for button container
    */
-  let klass = "";
+  const klass = "";
   export { klass as class };
+
+  $: properties = { ...$$props };
 
   function doing({ detail }) {
     /**
