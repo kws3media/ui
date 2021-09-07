@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title text of the Dialog box, Default: `""`
   @param {'small'|'medium'|'large'} [size="small"] - Size of the dialog box, Default: `"small"`
@@ -28,26 +28,28 @@ For internal use only - not part of config object, Default: `""`
 <svelte:window on:keydown={window_keydown} />
 <CardModal title={titleToUse} {size} {is_active} closable={false}>
   <div slot="default">
-    <div class="media">
+    <div class="columns is-vcentered is-mobile">
       {#if icon && icon != ""}
-        <div class="media-left">
+        <div class="column is-narrow">
           <Icon {icon} size={icon_size} color={icon_color} />
         </div>
       {/if}
-      <div class="media-content">
-        <span class="is-block">{@html _text}</span>
-        {#if _type == "prompt"}
-          <div class="field" style="margin-top:0.5rem;">
-            <div class="control">
-              <input
-                bind:this={input_box}
-                on:keyup={(e) => isEnterKey(e) && ok()}
-                type="text"
-                class="input"
-                bind:value={input_value} />
+      <div class="column">
+        <div>
+          <span class="is-block">{@html _text}</span>
+          {#if _type == "prompt"}
+            <div class="field" style="margin-top:0.5rem;">
+              <div class="control">
+                <input
+                  bind:this={input_box}
+                  on:keyup={(e) => isEnterKey(e) && ok()}
+                  type="text"
+                  class="input"
+                  bind:value={input_value} />
+              </div>
             </div>
-          </div>
-        {/if}
+          {/if}
+        </div>
       </div>
     </div>
   </div>
