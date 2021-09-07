@@ -1,14 +1,18 @@
 <!--
   @component
+  
 
-
-  @param {string} [size=""] - Size of the Icon ('small'|'medium'|'large'), Default: `""`
-  @param {string} [color=""] - Color of the Icon ('primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'), Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Icon ('small'|'medium'|'large')
+*, Default: `""`
+  @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
   @param {string} [icon=""] - Icon name to display, Default: `""`
+  @param {'fa'|'lar'|'las'|'gg'|'unicons'} [family=""] - Icon family, defaults to global family set via `setDefaultIconType()`
+
+Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   @param {string} [style=""] - Inline style of icon, Default: `""`
   @param {string} [inner_class=""] - Inner class of icon, Default: `""`
   @param {string} [inner_style=""] - Inline style for Icon, Default: `""`
-  @param {string} [class=""] - `CONST` CSS classes for icon, Default: `""`
+  @param {string} [class=""] - CSS classes for icon, Default: `""`
 
   ### Module
   @param {function} [setDefaultIconType(type)] - It can set default icon type
