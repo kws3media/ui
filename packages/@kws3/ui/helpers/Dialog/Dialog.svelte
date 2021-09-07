@@ -1,19 +1,19 @@
 <!--
   @component
+  
 
-
-  @param {string} [title=""] - Title for dialog box, Default: `""`
+  @param {string} [title=""] - Title text of the Dialog box, Default: `""`
   @param {'small'|'medium'|'large'} [size="small"] - Size of the dialog box, Default: `"small"`
   @param {string} [input_value=""] - Default value inside text input displayed on `prompt()` dialogs, Default: `""`
-  @param {string} [icon=""] - Icon on the dialog, Default: `""`
-  @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [icon_color="primary"] - Color of the Icon, Default: `"primary"`
-  @param {'small'|'medium'|'large'} [icon_size=""] - Size of the Icon, Default: `""`
-  @param {string} [ok_button_text="Ok"] - Text to be displayed on the OK button, Default: `"Ok"`
+  @param {string} [icon=""] - Icon in the Dialog box, Default: `""`
+  @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [icon_color="primary"] - Color of the Icon in the Dialog box, Default: `"primary"`
+  @param {'small'|'medium'|'large'} [icon_size=""] - Size of the Icon in the Dialog box, Default: `""`
+  @param {string} [ok_button_text="Ok"] - Text to be displayed in the OK button, Default: `"Ok"`
   @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [ok_button_color="primary"] - Color of OK button, Default: `"primary"`
-  @param {string} [ok_button_icon="check"] - Icon on the OK button, Default: `"check"`
-  @param {string} [cancel_button_text="Cancel"] - Text to be displayed on the Cancel button, Default: `"Cancel"`
+  @param {string} [ok_button_icon="check"] - Icon in the OK button, Default: `"check"`
+  @param {string} [cancel_button_text="Cancel"] - Text to be displayed in the Cancel button, Default: `"Cancel"`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [cancel_button_color=""] - Color of Cancel button, Default: `""`
-  @param {string} [cancel_button_icon="ban"] - Icon on the Cancel button, Default: `"ban"`
+  @param {string} [cancel_button_icon="ban"] - Icon in the Cancel button, Default: `"ban"`
   @param {string} [_type=""] - Determines the type of dialog.
 
 For internal use only - not part of config object, Default: `""`
