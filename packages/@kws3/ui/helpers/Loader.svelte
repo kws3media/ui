@@ -1,16 +1,15 @@
 <!--
   @component
+  
 
-
-  @param {string} [spinner_color="grey"] - Color of the Spinner (grey | light | warning | info | danger | primary | success), Default: `"grey"`
-  @param {string} [spinner_size="medium"] - Size of the Spinner (small | medium | large), Default: `"medium"`
-  @param {string} [background_color="transparent"] - Backgound color of the Spinner container (transparent | warning | info | danger | primary | success | link), Default: `"transparent"`
-  @param {string} [background_size="medium"] - Size of the Spinner container.  It can also accept css units such as 10px | 5rem | 100vh
-
-(small | medium | large | halfheight | fullheight), Default: `"medium"`
+  @param {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [spinner_color="grey"] - Color of the Spinner, Default: `"grey"`
+  @param {'small'|'medium'|'large'} [spinner_size="medium"] - Size of the Spinner, Default: `"medium"`
+  @param {'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'} [background_color="transparent"] - Backgound color of the Spinner container, Default: `"transparent"`
+  @param {'small' | 'medium' | 'large' | 'halfheight' | 'fullheight'} [background_size="medium"] - Size of the Spinner container.  It can also accept css units such as 10px | 5rem | 100vh, Default: `"medium"`
   @param {boolean} [is_inline=false] - Determines if the Loader is inline or not, Default: `false`
   @param {boolean} [has_overlay=false] - Determines if loader is displayed on top of a semi-transparent overlay, Default: `false`
   @param {string} [style=""] - Inline CSS for Loader, Default: `""`
+  @param {string} [class=""] - CSS class for Loader, Default: `""`
 
 -->
 <div class={has_overlay ? "is-overlay" : ""}>
