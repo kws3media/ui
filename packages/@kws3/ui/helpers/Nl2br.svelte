@@ -1,3 +1,10 @@
+<!--
+  @component
+
+
+  @param {string} [text=""] - New line(`\n`) of the text will replace with line break(`&lt;br/&gt;`), Default: `""`
+
+-->
 {#if text && text_parts}
   {#each text_parts as part, index}
     {part}{#if text_parts.length != index + 1}<br />{/if}
