@@ -258,7 +258,7 @@ function getDescription(e, suffix = "") {
     e.description ||
     `${e.name.charAt(0).toUpperCase() + e.name.slice(1)} ${suffix}`;
 
-  if (e.kind == "const") {
+  if (e.kind == "const" && typeof e.localName == "undefined") {
     description = "`CONST` " + description;
   }
 
