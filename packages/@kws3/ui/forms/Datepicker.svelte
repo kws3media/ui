@@ -1,9 +1,10 @@
 <!--
   @component
-
+  
 
   @param {string} [value=""] - Input field value, Default: `""`
   @param {string} [style=""] - Inline styles for input field, Default: `""`
+  @param {string} [placeholder="Select Date.."] - Placeholder for input field, Default: `"Select Date.."`
   @param {boolean} [disabled=false] - Disable input field, Default: `false`
   @param {object} [options={}] - Flatpicker options, Default: `{}`
   @param {string} [class=""] - Input field classes, Default: `""`
@@ -16,8 +17,8 @@
       class="input {klass}"
       type="text"
       readonly
-      placeholder="Select Date.."
       data-input
+      {placeholder}
       {style}
       {disabled} />
   </div>
@@ -35,6 +36,10 @@
      * Inline styles for input field
      */
     style = "",
+    /**
+     * Placeholder for input field
+     */
+    placeholder = "Select Date..",
     /**
      * Disable input field
      */
