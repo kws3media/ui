@@ -30,12 +30,12 @@
   export let color = "info";
 
   /**
-   * Inline style for modal content
+   * Inline style for notification content
    */
   export let style = "";
 
   /**
-   * Light Notification
+   * Inverted style of notification
    */
   export let light = false;
 
