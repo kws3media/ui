@@ -62,9 +62,6 @@ $kws-loader-overlay-background: rgba(0,0,0,0.15) !default;
     z-index:3;
     .hero-body{
       padding:0;
-      :global(.icon){
-        text-shadow:none;
-      }
     }
   }
 }
