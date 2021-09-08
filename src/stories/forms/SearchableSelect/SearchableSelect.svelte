@@ -7,7 +7,7 @@
   {placeholder}
   {filter}
   {style}
-  {classes}
+  class={klass}
   {dd_class}
   {cy}
   {open}
@@ -33,10 +33,12 @@
 
   export let filter = "",
     style = "",
-    classes = "",
     dd_class = "",
     cy = "",
     open = false,
     disabled = false,
     placeholder = "Choose a Brand...";
+
+  let klass = "";
+  export { klass as class };
 </script>

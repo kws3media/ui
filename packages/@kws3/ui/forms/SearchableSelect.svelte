@@ -1,9 +1,27 @@
+<!--
+  @component
+
+
+  @param {string} [value=""] - Bind value, Default: `""`
+  @param {string} [filter=""] - Filter, Default: `""`
+  @param {string} [style=""] - Inline styles, Default: `""`
+  @param {string} [dd_class=""] - Dropdown class, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {object} [searchKey=null] - which key to search in each data object, Default: `null`
+  @param {object} [searchValue=null] - which value to search in each data object, Default: `null`
+  @param {array} [data=[]] - Object of option values, Default: `[]`
+  @param {boolean} [open=false] - Open - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {string} [placeholder=""] - Placeholder string, Default: `""`
+  @param {string} [class=""] - Additional class for container, Default: `""`
+
+-->
 <svelte:window on:resize={close} />
 <div
   bind:this={searchableselect}
   class="searchableselect input is-shadowless {disabled
     ? ' is-disabled '
-    : ' '} {classes}"
+    : ' '} {klass}"
   on:click={openDropdown}
   {style}
   data-cy="select-container">
@@ -54,64 +72,54 @@
 
   /**
    * Bind value
-   * @type {string}
    */
   export let value = "",
     /**
      * Filter
-     * @type {string}
      */
     filter = "",
     /**
      * Inline styles
-     * @type {string}
      */
     style = "",
     /**
-     * Additional classes
-     * @type {string}
-     */
-    classes = "",
-    /**
      * Dropdown class
-     * @type {string}
      */
     dd_class = "",
     /**
      * data-cy attribute for cypress
-     * @type {string}
      */
     cy = "",
     /**
      * which key to search in each data object
-     * @type {string}
      */
     searchKey = null,
     /**
      * which value to search in each data object
-     * @type {string}
      */
     searchValue = null,
     /**
      * Object of option values
-     * @type {object}
      */
     data = [],
     /**
      * Open - true/false
-     * @type {boolean}
      */
     open = false,
     /**
      * Disabled - true/false
-     * @type {boolean}
      */
     disabled = false,
     /**
      * Placeholder string
-     * @type {string}
      */
     placeholder = "";
+
+  /**
+   * Additional class for container
+   */
+  let klass = "";
+  export { klass as class };
 
   let _name = "",
     scrollTarget = null,
