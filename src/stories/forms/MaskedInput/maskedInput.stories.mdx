@@ -5,6 +5,7 @@ import MaskedInputDecorator from './MaskedInput.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
+  mask:[/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/],
   showMask : true,
   guide : true,
   guideOnOutput : true,
