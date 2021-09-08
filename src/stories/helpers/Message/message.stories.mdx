@@ -11,7 +11,6 @@ export let args={
   style : "",
   inner_class : "",
   inner_style : "",
-  classes : "",
   header_classes : "",
   title : "This is a message box",
   has_title : false,
@@ -24,11 +23,9 @@ export let args={
   args={args}
   argTypes={{
     color: {
-      options: ['primary','warning','info','danger','dark','light'],
       control: 'select'
     },
     size: {
-      options: ['', 'small', 'medium', 'large'],
       control: 'select'
     }
   }}

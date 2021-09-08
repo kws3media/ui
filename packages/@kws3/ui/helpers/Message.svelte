@@ -21,10 +21,7 @@ Can use the slot title like..<br/>
   - `<slot name="default"  />` - Used for message content
 
 -->
-<div
-  class="message is-{color} is-{size} {classes} {klass}"
-  {style}
-  bind:this={_comp}>
+<div class="message is-{color} is-{size} {klass}" {style} bind:this={_comp}>
   <div class="{title || has_title ? 'message-header' : ''} {header_classes}">
     {#if title || has_title}
       <!--
@@ -64,11 +61,6 @@ Can use the slot title like..<br/>
      * @type {string}
      */
     inner_style = "",
-    /**
-     * CSS classes for message box
-     * @type {string}
-     */
-    classes = "",
     /**
      * CSS classes for message header
      * @type {string}
