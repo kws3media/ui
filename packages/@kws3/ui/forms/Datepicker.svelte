@@ -10,7 +10,14 @@
   @param {string} [class=""] - Input field classes, Default: `""`
 
   ### Events
-  - `change` - Date change event
+  - `change` - Change event
+  - `ready` - Ready event
+  - `open` - Open event
+  - `close` - Close event
+  - `monthChange` - Month change event
+  - `yearChange` - Year change event
+  - `valueUpdate` - Value update event
+  - `dayCreate` - Day create event
 
 -->
 
@@ -18,7 +25,46 @@
   options={_options}
   bind:value
   element="#kws-picker"
-  on:change={handleChange}>
+  on:change={({ detail }) =>
+    /**
+     * Change event
+     */
+    fire("change", detail)}
+  on:ready={({ detail }) =>
+    /**
+     * Ready event
+     */
+    fire("ready", detail)}
+  on:open={({ detail }) =>
+    /**
+     * Open event
+     */
+    fire("open", detail)}
+  on:close={({ detail }) =>
+    /**
+     * Close event
+     */
+    fire("close", detail)}
+  on:monthChange={({ detail }) =>
+    /**
+     * Month change event
+     */
+    fire("monthChange", detail)}
+  on:yearChange={({ detail }) =>
+    /**
+     * Year change event
+     */
+    fire("yearChange", detail)}
+  on:valueUpdate={({ detail }) =>
+    /**
+     * Value update event
+     */
+    fire("valueUpdate", detail)}
+  on:dayCreate={({ detail }) =>
+    /**
+     * Day create event
+     */
+    fire("dayCreate", detail)}>
   <div class="flatpickr" id="kws-picker">
     <input
       class="input {klass}"
@@ -82,12 +128,5 @@
       },
       options
     );
-  }
-
-  function handleChange(event) {
-    /**
-     * Date change event
-     */
-    fire("change", event.detail);
   }
 </script>
