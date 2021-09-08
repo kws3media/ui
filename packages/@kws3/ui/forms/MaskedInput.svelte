@@ -11,14 +11,41 @@
 <script>
   import { onMount } from "svelte";
   import { createTextMaskInputElement, conformToMask } from "text-mask-core";
+  /**
+   * Input Mask format
+   */
   export let mask = [],
+    /**
+     * Display the mask as a placeholder in place of the regular placeholder when the input element value is empty
+     */
     showMask = false,
+    /**
+     * When set to true (default), both placeholder characters and non-placeholder mask characters are shown
+     */
     guide = true,
+    /**
+     * Whether the output should contain guide characters
+     */
     guideOnOutput = false,
+    /**
+     * When set to true (default), deleting a character leaves an empty space to allow overwriting
+     */
     keepCharPositions = true,
+    /**
+     * Placeholder text
+     */
     placeholder = "",
+    /**
+     * Additional class for input
+     */
     classes = "",
+    /**
+     * Input Element
+     */
     inputElement = null,
+    /**
+     * Value of input
+     */
     value = null;
 
   onMount(() => {
@@ -44,7 +71,6 @@
   }*/
 
   function updateMask() {
-    console.log(value);
     if (value) {
       const result = conformToMask(value, mask, {
         guide: guideOnOutput,
