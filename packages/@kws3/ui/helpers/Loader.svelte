@@ -60,9 +60,9 @@ When using this, ensure the parent container is relatively positioned. Because t
     /**
      * Determines if loader is displayed on top of a semi-transparent overlay.
      *
-     * When using this, ensure the parent container is relatively positioned. Because the overlay is absolutely positioned.
-     *
      * `background_color` is ignored when this is set to `true`
+     *
+     * The overlay is absolutely positioned. Ensure that the parent container is relatively positioned when using this.
      */
     has_overlay = false,
     /**
