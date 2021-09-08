@@ -1,12 +1,12 @@
 <!--
   @component
-
+  
 
   @param {'primary'|'success'|'warning'|'info'|'danger'|'light'|'dark'} [color="info"] - Color of the Notification box, Default: `"info"`
-  @param {string} [style=""] - Inline style for modal content, Default: `""`
-  @param {boolean} [light=false] - Light Notification, Default: `false`
+  @param {string} [style=""] - Inline style for notification content, Default: `""`
+  @param {boolean} [light=false] - Inverted style of notification, Default: `false`
   @param {boolean} [dismissable=false] - Show close button, Default: `false`
-  @param {string} [class=""] - `CONST` Additional class for Notification container, Default: `""`
+  @param {string} [class=""] - Additional class for Notification container, Default: `""`
 
   ### Slots
   - `<slot name="default"  />` - Used for notification content
