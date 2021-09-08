@@ -4,9 +4,9 @@
 
   @param {string} [button_class=""] - `CONST` Additional class for button, Default: `""`
   @param {string} [text="Click Me"] - `CONST` Button text, Default: `"Click Me"`
-  @param {string} [size=""] - `CONST` Size of the Button, Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - `CONST` Size of the Button, Default: `""`
   @param {string} [icon="check"] - `CONST` Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {string} [color="primary"] - `CONST` Color of the Button, Default: `"primary"`
+  @param {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - `CONST` Color of the Button, Default: `"primary"`
   @param {string} [cy=""] - `CONST` data-cy attribute for cypress, Default: `""`
   @param {string} [doing_icon="hourglass"] - `CONST` Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
   @param {string} [doing_text="Doing..."] - `CONST` Text showing after confirm, Default: `"Doing..."`
@@ -19,7 +19,7 @@
 
   ### Events
   - `doing` - fires an event on doing
-  - `done` - fires an event on error
+  - `done` - fires an event on complete
   - `error` - fires an event on error
 
 -->
@@ -46,6 +46,7 @@
     text = "Click Me",
     /**
      * Size of the Button
+     * @type {'small'|'medium'|'large'}
      */
     size = "",
     /**
@@ -54,6 +55,7 @@
     icon = "check",
     /**
      * Color of the Button
+     * @type {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
     color = "primary",
     /**

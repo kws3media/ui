@@ -4,9 +4,9 @@
 
   @param {string} [button_class=""] - CSS classes for button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
-  @param {string} [size=""] - Size of the Button, Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="check"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {string} [color="info"] - Color of the Button, Default: `"info"`
+  @param {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="info"] - Color of the Button, Default: `"info"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [doing_icon="hourglass"] - Icon shows during process, Default: `"hourglass"`
   @param {string} [doing_text="Please Wait..."] - Text shows during process, Default: `"Please Wait..."`
@@ -97,6 +97,7 @@
     text = "",
     /**
      * Size of the Button
+     * @type {'small'|'medium'|'large'}
      */
     size = "",
     /**
@@ -105,6 +106,7 @@
     icon = "check",
     /**
      * Color of the Button
+     * @type {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
     color = "info",
     /**
