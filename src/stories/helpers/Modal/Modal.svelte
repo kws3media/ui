@@ -3,10 +3,10 @@
   bind:is_active
   {closable}
   {close_on_click_outside}
+  class={klass}
   {style}
-  {inner_style}
-  {classes}
   {inner_class}
+  {inner_style}
   {cy}>
   <h1>This is a Heading</h1>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -19,13 +19,15 @@
 
 <script>
   import { Modal as KwsModal } from "@kws3/ui";
-  export let size = "";
-  export let is_active = false;
-  export let closable = true;
-  export let close_on_click_outside = false;
-  export let style = "";
-  export let inner_style = "";
-  export let classes = "";
-  export let inner_class = "";
-  export let cy = "";
+  export let size = "",
+    is_active = false,
+    closable = true,
+    close_on_click_outside = false,
+    style = "",
+    inner_style = "",
+    inner_class = "",
+    cy = "";
+
+  let klass = "";
+  export { klass as class };
 </script>
