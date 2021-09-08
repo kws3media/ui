@@ -9,9 +9,16 @@
   @param {object} [options={}] - Flatpicker options, Default: `{}`
   @param {string} [class=""] - Input field classes, Default: `""`
 
+  ### Events
+  - `change` - Date change event
+
 -->
 
-<Flatpickr options={_options} bind:value element="#kws-picker">
+<Flatpickr
+  options={_options}
+  bind:value
+  element="#kws-picker"
+  on:change={handleChange}>
   <div class="flatpickr" id="kws-picker">
     <input
       class="input {klass}"
@@ -25,8 +32,12 @@
 </Flatpickr>
 
 <script>
+  import { createEventDispatcher } from "svelte";
+
   import Flatpickr from "svelte-flatpickr";
   import "flatpickr/dist/flatpickr.css";
+
+  const fire = createEventDispatcher();
 
   /**
    * Input field value
@@ -71,5 +82,12 @@
       },
       options
     );
+  }
+
+  function handleChange(event) {
+    /**
+     * Date change event
+     */
+    fire("change", event.detail);
   }
 </script>
