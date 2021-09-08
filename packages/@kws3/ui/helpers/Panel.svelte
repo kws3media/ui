@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the panel, Default: `""`
   @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
@@ -83,15 +83,15 @@ Can be used to display title area even when there is no title content, Default: 
      */
     subtitle = "",
     /**
-     * Inline CSS for Panel Container
+     * Inline CSS for Panel container
      */
     style = "",
     /**
-     * Optional class for Panel Content
+     * CSS classes for Panel content
      */
     inner_class = "",
     /**
-     * Inline CSS for Panel Content
+     * Inline CSS for Panel content
      */
     inner_style = "",
     /**
@@ -121,7 +121,7 @@ Can be used to display title area even when there is no title content, Default: 
      */
     has_toolbar = true,
     /**
-     * Used to show or hide centre slot contents (slot=“center”)
+     * Used to show or hide center slot contents of the title area (slot=“center”)
      */
     has_center = true,
     /**
@@ -132,7 +132,7 @@ Can be used to display title area even when there is no title content, Default: 
     has_title = false;
 
   /**
-   * Panel container class
+   * CSS classes for Panel container
    */
   let klass = "";
   export { klass as class };
