@@ -1,18 +1,17 @@
 <!--
   @component
+  
 
-
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Icon ('small'|'medium'|'large')
-*, Default: `""`
-  @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
-  @param {string} [icon=""] - Icon name to display, Default: `""`
-  @param {'fa'|'lar'|'las'|'gg'|'unicons'} [family=""] - Icon family, defaults to global family set via `setDefaultIconType()`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
+  @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
+  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [family=""] - Icon family, defaults to global family set via `setDefaultIconType()`
 
 Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
-  @param {string} [style=""] - Inline style of icon, Default: `""`
-  @param {string} [inner_class=""] - Inner class of icon, Default: `""`
-  @param {string} [inner_style=""] - Inline style for Icon, Default: `""`
-  @param {string} [class=""] - CSS classes for icon, Default: `""`
+  @param {string} [style=""] - Inline CSS for icon container, Default: `""`
+  @param {string} [inner_class=""] - CSS classes for icon, Default: `""`
+  @param {string} [inner_style=""] - Inline CSS for icon, Default: `""`
+  @param {string} [class=""] - CSS classes for icon container, Default: `""`
 
   ### Module
   @param {function} [setDefaultIconType(type)] - It can set default icon type
@@ -70,41 +69,41 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 
 <script>
   /**
-   * Size of the Icon ('small'|'medium'|'large')
-   * * @type {'small'|'medium'|'large'}
+   * Size of the Icon
+   *  @type {''|'small'|'medium'|'large'}
    */
   export let size = "",
     /**
      * Color of the Icon
-     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
-     * Icon name to display
+     * The name of the icon that is to be displayed, from the relevant icon family
      */
     icon = "",
     /**
      * Icon family, defaults to global family set via `setDefaultIconType()`
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
-     * @type {'fa'|'lar'|'las'|'gg'|'unicons'}
+     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}
      */
     family = "",
     /**
-     * Inline style of icon
+     * Inline CSS for icon container
      */
     style = "",
     /**
-     * Inner class of icon
+     * CSS classes for icon
      */
     inner_class = "",
     /**
-     * Inline style for Icon
+     * Inline CSS for icon
      */
     inner_style = "";
 
   /**
-   * CSS classes for icon
+   * CSS classes for icon container
    */
   let klass = "";
   export { klass as class };
