@@ -1,6 +1,6 @@
 <!--
   @component
-
+  
 
   @param {string} [title=""] - Title of the panel, Default: `""`
   @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
@@ -11,7 +11,7 @@
   @param {string} [collapse_icon="caret-right"] - Icon indicating whether Panel is collapsible, Default: `"caret-right"`
   @param {boolean} [collapsible=false] - Determines whether panel is collapsible, Default: `false`
   @param {boolean} [collapsed=false] - Determines whether Panel is currently collapsed or not, Default: `false`
-  @param {boolean} [relative=false] - Indicates whether the Panel has position: relative or not
+  @param {boolean} [relative=false] - Indicates whether the Panel has `position: relative` or not
 
 You might need this if there are absolutely positioned elements inside the Panel, Default: `false`
   @param {boolean} [has_toolbar=true] - Used to show or hide toolbar slot contents (slot=“toolbar”), Default: `true`
@@ -111,7 +111,7 @@ Can be used to display title area even when there is no title content, Default: 
      */
     collapsed = false,
     /**
-     * Indicates whether the Panel has position: relative or not
+     * Indicates whether the Panel has `position: relative` or not
      *
      * You might need this if there are absolutely positioned elements inside the Panel
      */
