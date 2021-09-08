@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [spinner_color="grey"] - Color of the Spinner, Default: `"grey"`
   @param {'small'|'medium'|'large'} [spinner_size="medium"] - Size of the Spinner, Default: `"medium"`
@@ -20,7 +20,7 @@ When using this, ensure the parent container is relatively positioned. Because t
 -->
 <div class={has_overlay ? "is-overlay" : ""}>
   <div
-    class="kws-loader hero is-{background_color} is-{background_size} {klass}"
+    class="kws-loader hero is-{background_color} is-{_background_size} {klass}"
     style={_style}>
     <div
       class="hero-body is-{spinner_color} is-{spinner_size}"
@@ -79,18 +79,28 @@ When using this, ensure the parent container is relatively positioned. Because t
 
   let bg_sizes = ["small", "medium", "large", "halfheight", "fullheight"],
     _height = "",
-    _style = "";
+    _style = "",
+    _background_size = "";
 
-  $: if (
-    bg_sizes.indexOf(background_size) == -1 &&
-    typeof background_size == "string" &&
-    background_size.length
-  ) {
-    _height = "height: " + background_size + ";";
+  $: background_size, determineHeightStyles();
 
-    _style =
-      (style.length && style.charAt(style.length - 1) != ";"
-        ? style + ";"
-        : style) + _height;
+  function determineHeightStyles() {
+    if (
+      bg_sizes.indexOf(background_size) == -1 &&
+      typeof background_size == "string" &&
+      background_size.length
+    ) {
+      _height = "height: " + background_size + ";";
+
+      _style =
+        (style.length && style.charAt(style.length - 1) != ";"
+          ? style + ";"
+          : style) + _height;
+      _background_size = "";
+    } else {
+      _height = "";
+      _background_size = background_size;
+      _style = style;
+    }
   }
 </script>
