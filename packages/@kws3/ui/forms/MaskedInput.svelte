@@ -1,3 +1,18 @@
+<!--
+  @component
+  
+
+  @param {array} [mask=[]] - Input Mask format, Default: `[]`
+  @param {boolean} [showMask=false] - Display the mask as a placeholder in place of the regular placeholder when the input element value is empty, Default: `false`
+  @param {boolean} [guide=true] - When set to true (default), both placeholder characters and non-placeholder mask characters are shown, Default: `true`
+  @param {boolean} [guideOnOutput=false] - Whether the output should contain guide characters, Default: `false`
+  @param {boolean} [keepCharPositions=true] - When set to true (default), deleting a character leaves an empty space to allow overwriting, Default: `true`
+  @param {string} [placeholder=""] - Placeholder text, Default: `""`
+  @param {object} [inputElement=null] - Input Element, Default: `null`
+  @param {object} [value=null] - Value of input, Default: `null`
+  @param {string} [class=""] - Additional class for input, Default: `""`
+
+-->
 <div>
   <input
     class="input {klass}"
