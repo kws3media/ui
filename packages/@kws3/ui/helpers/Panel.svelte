@@ -4,18 +4,22 @@
 
   @param {string} [title=""] - Title of the panel, Default: `""`
   @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
-  @param {string} [style=""] - Inline style for Panel Container, Default: `""`
-  @param {string} [inner_class=""] - Additional class for Panel content, Default: `""`
-  @param {string} [inner_style=""] - Inline style for Panel Content, Default: `""`
+  @param {string} [style=""] - Inline CSS for Panel Container, Default: `""`
+  @param {string} [inner_class=""] - Optional class for Panel Content, Default: `""`
+  @param {string} [inner_style=""] - Inline CSS for Panel Content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [collapse_icon="caret-right"] - Collapse icon, Default: `"caret-right"`
-  @param {boolean} [collapsible=false] - Collapsible property, Default: `false`
-  @param {boolean} [collapsed=false] - Collapsed property, Default: `false`
-  @param {boolean} [relative=false] - Relative property, Default: `false`
-  @param {boolean} [has_toolbar=true] - Toolbar property, Default: `true`
-  @param {boolean} [has_center=true] - Has Center property, Default: `true`
-  @param {boolean} [has_title=false] - Panel has title, Default: `false`
-  @param {string} [class=""] - `CONST` Panel container class, Default: `""`
+  @param {string} [collapse_icon="caret-right"] - Icon indicating whether Panel is collapsible, Default: `"caret-right"`
+  @param {boolean} [collapsible=false] - Determines whether panel is collapsible, Default: `false`
+  @param {boolean} [collapsed=false] - Determines whether Panel is currently collapsed or not, Default: `false`
+  @param {boolean} [relative=false] - Indicates whether the Panel has position: relative or not
+
+You might need this if there are absolutely positioned elements inside the Panel, Default: `false`
+  @param {boolean} [has_toolbar=true] - Used to show or hide toolbar slot contents (slot=“toolbar”), Default: `true`
+  @param {boolean} [has_center=true] - Used to show or hide centre slot contents (slot=“center”), Default: `true`
+  @param {boolean} [has_title=false] - Determines whether to display title area
+
+Can be used to display title area even when there is no title content, Default: `false`
+  @param {string} [class=""] - Panel container class, Default: `""`
 
   ### Slots
   - `<slot name="center"  />` - Used for center aligned title content
