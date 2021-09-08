@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [value=""] - Input field value, Default: `""`
   @param {string} [style=""] - Inline styles for input field, Default: `""`
@@ -22,9 +22,11 @@
 -->
 
 <Flatpickr
+  {dateFormat}
   options={_options}
-  bind:value
   element="#kws-picker"
+  bind:value
+  bind:formattedValue
   on:change={({ detail }) =>
     /**
      * Change event
@@ -105,7 +107,15 @@
      * Flatpicker options
      * @link https://flatpickr.js.org/options/
      */
-    options = {};
+    options = {},
+    /**
+     * Formated date value
+     */
+    formattedValue = "",
+    /**
+     * Date format
+     */
+    dateFormat = null;
 
   /**
    * Input field classes
