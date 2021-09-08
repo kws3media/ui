@@ -31,7 +31,11 @@ Can be used to display title area even when there is no title content, Default: 
 
   ### Slots
   - `<slot name="center"  />` - Used for center aligned title content
+
+This will not work if there is no title area
   - `<slot name="toolbar"  />` - Used for right aligned toolbars
+
+This will not work if there is no title area
   - `<slot name="default"  />` - Used for panel content
 
 -->
@@ -51,13 +55,23 @@ Can be used to display title area even when there is no title content, Default: 
         </div>
         <div class="level-item">
           {#if has_center}
-            <!--Used for center aligned title content--><slot name="center" />
+            <!--
+            Used for center aligned title content
+
+            This will not work if there is no title area
+          --><slot
+              name="center" />
           {/if}
         </div>
         <div class="level-right">
           {#if has_toolbar}
             <div class="level-item">
-              <!--Used for right aligned toolbars--><slot name="toolbar" />
+              <!--
+              Used for right aligned toolbars
+
+              This will not work if there is no title area
+            --><slot
+                name="toolbar" />
             </div>
           {/if}
           <div class="level-item">
