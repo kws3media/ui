@@ -1,12 +1,12 @@
 <!--
   @component
-
+  
 
   @param {string} [button_class=""] - Additional class for button, Default: `""`
   @param {string} [text="Delete"] - Button text, Default: `"Delete"`
-  @param {string} [size=""] - Size of the Button, Default: `""`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="minus-circle"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"minus-circle"`
-  @param {string} [color="danger"] - Color of the Button, Default: `"danger"`
+  @param {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="danger"] - Color of the Button, Default: `"danger"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [doing_icon="hourglass"] - Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
   @param {string} [doing_text="Deleting..."] - Text showing after confirm, Default: `"Deleting..."`
@@ -58,6 +58,7 @@
     text = "Delete",
     /**
      * Size of the Button
+     * @type {'small'|'medium'|'large'}
      */
     size = "",
     /**
@@ -66,6 +67,7 @@
     icon = "minus-circle",
     /**
      * Color of the Button
+     * @type {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
     color = "danger",
     /**
