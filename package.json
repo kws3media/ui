@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "bulma": "^0.9.3",
-    "global": "^4.3.2"
+    "global": "^4.3.2",
+    "text-mask-core": "^5.1.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.3.7",
