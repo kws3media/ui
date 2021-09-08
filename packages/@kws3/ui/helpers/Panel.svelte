@@ -65,7 +65,7 @@ Can be used to display title area even when there is no title content, Default: 
   <div class="panel-content-outer">
     <div
       class="panel-block is-clearfix {inner_class}"
-      style="{inner_style} {relative ? 'position:relative' : ''}">
+      style="{inner_style} {relative ? ';position:relative' : ''}">
       <!--Used for panel content--><slot />
     </div>
   </div>
