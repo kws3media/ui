@@ -6,7 +6,7 @@
   {keepCharPositions}
   {inputElement}
   {placeholder}
-  {classes}
+  class={klass}
   bind:value />
 
 <script>
@@ -37,7 +37,9 @@
     guideOnOutput = false,
     keepCharPositions = true,
     placeholder = "",
-    classes = "",
     inputElement = null,
     value = null;
+
+  let klass = "";
+  export { klass as class };
 </script>

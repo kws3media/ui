@@ -1,6 +1,6 @@
 <div>
   <input
-    class="input {classes}"
+    class="input {klass}"
     type="text"
     {placeholder}
     bind:value
@@ -36,10 +36,6 @@
      */
     placeholder = "",
     /**
-     * Additional class for input
-     */
-    classes = "",
-    /**
      * Input Element
      */
     inputElement = null,
@@ -47,6 +43,12 @@
      * Value of input
      */
     value = null;
+
+  /**
+   * Additional class for input
+   */
+  let klass = "";
+  export { klass as class };
 
   onMount(() => {
     let textMaskConfig = {
