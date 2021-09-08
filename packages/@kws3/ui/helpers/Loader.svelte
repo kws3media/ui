@@ -11,9 +11,9 @@
   @param {boolean} [is_inline=false] - Determines if the Loader is inline or not, Default: `false`
   @param {boolean} [has_overlay=false] - Determines if loader is displayed on top of a semi-transparent overlay.
 
-When using this, ensure the parent container is relatively positioned. Because the overlay is absolutely positioned.
+`background_color` is ignored when this is set to `true`
 
-`background_color` is ignored when this is set to `true`, Default: `false`
+The overlay is absolutely positioned. Ensure that the parent container is relatively positioned when using this., Default: `false`
   @param {string} [style=""] - Inline CSS for Loader, Default: `""`
   @param {string} [class=""] - CSS class for Loader, Default: `""`
 
