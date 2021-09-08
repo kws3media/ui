@@ -1,0 +1,49 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { MaskedInput } from '@kws3/ui';
+import MaskedInputDecorator from './MaskedInput.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  showMask : true,
+  guide : true,
+  guideOnOutput : true,
+  keepCharPositions : true,
+  placeholder : "",
+  classes : "",
+  inputElement : null,
+  value : null
+};
+
+<Meta
+  title="Forms/MaskedInput"
+  component={MaskedInput}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# MaskedInput
+`}/>
+
+<Canvas>
+  <Story
+  name="MaskedInput"
+  args={args}
+  >
+  {(args) => ({
+    Component: MaskedInputDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="MaskedInput" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { MaskedInput } from '@kws3/ui';`
+  }
+/>
