@@ -2,14 +2,22 @@
   @component
   
 
-  @param {string} [title=""] - Title of the panel, Default: `""`
-  @param {string} [subtitle=""] - Subtitle of the panel, Default: `""`
+  @param {string} [title=""] - Title of the panel
+
+Having content here will display the title bar, even if has_title is false, Default: `""`
+  @param {string} [subtitle=""] - Subtitle of the panel
+
+This will not display if there is no title area, Default: `""`
   @param {string} [style=""] - Inline CSS for Panel container, Default: `""`
   @param {string} [inner_class=""] - CSS classes for Panel content, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for Panel content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [collapse_icon="caret-right"] - Icon indicating whether Panel is collapsible, Default: `"caret-right"`
-  @param {boolean} [collapsible=false] - Determines whether panel is collapsible, Default: `false`
+  @param {string} [collapse_icon="caret-right"] - Icon indicating whether Panel is collapsible
+
+This will not display if there is no title area, Default: `"caret-right"`
+  @param {boolean} [collapsible=false] - Determines whether panel is collapsible
+
+This will not work if there is no title area, Default: `false`
   @param {boolean} [collapsed=false] - Determines whether Panel is currently collapsed or not, Default: `false`
   @param {boolean} [relative=false] - Indicates whether the Panel has `position: relative` or not
 
@@ -75,11 +83,15 @@ Can be used to display title area even when there is no title content, Default: 
   import { Icon } from "@kws3/ui";
   /**
    * Title of the panel
+   *
+   * Having content here will display the title bar, even if has_title is false
    * @type {string}
    */
   export let title = "",
     /**
      * Subtitle of the panel
+     *
+     * This will not display if there is no title area
      */
     subtitle = "",
     /**
@@ -100,10 +112,14 @@ Can be used to display title area even when there is no title content, Default: 
     cy = "",
     /**
      * Icon indicating whether Panel is collapsible
+     *
+     * This will not display if there is no title area
      */
     collapse_icon = "caret-right",
     /**
      * Determines whether panel is collapsible
+     *
+     * This will not work if there is no title area
      */
     collapsible = false,
     /**
