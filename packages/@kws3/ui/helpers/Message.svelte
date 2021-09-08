@@ -1,12 +1,11 @@
 <!--
   @component
-
+  
 
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
   @param {string} [style=""] - Inline style for message content, Default: `""`
   @param {string} [inner_style=""] - CSS classes for message content, Default: `""`
-  @param {string} [classes=""] - CSS classes for message box, Default: `""`
   @param {string} [header_classes=""] - CSS classes for message header, Default: `""`
   @param {string} [inner_class=""] - CSS classes for message body, Default: `""`
   @param {string} [title=""] - Title for message box, Default: `""`
@@ -17,7 +16,7 @@
   ### Slots
   - `<slot name="title"  />` - Used for message title.
 Can use the slot title like..<br/>
-&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;
+<code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
   - `<slot name="default"  />` - Used for message content
 
 -->
