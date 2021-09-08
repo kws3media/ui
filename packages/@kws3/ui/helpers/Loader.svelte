@@ -1,13 +1,19 @@
 <!--
   @component
-
+  
 
   @param {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [spinner_color="grey"] - Color of the Spinner, Default: `"grey"`
   @param {'small'|'medium'|'large'} [spinner_size="medium"] - Size of the Spinner, Default: `"medium"`
   @param {'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'} [background_color="transparent"] - Backgound color of the Spinner container, Default: `"transparent"`
-  @param {'small' | 'medium' | 'large' | 'halfheight' | 'fullheight'} [background_size="medium"] - Size of the Spinner container.  It can also accept css units such as 10px | 5rem | 100vh, Default: `"medium"`
+  @param {string} [background_size="medium"] - Size of the Spinner container.  It can also accept css units
+
+**Examples:** `small` | `medium` | `large` | `halfheight` | `fullheight` | `10px` | `5rem` | `100vh`, Default: `"medium"`
   @param {boolean} [is_inline=false] - Determines if the Loader is inline or not, Default: `false`
-  @param {boolean} [has_overlay=false] - Determines if loader is displayed on top of a semi-transparent overlay, Default: `false`
+  @param {boolean} [has_overlay=false] - Determines if loader is displayed on top of a semi-transparent overlay.
+
+When using this, ensure the parent container is relatively positioned. Because the overlay is absolutely positioned.
+
+`background_color` is ignored when this is set to `true`, Default: `false`
   @param {string} [style=""] - Inline CSS for Loader, Default: `""`
   @param {string} [class=""] - CSS class for Loader, Default: `""`
 
@@ -52,7 +58,11 @@
      */
     is_inline = false,
     /**
-     * Determines if loader is displayed on top of a semi-transparent overlay
+     * Determines if loader is displayed on top of a semi-transparent overlay.
+     *
+     * When using this, ensure the parent container is relatively positioned. Because the overlay is absolutely positioned.
+     *
+     * `background_color` is ignored when this is set to `true`
      */
     has_overlay = false,
     /**
@@ -67,12 +77,12 @@
   let klass = "";
   export { klass as class };
 
-  let bg_size = ["small", "medium", "large", "halfheight", "fullheight"],
+  let bg_sizes = ["small", "medium", "large", "halfheight", "fullheight"],
     _height = "",
     _style = "";
 
   $: if (
-    bg_size.indexOf(background_size) == -1 &&
+    bg_sizes.indexOf(background_size) == -1 &&
     typeof background_size == "string" &&
     background_size.length
   ) {
