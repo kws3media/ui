@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the modal, Default: `""`
   @param {'small'|'medium'|'large'} [size="small"] - Size of the modal, Default: `"small"`
@@ -10,11 +10,11 @@
 Only programmatic closing is possible, Default: `true`
   @param {boolean} [close_on_click_outside=false] - Determines if a closable modal can be closed by clicking anywhere outside the modal, Default: `false`
   @param {boolean} [has_footer=true] - Determines if modal has footer space, Default: `true`
-  @param {string} [style=""] - Inline CSS for modal, Default: `""`
+  @param {string} [style=""] - Inline CSS for modal container, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for modal content, Default: `""`
   @param {string} [inner_class=""] - CSS classes for the modal content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [class=""] - `CONST` CSS classes for modal, Default: `""`
+  @param {string} [class=""] - CSS classes for modal, Default: `""`
 
   ### Slots
   - `<slot name="title"  />` - Used for the title of Modal
@@ -118,7 +118,7 @@ Only visible when the
      */
     has_footer = true,
     /**
-     * Inline CSS for modal
+     * Inline CSS for modal container
      * @type {string}
      */
     style = "",
