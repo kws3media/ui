@@ -2,6 +2,7 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import { ConfirmButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
+import ConfirmButtonDecorator from "./ConfirmButton.svelte";
 
 export let args={
   color : "primary",
@@ -15,20 +16,8 @@ export let args={
   done_icon : "check",
   doing_text : "Doing",
   done_text : "Deleted",
-  context : "_test_confirm"
+  context : "_context_confirm"
 };
-
-export function confirmDo(event, success = true){
-    let {doing, done, error} = event.detail;
-    doing();
-    setTimeout(() => {
-      if(success){
-        done();
-      } else {
-        error();
-      }
-    }, 2000)
-  }
 
 <Meta
   title="Buttons/Confirm Button"
@@ -55,12 +44,8 @@ export function confirmDo(event, success = true){
   args={args}
   >
   {(args) => ({
-    Component: Button,
-    props: args,
-    on: {
-      do : confirmDo,
-      done: action("Confirmed")
-    },
+    Component: ConfirmButtonDecorator,
+    props: args
   })}
   </Story>
 </Canvas>

@@ -7,22 +7,22 @@
   {doing_text}
   {done_text}
   {context}
-  on:do={onDo} />
+  on:erase={onErase} />
 
 <script>
-  import { ProcessButton as KwsButton } from "@kws3/ui";
+  import { DeleteButton as KwsButton } from "@kws3/ui";
 
-  export let text = "Click Me",
-    icon = "check",
-    color = "primary",
+  export let text = "Delete",
+    icon = "minus-circle",
+    color = "danger",
     doing_icon = "hourglass",
-    doing_text = "Doing...",
+    doing_text = "Deleting...",
     done_icon = "check",
-    done_text = "Done",
+    done_text = "Deleted",
     context = null;
 
-  function onDo(e, success = true) {
-    let { doing, done, error } = e.detail;
+  function onErase(e, success = true) {
+    let { doing, done, error, context } = e.detail;
     console.log(context);
     doing();
     setTimeout(() => {

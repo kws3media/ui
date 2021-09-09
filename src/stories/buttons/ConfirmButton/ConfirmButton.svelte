@@ -10,7 +10,7 @@
   on:do={onDo} />
 
 <script>
-  import { ProcessButton as KwsButton } from "@kws3/ui";
+  import { ConfirmButton as KwsButton } from "@kws3/ui";
 
   export let text = "Click Me",
     icon = "check",
@@ -22,7 +22,7 @@
     context = null;
 
   function onDo(e, success = true) {
-    let { doing, done, error } = e.detail;
+    let { doing, done, error, context } = e.detail;
     console.log(context);
     doing();
     setTimeout(() => {

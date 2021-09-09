@@ -2,9 +2,10 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import { DeleteButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
+import DeleteButtonDecorator from "./DeleteButton.svelte";
 
 export let args={
-  color : "primary",
+  color : "danger",
   disabled : false,
   size : "",
   class : "",
@@ -15,20 +16,8 @@ export let args={
   done_icon : "check",
   doing_text : "Doing",
   done_text : "Deleted",
-  context : "_test_delete"
+  context : "_context_delete"
 };
-
-export function eraseDo(event, success = true){
-  let {doing, done, error} = event.detail;
-  doing();
-  setTimeout(() => {
-    if(success){
-      done();
-    } else {
-      error();
-    }
-  }, 2000)
-}
 
 <Meta
   title="Buttons/Delete Button"
@@ -55,12 +44,8 @@ export function eraseDo(event, success = true){
   args={args}
   >
   {(args) => ({
-    Component: Button,
-    props: args,
-    on: {
-      erase : eraseDo,
-      erased: action("Erased")
-    },
+    Component: DeleteButtonDecorator,
+    props: args
   })}
   </Story>
 </Canvas>
