@@ -1,24 +1,24 @@
 <!--
   @component
+  
 
-
-  @param {string} [button_class=""] - `CONST` Additional class for button, Default: `""`
-  @param {string} [text="Click Me"] - `CONST` Button text, Default: `"Click Me"`
-  @param {'small'|'medium'|'large'} [size=""] - `CONST` Size of the Button, Default: `""`
-  @param {string} [icon="check"] - `CONST` Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - `CONST` Color of the Button, Default: `"primary"`
-  @param {string} [cy=""] - `CONST` data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - `CONST` Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
-  @param {string} [doing_text="Doing..."] - `CONST` Text showing after confirm, Default: `"Doing..."`
-  @param {string} [done_icon="check"] - `CONST` Icon showing after success - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {string} [done_text="Done"] - `CONST` Text showing after success, Default: `"Done"`
-  @param {object} [context=null] - `CONST` Context property, Default: `null`
-  @param {boolean} [icon_only=false] - `CONST` Icon Only - true/false, Default: `false`
-  @param {boolean} [disabled=false] - `CONST` Disabled - true/false, Default: `false`
+  @param {string} [button_class=""] - Additional class for button, Default: `""`
+  @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
+  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {string} [icon="check"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
+  @param {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [doing_icon="hourglass"] - Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
+  @param {string} [doing_text="Doing..."] - Text showing after confirm, Default: `"Doing..."`
+  @param {string} [done_icon="check"] - Icon showing after success - use any fa/gg/unicorn icons, Default: `"check"`
+  @param {string} [done_text="Done"] - Text showing after success, Default: `"Done"`
+  @param {object} [context=null] - Context property, Default: `null`
+  @param {boolean} [icon_only=false] - Icon Only - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
   @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events
-  - `doing` - fires an event on doing
+  - `do` - fires an event on doing
   - `done` - fires an event on complete
   - `error` - fires an event on error
 
@@ -39,9 +39,21 @@
   {disabled}
   class={klass}
   should_confirm={false}
-  on:error={error}
-  on:do={doing}
-  on:done={done} />
+  on:do={(e) =>
+    /**
+     * fires an event on doing
+     */
+    fire("do", e)}
+  on:done={(e) =>
+    /**
+     * fires an event on complete
+     */
+    fire("done", e)}
+  on:error={(e) =>
+    /**
+     * fires an event on error
+     */
+    fire("error", e)} />
 
 <script>
   import { ConfirmButton } from "@kws3/ui";
@@ -109,29 +121,6 @@
    */
   let klass = "";
   export { klass as class };
-
-  $: properties = { ...$$props };
-
-  function doing({ detail }) {
-    /**
-     * fires an event on doing
-     */
-    fire("doing", detail);
-  }
-
-  function done({ detail }) {
-    /**
-     * fires an event on complete
-     */
-    fire("done", detail);
-  }
-
-  function error(e) {
-    /**
-     * fires an event on error
-     */
-    fire("error", e);
-  }
 
   // reviwed
 </script>
