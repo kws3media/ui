@@ -50,52 +50,43 @@
   };
   /**
    * X Property
-   * @type {number}
    */
   export let x = 0,
     /**
      * Y Property
-     * @type {number}
      */
     y = 0,
     /**
      * From property
-     * @type {number}
      */
     from = 0.5,
     /**
      * To Property
-     * @type {number}
      */
     to = 1,
     /**
      * Transition - true/false
-     * @type {boolean}
      */
     transition = true,
     /**
-     * Type Property. Default option is `fly`. Other options are `fade`, `scale`, `slide`
-     * @type {string}
+     * Transition types.
+     * @type {'fly'|'fade'|'scale'|'slide'}
      */
     type = "fly",
     /**
      * Duration
-     * @type {number}
      */
     duration = 300,
     /**
      * Delay
-     * @type {number}
      */
     delay = 0,
     /**
      * Easing property
-     * @type {number}
      */
     easing = null,
     /**
      * Additional classes
-     * @type {string}
      */
     classes = "";
 </script>
