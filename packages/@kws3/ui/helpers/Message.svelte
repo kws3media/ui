@@ -36,7 +36,7 @@ Title bar will still be displayed when this is set to false, but there is conten
       <slot name="title"><p>{title}</p></slot>
     {/if}
     {#if dismissable}
-      <button class="delete is-pulled-right" on:click={dismiss} />
+      <button class="delete is-pulled-right is-{size}" on:click={dismiss} />
     {/if}
   </div>
   <div class="message-body {inner_class}" style={inner_style}>
