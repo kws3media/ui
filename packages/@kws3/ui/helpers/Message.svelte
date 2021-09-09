@@ -13,10 +13,12 @@
 Having content here will display the title bar and content, even if has_title is false, Default: `""`
   @param {boolean} [has_title=false] - Determines whether to show title bar when no title content is present, Default: `false`
   @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
+  @param {boolean} [active=true] - Determines whether the whole component is being displayed or not, Default: `true`
   @param {string} [class=""] - CSS classes for Message box, Default: `""`
 
   ### Events
   - `dismiss` - Fired when dismiss button is clicked.
+Turns `active` off, which hides the component.
 The parent can then decide what to do with the component
 
   ### Slots
@@ -25,26 +27,28 @@ The parent can then decide what to do with the component
   - `<slot name="default"  />` - Used for message content
 
 -->
-<div class="message is-{color} is-{size} {klass}" {style}>
-  <div
-    class="{title || has_title
-      ? 'message-header'
-      : 'no-message-header'} {title_class}">
-    {#if title || has_title}
-      <!--
+{#if active}
+  <div class="message is-{color} is-{size} {klass}" {style}>
+    <div
+      class="{title || has_title
+        ? 'message-header'
+        : 'no-message-header'} {title_class}">
+      {#if title || has_title}
+        <!--
         Used for message title.<br/>
         **Example:** <code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
       -->
-      <slot name="title"><p>{title}</p></slot>
-    {/if}
-    {#if dismissable}
-      <button class="delete is-pulled-right is-{size}" on:click={dismiss} />
-    {/if}
+        <slot name="title"><p>{title}</p></slot>
+      {/if}
+      {#if dismissable}
+        <button class="delete is-pulled-right is-{size}" on:click={dismiss} />
+      {/if}
+    </div>
+    <div class="message-body {inner_class}" style={inner_style}>
+      <!--Used for message content--><slot />
+    </div>
   </div>
-  <div class="message-body {inner_class}" style={inner_style}>
-    <!--Used for message content--><slot />
-  </div>
-</div>
+{/if}
 
 <style>
   .message {
@@ -107,7 +111,12 @@ The parent can then decide what to do with the component
      * Determines whether close button is displayed or not
      * @type {boolean}
      */
-    dismissable = false;
+    dismissable = false,
+    /**
+     * Determines whether the whole component is being displayed or not
+     * @type {boolean}
+     */
+    active = true;
 
   /**
    * CSS classes for Message box
@@ -117,8 +126,10 @@ The parent can then decide what to do with the component
   export { klass as class };
 
   function dismiss() {
+    active = false;
     /**
      * Fired when dismiss button is clicked.
+     * Turns `active` off, which hides the component.
      * The parent can then decide what to do with the component
      */
     fire("dismiss");
