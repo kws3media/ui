@@ -90,8 +90,7 @@
     guideOnOutput = false,
     keepCharPositions = true,
     placeholder = "",
-    inputElement = null,
-    value = null;
+    inputElement = null;
 
   let klass = "";
   export { klass as class };
