@@ -56,9 +56,7 @@
   let klass = "";
   export { klass as class };
 
-  let image = "",
-    file = "";
-  let error_state = false;
+  let image = "";
 
   function onFileChosen(event, error_state = false) {
     event.preventDefault();
@@ -72,6 +70,7 @@
       if (progrss > size) {
         if (error_state) {
           error("Error on Upload");
+          image = "";
         } else {
           uploaded();
           var reader = new FileReader();
