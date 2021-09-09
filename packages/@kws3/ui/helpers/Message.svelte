@@ -24,7 +24,10 @@ Can be used to display title area even when there is no title content, Default: 
 
 -->
 <div class="message is-{color} is-{size} {klass}" {style} bind:this={_comp}>
-  <div class="{title || has_title ? 'message-header' : ''} {header_classes}">
+  <div
+    class="{title || has_title
+      ? 'message-header'
+      : 'no-message-header'} {header_classes}">
     {#if title || has_title}
       <!--
         Used for message title.<br/>
@@ -33,13 +36,24 @@ Can be used to display title area even when there is no title content, Default: 
       <slot name="title"><p>{title}</p></slot>
     {/if}
     {#if dismissable}
-      <button class="delete is-pulled-right" on:click={dismiss} />
+      <button class="delete is-pulled-right is-{size}" on:click={dismiss} />
     {/if}
   </div>
   <div class="message-body {inner_class}" style={inner_style}>
     <!--Used for message content--><slot />
   </div>
 </div>
+
+<style>
+  .message {
+    position: relative;
+  }
+  .no-message-header {
+    position: absolute;
+    top: 1em;
+    right: 0.75em;
+  }
+</style>
 
 <script>
   /**
