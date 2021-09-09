@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {array} [mask=[]] - Input Mask format, Default: `[]`
   @param {boolean} [showMask=false] - Display the mask as a placeholder in place of the regular placeholder when the input element value is empty, Default: `false`
@@ -66,6 +66,10 @@
   export { klass as class };
 
   onMount(() => {
+    setMaskConfig();
+  });
+
+  function setMaskConfig() {
     let textMaskConfig = {
       inputElement,
       mask,
@@ -75,34 +79,15 @@
     };
     const textMaskInputElement = createTextMaskInputElement(textMaskConfig);
     textMaskInputElement.update(inputElement.value);
-  });
-
-  /*$: {
-    if (value) {
-      const result = conformToMask(value, mask, {
-        guide: guideOnOutput,
-      });
-      value = result.conformedValue;
-      textMaskInputElement.update(value);
-    }
-  }*/
+  }
 
   function updateMask() {
     if (value) {
       const result = conformToMask(value, mask, {
         guide: guideOnOutput,
       });
-      value = result.conformedValue;
-
-      let textMaskConfig = {
-        inputElement,
-        mask,
-        showMask,
-        guide,
-        keepCharPositions,
-      };
-      const textMaskInputElement = createTextMaskInputElement(textMaskConfig);
-      textMaskInputElement.update(value);
+      //value = result.conformedValue;
+      setMaskConfig();
     }
   }
 </script>
