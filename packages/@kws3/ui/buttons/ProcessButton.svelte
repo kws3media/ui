@@ -24,7 +24,20 @@
 
 -->
 <ConfirmButton
-  {...properties}
+  {button_class}
+  {text}
+  {size}
+  {icon}
+  {color}
+  {cy}
+  {doing_icon}
+  {doing_text}
+  {done_icon}
+  {done_text}
+  {context}
+  {icon_only}
+  {disabled}
+  class={klass}
   should_confirm={false}
   on:error={error}
   on:do={doing}
@@ -39,7 +52,7 @@
   /**
    * Additional class for button
    */
-  export const button_class = "",
+  export let button_class = "",
     /**
      * Button text
      */
@@ -94,7 +107,7 @@
   /**
    * CSS class for button container
    */
-  const klass = "";
+  let klass = "";
   export { klass as class };
 
   $: properties = { ...$$props };
