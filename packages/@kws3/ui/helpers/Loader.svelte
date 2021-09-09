@@ -1,43 +1,106 @@
 <!--
   @component
 
-  @param {string} [color="transparent"] - Color of the Loader (transparent | warning | info | danger | primary), Default: `"transparent"`
-  @param {string} [background_size="medium"] - Background size of the Loader (small | medium | large), Default: `"medium"`
-  @param {string} [spinner_size="medium"] - Spinner size of the Loader (small | medium | large), Default: `"medium"`
-  @param {boolean} [is_inline=false] - Loader is inline, Default: `false`
-  @param {string} [style=""] - Inline CSS styles for loader, Default: `""`
+
+  @param {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [spinner_color="grey"] - Color of the Spinner, Default: `"grey"`
+  @param {'small'|'medium'|'large'} [spinner_size="medium"] - Size of the Spinner, Default: `"medium"`
+  @param {'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'} [background_color="transparent"] - Backgound color of the Spinner container, Default: `"transparent"`
+  @param {string} [background_size="medium"] - Size of the Spinner container.  It can also accept css units
+
+**Examples:** `small` | `medium` | `large` | `halfheight` | `fullheight` | `10px` | `5rem` | `100vh`, Default: `"medium"`
+  @param {boolean} [is_inline=false] - Determines if the Loader is inline or not, Default: `false`
+  @param {boolean} [has_overlay=false] - Determines if loader is displayed on top of a semi-transparent overlay.
+
+`background_color` is ignored when this is set to `true`
+
+The overlay is absolutely positioned. Ensure that the parent container is relatively positioned when using this., Default: `false`
+  @param {string} [style=""] - Inline CSS for Loader, Default: `""`
+  @param {string} [class=""] - CSS class for Loader, Default: `""`
 
 -->
-
-<div
-  class="kws-loader hero is-{background_color} is-{background_size} has-spinner-{spinner_size}"
-  {style}>
-  <div class="hero-body" style={is_inline ? "padding:1rem" : ""}>&nbsp;</div>
+<div class={has_overlay ? "is-overlay" : ""}>
+  <div
+    class="kws-loader hero is-{background_color} is-{_background_size} {klass}"
+    style={_style}>
+    <div
+      class="hero-body is-{spinner_color} is-{spinner_size}"
+      style={is_inline ? "padding:1rem" : ""}>
+      &nbsp;
+    </div>
+  </div>
 </div>
 
 <script>
   /**
-   * Spinner color (transparent | warning | info | danger | primary)
+   * Color of the Spinner
+   * @link https://bulma.io/documentation/helpers/color-helpers/
+   * @type {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
    */
-  export let spinner_color = "transparent",
+  export let spinner_color = "grey",
     /**
-     * Spinner size (small | medium | large)
+     * Size of the Spinner
+     * @type {'small'|'medium'|'large'}
      */
     spinner_size = "medium",
     /**
-     * Background color (small | medium | large)
+     * Backgound color of the Spinner container
+     * @type {'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'}
      */
     background_color = "transparent",
     /**
-     * Background size (small | medium | large)
+     * Size of the Spinner container.  It can also accept css units
+     *
+     * **Examples:** `small` | `medium` | `large` | `halfheight` | `fullheight` | `10px` | `5rem` | `100vh`
      */
     background_size = "medium",
     /**
-     * Loader is inline
+     * Determines if the Loader is inline or not
      */
     is_inline = false,
     /**
-     * Inline CSS styles for loader
+     * Determines if loader is displayed on top of a semi-transparent overlay.
+     *
+     * `background_color` is ignored when this is set to `true`
+     *
+     * The overlay is absolutely positioned. Ensure that the parent container is relatively positioned when using this.
+     */
+    has_overlay = false,
+    /**
+     * Inline CSS for Loader
      */
     style = "";
+
+  /**
+   * CSS class for Loader
+   * @type {string}
+   */
+  let klass = "";
+  export { klass as class };
+
+  let bg_sizes = ["small", "medium", "large", "halfheight", "fullheight"],
+    _height = "",
+    _style = "",
+    _background_size = "";
+
+  $: background_size, determineHeightStyles();
+
+  function determineHeightStyles() {
+    if (
+      bg_sizes.indexOf(background_size) == -1 &&
+      typeof background_size == "string" &&
+      background_size.length
+    ) {
+      _height = "height: " + background_size + ";";
+
+      _style =
+        (style.length && style.charAt(style.length - 1) != ";"
+          ? style + ";"
+          : style) + _height;
+      _background_size = "";
+    } else {
+      _height = "";
+      _background_size = background_size;
+      _style = style;
+    }
+  }
 </script>

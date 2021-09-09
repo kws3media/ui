@@ -1,8 +1,8 @@
 <KwsPanel
   {title}
   {subtitle}
-  {outer_class}
-  {outer_style}
+  class={klass}
+  {style}
   {inner_class}
   {inner_style}
   {cy}
@@ -21,8 +21,7 @@
   import { Panel as KwsPanel } from "@kws3/ui";
   export let title = "Demo Panel",
     subtitle = "",
-    outer_class = "",
-    outer_style = "",
+    style = "",
     inner_class = "",
     inner_style = "",
     cy = "",
@@ -33,4 +32,7 @@
     has_toolbar = true,
     has_center = true,
     has_title = false;
+
+  let klass = "is-primary";
+  export { klass as class };
 </script>
