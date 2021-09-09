@@ -12,7 +12,6 @@
   @param {string} [doing_text="Please Wait..."] - Message displayed when processing task, Default: `"Please Wait..."`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Done"] - Text shows after process complete, Default: `"Done"`
-  @param {boolean} [confirm=false] - Boolean - true/false, Default: `false`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {boolean} [should_confirm=true] - ask confirm question if it is true, Default: `true`
@@ -130,10 +129,6 @@
      */
     done_text = "Done",
     /**
-     * Boolean - true/false
-     */
-    confirm = false,
-    /**
      * Removes text, and text space in the button
      */
     icon_only = false,
@@ -156,8 +151,11 @@
     _done = false,
     _error = false;
 
+  let confirm = false;
+
   $: main_color = "is-" + color;
   $: icon_size = "small";
+  $: _confirm = should_confirm && confirm;
 
   function cancel() {
     confirm = false;
@@ -171,18 +169,10 @@
     }
     if (_confirm) {
       /**
-       * sveltedoc do not list events, if it is inside a if block
-       * so just doing a hack here
+       * fires an event on doing
        */
-      readyToDo();
+      fire("do", { doing, done, error });
     }
-  }
-
-  function readyToDo() {
-    /**
-     * fires an event on doing
-     */
-    fire("do", { doing, done, error });
   }
 
   function doing() {
@@ -219,8 +209,6 @@
       fire("error");
     }, 1500);
   }
-
-  $: _confirm = should_confirm && confirm;
 
   // reviwed
 </script>
