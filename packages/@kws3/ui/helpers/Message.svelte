@@ -3,7 +3,7 @@
 
 
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
   @param {string} [style=""] - Inline CSS for Message box, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for Message content, Default: `""`
   @param {string} [header_classes=""] - CSS classes for Message box header, Default: `""`
@@ -11,15 +11,15 @@
   @param {string} [title=""] - Title of the message box
 
 Having content here will display the title bar and content, even if has_title is false, Default: `""`
-  @param {boolean} [has_title=false] - Determines if the title bar should be displayed when there is no content in the title
+  @param {boolean} [has_title=false] - Determines whether to display title area
 
-Title bar will still be displayed when this is set to false, but there is content in the title, Default: `false`
+Can be used to display title area even when there is no title content, Default: `false`
   @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
   @param {string} [class=""] - CSS classes for Message box, Default: `""`
 
   ### Slots
   - `<slot name="title"  />` - Used for message title.<br/>
-<code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
+**Example:** <code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
   - `<slot name="default"  />` - Used for message content
 
 -->
@@ -49,7 +49,7 @@ Title bar will still be displayed when this is set to false, but there is conten
   export let size = "",
     /**
      * Color of the Message box
-     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "info",
     /**
@@ -80,9 +80,9 @@ Title bar will still be displayed when this is set to false, but there is conten
      */
     title = "",
     /**
-     * Determines if the title bar should be displayed when there is no content in the title
+     * Determines whether to display title area
      *
-     * Title bar will still be displayed when this is set to false, but there is content in the title
+     * Can be used to display title area even when there is no title content
      * @type {boolean}
      */
     has_title = false,
