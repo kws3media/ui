@@ -10,22 +10,27 @@
 {#if show_transition}
   <div class="columns">
     <div class="column is-3">
-      <KwsTransition type="fly" duration={500} x={0} y={20}>
+      <KwsTransition type="fly" duration={500} x={0} y={20} class={klass}>
         <Message color="info">Fly</Message>
       </KwsTransition>
     </div>
     <div class="column is-3">
-      <KwsTransition type="fade" duration={500}>
+      <KwsTransition type="fade" duration={500} class={klass}>
         <Message color="warning">Fade</Message>
       </KwsTransition>
     </div>
     <div class="column is-3">
-      <KwsTransition type="slide" duration={500}>
+      <KwsTransition type="slide" duration={500} class={klass}>
         <Message color="primary">Slide</Message>
       </KwsTransition>
     </div>
     <div class="column is-3">
-      <KwsTransition type="scale" duration={500} from={0.5} to={1}>
+      <KwsTransition
+        type="scale"
+        duration={500}
+        from={0.5}
+        to={1}
+        class={klass}>
         <Message color="light">Scale</Message>
       </KwsTransition>
     </div>
@@ -46,4 +51,7 @@
     delay = 0,
     easing = null,
     classes = "";*/
+
+  let klass = "";
+  export { klass as class };
 </script>
