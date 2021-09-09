@@ -1,22 +1,23 @@
 <!--
   @component
-  
+
 
   @param {string} [key=""] - Key property, Default: `""`
   @param {string} [message="Choose File..."] - Message displayed in uploader, Default: `"Choose File..."`
   @param {string} [info=""] - Display helper information, Default: `""`
   @param {number} [max=5000000] - Maximum allowed size, Default: `5000000`
   @param {any} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
-  @param {string} [classes=""] - CSS classes, Default: `""`
   @param {boolean} [disabled=false] - Uploader disable - true/false, Default: `false`
+  @param {string} [class=""] - CSS classes, Default: `""`
 
   ### Events
-  - `file_uploaded`
-  - `file_upload_error`
+  - `file_uploaded` - Event used to upload file
+  - `file_upload_error` - Event used to handle error while uploading
+  - `file_chosen` - Event used to choose file
 
 -->
 <div
-  class="file-upload {classes} is-{_error ? 'danger' : ''} {disabled ||
+  class="file-upload {klass} is-{_error ? 'danger' : ''} {disabled ||
   _is_uploading ||
   _is_finished
     ? 'is-disabled'
@@ -81,45 +82,35 @@
 
   /**
    * Key property
-   * @type {string}
    */
-  export let key = "";
-
-  /**
-   * Message displayed in uploader
-   * @type {string}
-   */
-  export let message = "Choose File...";
-
-  /**
-   * Display helper information
-   * @type {string}
-   */
-  export let info = "";
-
-  /**
-   * Maximum allowed size
-   * @type {number}
-   */
-  export let max = 5000000;
-
-  /**
-   * Allowed file types - accepts the string `"*"`, or an array of file type suffixes
-   * @type {any}
-   */
-  export let allowed = "*";
+  export let key = "",
+    /**
+     * Message displayed in uploader
+     */
+    message = "Choose File...",
+    /**
+     * Display helper information
+     */
+    info = "",
+    /**
+     * Maximum allowed size
+     */
+    max = 5000000,
+    /**
+     * Allowed file types - accepts the string `"*"`, or an array of file type suffixes
+     * @type {any}
+     */
+    allowed = "*",
+    /**
+     * Uploader disable - true/false
+     */
+    disabled = false;
 
   /**
    * CSS classes
-   * @type {string}
    */
-  export let classes = "";
-
-  /**
-   * Uploader disable - true/false
-   * @type {boolean}
-   */
-  export let disabled = false;
+  let klass = "";
+  export { klass as class };
 
   let _filename = "No file selected",
     _error = false,
@@ -184,7 +175,9 @@
       formData = null;
       uploadField.value = "";
       uploadField.files = null;
-
+      /**
+       * Event used to upload file
+       */
       fire("file_uploaded", { message });
     }, 3000);
   }
@@ -197,6 +190,9 @@
     uploadField.value = "";
     uploadField.files = null;
 
+    /**
+     * Event used to handle error while uploading
+     */
     fire("file_upload_error", { message });
   }
 
@@ -278,6 +274,9 @@
     if (valid) {
       _total = size;
       formData.append("userfile", file);
+      /**
+       * Event used to choose file
+       */
       fire("file_chosen", { getFile, progress, uploaded, error });
     }
   }
@@ -286,6 +285,4 @@
     uploadField = uploadInput;
     _filename = message;
   });
-
-  // fileuplode working
 </script>

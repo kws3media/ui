@@ -10,7 +10,7 @@
       {key}
       {info}
       {max}
-      {classes} />
+      class={klass} />
     <p class="is-block mt-2 has-text-success">This will succeed.</p>
   </div>
 
@@ -25,7 +25,8 @@
       {key}
       {info}
       {max}
-      {classes} />
+      {classes}
+      class={klass} />
     <p class="is-block mt-2 has-text-danger">This will fail.</p>
   </div>
 </div>
@@ -39,6 +40,9 @@
     allowed = "*",
     classes = "",
     disabled = false;
+
+  let klass = "";
+  export { klass as class };
 
   function onFileChosen(event) {
     event.preventDefault();
