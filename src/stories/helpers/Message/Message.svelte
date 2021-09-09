@@ -6,7 +6,7 @@
   {inner_class}
   {inner_style}
   {classes}
-  {header_classes}
+  {title_class}
   {title}
   {has_title}
   {dismissable}
@@ -23,7 +23,7 @@
     style = "",
     inner_style = "",
     classes = "",
-    header_classes = "",
+    title_class = "",
     inner_class = "",
     title = null,
     has_title = false,
