@@ -1,12 +1,14 @@
 <!--
   @component
-
+  
 
   @param {string} [value=""] - Input field value, Default: `""`
   @param {string} [style=""] - Inline styles for input field, Default: `""`
   @param {string} [placeholder="Select Date.."] - Placeholder for input field, Default: `"Select Date.."`
   @param {boolean} [disabled=false] - Disable input field, Default: `false`
   @param {object} [options={}] - Flatpicker options, Default: `{}`
+  @param {string} [formattedValue=""] - Formated date value, Default: `""`
+  @param {object} [dateFormat=null] - Date format, Default: `null`
   @param {string} [class=""] - Input field classes, Default: `""`
 
   ### Events
@@ -27,6 +29,7 @@
   element="#kws-picker"
   bind:value
   bind:formattedValue
+  bind:flatpickr
   on:change={({ detail }) =>
     /**
      * Change event
@@ -122,6 +125,11 @@
    */
   let klass = "";
   export { klass as class };
+
+  /**
+   * Flatpickr instance
+   */
+  let flatpickr;
 
   let _options = {};
 
