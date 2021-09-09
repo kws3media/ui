@@ -74,7 +74,7 @@
   $: {
     if (active && track_height && (active || _height)) {
       rAF(() => {
-        this.fireSizeChange();
+        //this.fireSizeChange();
       });
     }
   }
@@ -90,7 +90,7 @@
   }
 
   function init() {
-    fireSizeChange();
+    //fireSizeChange();
   }
 
   function fireSizeChange() {

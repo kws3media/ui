@@ -1,3 +1,20 @@
+<Message
+  color="grey"
+  inner_style="border-width:0"
+  style="margin: -1rem -1.3rem -0.8rem;">
+  <div id="stepsHolder">
+    <ul class="steps has-content-centered is-horizontal">
+      {#each steps as step, idx}
+        <li class="steps-segment {active_index == idx ? 'is-active' : ''}">
+          <span class="steps-marker">{idx + 1}</span>
+          <div class="steps-content">
+            <p>{steps[active_index].name}</p>
+          </div>
+        </li>
+      {/each}
+    </ul>
+  </div>
+</Message>
 <div style="height:100%;width:800px;">
   <SlidingPaneSet style="height:{pane_height}px">
     <SlidingPane
@@ -50,7 +67,7 @@
 <script>
   import { SlidingPane, SlidingPaneSet, Icon, Message } from "@kws3/ui";
 
-  export let pane_height = 400,
+  export let pane_height = 150,
     steps = [
       { key: "step_one", name: "Step One" },
       { key: "step_two", name: "Step Two" },
