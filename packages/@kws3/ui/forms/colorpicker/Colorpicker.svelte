@@ -1,3 +1,14 @@
+<!--
+  @component
+
+
+  @param {string} [color="000000"] - Selected color, Default: `"000000"`
+  @param {boolean} [typeable=true] - Allow to type in input, Default: `true`
+  @param {boolean} [readonly=false] - Readonly input, Default: `false`
+  @param {boolean} [mini=false] - Mini color input, Default: `false`
+  @param {boolean} [disabled=false] - Disabled input, Default: `false`
+
+-->
 <div class="color-picker-wrapper">
   <div class="field">
     <div
@@ -28,10 +39,25 @@
   import ColorPicker from "./actions";
   import { Icon } from "@kws3/ui";
 
+  /**
+   * Selected color
+   */
   export let color = "000000",
+    /**
+     * Allow to type in input
+     */
     typeable = true,
+    /**
+     * Readonly input
+     */
     readonly = false,
+    /**
+     * Mini color input
+     */
     mini = false,
+    /**
+     * Disabled input
+     */
     disabled = false;
 
   let dragover = false,
