@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [button_class=""] - `CONST` Additional class for button, Default: `""`
   @param {string} [text="Click Me"] - `CONST` Button text, Default: `"Click Me"`
@@ -25,7 +25,7 @@
 -->
 <ConfirmButton
   {...properties}
-  can_confirm={false}
+  should_confirm={false}
   on:error={error}
   on:do={doing}
   on:done={done} />

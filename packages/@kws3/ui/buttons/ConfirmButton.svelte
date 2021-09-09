@@ -15,7 +15,7 @@
   @param {boolean} [confirm=false] - Boolean - true/false, Default: `false`
   @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
-  @param {boolean} [can_confirm=true] - ask confirm question if it is true, Default: `true`
+  @param {boolean} [should_confirm=true] - ask confirm question if it is true, Default: `true`
   @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
 
   ### Events
@@ -144,7 +144,7 @@
     /**
      * ask confirm question if it is true
      */
-    can_confirm = true;
+    should_confirm = true;
 
   /**
    * CSS class for button container
@@ -164,7 +164,7 @@
   }
 
   function doit() {
-    let _confirm = can_confirm ? confirm : true;
+    let _confirm = should_confirm ? confirm : true;
     if (!_confirm) {
       confirm = true;
       return;
@@ -220,7 +220,7 @@
     }, 1500);
   }
 
-  $: _confirm = can_confirm && confirm;
+  $: _confirm = should_confirm && confirm;
 
   // reviwed
 </script>
