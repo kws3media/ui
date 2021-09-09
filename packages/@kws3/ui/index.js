@@ -29,4 +29,5 @@ export { default as SlidingPane } from "./sliding-panes/SlidingPane.svelte";
 export { default as SlidingPaneSet } from "./sliding-panes/SlidingPaneSet.svelte";
 export { default as SearchableSelect } from "./forms/SearchableSelect.svelte";
 export { default as Datepicker } from "./forms/Datepicker.svelte";
+export { default as DatepickerAction } from "./forms/actions.js";
 export { default as Timepicker } from "./forms/Timepicker.svelte";
