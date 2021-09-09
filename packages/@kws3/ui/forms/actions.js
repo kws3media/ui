@@ -48,6 +48,9 @@ export default function datepicker(node, [opts, value]) {
     update([opts, value]) {
       if (picker) {
         picker.setDate(value);
+        if (opts && opts.mode) {
+          picker.set("mode", opts.mode);
+        }
       }
     },
     destroy() {
