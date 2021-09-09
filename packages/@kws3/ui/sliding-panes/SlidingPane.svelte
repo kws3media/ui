@@ -17,14 +17,14 @@
   bind:clientHeight={_height}
   class="sliding-pane {v_center ? 'v-centered' : ''} {h_center
     ? 'h-centered'
-    : ''} {active ? 'is-active' : ''} {classes}"
+    : ''} {active ? 'is-active' : ''} {klass}"
   {style}>
   <div
     bind:this={slideInner}
     class="sliding-pane-inner {v_center ? 'v-centered' : ''} {h_center
       ? 'h-centered'
       : ''}">
-    <slot />
+    <!--Used to display content--><slot />
   </div>
 </div>
 
@@ -36,36 +36,32 @@
 
   /**
    * Active step - true/false
-   * @type {boolean}
    */
   export let active = false,
     /**
-     * Additional classes
-     * @type {string}
-     */
-    classes = "",
-    /**
      * Inline style of component
-     * @type {string}
      */
     style = "",
     /**
      * V-Center - true/false
-     * @type {boolean}
      */
     v_center = false,
     /**
      * H-Center - true/false
-     * @type {boolean}
      */
     h_center = false,
     /**
      * Track Height - true/false
-     * @type {boolean}
      */
     track_height = false;
 
   let _height, slideInner;
+
+  /**
+   * Additional class
+   */
+  let klass = "";
+  export { klass as class };
 
   onMount(() => {
     pollForRender();
@@ -74,7 +70,7 @@
   $: {
     if (active && track_height && (active || _height)) {
       rAF(() => {
-        //this.fireSizeChange();
+        fireSizeChange();
       });
     }
   }
@@ -90,7 +86,7 @@
   }
 
   function init() {
-    //fireSizeChange();
+    fireSizeChange();
   }
 
   function fireSizeChange() {
@@ -104,6 +100,9 @@
           }
           var h1 = slideInner.scrollHeight,
             h2 = slideInner.clientHeight;
+          /**
+           * Change height of the pane dynamically
+           */
           fire("heightChange", { height: Math.max(h1, h2) });
         });
       }

@@ -19,9 +19,10 @@
   <SlidingPaneSet style="height:{pane_height}px">
     <SlidingPane
       active={steps[active_index].key == "step_one"}
-      v_center={true}
-      h_center={true}
-      track_height>
+      {v_center}
+      {h_center}
+      {track_height}
+      class={klass}>
       <div class="buttons">
         <button class="button is-info">Info</button>
         <button class="button is-success">Success</button>
@@ -32,9 +33,10 @@
 
     <SlidingPane
       active={steps[active_index].key == "step_two"}
-      v_center={true}
-      h_center={true}
-      track_height>
+      {v_center}
+      {h_center}
+      {track_height}
+      class={klass}>
       <Message>
         <p class="title is-3">Ah, You wont believe that is 2nd step</p>
       </Message>
@@ -42,9 +44,11 @@
 
     <SlidingPane
       active={steps[active_index].key == "step_three"}
-      v_center={true}
-      h_center={true}
-      track_height>
+      {v_center}
+      {h_center}
+      {track_height}
+      class={klass}
+      {style}>
       <Message color="warning">
         <p class="title is-3">Oh, noo, You reached at 3rd step</p>
       </Message>
@@ -66,8 +70,11 @@
 
 <script>
   import { SlidingPane, SlidingPaneSet, Icon, Message } from "@kws3/ui";
-
   export let pane_height = 150,
+    style = "",
+    v_center = true,
+    h_center = true,
+    track_height = false,
     steps = [
       { key: "step_one", name: "Step One" },
       { key: "step_two", name: "Step Two" },
@@ -80,4 +87,7 @@
     let _index = Math.max(0, Math.min(active_index + i, max - 1));
     active_index = _index;
   }
+
+  let klass = "";
+  export { klass as class };
 </script>
