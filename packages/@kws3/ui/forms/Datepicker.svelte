@@ -3,6 +3,7 @@
   
 
   @param {string} [value=""] - Input field value, Default: `""`
+  @param {string} [id=""] - Datepicker id attribute, Default: `""`
   @param {string} [style=""] - Inline styles for input field, Default: `""`
   @param {string} [placeholder="Select Date.."] - Placeholder for input field, Default: `"Select Date.."`
   @param {boolean} [disabled=false] - Disable input field, Default: `false`
@@ -26,7 +27,7 @@
 <Flatpickr
   {dateFormat}
   options={_options}
-  element="#kws-picker"
+  element="#kws-datepicker{_id}"
   bind:value
   bind:formattedValue
   bind:flatpickr
@@ -70,7 +71,7 @@
      * Day create event
      */
     fire("dayCreate", detail)}>
-  <div class="flatpickr" id="kws-picker">
+  <div class="flatpickr" id="kws-datepicker{_id}">
     <input
       class="input {klass}"
       type="text"
@@ -94,6 +95,10 @@
    * Input field value
    */
   export let value = "",
+    /**
+     * Datepicker id attribute
+     */
+    id = "",
     /**
      * Inline styles for input field
      */
@@ -136,7 +141,7 @@
   $: {
     _options = Object.assign(
       {
-        element: "#kws-picker",
+        element: "#kws-datepicker" + _id,
         altInput: true,
         altFormat: "d/m/Y",
         dateFormat: "Y-m-d",
@@ -147,4 +152,6 @@
       options
     );
   }
+
+  $: _id = id ? `-${id}` : "";
 </script>
