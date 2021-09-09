@@ -11,9 +11,7 @@
   @param {string} [title=""] - Title of the message box
 
 Having content here will display the title bar and content, even if has_title is false, Default: `""`
-  @param {boolean} [has_title=false] - Determines whether to display title area
-
-Can be used to display title area even when there is no title content, Default: `false`
+  @param {boolean} [has_title=false] - Determines whether to show title bar when no title content is present, Default: `false`
   @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
   @param {string} [class=""] - CSS classes for Message box, Default: `""`
 
