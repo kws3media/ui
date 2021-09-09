@@ -6,14 +6,12 @@
   @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
   @param {string} [style=""] - Inline CSS for Message box, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for Message content, Default: `""`
-  @param {string} [header_classes=""] - CSS classes for Message box header, Default: `""`
+  @param {string} [title_class=""] - CSS classes for Message box title, Default: `""`
   @param {string} [inner_class=""] - CSS classes for Message content, Default: `""`
   @param {string} [title=""] - Title of the message box
 
 Having content here will display the title bar and content, even if has_title is false, Default: `""`
-  @param {boolean} [has_title=false] - Determines whether to display title area
-
-Can be used to display title area even when there is no title content, Default: `false`
+  @param {boolean} [has_title=false] - Determines whether to show title bar when no title content is present, Default: `false`
   @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
   @param {string} [class=""] - CSS classes for Message box, Default: `""`
 
@@ -31,7 +29,7 @@ The parent can then decide what to do with the component
   <div
     class="{title || has_title
       ? 'message-header'
-      : 'no-message-header'} {header_classes}">
+      : 'no-message-header'} {title_class}">
     {#if title || has_title}
       <!--
         Used for message title.<br/>
@@ -84,10 +82,10 @@ The parent can then decide what to do with the component
      */
     inner_style = "",
     /**
-     * CSS classes for Message box header
+     * CSS classes for Message box title
      * @type {string}
      */
-    header_classes = "",
+    title_class = "",
     /**
      * CSS classes for Message content
      * @type {string}
