@@ -2,15 +2,18 @@
   @component
 
 
-  @param {boolean} [active=false] - Active - true/false, Default: `false`
-  @param {string} [classes=""] - Additional classes, Default: `""`
+  @param {boolean} [active=false] - Active step - true/false, Default: `false`
   @param {string} [style=""] - Inline style of component, Default: `""`
   @param {boolean} [v_center=false] - V-Center - true/false, Default: `false`
   @param {boolean} [h_center=false] - H-Center - true/false, Default: `false`
   @param {boolean} [track_height=false] - Track Height - true/false, Default: `false`
+  @param {string} [class=""] - Additional class, Default: `""`
+
+  ### Events
+  - `heightChange` - Change height of the pane dynamically
 
   ### Slots
-  - `<slot name="default"  />`
+  - `<slot name="default"  />` - Used to display content
 
 -->
 <div
