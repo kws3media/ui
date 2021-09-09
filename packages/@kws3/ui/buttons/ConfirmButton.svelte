@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [button_class=""] - CSS classes for button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
@@ -28,7 +28,7 @@
   <p class="control">
     {#if _confirm}
       <button
-        class="button is-success is-outlined is-shadowless is-{size} {button_class}"
+        class="button is-success is-light is-shadowless is-{size} {button_class}"
         type="button"
         on:click|preventDefault|stopPropagation={cancel}>
         Cancel
@@ -44,7 +44,7 @@
         : _done
         ? main_color
         : confirm
-        ? 'is-outlined ' + main_color
+        ? main_color
         : main_color} {button_class}"
       type="button"
       on:click|preventDefault|stopPropagation={doit}
