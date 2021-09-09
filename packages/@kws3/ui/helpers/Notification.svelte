@@ -3,15 +3,15 @@
 
 
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'light'|'dark'} [color="info"] - Color of the Notification box, Default: `"info"`
-  @param {string} [style=""] - Inline style for notification content, Default: `""`
-  @param {boolean} [light=false] - Inverted style of notification, Default: `false`
-  @param {boolean} [dismissable=false] - Show close button, Default: `false`
+  @param {string} [style=""] - Inline CSS for notification content, Default: `""`
+  @param {boolean} [light=false] - Inverted colors for notification box and contents, Default: `false`
+  @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
   @param {boolean} [active=true] - Determines whether the whole component is being displayed or not, Default: `true`
-  @param {string} [class=""] - Additional class for Notification container, Default: `""`
+  @param {string} [class=""] - CSS classes for notification container, Default: `""`
 
   ### Events
   - `dismiss` - Fired when dismiss button is clicked.
-Turns `active` off, which hides the component.
+Turns `active` to `false`, which hides the component.
 The parent can then decide what to do with the component
 
   ### Slots
@@ -40,17 +40,17 @@ The parent can then decide what to do with the component
   export let color = "info";
 
   /**
-   * Inline style for notification content
+   * Inline CSS for notification content
    */
   export let style = "";
 
   /**
-   * Inverted style of notification
+   * Inverted colors for notification box and contents
    */
   export let light = false;
 
   /**
-   * Show close button
+   * Determines whether close button is displayed or not
    */
   export let dismissable = false;
 
@@ -61,7 +61,7 @@ The parent can then decide what to do with the component
   export let active = true;
 
   /**
-   * Additional class for Notification container
+   * CSS classes for notification container
    */
   let klass = "";
   export { klass as class };
@@ -70,7 +70,7 @@ The parent can then decide what to do with the component
     active = false;
     /**
      * Fired when dismiss button is clicked.
-     * Turns `active` off, which hides the component.
+     * Turns `active` to `false`, which hides the component.
      * The parent can then decide what to do with the component
      */
     fire("dismiss");
