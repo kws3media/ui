@@ -94,9 +94,7 @@ Can be used to display title area even when there is no title content, Default: 
      */
     title = "",
     /**
-     * Determines whether to display title area
-     *
-     * Can be used to display title area even when there is no title content
+     * Determines whether to show title bar when no title content is present
      * @type {boolean}
      */
     has_title = false,

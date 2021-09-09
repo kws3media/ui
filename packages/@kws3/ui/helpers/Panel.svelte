@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title of the panel
 
@@ -155,9 +155,7 @@ This will not work if there is no title area
      */
     has_center = true,
     /**
-     * Determines whether to display title area
-     *
-     * Can be used to display title area even when there is no title content
+     * Determines whether to show title bar when no title content is present
      */
     has_title = false;
 
