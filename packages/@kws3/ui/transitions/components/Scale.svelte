@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {number} [from=0.5] - From property, Default: `0.5`
   @param {number} [to=1] - To property, Default: `1`
@@ -14,7 +14,7 @@
 
 -->
 <div
-  class="transible {classes}"
+  class="transible {klass}"
   in:scale={{
     from: from || 0.5,
     to: to || 1,
@@ -34,5 +34,5 @@
     easing = null,
     delay = 0,
     duration = 300,
-    classes = "";
+    klass = "";
 </script>

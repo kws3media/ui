@@ -20,7 +20,7 @@
 {#if transition}
   <svelte:component
     this={TransitionComponents[type]}
-    {classes}
+    {klass}
     {duration}
     {delay}
     {easing}
@@ -32,7 +32,7 @@
   </svelte:component>
 {:else}
   <div>
-    <slot />
+    <!--Used to display content--><slot />
   </div>
 {/if}
 
@@ -84,9 +84,11 @@
     /**
      * Easing property
      */
-    easing = null,
-    /**
-     * Additional classes
-     */
-    classes = "";
+    easing = null;
+
+  /**
+   * Additional class
+   */
+  let klass = "";
+  export { klass as class };
 </script>

@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {object} [easing=null] - Easing property, Default: `null`
   @param {number} [delay=0] - Delay property, Default: `0`
@@ -12,7 +12,7 @@
 
 -->
 <div
-  class="transible {classes}"
+  class="transible {klass}"
   in:fade={{
     duration: duration || 300,
     delay: delay || 0,
@@ -28,5 +28,5 @@
   export let easing = null,
     delay = 0,
     duration = 300,
-    classes = "";
+    klass = "";
 </script>

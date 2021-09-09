@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {number} [x=0] - X property, Default: `0`
   @param {number} [y=0] - Y property, Default: `0`
@@ -14,7 +14,7 @@
 
 -->
 <div
-  class="transible {classes}"
+  class="transible {klass}"
   in:fly={{
     x: x || 0,
     y: y || 0,
@@ -34,5 +34,5 @@
     easing = null,
     delay = 0,
     duration = 300,
-    classes = "";
+    klass = "";
 </script>
