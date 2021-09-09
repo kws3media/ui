@@ -1,5 +1,12 @@
 <div class="columns">
   <div class="column" style="width: 400px;">
+    {#if image}
+      <div class="is-text-centered">
+        <figure class="image is-128x128" style="margin: 0 auto 20px auto">
+          <img src={image || ""} alt="" />
+        </figure>
+      </div>
+    {/if}
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event)}
       on:file_uploaded
@@ -44,15 +51,36 @@
   let klass = "";
   export { klass as class };
 
+  let image = "";
+  let error_state = false;
+
   function onFileChosen(event) {
     event.preventDefault();
     let { getFile, progress, uploaded } = event.detail;
     var file = getFile();
     var size = file.size;
-    progress(0);
-    setTimeout(() => {
-      uploaded();
-    }, 1000);
+    let progrss = 0;
+    progress(progrss);
+
+    let inter_val = setInterval(() => {
+      if (progrss > size) {
+        if (error_state) {
+          error("Error on Upload");
+        } else {
+          uploaded();
+          var reader = new FileReader();
+          reader.readAsDataURL(file.file.get("userfile"));
+          reader.onload = () => {
+            image = reader.result;
+          };
+        }
+        progrss = 0;
+        clearInterval(inter_val);
+        return;
+      }
+      progrss += ~~(size / 100);
+      progress(progrss);
+    }, 50);
   }
 
   function onFileError(event) {
