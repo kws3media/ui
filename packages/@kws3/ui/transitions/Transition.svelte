@@ -2,19 +2,20 @@
   @component
 
 
-  @param {number} [x=0] - X property, Default: `0`
-  @param {number} [y=0] - Y property, Default: `0`
+  @param {number} [x=0] - X Property, Default: `0`
+  @param {number} [y=0] - Y Property, Default: `0`
   @param {number} [from=0.5] - From property, Default: `0.5`
-  @param {number} [to=1] - To property, Default: `1`
-  @param {boolean} [transition=true] - Transition property, Default: `true`
-  @param {string} [type="fly"] - Type property, Default: `"fly"`
-  @param {number} [duration=300] - Duration property, Default: `300`
-  @param {number} [delay=0] - Delay property, Default: `0`
-  @param {object} [easing=null] - Easing property, Default: `null`
-  @param {string} [classes=""] - Classes property, Default: `""`
+  @param {number} [to=1] - To Property, Default: `1`
+  @param {boolean} [transition=true] - True/False - transition will not run, and behave as if its a static element., Default: `true`
+  @param {'fly'|'fade'|'scale'|'slide'} [type="fly"] - Transition types., Default: `"fly"`
+  @param {number} [duration=300] - Duration - in milliseconds, duration of the transition, Default: `300`
+  @param {number} [delay=0] - Delay - in milliseconds, delays the start of the transition, Default: `0`
+  @param {string} [easing=""] - Specifies the easing function to be used. Any one of the following strings
+`sineOut` | `elasticOut` | `expoOut` | `cubicOut` - (default easing) | `circOut` | `bounceOut` | `backOut`, Default: `""`
+  @param {string} [class=""] - Wrapper class element, Default: `""`
 
   ### Slots
-  - `<slot name="default"  />`
+  - `<slot name="default"  />` - Used to display content
 
 -->
 {#if transition}
@@ -65,7 +66,7 @@
      */
     to = 1,
     /**
-     * Transition - true/false
+     * True/False - transition will not run, and behave as if its a static element.
      */
     transition = true,
     /**
@@ -74,20 +75,21 @@
      */
     type = "fly",
     /**
-     * Duration
+     * Duration - in milliseconds, duration of the transition
      */
     duration = 300,
     /**
-     * Delay
+     * Delay - in milliseconds, delays the start of the transition
      */
     delay = 0,
     /**
-     * Easing property
+     * Specifies the easing function to be used. Any one of the following strings
+     * `sineOut` | `elasticOut` | `expoOut` | `cubicOut` - (default easing) | `circOut` | `bounceOut` | `backOut`
      */
-    easing = null;
+    easing = "";
 
   /**
-   * Additional class
+   * Wrapper class element
    */
   let klass = "";
   export { klass as class };
