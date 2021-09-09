@@ -17,13 +17,17 @@ Can be used to display title area even when there is no title content, Default: 
   @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
   @param {string} [class=""] - CSS classes for Message box, Default: `""`
 
+  ### Events
+  - `dismiss` - Fired when dismiss button is clicked.
+The parent can then decide what to do with the component
+
   ### Slots
   - `<slot name="title"  />` - Used for message title.<br/>
 **Example:** <code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
   - `<slot name="default"  />` - Used for message content
 
 -->
-<div class="message is-{color} is-{size} {klass}" {style} bind:this={_comp}>
+<div class="message is-{color} is-{size} {klass}" {style}>
   <div
     class="{title || has_title
       ? 'message-header'
@@ -56,6 +60,9 @@ Can be used to display title area even when there is no title content, Default: 
 </style>
 
 <script>
+  import { createEventDispatcher } from "svelte";
+  const fire = createEventDispatcher();
+
   /**
    * Size of the Message
    * @type {''|'small'|'medium'|'large'}
@@ -111,10 +118,12 @@ Can be used to display title area even when there is no title content, Default: 
   let klass = "";
   export { klass as class };
 
-  let _comp;
-
   function dismiss() {
-    _comp.parentNode.removeChild(_comp);
+    /**
+     * Fired when dismiss button is clicked.
+     * The parent can then decide what to do with the component
+     */
+    fire("dismiss");
   }
 
   // reviewd

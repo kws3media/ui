@@ -44,6 +44,9 @@ export let args={
   {(args) => ({
     Component: MessageDecorator,
     props: args,
+    on: {
+      dismiss: action("dismiss"),
+    },
   })}
   </Story>
 </Canvas>
