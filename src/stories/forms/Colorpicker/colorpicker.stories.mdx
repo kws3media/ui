@@ -1,0 +1,54 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Colorpicker } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  color : "#ff00ee",
+  typeable : true,
+  readonly : false,
+  mini : false,
+  disabled : false
+};
+
+<Meta
+  title="Forms/Colorpicker"
+  component={Colorpicker}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Colorpicker
+## Colorpicker component that allows you to select date.
+`}/>
+
+<Canvas>
+  <Story
+  name="Colorpicker"
+  args={args}
+  >
+  {(args) => ({
+    Component: Colorpicker,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Colorpicker" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Colorpicker } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Colorpicker.scss';`
+  }
+/>
