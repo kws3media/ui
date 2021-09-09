@@ -6,7 +6,8 @@
   {done_icon}
   {doing_text}
   {done_text}
-  on:doing={onDoing} />
+  {context}
+  on:do={onDo} />
 
 <script>
   import { ProcessButton as KwsButton } from "@kws3/ui";
@@ -17,9 +18,10 @@
     doing_icon = "hourglass",
     doing_text = "Doing...",
     done_icon = "check",
-    done_text = "Done";
+    done_text = "Done",
+    context = null;
 
-  function onDoing(e, success = true) {
+  function onDo(e, success = true) {
     let { doing, done, error } = e.detail;
     doing();
     setTimeout(() => {

@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [button_class=""] - Additional class for button, Default: `""`
   @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
@@ -39,21 +39,21 @@
   {disabled}
   class={klass}
   should_confirm={false}
-  on:do={(e) =>
+  on:do={({ detail }) =>
     /**
      * fires an event on doing
      */
-    fire("do", e)}
-  on:done={(e) =>
+    fire("do", detail)}
+  on:done={({ detail }) =>
     /**
      * fires an event on complete
      */
-    fire("done", e)}
-  on:error={(e) =>
+    fire("done", detail)}
+  on:error={({ detail }) =>
     /**
      * fires an event on error
      */
-    fire("error", e)} />
+    fire("error", detail)} />
 
 <script>
   import { ConfirmButton } from "@kws3/ui";

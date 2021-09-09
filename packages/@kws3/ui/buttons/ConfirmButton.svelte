@@ -15,6 +15,7 @@
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {boolean} [should_confirm=true] - ask confirm question if it is true, Default: `true`
+  @param {object} [context=null] - Context property, Default: `null`
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
@@ -139,7 +140,11 @@
     /**
      * ask confirm question if it is true
      */
-    should_confirm = true;
+    should_confirm = true,
+    /**
+     * Context property
+     */
+    context = null;
 
   /**
    * CSS classes for button container
@@ -171,7 +176,7 @@
       /**
        * fires an event on doing
        */
-      fire("do", { doing, done, error });
+      fire("do", { doing, done, error, context });
     }
   }
 

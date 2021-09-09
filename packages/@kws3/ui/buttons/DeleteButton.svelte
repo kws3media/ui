@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [button_class=""] - Additional class for button, Default: `""`
   @param {string} [text="Delete"] - Button text, Default: `"Delete"`
@@ -15,16 +15,15 @@
   @param {object} [context=null] - Context property, Default: `null`
   @param {boolean} [icon_only=false] - Icon Only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
+  @param {string} [class=""] - CSS class for button container, Default: `""`
 
   ### Events
-  - `error`
-  - `erase`
-  - `erased`
+  - `erase` - fires an event on erase
+  - `erased` - fires an event after erased
+  - `error` - fires an event on error
 
 -->
 <ConfirmButton
-  class={klass}
   {button_class}
   {text}
   {size}
@@ -38,9 +37,22 @@
   {context}
   {icon_only}
   {disabled}
-  on:error
-  on:do={({ detail }) => fire("erase", detail)}
-  on:done={({ detail }) => fire("erased", detail)} />
+  class={klass}
+  on:do={({ detail }) =>
+    /**
+     * fires an event on erase
+     */
+    fire("erase", detail)}
+  on:done={({ detail }) =>
+    /**
+     * fires an event after erased
+     */
+    fire("erased", detail)}
+  on:error={({ detail }) =>
+    /**
+     * fires an event on error
+     */
+    fire("error", detail)} />
 
 <script>
   import { ConfirmButton } from "@kws3/ui";
