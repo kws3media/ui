@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
@@ -28,7 +28,7 @@ Title bar will still be displayed when this is set to false, but there is conten
     {#if title || has_title}
       <!--
         Used for message title.<br/>
-        <code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
+        **Example:** <code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
       -->
       <slot name="title"><p>{title}</p></slot>
     {/if}
