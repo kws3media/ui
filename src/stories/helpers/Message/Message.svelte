@@ -9,7 +9,8 @@
   {header_classes}
   {title}
   {has_title}
-  {dismissable}>
+  {dismissable}
+  on:dismiss>
   <h1>This is a Heading</h1>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 </KwsMessage>
