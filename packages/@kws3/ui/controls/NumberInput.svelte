@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'small'|'medium'|'large'} [size=""] - Size of the Button `small`, `medium`, `large`, Default: `""`
   @param {object} [input=null] - Input Property, Default: `null`
@@ -91,97 +91,67 @@
   const fire = createEventDispatcher();
 
   /**
-   * Size of the Button `small`, `medium`, `large`
-   * @type {'small'|'medium'|'large'}
+   * Size of the Button
+   * @type {''|'small'|'medium'|'large'}
    */
-  export let size = "";
+  export let size = "",
+    /**
+     * Input Property
+     */
+    input = null,
+    /**
+     * Default value
+     */
+    value = 0,
+    /**
+     * Steps increasing/decreasing
+     */
+    step = 1,
+    /**
+     * Starting number
+     */
+    min = 0,
+    /**
+     * Maximum number
+     */
+    max = 100,
+    /**
+     * Disable - true/false
+     */
+    disabled = false,
+    /**
+     * Full width of container - true/false
+     */
+    fullwidth = false,
+    /**
+     * Icon of the Minus button - Can use fa, la, gg, uil icon families
+     */
+    minus_icon = "minus",
+    /**
+     * Color of the Minus Icon
+     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    minus_icon_color = "danger",
+    /**
+     * Color of the Minus Button
+     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    minus_button_color = "",
+    /**
+     * Icon of the Plus button - Can use fa, la, gg, uil icon families
+     */
+    plus_icon = "plus",
+    /**
+     * Color of the Plus Icon
+     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    plus_icon_color = "success",
+    /**
+     * Color of the Plus Button
+     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    plus_button_color = "";
 
-  /**
-   * Input Property
-   * @type {object}
-   * @defaultvalue null
-   */
-  export let input = null;
-
-  /**
-   * Default value
-   * @type {number}
-   * @defaultvalue null
-   */
-  export let value = null;
-
-  /**
-   * Steps increasing/decreasing
-   * @type {number}
-   * @defaultvalue 1
-   */
-  export let step = 1;
-
-  /**
-   * Starting number
-   * @type {number}
-   * @defaultvalue 0
-   */
-  export let min = 0;
-
-  /**
-   * Maximum number
-   * @type {number}
-   * @defaultvalue 100
-   */
-  export let max = 100;
-
-  /**
-   * Disable - true/false
-   * @type {boolean}
-   * @defaultvalue false
-   */
-  export let disabled = false;
-
-  /**
-   * Full width of container - true/false
-   * @type {boolean}
-   * @defaultvalue false
-   */
-  export let fullwidth = false;
-
-  /**
-   * Icon of the Minus button
-   * @type {string}
-   * @defaultvalue `minus`
-   */
-  export let minus_icon = "minus";
-
-  /**
-   * Color of the Minus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let minus_icon_color = "danger";
-
-  /**
-   * Color of the Minus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let minus_button_color = "";
-
-  /**
-   * Icon of the Plus button
-   * @type {string}
-   * @defaultvalue `plus`
-   */
-  export let plus_icon = "plus";
-
-  /**
-   * Color of the Plus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let plus_icon_color = "success";
-
-  /**
-   * Color of the Plus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let plus_button_color = "";
   export let _has_focus = 0;
 
   $: value && !_has_focus, validateInput(); // will work like on state changed
@@ -203,7 +173,9 @@
     if (typeof value == "undefined" || value === null) value = min;
     value = Number(value) + i * step;
     if (step % 1 != 0) value = value.toFixed(1);
-
+    /**
+     * Used to change input value
+     */
     fire("change");
   };
 
