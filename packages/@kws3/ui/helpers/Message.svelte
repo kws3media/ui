@@ -24,7 +24,10 @@ Title bar will still be displayed when this is set to false, but there is conten
 
 -->
 <div class="message is-{color} is-{size} {klass}" {style} bind:this={_comp}>
-  <div class="{title || has_title ? 'message-header' : ''} {header_classes}">
+  <div
+    class="{title || has_title
+      ? 'message-header'
+      : 'no-message-header'} {header_classes}">
     {#if title || has_title}
       <!--
         Used for message title.<br/>
@@ -40,6 +43,17 @@ Title bar will still be displayed when this is set to false, but there is conten
     <!--Used for message content--><slot />
   </div>
 </div>
+
+<style>
+  .message {
+    position: relative;
+  }
+  .no-message-header {
+    position: absolute;
+    top: 1em;
+    right: 0.75em;
+  }
+</style>
 
 <script>
   /**
