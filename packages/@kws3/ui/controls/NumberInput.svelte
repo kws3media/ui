@@ -2,24 +2,24 @@
   @component
 
 
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Button `small`, `medium`, `large`, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {object} [input=null] - Input Property, Default: `null`
-  @param {number} [value=null] - Default value, Default: `null`
+  @param {number} [value=0] - Default value, Default: `0`
   @param {number} [step=1] - Steps increasing/decreasing, Default: `1`
   @param {number} [min=0] - Starting number, Default: `0`
   @param {number} [max=100] - Maximum number, Default: `100`
   @param {boolean} [disabled=false] - Disable - true/false, Default: `false`
   @param {boolean} [fullwidth=false] - Full width of container - true/false, Default: `false`
-  @param {string} [minus_icon="minus"] - Icon of the Minus button, Default: `"minus"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `"danger"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `""`
-  @param {string} [plus_icon="plus"] - Icon of the Plus button, Default: `"plus"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `"success"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `""`
+  @param {string} [minus_icon="minus"] - Icon of the Minus button - Can use fa, la, gg, uil icon families, Default: `"minus"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon, Default: `"danger"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button, Default: `""`
+  @param {string} [plus_icon="plus"] - Icon of the Plus button - Can use fa, la, gg, uil icon families, Default: `"plus"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon, Default: `"success"`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
   @param {number} [_has_focus=0] - _has_focus property, Default: `0`
 
   ### Events
-  - `change`
+  - `change` - Used to change input value
 
 -->
 <div class="field has-addons">
