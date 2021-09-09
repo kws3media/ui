@@ -1,12 +1,5 @@
 <div class="columns">
   <div class="column" style="width: 400px;">
-    {#if image}
-      <div class="is-text-centered">
-        <figure class="image is-128x128" style="margin: 0 auto 20px auto">
-          <img src={image || ""} alt="" />
-        </figure>
-      </div>
-    {/if}
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event)}
       on:file_uploaded
@@ -23,7 +16,7 @@
 
   <div class="column" style="width: 400px;">
     <KwsFileUpload
-      on:file_chosen={(event) => onFileError(event)}
+      on:file_chosen={(event) => onFileChosen(event, true)}
       on:file_uploaded
       on:file_upload_error
       {allowed}
@@ -38,6 +31,18 @@
   </div>
 </div>
 
+{#if image}
+  <div class="columns">
+    <div class="column">
+      <div class="is-text-centered">
+        <figure class="image is-128x128" style="margin: 0 auto 20px auto">
+          <img src={image || ""} alt="" />
+        </figure>
+      </div>
+    </div>
+  </div>
+{/if}
+
 <script>
   import { FileUpload as KwsFileUpload } from "@kws3/ui";
   export let key = "",
@@ -51,12 +56,13 @@
   let klass = "";
   export { klass as class };
 
-  let image = "";
+  let image = "",
+    file = "";
   let error_state = false;
 
-  function onFileChosen(event) {
+  function onFileChosen(event, error_state = false) {
     event.preventDefault();
-    let { getFile, progress, uploaded } = event.detail;
+    let { getFile, progress, uploaded, error } = event.detail;
     var file = getFile();
     var size = file.size;
     let progrss = 0;
@@ -71,6 +77,7 @@
           var reader = new FileReader();
           reader.readAsDataURL(file.file.get("userfile"));
           reader.onload = () => {
+            console.log(reader);
             image = reader.result;
           };
         }
@@ -81,16 +88,5 @@
       progrss += ~~(size / 100);
       progress(progrss);
     }, 50);
-  }
-
-  function onFileError(event) {
-    event.preventDefault();
-    let { getFile, progress, error } = event.detail;
-    var file = getFile();
-    var size = file.size;
-    progress(0);
-    setTimeout(() => {
-      error("Error on upload");
-    }, 1000);
   }
 </script>
