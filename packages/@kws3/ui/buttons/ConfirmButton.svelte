@@ -4,19 +4,19 @@
 
   @param {string} [button_class=""] - CSS classes for button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {string} [icon="check"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
   @param {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="info"] - Color of the Button, Default: `"info"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - Icon shows during process, Default: `"hourglass"`
-  @param {string} [doing_text="Please Wait..."] - Text shows during process, Default: `"Please Wait..."`
-  @param {string} [done_icon="check"] - Icon shows after process complete, Default: `"check"`
+  @param {string} [doing_icon="hourglass"] - Name of the icon displayed during task processing, Default: `"hourglass"`
+  @param {string} [doing_text="Please Wait..."] - Message displayed when processing task, Default: `"Please Wait..."`
+  @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Done"] - Text shows after process complete, Default: `"Done"`
   @param {boolean} [confirm=false] - Boolean - true/false, Default: `false`
-  @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
+  @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
+  @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {boolean} [can_confirm=true] - ask confirm question if it is true, Default: `true`
-  @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
+  @param {string} [class=""] - `CONST` CSS classes for button container, Default: `""`
 
   ### Events
   - `do` - fires an event on doing
@@ -97,11 +97,11 @@
     text = "",
     /**
      * Size of the Button
-     * @type {'small'|'medium'|'large'}
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
-     * Icon of the Button - use any fa/gg/unicorn icons
+     * Name of the icon that is to be displayed in the button
      */
     icon = "check",
     /**
@@ -114,15 +114,15 @@
      */
     cy = "",
     /**
-     * Icon shows during process
+     * Name of the icon displayed during task processing
      */
     doing_icon = "hourglass",
     /**
-     * Text shows during process
+     * Message displayed when processing task
      */
     doing_text = "Please Wait...",
     /**
-     * Icon shows after process complete
+     * Name of the icon displayed after task is completed successfully
      */
     done_icon = "check",
     /**
@@ -134,11 +134,11 @@
      */
     confirm = false,
     /**
-     * Display icon only - true/false
+     * Removes text, and text space in the button
      */
     icon_only = false,
     /**
-     * Button disable - true/false
+     * Disables the button when `true`
      */
     disabled = false,
     /**
@@ -147,7 +147,7 @@
     can_confirm = true;
 
   /**
-   * CSS class for button container
+   * CSS classes for button container
    */
   let klass = "";
   export { klass as class };
