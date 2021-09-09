@@ -20,7 +20,10 @@
       on:dragover={onDragOver}
       on:drop={onDrop}
       on:dragleave={onDragLeave}>
-      {#if !mini}<Icon icon="hashtag" icon_style="color:#{color}" />{/if}
+      {#if !mini}
+        <Icon icon="hashtag" icon_style="color:#{color}" />
+      {/if}
+
       <input
         type="text"
         class="input {readonly ? 'readonly' : ''} {mini ? 'mini' : ''}"
@@ -29,6 +32,7 @@
         {disabled}
         bind:value={color}
         use:colorpicker />
+
       <span class="color-preview" style="background:#{color}" />
     </div>
   </div>
@@ -36,8 +40,8 @@
 
 <script>
   import { afterUpdate } from "svelte";
-  import ColorPicker from "./actions";
   import { Icon } from "@kws3/ui";
+  import ColorPicker from "./actions";
 
   /**
    * Selected color
@@ -76,7 +80,7 @@
   }
 
   afterUpdate(() => {
-    //if (color) _colorpicker.set("#" + color);
+    _colorpicker.set("#" + color);
   });
 
   function onDragOver(e) {
