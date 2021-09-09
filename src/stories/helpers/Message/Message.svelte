@@ -10,6 +10,7 @@
   {title}
   {has_title}
   {dismissable}
+  {active}
   on:dismiss>
   <h1>This is a Heading</h1>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -27,7 +28,8 @@
     inner_class = "",
     title = null,
     has_title = false,
-    dismissable = false;
+    dismissable = false,
+    active = true;
 
   let klass = "";
   export { klass as class };
