@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [button_class=""] - CSS classes for button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
@@ -15,7 +15,7 @@
   @param {boolean} [confirm=false] - Boolean - true/false, Default: `false`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
-  @param {boolean} [can_confirm=true] - ask confirm question if it is true, Default: `true`
+  @param {boolean} [should_confirm=true] - ask confirm question if it is true, Default: `true`
   @param {string} [class=""] - `CONST` CSS classes for button container, Default: `""`
 
   ### Events
@@ -28,7 +28,7 @@
   <p class="control">
     {#if _confirm}
       <button
-        class="button is-success is-outlined is-shadowless is-{size} {button_class}"
+        class="button is-success is-light is-shadowless is-{size} {button_class}"
         type="button"
         on:click|preventDefault|stopPropagation={cancel}>
         Cancel
@@ -44,7 +44,7 @@
         : _done
         ? main_color
         : confirm
-        ? 'is-outlined ' + main_color
+        ? main_color
         : main_color} {button_class}"
       type="button"
       on:click|preventDefault|stopPropagation={doit}
@@ -144,7 +144,7 @@
     /**
      * ask confirm question if it is true
      */
-    can_confirm = true;
+    should_confirm = true;
 
   /**
    * CSS classes for button container
@@ -164,7 +164,7 @@
   }
 
   function doit() {
-    let _confirm = can_confirm ? confirm : true;
+    let _confirm = should_confirm ? confirm : true;
     if (!_confirm) {
       confirm = true;
       return;
@@ -220,7 +220,7 @@
     }, 1500);
   }
 
-  $: _confirm = can_confirm && confirm;
+  $: _confirm = should_confirm && confirm;
 
   // reviwed
 </script>
