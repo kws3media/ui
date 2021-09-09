@@ -4,18 +4,21 @@
 
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
-  @param {string} [style=""] - Inline style for message content, Default: `""`
-  @param {string} [inner_style=""] - CSS classes for message content, Default: `""`
-  @param {string} [header_classes=""] - CSS classes for message header, Default: `""`
-  @param {string} [inner_class=""] - CSS classes for message body, Default: `""`
-  @param {string} [title=""] - Title for message box, Default: `""`
-  @param {boolean} [has_title=false] - Meesage box has title, Default: `false`
-  @param {boolean} [dismissable=false] - Show close button, Default: `false`
-  @param {string} [class=""] - `CONST` Additional class for message box, Default: `""`
+  @param {string} [style=""] - Inline CSS for Message box, Default: `""`
+  @param {string} [inner_style=""] - Inline CSS for Message content, Default: `""`
+  @param {string} [header_classes=""] - CSS classes for Message box header, Default: `""`
+  @param {string} [inner_class=""] - CSS classes for Message content, Default: `""`
+  @param {string} [title=""] - Title of the message box
+
+Having content here will display the title bar and content, even if has_title is false, Default: `""`
+  @param {boolean} [has_title=false] - Determines if the title bar should be displayed when there is no content in the title
+
+Title bar will still be displayed when this is set to false, but there is content in the title, Default: `false`
+  @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
+  @param {string} [class=""] - CSS classes for Message box, Default: `""`
 
   ### Slots
-  - `<slot name="title"  />` - Used for message title.
-Can use the slot title like..<br/>
+  - `<slot name="title"  />` - Used for message title.<br/>
 <code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
   - `<slot name="default"  />` - Used for message content
 
@@ -24,8 +27,7 @@ Can use the slot title like..<br/>
   <div class="{title || has_title ? 'message-header' : ''} {header_classes}">
     {#if title || has_title}
       <!--
-        Used for message title.
-        Can use the slot title like..<br/>
+        Used for message title.<br/>
         <code>&lt;h1 slot="title"&gt; This is a Slot Header &lt;/h1&gt;</code>
       -->
       <slot name="title"><p>{title}</p></slot>
@@ -51,43 +53,47 @@ Can use the slot title like..<br/>
      */
     color = "info",
     /**
-     * Inline style for message content
+     * Inline CSS for Message box
      * @type {string}
      */
     style = "",
     /**
-     * CSS classes for message content
+     * Inline CSS for Message content
      * @type {string}
      */
     inner_style = "",
     /**
-     * CSS classes for message header
+     * CSS classes for Message box header
      * @type {string}
      */
     header_classes = "",
     /**
-     * CSS classes for message body
+     * CSS classes for Message content
      * @type {string}
      */
     inner_class = "",
     /**
-     * Title for message box
+     * Title of the message box
+     *
+     * Having content here will display the title bar and content, even if has_title is false
      * @type {string}
      */
     title = "",
     /**
-     * Meesage box has title
+     * Determines if the title bar should be displayed when there is no content in the title
+     *
+     * Title bar will still be displayed when this is set to false, but there is content in the title
      * @type {boolean}
      */
     has_title = false,
     /**
-     * Show close button
+     * Determines whether close button is displayed or not
      * @type {boolean}
      */
     dismissable = false;
 
   /**
-   * Additional class for message box
+   * CSS classes for Message box
    * @type {string}
    */
   let klass = "";
