@@ -33,7 +33,7 @@
       <Icon
         icon={minus_icon}
         size="small"
-        icon_class="has-text-{minus_icon_color}" />
+        class="has-text-{minus_icon_color}" />
     </button>
   </div>
   <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
@@ -58,10 +58,7 @@
       style="box-shadow:none;"
       on:click|preventDefault={count(+1)}
       disabled={disabled || value >= max}>
-      <Icon
-        icon={plus_icon}
-        size="small"
-        icon_class="has-text-{plus_icon_color}" />
+      <Icon icon={plus_icon} size="small" class="has-text-{plus_icon_color}" />
     </button>
   </div>
 </div>
