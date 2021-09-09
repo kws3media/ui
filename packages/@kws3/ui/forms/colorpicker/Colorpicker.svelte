@@ -48,15 +48,17 @@
    */
   export let color = "000000",
     /**
-     * Allow to type in input
+     * Allows typing the colour name in in hex Code
      */
     typeable = true,
     /**
-     * Readonly input
+     * To display a fixed colour and hex Code
+     *
+     * Not changeable by user.
      */
     readonly = false,
     /**
-     * Mini color input
+     * Alternate mini colour picker without form or hex Code
      */
     mini = false,
     /**
