@@ -3,10 +3,19 @@
   class="input {klass}"
   type="text"
   {style}
+  {placeholder}
+  {disabled}
   readonly
   bind:value
-  {placeholder}
-  {disabled} />
+  on:change
+  on:dateChange
+  on:ready
+  on:open
+  on:close
+  on:monthChange
+  on:yearChange />
+
+<input type="text" bind:value />
 
 <script>
   import datepicker from "./actions";

@@ -31,6 +31,15 @@ export let args={
   {(args) => ({
     Component: Datepicker,
     props: args,
+    on:{
+      change: action('change'),
+      dateChange: action('dateChange'),
+      ready: action('ready'),
+      open: action('open'),
+      close: action('close'),
+      monthChange: action('monthChange'),
+      yearChange: action('yearChange')
+    }
   })}
   </Story>
 </Canvas>
