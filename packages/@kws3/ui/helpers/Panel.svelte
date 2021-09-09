@@ -24,9 +24,7 @@ This will not work if there is no title area, Default: `false`
 You might need this if there are absolutely positioned elements inside the Panel, Default: `false`
   @param {boolean} [has_toolbar=true] - Used to show or hide toolbar slot contents (slot=“toolbar”), Default: `true`
   @param {boolean} [has_center=true] - Used to show or hide center slot contents of the title area (slot=“center”), Default: `true`
-  @param {boolean} [has_title=false] - Determines whether to display title area
-
-Can be used to display title area even when there is no title content, Default: `false`
+  @param {boolean} [has_title=false] - Determines whether to show title bar when no title content is present, Default: `false`
   @param {string} [class=""] - CSS classes for Panel container, Default: `""`
 
   ### Slots
