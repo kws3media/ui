@@ -14,7 +14,9 @@
 <div class="range-control">
   <!--Triggered whenever any change is made to the slider value-->
   <input
-    class="slider is-fullwidth has-output is-{size} is-{color} {klass}"
+    class="slider is-fullwidth has-output is-{size} is-{color} {klass} {circle
+      ? 'is-circle'
+      : ''}"
     type="range"
     bind:value
     on:change
@@ -61,7 +63,11 @@
     /**
      * Inline styles
      */
-    style = "";
+    style = "",
+    /**
+     * Shape of slider thumb : default square
+     */
+    circle = false;
 
   /**
    * CSS classes for the slider
