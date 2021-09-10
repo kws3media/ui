@@ -13,7 +13,7 @@
 @import "_variables";
 //bulma itself
 @import "../../node_modules/bulma/bulma";
-
+@import "_range.sass";
 html {
   overflow-x: scroll;
 }

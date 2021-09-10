@@ -13,8 +13,18 @@
 -->
 <div class="range-control">
   <!--Triggered whenever any change is made to the slider value-->
-  <input class="input {klass}" type="range" bind:value on:change {min} {max} />
-  <output style={computedStyle}>{value}</output>
+  <input
+    class="slider is-fullwidth has-output is-{size} is-{color} {klass}"
+    type="range"
+    bind:value
+    on:change
+    {min}
+    {max}
+    {disabled}
+    {style} />
+  {#if output}
+    <output style={computedStyle}>{value}</output>
+  {/if}
 </div>
 
 <script>
@@ -29,11 +39,32 @@
     /**
      * Default set value before any user interaction
      */
-    value = 0;
+    value = 0,
+    /**
+     * Show output
+     */
+    output = false,
+    /**
+     * Disable option
+     */
+    disabled = false,
+    /**
+     * Size of the Radio Button
+     * @type {'small'|'medium'|'large'}
+     */
+    size = "",
+    /**
+     * Color of the Radio button
+     * @type {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     */
+    color = "",
+    /**
+     * Inline styles
+     */
+    style = "";
 
   /**
    * CSS classes for the slider
-   * @type {string}
    */
   let klass = "";
   export { klass as class };
