@@ -2,22 +2,22 @@
   @component
 
 
-  @param {object} [value=null] - value of radio button, Default: `null`
-  @param {string} [style=""] - Inline style, Default: `""`
-  @param {string} [label_style=""] - Inline style of Radio label, Default: `""`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Radio Button, Default: `""`
-  @param {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Radio button, Default: `""`
-  @param {boolean} [inverted=false] - Inverted - true/false, Default: `false`
-  @param {boolean} [circle=false] - Circle radio button(Default : Square) - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {boolean} [group=false] - Group radio - true/false, Default: `false`
-  @param {string} [class=""] - CSS classes, Default: `""`
+  @param {object} [value=null] - Value of radio button, Default: `null`
+  @param {string} [style=""] - Inline CSS for the Radio button, Default: `""`
+  @param {string} [label_style=""] - Inline CSS for Radio label, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Radio Button, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Radio button when selected, Default: `""`
+  @param {boolean} [inverted=false] - Inverts the Radio colour theme, Default: `false`
+  @param {boolean} [circle=false] - Circular Radio button instead of the default square, Default: `false`
+  @param {boolean} [disabled=false] - Disables Radio button, Default: `false`
+  @param {boolean} [group=false] - Makes Radio button part of a group, Default: `false`
+  @param {string} [class=""] - CSS classes for the Radio button, Default: `""`
 
   ### Events
   - `change` - Radio button change event
 
   ### Slots
-  - `<slot name="default"  />` - Used for displaying radio label
+  - `<slot name="default"  />` - Used for Radio Label, which can be further styled using `label_style` property
 
 -->
 <!-- using Checkbox style file -->
@@ -30,52 +30,52 @@
   <!--Radio button change event-->
   <input type="radio" {disabled} bind:group {value} on:change />
   <span class="kws-checkbox-label" style={label_style}>
-    <!-- Used for displaying radio label--><slot />
+    <!-- Used for Radio Label, which can be further styled using `label_style` property--><slot />
   </span>
 </label>
 
 <script>
   /**
-   * value of radio button
+   * Value of radio button
    */
   export let value = null,
     /**
-     * Inline style
+     * Inline CSS for the Radio button
      */
     style = "",
     /**
-     * Inline style of Radio label
+     * Inline CSS for Radio label
      */
     label_style = "",
     /**
      * Size of the Radio Button
-     * @type {'small'|'medium'|'large'}
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
-     * Color of the Radio button
-     * @type {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * Color of the Radio button when selected
+     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
-     * Inverted - true/false
+     * Inverts the Radio colour theme
      */
     inverted = false,
     /**
-     * Circle radio button(Default : Square) - true/false
+     * Circular Radio button instead of the default square
      */
     circle = false,
     /**
-     * Disabled - true/false
+     * Disables Radio button
      */
     disabled = false,
     /**
-     * Group radio - true/false
+     * Makes Radio button part of a group
      */
     group = false;
 
   /**
-   * CSS classes
+   * CSS classes for the Radio button
    */
   let klass = "";
   export { klass as class };
