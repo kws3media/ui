@@ -8,31 +8,31 @@
   @param {string} [class=""] - Additional classes, Default: `""`
 
   ### Events
-  - `change` - Change event
+  - `change` - Triggered when any change is made from the default set value
 
 -->
 <div class="range-control">
-  <!--Change event-->
+  <!--Triggered when any change is made from the default set value-->
   <input class="input {klass}" type="range" bind:value on:change {min} {max} />
   <output style={computedStyle}>{value}</output>
 </div>
 
 <script>
   /**
-   * Minimum Range
+   * Lowest value of the selectable range
    */
   export let min = 0,
     /**
-     * Maximum Range
+     * Highest value of the selectable range
      */
     max = 100,
     /**
-     * Starting Value
+     * Default set value before any user interaction
      */
     value = 50;
 
   /**
-   * Additional classes
+   * CSS classes for the slider
    * @type {string}
    */
   let klass = "";
