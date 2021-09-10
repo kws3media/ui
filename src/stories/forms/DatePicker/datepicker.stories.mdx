@@ -1,6 +1,7 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import { Datepicker } from '@kws3/ui';
+import M from '../../helpers/Message/Message.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
@@ -79,3 +80,33 @@ export let args={
     `
   }
 />
+
+
+### `min_date` and `max_date` usage examples
+
+<Canvas isColumn={true}>
+  <Description>
+  `min_date` & `max_date` as strings: `min_date='2021-06-06' max_date='2021-06-10'`
+  </Description>
+  <Story
+  name="min/max string"
+  args={{min_date: '2021-06-06', max_date: '2021-06-10'}}
+  >
+  {(args) => ({
+    Component: Datepicker,
+    props: args
+  })}
+  </Story>
+  <Description>
+  `min_date` & `max_date` as Date objects: `min_date=&#123;(new Date('2021-01-01'))} max_date=&#123;new Date()}`
+  </Description>
+  <Story
+  name="min/max object"
+  args={{min_date: (new Date('2021-01-01')), max_date: (new Date())}}
+  >
+  {(args) => ({
+    Component: Datepicker,
+    props: args
+  })}
+  </Story>
+</Canvas>
