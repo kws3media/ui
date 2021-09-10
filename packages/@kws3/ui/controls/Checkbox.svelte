@@ -17,7 +17,7 @@ Checked\Not Checked, Default: `false`
 
 Defaults to global family set via `setDefaultIconType()`
 
-Ultimately defaults to `'fa'`, if family is not set anywhere, Default: `"null"`
+Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
   @param {string} [class=""] - CSS classes of the Checkbox, Default: `""`
 
   ### Events
@@ -98,7 +98,7 @@ Ultimately defaults to `'fa'`, if family is not set anywhere, Default: `"null"`
      *
      * Defaults to global family set via `setDefaultIconType()`
      *
-     * Ultimately defaults to `'fa'`, if family is not set anywhere
+     * Ultimately defaults to `fa`, if family is not set anywhere
      *
      * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}
      */
