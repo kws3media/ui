@@ -14,7 +14,7 @@
   @param {string} [class=""] - CSS classes for the Radio button, Default: `""`
 
   ### Events
-  - `change` - Radio button change event
+  - `change` - Triggered whenever any change is made to the slider value
 
   ### Slots
   - `<slot name="default"  />` - Used for Radio Label, which can be further styled using `label_style` property
@@ -27,7 +27,7 @@
     ? 'is-inverted'
     : ''} {circle ? 'is-circle' : ''} {klass}"
   {style}>
-  <!--Radio button change event-->
+  <!--Triggered whenever any change is made to the slider value-->
   <input type="radio" {disabled} bind:group {value} on:change />
   <span class="kws-checkbox-label" style={label_style}>
     <!-- Used for Radio Label, which can be further styled using `label_style` property--><slot />
