@@ -14,9 +14,10 @@
 <div class="range-control">
   <!--Triggered whenever any change is made to the slider value-->
   <input
-    class="slider is-fullwidth has-output is-{size} is-{color} {klass} {circle
-      ? 'is-circle'
-      : ''}"
+    class="slider is-fullwidth
+    {tooltip ? 'has-output-tooltip' : 'has-output'}
+    is-{size} is-{color} {klass}
+    {circle ? 'is-circle' : ''}"
     type="range"
     bind:value
     on:change
@@ -28,6 +29,13 @@
     <output style={computedStyle}>{value}</output>
   {/if}
 </div>
+
+<style>
+  input[type="range"].slider:not([orient="vertical"]).has-output-tooltip
+    + output {
+    top: 2rem !important;
+  }
+</style>
 
 <script>
   /**
@@ -52,12 +60,12 @@
     disabled = false,
     /**
      * Size of the Radio Button
-     * @type {'small'|'medium'|'large'}
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
      * Color of the Radio button
-     * @type {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
@@ -67,7 +75,11 @@
     /**
      * Shape of slider thumb : default square
      */
-    circle = false;
+    circle = false,
+    /**
+     * Show output as tooltip
+     */
+    tooltip = false;
 
   /**
    * CSS classes for the slider
