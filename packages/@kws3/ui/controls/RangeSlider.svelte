@@ -31,6 +31,9 @@
 </div>
 
 <style>
+  .range-control {
+    position: relative;
+  }
   input[type="range"].slider:not([orient="vertical"]).has-output-tooltip
     + output {
     top: 2rem !important;
