@@ -4,7 +4,7 @@
 
   @param {number} [min=0] - Lowest value of the selectable range, Default: `0`
   @param {number} [max=100] - Highest value of the selectable range, Default: `100`
-  @param {number} [value=50] - Default set value before any user interaction, Default: `50`
+  @param {number} [value=0] - Default set value before any user interaction, Default: `0`
   @param {string} [class=""] - CSS classes for the slider, Default: `""`
 
   ### Events
@@ -29,7 +29,7 @@
     /**
      * Default set value before any user interaction
      */
-    value = 50;
+    value = 0;
 
   /**
    * CSS classes for the slider
