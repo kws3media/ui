@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {boolean} [on=false] - Toggle On - true/false, Default: `false`
   @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
@@ -15,7 +15,7 @@
 <div
   class:on
   class:disabled
-  class="toggle-button is-{color} is-{size} {classes}"
+  class="toggle-button is-{color} is-{size} {klass}"
   on:click={toggle}
   data-cy={cy}>
   <div class="track">
@@ -36,12 +36,10 @@
 
   /**
    * Toggle On - true/false
-   * @type {boolean}
    */
   export let on = false,
     /**
      * Disabled - true/false
-     * @type {boolean}
      */
     disabled = false,
     /**
@@ -50,18 +48,11 @@
      */
     color = "",
     /**
-     * Supported classes
-     * @type {string}
-     */
-    classes = "",
-    /**
      * On Text
-     * @type {string}
      */
     on_text = "",
     /**
      * Off Text
-     * @type {string}
      */
     off_text = "",
     /**
@@ -71,13 +62,22 @@
     size = "",
     /**
      * data-cy attribute for cypress
-     * @type {string}
      */
     cy = "";
+
+  /**
+   * CSS classes
+   * @type {string}
+   */
+  let klass = "";
+  export { klass as class };
 
   function toggle() {
     if (!disabled) {
       on = !on;
+      /**
+       * Toggle change event
+       */
       fire("change");
     }
   }
