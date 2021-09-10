@@ -14,10 +14,10 @@
   @param {string} [class=""] - CSS classes, Default: `""`
 
   ### Events
-  - `change`
+  - `change` - Radio button change event
 
   ### Slots
-  - `<slot name="default"  />`
+  - `<slot name="default"  />` - Used for displaying radio label
 
 -->
 <!-- using Checkbox style file -->
@@ -27,8 +27,11 @@
     ? 'is-inverted'
     : ''} {circle ? 'is-circle' : ''} {klass}"
   {style}>
+  <!--Radio button change event-->
   <input type="radio" {disabled} bind:group {value} on:change />
-  <span class="kws-checkbox-label" style={label_style}><slot /></span>
+  <span class="kws-checkbox-label" style={label_style}>
+    <!-- Used for displaying radio label--><slot />
+  </span>
 </label>
 
 <script>
