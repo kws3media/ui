@@ -64,10 +64,6 @@ pre.prismjs>code {
 // //helpers - Modal
 // @import '../../packages/@kws3/helpers/components/Modal/styles.scss';
 
-// @import "../../node_modules/flatpickr/dist/flatpickr";
-// //Timepicker
-// @import '../../packages/@kws3/timepicker/styles.scss';
-// @import '../../packages/@kws3/datepicker/styles.scss';
 // //Calendar
 // @import '../../packages/@kws3/calendar/styles.scss';
 // //grid
@@ -88,6 +84,7 @@ pre.prismjs>code {
 // //sliding panes
 @import '../../packages/@kws3/ui/styles/SlidingPane.scss';
 
+@import "../../node_modules/flatpickr/dist/flatpickr";
 // Datepicker
 @import '../../packages/@kws3/ui/styles/Datepicker.scss';
 

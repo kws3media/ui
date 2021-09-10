@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [value=""] - Input field value, Default: `""`
   @param {string} [id=""] - Timepicker id attribute, Default: `""`
@@ -18,7 +18,7 @@
 
 -->
 
-<Flatpickr
+<!-- <Flatpickr
   options={_options}
   element="#kws-timepicker{_id}"
   bind:value
@@ -53,72 +53,71 @@
       {style}
       {disabled} />
   </div>
-</Flatpickr>
-
+</Flatpickr> -->
 <script>
-  import { createEventDispatcher } from "svelte";
+  // import { createEventDispatcher } from "svelte";
 
-  import Flatpickr from "svelte-flatpickr";
-  import "flatpickr/dist/flatpickr.css";
+  // import Flatpickr from "svelte-flatpickr";
+  // import "flatpickr/dist/flatpickr.css";
 
-  const fire = createEventDispatcher();
+  // const fire = createEventDispatcher();
 
-  /**
-   * Input field value
-   */
-  export let value = "",
-    /**
-     * Timepicker id attribute
-     */
-    id = "",
-    /**
-     * Inline styles for input field
-     */
-    style = "",
-    /**
-     * Placeholder for input field
-     */
-    placeholder = "Select Time..",
-    /**
-     * Disable input field
-     */
-    disabled = false,
-    /**
-     * Flatpicker options
-     * @link https://flatpickr.js.org/options/
-     */
-    options = {};
+  // /**
+  //  * Input field value
+  //  */
+  // export let value = "",
+  //   /**
+  //    * Timepicker id attribute
+  //    */
+  //   id = "",
+  //   /**
+  //    * Inline styles for input field
+  //    */
+  //   style = "",
+  //   /**
+  //    * Placeholder for input field
+  //    */
+  //   placeholder = "Select Time..",
+  //   /**
+  //    * Disable input field
+  //    */
+  //   disabled = false,
+  //   /**
+  //    * Flatpicker options
+  //    * @link https://flatpickr.js.org/options/
+  //    */
+  //   options = {};
 
-  /**
-   * Input field classes
-   */
-  let klass = "";
-  export { klass as class };
+  // /**
+  //  * Input field classes
+  //  */
+  // let klass = "";
+  // export { klass as class };
 
-  /**
-   * Flatpickr instance
-   */
-  let flatpickr;
+  // /**
+  //  * Flatpickr instance
+  //  */
+  // let flatpickr;
 
-  let _options = {},
-    _id = "";
+  // let _options = {},
+  //   _id = "";
 
-  $: {
-    _id = id ? `-${id}` : "";
+  // $: {
+  //   _id = id ? `-${id}` : "";
 
-    _options = Object.assign(
-      {
-        element: "#kws-timepicker" + _id,
-        altInput: true,
-        altFormat: "h:i K",
-        dateFormat: "H:i",
-        enableTime: true,
-        noCalendar: true,
-        onChange: (date, dateStr) => {
-          //do something
-        },
-      },
-      options
-    );
-  }
+  //   _options = Object.assign(
+  //     {
+  //       element: "#kws-timepicker" + _id,
+  //       altInput: true,
+  //       altFormat: "h:i K",
+  //       dateFormat: "H:i",
+  //       enableTime: true,
+  //       noCalendar: true,
+  //       onChange: (date, dateStr) => {
+  //         //do something
+  //       },
+  //     },
+  //     options
+  //   );
+  // }
 </script>
