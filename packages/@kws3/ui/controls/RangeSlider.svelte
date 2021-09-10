@@ -2,10 +2,10 @@
   @component
 
 
-  @param {number} [min=0] - Minimum Range, Default: `0`
-  @param {number} [max=100] - Maximum Range, Default: `100`
-  @param {number} [value=50] - Starting Value, Default: `50`
-  @param {string} [class=""] - Additional classes, Default: `""`
+  @param {number} [min=0] - Lowest value of the selectable range, Default: `0`
+  @param {number} [max=100] - Highest value of the selectable range, Default: `100`
+  @param {number} [value=50] - Default set value before any user interaction, Default: `50`
+  @param {string} [class=""] - CSS classes for the slider, Default: `""`
 
   ### Events
   - `change` - Triggered when any change is made from the default set value
