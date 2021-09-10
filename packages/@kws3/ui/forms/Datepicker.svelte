@@ -25,7 +25,7 @@
    */
   export let value = "";
   /**
-   * Inline CSS for the Date-picker
+   * Inline CSS for the input
    */
   export let style = "";
   export let color = "";
@@ -34,7 +34,7 @@
    */
   export let disabled = false;
   /**
-   * Placeholder text for the Date-picker
+   * Placeholder text for the input
    */
   export let placeholder = "";
 
@@ -61,7 +61,7 @@
 
   export let options = {};
   /**
-   * CSS classes for the Date-picker
+   * CSS classes for the input
    */
   let klass = "";
   export { klass as class };
