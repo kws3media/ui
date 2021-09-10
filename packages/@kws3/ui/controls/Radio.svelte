@@ -37,6 +37,7 @@
 <script>
   /**
    * Value of radio button
+   * @type {string}
    */
   export let value = null,
     /**
@@ -70,9 +71,13 @@
      */
     disabled = false,
     /**
-     * Makes Radio button part of a group
+     * This is the property to bind to,
+     * so that the selected Radio's value can be obtained
+     *
+     * See: https://svelte.dev/docs#bind_group
+     * @type {any}
      */
-    group = false;
+    group = null;
 
   /**
    * CSS classes for the Radio button
