@@ -22,10 +22,21 @@ export let args={
   component={Checkbox}
   args={args}
   argTypes={{
+    class:{},
+    style:{},
+    label_style:{},
     color: {
       control: { type: "select"}
     },
     size: {
+      control: { type: "select"}
+    },
+    inverted : {},
+    circle : {},
+    checked : {},
+    disabled : {},
+    icon : {},
+    icon_family:{
       control: { type: "select"}
     }
   }}

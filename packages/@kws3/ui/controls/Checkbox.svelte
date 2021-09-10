@@ -15,7 +15,7 @@ Checked\Not Checked, Default: `false`
   @param {string} [label_style=""] - Inline CSS for the Checkbox label, Default: `""`
   @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [icon_family="null"] - Icon family to be used
 
-Defaults to global family set via `setDefaultIconType()`
+Defaults to global family set via `Icon.setDefaultIconType()`
 
 Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
   @param {string} [class=""] - CSS classes of the Checkbox, Default: `""`
@@ -96,7 +96,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
     /**
      * Icon family to be used
      *
-     * Defaults to global family set via `setDefaultIconType()`
+     * Defaults to global family set via `Icon.setDefaultIconType()`
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
      *
