@@ -4,11 +4,11 @@ import { Checkbox } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  classes : "",
+  class : "",
   style : "",
   label_style : "",
-  size : "large",
-  color : "primary",
+  size : "",
+  color : "",
   inverted : false,
   circle : false,
   checked : true,
@@ -21,6 +21,14 @@ export let args={
   title="Forms/Controls/Checkbox"
   component={Checkbox}
   args={args}
+  argTypes={{
+    color: {
+      control: { type: "select"}
+    },
+    size: {
+      control: { type: "select"}
+    }
+  }}
 />
 
 <Description markdown={dedent`
