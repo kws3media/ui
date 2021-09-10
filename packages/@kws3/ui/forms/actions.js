@@ -10,6 +10,8 @@ export default function datepicker(node, [opts, value]) {
     "onReady",
   ];
 
+  const colorClass = opts.color ? opts.color : "primary";
+
   //add event dispatcher for each flatpicker event
   hooks.forEach((hook) => {
     //remove "on"
@@ -17,6 +19,13 @@ export default function datepicker(node, [opts, value]) {
     const firer = createFirer(hk);
     _opts[hook] = firer;
   });
+
+  //special handler for onReady, so we can append a theme class
+  const readyFirer = createFirer("ready");
+  _opts["onReady"] = (selectedDates, dateStr, instance) => {
+    applyColorClass(instance, colorClass);
+    readyFirer(selectedDates, dateStr, instance);
+  };
 
   //special handler for onChange, so that it does not clobber
   //native on change event of the input
@@ -32,7 +41,7 @@ export default function datepicker(node, [opts, value]) {
     opts
   );
 
-  let picker = flatpickr(node, opts);
+  const picker = flatpickr(node, opts);
 
   function createFirer(name) {
     return (selectedDates, dateStr, instance) => {
@@ -44,11 +53,29 @@ export default function datepicker(node, [opts, value]) {
     };
   }
 
+  function applyColorClass(instance, color) {
+    let contains = false;
+    instance.calendarContainer.classList.forEach((c) => {
+      if (c.charAt(3).toLowerCase() == "is-") {
+        contains = c;
+      }
+    });
+
+    if (contains) {
+      instance.calendarContainer.classList.remove(contains);
+    }
+
+    instance.calendarContainer.classList.add("is-" + color);
+  }
+
   return {
     update([opts, value]) {
       if (picker) {
         picker.setDate(value);
         if (opts) {
+          if (opts.color) {
+            applyColorClass(picker, opts.color);
+          }
           if (opts.mode) {
             picker.set("mode", opts.mode);
           }

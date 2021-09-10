@@ -1,6 +1,6 @@
 <input
   use:datepicker={[opts, value]}
-  class="input {klass}"
+  class="input is-{color} {klass}"
   type="text"
   {style}
   {placeholder}
@@ -20,9 +20,11 @@
 
   export let value = "";
   export let style = "";
+  export let color = "";
   export let disabled = false;
   export let placeholder = "";
 
+  export let calendar_color = "primary";
   export let min_date = null;
   export let max_date = null;
   /**
@@ -44,7 +46,8 @@
 
   let opts;
 
-  $: range_mode,
+  $: calendar_color,
+    range_mode,
     enable_dates,
     disable_dates,
     min_date,
@@ -55,6 +58,7 @@
   function fillOptions() {
     let _opts = Object.assign(
       {
+        color: calendar_color,
         mode: range_mode ? "range" : "single",
       },
       options
