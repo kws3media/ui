@@ -5,6 +5,15 @@
   @param {number} [min=0] - Lowest value of the selectable range, Default: `0`
   @param {number} [max=100] - Highest value of the selectable range, Default: `100`
   @param {number} [value=0] - Default set value before any user interaction, Default: `0`
+  @param {boolean} [output=false] - Display the current position of the Slider as a value, Default: `false`
+  @param {boolean} [disabled=false] - Disables the Slider, Default: `false`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Slider, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Slider, Default: `""`
+  @param {string} [style=""] - Inline CSS for the Slider, Default: `""`
+  @param {boolean} [circle=false] - Uses a round slider instead of the default square, Default: `false`
+  @param {boolean} [tooltip=false] - Displays the current position value of the slider as a tooltip
+
+`output` has to be enabled for this to work, Default: `false`
   @param {string} [class=""] - CSS classes for the slider, Default: `""`
 
   ### Events
@@ -54,33 +63,35 @@
      */
     value = 0,
     /**
-     * Show output
+     * Display the current position of the Slider as a value
      */
     output = false,
     /**
-     * Disable option
+     * Disables the Slider
      */
     disabled = false,
     /**
-     * Size of the Radio Button
+     * Size of the Slider
      * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
-     * Color of the Radio button
+     * Colour of the Slider
      * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
-     * Inline styles
+     * Inline CSS for the Slider
      */
     style = "",
     /**
-     * Shape of slider thumb : default square
+     * Uses a round slider instead of the default square
      */
     circle = false,
     /**
-     * Show output as tooltip
+     * Displays the current position value of the slider as a tooltip
+     *
+     * `output` has to be enabled for this to work
      */
     tooltip = false;
 
