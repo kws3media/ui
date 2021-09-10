@@ -42,12 +42,12 @@
 
   /**
    * Size of the Button
-   * @type {''|'small'|'medium'|'large'}
+   * @type {'small'|'medium'|'large'}
    */
   export let size = "",
     /**
      * Color of the Button
-     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
