@@ -86,7 +86,7 @@ $kws-theme-colors: $colors !default;
       }
     }
 
-    &.is-#{$name}.is-inverted input[type="checkbox"]+.kws-checkbox-label{
+    &.is-#{$name} input[type="checkbox"]+.kws-checkbox-label{
       &:before{
         border-color: $color;
       }
