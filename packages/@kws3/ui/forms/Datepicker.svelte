@@ -18,14 +18,34 @@
 <script>
   import datepicker from "./actions";
 
+  /**
+   * Accepts a date value in the format
+   *
+   * `yyyy-mm-dd`
+   */
   export let value = "";
+  /**
+   * Inline CSS for the Date-picker
+   */
   export let style = "";
   export let color = "";
+  /**
+   * Disables the component
+   */
   export let disabled = false;
+  /**
+   * Placeholder text for the Date-picker
+   */
   export let placeholder = "";
 
   export let calendar_color = "primary";
+  /**
+   * Set earliest selectable date as an object
+   */
   export let min_date = null;
+  /**
+   * Set latest selectable date as an object
+   */
   export let max_date = null;
   /**
    *
@@ -40,7 +60,9 @@
   export let range_mode = false;
 
   export let options = {};
-
+  /**
+   * CSS classes for the Date-picker
+   */
   let klass = "";
   export { klass as class };
 
