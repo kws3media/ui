@@ -27,14 +27,14 @@
   export let max_date = null;
   /**
    *
-   * @type {any}
+   * @type {array}
    */
-  export let enable_dates = null;
+  export let enable_dates = [];
   /**
    *
-   * @type {any}
+   * @type {array}
    */
-  export let disable_dates = null;
+  export let disable_dates = [];
   export let range_mode = false;
 
   export let options = {};
@@ -59,10 +59,10 @@
       },
       options
     );
-    if (enable_dates) {
+    if (enable_dates && enable_dates.length) {
       _opts.enable = enable_dates;
     }
-    if (disable_dates) {
+    if (disable_dates && disable_dates.length) {
       _opts.disable = disable_dates;
     }
 

@@ -48,8 +48,14 @@ export default function datepicker(node, [opts, value]) {
     update([opts, value]) {
       if (picker) {
         picker.setDate(value);
-        if (opts && opts.mode) {
-          picker.set("mode", opts.mode);
+        if (opts) {
+          if (opts.mode) {
+            picker.set("mode", opts.mode);
+          }
+          picker.set("minDate", opts.minDate ? opts.minDate : "");
+          picker.set("maxDate", opts.maxDate ? opts.maxDate : "");
+          picker.set("enable", opts.enable ? opts.enable : [() => true]);
+          picker.set("disable", opts.disable ? opts.disable : [() => false]);
         }
       }
     },
