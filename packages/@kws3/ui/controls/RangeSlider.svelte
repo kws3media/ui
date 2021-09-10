@@ -8,11 +8,11 @@
   @param {string} [class=""] - CSS classes for the slider, Default: `""`
 
   ### Events
-  - `change` - Triggered when any change is made from the default set value
+  - `change` - Triggered whenever any change is made to the slider value
 
 -->
 <div class="range-control">
-  <!--Triggered when any change is made from the default set value-->
+  <!--Triggered whenever any change is made to the slider value-->
   <input class="input {klass}" type="range" bind:value on:change {min} {max} />
   <output style={computedStyle}>{value}</output>
 </div>
