@@ -13,13 +13,11 @@ Checked\Not Checked, Default: `false`
   @param {boolean} [disabled=false] - Disables the Checkbox, Default: `false`
   @param {string} [icon="check"] - The name of the icon that is to be used in the Checkbox, Default: `"check"`
   @param {string} [label_style=""] - Inline CSS for the Checkbox label, Default: `""`
-  @param {string} [icon_family="null"] - Icon family to be used
+  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [icon_family="null"] - Icon family to be used
 
 Defaults to global family set via `setDefaultIconType()`
 
-Ultimately defaults to `'fa'`, if family is not set anywhere
-
-`’’` `’fa’` `’lar’` `'las’` `’gg’` `’unicons’`, Default: `"null"`
+Ultimately defaults to `'fa'`, if family is not set anywhere, Default: `"null"`
   @param {string} [class=""] - CSS classes of the Checkbox, Default: `""`
 
   ### Events
@@ -102,8 +100,7 @@ Ultimately defaults to `'fa'`, if family is not set anywhere
      *
      * Ultimately defaults to `'fa'`, if family is not set anywhere
      *
-     * `’’` `’fa’` `’lar’` `'las’` `’gg’` `’unicons’`
-     * @type {string}
+     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}
      */
     icon_family = null;
 
