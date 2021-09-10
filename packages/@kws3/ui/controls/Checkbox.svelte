@@ -2,8 +2,8 @@
   @component
 
 
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Button, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Button, Default: `""`
   @param {string} [style=""] - Inline styles, Default: `""`
   @param {boolean} [inverted=false] - Inverted Property, Default: `false`
   @param {boolean} [circle=false] - Circle checkbox, Default: `false`
@@ -42,12 +42,12 @@
 
   /**
    * Size of the Button
-   * @type {'small'|'medium'|'large'}
+   * @type {''|'small'|'medium'|'large'}
    */
   export let size = "",
     /**
      * Color of the Button
-     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
