@@ -44,6 +44,9 @@ export let args={
   {(args) => ({
     Component: RangeSlider,
     props: args,
+    on: {
+      change : action("Changed")
+    },
   })}
   </Story>
 </Canvas>
