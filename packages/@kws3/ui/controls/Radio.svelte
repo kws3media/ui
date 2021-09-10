@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [value="null"] - value of radio button, Default: `"null"`
   @param {string} [classes=""] - CSS classes, Default: `""`
@@ -25,7 +25,7 @@
 <label
   class="radio kws-checkbox is-{size} is-{color} {inverted
     ? 'is-inverted'
-    : ''} {circle ? 'is-circle' : ''} {classes}"
+    : ''} {circle ? 'is-circle' : ''} {klass}"
   {style}>
   <input type="radio" {disabled} bind:group {value} on:change />
   <span class="kws-checkbox-label" style={label_style}><slot /></span>
@@ -34,22 +34,14 @@
 <script>
   /**
    * value of radio button
-   * @type {string}
    */
   export let value = null,
     /**
-     * CSS classes
-     * @type {string}
-     */
-    classes = "",
-    /**
-     * Supported classes
-     * @type {string}
+     * Inline style
      */
     style = "",
     /**
      * Inline style of Radio label
-     * @type {string}
      */
     label_style = "",
     /**
@@ -64,22 +56,24 @@
     color = "",
     /**
      * Inverted - true/false
-     * @type {boolean}
      */
     inverted = false,
     /**
      * Circle radio button(Default : Square) - true/false
-     * @type {boolean}
      */
     circle = false,
     /**
      * Disabled - true/false
-     * @type {boolean}
      */
     disabled = false,
     /**
      * Group radio - true/false
-     * @type {boolean}
      */
     group = false;
+
+  /**
+   * CSS classes
+   */
+  let klass = "";
+  export { klass as class };
 </script>

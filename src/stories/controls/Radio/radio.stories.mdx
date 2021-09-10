@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 export let args={
   value : null,
-  classes : "",
+  class : "",
   style : "",
   label_style : "",
   size : "",
@@ -20,6 +20,14 @@ export let args={
   title="Forms/Controls/Radio"
   component={Radio}
   args={args}
+  argTypes={{
+    color: {
+      control: 'select'
+    },
+    size: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
