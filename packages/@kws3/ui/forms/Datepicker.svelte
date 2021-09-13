@@ -19,7 +19,9 @@
   @param {array} [enable_dates=[]] - Qualifies a range of dates and disables all others, Default: `[]`
   @param {array} [disable_dates=[]] - Disqualifies a range of dates and enables all others, Default: `[]`
   @param {boolean} [range_mode=false] - Enables selecting all dates of a continous range, Default: `false`
-  @param {object} [options={}] - Options property, Default: `{}`
+  @param {object} [options={}] - Extended set of options as supported by Flatpicker
+
+See: https://flatpickr.js.org/options/, Default: `{}`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
 
   ### Events
@@ -114,6 +116,11 @@
    */
   export let range_mode = false;
 
+  /**
+   * Extended set of options as supported by Flatpicker
+   *
+   * See: https://flatpickr.js.org/options/
+   */
   export let options = {};
   /**
    * CSS classes for the input
