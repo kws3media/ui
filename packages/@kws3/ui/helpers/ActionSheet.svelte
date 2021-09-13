@@ -3,14 +3,8 @@
   on:click={closable && close_on_click_outside
     ? () => (open = false)
     : undefined}
-  style={`opacity:${1 - $tween};visibility:${
-    1 - $tween <= 0 ? "hidden" : "visible"
-  }`} />
-<div
-  class="action-modal {klass}"
-  style={`transform:translateY(${$tween * 100}%);visibility:${
-    1 - $tween <= 0 ? "hidden" : "visible"
-  };${style}`}>
+  style={bgComputedStyle} />
+<div class="action-modal {klass}" style={sheetComputedStyle}>
   {#if closable}
     <span class="action-modal_close" on:click={() => (open = false)}>
       <Icon icon={close_icon} />
@@ -57,5 +51,18 @@
     tween.set(0);
   } else {
     tween.set(1);
+  }
+
+  let bgComputedStyle = "",
+    sheetComputedStyle = "";
+
+  $: {
+    bgComputedStyle = `opacity:${1 - $tween};visibility:${
+      1 - $tween <= 0 ? "hidden" : "visible"
+    }`;
+
+    sheetComputedStyle = `transform:translateY(${$tween * 200}%);visibility:${
+      1 - $tween <= 0 ? "hidden" : "visible"
+    };${style}`;
   }
 </script>
