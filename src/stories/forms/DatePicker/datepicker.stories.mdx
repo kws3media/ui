@@ -16,12 +16,22 @@ export let args={
   disable_dates: [],
   range_mode: false,
   options : {},
+  calendar_color: "primary",
+  color:""
 };
 
 <Meta
   title="Forms/Datepicker"
   component={Datepicker}
   args={args}
+  argTypes={{
+    calendar_color:{
+      control: {type:'select'}
+    },
+    color:{
+      control: {type:'select'}
+    }
+  }}
 />
 
 <Description markdown={dedent`

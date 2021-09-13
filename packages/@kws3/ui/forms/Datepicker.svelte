@@ -1,3 +1,33 @@
+<!--
+  @component
+
+
+  @param {string} [value=""] - Accepts a date value in the format
+
+`yyyy-mm-dd`, Default: `""`
+  @param {string} [style=""] - Inline CSS for the input, Default: `""`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
+  @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
+  @param {object} [min_date=null] - Set earliest selectable date as an object, Default: `null`
+  @param {object} [max_date=null] - Set latest selectable date as an object, Default: `null`
+  @param {array} [enable_dates=[]] - Enable_dates property, Default: `[]`
+  @param {array} [disable_dates=[]] - Disable_dates property, Default: `[]`
+  @param {boolean} [range_mode=false] - Range_mode property, Default: `false`
+  @param {object} [options={}] - Options property, Default: `{}`
+  @param {string} [class=""] - CSS classes for the input, Default: `""`
+
+  ### Events
+  - `change`
+  - `dateChange`
+  - `ready`
+  - `open`
+  - `close`
+  - `monthChange`
+  - `yearChange`
+
+-->
 <input
   use:datepicker={[opts, value]}
   class="input is-{color} {klass}"
