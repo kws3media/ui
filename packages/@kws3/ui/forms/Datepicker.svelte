@@ -10,7 +10,7 @@ This property can be bound to, to fetch the selected date or date range. Output 
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
   @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
-  @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
+  @param {string} [placeholder="Select Date.."] - Placeholder text for the input, Default: `"Select Date.."`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
   @param {any} [min_date=null] - Set earliest selectable date as an object or string
 
@@ -27,16 +27,16 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
 
   ### Events
-  - `change` - Proxied events from Flatpicker
-  - `dateChange`
-  - `ready`
-  - `open`
-  - `close`
-  - `monthChange`
-  - `yearChange`
+  - `dateChange` - Triggered when the date changes
+  - `monthChange` - Triggered when the Month changes
+  - `yearChange` - Triggered when the Year changes
+  - `ready` - Triggered when UI is ready
+  - `open` - Triggered when popup UI opens
+  - `close` - Triggered when popup UI closes
+  - `change` - Native input change event
 
 -->
-<!--Proxied events from Flatpicker-->
+<!--Native input change event-->
 <input
   use:datepicker={[opts, value]}
   class="input is-{color} {klass}"
@@ -47,15 +47,18 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   readonly
   bind:value
   on:change
-  on:dateChange
-  on:ready
-  on:open
-  on:close
-  on:monthChange
-  on:yearChange />
+  on:dateChange={fireDateChange}
+  on:ready={fireReady}
+  on:open={fireOpen}
+  on:close={fireClose}
+  on:monthChange={fireMonthChange}
+  on:yearChange={fireYearChange} />
 
 <script>
   import { datepicker } from "./actions";
+  import { createEventDispatcher } from "svelte";
+
+  const fire = createEventDispatcher();
 
   /**
    * Accepts a date value in the format `yyyy-mm-dd`
@@ -162,5 +165,47 @@ See: https://flatpickr.js.org/options/, Default: `{}`
       _opts.maxDate = max_date;
     }
     opts = _opts;
+  }
+
+  function fireDateChange({ detail }) {
+    /**
+     * Triggered when the date changes
+     */
+    fire("dateChange", detail);
+  }
+
+  function fireMonthChange({ detail }) {
+    /**
+     * Triggered when the Month changes
+     */
+    fire("monthChange", detail);
+  }
+
+  function fireYearChange({ detail }) {
+    /**
+     * Triggered when the Year changes
+     */
+    fire("yearChange", detail);
+  }
+
+  function fireReady({ detail }) {
+    /**
+     * Triggered when UI is ready
+     */
+    fire("ready", detail);
+  }
+
+  function fireOpen({ detail }) {
+    /**
+     * Triggered when popup UI opens
+     */
+    fire("open", detail);
+  }
+
+  function fireClose({ detail }) {
+    /**
+     * Triggered when popup UI closes
+     */
+    fire("close", detail);
   }
 </script>

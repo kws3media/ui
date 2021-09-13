@@ -8,7 +8,7 @@ Where `H` is in 24hr format
 
 This property can be bound to, to fetch the selected time. Output is in the same format as input., Default: `""`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Time picker input, Default: `""`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [placeholder="Select Time.."] - Placeholder text for the input, Default: `"Select Time.."`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [ui_color="primary"] - Colour of popup time selection UI, Default: `"primary"`
@@ -19,14 +19,14 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
 
   ### Events
-  - `change` - Proxied events from Flatpicker
-  - `timeChange`
-  - `ready`
-  - `open`
-  - `close`
+  - `timeChange` - Triggered when time changes
+  - `ready` - Triggered when UI is ready
+  - `open` - Triggered when popup UI opens
+  - `close` - Triggered when popup UI closes
+  - `change` - Native input change event
 
 -->
-<!--Proxied events from Flatpicker-->
+<!--Native input change event-->
 <input
   use:timepicker={[opts, value]}
   class="input is-{color} {klass}"
@@ -37,13 +37,16 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   readonly
   bind:value
   on:change
-  on:timeChange
-  on:ready
-  on:open
-  on:close />
+  on:timeChange={fireTimeChange}
+  on:ready={fireReady}
+  on:open={fireOpen}
+  on:close={fireClose} />
 
 <script>
   import { timepicker } from "./actions";
+  import { createEventDispatcher } from "svelte";
+
+  const fire = createEventDispatcher();
 
   /**
    * Accepts a date value in the format `H:i`
@@ -58,7 +61,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    */
   export let style = "";
   /**
-   * Colour of the Date picker input
+   * Colour of the Time picker input
    * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "";
@@ -107,5 +110,33 @@ See: https://flatpickr.js.org/options/, Default: `{}`
     );
 
     opts = _opts;
+  }
+
+  function fireTimeChange({ detail }) {
+    /**
+     * Triggered when time changes
+     */
+    fire("timeChange", detail);
+  }
+
+  function fireReady({ detail }) {
+    /**
+     * Triggered when UI is ready
+     */
+    fire("ready", detail);
+  }
+
+  function fireOpen({ detail }) {
+    /**
+     * Triggered when popup UI opens
+     */
+    fire("open", detail);
+  }
+
+  function fireClose({ detail }) {
+    /**
+     * Triggered when popup UI closes
+     */
+    fire("close", detail);
   }
 </script>
