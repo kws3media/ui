@@ -1,6 +1,12 @@
 <div class="columns">
   <div class="column">
-    <KwsActionSheet bind:open {closable} {style}>
+    <KwsActionSheet
+      bind:open
+      {closable}
+      {close_icon}
+      {close_on_click_outside}
+      {style}
+      class={klass}>
       <h1 class="title">This is a Heading</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
@@ -25,5 +31,10 @@
   import { ActionSheet as KwsActionSheet } from "@kws3/ui";
   export let open = false,
     closable = true,
+    close_icon = "",
+    close_on_click_outside = true,
     style = "";
+
+  let klass = "";
+  export { klass as class };
 </script>
