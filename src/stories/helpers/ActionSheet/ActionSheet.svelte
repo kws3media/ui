@@ -1,15 +1,15 @@
 <div class="columns">
   <div class="column">
     <KwsActionSheet bind:open {closable} {style}>
-      <h1>This is a Heading</h1>
+      <h1 class="title">This is a Heading</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
       <ul class="menu-list">
-        <li><a href="void(0)">Menu 1</a></li>
-        <li><a href="void(0)">Menu 2</a></li>
+        <li><button class="button is-outlined">Menu 1</button></li>
+        <li><button class="button is-outlined">Menu 2</button></li>
       </ul>
 
-      <hr />
+      <hr class="is-small" />
       <button
         class="button is-danger is-fullwidth"
         type="button"

@@ -5,7 +5,7 @@
     1 - $tween <= 0 ? "hidden" : "visible"
   }`} />
 <div
-  class="action-modal"
+  class="action-modal {klass}"
   style={`transform:translateY(${$tween * 100}%);visibility:${
     1 - $tween <= 0 ? "hidden" : "visible"
   };${style}`}>
@@ -14,15 +14,25 @@
       <Icon type="x" />
     </span>
   {/if}
-  <slot />
+  <!--Used to display sheet content--><slot />
 </div>
 
 <script>
   import { tweened } from "svelte/motion";
   import { Icon } from "@kws3/ui";
+  /**
+   * Open Action Sheet
+   */
   export let open = false,
+    /**
+     * Clasable action sheet
+     */
     closable = true,
     style = "";
+
+  let klass = "";
+  export { klass as class };
+
   const tween = tweened(1, {
     duration: 200,
   });
