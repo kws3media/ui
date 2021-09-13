@@ -9,6 +9,9 @@ $kws-timepicker-text: $text !default;
 
   .flatpickr-time {
     border: none;
+    .flatpickr-time-separator {
+      color: $kws-timepicker-text;
+    }
     input,
     .flatpickr-am-pm {
       font-weight: normal;
