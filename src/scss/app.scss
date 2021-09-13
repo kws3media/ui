@@ -13,7 +13,7 @@
 @import "_variables";
 //bulma itself
 @import "../../node_modules/bulma/bulma";
-@import "_range.sass";
+
 html {
   overflow-x: scroll;
 }
@@ -88,6 +88,8 @@ pre.prismjs>code {
 // //sliding panes
 @import '../../packages/@kws3/ui/styles/SlidingPane.scss';
 
+// RangeSlider
+@import '../../packages/@kws3/ui/styles/RangeSlider.scss';
 
 // #stepsHolder{
 //   padding-top: 1.2rem;
