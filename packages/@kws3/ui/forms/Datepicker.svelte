@@ -2,9 +2,11 @@
   @component
 
 
-  @param {string} [value=""] - Accepts a date value in the format
+  @param {string} [value=""] - Accepts a date value in the format `yyyy-mm-dd`
 
-`yyyy-mm-dd`, Default: `""`
+In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`
+
+This property can be bound to, to fetch the selected date or date range. Output is in the same format as input., Default: `""`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
   @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -55,9 +57,11 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   import datepicker from "./actions";
 
   /**
-   * Accepts a date value in the format
+   * Accepts a date value in the format `yyyy-mm-dd`
    *
-   * `yyyy-mm-dd`
+   * In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`
+   *
+   * This property can be bound to, to fetch the selected date or date range. Output is in the same format as input.
    */
   export let value = "";
   /**
