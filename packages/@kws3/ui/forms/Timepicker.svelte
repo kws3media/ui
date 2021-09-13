@@ -2,122 +2,141 @@
   @component
 
 
-  @param {string} [value=""] - Input field value, Default: `""`
-  @param {string} [id=""] - Timepicker id attribute, Default: `""`
-  @param {string} [style=""] - Inline styles for input field, Default: `""`
-  @param {string} [placeholder="Select Time.."] - Placeholder for input field, Default: `"Select Time.."`
-  @param {boolean} [disabled=false] - Disable input field, Default: `false`
-  @param {object} [options={}] - Flatpicker options, Default: `{}`
-  @param {string} [class=""] - Input field classes, Default: `""`
+  @param {string} [value=""] - Accepts a date value in the format `H:i`
+
+Where `H` is in 24hr format
+
+This property can be bound to, to fetch the selected time. Output is in the same format as input., Default: `""`
+  @param {string} [style=""] - Inline CSS for the input, Default: `""`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Time picker input, Default: `""`
+  @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {string} [placeholder="Select Time.."] - Placeholder text for the input, Default: `"Select Time.."`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [ui_color="primary"] - Colour of popup time selection UI, Default: `"primary"`
+  @param {boolean} [time_24hr=false] - Display time selection UI in 24hr format, Default: `false`
+  @param {object} [options={}] - Extended set of options as supported by Flatpicker
+
+See: https://flatpickr.js.org/options/, Default: `{}`
+  @param {string} [class=""] - CSS classes for the input, Default: `""`
 
   ### Events
-  - `change` - Change event
-  - `ready` - Ready event
-  - `open` - Open event
-  - `close` - Close event
+  - `timeChange` - Triggered when time changes
+  - `ready` - Triggered when UI is ready
+  - `open` - Triggered when popup UI opens
+  - `close` - Triggered when popup UI closes
+  - `change` - Native input change event
 
 -->
-
-<!-- <Flatpickr
-  options={_options}
-  element="#kws-timepicker{_id}"
+<!--Native input change event-->
+<input
+  use:timepicker={{ opts, value, placeholder, klass, style, disabled, color }}
+  class="input is-{color} {klass}"
+  type="text"
+  {style}
+  {placeholder}
+  {disabled}
+  readonly
   bind:value
-  bind:flatpickr
-  on:change={({ detail }) =>
-    /**
-     * Change event
-     */
-    fire("change", detail)}
-  on:ready={({ detail }) =>
-    /**
-     * Ready event
-     */
-    fire("ready", detail)}
-  on:open={({ detail }) =>
-    /**
-     * Open event
-     */
-    fire("open", detail)}
-  on:close={({ detail }) =>
-    /**
-     * Close event
-     */
-    fire("close", detail)}>
-  <div class="flatpickr" id="kws-timepicker{_id}">
-    <input
-      class="input {klass}"
-      type="text"
-      readonly
-      data-input
-      {placeholder}
-      {style}
-      {disabled} />
-  </div>
-</Flatpickr> -->
+  on:change
+  on:timeChange={fireTimeChange}
+  on:ready={fireReady}
+  on:open={fireOpen}
+  on:close={fireClose} />
+
 <script>
-  // import { createEventDispatcher } from "svelte";
+  import { timepicker } from "./actions";
+  import { createEventDispatcher } from "svelte";
 
-  // import Flatpickr from "svelte-flatpickr";
-  // import "flatpickr/dist/flatpickr.css";
+  const fire = createEventDispatcher();
 
-  // const fire = createEventDispatcher();
+  /**
+   * Accepts a date value in the format `H:i`
+   *
+   * Where `H` is in 24hr format
+   *
+   * This property can be bound to, to fetch the selected time. Output is in the same format as input.
+   */
+  export let value = "";
+  /**
+   * Inline CSS for the input
+   */
+  export let style = "";
+  /**
+   * Colour of the Time picker input
+   * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   */
+  export let color = "";
+  /**
+   * Disables the component
+   */
+  export let disabled = false;
+  /**
+   * Placeholder text for the input
+   */
+  export let placeholder = "Select Time..";
+  /**
+   * Colour of popup time selection UI
+   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   */
+  export let ui_color = "primary";
 
-  // /**
-  //  * Input field value
-  //  */
-  // export let value = "",
-  //   /**
-  //    * Timepicker id attribute
-  //    */
-  //   id = "",
-  //   /**
-  //    * Inline styles for input field
-  //    */
-  //   style = "",
-  //   /**
-  //    * Placeholder for input field
-  //    */
-  //   placeholder = "Select Time..",
-  //   /**
-  //    * Disable input field
-  //    */
-  //   disabled = false,
-  //   /**
-  //    * Flatpicker options
-  //    * @link https://flatpickr.js.org/options/
-  //    */
-  //   options = {};
+  /**
+   * Display time selection UI in 24hr format
+   */
+  export let time_24hr = false;
 
-  // /**
-  //  * Input field classes
-  //  */
-  // let klass = "";
-  // export { klass as class };
+  /**
+   * Extended set of options as supported by Flatpicker
+   *
+   * See: https://flatpickr.js.org/options/
+   */
+  export let options = {};
+  /**
+   * CSS classes for the input
+   */
+  let klass = "";
+  export { klass as class };
 
-  // /**
-  //  * Flatpickr instance
-  //  */
-  // let flatpickr;
+  let opts;
 
-  // let _options = {},
-  //   _id = "";
+  $: ui_color, options, time_24hr, fillOptions();
 
-  // $: {
-  //   _id = id ? `-${id}` : "";
+  function fillOptions() {
+    let _opts = Object.assign(
+      {
+        color: ui_color,
+        time_24hr,
+      },
+      options
+    );
 
-  //   _options = Object.assign(
-  //     {
-  //       element: "#kws-timepicker" + _id,
-  //       altInput: true,
-  //       altFormat: "h:i K",
-  //       dateFormat: "H:i",
-  //       enableTime: true,
-  //       noCalendar: true,
-  //       onChange: (date, dateStr) => {
-  //         //do something
-  //       },
-  //     },
-  //     options
-  //   );
-  // }
+    opts = _opts;
+  }
+
+  function fireTimeChange({ detail }) {
+    /**
+     * Triggered when time changes
+     */
+    fire("timeChange", detail);
+  }
+
+  function fireReady({ detail }) {
+    /**
+     * Triggered when UI is ready
+     */
+    fire("ready", detail);
+  }
+
+  function fireOpen({ detail }) {
+    /**
+     * Triggered when popup UI opens
+     */
+    fire("open", detail);
+  }
+
+  function fireClose({ detail }) {
+    /**
+     * Triggered when popup UI closes
+     */
+    fire("close", detail);
+  }
 </script>
