@@ -36,13 +36,12 @@ $kws-theme-colors: $colors !default;
     }
     &:after{
       box-sizing: border-box;
-      transform: translateY(0rem) rotate(45deg);
       border:none;
-      width: .3em;
-      height: .6em;
+      width: 0;
+      height: 0;
       top: .4em;
       left: .38em;
-      display: inline-block;
+      display: none;
     }
   }
   &.has-icon{
@@ -62,6 +61,7 @@ $kws-theme-colors: $colors !default;
       left:0;
       border-radius:0.14em;
       box-shadow: 0 0 0 0.05em $kws-radio-default-border-color;
+      display: inline-block;
     }
   }
 
@@ -91,9 +91,12 @@ $kws-theme-colors: $colors !default;
       }
     }
 
-    &.is-#{$name}.is-inverted input[type="radio"]+.kws-checkbox-label{
+    &.is-#{$name} input[type="radio"]+.kws-checkbox-label{
       &:before{
         border-color: $color;
+      }
+      &:after{
+        box-shadow: 0 0 0 0.05em $color;
       }
     }
 

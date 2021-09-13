@@ -1,0 +1,68 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Timepicker } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  id : "1",
+  value : "",
+  style : "",
+  class : "",
+  placeholder : "Select Time..",
+  disabled : false,
+  options : {}
+};
+
+<Meta
+  title="Forms/Timepicker"
+  component={Timepicker}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Timepicker
+## Timepicker component that allows you to select time.
+`}/>
+
+<Canvas>
+  <Story
+  name="Timepicker"
+  args={args}
+  >
+  {(args) => ({
+    Component: Timepicker,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Timepicker" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Timepicker } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Timepicker.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-timepicker-border-radius: 3px 3px !default;
+      $kws-timepicker-border: 1px solid $primary !default;
+      $kws-timepicker-am-pm-color: $primary !default;
+    `
+  }
+/>
