@@ -11,8 +11,8 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
       <ul class="menu-list">
-        <li><button class="button is-outlined">Menu 1</button></li>
-        <li><button class="button is-outlined">Menu 2</button></li>
+        <li><a href={"javascript:void(0)"}>Menu 1</a></li>
+        <li><a href={"javascript:void(0)"}>Menu 2</a></li>
       </ul>
 
       <hr class="is-small" />
