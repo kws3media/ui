@@ -5,11 +5,14 @@
   @param {boolean} [on=false] - Toggle On - true/false, Default: `false`
   @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
   @param {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
-  @param {string} [classes=""] - Supported classes, Default: `""`
   @param {string} [on_text=""] - On Text, Default: `""`
   @param {string} [off_text=""] - Off Text, Default: `""`
   @param {'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [class=""] - CSS classes, Default: `""`
+
+  ### Events
+  - `change` - Toggle change event
 
 -->
 <div
