@@ -1,16 +1,16 @@
 <!--
   @component
-  
 
-  @param {string} [classes=""] - Supported classes, Default: `""`
-  @param {string} [style=""] - Inline styles, Default: `""`
+
+  @param {string} [style=""] - Inline css, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [class=""] - Additional CSS classes, Default: `""`
 
   ### Slots
   - `<slot name="default"  />`
 
 -->
-<div class="togglebox {classes}" {style} data-cy={cy}>
+<div class="togglebox {klass}" {style} data-cy={cy}>
   <slot />
 </div>
 
@@ -35,18 +35,17 @@
 
 <script>
   /**
-   * Supported classes
-   * @type {string}
+   * Inline css
    */
-  export let classes = "",
-    /**
-     * Inline styles
-     * @type {string}
-     */
-    style = "",
+  export let style = "",
     /**
      * data-cy attribute for cypress
-     * @type {string}
      */
     cy = "";
+
+  /**
+   * Additional CSS classes
+   */
+  let klass = "";
+  export { klass as class };
 </script>
