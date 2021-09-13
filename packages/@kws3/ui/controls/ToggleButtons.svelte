@@ -2,19 +2,18 @@
   @component
 
 
-  @param {boolean} [on=false] - `CONST` Toggle On - true/false, Default: `false`
-  @param {object} [value=null] - Value property, Default: `null`
+  @param {object} [value=null] - Toggle button value, Default: `null`
   @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
   @param {object} [options={}] - Array of options, Default: `{}`
-  @param {string} [classes=""] - Additional classes, Default: `""`
   @param {string} [inner_class=""] - Additional internal classes, Default: `""`
   @param {string} [active_class="is-primary"] - Active class, Default: `"is-primary"`
   @param {string} [inactive_class="is-outlined"] - Inactive class, Default: `"is-outlined"`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
   @param {boolean} [fullwidth=false] - Full width of toggle button, Default: `false`
+  @param {string} [class=""] - Additional CSS classes, Default: `""`
 
   ### Events
-  - `change`
+  - `change` - Used to handle change event
 
 -->
 <div class="toggle-buttons field has-addons {klass}">
