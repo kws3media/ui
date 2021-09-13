@@ -1,0 +1,50 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { ActionSheet } from "@kws3/ui";
+import ActionSheetDecorator from "./ActionSheet.svelte";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  open : false,
+  closable : true,
+  style : ""
+};
+
+<Meta
+  title="Helpers/ActionSheet"
+  component={ActionSheet}
+  args={args}
+  argTypes={{
+    size: {
+      control: 'select'
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# ActionSheet
+## ActionSheet components for showing popups.
+`}/>
+
+<Canvas>
+  <Story
+  name="ActionSheet"
+  args={args}
+  >
+  {(args) => ({
+    Component: ActionSheetDecorator,
+    props: args,
+    on: {
+      click:action("Opened"),
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ActionSheet" />
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`import { ActionSheet } from '@kws3/ui';`}
+/>
