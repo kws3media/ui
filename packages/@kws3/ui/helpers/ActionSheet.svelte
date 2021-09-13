@@ -12,7 +12,7 @@
     1 - $tween <= 0 ? "hidden" : "visible"
   };${style}`}>
   {#if closable}
-    <span class="action-modal__close" on:click={() => (open = false)}>
+    <span class="action-modal_close" on:click={() => (open = false)}>
       <Icon icon={close_icon} />
     </span>
   {/if}
