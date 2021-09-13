@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {boolean} [on=false] - `CONST` Toggle On - true/false, Default: `false`
   @param {object} [value=null] - Value property, Default: `null`
@@ -17,7 +17,7 @@
   - `change`
 
 -->
-<div class="toggle-buttons field has-addons {classes}">
+<div class="toggle-buttons field has-addons {klass}">
   {#each options as option}
     <div class="control {fullwidth ? 'is-expanded' : ''} {inner_class}">
       <button
@@ -66,15 +66,11 @@
 
   const fire = createEventDispatcher();
   /**
-   * Toggle On - true/false
-   * @type {boolean}
+   * Toggle button value
    */
-  export const on = false;
-
   export let value = null,
     /**
      * Disabled - true/false
-     * @type {boolean}
      */
     disabled = false,
     /**
@@ -83,38 +79,38 @@
      */
     options = [],
     /**
-     * Additional classes
-     * @type {string}
-     */
-    classes = "",
-    /**
      * Additional internal classes
-     * @type {string}
      */
     inner_class = "",
     /**
      * Active class
-     * @type {string}
      */
     active_class = "is-primary",
     /**
      * Inactive class
-     * @type {string}
      */
     inactive_class = "is-outlined",
     /**
      * Size of the Toggle Button
-     * @type {'small'|'medium'|'large'}
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
      * Full width of toggle button
-     * @type {boolean}
      */
     fullwidth = false;
 
+  /**
+   * Additional CSS classes
+   */
+  let klass = "";
+  export { klass as class };
+
   function setValue(v) {
     value = v;
+    /**
+     * Used to handle change event
+     */
     fire("change");
   }
 </script>
