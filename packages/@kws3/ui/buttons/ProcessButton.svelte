@@ -6,7 +6,7 @@
   @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
   @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="check"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color=""] - Color of the Button, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [doing_icon="hourglass"] - Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
   @param {string} [doing_text="Doing..."] - Text showing after confirm, Default: `"Doing..."`
@@ -15,7 +15,7 @@
   @param {object} [context=null] - Context property, Default: `null`
   @param {boolean} [icon_only=false] - Icon Only - true/false, Default: `false`
   @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {string} [class=""] - `CONST` CSS class for button container, Default: `""`
+  @param {string} [class=""] - CSS class for button container, Default: `""`
 
   ### Events
   - `do` - fires an event on doing
@@ -80,9 +80,9 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
-    color = "primary",
+    color = "",
     /**
      * data-cy attribute for cypress
      */
