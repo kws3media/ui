@@ -1,7 +1,10 @@
 import flatpickr from "flatpickr";
 
 function createFlatpickrAction(defaultOpts, hooks) {
-  return function (node, [opts, value]) {
+  return function (
+    node,
+    { opts, value, placeholder, klass, style, disabled, color }
+  ) {
     const _opts = {};
 
     const colorClass = opts.color ? opts.color : "primary";
@@ -18,6 +21,7 @@ function createFlatpickrAction(defaultOpts, hooks) {
     const readyFirer = createFirer("ready");
     _opts["onReady"] = (selectedDates, dateStr, instance) => {
       applyColorClass(instance, colorClass);
+      applyInitialInputAttributes(instance, { style });
       readyFirer(selectedDates, dateStr, instance);
     };
 
@@ -58,8 +62,13 @@ function createFlatpickrAction(defaultOpts, hooks) {
       instance.calendarContainer.classList.add("is-" + color);
     }
 
+    function applyInitialInputAttributes(instance, { style }) {
+      const visibleInput = instance.input.nextSibling;
+      visibleInput.style = `${style}`;
+    }
+
     return {
-      update([opts, value]) {
+      update({ opts, value, placeholder, klass, style, disabled, color }) {
         if (picker) {
           picker.setDate(value);
           if (opts) {
@@ -75,6 +84,13 @@ function createFlatpickrAction(defaultOpts, hooks) {
             picker.set("disable", opts.disable ? opts.disable : [() => false]);
             picker.set("time_24hr", opts.time_24hr || false);
           }
+
+          //respond reactively to props
+          const visibleInput = picker.input.nextSibling;
+          visibleInput.className = `input is-${color} ${klass}`;
+          visibleInput.style = `${style}`;
+          visibleInput.disabled = disabled;
+          visibleInput.placeholder = placeholder;
         }
       },
       destroy() {
