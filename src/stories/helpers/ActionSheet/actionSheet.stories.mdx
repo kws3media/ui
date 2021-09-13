@@ -8,7 +8,7 @@ export let args={
   open : false,
   closable : true,
   close_icon : "times-circle",
-  close_on_click_outside:"",
+  close_on_click_outside:true,
   style : "",
   class:""
 };
@@ -50,4 +50,45 @@ export let args={
 <Source
   language='javascript'
   code={ dedent`import { ActionSheet } from '@kws3/ui';`}
+/>
+
+
+### Example
+<Source
+  language='html'
+  code={ dedent`
+    <div class="columns">
+      <div class="column">
+        <KwsActionSheet
+          bind:open
+          {closable}
+          {close_icon}
+          {close_on_click_outside}
+          {style}
+          class="some-classes">
+          <h1 class="title">This is a Heading</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <ul class="menu-list">
+            <li><a href={"javascript:void(0)"}>Menu 1</a></li>
+            <li><a href={"javascript:void(0)"}>Menu 2</a></li>
+          </ul>
+          <hr class="is-small" />
+          <button
+            class="button is-danger is-fullwidth"
+            type="button"
+            on:click={() => (open = false)}>Cancel</button>
+        </KwsActionSheet>
+      </div>
+    </div>
+    <button class="button is-primary" type="button" on:click={() => (open = true)}
+      >Open Action Sheet</button>
+    <script>
+      import { ActionSheet as KwsActionSheet } from "@kws3/ui";
+      export let open = false,
+        closable = true,
+        close_icon = "times-circle",
+        close_on_click_outside = true,
+        style = "";
+    </script>
+  `}
 />
