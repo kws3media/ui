@@ -106,7 +106,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
     color = "info",
     /**

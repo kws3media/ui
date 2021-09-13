@@ -15,7 +15,7 @@ export let args={
   doing_icon : "hourglass",
   done_icon : "check",
   doing_text : "Doing",
-  done_text : "Deleted",
+  done_text : "Done",
   context : "_context_confirm"
 };
 
@@ -87,7 +87,7 @@ export let args={
       export let doing_icon = "hourglass";
       export let done_icon = "check";
       export let doing_text = "Doing";
-      export let done_text = "Deleted";
+      export let done_text = "Done";
       function confirmDo(event, success = true){
         let {doing, done, error} = event.detail;
         doing();
