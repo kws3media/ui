@@ -2,9 +2,9 @@
   @component
 
 
-  @param {string} [classes=""] - Supported classes, Default: `""`
-  @param {string} [style=""] - Inline styles, Default: `""`
+  @param {string} [style=""] - Inline css, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [class=""] - Additional CSS classes, Default: `""`
 
   ### Slots
   - `<slot name="default"  />`
