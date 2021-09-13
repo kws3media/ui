@@ -2,25 +2,25 @@
   @component
 
 
-  @param {string} [button_class=""] - Additional class for button, Default: `""`
+  @param {string} [button_class=""] - CSS classes for the Process button, Default: `""`
   @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
   @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {string} [icon="check"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color=""] - Color of the Button, Default: `""`
+  @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
+  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [doing_icon="hourglass"] - Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
-  @param {string} [doing_text="Doing..."] - Text showing after confirm, Default: `"Doing..."`
-  @param {string} [done_icon="check"] - Icon showing after success - use any fa/gg/unicorn icons, Default: `"check"`
-  @param {string} [done_text="Done"] - Text showing after success, Default: `"Done"`
+  @param {string} [doing_text="Doing..."] - Text displayed after task is completed successfully, Default: `"Doing..."`
+  @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
+  @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`
   @param {object} [context=null] - Context property, Default: `null`
-  @param {boolean} [icon_only=false] - Icon Only - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {string} [class=""] - CSS class for button container, Default: `""`
+  @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
+  @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
+  @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
-  - `do` - fires an event on doing
-  - `done` - fires an event on complete
-  - `error` - fires an event on error
+  - `do` - Fires an event when user presses button
+  - `done` - Fires an event when task completes successfully
+  - `error` - Fires an event when there is an error
 
 -->
 <ConfirmButton
@@ -41,17 +41,17 @@
   should_confirm={false}
   on:do={({ detail }) =>
     /**
-     * fires an event on doing
+     * Fires an event when user presses button
      */
     fire("do", detail)}
   on:done={({ detail }) =>
     /**
-     * fires an event on complete
+     * Fires an event when task completes successfully
      */
     fire("done", detail)}
   on:error={({ detail }) =>
     /**
-     * fires an event on error
+     * Fires an event when there is an error
      */
     fire("error", detail)} />
 
@@ -62,7 +62,7 @@
   const fire = createEventDispatcher();
 
   /**
-   * Additional class for button
+   * CSS classes for the Process button
    */
   export let button_class = "",
     /**
@@ -75,14 +75,14 @@
      */
     size = "",
     /**
-     * Icon of the Button - use any fa/gg/unicorn icons
+     * Name of the icon that is to be displayed in the button
      */
     icon = "check",
     /**
      * Color of the Button
      * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
-    color = "",
+    color = "primary",
     /**
      * data-cy attribute for cypress
      */
@@ -92,15 +92,15 @@
      */
     doing_icon = "hourglass",
     /**
-     * Text showing after confirm
+     * Text displayed after task is completed successfully
      */
     doing_text = "Doing...",
     /**
-     * Icon showing after success - use any fa/gg/unicorn icons
+     * Name of the icon displayed after task is completed successfully
      */
     done_icon = "check",
     /**
-     * Text showing after success
+     * Button text displayed after task is completed successfully
      */
     done_text = "Done",
     /**
@@ -108,16 +108,16 @@
      */
     context = null,
     /**
-     * Icon Only - true/false
+     * Removes text, and text space in the button
      */
     icon_only = false,
     /**
-     * Disabled - true/false
+     * Disables the button when `true`
      */
     disabled = false;
 
   /**
-   * CSS class for button container
+   * CSS classes for button container
    */
   let klass = "";
   export { klass as class };

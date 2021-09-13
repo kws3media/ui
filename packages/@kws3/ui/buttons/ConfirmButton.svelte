@@ -2,7 +2,7 @@
   @component
 
 
-  @param {string} [button_class=""] - CSS classes for button, Default: `""`
+  @param {string} [button_class=""] - CSS classes for the Confirm button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
@@ -11,7 +11,7 @@
   @param {string} [doing_icon="hourglass"] - Name of the icon displayed during task processing, Default: `"hourglass"`
   @param {string} [doing_text="Please Wait..."] - Message displayed when processing task, Default: `"Please Wait..."`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
-  @param {string} [done_text="Done"] - Text shows after process complete, Default: `"Done"`
+  @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {boolean} [should_confirm=true] - ask confirm question if it is true, Default: `true`
@@ -19,9 +19,9 @@
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
-  - `do` - fires an event on doing
-  - `done` - fires an event on complete
-  - `error` - fires an event on error
+  - `do` - Fires an event when user confirms action
+  - `done` - Fires an event when task completes
+  - `error` - Fires an event when there is an error
 
 -->
 <div class="field {_confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
@@ -88,7 +88,7 @@
   const fire = createEventDispatcher();
 
   /**
-   * CSS classes for button
+   * CSS classes for the Confirm button
    */
   export let button_class = "",
     /**
@@ -126,7 +126,7 @@
      */
     done_icon = "check",
     /**
-     * Text shows after process complete
+     * Button text displayed after task is completed successfully
      */
     done_text = "Done",
     /**
@@ -174,7 +174,7 @@
     }
     if (_confirm) {
       /**
-       * fires an event on doing
+       * Fires an event when user confirms action
        */
       fire("do", { doing, done, error, context });
     }
@@ -195,7 +195,7 @@
     setTimeout(() => {
       _done = false;
       /**
-       * fires an event on complete
+       * Fires an event when task completes
        */
       fire("done");
     }, 1500);
@@ -209,7 +209,7 @@
     setTimeout(() => {
       _error = false;
       /**
-       * fires an event on error
+       * Fires an event when there is an error
        */
       fire("error");
     }, 1500);

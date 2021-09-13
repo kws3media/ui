@@ -5,16 +5,16 @@
   @param {string} [button_class=""] - CSS classes for the Delete button, Default: `""`
   @param {string} [text="Delete"] - Button text, Default: `"Delete"`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {string} [icon="minus-circle"] - Icon of the Button - use any fa/gg/unicorn icons, Default: `"minus-circle"`
+  @param {string} [icon="minus-circle"] - Name of the icon that is to be displayed in the button, Default: `"minus-circle"`
   @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="danger"] - Color of the Button, Default: `"danger"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
+  @param {string} [doing_icon="hourglass"] - Doc and property to be deleted, Default: `"hourglass"`
   @param {string} [doing_text="Deleting..."] - Text showing after confirm, Default: `"Deleting..."`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
-  @param {string} [done_text="Deleted"] - Text showing after success, Default: `"Deleted"`
+  @param {string} [done_text="Deleted"] - Button text displayed after task is completed successfully, Default: `"Deleted"`
   @param {object} [context=null] - Context property, Default: `null`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {string} [class=""] - CSS classes for the button container, Default: `""`
 
   ### Events
@@ -74,7 +74,7 @@
      */
     size = "",
     /**
-     * Icon of the Button - use any fa/gg/unicorn icons
+     * Name of the icon that is to be displayed in the button
      */
     icon = "minus-circle",
     /**
@@ -87,7 +87,7 @@
      */
     cy = "",
     /**
-     * Icon showing after confirm - use any fa/gg/unicorn icons
+     * Doc and property to be deleted
      */
     doing_icon = "hourglass",
     /**
@@ -99,7 +99,7 @@
      */
     done_icon = "check",
     /**
-     * Text showing after success
+     * Button text displayed after task is completed successfully
      */
     done_text = "Deleted",
     /**
@@ -111,7 +111,7 @@
      */
     icon_only = false,
     /**
-     * Disabled - true/false
+     * Disables the button when `true`
      */
     disabled = false;
 

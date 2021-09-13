@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
@@ -66,7 +66,7 @@
      */
     text = "Save Changes",
     /**
-     * Text shows after success
+     * Text displayed after task is completed successfully
      */
     saved_text = "Saved",
     /**
@@ -99,7 +99,7 @@
     };
 
   /**
-   * CSS classes
+   * CSS classes for Button container
    */
   let klass = "";
   export { klass as class };
