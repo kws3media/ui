@@ -1,3 +1,18 @@
+<!--
+  @component
+
+
+  @param {boolean} [open=false] - Open Action Sheet, Default: `false`
+  @param {boolean} [closable=true] - Clasable action sheet, Default: `true`
+  @param {string} [close_icon="times-circle"] - Close icon, Default: `"times-circle"`
+  @param {boolean} [close_on_click_outside=false] - Determines if a closable modal can be closed by clicking anywhere outside the modal, Default: `false`
+  @param {string} [style=""] - Inline css of action sheet, Default: `""`
+  @param {string} [class=""] - CSS class of action sheet, Default: `""`
+
+  ### Slots
+  - `<slot name="default"  />` - Used to display sheet content
+
+-->
 <div
   class="action-modal-background"
   on:click={closable && close_on_click_outside
