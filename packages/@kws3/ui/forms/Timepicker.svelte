@@ -1,23 +1,3 @@
-<!--
-  @component
-
-
-  @param {string} [value=""] - Input field value, Default: `""`
-  @param {string} [id=""] - Timepicker id attribute, Default: `""`
-  @param {string} [style=""] - Inline styles for input field, Default: `""`
-  @param {string} [placeholder="Select Time.."] - Placeholder for input field, Default: `"Select Time.."`
-  @param {boolean} [disabled=false] - Disable input field, Default: `false`
-  @param {object} [options={}] - Flatpicker options, Default: `{}`
-  @param {string} [class=""] - Input field classes, Default: `""`
-
-  ### Events
-  - `change` - Change event
-  - `ready` - Ready event
-  - `open` - Open event
-  - `close` - Close event
-
--->
-
 <!-- <Flatpickr
   options={_options}
   element="#kws-timepicker{_id}"
