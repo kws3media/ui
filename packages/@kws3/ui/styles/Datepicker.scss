@@ -1,0 +1,120 @@
+$kws-theme-colors: $colors !default;
+$kws-datepicker-background: $background !default;
+$kws-datepicker-text: $text !default;
+
+.flatpickr-calendar {
+
+  $inRangeBg: lighten($kws-datepicker-text, 55);
+  @if (colorLuminance($kws-datepicker-text) > 0.55){
+    $inRangeBg: darken($kws-datepicker-text, 55);
+  }
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+  background: $kws-datepicker-background;
+  color: $kws-datepicker-text;
+
+
+  @each $name, $pair in $kws-theme-colors{
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+    $color-light: findLightColor($color);
+    $color-dark: findDarkColor($color);
+    &.is-#{$name}{
+      &.arrowTop:before,
+      &.arrowTop:after {
+        border-bottom-color: $color;
+      }
+      &.arrowBottom:before,
+      &.arrowBottom:after {
+        border-top-color: $color;
+      }
+      .flatpickr-month {
+        background: $color;
+        color: $color-invert;
+        fill: $color-invert;
+      }
+      .flatpickr-weekdays {
+        background: $color;
+      }
+      span.flatpickr-weekday {
+        background: $color;
+        color: $color-invert;
+      }
+      .flatpickr-current-month .numInputWrapper span.arrowUp:after{
+        border-bottom-color: $color-invert;
+      }
+      .flatpickr-current-month .numInputWrapper span.arrowDown:after{
+        border-top-color: $color-invert;
+      }
+      .flatpickr-prev-month,
+      .flatpickr-next-month {
+        color: $color-invert;
+      }
+      .flatpickr-prev-month svg,
+      .flatpickr-next-month svg {
+        fill: $color-invert;
+      }
+      .flatpickr-prev-month:hover,
+      .flatpickr-next-month:hover {
+        color: $color-invert;
+      }
+      .flatpickr-prev-month:hover svg,
+      .flatpickr-next-month:hover svg {
+        fill: $color-invert;
+      }
+      .flatpickr-days {
+        border-left: $color;
+        border-right: $color;
+      }
+      .flatpickr-day.selected,
+      .flatpickr-day.startRange,
+      .flatpickr-day.endRange,
+      .flatpickr-day.selected.inRange,
+      .flatpickr-day.startRange.inRange,
+      .flatpickr-day.endRange.inRange,
+      .flatpickr-day.selected:focus,
+      .flatpickr-day.startRange:focus,
+      .flatpickr-day.endRange:focus,
+      .flatpickr-day.selected:hover,
+      .flatpickr-day.startRange:hover,
+      .flatpickr-day.endRange:hover,
+      .flatpickr-day.selected.prevMonthDay,
+      .flatpickr-day.startRange.prevMonthDay,
+      .flatpickr-day.endRange.prevMonthDay,
+      .flatpickr-day.selected.nextMonthDay,
+      .flatpickr-day.startRange.nextMonthDay,
+      .flatpickr-day.endRange.nextMonthDay {
+        background: $color;
+        border-color: $color;
+        color:$color-invert;
+      }
+      .flatpickr-day.today{
+        border-color: $color;
+        &:hover, &:focus{
+          background: $color-light;
+          color: $color-dark;
+        }
+      }
+      .flatpickr-innerContainer {
+        border-bottom: 1px solid $color;
+      }
+    }
+  }
+
+  .flatpickr-day{
+    color:$kws-datepicker-text;
+    &.flatpickr-disabled, &.flatpickr-disabled:hover, &.prevMonthDay, &.nextMonthDay, &.notAllowed, &.notAllowed.prevMonthDay, &.notAllowed.nextMonthDay{
+      color: transparentize($kws-datepicker-text, 0.7);
+    }
+
+    &.inRange{
+      box-shadow: -5px 0 0 $inRangeBg, 5px 0 0 $inRangeBg;
+    }
+
+    &.inRange, &.prevMonthDay.inRange, &.nextMonthDay.inRange, &.today.inRange, &.prevMonthDay.today.inRange, &.nextMonthDay.today.inRange,
+    &:hover, &.prevMonthDay:hover, &.nextMonthDay:hover, &:focus, &.prevMonthDay:focus, &.nextMonthDay:focus{
+      background: $inRangeBg;
+      border-color: $inRangeBg;
+    }
+  }
+}
