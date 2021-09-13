@@ -1,14 +1,17 @@
 <KwsMessage
   {size}
   {color}
+  class={klass}
   {style}
+  {inner_class}
   {inner_style}
   {classes}
-  {header_classes}
-  {inner_classes}
+  {title_class}
   {title}
   {has_title}
-  {dismissable}>
+  {dismissable}
+  {active}
+  on:dismiss>
   <h1>This is a Heading</h1>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 </KwsMessage>
@@ -21,9 +24,13 @@
     style = "",
     inner_style = "",
     classes = "",
-    header_classes = "",
-    inner_classes = "",
+    title_class = "",
+    inner_class = "",
     title = null,
     has_title = false,
-    dismissable = false;
+    dismissable = false,
+    active = true;
+
+  let klass = "";
+  export { klass as class };
 </script>

@@ -7,20 +7,29 @@ import { action } from '@storybook/addon-actions';
 export let args={
   size : "",
   color : "info",
+  class : "",
   style : "",
+  inner_class : "",
   inner_style : "",
-  classes : "",
-  header_classes : "",
-  inner_classes : "",
-  title : "This is a message box",
+  title_class : "",
+  title : "",
   has_title : false,
-  dismissable : false
+  dismissable : false,
+  active: true
 };
 
 <Meta
   title="Helpers/Message"
   component={Message}
   args={args}
+  argTypes={{
+    color: {
+      control: 'select'
+    },
+    size: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
@@ -36,6 +45,9 @@ export let args={
   {(args) => ({
     Component: MessageDecorator,
     props: args,
+    on: {
+      dismiss: action("dismiss"),
+    },
   })}
   </Story>
 </Canvas>
