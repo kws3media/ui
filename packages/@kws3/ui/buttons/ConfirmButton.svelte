@@ -6,7 +6,7 @@
   @param {string} [text=""] - Button text, Default: `""`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
-  @param {'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="info"] - Color of the Button, Default: `"info"`
+  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [doing_icon="hourglass"] - Name of the icon displayed during task processing, Default: `"hourglass"`
   @param {string} [doing_text="Please Wait..."] - Message displayed when processing task, Default: `"Please Wait..."`
@@ -108,7 +108,7 @@
      * Color of the Button
      * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
-    color = "info",
+    color = "primary",
     /**
      * data-cy attribute for cypress
      */
