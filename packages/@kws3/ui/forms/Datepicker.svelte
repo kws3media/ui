@@ -28,6 +28,11 @@
    * Inline CSS for the input
    */
   export let style = "";
+  /**
+   * Colour of the Date picker input
+   *
+   * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   */
   export let color = "";
   /**
    * Disables the component
@@ -37,7 +42,11 @@
    * Placeholder text for the input
    */
   export let placeholder = "";
-
+  /**
+   * Colour of the Calendar
+   *
+   * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   */
   export let calendar_color = "primary";
   /**
    * Set earliest selectable date as an object
