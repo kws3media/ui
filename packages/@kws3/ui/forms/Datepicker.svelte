@@ -55,7 +55,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:yearChange />
 
 <script>
-  import datepicker from "./actions";
+  import { datepicker } from "./actions";
 
   /**
    * Accepts a date value in the format `yyyy-mm-dd`

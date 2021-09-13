@@ -1,13 +1,58 @@
-$kws-timepicker-border-radius: 3px 3px !default;
-$kws-timepicker-border: 1px solid $primary !default;
-$kws-timepicker-am-pm-color: $primary !default;
-.flatpickr-calendar {
+$kws-theme-colors: $colors !default;
+$kws-datepicker-background: $background !default;
+$kws-datepicker-text: $text !default;
+.flatpickr-calendar.hasTime.noCalendar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+  background: $kws-datepicker-background;
+  color: $kws-datepicker-text;
+  border-radius: $radius;
+
   .flatpickr-time {
-    border-radius: $kws-timepicker-border-radius;
-    border: $kws-timepicker-border !important;
+    border: none;
     input,
     .flatpickr-am-pm {
-      color: $kws-timepicker-am-pm-color;
+      font-weight: normal;
+      &:focus,
+      &:active {
+        font-weight: bold;
+      }
+    }
+    .numInputWrapper {
+      &:hover {
+        input,
+        .flatpickr-am-pm {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  @each $name, $pair in $kws-theme-colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+    $color-light: findLightColor($color);
+    $color-dark: findDarkColor($color);
+    &.is-#{$name} {
+      border: 1px solid $color;
+      input,
+      .flatpickr-am-pm {
+        color: $color-dark;
+        &:hover,
+        &:focus {
+          background: $color-light;
+        }
+      }
+      .numInputWrapper {
+        &:hover {
+          background: $color-light;
+        }
+        & span.arrowUp:after {
+          border-bottom-color: $color-dark;
+        }
+        & span.arrowDown:after {
+          border-top-color: $color-dark;
+        }
+      }
     }
   }
 }

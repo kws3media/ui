@@ -1,27 +1,43 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import { Timepicker } from '@kws3/ui';
+import M from '../../helpers/Message/Message.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  id : "1",
   value : "",
   style : "",
   class : "",
-  placeholder : "Select Time..",
+  placeholder : "Select Date..",
   disabled : false,
-  options : {}
+  min_date: null,
+  max_date: null,
+  enable_dates: [],
+  disable_dates: [],
+  range_mode: false,
+  options : {},
+  calendar_color: "primary",
+  color:""
 };
 
 <Meta
   title="Forms/Timepicker"
   component={Timepicker}
   args={args}
+  argTypes={{
+    calendar_color:{
+      control: {type:'select'}
+    },
+    color:{
+      control: {type:'select'}
+    },
+    range_mode: {}
+  }}
 />
 
 <Description markdown={dedent`
 # Timepicker
-## Timepicker component that allows you to select time.
+## Timepicker component that allows you to select date.
 `}/>
 
 <Canvas>
@@ -32,6 +48,15 @@ export let args={
   {(args) => ({
     Component: Timepicker,
     props: args,
+    on:{
+      change: action('change'),
+      dateChange: action('dateChange'),
+      ready: action('ready'),
+      open: action('open'),
+      close: action('close'),
+      monthChange: action('monthChange'),
+      yearChange: action('yearChange')
+    }
   })}
   </Story>
 </Canvas>
@@ -51,7 +76,7 @@ export let args={
 <Source
   language="javascript"
   code={
-    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Timepicker.scss';`
+    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Datepicker.scss';`
   }
 />
 
@@ -60,9 +85,9 @@ export let args={
   language="css"
   code={
     dedent`
-      $kws-timepicker-border-radius: 3px 3px !default;
-      $kws-timepicker-border: 1px solid $primary !default;
-      $kws-timepicker-am-pm-color: $primary !default;
+      $kws-theme-colors: $colors;
+      $kws-datepicker-background: $background;
+      $kws-datepicker-text: $text;
     `
   }
 />
