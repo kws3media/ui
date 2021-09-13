@@ -53,12 +53,12 @@
 
   /**
    * Size of the Button
-   * @type {'small'|'medium'|'large'}
+   * @type {''|'small'|'medium'|'large'}
    */
   export let size = "",
     /**
      * Color of the Button
-     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "primary",
     /**
@@ -66,15 +66,15 @@
      */
     text = "Save Changes",
     /**
-     * Text displayed after task is completed successfully
+     * Text displayed after submission is completed successfully
      */
     saved_text = "Saved",
     /**
-     * Text shows after failed
+     * Text displayed if submission is not successful
      */
     error_text = "Failed to Save",
     /**
-     * Icon of the Button - can use any fa icon
+     * Name of the icon that is to be displayed in the button
      */
     icon = "save",
     /**
@@ -82,11 +82,11 @@
      */
     cy = "submit",
     /**
-     * Display icon only - true/false
+     * Removes text, and text space in the button
      */
     icon_only = false,
     /**
-     * Button disable - true/false
+     * Disables the button when `true`
      */
     disabled = false,
     /**
@@ -132,7 +132,7 @@
         error: false,
       };
       /**
-       * It fires after saved state
+       * Fires an event on successful submission
        */
       fire("saved");
       callback && callback();
@@ -156,7 +156,7 @@
         error: false,
       };
       /**
-       * It fires after error state
+       * Fires an event when there is an error
        */
       fire("error");
       callback && callback();
