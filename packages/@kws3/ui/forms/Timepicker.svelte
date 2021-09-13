@@ -2,25 +2,17 @@
   @component
 
 
-  @param {string} [value=""] - Accepts a date value in the format `yyyy-mm-dd`
+  @param {string} [value=""] - Accepts a date value in the format `H:i`
 
-In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`
+Where `H` is in 24hr format
 
-This property can be bound to, to fetch the selected date or date range. Output is in the same format as input., Default: `""`
+This property can be bound to, to fetch the selected time. Output is in the same format as input., Default: `""`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
   @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
-  @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
-  @param {any} [min_date=null] - Set earliest selectable date as an object or string
-
-**Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `null`
-  @param {any} [max_date=null] - Set latest selectable date as an object or string
-
-**Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `null`
-  @param {array} [enable_dates=[]] - Enables a range of dates and disables all others, Default: `[]`
-  @param {array} [disable_dates=[]] - Disables a range of dates and enables all others, Default: `[]`
-  @param {boolean} [range_mode=false] - Allows selecting a date range, Default: `false`
+  @param {string} [placeholder="Select Time.."] - Placeholder text for the input, Default: `"Select Time.."`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [ui_color="primary"] - Colour of popup time selection UI, Default: `"primary"`
+  @param {boolean} [time_24hr=false] - Display time selection UI in 24hr format, Default: `false`
   @param {object} [options={}] - Extended set of options as supported by Flatpicker
 
 See: https://flatpickr.js.org/options/, Default: `{}`
@@ -28,12 +20,10 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
   ### Events
   - `change` - Proxied events from Flatpicker
-  - `dateChange`
+  - `timeChange`
   - `ready`
   - `open`
   - `close`
-  - `monthChange`
-  - `yearChange`
 
 -->
 <!--Proxied events from Flatpicker-->
@@ -51,8 +41,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:ready
   on:open
   on:close />
-
-<input type="text" bind:value />
 
 <script>
   import { timepicker } from "./actions";
