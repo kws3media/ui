@@ -47,22 +47,22 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   readonly
   bind:value
   on:change
-  on:dateChange
+  on:timeChange
   on:ready
   on:open
-  on:close
-  on:monthChange
-  on:yearChange />
+  on:close />
+
+<input type="text" bind:value />
 
 <script>
   import { timepicker } from "./actions";
 
   /**
-   * Accepts a date value in the format `yyyy-mm-dd`
+   * Accepts a date value in the format `H:i`
    *
-   * In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`
+   * Where `H` is in 24hr format
    *
-   * This property can be bound to, to fetch the selected date or date range. Output is in the same format as input.
+   * This property can be bound to, to fetch the selected time. Output is in the same format as input.
    */
   export let value = "";
   /**
@@ -71,7 +71,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let style = "";
   /**
    * Colour of the Date picker input
-   *
    * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "";
@@ -82,44 +81,17 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   /**
    * Placeholder text for the input
    */
-  export let placeholder = "";
+  export let placeholder = "Select Time..";
   /**
-   * Colour of the Calendar
-   *
+   * Colour of popup time selection UI
    * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
-  export let calendar_color = "primary";
+  export let ui_color = "primary";
+
   /**
-   * Set earliest selectable date as an object or string
-   *
-   * **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`
-   *
-   * @type {any}
+   * Display time selection UI in 24hr format
    */
-  export let min_date = null;
-  /**
-   * Set latest selectable date as an object or string
-   *
-   * **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`
-   *
-   * @type {any}
-   */
-  export let max_date = null;
-  /**
-   * Enables a range of dates and disables all others
-   *
-   * @type {array}
-   */
-  export let enable_dates = [];
-  /**
-   * Disables a range of dates and enables all others
-   * @type {array}
-   */
-  export let disable_dates = [];
-  /**
-   * Allows selecting a date range
-   */
-  export let range_mode = false;
+  export let time_24hr = false;
 
   /**
    * Extended set of options as supported by Flatpicker
@@ -135,37 +107,17 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
   let opts;
 
-  $: calendar_color,
-    range_mode,
-    enable_dates,
-    disable_dates,
-    min_date,
-    max_date,
-    options,
-    fillOptions();
+  $: ui_color, options, time_24hr, fillOptions();
 
   function fillOptions() {
     let _opts = Object.assign(
       {
-        color: calendar_color,
-        mode: range_mode ? "range" : "single",
+        color: ui_color,
+        time_24hr,
       },
       options
     );
-    if (enable_dates && enable_dates.length) {
-      _opts.enable = enable_dates;
-    }
-    if (disable_dates && disable_dates.length) {
-      _opts.disable = disable_dates;
-    }
 
-    if (min_date) {
-      _opts.minDate = min_date;
-    }
-
-    if (max_date) {
-      _opts.maxDate = max_date;
-    }
     opts = _opts;
   }
 </script>

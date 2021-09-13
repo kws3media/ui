@@ -8,15 +8,11 @@ export let args={
   value : "",
   style : "",
   class : "",
-  placeholder : "Select Date..",
+  placeholder : "Select Time..",
   disabled : false,
-  min_date: null,
-  max_date: null,
-  enable_dates: [],
-  disable_dates: [],
-  range_mode: false,
+  time_24hr: false,
   options : {},
-  calendar_color: "primary",
+  ui_color: "primary",
   color:""
 };
 
@@ -25,13 +21,13 @@ export let args={
   component={Timepicker}
   args={args}
   argTypes={{
-    calendar_color:{
+    ui_color:{
       control: {type:'select'}
     },
     color:{
       control: {type:'select'}
     },
-    range_mode: {}
+    time_24hr: {}
   }}
 />
 
@@ -50,12 +46,10 @@ export let args={
     props: args,
     on:{
       change: action('change'),
-      dateChange: action('dateChange'),
+      timeChange: action('timeChange'),
       ready: action('ready'),
       open: action('open'),
-      close: action('close'),
-      monthChange: action('monthChange'),
-      yearChange: action('yearChange')
+      close: action('close')
     }
   })}
   </Story>
@@ -73,10 +67,13 @@ export let args={
 />
 
 #### Import the SCSS:
+<div class="notification is-warning"><strong>Note:</strong> <em>Need to import flatpicker SCSS file first</em></div>
 <Source
   language="javascript"
   code={
-    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Datepicker.scss';`
+    dedent`
+    @import 'path/to/node_modules/flatpickr/dist/flatpickr';
+    @import 'path/to/node_modules/@kws3/ui/styles/Timepicker.scss';`
   }
 />
 
@@ -86,8 +83,8 @@ export let args={
   code={
     dedent`
       $kws-theme-colors: $colors;
-      $kws-datepicker-background: $background;
-      $kws-datepicker-text: $text;
+      $kws-timepicker-background: $background;
+      $kws-timepicker-text: $text;
     `
   }
 />

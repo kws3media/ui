@@ -1,15 +1,8 @@
 import flatpickr from "flatpickr";
 
-function createFlatpickrAction(defaultOpts) {
+function createFlatpickrAction(defaultOpts, hooks) {
   return function (node, [opts, value]) {
     const _opts = {};
-    const hooks = [
-      "onOpen",
-      "onClose",
-      "onMonthChange",
-      "onYearChange",
-      "onReady",
-    ];
 
     const colorClass = opts.color ? opts.color : "primary";
 
@@ -30,7 +23,11 @@ function createFlatpickrAction(defaultOpts) {
 
     //special handler for onChange, so that it does not clobber
     //native on change event of the input
-    _opts["onChange"] = createFirer("dateChange");
+    if (defaultOpts.enableTime && defaultOpts.noCalendar) {
+      _opts["onChange"] = createFirer("timeChange");
+    } else {
+      _opts["onChange"] = createFirer("dateChange");
+    }
 
     opts = Object.assign(defaultOpts, _opts, opts);
 
@@ -76,6 +73,7 @@ function createFlatpickrAction(defaultOpts) {
             picker.set("maxDate", opts.maxDate ? opts.maxDate : "");
             picker.set("enable", opts.enable ? opts.enable : [() => true]);
             picker.set("disable", opts.disable ? opts.disable : [() => false]);
+            picker.set("time_24hr", opts.time_24hr || false);
           }
         }
       },
@@ -86,17 +84,22 @@ function createFlatpickrAction(defaultOpts) {
   };
 }
 
-export let datepicker = createFlatpickrAction({
-  altInput: true,
-  altFormat: "d/m/Y",
-  dateFormat: "Y-m-d",
-});
+export let datepicker = createFlatpickrAction(
+  {
+    altInput: true,
+    altFormat: "d/m/Y",
+    dateFormat: "Y-m-d",
+  },
+  ["onOpen", "onClose", "onMonthChange", "onYearChange", "onReady"]
+);
 
-export let timepicker = createFlatpickrAction({
-  inline: true,
-  altInput: true,
-  altFormat: "h:i K",
-  dateFormat: "H:i",
-  enableTime: true,
-  noCalendar: true,
-});
+export let timepicker = createFlatpickrAction(
+  {
+    altInput: true,
+    altFormat: "h:i K",
+    dateFormat: "H:i",
+    enableTime: true,
+    noCalendar: true,
+  },
+  ["onOpen", "onClose", "onReady"]
+);

@@ -73,10 +73,13 @@ export let args={
 />
 
 #### Import the SCSS:
+<div class="notification is-warning"><strong>Note:</strong> <em>Need to import flatpicker SCSS file first</em></div>
 <Source
   language="javascript"
   code={
-    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Datepicker.scss';`
+    dedent`
+    @import 'path/to/node_modules/flatpickr/dist/flatpickr';
+    @import 'path/to/node_modules/@kws3/ui/styles/Datepicker.scss';`
   }
 />
 

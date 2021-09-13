@@ -1,10 +1,10 @@
 $kws-theme-colors: $colors !default;
-$kws-datepicker-background: $background !default;
-$kws-datepicker-text: $text !default;
+$kws-timepicker-background: $black-ter !default;
+$kws-timepicker-text: $white !default;
 .flatpickr-calendar.hasTime.noCalendar {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
-  background: $kws-datepicker-background;
-  color: $kws-datepicker-text;
+  background: $kws-timepicker-background;
+  color: $kws-timepicker-text;
   border-radius: $radius;
 
   .flatpickr-time {
@@ -17,7 +17,16 @@ $kws-datepicker-text: $text !default;
         font-weight: bold;
       }
     }
+    .flatpickr-am-pm {
+      border-radius: 0 $radius $radius 0;
+    }
     .numInputWrapper {
+      &:first-child {
+        border-radius: $radius 0 0 $radius;
+        .numInput {
+          border-radius: $radius 0 0 $radius;
+        }
+      }
       &:hover {
         input,
         .flatpickr-am-pm {

@@ -71,7 +71,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let style = "";
   /**
    * Colour of the Date picker input
-   *
    * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "";
@@ -82,10 +81,9 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   /**
    * Placeholder text for the input
    */
-  export let placeholder = "";
+  export let placeholder = "Select Date..";
   /**
    * Colour of the Calendar
-   *
    * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let calendar_color = "primary";
@@ -93,7 +91,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    * Set earliest selectable date as an object or string
    *
    * **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`
-   *
    * @type {any}
    */
   export let min_date = null;
@@ -101,13 +98,11 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    * Set latest selectable date as an object or string
    *
    * **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`
-   *
    * @type {any}
    */
   export let max_date = null;
   /**
    * Enables a range of dates and disables all others
-   *
    * @type {array}
    */
   export let enable_dates = [];
