@@ -9,12 +9,16 @@
   @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
-  @param {object} [min_date=null] - Set earliest selectable date as an object, Default: `null`
-  @param {object} [max_date=null] - Set latest selectable date as an object, Default: `null`
-  @param {array} [enable_dates=[]] - Enable_dates property, Default: `[]`
-  @param {array} [disable_dates=[]] - Disable_dates property, Default: `[]`
-  @param {boolean} [range_mode=false] - Range_mode property, Default: `false`
+  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
+  @param {any} [min_date=null] - Set earliest selectable date as an object or string
+
+**Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `null`
+  @param {any} [max_date=null] - Set latest selectable date as an object or string
+
+**Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `null`
+  @param {array} [enable_dates=[]] - Qualifies a range of dates and disables all others, Default: `[]`
+  @param {array} [disable_dates=[]] - Disqualifies a range of dates and enables all others, Default: `[]`
+  @param {boolean} [range_mode=false] - Enables selecting all dates of a continous range, Default: `false`
   @param {object} [options={}] - Options property, Default: `{}`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
 
@@ -75,27 +79,39 @@
   /**
    * Colour of the Calendar
    *
-   * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let calendar_color = "primary";
   /**
-   * Set earliest selectable date as an object
+   * Set earliest selectable date as an object or string
+   *
+   * **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`
+   *
+   * @type {any}
    */
   export let min_date = null;
   /**
-   * Set latest selectable date as an object
+   * Set latest selectable date as an object or string
+   *
+   * **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`
+   *
+   * @type {any}
    */
   export let max_date = null;
   /**
+   * Qualifies a range of dates and disables all others
    *
    * @type {array}
    */
   export let enable_dates = [];
   /**
-   *
+   * Disqualifies a range of dates and enables all others
    * @type {array}
    */
   export let disable_dates = [];
+  /**
+   * Enables selecting all dates of a continous range
+   */
   export let range_mode = false;
 
   export let options = {};
