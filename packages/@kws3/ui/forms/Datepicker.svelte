@@ -18,16 +18,16 @@ This property can be bound to, to fetch the selected date or date range. Output 
   @param {any} [max_date=null] - Set latest selectable date as an object or string
 
 **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `null`
-  @param {array} [enable_dates=[]] - Qualifies a range of dates and disables all others, Default: `[]`
-  @param {array} [disable_dates=[]] - Disqualifies a range of dates and enables all others, Default: `[]`
-  @param {boolean} [range_mode=false] - Enables selecting all dates of a continous range, Default: `false`
+  @param {array} [enable_dates=[]] - Enables a range of dates and disables all others, Default: `[]`
+  @param {array} [disable_dates=[]] - Disables a range of dates and enables all others, Default: `[]`
+  @param {boolean} [range_mode=false] - Allows selecting a date range, Default: `false`
   @param {object} [options={}] - Extended set of options as supported by Flatpicker
 
 See: https://flatpickr.js.org/options/, Default: `{}`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
 
   ### Events
-  - `change`
+  - `change` - Proxied events from Flatpicker
   - `dateChange`
   - `ready`
   - `open`
@@ -36,6 +36,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   - `yearChange`
 
 -->
+<!--Proxied events from Flatpicker-->
 <input
   use:datepicker={[opts, value]}
   class="input is-{color} {klass}"
@@ -105,18 +106,18 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    */
   export let max_date = null;
   /**
-   * Qualifies a range of dates and disables all others
+   * Enables a range of dates and disables all others
    *
    * @type {array}
    */
   export let enable_dates = [];
   /**
-   * Disqualifies a range of dates and enables all others
+   * Disables a range of dates and enables all others
    * @type {array}
    */
   export let disable_dates = [];
   /**
-   * Enables selecting all dates of a continous range
+   * Allows selecting a date range
    */
   export let range_mode = false;
 
