@@ -238,7 +238,7 @@ input[type="range"] {
           background: $color;
         }
         &.has-output,
-        .has-output-tooltip {
+        &.has-output-tooltip {
           + output {
             background-color: $color;
             color: $color-invert;
