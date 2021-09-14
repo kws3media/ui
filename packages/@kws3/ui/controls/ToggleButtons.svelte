@@ -65,42 +65,50 @@
 
   const fire = createEventDispatcher();
   /**
-   * Toggle button value
+   * Value of the Toggle button
    */
   export let value = null,
     /**
-     * Disabled - true/false
+     * Disables the Toggle button
      */
     disabled = false,
     /**
-     * Array of options
+     * Create or remove button options as objects in an array
      * @type {object}
      */
     options = [],
     /**
-     * Additional internal classes
+     * CSS classes for Button
      */
     inner_class = "",
     /**
-     * Active class
+     *  Define classes for active (pressed) button
+     *
+     * Supports `is-outlined` and
+     *
+     * `is-primary` `is-warning` `is-info` `is-danger` `is-dark` `is-light`
      */
     active_class = "is-primary",
     /**
-     * Inactive class
+     * Define classes for inactive (not pressed) button
+     *
+     * Supports `is-outlined` and
+     *
+     * `is-primary` `is-warning` `is-info` `is-danger` `is-dark` `is-light`
      */
     inactive_class = "is-outlined",
     /**
-     * Size of the Toggle Button
+     * Size of the Toggle Buttons
      * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
-     * Full width of toggle button
+     * Force button to take full width of container
      */
     fullwidth = false;
 
   /**
-   * Additional CSS classes
+   * CSS classes for the Button container
    */
   let klass = "";
   export { klass as class };
@@ -108,7 +116,7 @@
   function setValue(v) {
     value = v;
     /**
-     * Used to handle change event
+     * Toggle button change event
      */
     fire("change");
   }
