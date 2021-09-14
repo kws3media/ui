@@ -1,0 +1,60 @@
+$kws3-persistent-banner-height: 70px;
+
+.toast-notifications {
+  position: absolute;
+  top: 70px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.show-persistent-banner {
+  .toast-notifications {
+    top: 70px + $kws3-persistent-banner-height;
+  }
+}
+
+.toast {
+  transform: translate3d(0, 0, 0);
+  animation: toast-slide-up 0.4s ease;
+  pointer-events: fill;
+  .notification {
+    position: relative;
+    margin-bottom: 5px;
+    width: 90%;
+    left: 5%;
+    font-size: 1rem;
+    .delete {
+      top: 50%;
+      transform: translate(0, -50%) scale(1.6);
+    }
+  }
+  .toast-progress {
+    background: white;
+    height: 2px;
+    position: relative;
+    bottom: -12px;
+    right: 16px;
+    width: 0%;
+    animation-name: toast-progress-running;
+  }
+}
+
+@keyframes toast-progress-running {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 109%;
+  }
+}
+
+@keyframes toast-slide-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
