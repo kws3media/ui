@@ -153,7 +153,7 @@ This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
      */
     plus_button_color = "";
 
-  export let _has_focus = 0;
+  let _has_focus = false;
 
   $: value && !_has_focus, validateInput(); // will work like on state changed
 
