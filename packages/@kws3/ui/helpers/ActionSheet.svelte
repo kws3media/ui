@@ -2,12 +2,16 @@
   @component
 
 
-  @param {boolean} [open=false] - Open Action Sheet, Default: `false`
-  @param {boolean} [closable=true] - Clasable action sheet, Default: `true`
+  @param {boolean} [open=false] - Determines whether the ActionSheet is open or closed, Default: `false`
+  @param {boolean} [closable=true] - Determines whether the ActionSheet is closable
+
+If `false` , the component won't have a close button, and will not close on clicking outside the component, Default: `true`
   @param {string} [close_icon="times-circle"] - Close icon, Default: `"times-circle"`
-  @param {boolean} [close_on_click_outside=false] - Determines if a closable modal can be closed by clicking anywhere outside the modal, Default: `false`
-  @param {string} [style=""] - Inline css of action sheet, Default: `""`
-  @param {string} [class=""] - CSS class of action sheet, Default: `""`
+  @param {boolean} [close_on_click_outside=false] - Determines if the ActionSheet can be closed by clicking anywhere outside the component
+
+`closable` needs to be `true` for this to work, Default: `false`
+  @param {string} [style=""] - Inline CSS for the ActionSheet, Default: `""`
+  @param {string} [class=""] - CSS classes for the ActionSheet, Default: `""`
 
   ### Slots
   - `<slot name="default"  />` - Used to display sheet content
@@ -32,11 +36,13 @@
   import { tweened } from "svelte/motion";
   import { Icon } from "@kws3/ui";
   /**
-   * Open Action Sheet
+   * Determines whether the ActionSheet is open or closed
    */
   export let open = false,
     /**
-     * Clasable action sheet
+     * Determines whether the ActionSheet is closable
+     *
+     * If `false` , the component won't have a close button, and will not close on clicking outside the component
      */
     closable = true,
     /**
@@ -44,16 +50,18 @@
      */
     close_icon = "times-circle",
     /**
-     * Determines if a closable modal can be closed by clicking anywhere outside the modal
+     * Determines if the ActionSheet can be closed by clicking anywhere outside the component
+     *
+     * `closable` needs to be `true` for this to work
      */
     close_on_click_outside = false,
     /**
-     * Inline css of action sheet
+     * Inline CSS for the ActionSheet
      */
     style = "";
 
   /**
-   * CSS class of action sheet
+   * CSS classes for the ActionSheet
    */
   let klass = "";
   export { klass as class };
