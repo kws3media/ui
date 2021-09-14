@@ -12,7 +12,7 @@
 
     const push = (newItem) =>
       update((items) => {
-        newItem.id = new Date().getTime();
+        if (!newItem.id) newItem.id = new Date().getTime();
         return [...items, newItem];
       });
 
@@ -23,6 +23,8 @@
 
     return { pop, push, subscribe };
   })();
+
+  export const elements = [];
 </script>
 
 <script>
