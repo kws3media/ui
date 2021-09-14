@@ -2,9 +2,9 @@
   @component
 
 
-  @param {string} [style=""] - Inline css, Default: `""`
+  @param {string} [style=""] - Inline css for ToggleControl, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [class=""] - Additional CSS classes, Default: `""`
+  @param {string} [class=""] - CSS classes for ToggleControl, Default: `""`
 
   ### Slots
   - `<slot name="default"  />`
@@ -35,7 +35,7 @@
 
 <script>
   /**
-   * Inline css
+   * Inline css for ToggleControl
    */
   export let style = "",
     /**
@@ -44,7 +44,7 @@
     cy = "";
 
   /**
-   * Additional CSS classes
+   * CSS classes for ToggleControl
    */
   let klass = "";
   export { klass as class };
