@@ -17,11 +17,29 @@
 
   const fire = createEventDispatcher();
 
+  /**
+   * Message for display
+   */
   export let message = "",
-    duration = 3000,
+    /**
+     * Duration for display message
+     */
+    duration = 30000,
+    /**
+     * Message background color
+     */
     color = "info",
+    /**
+     * Dismissable message
+     */
     is_dismissable = true,
+    /**
+     * Persistent message
+     */
     is_persistent = false,
+    /**
+     * Message unique id
+     */
     id = null;
 
   onMount(() => {
