@@ -49,6 +49,11 @@ $slider-output-radius: $radius !default;
     margin-top: -(math.div($thumb-size, 4));
   }
 }
+
+.range-control {
+  position: relative;
+}
+
 input[type="range"] {
   &.slider {
     appearance: none;
