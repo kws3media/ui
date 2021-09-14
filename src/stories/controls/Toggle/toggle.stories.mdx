@@ -72,11 +72,12 @@ export let args={
   language="css"
   code={
     dedent`
-      $kws-toggle-off-bg-color: #fff !default;
-      $kws-toggle-handle-bg-color: #fff !default;
-      $kws-toggle-track-bg-color: #333 !default;
-      $kws-toggle-track-bg-color-invert: findColorInvert($kws-toggle-track-bg-color) !default;
-      $kws-toggle-border-color: #e6e6e6 !default;
+      $kws-theme-colors: $colors;
+      $kws-toggle-off-bg-color: $background;
+      $kws-toggle-handle-bg-color: $white;
+      $kws-toggle-track-bg-color: $text;
+      $kws-toggle-track-bg-color-invert: findColorInvert($kws-toggle-track-bg-color);
+      $kws-toggle-border-color: $input-border-color;
     `
   }
 />
