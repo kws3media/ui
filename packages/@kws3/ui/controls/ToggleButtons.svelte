@@ -2,18 +2,26 @@
   @component
 
 
-  @param {object} [value=null] - Toggle button value, Default: `null`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {object} [options={}] - Array of options, Default: `{}`
-  @param {string} [inner_class=""] - Additional internal classes, Default: `""`
-  @param {string} [active_class="is-primary"] - Active class, Default: `"is-primary"`
-  @param {string} [inactive_class="is-outlined"] - Inactive class, Default: `"is-outlined"`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
-  @param {boolean} [fullwidth=false] - Full width of toggle button, Default: `false`
-  @param {string} [class=""] - Additional CSS classes, Default: `""`
+  @param {object} [value=null] - Value of the Toggle button, Default: `null`
+  @param {boolean} [disabled=false] - Disables the Toggle button, Default: `false`
+  @param {object} [options={}] - Create or remove button options as objects in an array, Default: `{}`
+  @param {string} [inner_class=""] - CSS classes for Button, Default: `""`
+  @param {string} [active_class="is-primary"] - Define classes for active (pressed) button
+
+Supports `is-outlined` `is-inverted` etc.
+
+and `is-primary` `is-warning` etc., Default: `"is-primary"`
+  @param {string} [inactive_class="is-outlined"] - Define classes for inactive (not pressed) button
+
+Supports `is-outlined` `is-inverted` etc.
+
+and `is-primary` `is-warning` etc., Default: `"is-outlined"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle Buttons, Default: `""`
+  @param {boolean} [fullwidth=false] - Force button to take full width of container, Default: `false`
+  @param {string} [class=""] - CSS classes for the Button container, Default: `""`
 
   ### Events
-  - `change` - Used to handle change event
+  - `change` - Toggle button change event
 
 -->
 <div class="toggle-buttons field has-addons {klass}">
@@ -82,19 +90,19 @@
      */
     inner_class = "",
     /**
-     *  Define classes for active (pressed) button
+     * Define classes for active (pressed) button
      *
-     * Supports `is-outlined` and
+     * Supports `is-outlined` `is-inverted` etc.
      *
-     * `is-primary` `is-warning` `is-info` `is-danger` `is-dark` `is-light`
+     * and `is-primary` `is-warning` etc.
      */
     active_class = "is-primary",
     /**
      * Define classes for inactive (not pressed) button
      *
-     * Supports `is-outlined` and
+     * Supports `is-outlined` `is-inverted` etc.
      *
-     * `is-primary` `is-warning` `is-info` `is-danger` `is-dark` `is-light`
+     * and `is-primary` `is-warning` etc.
      */
     inactive_class = "is-outlined",
     /**
