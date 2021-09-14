@@ -1,6 +1,6 @@
 $kws-theme-colors: $colors !default;
 
-$kws-checkradio-default-check-color: #333 !default;
+$kws-checkradio-default-check-color: $text !default;
 $kws-checkradio-default-check-color-invert: findColorInvert(
   $kws-checkradio-default-check-color
 ) !default;
