@@ -5,10 +5,8 @@
   </div>
 </div>
 
-<Toasts />
-
 <script>
-  import { Toasts, Toast } from "@kws3/ui";
+  import { Toast } from "@kws3/ui";
 
   function create() {
     Toast.push({ message: "I am a Toast..." });
