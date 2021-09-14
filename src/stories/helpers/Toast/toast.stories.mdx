@@ -1,0 +1,41 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Toast } from "@kws3/ui";
+import ToastDecorator from "./Toast.svelte";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  message: "",
+  has_html: false,
+  timeout: 3000,
+  type: "info",
+  dismissable: true,
+  persistent: false,
+  global_scope: false
+};
+
+<Meta
+  title="Helpers/Toast"
+  component={Toast}
+  args={args}
+  argTypes={{}}
+/>
+
+<Description markdown={dedent`
+# Toast
+## Toast components for showing alerts.
+`}/>
+
+<Canvas>
+  <Story
+  name="Toast"
+  args={args}
+  >
+  {(args) => ({
+    Component: ToastDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Toast" />
