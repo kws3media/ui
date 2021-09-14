@@ -34,6 +34,7 @@ This property can be bound to, to fetch the current value, Default: `0`
     on:change
     {min}
     {max}
+    {step}
     {disabled}
     {style} />
   {#if output}
@@ -50,6 +51,10 @@ This property can be bound to, to fetch the current value, Default: `0`
      * Maximum permitted value
      */
     max = 100,
+    /**
+     * Stepping interval or Rate of change of value
+     */
+    step = 1,
     /**
      * Current value
      *
