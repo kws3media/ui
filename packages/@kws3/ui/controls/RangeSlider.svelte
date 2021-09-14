@@ -43,6 +43,8 @@ This property can be bound to, to fetch the current value, Default: `0`
 </div>
 
 <script>
+  import { onMount } from "svelte";
+
   /**
    * Minumum permitted value
    */
@@ -115,4 +117,11 @@ This property can be bound to, to fetch the current value, Default: `0`
     let positionOffset = Math.round(position * 0.4);
     computedStyle = `left:calc(${position}% - ${positionOffset}px`;
   }
+
+  onMount(() => {
+    //set value to minimum possible value
+    if (value < min) {
+      value = min;
+    }
+  });
 </script>
