@@ -1,37 +1,108 @@
+<!--
+  @component
+
+
+  @param {number} [min=0] - Minumum permitted value, Default: `0`
+  @param {number} [max=100] - Maximum permitted value, Default: `100`
+  @param {number} [value=0] - Current value
+
+This property can be bound to, to fetch the current value, Default: `0`
+  @param {boolean} [output=false] - Displays the current value, Default: `false`
+  @param {boolean} [disabled=false] - Disables the Slider, Default: `false`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Slider, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Slider, Default: `""`
+  @param {string} [style=""] - Inline CSS for the Slider, Default: `""`
+  @param {boolean} [circle=false] - Uses a round slider thumb instead of the default square, Default: `false`
+  @param {boolean} [tooltip=false] - Displays the current value of the Slider as a tooltip
+
+`output` has to be enabled for this to work, Default: `false`
+  @param {string} [class=""] - CSS classes for the slider, Default: `""`
+
+  ### Events
+  - `change` - Native input change event
+
+-->
 <div class="range-control">
+  <!--Native input change event-->
   <input
-    class="input {classes}"
+    class="slider is-fullwidth
+    {outputClass}
+    is-{size} is-{color} {klass}
+    {circle ? 'is-circle' : ''}"
     type="range"
     bind:value
     on:change
     {min}
-    {max} />
-  <output style={computedStyle}>{value}</output>
+    {max}
+    {disabled}
+    {style} />
+  {#if output}
+    <output style={computedStyle}>{value}</output>
+  {/if}
 </div>
 
 <script>
   /**
-   * Minimum Range
-   * @type {number}
+   * Minumum permitted value
    */
   export let min = 0,
     /**
-     * Maximum Range
-     * @type {number}
+     * Maximum permitted value
      */
     max = 100,
     /**
-     * Starting Value
-     * @type {number}
+     * Current value
+     *
+     * This property can be bound to, to fetch the current value
      */
-    value = 50,
+    value = 0,
     /**
-     * Additional classes
-     * @type {string}
+     * Displays the current value
      */
-    classes = "";
+    output = false,
+    /**
+     * Disables the Slider
+     */
+    disabled = false,
+    /**
+     * Size of the Slider
+     * @type {''|'small'|'medium'|'large'}
+     */
+    size = "",
+    /**
+     * Colour of the Slider
+     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     */
+    color = "",
+    /**
+     * Inline CSS for the Slider
+     */
+    style = "",
+    /**
+     * Uses a round slider thumb instead of the default square
+     */
+    circle = false,
+    /**
+     * Displays the current value of the Slider as a tooltip
+     *
+     * `output` has to be enabled for this to work
+     */
+    tooltip = false;
+
+  /**
+   * CSS classes for the slider
+   */
+  let klass = "";
+  export { klass as class };
 
   let computedStyle = "";
+  let outputClass = "";
+
+  $: outputClass = output
+    ? tooltip
+      ? "has-output-tooltip"
+      : "has-output"
+    : "";
 
   $: {
     let range = max - min;
