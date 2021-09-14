@@ -10,7 +10,7 @@ export { default as Panel } from "./helpers/Panel.svelte";
 export { default as Notification } from "./helpers/Notification.svelte";
 export { default as Loader } from "./helpers/Loader.svelte";
 export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
-export { default as Toast } from "./helpers/Toast";
+export { Toast, default as Toasts } from "./helpers/Toast";
 
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
 export { default as DeleteButton } from "./buttons/DeleteButton.svelte";

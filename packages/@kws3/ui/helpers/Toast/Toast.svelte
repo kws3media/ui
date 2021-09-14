@@ -1,6 +1,6 @@
 <div class="toast">
-  <div class="notification is-{type}">
-    {#if dismissable}
+  <div class="notification is-{color}">
+    {#if is_dismissable}
       <button class="delete" on:click={destroy} />
     {/if}
 
@@ -8,7 +8,7 @@
 
     <div
       class="toast-progress"
-      style="animation-duration:{!persistent && timeout}ms" />
+      style="animation-duration:{!is_persistent && duration}ms" />
   </div>
 </div>
 
@@ -18,19 +18,19 @@
   const fire = createEventDispatcher();
 
   export let message = "",
-    timeout = 30000,
-    type = "info",
-    dismissable = true,
-    persistent = false,
-    global_scope = false;
+    duration = 3000,
+    color = "info",
+    is_dismissable = true,
+    is_persistent = false,
+    id = null;
 
   onMount(() => {
     setTimeout(() => {
-      if (!persistent) destroy();
-    }, timeout);
+      if (!is_persistent) destroy();
+    }, duration);
   });
 
   function destroy() {
-    fire("destroy");
+    fire("destroy", { id });
   }
 </script>
