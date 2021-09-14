@@ -2,17 +2,19 @@
   @component
 
 
-  @param {boolean} [on=false] - Toggle On - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
-  @param {string} [on_text=""] - On Text, Default: `""`
-  @param {string} [off_text=""] - Off Text, Default: `""`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
+  @param {boolean} [on=false] - Determines the current state of the Toggle
+
+On = `true`, Default: `false`
+  @param {boolean} [disabled=false] - Disables the Toggle, Default: `false`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
+  @param {string} [on_text=""] - Text displayed in the button when ON, Default: `""`
+  @param {string} [off_text=""] - Text displayed in the button when OFF, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [class=""] - CSS classes, Default: `""`
+  @param {string} [class=""] - CSS classes for the Toggle, Default: `""`
 
   ### Events
-  - `change` - Toggle change event
+  - `change` - Fires an event on change of Toggle state
 
 -->
 <div
