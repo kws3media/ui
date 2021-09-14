@@ -38,29 +38,31 @@
   const fire = createEventDispatcher();
 
   /**
-   * Toggle On - true/false
+   * Determines the current state of the Toggle
+   *
+   * On = `true`
    */
   export let on = false,
     /**
-     * Disabled - true/false
+     * Disables the Toggle
      */
     disabled = false,
     /**
      * Color of the Toggle
-     * @type {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
-     * On Text
+     * Text displayed in the button when ON
      */
     on_text = "",
     /**
-     * Off Text
+     * Text displayed in the button when OFF
      */
     off_text = "",
     /**
      * Size of the Toggle Button
-     * @type {'small'|'medium'|'large'}
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
@@ -69,7 +71,7 @@
     cy = "";
 
   /**
-   * CSS classes
+   * CSS classes for the Toggle
    * @type {string}
    */
   let klass = "";
@@ -79,7 +81,7 @@
     if (!disabled) {
       on = !on;
       /**
-       * Toggle change event
+       * Fires an event on change of Toggle state
        */
       fire("change");
     }
