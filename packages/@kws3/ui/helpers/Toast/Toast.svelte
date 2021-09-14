@@ -24,7 +24,7 @@
     /**
      * Duration for display message
      */
-    duration = 30000,
+    duration = 3000,
     /**
      * Message background color
      */
