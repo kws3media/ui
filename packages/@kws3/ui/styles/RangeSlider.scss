@@ -10,6 +10,7 @@ $slider-thumb-shadow: none !default;
 $slider-thumb-to-track-ratio: 2 !default;
 $slider-output-width: 3rem !default;
 $slider-output-background: $grey-dark !default;
+$slider-output-color: $white !default;
 $slider-output-radius: $radius !default;
 
 @use "sass:math";
@@ -84,7 +85,7 @@ input[type="range"] {
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: $white;
+        color: $slider-output-color;
         overflow: hidden;
         pointer-events: none;
         z-index: 200;
