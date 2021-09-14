@@ -18,29 +18,16 @@ $slider-output-radius: $radius !default;
   $track-height: math.div($size, $slider-thumb-to-track-ratio);
   $thumb-size: $size;
 
-  &:not([orient="vertical"]) {
-    min-height: calc((#{$size} + 2px) * 1.25);
+  min-height: calc((#{$size} + 2px) * 1.25);
 
-    &::-webkit-slider-runnable-track {
-      height: $track-height;
-    }
-    &::-moz-range-track {
-      height: $track-height;
-    }
-    &::-ms-track {
-      height: $track-height;
-    }
+  &::-webkit-slider-runnable-track {
+    height: $track-height;
   }
-  &[orient="vertical"] {
-    &::-webkit-slider-runnable-track {
-      width: $track-height;
-    }
-    &::-moz-range-track {
-      width: $track-height;
-    }
-    &::-ms-track {
-      width: $track-height;
-    }
+  &::-moz-range-track {
+    height: $track-height;
+  }
+  &::-ms-track {
+    height: $track-height;
   }
   &::-webkit-slider-thumb {
     height: $thumb-size;
@@ -60,12 +47,6 @@ $slider-output-radius: $radius !default;
   &::-webkit-slider-thumb {
     margin-top: -(math.div($thumb-size, 4));
   }
-  &[orient="vertical"] {
-    &::-webkit-slider-thumb {
-      margin-top: auto;
-      margin-left: -(math.div($thumb-size, 4));
-    }
-  }
 }
 input[type="range"] {
   &.slider {
@@ -81,72 +62,58 @@ input[type="range"] {
     &:focus {
       outline: none;
     }
-    &:not([orient="vertical"]) {
-      &::-webkit-slider-runnable-track {
-        width: 100%;
+
+    &::-webkit-slider-runnable-track {
+      width: 100%;
+    }
+    &::-moz-range-track {
+      width: 100%;
+    }
+    &::-ms-track {
+      width: 100%;
+    }
+    &.has-output,
+    &.has-output-tooltip {
+      + output {
+        width: $slider-output-width;
+        background: $slider-output-background;
+        border-radius: $slider-output-radius;
+        padding: 0.4rem 0.8rem;
+        font-size: $size-7;
+        line-height: $size-7;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: $white;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 200;
       }
-      &::-moz-range-track {
-        width: 100%;
+      &:disabled + output {
+        opacity: 0.5;
       }
-      &::-ms-track {
-        width: 100%;
-      }
-      &.has-output,
-      &.has-output-tooltip {
-        + output {
-          width: $slider-output-width;
-          background: $slider-output-background;
-          border-radius: $slider-output-radius;
-          padding: 0.4rem 0.8rem;
-          font-size: $size-7;
-          line-height: $size-7;
-          text-align: center;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          color: $white;
-          overflow: hidden;
-          pointer-events: none;
-          z-index: 200;
-        }
-        &:disabled + output {
-          opacity: 0.5;
-        }
-      }
-      &.has-output {
+    }
+    &.has-output {
+      display: inline-block;
+      vertical-align: middle;
+      width: calc(100% - (#{$slider-output-width + 1.2rem}));
+
+      + output {
         display: inline-block;
+        margin-left: 0.75rem;
         vertical-align: middle;
-        width: calc(100% - (#{$slider-output-width + 1.2rem}));
-
-        + output {
-          display: inline-block;
-          margin-left: 0.75rem;
-          vertical-align: middle;
-        }
-      }
-      &.has-output-tooltip {
-        display: block;
-
-        + output {
-          position: absolute;
-          left: 0;
-          top: -0.1rem;
-        }
       }
     }
-    &[orient="vertical"] {
-      appearance: slider-vertical;
-      writing-mode: bt-lr;
+    &.has-output-tooltip {
+      display: block;
 
-      &::-webkit-slider-runnable-track {
-        height: 100%;
-      }
-      &::-moz-range-track {
-        height: 100%;
-      }
-      &::-ms-track {
-        height: 100%;
+      + output {
+        position: absolute;
+        left: 0;
+        top: -0.1rem;
       }
     }
+
     &::-webkit-slider-runnable-track {
       cursor: pointer;
       box-shadow: $slider-track-shadow;
