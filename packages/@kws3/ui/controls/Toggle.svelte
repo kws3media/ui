@@ -2,14 +2,12 @@
   @component
 
 
-  @param {boolean} [on=false] - Determines the current state of the Toggle
-
-On = `true`, Default: `false`
+  @param {boolean} [on=false] - Current state of the Toggle, Default: `false`
   @param {boolean} [disabled=false] - Disables the Toggle, Default: `false`
   @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
-  @param {string} [on_text=""] - Text displayed in the button when ON, Default: `""`
-  @param {string} [off_text=""] - Text displayed in the button when OFF, Default: `""`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
+  @param {string} [on_text=""] - Text displayed on the Toggle when ON, Default: `""`
+  @param {string} [off_text=""] - Text displayed on the Toggle when OFF, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [class=""] - CSS classes for the Toggle, Default: `""`
 
@@ -40,9 +38,7 @@ On = `true`, Default: `false`
   const fire = createEventDispatcher();
 
   /**
-   * Determines the current state of the Toggle
-   *
-   * On = `true`
+   * Current state of the Toggle
    */
   export let on = false,
     /**
@@ -55,15 +51,15 @@ On = `true`, Default: `false`
      */
     color = "",
     /**
-     * Text displayed in the button when ON
+     * Text displayed on the Toggle when ON
      */
     on_text = "",
     /**
-     * Text displayed in the button when OFF
+     * Text displayed on the Toggle when OFF
      */
     off_text = "",
     /**
-     * Size of the Toggle Button
+     * Size of the Toggle
      * @type {''|'small'|'medium'|'large'}
      */
     size = "",
