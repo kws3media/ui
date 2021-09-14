@@ -24,7 +24,7 @@
   <!--Triggered whenever any change is made to the slider value-->
   <input
     class="slider is-fullwidth
-    {tooltip ? 'has-output-tooltip' : 'has-output'}
+    {outputClass}
     is-{size} is-{color} {klass}
     {circle ? 'is-circle' : ''}"
     type="range"
@@ -85,7 +85,7 @@
      */
     style = "",
     /**
-     * Uses a round slider instead of the default square
+     * Uses a round slider thumb instead of the default square
      */
     circle = false,
     /**
@@ -102,6 +102,13 @@
   export { klass as class };
 
   let computedStyle = "";
+  let outputClass = "";
+
+  $: outputClass = output
+    ? tooltip
+      ? "has-output-tooltip"
+      : "has-output"
+    : "";
 
   $: {
     let range = max - min;
