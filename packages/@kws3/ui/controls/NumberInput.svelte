@@ -2,24 +2,26 @@
   @component
 
 
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the component, Default: `""`
   @param {object} [input=null] - Input Property, Default: `null`
-  @param {number} [value=0] - Default value, Default: `0`
-  @param {number} [step=1] - Steps increasing/decreasing, Default: `1`
-  @param {number} [min=0] - Starting number, Default: `0`
-  @param {number} [max=100] - Maximum number, Default: `100`
-  @param {boolean} [disabled=false] - Disable - true/false, Default: `false`
-  @param {boolean} [fullwidth=false] - Full width of container - true/false, Default: `false`
-  @param {string} [minus_icon="minus"] - Icon of the Minus button - Can use fa, la, gg, uil icon families, Default: `"minus"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon, Default: `"danger"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button, Default: `""`
-  @param {string} [plus_icon="plus"] - Icon of the Plus button - Can use fa, la, gg, uil icon families, Default: `"plus"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon, Default: `"success"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
+  @param {number} [value=0] - Default number displayed in the NumberInput
+
+This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
+  @param {number} [step=1] - Number of steps to jump when increasing/decreasing using the +/- buttons, Default: `1`
+  @param {number} [min=0] - Smallest number the NumberInput will allow, Default: `0`
+  @param {number} [max=100] - Largest number the NumberInput will allow, Default: `100`
+  @param {boolean} [disabled=false] - Disables the NumberInput, Default: `false`
+  @param {boolean} [fullwidth=false] - Forces the NumberInput to take the full width of its container, Default: `false`
+  @param {string} [minus_icon="minus"] - Name of the icon that is to be displayed in the minus button, Default: `"minus"`
+  @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon, Default: `"danger"`
+  @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button, Default: `""`
+  @param {string} [plus_icon="plus"] - Name of the icon that is to be displayed in the plus button, Default: `"plus"`
+  @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon, Default: `"success"`
+  @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
   @param {number} [_has_focus=0] - _has_focus property, Default: `0`
 
   ### Events
-  - `change` - Used to change input value
+  - `change` - Fires event when the input value changes
 
 -->
 <div class="field has-addons">
@@ -88,7 +90,7 @@
   const fire = createEventDispatcher();
 
   /**
-   * Size of the Button
+   * Size of the component
    * @type {''|'small'|'medium'|'large'}
    */
   export let size = "",
@@ -97,55 +99,57 @@
      */
     input = null,
     /**
-     * Default value
+     * Default number displayed in the NumberInput
+     *
+     * This will be over-ridden if `min` is higher, or `max` is lower
      */
     value = 0,
     /**
-     * Steps increasing/decreasing
+     * Number of steps to jump when increasing/decreasing using the +/- buttons
      */
     step = 1,
     /**
-     * Starting number
+     * Smallest number the NumberInput will allow
      */
     min = 0,
     /**
-     * Maximum number
+     * Largest number the NumberInput will allow
      */
     max = 100,
     /**
-     * Disable - true/false
+     * Disables the NumberInput
      */
     disabled = false,
     /**
-     * Full width of container - true/false
+     * Forces the NumberInput to take the full width of its container
      */
     fullwidth = false,
     /**
-     * Icon of the Minus button - Can use fa, la, gg, uil icon families
+     * Name of the icon that is to be displayed in the minus button
      */
     minus_icon = "minus",
     /**
      * Color of the Minus Icon
-     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     minus_icon_color = "danger",
     /**
      * Color of the Minus Button
-     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     minus_button_color = "",
     /**
-     * Icon of the Plus button - Can use fa, la, gg, uil icon families
+     * Name of the icon that is to be displayed in the plus button
      */
     plus_icon = "plus",
     /**
      * Color of the Plus Icon
-     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     plus_icon_color = "success",
     /**
      * Color of the Plus Button
-     * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     plus_button_color = "";
 
@@ -171,7 +175,7 @@
     value = Number(value) + i * step;
     if (step % 1 != 0) value = value.toFixed(1);
     /**
-     * Used to change input value
+     * Fires event when the input value changes
      */
     fire("change");
   };
