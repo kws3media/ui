@@ -220,6 +220,8 @@ input[type="range"] {
     @each $name, $pair in $colors {
       $color: nth($pair, 1);
       $color-invert: nth($pair, 2);
+      $color-light: findLightColor($color);
+      $color-dark: findDarkColor($color);
 
       &.is-#{$name} {
         &::-moz-range-track {
@@ -240,8 +242,8 @@ input[type="range"] {
         &.has-output,
         &.has-output-tooltip {
           + output {
-            background-color: $color;
-            color: $color-invert;
+            background-color: $color-light;
+            color: $color-dark;
           }
         }
       }
