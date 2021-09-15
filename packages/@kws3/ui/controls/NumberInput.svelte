@@ -3,25 +3,26 @@
 
 
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the component, Default: `""`
-  @param {object} [input=null] - Input Property, Default: `null`
-  @param {number} [value=0] - Default number displayed in the NumberInput
+  @param {number} [value=0] - Current value
 
-This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
+This property can be bound to, to fetch the current value
+
+This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {number} [step=1] - Number of steps to jump when increasing/decreasing using the +/- buttons, Default: `1`
   @param {number} [min=0] - Smallest number the NumberInput will allow, Default: `0`
   @param {number} [max=100] - Largest number the NumberInput will allow, Default: `100`
   @param {boolean} [disabled=false] - Disables the NumberInput, Default: `false`
-  @param {boolean} [fullwidth=false] - Forces the NumberInput to take the full width of its container, Default: `false`
+  @param {boolean} [fullwidth=false] - Forces the NumberInput to occupy the full width of it's container, Default: `false`
+  @param {boolean} [typeable=true] - Allows typing the value into the input, Default: `true`
   @param {string} [minus_icon="minus"] - Name of the icon that is to be displayed in the minus button, Default: `"minus"`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon, Default: `"danger"`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button, Default: `""`
   @param {string} [plus_icon="plus"] - Name of the icon that is to be displayed in the plus button, Default: `"plus"`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon, Default: `"success"`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
-  @param {number} [_has_focus=0] - _has_focus property, Default: `0`
 
   ### Events
-  - `change` - Fires event when the input value changes
+  - `change` - Triggered when value changes
 
 -->
 <div class="field has-addons">
@@ -48,6 +49,7 @@ This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
       max
       step
       {disabled}
+      readonly={typeable}
       bind:value
       on:blur={isBlurred()}
       on:focus={isFocused()} />
@@ -118,9 +120,13 @@ This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
      */
     disabled = false,
     /**
-     * Forces the NumberInput to occupy the full width of its container
+     * Forces the NumberInput to occupy the full width of it's container
      */
     fullwidth = false,
+    /**
+     * Allows typing the value into the input
+     */
+    typeable = true,
     /**
      * Name of the icon that is to be displayed in the minus button
      */
