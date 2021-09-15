@@ -1,4 +1,3 @@
-$kws3-persistent-banner-height: 70px;
 $kws3-toast-box-top-height: 5px;
 $kws3-toast-max-width: 30rem;
 
@@ -18,12 +17,6 @@ $kws3-toast-max-width: 30rem;
   }
   &.is-bottom {
     flex-direction: column-reverse;
-  }
-}
-
-.show-persistent-banner {
-  .toast-box {
-    top: $kws3-toast-box-top-height + $kws3-persistent-banner-height;
   }
 }
 
