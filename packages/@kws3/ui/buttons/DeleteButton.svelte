@@ -30,8 +30,6 @@
   {icon}
   {color}
   {cy}
-  {doing_icon}
-  {doing_text}
   {done_icon}
   {done_text}
   {context}
@@ -86,14 +84,6 @@
      * data-cy attribute for cypress
      */
     cy = "",
-    /**
-     * Doc and property to be deleted
-     */
-    doing_icon = "hourglass",
-    /**
-     * Text showing after confirm
-     */
-    doing_text = "Deleting...",
     /**
      * Name of the icon displayed after task is completed successfully
      */

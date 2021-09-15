@@ -2,24 +2,26 @@
   {text}
   {color}
   {icon}
-  {doing_icon}
   {done_icon}
-  {doing_text}
   {done_text}
   {context}
+  {size}
+  {disabled}
+  {icon_only}
   on:erase={onErase} />
 
 <script>
   import { DeleteButton as KwsButton } from "@kws3/ui";
 
   export let text = "Delete",
+    size = "",
     icon = "minus-circle",
     color = "danger",
-    doing_icon = "hourglass",
-    doing_text = "Deleting...",
     done_icon = "check",
     done_text = "Deleted",
-    context = null;
+    context = null,
+    icon_only = false,
+    disabled = false;
 
   function onErase(e, success = true) {
     let { doing, done, error, context } = e.detail;
