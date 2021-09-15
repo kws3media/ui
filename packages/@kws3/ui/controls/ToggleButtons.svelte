@@ -1,23 +1,33 @@
 <!--
   @component
-  
 
-  @param {boolean} [on=false] - `CONST` Toggle On - true/false, Default: `false`
-  @param {object} [value=null] - Value property, Default: `null`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {object} [options={}] - Array of options, Default: `{}`
-  @param {string} [classes=""] - Additional classes, Default: `""`
-  @param {string} [inner_class=""] - Additional internal classes, Default: `""`
-  @param {string} [active_class="is-primary"] - Active class, Default: `"is-primary"`
-  @param {string} [inactive_class="is-outlined"] - Inactive class, Default: `"is-outlined"`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
-  @param {boolean} [fullwidth=false] - Full width of toggle button, Default: `false`
+
+  @param {object} [value=null] - Value of the Toggle button
+
+This property can be bound to, to fetch the current value, Default: `null`
+  @param {boolean} [disabled=false] - Disables the Toggle button, Default: `false`
+  @param {array} [options=[]] - Define an array of button objects, each object can have the following properties:
+
+- `name`: Main text of button
+- `value`: Value of the button
+- `subtitle`: Optional subtitle
+- `icon`: Optional Icon to display
+- `active_class`: Custom class to apply when button is active
+- `inactive_class`: Custom class to apply when button is inactive
+
+---, Default: `[]`
+  @param {string} [inner_class=""] - CSS classes for Button `.control` wrapper, Default: `""`
+  @param {string} [active_class="is-primary"] - CSS classes to apply when a button is active (pressed), Default: `"is-primary"`
+  @param {string} [inactive_class="is-outlined"] - CSS classes to apply when a button is inactive (not pressed), Default: `"is-outlined"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle Buttons, Default: `""`
+  @param {boolean} [fullwidth=false] - Exapnd all buttons so that they occupy full width of wrapping element, Default: `false`
+  @param {string} [class=""] - CSS classes for the Button container, Default: `""`
 
   ### Events
-  - `change`
+  - `change` - Toggle button change event
 
 -->
-<div class="toggle-buttons field has-addons {classes}">
+<div class="toggle-buttons field has-addons {klass}">
   {#each options as option}
     <div class="control {fullwidth ? 'is-expanded' : ''} {inner_class}">
       <button
@@ -52,6 +62,9 @@
   .toggle-buttons {
     .button,
     .button:focus {
+      :global(.icon) {
+        margin: 0;
+      }
       box-shadow: none;
       &.is-active {
         box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3) inset !important;
@@ -66,55 +79,65 @@
 
   const fire = createEventDispatcher();
   /**
-   * Toggle On - true/false
-   * @type {boolean}
+   * Value of the Toggle button
+   *
+   * This property can be bound to, to fetch the current value
    */
-  export const on = false;
-
   export let value = null,
     /**
-     * Disabled - true/false
-     * @type {boolean}
+     * Disables the Toggle button
      */
     disabled = false,
     /**
-     * Array of options
-     * @type {object}
+     * Define an array of button objects, each object can have the following properties:
+     *
+     * - `name`: Main text of button
+     * - `value`: Value of the button
+     * - `subtitle`: Optional subtitle
+     * - `icon`: Optional Icon to display
+     * - `active_class`: Custom class to apply when button is active
+     * - `inactive_class`: Custom class to apply when button is inactive
+     *
+     * ---
+     *
+     *
+     *
+     * @type {array}
      */
     options = [],
     /**
-     * Additional classes
-     * @type {string}
-     */
-    classes = "",
-    /**
-     * Additional internal classes
-     * @type {string}
+     * CSS classes for Button `.control` wrapper
      */
     inner_class = "",
     /**
-     * Active class
-     * @type {string}
+     * CSS classes to apply when a button is active (pressed)
      */
     active_class = "is-primary",
     /**
-     * Inactive class
-     * @type {string}
+     * CSS classes to apply when a button is inactive (not pressed)
      */
     inactive_class = "is-outlined",
     /**
-     * Size of the Toggle Button
-     * @type {'small'|'medium'|'large'}
+     * Size of the Toggle Buttons
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
-     * Full width of toggle button
-     * @type {boolean}
+     * Exapnd all buttons so that they occupy full width of wrapping element
      */
     fullwidth = false;
 
+  /**
+   * CSS classes for the Button container
+   */
+  let klass = "";
+  export { klass as class };
+
   function setValue(v) {
     value = v;
+    /**
+     * Toggle button change event
+     */
     fire("change");
   }
 </script>
