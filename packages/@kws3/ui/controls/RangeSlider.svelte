@@ -61,6 +61,8 @@ This property can be bound to, to fetch the current value, Default: `0`
      * Current value
      *
      * This property can be bound to, to fetch the current value
+     *
+     * This will be overridden if `min` is higher, or `max` is lower
      */
     value = 0,
     /**

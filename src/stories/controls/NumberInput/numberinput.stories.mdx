@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 export let args={
   input : null,
-  value : null,
+  value : 0,
   step : 1,
   min : 0,
   max : 100,
@@ -27,12 +27,14 @@ export let args={
     size:{
       control: 'select'
     },
+    minus_icon:{},
     minus_icon_color:{
       control: 'select'
     },
     minus_button_color:{
       control: 'select'
     },
+    plus_icon:{},
     plus_icon_color:{
       control: 'select'
     },

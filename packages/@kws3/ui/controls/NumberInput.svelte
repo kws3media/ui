@@ -94,9 +94,11 @@ This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
    */
   export let size = "",
     /**
-     * Default number displayed in the NumberInput
+     * Current value
      *
-     * This will be over-ridden if `min` is higher, or `max` is lower
+     * This property can be bound to, to fetch the current value
+     *
+     * This will be overridden if `min` is higher, or `max` is lower
      */
     value = 0,
     /**
@@ -116,7 +118,7 @@ This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
      */
     disabled = false,
     /**
-     * Forces the NumberInput to take the full width of its container
+     * Forces the NumberInput to occupy the full width of its container
      */
     fullwidth = false,
     /**
@@ -170,7 +172,7 @@ This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
     value = Number(value) + i * step;
     if (step % 1 != 0) value = value.toFixed(1);
     /**
-     * Fires event when the input value changes
+     * Triggered when value changes
      */
     fire("change");
   };
