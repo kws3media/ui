@@ -6,13 +6,16 @@
   @param {number} [y=0] - Y Property, Default: `0`
   @param {number} [from=0.5] - From property, Default: `0.5`
   @param {number} [to=1] - To Property, Default: `1`
-  @param {boolean} [transition=true] - True/False - transition will not run, and behave as if its a static element., Default: `true`
+  @param {boolean} [transition=true] - If `false`, transition animations will not run, and behave like a static element., Default: `true`
   @param {'fly'|'fade'|'scale'|'slide'} [type="fly"] - Transition types., Default: `"fly"`
-  @param {number} [duration=300] - Duration - in milliseconds, duration of the transition, Default: `300`
-  @param {number} [delay=0] - Delay - in milliseconds, delays the start of the transition, Default: `0`
-  @param {string} [easing=""] - Specifies the easing function to be used. Any one of the following strings
-`sineOut` | `elasticOut` | `expoOut` | `cubicOut` - (default easing) | `circOut` | `bounceOut` | `backOut`, Default: `""`
-  @param {string} [class=""] - Wrapper class element, Default: `""`
+  @param {number} [duration=300] - Duration of the transition in milliseconds, Default: `300`
+  @param {number} [delay=0] - Delays the start of the transition - in milliseconds, Default: `0`
+  @param {string} [easing="cubicOut"] - Specifies the easing function to be used
+
+Defaults to `cubicOut` if left empty
+
+`cubicOut` | `sineOut` | `elasticOut` | `expoOut` | `circOut` | `bounceOut` | `backOut`, Default: `"cubicOut"`
+  @param {string} [class=""] - CSS classes for the wrapper element, Default: `""`
 
   ### Slots
   - `<slot name="default"  />` - Used to display content
@@ -66,7 +69,7 @@
      */
     to = 1,
     /**
-     * True/False - transition will not run, and behave as if its a static element.
+     * If `false`, transition animations will not run, and behave like a static element.
      */
     transition = true,
     /**
@@ -75,21 +78,24 @@
      */
     type = "fly",
     /**
-     * Duration - in milliseconds, duration of the transition
+     * Duration of the transition in milliseconds
      */
     duration = 300,
     /**
-     * Delay - in milliseconds, delays the start of the transition
+     * Delays the start of the transition - in milliseconds
      */
     delay = 0,
     /**
-     * Specifies the easing function to be used. Any one of the following strings
-     * `sineOut` | `elasticOut` | `expoOut` | `cubicOut` - (default easing) | `circOut` | `bounceOut` | `backOut`
+     * Specifies the easing function to be used
+     *
+     * Defaults to `cubicOut` if left empty
+     *
+     * `cubicOut` | `sineOut` | `elasticOut` | `expoOut` | `circOut` | `bounceOut` | `backOut`
      */
-    easing = "";
+    easing = "cubicOut";
 
   /**
-   * Wrapper class element
+   * CSS classes for the wrapper element
    */
   let klass = "";
   export { klass as class };
