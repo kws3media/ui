@@ -1,6 +1,8 @@
 <div class="toast-box is-{position}">
   {#each $notifications as notification}
-    <Toast {...notification} on:destroy={destroy} />
+    {#if notification}
+      <Toast {...notification} on:destroy={destroy} />
+    {/if}
   {/each}
 </div>
 
@@ -18,7 +20,15 @@
 
     const pop = (id) =>
       update((items) => {
-        return items.filter((i) => i.id != id);
+        let _items = [];
+
+        items.forEach((e, i) => {
+          if (e.id != id) {
+            _items[i] = e;
+          }
+        });
+
+        return _items;
       });
 
     return { pop, push, subscribe };

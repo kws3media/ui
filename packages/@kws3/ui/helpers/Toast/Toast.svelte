@@ -13,7 +13,7 @@
 </div>
 
 <script>
-  import { onMount, createEventDispatcher } from "svelte";
+  import { onMount, onDestroy, createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
 
@@ -48,13 +48,15 @@
      */
     id = null;
 
+  let timeout;
+
+  const destroy = () => fire("destroy", { id });
+
   onMount(() => {
-    setTimeout(() => {
+    timeout = setTimeout(() => {
       if (!is_persistent) destroy();
     }, duration);
   });
 
-  function destroy() {
-    fire("destroy", { id });
-  }
+  onDestroy(() => clearTimeout(timeout));
 </script>
