@@ -61,9 +61,7 @@ export let args={
     <ProcessButton
       {text}
       {icon}
-      {doing_icon}
       {done_icon}
-      {doing_text}
       {done_text}
       {color}
       {size}
@@ -79,11 +77,9 @@ export let args={
       export let icon_only = false;
       export let text = "Click Me";
       export let icon = "check";
-      export let doing_icon = "hourglass";
       export let done_icon = "check";
-      export let doing_text = "Doing";
       export let done_text = "Done";
-      function eraseDo(event, success = true){
+      function onDoing(event, success = true){
         let {doing, done, error} = event.detail;
         doing();
         somePromise().then(() => {
