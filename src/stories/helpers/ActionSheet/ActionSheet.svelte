@@ -1,9 +1,8 @@
 <div class="columns">
   <div class="column">
     <KwsActionSheet
-      bind:open
+      bind:is_active
       {closable}
-      {close_icon}
       {close_on_click_outside}
       {style}
       class={klass}>
@@ -19,19 +18,20 @@
       <button
         class="button is-danger is-fullwidth"
         type="button"
-        on:click={() => (open = false)}>Close Action Sheet</button>
+        on:click={() => (is_active = false)}>Close Action Sheet</button>
     </KwsActionSheet>
   </div>
 </div>
 
-<button class="button is-primary" type="button" on:click={() => (open = true)}
-  >Open Action Sheet</button>
+<button
+  class="button is-primary"
+  type="button"
+  on:click={() => (is_active = true)}>Open Action Sheet</button>
 
 <script>
   import { ActionSheet as KwsActionSheet } from "@kws3/ui";
-  export let open = false,
+  export let is_active = false,
     closable = true,
-    close_icon = "",
     close_on_click_outside = true,
     style = "";
 

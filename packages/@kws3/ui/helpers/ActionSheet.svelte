@@ -2,7 +2,7 @@
   @component
 
 
-  @param {boolean} [open=false] - Determines whether the ActionSheet is open or closed, Default: `false`
+  @param {boolean} [is_active=false] - Determines whether the ActionSheet is open or closed, Default: `false`
   @param {boolean} [closable=true] - Determines whether the ActionSheet is closable
 
 If `false` , the component won't have a close button, and will not close on clicking outside the component, Default: `true`
@@ -20,35 +20,31 @@ If `false` , the component won't have a close button, and will not close on clic
 <div
   class="action-modal-background"
   on:click={closable && close_on_click_outside
-    ? () => (open = false)
+    ? () => (is_active = false)
     : undefined}
   style={bgComputedStyle} />
 <div class="action-modal {klass}" style={sheetComputedStyle}>
   {#if closable}
-    <span class="action-modal_close" on:click={() => (open = false)}>
-      <Icon icon={close_icon} />
-    </span>
+    <button
+      class="delete is-pulled-right"
+      type="button"
+      on:click={() => (is_active = false)} />
   {/if}
   <!--Used to display sheet content--><slot />
 </div>
 
 <script>
   import { tweened } from "svelte/motion";
-  import { Icon } from "@kws3/ui";
   /**
    * Determines whether the ActionSheet is open or closed
    */
-  export let open = false,
+  export let is_active = false,
     /**
      * Determines whether the ActionSheet is closable
      *
      * If `false` , the component won't have a close button, and will not close on clicking outside the component
      */
     closable = true,
-    /**
-     * Close icon
-     */
-    close_icon = "times-circle",
     /**
      * Determines if the ActionSheet can be closed by clicking anywhere outside the component
      *
@@ -70,7 +66,7 @@ If `false` , the component won't have a close button, and will not close on clic
     duration: 200,
   });
 
-  $: if (open) {
+  $: if (is_active) {
     tween.set(0);
   } else {
     tween.set(1);

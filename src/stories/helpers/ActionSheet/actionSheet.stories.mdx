@@ -5,9 +5,8 @@ import ActionSheetDecorator from "./ActionSheet.svelte";
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  open : false,
+  is_active : false,
   closable : true,
-  close_icon : "times-circle",
   close_on_click_outside:true,
   style : "",
   class:""
@@ -63,12 +62,11 @@ export let args={
     <div class="columns">
       <div class="column">
         <KwsActionSheet
-          bind:open
+          bind:is_active
           {closable}
-          {close_icon}
           {close_on_click_outside}
           {style}
-          class="some-classes">
+          class={klass}>
           <h1 class="title">This is a Heading</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           <ul class="menu-list">
@@ -79,19 +77,22 @@ export let args={
           <button
             class="button is-danger is-fullwidth"
             type="button"
-            on:click={() => (open = false)}>Cancel</button>
+            on:click={() => (is_active = false)}>Close Action Sheet</button>
         </KwsActionSheet>
       </div>
     </div>
-    <button class="button is-primary" type="button" on:click={() => (open = true)}
-      >Open Action Sheet</button>
+    <button
+      class="button is-primary"
+      type="button"
+      on:click={() => (is_active = true)}>Open Action Sheet</button>
     <script>
       import { ActionSheet as KwsActionSheet } from "@kws3/ui";
-      export let open = false,
+      export let is_active = false,
         closable = true,
-        close_icon = "times-circle",
         close_on_click_outside = true,
         style = "";
+      let klass = "";
+      export { klass as class };
     </script>
   `}
 />
