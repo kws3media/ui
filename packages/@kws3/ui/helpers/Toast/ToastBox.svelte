@@ -1,4 +1,4 @@
-<div class="toast-notifications">
+<div class="toast-box is-bottom">
   {#each $notifications as notification}
     <Toast {...notification} on:destroy={destroy} />
   {/each}
@@ -24,7 +24,7 @@
     return { pop, push, subscribe };
   })();
 
-  export const elements = [];
+  export const boxes = [];
 </script>
 
 <script>

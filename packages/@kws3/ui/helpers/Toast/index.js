@@ -1,14 +1,5 @@
-import Toasts, { notifications, elements } from "./Toasts.svelte";
+import Toast from "./Toast.svelte";
+import ToastBox, { notifications, boxes } from "./ToastBox.svelte";
 
-if (!elements.length) {
-  const element = new Toasts({
-    target: document.body,
-    props: {
-      position: "top",
-    },
-  });
-  elements.push(element);
-}
-
-export { notifications as Toast };
-export default Toasts;
+export { ToastBox, notifications as ToastNotifications, boxes as ToastBoxes };
+export default Toast;

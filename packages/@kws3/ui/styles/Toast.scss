@@ -1,15 +1,24 @@
 $kws3-persistent-banner-height: 70px;
+$kws3-toast-box-top-height: 5px;
 
-.toast-notifications {
+.toast-box {
   position: absolute;
-  top: 70px;
+  top: $kws3-toast-box-top-height;
   z-index: 5;
   pointer-events: none;
+  &.is-bottom {
+    bottom: 0px !important;
+    top: unset !important;
+  }
+  &.is-top {
+    top: 0px !important;
+    bottom: unset !important;
+  }
 }
 
 .show-persistent-banner {
-  .toast-notifications {
-    top: 70px + $kws3-persistent-banner-height;
+  .toast-box {
+    top: $kws3-toast-box-top-height + $kws3-persistent-banner-height;
   }
 }
 

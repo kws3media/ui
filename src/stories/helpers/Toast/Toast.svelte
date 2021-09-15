@@ -5,10 +5,24 @@
   </div>
 </div>
 
+<script context="module">
+  import { ToastBox, ToastBoxes } from "@kws3/ui";
+
+  if (!ToastBoxes.length) {
+    const box = new ToastBox({
+      target: document.body,
+      props: {
+        position: "top",
+      },
+    });
+    ToastBoxes.push(box);
+  }
+</script>
+
 <script>
-  import { Toast } from "@kws3/ui";
+  import { ToastNotifications } from "@kws3/ui";
 
   function create() {
-    Toast.push({ message: "I am a Toast..." });
+    ToastNotifications.push({ message: "I am a Toast..." });
   }
 </script>
