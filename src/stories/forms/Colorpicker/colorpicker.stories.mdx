@@ -30,6 +30,9 @@ export let args={
   {(args) => ({
     Component: Colorpicker,
     props: args,
+    on:{
+      'change': action('change')
+    }
   })}
   </Story>
 </Canvas>

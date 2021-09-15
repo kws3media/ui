@@ -25,7 +25,6 @@ Not changeable by user., Default: `false`
       {#if !mini}
         <Icon icon="hashtag" icon_style="color:#{color}" />
       {/if}
-
       <input
         type="text"
         class="input {readonly ? 'readonly' : ''} {mini ? 'mini' : ''}"
@@ -33,7 +32,7 @@ Not changeable by user., Default: `false`
         maxlength="6"
         {disabled}
         bind:value={color}
-        use:colorpicker />
+        use:colorpicker={color} />
 
       <span class="color-preview" style="background:#{color}" />
     </div>
@@ -41,9 +40,19 @@ Not changeable by user., Default: `false`
 </div>
 
 <script>
-  import { afterUpdate } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
-  import ColorPicker from "./actions";
+  import ColorPicker from "./Colorpicker";
+  import { debounce } from "../../utils";
+
+  const fire = createEventDispatcher();
+
+  const debouncedChangeEvent = debounce(() => {
+    /**
+     * Triggered when color changes
+     */
+    fire("change");
+  }, 300);
 
   /**
    * Determines the current selected color
@@ -74,18 +83,22 @@ Not changeable by user., Default: `false`
   function colorpicker(node) {
     _colorpicker = new ColorPicker(node);
 
-    _colorpicker.on("change", (_color) => (color = _color));
+    _colorpicker.on("change", (_color) => {
+      console.log(_color);
+      color = _color;
+
+      debouncedChangeEvent();
+    });
 
     return {
+      update(newColor) {
+        _colorpicker.set("#" + newColor);
+      },
       destroy() {
         _colorpicker.destroy();
       },
     };
   }
-
-  afterUpdate(() => {
-    _colorpicker.set("#" + color);
-  });
 
   function onDragOver(e) {
     if (!readonly && !disabled) {
