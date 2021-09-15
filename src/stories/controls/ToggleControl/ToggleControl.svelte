@@ -1,6 +1,6 @@
 <div class="columns">
   <div class="column">
-    <KwsToggleControl>
+    <KwsToggleControl class={klass} {style} {cy}>
       <label for="some-primary-text" class="label">
         Primary Label
         <small class="is-block help">Some primary Text</small>
@@ -15,7 +15,7 @@
 
     <hr />
 
-    <KwsToggleControl>
+    <KwsToggleControl class={klass} {style} {cy}>
       <label for="some-secondary-text" class="label">
         Secondary Label
         <small class="is-block help">Some secondary Text</small>
@@ -36,12 +36,17 @@
   import { ToggleControl as KwsToggleControl } from "@kws3/ui";
   import { Toggle } from "@kws3/ui";
   import { ToggleButtons } from "@kws3/ui";
-  let color = "primary",
+  export let color = "primary",
     size = "normal",
     on_text = "",
     off_text = "",
     toggle = false,
-    disabled = false;
+    disabled = false,
+    style = "",
+    cy = "";
+
+  let klass = "";
+  export { klass as class };
 
   function handleChange() {
     toggle = !toggle;

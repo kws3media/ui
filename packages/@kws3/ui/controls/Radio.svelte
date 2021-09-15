@@ -10,7 +10,10 @@
   @param {boolean} [inverted=false] - Inverts the Radio colour theme, Default: `false`
   @param {boolean} [circle=false] - Circular Radio button instead of the default square, Default: `false`
   @param {boolean} [disabled=false] - Disables Radio button, Default: `false`
-  @param {boolean} [group=false] - Makes Radio button part of a group, Default: `false`
+  @param {any} [group=null] - This is the property to bind to,
+so that the selected Radio's value can be obtained
+
+See: https://svelte.dev/docs#bind_group, Default: `null`
   @param {string} [class=""] - CSS classes for the Radio button, Default: `""`
 
   ### Events
@@ -37,7 +40,6 @@
 <script>
   /**
    * Value of radio button
-   * @type {string}
    */
   export let value = null,
     /**

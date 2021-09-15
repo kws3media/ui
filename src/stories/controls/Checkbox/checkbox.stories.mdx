@@ -77,7 +77,7 @@ export let args={
 <Source
   language="javascript"
   code={
-    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Checkbox.scss';`
+    dedent`@import 'path/to/node_modules/@kws3/ui/styles/CheckRadio.scss';`
   }
 />
 
@@ -86,9 +86,12 @@ export let args={
   language="css"
   code={
     dedent`
-      $kws-checkbox-default-check-color: #333 !default;
-      $kws-checkbox-default-check-color-invert: findColorInvert($kws-checkbox-default-check-color) !default;
-      $kws-checkbox-default-border-color: #dbdbdb !default;
+    $kws-theme-colors: $colors;
+    $kws-checkradio-default-check-color: $text;
+    $kws-checkradio-default-check-color-invert: findColorInvert($kws-checkradio-default-check-color);
+    $kws-checkradio-default-border-color: #dbdbdb;
+    $kws-checkradio-focus-box-shadow-size: $input-focus-box-shadow-size;
+    $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color;
     `
   }
 />
