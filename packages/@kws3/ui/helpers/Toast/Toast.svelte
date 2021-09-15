@@ -1,3 +1,20 @@
+<!--
+  @component
+
+
+  @param {string} [message=""] - Message for display, Default: `""`
+  @param {number} [duration=3000] - Duration for display message, Default: `3000`
+  @param {'warning'|'info'|'danger'|'primary'|'success'} [color="primary"] - Message background color, Default: `"primary"`
+  @param {'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'} [position="bottom-right"] - Position of the message, Default: `"bottom-right"`
+  @param {boolean} [is_dismissable=true] - Dismissable message, Default: `true`
+  @param {boolean} [is_persistent=false] - Persistent message, Default: `false`
+  @param {object} [id=null] - Message unique id, Default: `null`
+
+  ### Events
+  - `destroy`
+
+-->
+
 <div class="toast is-{position}">
   <div class="notification is-{color}">
     <div class="field is-grouped is-marginless" style="align-items:center;">
@@ -31,12 +48,12 @@
     duration = 3000,
     /**
      * Message background color
-     * @type {'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {'warning'|'info'|'danger'|'primary'|'success'}
      */
     color = "primary",
     /**
      * Position of the message
-     * @type {'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'}
+     * @type {'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
      */
     position = "bottom-right",
     /**
