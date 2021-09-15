@@ -19,17 +19,17 @@ If `false` , the component won't have a close button, and will not close on clic
 
 -->
 
-<div class="modal {klass} {is_active ? 'is-active' : ''}" {style} />
-{#if is_active}<div class="modal-background" on:click={clickOutside} />{/if}
-<div class="action-modal {inner_class}">
-  {#if closable}
-    <button class="delete is-pulled-right" type="button" on:click={close} />
-  {/if}
-  <!--Used to display sheet content--><slot />
+<div class="modal {klass} {is_active ? 'is-active' : ''}" {style}>
+  {#if is_active}<div class="modal-background" on:click={clickOutside} />{/if}
+  <div class="action-sheet {inner_class}" style={inner_style}>
+    {#if closable}
+      <button class="delete is-pulled-right" type="button" on:click={close} />
+    {/if}
+    <!--Used to display sheet content--><slot />
+  </div>
 </div>
 
 <script>
-  import { tweened } from "svelte/motion";
   /**
    * Determines whether the ActionSheet is open or closed
    */
@@ -73,28 +73,5 @@ If `false` , the component won't have a close button, and will not close on clic
 
   function close() {
     is_active = false;
-  }
-
-  const tween = tweened(1, {
-    duration: 200,
-  });
-
-  $: if (is_active) {
-    tween.set(0);
-  } else {
-    tween.set(1);
-  }
-
-  let bgComputedStyle = "",
-    sheetComputedStyle = "";
-
-  $: {
-    bgComputedStyle = `opacity:${1 - $tween};visibility:${
-      1 - $tween <= 0 ? "hidden" : "visible"
-    };${style}`;
-
-    sheetComputedStyle = `transform:translateY(${$tween * 200}%);visibility:${
-      1 - $tween <= 0 ? "hidden" : "visible"
-    };${inner_style}`;
   }
 </script>

@@ -4,6 +4,8 @@
       bind:is_active
       {closable}
       {close_on_click_outside}
+      {inner_class}
+      {inner_style}
       {style}
       class={klass}>
       <h1 class="title">This is a Heading</h1>
@@ -33,7 +35,9 @@
   export let is_active = false,
     closable = true,
     close_on_click_outside = true,
-    style = "";
+    style = "",
+    inner_class = "",
+    inner_style = "";
 
   let klass = "";
   export { klass as class };
