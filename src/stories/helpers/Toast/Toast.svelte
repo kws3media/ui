@@ -15,22 +15,10 @@
   </div>
 </div>
 
-<script context="module">
-  import { ToastBox, ToastBoxes } from "@kws3/ui";
-
-  //TODO: top and bottom position alignment
-  if (!ToastBoxes.bottom) {
-    ToastBoxes.bottom = new ToastBox({
-      target: document.body,
-      props: {
-        position: "bottom",
-      },
-    });
-  }
-</script>
+<ToastBox position="bottom" />
 
 <script>
-  import { ToastNotifications } from "@kws3/ui";
+  import { ToastBox, ToastNotifications } from "@kws3/ui";
 
   function create(prop) {
     ToastNotifications.push({ message: "I am a Toast...", ...prop });
