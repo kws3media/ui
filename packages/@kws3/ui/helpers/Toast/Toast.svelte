@@ -10,9 +10,9 @@
         </div>
       {/if}
     </div>
-    <div
-      class="toast-progress"
-      style="animation-duration:{!is_persistent && duration}ms" />
+    {#if !is_persistent}
+      <div class="toast-progress" style="animation-duration:{duration}ms" />
+    {/if}
   </div>
 </div>
 
