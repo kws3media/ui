@@ -1,60 +1,110 @@
-<Message
-  color="grey"
-  inner_style="border-width:0"
-  style="margin: -1rem -1.3rem -0.8rem;">
-  <div id="stepsHolder">
-    <ul class="steps has-content-centered is-horizontal">
-      {#each steps as step, idx}
-        <li class="steps-segment {active_index == idx ? 'is-active' : ''}">
-          <span class="steps-marker">{idx + 1}</span>
-          <div class="steps-content">
-            <p>{steps[active_index].name}</p>
-          </div>
-        </li>
-      {/each}
-    </ul>
-  </div>
-</Message>
-<div style="height:100%;width:800px;">
-  <SlidingPaneSet style="height:{pane_height}px">
-    <SlidingPane
-      active={steps[active_index].key == "step_one"}
-      {v_center}
-      {h_center}
-      {track_height}
-      class={klass}>
-      <div class="buttons">
-        <button class="button is-info">Info</button>
-        <button class="button is-success">Success</button>
-        <button class="button is-warning">Warning</button>
-        <button class="button is-danger">Danger</button>
+<div class="columns">
+  <div class="column">
+    <Message
+      color="grey"
+      inner_style="border-width:0"
+      style="margin: -1rem -1.3rem -0.8rem;">
+      <div id="stepsHolder">
+        <ul class="steps has-content-centered is-horizontal">
+          {#each steps as step, idx}
+            <li class="steps-segment {active_index == idx ? 'is-active' : ''}">
+              <span class="steps-marker">{idx + 1}</span>
+              <div class="steps-content">
+                <p>{steps[active_index].name}</p>
+              </div>
+            </li>
+          {/each}
+        </ul>
       </div>
-    </SlidingPane>
-
-    <SlidingPane
-      active={steps[active_index].key == "step_two"}
-      {v_center}
-      {h_center}
-      {track_height}
-      class={klass}>
-      <Message>
-        <p class="title is-3">Ah, You wont believe that is 2nd step</p>
-      </Message>
-    </SlidingPane>
-
-    <SlidingPane
-      active={steps[active_index].key == "step_three"}
-      {v_center}
-      {h_center}
-      {track_height}
-      class={klass}
-      {style}>
-      <Message color="warning">
-        <p class="title is-3">Oh, noo, You reached at 3rd step</p>
-      </Message>
-    </SlidingPane>
-  </SlidingPaneSet>
+    </Message>
+  </div>
 </div>
+
+<div class="columns">
+  <div class="column">
+    <SlidingPaneSet style="height:{pane_height}px">
+      <SlidingPane
+        active={steps[active_index].key == "step_one"}
+        {v_center}
+        {h_center}
+        {track_height}
+        class={klass}
+        {style}
+        on:heightChange={heightChange}>
+        <div class="sp-item">1</div>
+        <div class="sp-item">2</div>
+        <div class="sp-item">3</div>
+        <div class="sp-item">4</div>
+        <!--<Message color="primary">
+          <p class="title is-3">1st step</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </Message>-->
+      </SlidingPane>
+
+      <SlidingPane
+        active={steps[active_index].key == "step_two"}
+        {v_center}
+        {h_center}
+        {track_height}
+        class={klass}
+        {style}
+        on:heightChange={heightChange}>
+        <Message color="success">
+          <p class="title is-3">Ah, You wont believe that is 2nd step</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </Message>
+      </SlidingPane>
+
+      <SlidingPane
+        active={steps[active_index].key == "step_three"}
+        {v_center}
+        {h_center}
+        {track_height}
+        class={klass}
+        {style}
+        on:heightChange={heightChange}>
+        <Message color="warning">
+          <p class="title is-3">Oh, noo, You reached at 3rd step</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </Message>
+      </SlidingPane>
+    </SlidingPaneSet>
+  </div>
+</div>
+
 <div class="columns">
   <div class="column">
     <div class="buttons is-centered">
@@ -68,7 +118,20 @@
   </div>
 </div>
 
+<style>
+  .sp-item {
+    background-color: DodgerBlue;
+    color: white;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+</style>
+
 <script>
+  import { onMount } from "svelte";
   import { SlidingPane, SlidingPaneSet, Icon, Message } from "@kws3/ui";
   export let pane_height = 150,
     style = "",
@@ -90,4 +153,8 @@
 
   let klass = "";
   export { klass as class };
+
+  function heightChange(event) {
+    pane_height = event.detail.height;
+  }
 </script>

@@ -32,6 +32,9 @@ export let args={
   {(args) => ({
     Component: SlidingpaneDecorator,
     props: args,
+    on: {
+      heightChange : action("Changed")
+    },
   })}
   </Story>
 </Canvas>
