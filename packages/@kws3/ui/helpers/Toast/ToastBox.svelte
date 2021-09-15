@@ -24,9 +24,7 @@
 
         //TODO: filter this array properlly
         items.forEach((e, i) => {
-          if (e && e.id != id) {
-            _items[i] = e;
-          }
+          if (e && e.id != id) _items[i] = e;
         });
 
         return _items;
@@ -43,7 +41,5 @@
 
   export let position = "bottom";
 
-  function destroy({ detail }) {
-    notifications.pop(detail.id);
-  }
+  const destroy = ({ detail }) => notifications.pop(detail.id);
 </script>
