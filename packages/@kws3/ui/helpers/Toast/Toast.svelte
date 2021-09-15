@@ -4,7 +4,7 @@
       <button class="delete" on:click={destroy} />
     {/if}
 
-    {@html message}
+    <p>{@html message}</p>
 
     <div
       class="toast-progress"
