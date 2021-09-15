@@ -27,6 +27,7 @@
     duration = 3000,
     /**
      * Message background color
+     * @type {'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
     color = "info",
     /**
