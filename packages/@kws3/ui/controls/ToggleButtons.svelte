@@ -59,6 +59,9 @@ and `is-primary` `is-warning` etc., Default: `"is-outlined"`
   .toggle-buttons {
     .button,
     .button:focus {
+      :global(.icon) {
+        margin: 0;
+      }
       box-shadow: none;
       &.is-active {
         box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3) inset !important;
