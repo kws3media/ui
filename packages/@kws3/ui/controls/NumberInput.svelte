@@ -9,8 +9,8 @@ This property can be bound to, to fetch the current value
 
 This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {number} [step=1] - Number of steps to jump when increasing/decreasing using the +/- buttons, Default: `1`
-  @param {number} [min=0] - Smallest number the NumberInput will allow, Default: `0`
-  @param {number} [max=100] - Largest number the NumberInput will allow, Default: `100`
+  @param {number} [min=0] - Minumum permitted value, Default: `0`
+  @param {number} [max=100] - Maximum permitted value, Default: `100`
   @param {boolean} [disabled=false] - Disables the NumberInput, Default: `false`
   @param {boolean} [fullwidth=false] - Forces the NumberInput to occupy the full width of it's container, Default: `false`
   @param {boolean} [typeable=true] - Allows typing the value into the input, Default: `true`
@@ -108,11 +108,11 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      */
     step = 1,
     /**
-     * Smallest number the NumberInput will allow
+     * Minumum permitted value
      */
     min = 0,
     /**
-     * Largest number the NumberInput will allow
+     * Maximum permitted value
      */
     max = 100,
     /**
