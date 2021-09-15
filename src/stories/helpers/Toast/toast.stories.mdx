@@ -17,7 +17,14 @@ export let args={
   title="Helpers/Toast"
   component={Toast}
   args={args}
-  argTypes={{}}
+  argTypes={{
+    color: {
+      control: 'select'
+    },
+    position: {
+      control: 'select'
+    },
+  }}
 />
 
 <Description markdown={dedent`

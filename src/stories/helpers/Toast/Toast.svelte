@@ -15,9 +15,9 @@
 </div>
 
 <script>
-  import { Toast } from "@kws3/ui";
+  import { Toast as KwsToast } from "@kws3/ui";
 
   function create(prop) {
-    Toast.push({ message: "I am a Toast...", ...prop });
+    KwsToast.push({ message: "I am a Toast...", ...prop });
   }
 </script>
