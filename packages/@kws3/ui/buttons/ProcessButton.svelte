@@ -4,12 +4,10 @@
 
   @param {string} [button_class=""] - CSS classes for the Process button, Default: `""`
   @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
   @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - Icon showing after confirm - use any fa/gg/unicorn icons, Default: `"hourglass"`
-  @param {string} [doing_text="Doing..."] - Text displayed after task is completed successfully, Default: `"Doing..."`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`
   @param {object} [context=null] - Context property, Default: `null`
