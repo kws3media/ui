@@ -22,8 +22,9 @@
       update((items) => {
         let _items = [];
 
+        //TODO: filter this array properlly
         items.forEach((e, i) => {
-          if (e.id != id) {
+          if (e && e.id != id) {
             _items[i] = e;
           }
         });
