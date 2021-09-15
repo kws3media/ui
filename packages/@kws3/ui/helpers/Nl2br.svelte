@@ -2,7 +2,7 @@
   @component
 
 
-  @param {string} [text=""] - New line `\n`  of the text will be replaced with line break `&lt;br/&gt;`, Default: `""`
+  @param {string} [text=""] - Text to process and output, Default: `""`
 
 -->
 {#if text && text_parts}
@@ -13,7 +13,7 @@
 
 <script>
   /**
-   * New line `\n`  of the text will be replaced with line break `<br/>`
+   * Text to process and output
    */
   export let text = "";
   $: text_parts = text.split("\n");
