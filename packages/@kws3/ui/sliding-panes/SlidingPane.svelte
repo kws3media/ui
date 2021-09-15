@@ -2,15 +2,17 @@
   @component
 
 
-  @param {boolean} [active=false] - Active step - true/false, Default: `false`
-  @param {string} [style=""] - Inline style of component, Default: `""`
-  @param {boolean} [v_center=false] - V-Center - true/false, Default: `false`
-  @param {boolean} [h_center=false] - H-Center - true/false, Default: `false`
-  @param {boolean} [track_height=false] - Track Height - true/false, Default: `false`
-  @param {string} [class=""] - Additional class, Default: `""`
+  @param {boolean} [active=false] - Used to set the active pane., Default: `false`
+  @param {string} [style=""] - Inline CSS of component, Default: `""`
+  @param {boolean} [v_center=true] - Vertical alignment of content inside the active pane., Default: `true`
+  @param {boolean} [h_center=true] - Horizontal alignment of content inside the active pane., Default: `true`
+  @param {boolean} [track_height=true] - If this is set to `false`, the height of the panel will not change based on the pane height, Default: `true`
+  @param {string} [class=""] - CSS classes for the panel, Default: `""`
 
   ### Events
-  - `heightChange` - Change height of the pane dynamically
+  - `heightChange` - Event fired when the height of the pane changes
+
+This will work only when `track_height` is set to `true`
 
   ### Slots
   - `<slot name="default"  />` - Used to display content
@@ -42,26 +44,26 @@
    */
   export let active = false,
     /**
-     * Inline style of component
+     * Inline CSS of component
      */
     style = "",
     /**
      * Vertical alignment of content inside the active pane.
      */
-    v_center = false,
+    v_center = true,
     /**
      * Horizontal alignment of content inside the active pane.
      */
-    h_center = false,
+    h_center = true,
     /**
-     * Used to set the height of the active pane.
+     * If this is set to `false`, the height of the panel will not change based on the pane height
      */
-    track_height = false;
+    track_height = true;
 
   let _height, slideInner;
 
   /**
-   * Additional css classes
+   * CSS classes for the panel
    */
   let klass = "";
   export { klass as class };
@@ -105,8 +107,9 @@
             h2 = slideInner.clientHeight;
           var new_height = Math.max(h1, h2);
           /**
-           * Event used to dynamically change the height of the active pane content.<br/>
-           * This will be work based on the `track_height` true.
+           * Event fired when the height of the pane changes
+           *
+           * This will work only when `track_height` is set to `true`
            */
           fire("heightChange", { height: new_height });
         });
