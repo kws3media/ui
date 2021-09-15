@@ -8,6 +8,9 @@
   {size}
   {disabled}
   {icon_only}
+  class={klass}
+  {button_class}
+  {cy}
   on:erase={onErase} />
 
 <script>
@@ -21,7 +24,12 @@
     done_text = "Deleted",
     context = null,
     icon_only = false,
-    disabled = false;
+    disabled = false,
+    button_class = "",
+    cy = "";
+
+  let klass = "";
+  export { klass as class };
 
   function onErase(e, success = true) {
     let { doing, done, error, context } = e.detail;
