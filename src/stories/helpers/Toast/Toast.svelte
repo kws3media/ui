@@ -3,8 +3,7 @@
     <button
       class="button is-primary"
       type="button"
-      on:click={() => create({ position: "bottom-left" })}
-      >Toast Bottom Right</button>
+      on:click={() => create({ position: "top-left" })}>Toast Top Left</button>
   </div>
   <div class="column has-text-centered">
     <button
@@ -15,12 +14,10 @@
   </div>
 </div>
 
-<ToastBox position="bottom" />
-
 <script>
-  import { ToastBox, ToastNotifications } from "@kws3/ui";
+  import { Toast } from "@kws3/ui";
 
   function create(prop) {
-    ToastNotifications.push({ message: "I am a Toast...", ...prop });
+    Toast.push({ message: "I am a Toast...", ...prop });
   }
 </script>
