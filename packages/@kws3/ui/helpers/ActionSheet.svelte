@@ -6,7 +6,6 @@
   @param {boolean} [closable=true] - Determines whether the ActionSheet is closable
 
 If `false` , the component won't have a close button, and will not close on clicking outside the component, Default: `true`
-  @param {string} [close_icon="times-circle"] - Close icon, Default: `"times-circle"`
   @param {boolean} [close_on_click_outside=false] - Determines if the ActionSheet can be closed by clicking anywhere outside the component
 
 `closable` needs to be `true` for this to work, Default: `false`
