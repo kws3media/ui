@@ -1,19 +1,19 @@
 <!--
   @component
-
+  
 
   @param {string} [value=""] - Bind value, Default: `""`
   @param {string} [filter=""] - Filter, Default: `""`
-  @param {string} [style=""] - Inline styles, Default: `""`
-  @param {string} [dd_class=""] - Dropdown class, Default: `""`
+  @param {string} [style=""] - Inline CSS for the displayed text, Default: `""`
+  @param {string} [dd_class=""] - CSS classes for the dropdown, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {object} [searchKey=null] - which key to search in each data object, Default: `null`
-  @param {object} [searchValue=null] - which value to search in each data object, Default: `null`
-  @param {array} [data=[]] - Object of option values, Default: `[]`
-  @param {boolean} [open=false] - Open - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {object} [searchKey=null] - Key to be searched in each data object, Default: `null`
+  @param {object} [searchValue=null] - Value to be searched in each data object, Default: `null`
+  @param {array} [data=[]] - All searchable options as objects in an array, Default: `[]`
+  @param {boolean} [open=false] - Determines whether the dropdown is currently open, Default: `false`
+  @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [placeholder=""] - Placeholder string, Default: `""`
-  @param {string} [class=""] - Additional class for container, Default: `""`
+  @param {string} [class=""] - CSS classes for the component, Default: `""`
 
 -->
 <svelte:window on:resize={close} />
@@ -79,11 +79,11 @@
      */
     filter = "",
     /**
-     * Inline styles
+     * Inline CSS for the displayed text
      */
     style = "",
     /**
-     * Dropdown class
+     * CSS classes for the dropdown
      */
     dd_class = "",
     /**
@@ -91,23 +91,23 @@
      */
     cy = "",
     /**
-     * which key to search in each data object
+     * Key to be searched in each data object
      */
     searchKey = null,
     /**
-     * which value to search in each data object
+     * Value to be searched in each data object
      */
     searchValue = null,
     /**
-     * Object of option values
+     * All searchable options as objects in an array
      */
     data = [],
     /**
-     * Open - true/false
+     * Determines whether the dropdown is currently open
      */
     open = false,
     /**
-     * Disabled - true/false
+     * Disables the component
      */
     disabled = false,
     /**
@@ -116,7 +116,7 @@
     placeholder = "";
 
   /**
-   * Additional class for container
+   * CSS classes for the component
    */
   let klass = "";
   export { klass as class };
