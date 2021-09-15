@@ -123,7 +123,7 @@ This property can be bound to, to fetch the current value, Default: `null`
      */
     size = "",
     /**
-     * Exapnd all buttons so that they occupy full width of wrapping element
+     * Expand all buttons so that they occupy full width of wrapping element
      */
     fullwidth = false;
 
