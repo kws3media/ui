@@ -27,7 +27,7 @@
   import { onMount } from "svelte";
   import { createTextMaskInputElement, conformToMask } from "text-mask-core";
   /**
-   * Input Mask format
+   * array of mask format
    */
   export let mask = [],
     /**
@@ -49,15 +49,10 @@
     /**
      * Placeholder text
      */
-    placeholder = "",
-    /**
-     * Input Element
-     */
-    inputElement = null,
-    /**
-     * Value of input
-     */
-    value = null;
+    placeholder = "";
+
+  let inputElement = null;
+  let value = null;
 
   /**
    * Additional class for input

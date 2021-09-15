@@ -5,15 +5,13 @@ import MaskedInputDecorator from './MaskedInput.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  mask:[],
   showMask : false,
+  placeholder : "",
   guide : true,
   guideOnOutput : true,
   keepCharPositions : true,
-  placeholder : "",
-  class : "",
-  inputElement : null,
-  value : null
+  mask:[],
+  class : ""
 };
 
 <Meta

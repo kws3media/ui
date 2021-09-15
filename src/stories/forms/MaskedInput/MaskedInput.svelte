@@ -7,7 +7,6 @@
       {guide}
       {guideOnOutput}
       {keepCharPositions}
-      {inputElement}
       {placeholder}
       class={klass}
       bind:value={value1} />
@@ -20,7 +19,6 @@
       {guide}
       {guideOnOutput}
       {keepCharPositions}
-      {inputElement}
       {placeholder}
       class={klass}
       bind:value={value2} />
@@ -33,7 +31,6 @@
       {guide}
       {guideOnOutput}
       {keepCharPositions}
-      {inputElement}
       {placeholder}
       class={klass}
       bind:value={value3} />
@@ -89,8 +86,7 @@
     guide = true,
     guideOnOutput = false,
     keepCharPositions = true,
-    placeholder = "",
-    inputElement = null;
+    placeholder = "";
 
   let klass = "";
   export { klass as class };
