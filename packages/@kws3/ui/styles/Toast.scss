@@ -1,5 +1,6 @@
 $kws3-persistent-banner-height: 70px;
 $kws3-toast-box-top-height: 5px;
+$kws3-toast-max-width: 30rem;
 
 .toast-box {
   position: fixed;
@@ -8,7 +9,7 @@ $kws3-toast-box-top-height: 5px;
   right: 0;
   bottom: 0;
   overflow: hidden;
-  padding: 3em;
+  padding: 0.5em;
   z-index: 1000;
   pointer-events: none;
   display: flex;
@@ -31,6 +32,10 @@ $kws3-toast-box-top-height: 5px;
   transform: translate3d(0, 0, 0);
   animation: toast-slide-up 0.4s ease;
   pointer-events: fill;
+  margin-bottom: 10px;
+  max-width: $kws3-toast-max-width;
+  min-width: $kws3-toast-max-width;
+  width: 100%;
   &.is-top,
   &.is-bottom {
     align-self: center;
@@ -44,22 +49,20 @@ $kws3-toast-box-top-height: 5px;
     align-self: flex-end;
   }
   .notification {
+    padding: 1.25rem;
     position: relative;
-    margin-bottom: 5px;
-    width: 90%;
-    left: 5%;
     font-size: 1rem;
+    width: 100%;
     .delete {
-      top: 50%;
-      transform: translate(0, -50%) scale(1.6);
+      transform: scale(1.6);
     }
   }
   .toast-progress {
     background: white;
     height: 2px;
-    position: relative;
-    bottom: -12px;
-    right: 16px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
     width: 0%;
     animation-name: toast-progress-running;
   }
@@ -70,7 +73,7 @@ $kws3-toast-box-top-height: 5px;
     width: 0%;
   }
   100% {
-    width: 109%;
+    width: 96%;
   }
 }
 

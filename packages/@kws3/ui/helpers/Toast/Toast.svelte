@@ -1,11 +1,15 @@
 <div class="toast is-{position}">
   <div class="notification is-{color}">
-    {#if is_dismissable}
-      <button class="delete" on:click={destroy} />
-    {/if}
-
-    <p>{@html message}</p>
-
+    <div class="field is-grouped is-marginless" style="align-items:center;">
+      <div class="control is-expanded">
+        <p>{@html message}</p>
+      </div>
+      {#if is_dismissable}
+        <div class="control">
+          <button class="delete" on:click={destroy} />
+        </div>
+      {/if}
+    </div>
     <div
       class="toast-progress"
       style="animation-duration:{!is_persistent && duration}ms" />
@@ -29,7 +33,7 @@
      * Message background color
      * @type {'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
-    color = "info",
+    color = "primary",
     /**
      * Position of the message
      * @type {'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'}
