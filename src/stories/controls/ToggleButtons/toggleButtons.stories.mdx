@@ -4,7 +4,6 @@ import { ToggleButtons } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  on : true,
   value : "",
   disabled : false,
   options : [
@@ -12,7 +11,7 @@ export let args={
     {"name": "No", "value": 0, icon: "ban", subtitle: "Negative"},
     {"name": "Maybe", "value": null, icon: "question", subtitle: "¯\_(ツ)_/¯"}
   ],
-  classes : "",
+  class : "",
   inner_class : "",
   active_class : "is-primary",
   inactive_class : "is-outlined",
@@ -24,6 +23,11 @@ export let args={
   title="Forms/Controls/ToggleButtons"
   component={ToggleButtons}
   args={args}
+  argTypes={{
+    size: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
@@ -57,9 +61,20 @@ export let args={
   }
 />
 
-#### Custom Active and Inactive classes
+#### Import the SCSS:
 <Source
-  language="html"
+  language="javascript"
+  code={
+    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Toggle.scss';`
+  }
+/>
+
+#### Custom Active and Inactive classes
+Each button can have a custom `active_class` or `inactive_class`.
+
+This class will override the main active/inactive class of the component, **Example:**
+<Source
+  language="jsx"
   code={
     dedent`
     <ToggleButtons

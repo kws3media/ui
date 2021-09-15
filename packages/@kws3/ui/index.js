@@ -9,6 +9,7 @@ export { default as CardModal } from "./helpers/CardModal.svelte";
 export { default as Panel } from "./helpers/Panel.svelte";
 export { default as Notification } from "./helpers/Notification.svelte";
 export { default as Loader } from "./helpers/Loader.svelte";
+export { default as ActionSheet } from "./helpers/ActionSheet.svelte";
 export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
 
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
@@ -23,12 +24,15 @@ export { default as Toggle } from "./controls/Toggle.svelte";
 export { default as ToggleButtons } from "./controls/ToggleButtons.svelte";
 export { default as ToggleControl } from "./controls/ToggleControl.svelte";
 export { default as RangeSlider } from "./controls/RangeSlider.svelte";
+export { default as Nl2br } from "./helpers/Nl2br.svelte";
 
 export { default as Transition } from "./transitions/Transition.svelte";
 export { default as SlidingPane } from "./sliding-panes/SlidingPane.svelte";
 export { default as SlidingPaneSet } from "./sliding-panes/SlidingPaneSet.svelte";
 export { default as SearchableSelect } from "./forms/SearchableSelect.svelte";
 export { default as MaskedInput } from "./forms/MaskedInput.svelte";
+
+export { default as Colorpicker } from "./forms/colorpicker/Colorpicker.svelte";
 
 export { default as Datepicker } from "./forms/Datepicker.svelte";
 export { default as Timepicker } from "./forms/Timepicker.svelte";
