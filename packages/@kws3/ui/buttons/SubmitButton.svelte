@@ -2,24 +2,24 @@
   @component
 
 
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
-  @param {string} [saved_text="Saved"] - Text shows after success, Default: `"Saved"`
-  @param {string} [error_text="Failed to Save"] - Text shows after failed, Default: `"Failed to Save"`
-  @param {string} [icon="save"] - Icon of the Button - can use any fa icon, Default: `"save"`
+  @param {string} [saved_text="Saved"] - Text displayed after submission is completed successfully, Default: `"Saved"`
+  @param {string} [error_text="Failed to Save"] - Text displayed if submission is not successful, Default: `"Failed to Save"`
+  @param {string} [icon="save"] - Name of the icon that is to be displayed in the button, Default: `"save"`
   @param {string} [cy="submit"] - data-cy attribute for cypress, Default: `"submit"`
-  @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
-  @param {object} [tracker={}] - Tracker property, Default: `{}`
-  @param {string} [class=""] - `CONST` CSS classes, Default: `""`
+  @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
+  @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
+  @param {object} [tracker={}] - Tracker object to be sent from outside to change the state of the button., Default: `{}`
+  @param {string} [class=""] - CSS classes for Button container, Default: `""`
   @param {function} [saving()] - call this function on form saving state
   @param {function} [saved(callback)] - call this function after form saved
   @param {function} [error(callback)] - call this function on form error state
 
   ### Events
-  - `saved` - It fires after saved state
-  - `error` - It fires after error state
+  - `saved` - Fires an event on successful submission
+  - `error` - Fires an event when there is an error
 
 -->
 <button
