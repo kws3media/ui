@@ -30,8 +30,6 @@
   {icon}
   {color}
   {cy}
-  {doing_icon}
-  {doing_text}
   {done_icon}
   {done_text}
   {context}
@@ -71,7 +69,7 @@
     text = "Click Me",
     /**
      * Size of the Button
-     * @type {'small'|'medium'|'large'}
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
@@ -87,14 +85,6 @@
      * data-cy attribute for cypress
      */
     cy = "",
-    /**
-     * Icon showing after confirm - use any fa/gg/unicorn icons
-     */
-    doing_icon = "hourglass",
-    /**
-     * Text displayed after task is completed successfully
-     */
-    doing_text = "Doing...",
     /**
      * Name of the icon displayed after task is completed successfully
      */

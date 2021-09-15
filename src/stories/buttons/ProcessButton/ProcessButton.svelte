@@ -2,11 +2,15 @@
   {text}
   {color}
   {icon}
-  {doing_icon}
   {done_icon}
-  {doing_text}
   {done_text}
   {context}
+  {size}
+  {button_class}
+  {cy}
+  {icon_only}
+  {disabled}
+  class={klass}
   on:do={onDo} />
 
 <script>
@@ -15,11 +19,17 @@
   export let text = "Click Me",
     icon = "check",
     color = "primary",
-    doing_icon = "hourglass",
-    doing_text = "Doing...",
     done_icon = "check",
     done_text = "Done",
-    context = null;
+    context = null,
+    size = "",
+    button_class = "",
+    cy = "",
+    icon_only = false,
+    disabled = false;
+
+  let klass = "";
+  export { klass as class };
 
   function onDo(e, success = true) {
     let { doing, done, error } = e.detail;
