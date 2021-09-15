@@ -40,7 +40,6 @@ This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
   </div>
   <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
     <input
-      bind:this={input}
       class="input has-text-centered is-{size} is-{value < min || value > max
         ? 'danger'
         : ''}"
@@ -94,10 +93,6 @@ This will be over-ridden if `min` is higher, or `max` is lower, Default: `0`
    * @type {''|'small'|'medium'|'large'}
    */
   export let size = "",
-    /**
-     * Input Property
-     */
-    input = null,
     /**
      * Default number displayed in the NumberInput
      *
