@@ -4,11 +4,14 @@ import { Loader } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  color: "transparent",
-  background_size: "small",
-  spinner_size: "small",
+  spinner_color: "grey",
+  spinner_size: "medium",
+  background_color: "transparent",
+  background_size: "medium",
+  class:"",
   style: "",
-  is_inline: false
+  is_inline: false,
+  has_overlay: false
 }
 
 <Meta
@@ -16,18 +19,15 @@ export let args={
   component={Loader}
   args={args}
   argTypes={{
-    color: {
-      options: ['transparent', 'warning', 'info', 'danger', 'primary'],
-      control: 'select'
-    },
-    background_size: {
-      options: ['small', 'medium', 'large', 'halfheight', 'fullheight'],
+    spinner_color: {
       control: 'select'
     },
     spinner_size: {
-      options: ['small', 'medium', 'large'],
       control: 'select'
     },
+    background_color: {
+      control: 'select'
+    }
   }}
 />
 
@@ -71,6 +71,8 @@ export let args={
   code={ dedent`
     $kws-loader-width: 2rem;
     $kws-loader-height: 2rem;
+    $kws-loader-width-medium: ($kws-loader-width * 1.5);
+    $kws-loader-height-medium: ($kws-loader-height * 1.5);
     $kws-loader-width-large: ($kws-loader-width * 3);
     $kws-loader-height-large: ($kws-loader-height * 3);
     $kws-loader-color: #ccc;

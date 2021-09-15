@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 export let args={
   value : null,
-  classes : "",
+  class : "",
   style : "",
   label_style : "",
   size : "",
@@ -13,13 +13,21 @@ export let args={
   inverted : false,
   circle : false,
   disabled : false,
-  group : false
+  group : null
 };
 
 <Meta
   title="Forms/Controls/Radio"
   component={Radio}
   args={args}
+  argTypes={{
+    color: {
+      control: 'select'
+    },
+    size: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
@@ -57,7 +65,7 @@ export let args={
 <Source
   language="javascript"
   code={
-    dedent`@import 'path/to/node_modules/@kws3/ui/styles/Radio.scss';`
+    dedent`@import 'path/to/node_modules/@kws3/ui/styles/CheckRadio.scss';`
   }
 />
 
@@ -66,9 +74,12 @@ export let args={
   language="css"
   code={
     dedent`
-      $kws-radio-default-check-color: #333 !default;
-      $kws-radio-default-check-color-invert: findColorInvert($kws-radio-default-check-color) !default;
-      $kws-radio-default-border-color: #dbdbdb !default;
+    $kws-theme-colors: $colors;
+    $kws-checkradio-default-check-color: $text;
+    $kws-checkradio-default-check-color-invert: findColorInvert($kws-checkradio-default-check-color);
+    $kws-checkradio-default-border-color: #dbdbdb;
+    $kws-checkradio-focus-box-shadow-size: $input-focus-box-shadow-size;
+    $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color;
     `
   }
 />

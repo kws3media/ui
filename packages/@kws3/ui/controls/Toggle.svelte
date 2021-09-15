@@ -1,21 +1,26 @@
 <!--
   @component
-  
 
-  @param {boolean} [on=false] - Toggle On - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
-  @param {string} [classes=""] - Supported classes, Default: `""`
-  @param {string} [on_text=""] - On Text, Default: `""`
-  @param {string} [off_text=""] - Off Text, Default: `""`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Toggle Button, Default: `""`
+
+  @param {boolean} [on=false] - Current value of the Toggle
+
+This property can be bound to, to fetch the current value, Default: `false`
+  @param {boolean} [disabled=false] - Disables the Toggle, Default: `false`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
+  @param {string} [on_text=""] - Text displayed on the Toggle when ON, Default: `""`
+  @param {string} [off_text=""] - Text displayed on the Toggle when OFF, Default: `""`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [class=""] - CSS classes for the Toggle, Default: `""`
+
+  ### Events
+  - `change` - Fires an event on change of Toggle state
 
 -->
 <div
   class:on
   class:disabled
-  class="toggle-button is-{color} is-{size} {classes}"
+  class="toggle-button is-{color} is-{size} {klass}"
   on:click={toggle}
   data-cy={cy}>
   <div class="track">
@@ -35,49 +40,51 @@
   const fire = createEventDispatcher();
 
   /**
-   * Toggle On - true/false
-   * @type {boolean}
+   * Current value of the Toggle
+   *
+   * This property can be bound to, to fetch the current value
    */
   export let on = false,
     /**
-     * Disabled - true/false
-     * @type {boolean}
+     * Disables the Toggle
      */
     disabled = false,
     /**
      * Color of the Toggle
-     * @type {'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
-     * Supported classes
-     * @type {string}
-     */
-    classes = "",
-    /**
-     * On Text
-     * @type {string}
+     * Text displayed on the Toggle when ON
      */
     on_text = "",
     /**
-     * Off Text
-     * @type {string}
+     * Text displayed on the Toggle when OFF
      */
     off_text = "",
     /**
-     * Size of the Toggle Button
-     * @type {'small'|'medium'|'large'}
+     * Size of the Toggle
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
      * data-cy attribute for cypress
-     * @type {string}
      */
     cy = "";
+
+  /**
+   * CSS classes for the Toggle
+   * @type {string}
+   */
+  let klass = "";
+  export { klass as class };
 
   function toggle() {
     if (!disabled) {
       on = !on;
+      /**
+       * Fires an event on change of Toggle state
+       */
       fire("change");
     }
   }
