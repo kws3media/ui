@@ -20,16 +20,23 @@ If `false` , the component won't have a close button, and will not close on clic
 -->
 
 <div class="modal {klass} {is_active ? 'is-active' : ''}" {style}>
-  {#if is_active}<div class="modal-background" on:click={clickOutside} />{/if}
-  <div class="action-sheet {inner_class}" style={inner_style}>
-    {#if closable}
-      <button class="delete is-pulled-right" type="button" on:click={close} />
-    {/if}
-    <!--Used to display sheet content--><slot />
-  </div>
+  {#if is_active}<div
+      transition:fade={{ duration: 150 }}
+      class="modal-background"
+      on:click={clickOutside} />
+    <div
+      transition:fly={{ duration: 150, y: 300, delay: 50 }}
+      class="action-sheet {inner_class}"
+      style={inner_style}>
+      {#if closable}
+        <button class="delete is-pulled-right" type="button" on:click={close} />
+      {/if}
+      <!--Used to display sheet content--><slot />
+    </div>{/if}
 </div>
 
 <script>
+  import { fade, fly } from "svelte/transition";
   /**
    * Determines whether the ActionSheet is open or closed
    */
