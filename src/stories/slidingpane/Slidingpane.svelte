@@ -7,7 +7,10 @@
       <div id="stepsHolder">
         <ul class="steps has-content-centered is-horizontal">
           {#each steps as step, idx}
-            <li class="steps-segment {active_index == idx ? 'is-active' : ''}">
+            <li
+              class="steps-segment {active_index == idx ? 'is-active' : ''}"
+              on:click={() => activateStep(idx)}
+              style="cursor:pointer;">
               <span class="steps-marker">{idx + 1}</span>
               <div class="steps-content">
                 <p>{steps[active_index].name}</p>
@@ -31,10 +34,10 @@
         class={klass}
         {style}
         on:heightChange={heightChange}>
-        <div class="sp-item">1</div>
-        <div class="sp-item">2</div>
-        <div class="sp-item">3</div>
-        <div class="sp-item">4</div>
+        <div class="sp-item">Div 1</div>
+        <div class="sp-item">Div 2</div>
+        <div class="sp-item">Div 3</div>
+        <div class="sp-item">Div 4</div>
         <!--<Message color="primary">
           <p class="title is-3">1st step</p>
           <p>
@@ -59,15 +62,7 @@
         on:heightChange={heightChange}>
         <Message color="success">
           <p class="title is-3">Ah, You wont believe that is 2nd step</p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          <p><img src="https://picsum.photos/200/300" alt="" /></p>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -108,12 +103,30 @@
 <div class="columns">
   <div class="column">
     <div class="buttons is-centered">
-      <button class="button is-info" on:click={() => changeStep(-1)}>
+      <button class="button is-info is-small" on:click={() => changeStep(-1)}>
         <Icon icon="arrow-left" />
       </button>
-      <button class="button is-success" on:click={() => changeStep(+1)}>
+      <button
+        class="button is-success is-small"
+        on:click={() => changeStep(+1)}>
         <Icon icon="arrow-right" />
       </button>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column">
+    <div class="buttons is-centered">
+      <button
+        class="button is-warning is-small is-rounded"
+        on:click={() => activateStep(0)}>1</button>
+      <button
+        class="button is-warning is-small is-rounded"
+        on:click={() => activateStep(1)}>2</button>
+      <button
+        class="button is-warning is-small is-rounded"
+        on:click={() => activateStep(2)}>3</button>
     </div>
   </div>
 </div>
@@ -156,5 +169,9 @@
 
   function heightChange(event) {
     pane_height = event.detail.height;
+  }
+
+  function activateStep(index) {
+    active_index = index;
   }
 </script>

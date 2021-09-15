@@ -38,7 +38,7 @@
   const fire = createEventDispatcher();
 
   /**
-   * Active step - true/false
+   * Used to set the active pane.
    */
   export let active = false,
     /**
@@ -46,22 +46,22 @@
      */
     style = "",
     /**
-     * V-Center - true/false
+     * Vertical alignment of content inside the active pane.
      */
     v_center = false,
     /**
-     * H-Center - true/false
+     * Horizontal alignment of content inside the active pane.
      */
     h_center = false,
     /**
-     * Track Height - true/false
+     * Used to set the height of the active pane.
      */
     track_height = false;
 
   let _height, slideInner;
 
   /**
-   * Additional class
+   * Additional css classes
    */
   let klass = "";
   export { klass as class };
