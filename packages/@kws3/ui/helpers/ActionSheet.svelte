@@ -10,6 +10,8 @@ If `false` , the component won't have a close button, and will not close on clic
 
 `closable` needs to be `true` for this to work, Default: `false`
   @param {string} [style=""] - Inline CSS for the ActionSheet, Default: `""`
+  @param {string} [inner_style=""] - Inline CSS for ActionSheet content, Default: `""`
+  @param {string} [inner_class=""] - CSS classes for ActionSheet content, Default: `""`
   @param {string} [class=""] - CSS classes for the ActionSheet, Default: `""`
 
   ### Slots
@@ -17,12 +19,12 @@ If `false` , the component won't have a close button, and will not close on clic
 
 -->
 <div
-  class="action-modal-background"
+  class="action-modal-background {klass}"
   on:click={closable && close_on_click_outside
     ? () => (is_active = false)
     : undefined}
   style={bgComputedStyle} />
-<div class="action-modal {klass}" style={sheetComputedStyle}>
+<div class="action-modal {inner_class}" style={sheetComputedStyle}>
   {#if closable}
     <button
       class="delete is-pulled-right"
@@ -53,7 +55,15 @@ If `false` , the component won't have a close button, and will not close on clic
     /**
      * Inline CSS for the ActionSheet
      */
-    style = "";
+    style = "",
+    /**
+     * Inline CSS for ActionSheet content
+     */
+    inner_style = "",
+    /**
+     * CSS classes for ActionSheet content
+     */
+    inner_class = "";
 
   /**
    * CSS classes for the ActionSheet
@@ -77,7 +87,7 @@ If `false` , the component won't have a close button, and will not close on clic
   $: {
     bgComputedStyle = `opacity:${1 - $tween};visibility:${
       1 - $tween <= 0 ? "hidden" : "visible"
-    }`;
+    };${inner_style}`;
 
     sheetComputedStyle = `transform:translateY(${$tween * 200}%);visibility:${
       1 - $tween <= 0 ? "hidden" : "visible"
