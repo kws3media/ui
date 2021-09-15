@@ -4,11 +4,11 @@
 
   @param {string} [key=""] - Key property, Default: `""`
   @param {string} [message="Choose File..."] - Message displayed in uploader, Default: `"Choose File..."`
-  @param {string} [info=""] - Display helper information, Default: `""`
-  @param {number} [max=5000000] - Maximum allowed size, Default: `5000000`
+  @param {string} [info=""] - Information/help/subtitle displayed under the uploader, Default: `""`
+  @param {number} [max=5000000] - Maximum allowed size in bytes, Default: `5000000`
   @param {any} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
-  @param {boolean} [disabled=false] - Uploader disable - true/false, Default: `false`
-  @param {string} [class=""] - CSS classes, Default: `""`
+  @param {boolean} [disabled=false] - Disabled the Uploader, Default: `false`
+  @param {string} [class=""] - CSS classes for the Uploader, Default: `""`
 
   ### Events
   - `file_uploaded` - Event used to upload file
@@ -89,11 +89,11 @@
      */
     message = "Choose File...",
     /**
-     * Display helper information
+     * Information/help/subtitle displayed under the uploader
      */
     info = "",
     /**
-     * Maximum allowed size
+     * Maximum allowed size in bytes
      */
     max = 5000000,
     /**
@@ -102,12 +102,12 @@
      */
     allowed = "*",
     /**
-     * Uploader disable - true/false
+     * Disabled the Uploader
      */
     disabled = false;
 
   /**
-   * CSS classes
+   * CSS classes for the Uploader
    */
   let klass = "";
   export { klass as class };
