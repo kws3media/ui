@@ -84,7 +84,6 @@ Not changeable by user., Default: `false`
     _colorpicker = new ColorPicker(node);
 
     _colorpicker.on("change", (_color) => {
-      console.log(_color);
       color = _color;
 
       debouncedChangeEvent();

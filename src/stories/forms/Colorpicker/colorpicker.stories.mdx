@@ -55,3 +55,24 @@ export let args={
     dedent`@import 'path/to/node_modules/@kws3/ui/styles/Colorpicker.scss';`
   }
 />
+
+<div class="notification is-info is-light">
+  This component supports HTML5 drag and drop.
+
+  Use `event.dataTransfer.setData('text', <new_color>)` on the draggable element.
+  Then once you drop the draggable element into this component, it picks up the data from the `text` value.
+
+  **Example:**
+  <Source
+    language="jsx"
+    code ={
+    dedent`<div
+      style="background:#bada55"
+      draggable="true"
+      on:dragstart={(e) => {
+        e.dataTransfer.setData("text", "bada55");
+      }}>
+      #bada55
+    </div>`
+  } />
+</div>
