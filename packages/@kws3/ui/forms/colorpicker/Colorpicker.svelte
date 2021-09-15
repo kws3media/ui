@@ -33,6 +33,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
           : ''} is-{size}"
         readonly={!typeable || readonly || mini}
         maxlength="6"
+        on:focus={focused}
         {disabled}
         bind:value={color}
         use:colorpicker={color} />
@@ -107,6 +108,10 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
         _colorpicker.destroy();
       },
     };
+  }
+
+  function focused(e) {
+    e && e.target && e.target.select();
   }
 
   function onDragOver(e) {
