@@ -1,25 +1,28 @@
 <!--
   @component
-  
 
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Button `small`, `medium`, `large`, Default: `""`
-  @param {object} [input=null] - Input Property, Default: `null`
-  @param {number} [value=null] - Default value, Default: `null`
-  @param {number} [step=1] - Steps increasing/decreasing, Default: `1`
-  @param {number} [min=0] - Starting number, Default: `0`
-  @param {number} [max=100] - Maximum number, Default: `100`
-  @param {boolean} [disabled=false] - Disable - true/false, Default: `false`
-  @param {boolean} [fullwidth=false] - Full width of container - true/false, Default: `false`
-  @param {string} [minus_icon="minus"] - Icon of the Minus button, Default: `"minus"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `"danger"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `""`
-  @param {string} [plus_icon="plus"] - Icon of the Plus button, Default: `"plus"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `"success"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`, Default: `""`
-  @param {number} [_has_focus=0] - _has_focus property, Default: `0`
+
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the component, Default: `""`
+  @param {number} [value=0] - Current value
+
+This property can be bound to, to fetch the current value
+
+This will be overridden if `min` is higher, or `max` is lower, Default: `0`
+  @param {number} [step=1] - Number of steps to jump when increasing/decreasing using the +/- buttons, Default: `1`
+  @param {number} [min=0] - Minumum permitted value, Default: `0`
+  @param {number} [max=100] - Maximum permitted value, Default: `100`
+  @param {boolean} [disabled=false] - Disables the NumberInput, Default: `false`
+  @param {boolean} [fullwidth=false] - Forces the NumberInput to occupy the full width of it's container, Default: `false`
+  @param {boolean} [typeable=true] - Allows typing the value into the input, Default: `true`
+  @param {string} [minus_icon="minus"] - Name of the icon that is to be displayed in the minus button, Default: `"minus"`
+  @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon, Default: `"danger"`
+  @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button, Default: `""`
+  @param {string} [plus_icon="plus"] - Name of the icon that is to be displayed in the plus button, Default: `"plus"`
+  @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon, Default: `"success"`
+  @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
 
   ### Events
-  - `change`
+  - `change` - Triggered when value changes
 
 -->
 <div class="field has-addons">
@@ -33,12 +36,11 @@
       <Icon
         icon={minus_icon}
         size="small"
-        icon_class="has-text-{minus_icon_color}" />
+        class="has-text-{minus_icon_color}" />
     </button>
   </div>
   <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
     <input
-      bind:this={input}
       class="input has-text-centered is-{size} is-{value < min || value > max
         ? 'danger'
         : ''}"
@@ -47,6 +49,7 @@
       max
       step
       {disabled}
+      readonly={typeable}
       bind:value
       on:blur={isBlurred()}
       on:focus={isFocused()} />
@@ -58,10 +61,7 @@
       style="box-shadow:none;"
       on:click|preventDefault={count(+1)}
       disabled={disabled || value >= max}>
-      <Icon
-        icon={plus_icon}
-        size="small"
-        icon_class="has-text-{plus_icon_color}" />
+      <Icon icon={plus_icon} size="small" class="has-text-{plus_icon_color}" />
     </button>
   </div>
 </div>
@@ -91,98 +91,72 @@
   const fire = createEventDispatcher();
 
   /**
-   * Size of the Button `small`, `medium`, `large`
-   * @type {'small'|'medium'|'large'}
+   * Size of the component
+   * @type {''|'small'|'medium'|'large'}
    */
-  export let size = "";
+  export let size = "",
+    /**
+     * Current value
+     *
+     * This property can be bound to, to fetch the current value
+     *
+     * This will be overridden if `min` is higher, or `max` is lower
+     */
+    value = 0,
+    /**
+     * Number of steps to jump when increasing/decreasing using the +/- buttons
+     */
+    step = 1,
+    /**
+     * Minumum permitted value
+     */
+    min = 0,
+    /**
+     * Maximum permitted value
+     */
+    max = 100,
+    /**
+     * Disables the NumberInput
+     */
+    disabled = false,
+    /**
+     * Forces the NumberInput to occupy the full width of it's container
+     */
+    fullwidth = false,
+    /**
+     * Allows typing the value into the input
+     */
+    typeable = true,
+    /**
+     * Name of the icon that is to be displayed in the minus button
+     */
+    minus_icon = "minus",
+    /**
+     * Color of the Minus Icon
+     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    minus_icon_color = "danger",
+    /**
+     * Color of the Minus Button
+     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    minus_button_color = "",
+    /**
+     * Name of the icon that is to be displayed in the plus button
+     */
+    plus_icon = "plus",
+    /**
+     * Color of the Plus Icon
+     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    plus_icon_color = "success",
+    /**
+     * Color of the Plus Button
+     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    plus_button_color = "";
 
-  /**
-   * Input Property
-   * @type {object}
-   * @defaultvalue null
-   */
-  export let input = null;
-
-  /**
-   * Default value
-   * @type {number}
-   * @defaultvalue null
-   */
-  export let value = null;
-
-  /**
-   * Steps increasing/decreasing
-   * @type {number}
-   * @defaultvalue 1
-   */
-  export let step = 1;
-
-  /**
-   * Starting number
-   * @type {number}
-   * @defaultvalue 0
-   */
-  export let min = 0;
-
-  /**
-   * Maximum number
-   * @type {number}
-   * @defaultvalue 100
-   */
-  export let max = 100;
-
-  /**
-   * Disable - true/false
-   * @type {boolean}
-   * @defaultvalue false
-   */
-  export let disabled = false;
-
-  /**
-   * Full width of container - true/false
-   * @type {boolean}
-   * @defaultvalue false
-   */
-  export let fullwidth = false;
-
-  /**
-   * Icon of the Minus button
-   * @type {string}
-   * @defaultvalue `minus`
-   */
-  export let minus_icon = "minus";
-
-  /**
-   * Color of the Minus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let minus_icon_color = "danger";
-
-  /**
-   * Color of the Minus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let minus_button_color = "";
-
-  /**
-   * Icon of the Plus button
-   * @type {string}
-   * @defaultvalue `plus`
-   */
-  export let plus_icon = "plus";
-
-  /**
-   * Color of the Plus Icon `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let plus_icon_color = "success";
-
-  /**
-   * Color of the Plus Button `primary`, `success`, `warning`, `info`, `danger`, `dark`, `light`
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let plus_button_color = "";
-  export let _has_focus = 0;
+  let _has_focus = false;
 
   $: value && !_has_focus, validateInput(); // will work like on state changed
 
@@ -203,7 +177,9 @@
     if (typeof value == "undefined" || value === null) value = min;
     value = Number(value) + i * step;
     if (step % 1 != 0) value = value.toFixed(1);
-
+    /**
+     * Triggered when value changes
+     */
     fire("change");
   };
 
