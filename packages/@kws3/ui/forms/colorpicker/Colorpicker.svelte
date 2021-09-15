@@ -100,6 +100,8 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
       debouncedChangeEvent();
     });
 
+    _colorpicker.set("#" + color);
+
     return {
       update(newColor) {
         _colorpicker.set("#" + newColor);
