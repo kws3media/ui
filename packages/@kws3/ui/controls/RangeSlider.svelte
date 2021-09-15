@@ -119,9 +119,13 @@ This property can be bound to, to fetch the current value, Default: `0`
   }
 
   onMount(() => {
-    //set value to minimum possible value
-    if (value < min) {
-      value = min;
-    }
+    validateInput();
   });
+
+  function validateInput() {
+    if (typeof value == "undefined" || value === null) value = min;
+
+    if (value < min) value = min;
+    if (value > max) value = max;
+  }
 </script>
