@@ -2,7 +2,9 @@
   @component
 
 
-  @param {boolean} [on=false] - Current state of the Toggle, Default: `false`
+  @param {boolean} [on=false] - Current value of the Toggle
+
+This property can be bound to, to fetch the current value, Default: `false`
   @param {boolean} [disabled=false] - Disables the Toggle, Default: `false`
   @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
   @param {string} [on_text=""] - Text displayed on the Toggle when ON, Default: `""`
@@ -38,7 +40,9 @@
   const fire = createEventDispatcher();
 
   /**
-   * Current state of the Toggle
+   * Current value of the Toggle
+   *
+   * This property can be bound to, to fetch the current value
    */
   export let on = false,
     /**
