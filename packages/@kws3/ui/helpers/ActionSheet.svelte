@@ -18,18 +18,12 @@ If `false` , the component won't have a close button, and will not close on clic
   - `<slot name="default"  />` - Used to display sheet content
 
 -->
-<div
-  class="action-modal-background {klass}"
-  on:click={closable && close_on_click_outside
-    ? () => (is_active = false)
-    : undefined}
-  style={bgComputedStyle} />
-<div class="action-modal {inner_class}" style={sheetComputedStyle}>
+
+<div class="modal {klass} {is_active ? 'is-active' : ''}" {style} />
+{#if is_active}<div class="modal-background" on:click={clickOutside} />{/if}
+<div class="action-modal {inner_class}">
   {#if closable}
-    <button
-      class="delete is-pulled-right"
-      type="button"
-      on:click={() => (is_active = false)} />
+    <button class="delete is-pulled-right" type="button" on:click={close} />
   {/if}
   <!--Used to display sheet content--><slot />
 </div>
@@ -71,6 +65,16 @@ If `false` , the component won't have a close button, and will not close on clic
   let klass = "";
   export { klass as class };
 
+  function clickOutside() {
+    if (close_on_click_outside && closable) {
+      is_active = false;
+    }
+  }
+
+  function close() {
+    is_active = false;
+  }
+
   const tween = tweened(1, {
     duration: 200,
   });
@@ -87,10 +91,10 @@ If `false` , the component won't have a close button, and will not close on clic
   $: {
     bgComputedStyle = `opacity:${1 - $tween};visibility:${
       1 - $tween <= 0 ? "hidden" : "visible"
-    };${inner_style}`;
+    };${style}`;
 
     sheetComputedStyle = `transform:translateY(${$tween * 200}%);visibility:${
       1 - $tween <= 0 ? "hidden" : "visible"
-    };${style}`;
+    };${inner_style}`;
   }
 </script>
