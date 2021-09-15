@@ -2,11 +2,13 @@
   @component
 
 
-  @param {string} [color="000000"] - Selected color, Default: `"000000"`
-  @param {boolean} [typeable=true] - Allow to type in input, Default: `true`
-  @param {boolean} [readonly=false] - Readonly input, Default: `false`
-  @param {boolean} [mini=false] - Mini color input, Default: `false`
-  @param {boolean} [disabled=false] - Disabled input, Default: `false`
+  @param {string} [color="000000"] - Determines the current selected color, Default: `"000000"`
+  @param {boolean} [typeable=true] - Allows typing the colour name in hex Code, Default: `true`
+  @param {boolean} [readonly=false] - To display a fixed colour and hex Code
+
+Not changeable by user., Default: `false`
+  @param {boolean} [mini=false] - Alternate mini colour picker without form or hex Code, Default: `false`
+  @param {boolean} [disabled=false] - Disables the component, Default: `false`
 
 -->
 <div class="color-picker-wrapper">
@@ -44,11 +46,11 @@
   import ColorPicker from "./actions";
 
   /**
-   * Selected color
+   * Determines the current selected color
    */
   export let color = "000000",
     /**
-     * Allows typing the colour name in in hex Code
+     * Allows typing the colour name in hex Code
      */
     typeable = true,
     /**
@@ -62,7 +64,7 @@
      */
     mini = false,
     /**
-     * Disabled input
+     * Disables the component
      */
     disabled = false;
 
