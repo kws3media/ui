@@ -1,34 +1,19 @@
-.action-modal-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  transition: opacity 0.3s;
-  z-index: 50;
-}
+$kws-actionsheet-background: $background !default;
+$kws-actionsheet-box-shadow: $card-shadow !default;
+$kws-actionsheet-box-radius: $radius !default;
+
 .action-modal {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  box-shadow: 0 -4px 26px rgba(0, 0, 0, 0.4);
+  border-radius: $kws-actionsheet-box-radius $kws-actionsheet-box-radius 0 0;
+  box-shadow: $kws-actionsheet-box-shadow;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   max-height: 90%;
   min-height: fit-content;
-  background: #fff;
+  background: $kws-actionsheet-background;
   transition: all 0.3s;
   z-index: 50;
-  padding: 15px 15px;
+  padding: 1.25em 1.5em;
   overflow-x: auto;
-  &_close {
-    cursor: pointer;
-    position: absolute;
-    display: block;
-    top: 10px;
-    right: 15px;
-    z-index: 50;
-  }
 }
