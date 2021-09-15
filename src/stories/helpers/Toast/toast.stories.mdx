@@ -45,3 +45,27 @@ export let args={
 </Canvas>
 
 <ArgsTable story="Toast" />
+
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`
+  import { Toast } from '@kws3/ui';
+  Toast.push({ message: 'I am a Toast...', position: 'top-left' });
+  `}
+/>
+
+##### Import the CSS:
+<Source
+  language='javascript'
+  code={ dedent`@import 'path/to/node_modules/@kws3/ui/styles/Toast.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws3-toast-max-width: 30rem;
+  `}
+/>
