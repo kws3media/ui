@@ -2,13 +2,17 @@
   @component
 
 
-  @param {string} [color="000000"] - Determines the current selected color, Default: `"000000"`
-  @param {boolean} [typeable=true] - Allows typing the colour name in hex Code, Default: `true`
-  @param {boolean} [readonly=false] - To display a fixed colour and hex Code
+  @param {string} [color="000000"] - Current selected colour (hex format only)
 
-Not changeable by user., Default: `false`
-  @param {boolean} [mini=false] - Alternate mini colour picker without form or hex Code, Default: `false`
+This property can be bound to, to fetch the current colour, Default: `"000000"`
+  @param {boolean} [typeable=true] - Allows typing the colour hex Code, Default: `true`
+  @param {boolean} [readonly=false] - Enables read-only mode, Default: `false`
+  @param {boolean} [mini=false] - Alternate mini colour picker without typeable input, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the colour picker trigger, Default: `""`
+
+  ### Events
+  - `change` - Triggered when color changes
 
 -->
 <div class="color-picker-wrapper">
@@ -22,19 +26,20 @@ Not changeable by user., Default: `false`
       on:dragover={onDragOver}
       on:drop={onDrop}
       on:dragleave={onDragLeave}>
-      {#if !mini}
-        <Icon icon="hashtag" icon_style="color:#{color}" />
-      {/if}
       <input
         type="text"
-        class="input {readonly ? 'readonly' : ''} {mini ? 'mini' : ''}"
+        class="input {readonly ? 'readonly' : ''} {mini
+          ? 'mini'
+          : ''} is-{size}"
         readonly={!typeable || readonly || mini}
         maxlength="6"
         {disabled}
         bind:value={color}
         use:colorpicker={color} />
-
-      <span class="color-preview" style="background:#{color}" />
+      {#if !mini}
+        <Icon icon="hashtag" class="is-left" inner_style="color:#{color}" />
+      {/if}
+      <span class="color-preview is-{size}" style="background:#{color}" />
     </div>
   </div>
 </div>
@@ -55,27 +60,32 @@ Not changeable by user., Default: `false`
   }, 300);
 
   /**
-   * Determines the current selected color
+   * Current selected colour (hex format only)
+   *
+   * This property can be bound to, to fetch the current colour
    */
   export let color = "000000",
     /**
-     * Allows typing the colour name in hex Code
+     * Allows typing the colour hex Code
      */
     typeable = true,
     /**
-     * To display a fixed colour and hex Code
-     *
-     * Not changeable by user.
+     * Enables read-only mode
      */
     readonly = false,
     /**
-     * Alternate mini colour picker without form or hex Code
+     * Alternate mini colour picker without typeable input
      */
     mini = false,
     /**
      * Disables the component
      */
-    disabled = false;
+    disabled = false,
+    /**
+     * Size of the colour picker trigger
+     * @type {''|'small'|'medium'|'large'}
+     */
+    size = "";
 
   let dragover = false,
     _colorpicker;

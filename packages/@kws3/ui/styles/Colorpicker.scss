@@ -148,6 +148,7 @@
 }
 
 .color-picker-wrapper {
+  position: relative;
   .color-preview {
     height: 1.5rem;
     width: 1.5rem;
@@ -158,6 +159,18 @@
     z-index: 4;
     box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
       0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+    &.is-small {
+      height: 0.95rem;
+      width: 0.95rem;
+    }
+    &.is-medium {
+      height: 2.15rem;
+      width: 2.15rem;
+    }
+    &.is-large {
+      height: 2.75rem;
+      width: 2.75rem;
+    }
   }
   .control.mini {
     max-width: 2.25rem;
@@ -167,6 +180,18 @@
       top: 0.5rem;
       height: 1.5rem;
       width: 1.5rem;
+      &.is-small {
+        height: 0.95rem;
+        width: 0.95rem;
+      }
+      &.is-medium {
+        height: 2.15rem;
+        width: 2.15rem;
+      }
+      &.is-large {
+        height: 2.75rem;
+        width: 2.75rem;
+      }
     }
   }
   i {
@@ -181,6 +206,17 @@
   input.mini {
     max-width: 2.25rem;
     padding-right: 0.5rem;
+    &.is-small {
+      max-width: 1.7rem;
+    }
+    &.is-medium {
+      max-width: 2.95rem;
+      width: 2.95rem;
+    }
+    &.is-large {
+      max-width: 3.5rem;
+      width: 3.5rem;
+    }
   }
   .dragover input {
     background: #bdd2b9;
