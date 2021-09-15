@@ -2,22 +2,25 @@
   @component
 
 
-  @param {object} [value=null] - Value of the Toggle button, Default: `null`
+  @param {object} [value=null] - Value of the Toggle button
+
+This property can be bound to, to fetch the current value, Default: `null`
   @param {boolean} [disabled=false] - Disables the Toggle button, Default: `false`
-  @param {object} [options={}] - Create or remove button options as objects in an array, Default: `{}`
-  @param {string} [inner_class=""] - CSS classes for Button, Default: `""`
-  @param {string} [active_class="is-primary"] - Define classes for active (pressed) button
+  @param {array} [options=[]] - Define an array of button objects, each object can have the following properties:
 
-Supports `is-outlined` `is-inverted` etc.
+- `name`: Main text of button
+- `value`: Value of the button
+- `subtitle`: Optional subtitle
+- `icon`: Optional Icon to display
+- `active_class`: Custom class to apply when button is active
+- `inactive_class`: Custom class to apply when button is inactive
 
-and `is-primary` `is-warning` etc., Default: `"is-primary"`
-  @param {string} [inactive_class="is-outlined"] - Define classes for inactive (not pressed) button
-
-Supports `is-outlined` `is-inverted` etc.
-
-and `is-primary` `is-warning` etc., Default: `"is-outlined"`
+---, Default: `[]`
+  @param {string} [inner_class=""] - CSS classes for Button `.control` wrapper, Default: `""`
+  @param {string} [active_class="is-primary"] - CSS classes to apply when a button is active (pressed), Default: `"is-primary"`
+  @param {string} [inactive_class="is-outlined"] - CSS classes to apply when a button is inactive (not pressed), Default: `"is-outlined"`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle Buttons, Default: `""`
-  @param {boolean} [fullwidth=false] - Force button to take full width of container, Default: `false`
+  @param {boolean} [fullwidth=false] - Exapnd all buttons so that they occupy full width of wrapping element, Default: `false`
   @param {string} [class=""] - CSS classes for the Button container, Default: `""`
 
   ### Events
@@ -77,6 +80,8 @@ and `is-primary` `is-warning` etc., Default: `"is-outlined"`
   const fire = createEventDispatcher();
   /**
    * Value of the Toggle button
+   *
+   * This property can be bound to, to fetch the current value
    */
   export let value = null,
     /**
@@ -84,28 +89,32 @@ and `is-primary` `is-warning` etc., Default: `"is-outlined"`
      */
     disabled = false,
     /**
-     * Create or remove button options as objects in an array
-     * @type {object}
+     * Define an array of button objects, each object can have the following properties:
+     *
+     * - `name`: Main text of button
+     * - `value`: Value of the button
+     * - `subtitle`: Optional subtitle
+     * - `icon`: Optional Icon to display
+     * - `active_class`: Custom class to apply when button is active
+     * - `inactive_class`: Custom class to apply when button is inactive
+     *
+     * ---
+     *
+     *
+     *
+     * @type {array}
      */
     options = [],
     /**
-     * CSS classes for Button
+     * CSS classes for Button `.control` wrapper
      */
     inner_class = "",
     /**
-     * Define classes for active (pressed) button
-     *
-     * Supports `is-outlined` `is-inverted` etc.
-     *
-     * and `is-primary` `is-warning` etc.
+     * CSS classes to apply when a button is active (pressed)
      */
     active_class = "is-primary",
     /**
-     * Define classes for inactive (not pressed) button
-     *
-     * Supports `is-outlined` `is-inverted` etc.
-     *
-     * and `is-primary` `is-warning` etc.
+     * CSS classes to apply when a button is inactive (not pressed)
      */
     inactive_class = "is-outlined",
     /**
@@ -114,7 +123,7 @@ and `is-primary` `is-warning` etc., Default: `"is-outlined"`
      */
     size = "",
     /**
-     * Force button to take full width of container
+     * Exapnd all buttons so that they occupy full width of wrapping element
      */
     fullwidth = false;
 
