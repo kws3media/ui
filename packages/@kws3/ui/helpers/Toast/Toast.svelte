@@ -1,4 +1,4 @@
-<div class="toast">
+<div class="toast is-{position}">
   <div class="notification is-{color}">
     {#if is_dismissable}
       <button class="delete" on:click={destroy} />
@@ -29,6 +29,11 @@
      * Message background color
      */
     color = "info",
+    /**
+     * Position of the message
+     * @type {'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'}
+     */
+    position = "bottom-right",
     /**
      * Dismissable message
      */
