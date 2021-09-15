@@ -78,12 +78,11 @@ export let args={
       export let icon_only = false;
       export let text = "Delete";
       export let icon = "minus-circle";
-      export let doing_icon = "hourglass";
       export let done_icon = "check";
-      export let doing_text = "Doing";
       export let done_text = "Deleted";
+      export let context = "_context_delete";
       function eraseDo(event, success = true){
-        let {doing, done, error} = event.detail;
+        let { doing, done, error, context } = event.detail;
         doing();
         somePromise().then(() => {
           //set visual state to Done
