@@ -103,10 +103,12 @@
           }
           var h1 = slideInner.scrollHeight,
             h2 = slideInner.clientHeight;
+          var new_height = Math.max(h1, h2);
           /**
-           * Change height of the pane dynamically
+           * Event used to dynamically change the height of the active pane content.<br/>
+           * This will be work based on the `track_height` true.
            */
-          fire("heightChange", { height: Math.max(h1, h2) });
+          fire("heightChange", { height: new_height });
         });
       }
     }
