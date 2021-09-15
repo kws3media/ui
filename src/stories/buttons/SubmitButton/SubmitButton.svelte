@@ -9,6 +9,9 @@
         {size}
         {icon_only}
         {disabled}
+        class={klass}
+        {icon}
+        {tracker}
         bind:this={BUTTON_1} />
       <p class="is-block mt-2">This will succeed.</p>
     </form>
@@ -23,6 +26,9 @@
         {size}
         {icon_only}
         {disabled}
+        class={klass}
+        {icon}
+        {tracker}
         bind:this={BUTTON_2} />
       <p class="is-block mt-2">This will fail.</p>
     </form>
@@ -38,7 +44,16 @@
     saved_text = "Saved",
     error_text = "Failed to Save",
     icon_only = false,
-    disabled = false;
+    disabled = false,
+    icon = "",
+    tracker = {
+      saving: false,
+      saved: false,
+      error: false,
+    };
+
+  let klass = "";
+  export { klass as class };
 
   let BUTTON_1 = null;
   let BUTTON_2 = null;

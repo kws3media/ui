@@ -14,7 +14,8 @@ export let args={
   icon : "save",
   cy : "submit",
   icon_only : false,
-  disabled : false
+  disabled : false,
+  tracker : {}
 };
 
 <Meta
@@ -49,6 +50,29 @@ export let args={
 </Canvas>
 
 <ArgsTable story="Submit Button" />
+
+### Expects a tracker object to be sent from outside, in this format:
+<div class="columns">
+  <div class="column">
+<Source
+  language="javascript"
+  code={
+    dedent`
+      {
+        saving: false,
+        saved: false,
+        error: false
+      }
+    `
+  }
+/>
+  </div>
+  <div class="column">
+    <p>This tracker object can be manipulated from outside to change the state of the button.</p>
+    <p>For example, you can set tracker.saving = true before performing a network operation. And then set tracker.saved = true after the network request has completed.</p>
+</div>
+
+</div>
 
 ### Usage
 #### Import the component:

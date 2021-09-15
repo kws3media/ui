@@ -90,7 +90,7 @@
      */
     disabled = false,
     /**
-     * Tracker property
+     * Tracker object to be sent from outside to change the state of the button.
      */
     tracker = {
       saving: false,
