@@ -19,12 +19,11 @@
     type="text"
     {placeholder}
     bind:value
-    bind:this={inputElement}
-    on:keyup={updateMask} />
+    bind:this={inputElement} />
 </div>
 
 <script>
-  import { onMount } from "svelte";
+  import { onMount, beforeUpdate } from "svelte";
   import { createTextMaskInputElement, conformToMask } from "text-mask-core";
   /**
    * array of mask format
@@ -61,10 +60,6 @@
   export { klass as class };
 
   onMount(() => {
-    setMaskConfig();
-  });
-
-  function setMaskConfig() {
     let textMaskConfig = {
       inputElement,
       mask,
@@ -74,15 +69,24 @@
     };
     const textMaskInputElement = createTextMaskInputElement(textMaskConfig);
     textMaskInputElement.update(inputElement.value);
-  }
+  });
 
-  function updateMask() {
+  beforeUpdate(() => {
     if (value) {
       const result = conformToMask(value, mask, {
         guide: guideOnOutput,
       });
-      //value = result.conformedValue;
-      setMaskConfig();
+      value = result.conformedValue;
+
+      let textMaskConfig = {
+        inputElement,
+        mask,
+        showMask,
+        guide,
+        keepCharPositions,
+      };
+      const textMaskInputElement = createTextMaskInputElement(textMaskConfig);
+      textMaskInputElement.update(inputElement.value);
     }
-  }
+  });
 </script>
