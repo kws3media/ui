@@ -2,17 +2,21 @@ $kws3-persistent-banner-height: 70px;
 $kws3-toast-box-top-height: 5px;
 
 .toast-box {
-  position: absolute;
-  top: $kws3-toast-box-top-height;
-  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  padding: 3em;
+  z-index: 1000;
   pointer-events: none;
-  &.is-bottom {
-    bottom: 0px !important;
-    top: unset !important;
-  }
+  display: flex;
   &.is-top {
-    top: 0px !important;
-    bottom: unset !important;
+    flex-direction: column;
+  }
+  &.is-bottom {
+    flex-direction: column-reverse;
   }
 }
 
@@ -23,9 +27,22 @@ $kws3-toast-box-top-height: 5px;
 }
 
 .toast {
+  display: inline-flex;
   transform: translate3d(0, 0, 0);
   animation: toast-slide-up 0.4s ease;
   pointer-events: fill;
+  &.is-top,
+  &.is-bottom {
+    align-self: center;
+  }
+  &.is-top-left,
+  &.is-bottom-left {
+    align-self: flex-start;
+  }
+  &.is-top-right,
+  &.is-bottom-right {
+    align-self: flex-end;
+  }
   .notification {
     position: relative;
     margin-bottom: 5px;

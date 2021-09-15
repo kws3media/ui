@@ -8,14 +8,14 @@
 <script context="module">
   import { ToastBox, ToastBoxes } from "@kws3/ui";
 
-  if (!ToastBoxes.length) {
-    const box = new ToastBox({
+  //TODO: top and bottom position alignment
+  if (!ToastBoxes.bottom) {
+    ToastBoxes.bottom = new ToastBox({
       target: document.body,
       props: {
-        position: "top",
+        position: "bottom",
       },
     });
-    ToastBoxes.push(box);
   }
 </script>
 

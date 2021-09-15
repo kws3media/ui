@@ -1,4 +1,4 @@
-<div class="toast-box is-bottom">
+<div class="toast-box is-{position}">
   {#each $notifications as notification}
     <Toast {...notification} on:destroy={destroy} />
   {/each}
@@ -29,6 +29,8 @@
 
 <script>
   import Toast from "./Toast.svelte";
+
+  export let position = "bottom";
 
   function destroy({ detail }) {
     notifications.pop(detail.id);
