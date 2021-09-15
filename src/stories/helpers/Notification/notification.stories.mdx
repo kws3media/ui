@@ -6,15 +6,22 @@ import { action } from '@storybook/addon-actions';
 
 export let args={
   color : "info",
+  class : "",
   style : "",
   light : false,
-  dismissable : false
+  dismissable : false,
+  active: true
 };
 
 <Meta
   title="Helpers/Notification"
   component={Notification}
   args={args}
+   argTypes={{
+    color: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`

@@ -1,0 +1,191 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Datepicker } from '@kws3/ui';
+import M from '../../helpers/Message/Message.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  value : "",
+  style : "",
+  class : "",
+  placeholder : "Select Date..",
+  disabled : false,
+  min_date: null,
+  max_date: null,
+  enable_dates: [],
+  disable_dates: [],
+  range_mode: false,
+  options : {},
+  calendar_color: "primary",
+  color:""
+};
+
+<Meta
+  title="Forms/Datepicker"
+  component={Datepicker}
+  args={args}
+  argTypes={{
+    calendar_color:{
+      control: {type:'select'}
+    },
+    color:{
+      control: {type:'select'}
+    },
+    range_mode: {}
+  }}
+/>
+
+<Description markdown={dedent`
+# Datepicker
+## Datepicker component that allows you to select date.
+`}/>
+
+<Canvas>
+  <Story
+  name="Datepicker"
+  args={args}
+  >
+  {(args) => ({
+    Component: Datepicker,
+    props: args,
+    on:{
+      change: action('change'),
+      dateChange: action('dateChange'),
+      ready: action('ready'),
+      open: action('open'),
+      close: action('close'),
+      monthChange: action('monthChange'),
+      yearChange: action('yearChange')
+    }
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Datepicker" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Datepicker } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<div class="notification is-warning"><strong>Note:</strong> <em>Need to import flatpicker SCSS file first</em></div>
+<Source
+  language="javascript"
+  code={
+    dedent`
+    @import 'path/to/node_modules/flatpickr/dist/flatpickr';
+    @import 'path/to/node_modules/@kws3/ui/styles/Datepicker.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-theme-colors: $colors;
+      $kws-datepicker-background: $background;
+      $kws-datepicker-text: $text;
+    `
+  }
+/>
+
+### `min_date` and `max_date`
+
+Can either send a string or a Date object for both these properties.
+**Example:**
+
+<Source
+  language="jsx"
+  code={
+    dedent`
+      <Datepicker
+        min_date="2021-06-06"
+        max_date={(new Date('2021-01-01')}
+      />
+    `
+  }
+/>
+
+
+### `enable_dates` and `disable_dates`
+These two properties expect an array to be sent to them.
+
+To enable specific dates, use `enable_dates`. To disable specific dates, use `disable_dates`.
+
+<div class="columns">
+  <div class="column">
+
+The array can contain a list of dates, in string or object formats.
+**Example:**
+<Source
+  language="jsx"
+  code={
+    dedent`
+      <Datepicker
+        disable_dates={[
+          '2021-01-01',
+          '2021-01-02',
+          new Date(2025, 8, 9)
+        ]}
+      />
+    `
+  }
+/>
+
+  </div>
+  <div class="column">
+
+The array can contain a list of date ranges.
+**Example:**
+<Source
+  language="jsx"
+  code={
+    dedent`
+      <Datepicker
+        disable_dates={[
+          {
+            from: '2021-01-01',
+            to: '2021-01-02'
+          },
+          {
+            from: new Date(2025, 8, 9),
+            to: new Date(2025, 9, 9)
+          }
+        ]}
+      />
+    `
+  }
+/>
+
+  </div>
+  <div class="column">
+
+The array can also contain a function to dynamically determine the date.
+**Example:**
+<Source
+  language="jsx"
+  code={
+    dedent`
+      <Datepicker
+        disable_dates={[
+          function(date) {
+            // return true to disable
+            return (
+              date.getDay() === 0 ||
+              date.getDay() === 6
+            );
+          }
+        ]}
+      />
+    `
+  }
+/>
+
+  </div>
+</div>
