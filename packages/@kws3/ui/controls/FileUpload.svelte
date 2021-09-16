@@ -191,7 +191,7 @@
       uploadField.value = "";
       uploadField.files = null;
       /**
-       * Event used after successful file upload
+       * Event triggered after a successful upload
        */
       fire("file_uploaded", { message });
     }, 3000);
@@ -206,7 +206,7 @@
     uploadField.files = null;
 
     /**
-     * Event used to handle error while uploading
+     * Event triggered when there is an error during upload
      */
     fire("file_upload_error", { message });
   }
@@ -290,7 +290,7 @@
       _total = size;
       formData.append("userfile", file);
       /**
-       * Event used to choose file
+       * Event triggered when a file is chosen for upload
        */
       fire("file_chosen", { getFile, progress, uploaded, error });
     }
