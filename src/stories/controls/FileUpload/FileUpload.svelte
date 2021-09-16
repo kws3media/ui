@@ -2,8 +2,8 @@
   <div class="column" style="width: 400px;">
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event)}
-      on:file_uploaded
-      on:file_upload_error
+      on:file_uploaded={(event) => onFileUploaded(event)}
+      on:file_upload_error={(event) => onFileUploadError(event)}
       {allowed}
       {disabled}
       {message}
@@ -12,15 +12,16 @@
       {max}
       class={klass}
       {color}
-      {size} />
+      {size}
+      {info_color} />
     <p class="is-block mt-2 has-text-success">This will succeed.</p>
   </div>
 
   <div class="column" style="width: 400px;">
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event, true)}
-      on:file_uploaded
-      on:file_upload_error
+      on:file_uploaded={(event) => onFileUploaded(event)}
+      on:file_upload_error={(event) => onFileUploadError(event)}
       {allowed}
       {disabled}
       {message}
@@ -30,7 +31,8 @@
       {classes}
       class={klass}
       {color}
-      {size} />
+      {size}
+      {info_color} />
     <p class="is-block mt-2 has-text-danger">This will fail.</p>
   </div>
 </div>
@@ -57,7 +59,8 @@
     classes = "",
     disabled = false,
     size = "",
-    color = "";
+    color = "",
+    info_color = "warning";
 
   let klass = "";
   export { klass as class };
@@ -82,7 +85,6 @@
           var reader = new FileReader();
           reader.readAsDataURL(file.file.get("userfile"));
           reader.onload = () => {
-            console.log(reader);
             image = reader.result;
           };
         }
@@ -93,5 +95,12 @@
       progrss += ~~(size / 100);
       progress(progrss);
     }, 50);
+  }
+
+  function onFileUploaded() {
+    console.log("File uploaded successfully");
+  }
+  function onFileUploadError() {
+    console.log("File uploaded successfully");
   }
 </script>

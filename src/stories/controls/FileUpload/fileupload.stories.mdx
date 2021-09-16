@@ -5,12 +5,13 @@ import FileUploadDecorator from './FileUpload.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
+  info : "",
   key : "",
   message : "Choose File...",
-  info : "",
   max : 5000000,
   allowed : "*",
   color : "",
+  info_color : "",
   class : "",
   disabled : false
 };
@@ -24,6 +25,9 @@ export let args={
       control: 'select'
     },
     size: {
+      control: 'select'
+    },
+    info_color: {
       control: 'select'
     }
   }}

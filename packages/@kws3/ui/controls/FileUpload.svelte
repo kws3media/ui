@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="level-item" style="max-width:100%">
-        <span class="help is-warning">{info}</span>
+        <span class="help is-{info_color}">{info}</span>
       </div>
       <div class="level-right">
         <span class="help">{fileTypes}</span>
@@ -92,6 +92,11 @@
      * Information/help/subtitle displayed under the uploader
      */
     info = "",
+    /**
+     * Color of the information text
+     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     */
+    info_color = "warning",
     /**
      * Maximum allowed size in bytes
      */
@@ -186,7 +191,7 @@
       uploadField.value = "";
       uploadField.files = null;
       /**
-       * Event used to upload file
+       * Event used after successful file upload
        */
       fire("file_uploaded", { message });
     }, 3000);
