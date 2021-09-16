@@ -2,29 +2,34 @@
   @component
 
 
-  @param {boolean} [active=false] - Active - true/false, Default: `false`
-  @param {string} [classes=""] - Additional classes, Default: `""`
-  @param {string} [style=""] - Inline style of component, Default: `""`
-  @param {boolean} [v_center=false] - V-Center - true/false, Default: `false`
-  @param {boolean} [h_center=false] - H-Center - true/false, Default: `false`
-  @param {boolean} [track_height=false] - Track Height - true/false, Default: `false`
+  @param {boolean} [active=false] - Used to set the active pane., Default: `false`
+  @param {string} [style=""] - Inline CSS of component, Default: `""`
+  @param {boolean} [v_center=true] - Vertical alignment of content inside the active pane., Default: `true`
+  @param {boolean} [h_center=true] - Horizontal alignment of content inside the active pane., Default: `true`
+  @param {boolean} [track_height=true] - If this is set to `false`, the height of the panel will not change based on the pane height, Default: `true`
+  @param {string} [class=""] - CSS classes for the panel, Default: `""`
+
+  ### Events
+  - `heightChange` - Event fired when the height of the pane changes
+
+This will work only when `track_height` is set to `true`
 
   ### Slots
-  - `<slot name="default"  />`
+  - `<slot name="default"  />` - Used to display content
 
 -->
 <div
   bind:clientHeight={_height}
   class="sliding-pane {v_center ? 'v-centered' : ''} {h_center
     ? 'h-centered'
-    : ''} {active ? 'is-active' : ''} {classes}"
+    : ''} {active ? 'is-active' : ''} {klass}"
   {style}>
   <div
     bind:this={slideInner}
     class="sliding-pane-inner {v_center ? 'v-centered' : ''} {h_center
       ? 'h-centered'
       : ''}">
-    <slot />
+    <!--Used to display content--><slot />
   </div>
 </div>
 
@@ -35,37 +40,33 @@
   const fire = createEventDispatcher();
 
   /**
-   * Active step - true/false
-   * @type {boolean}
+   * Used to set the active pane.
    */
   export let active = false,
     /**
-     * Additional classes
-     * @type {string}
-     */
-    classes = "",
-    /**
-     * Inline style of component
-     * @type {string}
+     * Inline CSS of component
      */
     style = "",
     /**
-     * V-Center - true/false
-     * @type {boolean}
+     * Vertical alignment of content inside the active pane.
      */
-    v_center = false,
+    v_center = true,
     /**
-     * H-Center - true/false
-     * @type {boolean}
+     * Horizontal alignment of content inside the active pane.
      */
-    h_center = false,
+    h_center = true,
     /**
-     * Track Height - true/false
-     * @type {boolean}
+     * If this is set to `false`, the height of the panel will not change based on the pane height
      */
-    track_height = false;
+    track_height = true;
 
   let _height, slideInner;
+
+  /**
+   * CSS classes for the panel
+   */
+  let klass = "";
+  export { klass as class };
 
   onMount(() => {
     pollForRender();
@@ -74,7 +75,7 @@
   $: {
     if (active && track_height && (active || _height)) {
       rAF(() => {
-        this.fireSizeChange();
+        fireSizeChange();
       });
     }
   }
@@ -104,7 +105,13 @@
           }
           var h1 = slideInner.scrollHeight,
             h2 = slideInner.clientHeight;
-          fire("heightChange", { height: Math.max(h1, h2) });
+          var new_height = Math.max(h1, h2);
+          /**
+           * Event fired when the height of the pane changes
+           *
+           * This will work only when `track_height` is set to `true`
+           */
+          fire("heightChange", { height: new_height });
         });
       }
     }
