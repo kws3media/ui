@@ -52,16 +52,10 @@ export let args={
 <Source
   language='javascript'
   code={ dedent`
-  import {  Toast, ToastNotifications, ToastBox } from '@kws3/ui';
+  import {  Toast, ToastOutput } from '@kws3/ui';
   //
   //
-  {#each Object.keys($ToastNotifications) as position}
-    <ToastBox {position}>
-      {#each $ToastNotifications[position] as ToastNotification}
-        <Toast {...ToastNotification} on:destroy={destroy} />
-      {/each}
-    </ToastBox>
-  {/each}
+  <ToastOutput on:destroy />
   //
   //
   Toast.push({ message: 'I am a Toast...', position: 'top-left' });

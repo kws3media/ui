@@ -5,16 +5,10 @@
   </div>
 </div>
 
-{#each Object.keys($ToastNotifications) as position}
-  <ToastBox {position}>
-    {#each $ToastNotifications[position] as ToastNotification}
-      <KwsToast {...ToastNotification} on:destroy={destroy} />
-    {/each}
-  </ToastBox>
-{/each}
+<ToastOutput on:destroy={destroy} />
 
 <script>
-  import { Toast as KwsToast, ToastNotifications, ToastBox } from "@kws3/ui";
+  import { Toast as KwsToast, ToastOutput } from "@kws3/ui";
 
   export let message = "I am a Toast...",
     duration = 3000,

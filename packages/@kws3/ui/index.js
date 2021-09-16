@@ -13,6 +13,7 @@ export { default as ActionSheet } from "./helpers/ActionSheet.svelte";
 export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
 export {
   ToastBox,
+  ToastOutput,
   ToastNotifications,
   default as Toast,
 } from "./helpers/Toast";
