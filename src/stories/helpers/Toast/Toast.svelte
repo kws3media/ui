@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<ToastOutput on:destroy={destroy} />
+<ToastOutput on:destroyed />
 
 <script>
   import { Toast as KwsToast, ToastOutput } from "@kws3/ui";
@@ -38,16 +38,12 @@
   }
 
   function pushCustom() {
-    KwsToast.push({
+    let { props, close } = KwsToast.push({
       component: CustomToast,
       message: "I am a customized Toast...",
       is_persistent: true,
       is_dismissable: false,
       position: "top-left",
     });
-  }
-
-  function destroy({ detail }) {
-    KwsToast.pop(detail);
   }
 </script>

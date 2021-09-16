@@ -7,16 +7,14 @@
   @param {any} [notifications=undefined] - `CONST` Notifications property, Default: `undefined`
 
   ### Events
-  - `destroy`
+  - `destroyed`
 -->
 
 {#each Object.keys($notifications) as position}
   <ToastBox {position}>
     {#each $notifications[position] as notification}
       {#if notification}
-        <Toast
-          {...notification}
-          on:destroy={({ detail }) => fire("destroy", { ...detail })} />
+        <Toast {...notification} on:destroy={destroy} />
       {/if}
     {/each}
   </ToastBox>
@@ -82,4 +80,9 @@
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
+
+  const destroy = ({ detail }) => {
+    Toast.close(detail);
+    fire("destroyed", detail);
+  };
 </script>
