@@ -5,15 +5,18 @@
   @param {string} [key=""] - Key property, Default: `""`
   @param {string} [message="Choose File..."] - Message displayed in uploader, Default: `"Choose File..."`
   @param {string} [info=""] - Information/help/subtitle displayed under the uploader, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [info_color="warning"] - Color of the information text, Default: `"warning"`
   @param {number} [max=5000000] - Maximum allowed size in bytes, Default: `5000000`
   @param {any} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
   @param {boolean} [disabled=false] - Disabled the Uploader, Default: `false`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the File Input, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the File Input, Default: `""`
   @param {string} [class=""] - CSS classes for the Uploader, Default: `""`
 
   ### Events
-  - `file_uploaded` - Event used to upload file
-  - `file_upload_error` - Event used to handle error while uploading
-  - `file_chosen` - Event used to choose file
+  - `file_uploaded` - Event triggered after a successful upload
+  - `file_upload_error` - Event triggered when there is an error during upload
+  - `file_chosen` - Event triggered when a file is chosen for upload
 
 -->
 <div
