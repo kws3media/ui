@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<ToastOutput on:destroyed />
+<ToastOutput />
 
 <script>
   import { Toast as KwsToast, ToastOutput } from "@kws3/ui";
@@ -33,17 +33,15 @@
     context,
   };
 
-  function push() {
-    KwsToast.push({ ...payload });
-  }
+  const push = () => KwsToast.push(payload);
 
-  function pushCustom() {
-    let { props, close } = KwsToast.push({
+  const pushCustom = () => {
+    KwsToast.push({
       component: CustomToast,
       message: "I am a customized Toast...",
       is_persistent: true,
       is_dismissable: false,
       position: "top-left",
     });
-  }
+  };
 </script>

@@ -1,6 +1,7 @@
 <!--
   @component
 
+
   @param {string} [message=""] - Message for display, Default: `""`
   @param {number} [duration=3000] - Duration for display message, Default: `3000`
   @param {'warning'|'info'|'danger'|'primary'|'success'} [color="primary"] - Message background color, Default: `"primary"`
@@ -8,10 +9,11 @@
   @param {boolean} [is_dismissable=true] - Dismissable message, Default: `true`
   @param {boolean} [is_persistent=false] - Persistent message, Default: `false`
   @param {string} [context=""] - Context value, Default: `""`
-  @param {object} [custom_component=null] - Custom component, Default: `null`
+  @param {object} [component=null] - Custom component, Default: `null`
 
   ### Events
   - `destroy`
+
 -->
 
 <div class="toast is-{position}">
@@ -78,7 +80,7 @@
 
   let timeout;
 
-  const destroy = () => fire("destroy", { ...$$props });
+  const destroy = () => fire("destroy", $$props);
 
   onMount(() => {
     timeout = setTimeout(() => {

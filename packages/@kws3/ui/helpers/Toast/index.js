@@ -1,15 +1,11 @@
 import Toast from "./Toast.svelte";
 import ToastOutput, { notifications } from "./ToastOutput.svelte";
 
-const push = (props) => {
-  notifications.push(props);
-  return { props, close };
-};
+const pushToast = (props) => notifications.push(props);
+const closeToast = (props) => notifications.pop(props);
 
-const close = (props) => notifications.pop(props);
+Toast.push = pushToast;
+Toast.close = closeToast;
 
-Toast.push = push;
-Toast.close = close;
-
-export { ToastOutput };
+export { ToastOutput, pushToast, closeToast };
 export default Toast;
