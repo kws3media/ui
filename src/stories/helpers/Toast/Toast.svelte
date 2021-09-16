@@ -17,11 +17,13 @@
   </div>
 </div>
 
-<ToastBox position="bottom">
-  {#each $ToastNotifications as ToastNotification}
-    <KwsToast {...ToastNotification} on:destroy={destroy} />
-  {/each}
-</ToastBox>
+{#each Object.keys($ToastNotifications) as position}
+  <ToastBox {position}>
+    {#each $ToastNotifications[position] as ToastNotification}
+      <KwsToast {...ToastNotification} on:destroy={destroy} />
+    {/each}
+  </ToastBox>
+{/each}
 
 <script>
   import { Toast as KwsToast, ToastNotifications, ToastBox } from "@kws3/ui";

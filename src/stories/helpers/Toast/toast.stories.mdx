@@ -63,15 +63,20 @@ export let args={
   language='javascript'
   code={ dedent`
   import {  Toast, ToastNotifications, ToastBox } from '@kws3/ui';
-  //---
-  <ToastBox position="bottom">
-    {#each $ToastNotifications as ToastNotification}
-      <Toast {...ToastNotification} on:destroy={destroy} />
-    {/each}
-  </ToastBox>
-  //---
+  //
+  //
+  {#each Object.keys($ToastNotifications) as position}
+    <ToastBox {position}>
+      {#each $ToastNotifications[position] as ToastNotification}
+        <Toast {...ToastNotification} on:destroy={destroy} />
+      {/each}
+    </ToastBox>
+  {/each}
+  //
+  //
   Toast.push({ message: 'I am a Toast...', position: 'top-left' });
-  //---
+  //
+  //
   function destroy(props) {
     Toast.pop(props);
   }

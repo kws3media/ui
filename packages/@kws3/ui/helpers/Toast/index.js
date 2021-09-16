@@ -3,25 +3,29 @@ import ToastBox from "./ToastBox.svelte";
 import { writable } from "svelte/store";
 
 const notifications = (() => {
-  const { update, subscribe } = writable([]);
+  const { update, subscribe } = writable({
+    top: [],
+    bottom: [],
+  });
 
   const push = (newItem) => {
     update((items) => {
       if (!newItem.id) newItem.id = new Date().getTime();
-      return [...items, newItem];
+      items[getPosition(newItem)].push(newItem);
+      return items;
     });
   };
 
-  const pop = (id) => {
+  const pop = (props) => {
     update((items) => {
-      let _items = [];
+      //TODO: filter array index making issue
 
-      //TODO: filter this array properlly
-      items.forEach((e, i) => {
-        if (e && e.id != id) _items[i] = e;
-      });
+      let _position = getPosition(props);
+      let _items = items[_position];
+      _items = _items.filter((i) => i.id != props.id);
+      items[_position] = _items;
 
-      return _items;
+      return items;
     });
   };
 
@@ -29,6 +33,12 @@ const notifications = (() => {
 })();
 
 const boxes = [];
+
+function getPosition(props) {
+  return props.position && props.position.indexOf("top") === 0
+    ? "top"
+    : "bottom";
+}
 
 async function setBoxes(position) {
   switch (position) {
@@ -60,14 +70,11 @@ export function push(props) {
 }
 
 export function pop(props) {
-  notifications.pop(props.id);
+  notifications.pop(props);
 }
 
 export async function create(props) {
-  let boxPosition = "bottom";
-
-  if (props.position && props.position.indexOf("top") === 0)
-    boxPosition = "top";
+  let boxPosition = getPosition(props);
 
   await setBoxes(boxPosition);
 
