@@ -5,15 +5,25 @@
   @param {string} [key=""] - Key property, Default: `""`
   @param {string} [message="Choose File..."] - Message displayed in uploader, Default: `"Choose File..."`
   @param {string} [info=""] - Information/help/subtitle displayed under the uploader, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [info_color="warning"] - Color of the information text, Default: `"warning"`
   @param {number} [max=5000000] - Maximum allowed size in bytes, Default: `5000000`
   @param {any} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
   @param {boolean} [disabled=false] - Disabled the Uploader, Default: `false`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the File Input, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the File Input, Default: `""`
   @param {string} [class=""] - CSS classes for the Uploader, Default: `""`
 
   ### Events
-  - `file_uploaded` - Event used to upload file
-  - `file_upload_error` - Event used to handle error while uploading
-  - `file_chosen` - Event used to choose file
+  - `file_uploaded` - Triggered when upload completes
+  - `file_upload_error` - Triggered when an error occurs on upload.
+Returns error message in `event.detail`
+  - `file_chosen` - Triggered when file is chosen by user.
+The following functions are returned in `event.detail`:
+
+- `getFile()`: Returns information about the chosen file
+- `progress()`: Function to call for updating progress, send file uploaded bytes as parameter
+- `uploaded()`: Function to call when upload completes
+- `error()`: Function to call on upload error, send error message as parameter
 
 -->
 <div
@@ -191,9 +201,9 @@
       uploadField.value = "";
       uploadField.files = null;
       /**
-       * Event used after successful file upload
+       * Triggered when upload completes
        */
-      fire("file_uploaded", { message });
+      fire("file_uploaded");
     }, 3000);
   }
   function error(msg) {
@@ -206,9 +216,10 @@
     uploadField.files = null;
 
     /**
-     * Event used to handle error while uploading
+     * Triggered when an error occurs on upload.
+     * Returns error message in `event.detail`
      */
-    fire("file_upload_error", { message });
+    fire("file_upload_error", { _error_message });
   }
 
   function updateFile() {
@@ -290,7 +301,13 @@
       _total = size;
       formData.append("userfile", file);
       /**
-       * Event used to choose file
+       * Triggered when file is chosen by user.
+       * The following functions are returned in `event.detail`:
+       *
+       *  - `getFile()`: Returns information about the chosen file
+       *  - `progress()`: Function to call for updating progress, send file uploaded bytes as parameter
+       *  - `uploaded()`: Function to call when upload completes
+       *  - `error()`: Function to call on upload error, send error message as parameter
        */
       fire("file_chosen", { getFile, progress, uploaded, error });
     }
