@@ -1,19 +1,7 @@
 <div class="columns">
   <div class="column has-text-centered">
-    <p>
-      This will create a toast and it will bind to the document body
-      automatically.
-    </p>
-    <button class="button is-primary" type="button" on:click={create}
-      >Create Default</button>
-  </div>
-  <div class="column has-text-centered">
-    <p>
-      This will create a toast and it will need to bind the document body
-      manualy.
-    </p>
     <button class="button is-primary" type="button" on:click={push}
-      >Create Manual</button>
+      >Create Toast</button>
   </div>
 </div>
 
@@ -45,10 +33,6 @@
     is_persistent,
     context,
   };
-
-  function create(props) {
-    KwsToast.create({ ...payload, ...props });
-  }
 
   function push(props) {
     KwsToast.push({ ...payload, ...props });
