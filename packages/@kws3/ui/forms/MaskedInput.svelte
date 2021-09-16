@@ -34,7 +34,7 @@
      */
     showMask = false,
     /**
-     * When set to true (default), both placeholder characters and non-placeholder mask characters are shown
+     * Its a boolean(default `true`) that tells the component whether to be in guide or no guide mode.
      */
     guide = true,
     /**
@@ -48,10 +48,13 @@
     /**
      * Placeholder text
      */
-    placeholder = "";
+    placeholder = "",
+    /**
+     * Input value
+     */
+    value = "";
 
   let inputElement = null;
-  let value = null;
 
   /**
    * Additional class for input
@@ -59,34 +62,33 @@
   let klass = "";
   export { klass as class };
 
+  var textMaskConfig;
+  var textMaskInputElement;
   onMount(() => {
-    let textMaskConfig = {
+    textMaskConfig = {
       inputElement,
       mask,
       showMask,
       guide,
       keepCharPositions,
     };
-    const textMaskInputElement = createTextMaskInputElement(textMaskConfig);
-    textMaskInputElement.update(inputElement.value);
+    textMaskInputElement = createTextMaskInputElement();
+    textMaskInputElement.update(inputElement.value, textMaskConfig);
   });
 
   beforeUpdate(() => {
     if (value) {
-      const result = conformToMask(value, mask, {
+      var config = {
         guide: guideOnOutput,
-      });
-      value = result.conformedValue;
-
-      let textMaskConfig = {
-        inputElement,
-        mask,
-        showMask,
-        guide,
-        keepCharPositions,
       };
-      const textMaskInputElement = createTextMaskInputElement(textMaskConfig);
-      textMaskInputElement.update(inputElement.value);
+
+      if (guideOnOutput && !guide) {
+        textMaskConfig.guide = guideOnOutput;
+      }
+
+      const result = conformToMask(value, mask, config);
+      value = result.conformedValue;
+      textMaskInputElement.update(inputElement.value, textMaskConfig);
     }
   });
 </script>

@@ -7,9 +7,11 @@
       {guide}
       {guideOnOutput}
       {keepCharPositions}
+      {inputElement}
       {placeholder}
       class={klass}
       bind:value={value1} />
+    <p>Output : <code>{value1}</code></p>
   </div>
   <div class="column is-4">
     <label for="credit-card">Credit Card <small>(masked input)</small></label>
@@ -19,9 +21,11 @@
       {guide}
       {guideOnOutput}
       {keepCharPositions}
+      {inputElement}
       {placeholder}
       class={klass}
       bind:value={value2} />
+    <p>Output : <code>{value2}</code></p>
   </div>
   <div class="column is-4">
     <label for="date">Date <small>(masked input)</small></label>
@@ -31,9 +35,11 @@
       {guide}
       {guideOnOutput}
       {keepCharPositions}
+      {inputElement}
       {placeholder}
       class={klass}
       bind:value={value3} />
+    <p>Output : <code>{value3}</code></p>
   </div>
 </div>
 
@@ -85,8 +91,9 @@
   export let showMask = false,
     guide = true,
     guideOnOutput = false,
-    keepCharPositions = true,
-    placeholder = "";
+    keepCharPositions = false,
+    placeholder = "",
+    inputElement = null;
 
   let klass = "";
   export { klass as class };
