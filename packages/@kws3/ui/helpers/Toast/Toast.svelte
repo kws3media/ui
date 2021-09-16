@@ -8,7 +8,7 @@
   @param {'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'} [position="bottom-right"] - Position of the message, Default: `"bottom-right"`
   @param {boolean} [is_dismissable=true] - Dismissable message, Default: `true`
   @param {boolean} [is_persistent=false] - Persistent message, Default: `false`
-  @param {object} [id=null] - Message unique id, Default: `null`
+  @param {string} [context=""] - Context value, Default: `""`
 
   ### Events
   - `destroy`
@@ -63,7 +63,11 @@
     /**
      * Persistent message
      */
-    is_persistent = false;
+    is_persistent = false,
+    /**
+     * Context value
+     */
+    context = "";
 
   let timeout;
 

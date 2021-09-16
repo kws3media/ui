@@ -13,7 +13,8 @@
     color = "primary",
     position = "bottom-right",
     is_dismissable = true,
-    is_persistent = false;
+    is_persistent = false,
+    context = 1;
 
   function create() {
     KwsToast.push({ ...$$props });
