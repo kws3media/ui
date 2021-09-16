@@ -13,7 +13,7 @@
 @import "_variables";
 //bulma itself
 @import "../../node_modules/bulma/bulma";
-
+@import "_steps.sass";
 html {
   overflow-x: scroll;
 }
@@ -95,6 +95,12 @@ pre.prismjs > code {
 
 // Timepicker
 @import "../../packages/@kws3/ui/styles/Timepicker.scss";
+
+// Colorpicker
+@import "../../packages/@kws3/ui/styles/Colorpicker.scss";
+
+//ActionSheet
+@import "../../packages/@kws3/ui/styles/ActionSheet.scss";
 
 // Toast
 @import "../../packages/@kws3/ui/styles/Toast.scss";
