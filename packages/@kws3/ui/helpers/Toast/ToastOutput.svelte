@@ -1,7 +1,9 @@
 {#each Object.keys($notifications) as position}
   <ToastBox {position}>
     {#each $notifications[position] as notification}
-      <Toast {...notification} on:destroy={destroy} />
+      {#if notification}
+        <Toast {...notification} on:destroy={destroy} />
+      {/if}
     {/each}
   </ToastBox>
 {/each}
@@ -25,11 +27,22 @@
 
     const pop = (props) => {
       update((items) => {
-        //TODO: filter array index making issue
-
         let _position = getPosition(props);
         let _items = items[_position];
-        _items = _items.filter((i) => i.id != props.id);
+        let _index;
+
+        _items.forEach((e, i) => {
+          if (e && e.id == props.id) _index = i;
+        });
+
+        if (typeof _index != "undefined") {
+          delete _items[_index];
+        }
+
+        //reset the array index to 0
+        let _filterdItems = _items.filter((i) => i);
+        if (!_filterdItems.length) _items = [];
+
         items[_position] = _items;
 
         return items;
