@@ -1,0 +1,41 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Nl2br } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  text : "This is a sample text\nAnd this is new line"
+};
+
+<Meta
+  title="Helpers/Nl2br"
+  component={Nl2br}
+  args={args}
+/>
+
+<Description markdown={dedent`
+  # Nl2br
+  ## Insert line breaks where newlines occur in the string
+  This component provides a XSS-safe way of outputting multiline text.
+`}/>
+
+<Canvas>
+  <Story
+  name="Nl2br"
+  args={args}
+  >
+  {(args) => ({
+    Component: Nl2br,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Nl2br" />
+
+### Usage
+### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { Nl2br } from '@kws3/ui';`}
+/>

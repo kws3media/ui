@@ -5,25 +5,44 @@ import { action } from '@storybook/addon-actions';
 
 export let args={
   input : null,
-  value : null,
+  value : 0,
   step : 1,
   min : 0,
   max : 100,
   disabled : false,
   fullwidth : false,
+  typeable: true,
   minus_icon : "minus",
   minus_icon_color : "danger",
   minus_button_color : "",
   plus_icon : "plus",
   plus_icon_color : "success",
-  plus_button_color : "",
-  _has_focus : 0
+  plus_button_color : ""
 };
 
 <Meta
   title="Forms/Controls/NumberInput"
   component={NumberInput}
   args={args}
+  argTypes={{
+    size:{
+      control: 'select'
+    },
+    minus_icon:{},
+    minus_icon_color:{
+      control: 'select'
+    },
+    minus_button_color:{
+      control: 'select'
+    },
+    plus_icon:{},
+    plus_icon_color:{
+      control: 'select'
+    },
+    plus_button_color:{
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
