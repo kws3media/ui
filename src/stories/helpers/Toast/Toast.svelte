@@ -4,11 +4,7 @@
       This will create a toast and it will bind to the document body
       automatically.
     </p>
-    <button
-      class="button is-primary"
-      type="button"
-      on:click={() =>
-        create({ message: "I am a default Toast...", position: "top-left" })}
+    <button class="button is-primary" type="button" on:click={create}
       >Create Default</button>
   </div>
   <div class="column has-text-centered">
@@ -16,10 +12,7 @@
       This will create a toast and it will need to bind the document body
       manualy.
     </p>
-    <button
-      class="button is-primary"
-      type="button"
-      on:click={() => push({ message: "I am a manual Toast..." })}
+    <button class="button is-primary" type="button" on:click={push}
       >Create Manual</button>
   </div>
 </div>
