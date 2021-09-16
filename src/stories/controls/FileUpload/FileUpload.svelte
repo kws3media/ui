@@ -10,7 +10,9 @@
       {key}
       {info}
       {max}
-      class={klass} />
+      class={klass}
+      {color}
+      {size} />
     <p class="is-block mt-2 has-text-success">This will succeed.</p>
   </div>
 
@@ -26,7 +28,9 @@
       {info}
       {max}
       {classes}
-      class={klass} />
+      class={klass}
+      {color}
+      {size} />
     <p class="is-block mt-2 has-text-danger">This will fail.</p>
   </div>
 </div>
@@ -51,7 +55,9 @@
     max = 5000000,
     allowed = "*",
     classes = "",
-    disabled = false;
+    disabled = false,
+    size = "",
+    color = "";
 
   let klass = "";
   export { klass as class };

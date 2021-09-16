@@ -53,7 +53,7 @@
       border-radius: 0 $radius $radius 0;
       background: $input-border-color;
       color: #fff;
-      padding: 0.25rem 0;
+      padding: 0.5rem 0;
       width: 1.875rem;
       text-align: center;
       position: absolute;
@@ -116,6 +116,37 @@
           border-bottom-color: $color;
         }
       }
+    }
+  }
+
+  &.is-small {
+    .file-upload-inner {
+      font-size: 0.75rem;
+      height: 2rem;
+      // .filename {
+      //   padding: 0.3rem 0.5rem;
+      // }
+      .up-icon {
+        padding: 0.2rem 0;
+      }
+    }
+  }
+  &.is-medium {
+    .file-upload-inner {
+      font-size: 1.25rem;
+      height: 3rem;
+    }
+    .up-icon {
+      width: 2rem;
+    }
+  }
+  &.is-large {
+    .file-upload-inner {
+      font-size: 1.5rem;
+      height: 3.5rem;
+    }
+    .up-icon {
+      width: 2.5rem;
     }
   }
 }

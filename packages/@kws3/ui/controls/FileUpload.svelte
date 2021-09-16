@@ -17,9 +17,9 @@
 
 -->
 <div
-  class="file-upload {klass} is-{_error ? 'danger' : ''} {disabled ||
-  _is_uploading ||
-  _is_finished
+  class="file-upload {klass} is-{color} is-{size} is-{_error
+    ? 'danger'
+    : ''} {disabled || _is_uploading || _is_finished
     ? 'is-disabled'
     : ''} {_is_finished ? 'is-success' : ''}">
   <div class="file-upload-inner">
@@ -104,7 +104,17 @@
     /**
      * Disabled the Uploader
      */
-    disabled = false;
+    disabled = false,
+    /**
+     * Size of the File Input
+     * @type {''|'small'|'medium'|'large'}
+     */
+    size = "",
+    /**
+     * Color of the File Input
+     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     */
+    color = "";
 
   /**
    * CSS classes for the Uploader
