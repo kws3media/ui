@@ -5,12 +5,14 @@ import FileUploadDecorator from './FileUpload.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
+  info : "",
   key : "",
   message : "Choose File...",
-  info : "",
   max : 5000000,
   allowed : "*",
-  classes : "",
+  color : "",
+  info_color : "grey",
+  class : "",
   disabled : false
 };
 
@@ -18,6 +20,17 @@ export let args={
   title="Forms/Controls/FileUpload"
   component={FileUpload}
   args={args}
+  argTypes={{
+    color: {
+      control: 'select'
+    },
+    size: {
+      control: 'select'
+    },
+    info_color: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
@@ -33,6 +46,11 @@ export let args={
   {(args) => ({
     Component: FileUploadDecorator,
     props: args,
+    on:{
+      'file_uploaded': action('file_uploaded'),
+      'file_upload_error': action('file_upload_error'),
+      'file_chosen': action('file_chosen')
+    }
   })}
   </Story>
 </Canvas>
@@ -45,6 +63,32 @@ export let args={
   language="javascript"
   code={
     dedent`import { FileUpload } from '@kws3/ui';`
+  }
+/>
+
+##### Import the SCSS:
+<Source
+  language='javascript'
+  code={ dedent`@import 'path/to/node_modules/@kws3/ui/styles/FileUpload.scss';`}
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-theme-colors: $colors;
+      $kws-fileupload-bg-color: $input-background-color;
+      $kws-fileupload-border-color: $input-border-color;
+      $kws-fileupload-shadow: $input-shadow;
+      $kws-fileupload-radius: $radius;
+      $kws-fileupload-text-color: $text;
+      $kws-fileupload-disabled-bg-color: $input-disabled-background-color;
+      $kws-fileupload-disabled-border-color: $input-disabled-border-color;
+      $kws-fileupload-progress-bg-color: $success-light;
+      $kws-fileupload-progress-text-color: $success-dark;
+      $kws-fileupload-progress-anim-easing: $easeOutCustom;
+    `
   }
 />
 
@@ -65,13 +109,11 @@ export let args={
     <script>
       import { FileUpload } from "@kws3/ui";
       function onFileChosen(event){
-        event.preventDefault();
         let {getFile, progress, uploaded, error} = event.detail;
-        var file = getFile();
-        var size = file.size;
+        var {name, key, size, file} = getFile();
         progress(0);
         uploadImage(
-          file.file,
+          file,
           function(e){
             progress(e.loaded);
           }
