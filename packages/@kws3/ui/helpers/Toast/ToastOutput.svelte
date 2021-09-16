@@ -1,8 +1,22 @@
+<!--
+  @component
+
+  @param [_] - No properties on this component
+
+  ### Module
+  @param {any} [notifications=undefined] - `CONST` Notifications property, Default: `undefined`
+
+  ### Events
+  - `destroy`
+-->
+
 {#each Object.keys($notifications) as position}
   <ToastBox {position}>
     {#each $notifications[position] as notification}
       {#if notification}
-        <Toast {...notification} on:destroy={destroy} />
+        <Toast
+          {...notification}
+          on:destroy={({ detail }) => fire("destroy", { ...detail })} />
       {/if}
     {/each}
   </ToastBox>
@@ -68,8 +82,4 @@
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
-
-  function destroy({ detail }) {
-    fire("destroy", { ...detail });
-  }
 </script>

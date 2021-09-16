@@ -1,7 +1,6 @@
 <!--
   @component
 
-
   @param {string} [message=""] - Message for display, Default: `""`
   @param {number} [duration=3000] - Duration for display message, Default: `3000`
   @param {'warning'|'info'|'danger'|'primary'|'success'} [color="primary"] - Message background color, Default: `"primary"`
@@ -9,26 +8,30 @@
   @param {boolean} [is_dismissable=true] - Dismissable message, Default: `true`
   @param {boolean} [is_persistent=false] - Persistent message, Default: `false`
   @param {string} [context=""] - Context value, Default: `""`
+  @param {object} [custom_component=null] - Custom component, Default: `null`
 
   ### Events
   - `destroy`
-
 -->
 
 <div class="toast is-{position}">
   <div class="notification is-{color}">
-    <div class="field is-grouped is-marginless" style="align-items:center;">
-      <div class="control is-expanded">
-        <p>{@html message}</p>
-      </div>
-      {#if is_dismissable}
-        <div class="control">
-          <button class="delete" on:click={destroy} />
+    {#if component}
+      <svelte:component this={component} {...$$props} />
+    {:else}
+      <div class="field is-grouped is-marginless" style="align-items:center;">
+        <div class="control is-expanded">
+          <p>{@html message}</p>
         </div>
+        {#if is_dismissable}
+          <div class="control">
+            <button class="delete" on:click={destroy} />
+          </div>
+        {/if}
+      </div>
+      {#if !is_persistent}
+        <div class="toast-progress" style="animation-duration:{duration}ms" />
       {/if}
-    </div>
-    {#if !is_persistent}
-      <div class="toast-progress" style="animation-duration:{duration}ms" />
     {/if}
   </div>
 </div>
@@ -67,7 +70,11 @@
     /**
      * Context value
      */
-    context = "";
+    context = "",
+    /**
+     * Custom component
+     */
+    component = null;
 
   let timeout;
 
