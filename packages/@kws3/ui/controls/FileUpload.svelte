@@ -31,9 +31,7 @@ The following functions are returned in `event.detail`:
 <div
   class="file-upload {klass} is-{color} is-{size} is-{_error
     ? 'danger'
-    : ''} {disabled || _is_uploading || _is_finished
-    ? 'is-disabled'
-    : ''} {_is_finished ? 'is-success' : ''}">
+    : ''} {disabled ? 'is-disabled' : ''} {_is_finished ? 'is-success' : ''}">
   <div class="file-upload-inner">
     <div class="up-icon">
       {#if _is_uploading}
@@ -41,7 +39,7 @@ The following functions are returned in `event.detail`:
       {:else if _is_finished}
         <Icon size="" icon="check-circle" fa_class="fa-lg" />
       {:else}
-        <Icon size="" icon="arrow-circle-up" fa_class="fa-lg" />
+        <Icon size="" icon="upload" fa_class="fa-lg" />
       {/if}
     </div>
     <div class="file">
