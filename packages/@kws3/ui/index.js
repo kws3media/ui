@@ -9,8 +9,12 @@ export { default as CardModal } from "./helpers/CardModal.svelte";
 export { default as Panel } from "./helpers/Panel.svelte";
 export { default as Notification } from "./helpers/Notification.svelte";
 export { default as Loader } from "./helpers/Loader.svelte";
-export { default as Toast } from "./helpers/Toast";
 export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
+export {
+  ToastBox,
+  ToastNotifications,
+  default as Toast,
+} from "./helpers/Toast";
 
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
 export { default as DeleteButton } from "./buttons/DeleteButton.svelte";

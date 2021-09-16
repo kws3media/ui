@@ -49,6 +49,7 @@ export let args={
 
 
 ### Usage
+##### Default Method
 <Source
   language='javascript'
   code={ dedent`
@@ -56,6 +57,25 @@ export let args={
   Toast.create({ message: 'I am a Toast...', position: 'top-left' });
   `}
 />
+
+##### Manual Method
+<Source
+  language='javascript'
+  code={ dedent`
+  import {  Toast, ToastNotifications, ToastBox } from '@kws3/ui';
+  //---
+  <ToastBox position="bottom">
+    {#each $ToastNotifications as ToastNotification}
+      <Toast {...ToastNotification} on:destroy={destroy} />
+    {/each}
+  </ToastBox>
+  //---
+  Toast.push({ message: 'I am a Toast...', position: 'top-left' });
+  //---
+  Toast.pop(props);
+  `}
+/>
+
 
 ##### Import the CSS:
 <Source
