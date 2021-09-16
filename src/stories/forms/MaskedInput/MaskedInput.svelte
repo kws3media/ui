@@ -3,43 +3,49 @@
     <label for="us-phone">US-Phone <small>(masked input)</small></label>
     <KwsMaskedInput
       mask={us_phpne_mask}
-      {showMask}
+      {guide_when_empty}
       {guide}
-      {guideOnOutput}
-      {keepCharPositions}
-      {inputElement}
+      {guide_on_output}
+      {keep_char_positions}
       {placeholder}
+      on:change
       class={klass}
       bind:value={value1} />
     <p>Output : <code>{value1}</code></p>
+    <label for="us-phone">US-Phone <small>(normal input)</small></label>
+    <input type="text" class="input is-small" bind:value={value1} />
   </div>
   <div class="column is-4">
     <label for="credit-card">Credit Card <small>(masked input)</small></label>
     <KwsMaskedInput
       mask={credit_card_mask}
-      {showMask}
+      {guide_when_empty}
       {guide}
-      {guideOnOutput}
-      {keepCharPositions}
-      {inputElement}
+      {guide_on_output}
+      {keep_char_positions}
       {placeholder}
+      on:change
       class={klass}
       bind:value={value2} />
     <p>Output : <code>{value2}</code></p>
+    <label for="credit-card">Credit Card <small>(normal input)</small></label>
+    <input type="text" class="input is-small" bind:value={value2} />
   </div>
   <div class="column is-4">
     <label for="date">Date <small>(masked input)</small></label>
     <KwsMaskedInput
       mask={date_mask}
-      {showMask}
+      {guide_when_empty}
       {guide}
-      {guideOnOutput}
-      {keepCharPositions}
-      {inputElement}
+      {guide_on_output}
+      {keep_char_positions}
       {placeholder}
+      on:change
       class={klass}
       bind:value={value3} />
     <p>Output : <code>{value3}</code></p>
+    <label for="date">Date <small>(normal input)</small></label>
+    <input type="text" class="input is-small" bind:value={value3} />
   </div>
 </div>
 
@@ -82,18 +88,17 @@
     /\d/,
     /\d/,
   ];
-  let date_mask = [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/];
+  let date_mask = [/\d/, /\d/, "/", /\d/, /\d/, "/", /[1-2]/, /\d/, /\d/, /\d/];
 
   let value1 = "",
     value2 = "",
     value3 = "";
 
-  export let showMask = false,
+  export let guide_when_empty = false,
     guide = true,
-    guideOnOutput = false,
-    keepCharPositions = false,
-    placeholder = "",
-    inputElement = null;
+    guide_on_output = false,
+    keep_char_positions = false,
+    placeholder = "";
 
   let klass = "";
   export { klass as class };

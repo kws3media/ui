@@ -5,12 +5,13 @@ import MaskedInputDecorator from './MaskedInput.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  showMask : false,
-  placeholder : "",
-  guide : true,
-  guideOnOutput : false,
-  keepCharPositions : false,
   mask:[],
+  placeholder_char:"",
+  guide : true,
+  guide_when_empty : false,
+  guide_on_output : false,
+  keep_char_positions : false,
+  placeholder : "",
   class : "",
   value : ""
 };
@@ -33,6 +34,9 @@ export let args={
   {(args) => ({
     Component: MaskedInputDecorator,
     props: args,
+    on:{
+      change: action('change')
+    }
   })}
   </Story>
 </Canvas>
@@ -45,5 +49,39 @@ export let args={
   language="javascript"
   code={
     dedent`import { MaskedInput } from '@kws3/ui';`
+  }
+/>
+
+### Mask array examples
+<Source
+  language="jsx"
+  code={
+    dedent`
+    <!-- US Phone number -->
+    <MaskedInput
+      mask={[
+        "(", /[1-9]/, /\d/, /\d/, ")", " ",
+        /\d/, /\d/, /\d/, "-",
+        /\d/, /\d/, /\d/, /\d/
+      ]}
+    />
+    <!-- Credit card -->
+    <MaskedInput
+      mask={[
+        /\d/, /\d/, /\d/, /\d/, " ",
+        /\d/, /\d/, /\d/, /\d/, " ",
+        /\d/, /\d/, /\d/, /\d/, " ",
+        /\d/, /\d/, /\d/, /\d/
+      ]}
+    />
+    <!-- dd/mm/YYYY -->
+    <MaskedInput
+      mask={[
+        /\d/, /\d/, "/",
+        /\d/, /\d/, "/",
+        /[1-2]/, /\d/, /\d/, /\d/
+      ]}
+    />
+    `
   }
 />

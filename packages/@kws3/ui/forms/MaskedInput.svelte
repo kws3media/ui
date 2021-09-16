@@ -2,51 +2,70 @@
   @component
 
 
-  @param {array} [mask=[]] - Input Mask format, Default: `[]`
-  @param {boolean} [showMask=false] - Display the mask as a placeholder in place of the regular placeholder when the input element value is empty, Default: `false`
-  @param {boolean} [guide=true] - When set to true (default), both placeholder characters and non-placeholder mask characters are shown, Default: `true`
-  @param {boolean} [guideOnOutput=false] - Whether the output should contain guide characters, Default: `false`
-  @param {boolean} [keepCharPositions=true] - When set to true (default), deleting a character leaves an empty space to allow overwriting, Default: `true`
-  @param {string} [placeholder=""] - Placeholder text, Default: `""`
-  @param {object} [inputElement=null] - Input Element, Default: `null`
-  @param {object} [value=null] - Value of input, Default: `null`
+  @param {array} [mask=[]] - Mask array
+
+Each element in the array has to be either a string or a regular expression. Each string is a fixed character in the mask and each regular expression is a placeholder that accepts user input., Default: `[]`
+  @param {string} [placeholder_char="_"] - This character represents the fillable spot in the mask, the guide character, Default: `"_"`
+  @param {boolean} [guide=true] - Displays a guide when the user starts typing, Default: `true`
+  @param {boolean} [guide_when_empty=false] - Displays a guide even before the user starts typing
+
+Requires `guide` to be `true`, Default: `false`
+  @param {boolean} [guide_on_output=false] - Whether the output should contain guide characters, Default: `false`
+  @param {boolean} [keep_char_positions=true] - When set to `true`, deleting a character leaves an empty space to allow overwriting
+
+Requires `guide` to be `true`, Default: `true`
+  @param {string} [placeholder=""] - Input placeholder text, Default: `""`
+  @param {string} [value=""] - Input value, Default: `""`
   @param {string} [class=""] - Additional class for input, Default: `""`
 
+  ### Events
+  - `change` - Native input change event
+
 -->
-<div>
-  <input
-    class="input {klass}"
-    type="text"
-    {placeholder}
-    bind:value
-    bind:this={inputElement} />
-</div>
+<!--Native input change event-->
+<input
+  class="input {klass}"
+  type="text"
+  {placeholder}
+  on:change
+  bind:value={_value}
+  bind:this={inputElement} />
 
 <script>
-  import { onMount, beforeUpdate } from "svelte";
+  import { onMount } from "svelte";
   import { createTextMaskInputElement, conformToMask } from "text-mask-core";
   /**
-   * array of mask format
+   * Mask array
+   *
+   * Each element in the array has to be either a string or a regular expression. Each string is a fixed character in the mask and each regular expression is a placeholder that accepts user input.
    */
   export let mask = [],
     /**
-     * Display the mask as a placeholder in place of the regular placeholder when the input element value is empty
+     * This character represents the fillable spot in the mask, the guide character
      */
-    showMask = false,
+    placeholder_char = "_",
     /**
-     * Its a boolean(default `true`) that tells the component whether to be in guide or no guide mode.
+     * Displays a guide when the user starts typing
      */
     guide = true,
     /**
+     * Displays a guide even before the user starts typing
+     *
+     * Requires `guide` to be `true`
+     */
+    guide_when_empty = false,
+    /**
      * Whether the output should contain guide characters
      */
-    guideOnOutput = false,
+    guide_on_output = false,
     /**
-     * When set to true (default), deleting a character leaves an empty space to allow overwriting
+     * When set to `true`, deleting a character leaves an empty space to allow overwriting
+     *
+     * Requires `guide` to be `true`
      */
-    keepCharPositions = true,
+    keep_char_positions = true,
     /**
-     * Placeholder text
+     * Input placeholder text
      */
     placeholder = "",
     /**
@@ -62,33 +81,50 @@
   let klass = "";
   export { klass as class };
 
-  var textMaskConfig;
-  var textMaskInputElement;
+  let textMaskConfig,
+    textMaskInputElement,
+    _value = "",
+    _mounted = false;
+
   onMount(() => {
     textMaskConfig = {
       inputElement,
       mask,
-      showMask,
+      showMask: guide_when_empty,
       guide,
-      keepCharPositions,
+      keepCharPositions: keep_char_positions,
+      placeholderChar: placeholder_char,
     };
-    textMaskInputElement = createTextMaskInputElement();
-    textMaskInputElement.update(inputElement.value, textMaskConfig);
-  });
+    textMaskInputElement = createTextMaskInputElement(textMaskConfig);
 
-  beforeUpdate(() => {
-    if (value) {
-      var config = {
-        guide: guideOnOutput,
-      };
-
-      if (guideOnOutput && !guide) {
-        textMaskConfig.guide = guideOnOutput;
-      }
-
-      const result = conformToMask(value, mask, config);
+    const inputHandler = ({ target: { value: v } }) => {
+      textMaskInputElement.update(v);
+      const result = conformToMask(v, mask, { guide: guide_on_output });
       value = result.conformedValue;
-      textMaskInputElement.update(inputElement.value, textMaskConfig);
-    }
+    };
+
+    inputElement.addEventListener("input", inputHandler);
+
+    textMaskInputElement.update(inputElement.value);
+
+    _mounted = true;
+
+    updateValue();
+
+    return () => {
+      inputElement.removeEventListener("input", inputHandler);
+    };
   });
+
+  $: value, updateValue();
+
+  function updateValue() {
+    if (!_mounted) {
+      return;
+    }
+    const result = conformToMask(value, mask, { guide: false });
+    textMaskInputElement.update(result.conformedValue);
+
+    _value = result.conformedValue;
+  }
 </script>
