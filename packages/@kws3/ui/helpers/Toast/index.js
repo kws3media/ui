@@ -21,7 +21,7 @@ if (!boxes.bottom) {
   });
 }
 
-Toast.push = (props) => {
+Toast.create = (props) => {
   let position = props.position,
     box = "bottom";
 

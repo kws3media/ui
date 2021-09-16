@@ -17,7 +17,7 @@
     context = 1;
 
   function create() {
-    KwsToast.push({
+    KwsToast.create({
       message,
       duration,
       color,
