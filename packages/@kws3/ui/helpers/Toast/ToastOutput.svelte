@@ -32,7 +32,10 @@
         let _index;
 
         _items.forEach((e, i) => {
-          if (e && e.id == props.id) _index = i;
+          if (e && e.id == props.id) {
+            _index = i;
+            return;
+          }
         });
 
         if (typeof _index != "undefined") {
