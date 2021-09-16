@@ -1,119 +1,195 @@
-.file-upload{
-  width:100%;
-  .file-upload-inner{
-    position:relative;
-    background: $input-background-color;
-    border:1px solid $input-border-color;
-    border-radius: $radius;
-    max-width:100%;
-    height:2rem;
-    .file{
-      overflow:hidden;
-      height:100%;
+$kws-theme-colors: $colors !default;
+
+$kws-fileupload-bg-color: $input-background-color !default;
+$kws-fileupload-border-color: $input-border-color !default;
+$kws-fileupload-shadow: $input-shadow !default;
+$kws-fileupload-radius: $radius !default;
+$kws-fileupload-text-color: $text !default;
+$kws-fileupload-disabled-bg-color: $input-disabled-background-color !default;
+$kws-fileupload-disabled-border-color: $input-disabled-border-color !default;
+
+$kws-fileupload-progress-bg-color: $success-light !default;
+$kws-fileupload-progress-text-color: $success-dark !default;
+$kws-fileupload-progress-anim-easing: linear !default;
+@if (variable-exists($easeOutCustom)) {
+  $kws-fileupload-progress-anim-easing: $easeOutCustom !default;
+}
+
+.file-upload {
+  width: 100%;
+  .file-upload-inner {
+    position: relative;
+    background: $kws-fileupload-bg-color;
+    border: 1px solid $kws-fileupload-border-color;
+    border-radius: $kws-fileupload-radius;
+    max-width: 100%;
+    height: 2.5rem;
+    .file {
+      overflow: hidden;
+      height: 100%;
       position: absolute;
-      left:0;
-      top:0;
-      right:1.875rem;
-      box-shadow:$input-shadow;
-      .filename, .upload-progress, .progress-caption{
-        padding:0.5rem;
+      left: 0;
+      top: 0;
+      right: 2rem;
+      box-shadow: $kws-fileupload-shadow;
+      .filename,
+      .upload-progress,
+      .progress-caption {
+        padding: 0.7rem 0.5rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         position: absolute;
         left: 0;
         right: 0;
-        height:100%;
-        line-height:1;
+        height: 100%;
+        line-height: 1.3;
+        display: flex;
+        align-items: center;
       }
-      .upload-progress{
-        padding:0;
-        height:100%;
-        .progress-inner{
-          position:relative;
-          width:100%;
-          height:100%;
-          .bar{
-            border-radius: $radius 0 0 $radius;
-            position:relative;
-            height:100%;
-            background:$success;
-            transition: width 0.3s $easeOutCustom;
+      .upload-progress {
+        padding: 0;
+        height: 100%;
+        left: -1px;
+        .progress-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          .bar {
+            border-radius: $kws-fileupload-radius 0 0 $kws-fileupload-radius;
+            position: relative;
+            height: 100%;
+            background: $kws-fileupload-progress-bg-color;
+            transition: width 0.3s $kws-fileupload-progress-anim-easing;
           }
         }
       }
-      .progress-caption{
+      .progress-caption {
         text-shadow: none;
-        color:$text;
+        color: $kws-fileupload-progress-text-color;
+      }
+      .filename {
+        span {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
-    .up-icon{
-      border-radius: 0 $radius $radius 0;
-      background:$input-border-color;
-      color:#fff;
-      padding:0.25rem 0;
-      width:1.875rem;
-      text-align:center;
+    .up-icon {
+      border-radius: 0 $kws-fileupload-radius $kws-fileupload-radius 0;
+      background: $kws-fileupload-border-color;
+      color: $kws-fileupload-text-color;
+      padding: 0.5rem 0;
+      width: 2rem;
+      text-align: center;
       position: absolute;
-      right:0;
-      top:0;
-      height:100%;
-      .icon{
-        height:1.4rem;
+      right: -1px;
+      top: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .icon {
+        height: 1.4rem;
       }
-      .loader{
-        margin:0.2rem auto;
-        border-left-color:#fff;
-        border-bottom-color:#fff;
+      .loader {
+        margin: 0.2rem auto;
+        border-left-color: $kws-fileupload-text-color;
+        border-bottom-color: $kws-fileupload-text-color;
       }
     }
-    input[type="file"]{
+    input[type="file"] {
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
       width: 100%;
-      opacity:0;
+      opacity: 0;
     }
   }
-  @each $name, $pair in $colors{
+  @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
     $color-invert: nth($pair, 2);
-    &.is-#{$name}{
-      .file-upload-inner{
-        border-color:$color;
-        .up-icon{
-          background:$color;
+    $color-light: findLightColor($color);
+    $color-dark: findDarkColor($color);
+    &.is-#{$name} {
+      .file-upload-inner {
+        border-color: $color;
+        .up-icon {
+          background: $color;
           color: $color-invert;
+          .loader {
+            border-left-color: $color-invert;
+            border-bottom-color: $color-invert;
+          }
+        }
+        .upload-progress {
+          .progress-inner {
+            .bar {
+              background: $color-light;
+            }
+          }
+        }
+        .progress-caption {
+          color: $color-dark;
         }
       }
     }
   }
-  &.is-disabled{
-    opacity:0.6;
-    .file-upload-inner{
-      background:$input-disabled-background-color;
-      border-color:$input-disabled-border-color;
-      color:$text;
-      .up-icon{
+  &.is-disabled {
+    opacity: 0.6;
+    .file-upload-inner {
+      background: $kws-fileupload-disabled-bg-color;
+      border-color: $kws-fileupload-disabled-border-color;
+      color: $kws-fileupload-text-color;
+      .up-icon {
         text-shadow: none;
-        background: $input-disabled-background-color;
+        background: $kws-fileupload-disabled-bg-color;
       }
-      .file{
-        box-shadow:none;
+      .file {
+        box-shadow: none;
       }
     }
-    @each $name, $pair in $colors{
+    @each $name, $pair in $kws-theme-colors {
       $color: nth($pair, 1);
-      &.is-#{$name}{
-        .icon{
-          color:$color;
+      &.is-#{$name} {
+        .icon {
+          color: $color;
         }
-        .loader{
-          border-left-color:$color;
-          border-bottom-color:$color;
+        .loader {
+          border-left-color: $color;
+          border-bottom-color: $color;
         }
       }
+    }
+  }
+
+  &.is-small {
+    .file-upload-inner {
+      font-size: 0.75rem;
+      height: 2rem;
+    }
+    .up-icon {
+      width: 1.75rem;
+    }
+  }
+  &.is-medium {
+    .file-upload-inner {
+      font-size: 1.25rem;
+      height: 3rem;
+    }
+    .up-icon {
+      width: 2.5rem;
+    }
+  }
+  &.is-large {
+    .file-upload-inner {
+      font-size: 1.5rem;
+      height: 3.5rem;
+    }
+    .up-icon {
+      width: 3rem;
     }
   }
 }

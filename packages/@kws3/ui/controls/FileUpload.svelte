@@ -1,26 +1,37 @@
 <!--
   @component
-  
 
-  @param {string} [key=""] - Key property, Default: `""`
+
+  @param {string} [key=""] - A property you can send to uniquely identify an uploader.
+
+It is returned back in the `getFile()` call from `file_chosen` event, Default: `""`
   @param {string} [message="Choose File..."] - Message displayed in uploader, Default: `"Choose File..."`
-  @param {string} [info=""] - Display helper information, Default: `""`
-  @param {number} [max=5000000] - Maximum allowed size, Default: `5000000`
+  @param {string} [info=""] - Information / help / subtitle displayed under the uploader, Default: `""`
+  @param {''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [info_color="grey"] - Color of the information text, Default: `"grey"`
+  @param {number} [max=5000000] - Maximum allowed size in bytes, Default: `5000000`
   @param {any} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
-  @param {string} [classes=""] - CSS classes, Default: `""`
-  @param {boolean} [disabled=false] - Uploader disable - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Disables the uploader, Default: `false`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the File Input, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the File Input, Default: `""`
+  @param {string} [class=""] - CSS classes for the Uploader, Default: `""`
 
   ### Events
-  - `file_uploaded`
-  - `file_upload_error`
+  - `file_uploaded` - Triggered when upload completes
+  - `file_upload_error` - Triggered when an error occurs on upload.
+Returns error message in `event.detail`
+  - `file_chosen` - Triggered when file is chosen by user.
+The following functions are returned in `event.detail`:
+
+- `getFile()`: Returns information about the chosen file
+- `progress()`: Function to call for updating progress, send file uploaded bytes as parameter
+- `uploaded()`: Function to call when upload completes
+- `error()`: Function to call on upload error, send error message as parameter
 
 -->
 <div
-  class="file-upload {classes} is-{_error ? 'danger' : ''} {disabled ||
-  _is_uploading ||
-  _is_finished
-    ? 'is-disabled'
-    : ''} {_is_finished ? 'is-success' : ''}">
+  class="file-upload {klass} is-{color} is-{size} is-{_error
+    ? 'danger'
+    : ''} {disabled ? 'is-disabled' : ''} {_is_finished ? 'is-success' : ''}">
   <div class="file-upload-inner">
     <div class="up-icon">
       {#if _is_uploading}
@@ -28,7 +39,7 @@
       {:else if _is_finished}
         <Icon size="" icon="check-circle" fa_class="fa-lg" />
       {:else}
-        <Icon size="" icon="arrow-circle-up" fa_class="fa-lg" />
+        <Icon size="" icon="upload" fa_class="fa-lg" />
       {/if}
     </div>
     <div class="file">
@@ -42,7 +53,7 @@
       {:else if _is_finished}
         <div class="filename">Upload complete!</div>
       {:else}
-        <div class="filename">{_filename}</div>
+        <div class="filename"><span>{_filename}</span></div>
       {/if}
     </div>
     <input
@@ -64,7 +75,7 @@
         </div>
       </div>
       <div class="level-item" style="max-width:100%">
-        <span class="help is-warning">{info}</span>
+        <span class="help has-text-{info_color}">{info}</span>
       </div>
       <div class="level-right">
         <span class="help">{fileTypes}</span>
@@ -80,46 +91,53 @@
   const fire = createEventDispatcher();
 
   /**
-   * Key property
-   * @type {string}
+   * A property you can send to uniquely identify an uploader.
+   *
+   * It is returned back in the `getFile()` call from `file_chosen` event
    */
-  export let key = "";
+  export let key = "",
+    /**
+     * Message displayed in uploader
+     */
+    message = "Choose File...",
+    /**
+     * Information / help / subtitle displayed under the uploader
+     */
+    info = "",
+    /**
+     * Color of the information text
+     * @type {''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     */
+    info_color = "grey",
+    /**
+     * Maximum allowed size in bytes
+     */
+    max = 5000000,
+    /**
+     * Allowed file types - accepts the string `"*"`, or an array of file type suffixes
+     * @type {any}
+     */
+    allowed = "*",
+    /**
+     * Disables the uploader
+     */
+    disabled = false,
+    /**
+     * Size of the File Input
+     * @type {''|'small'|'medium'|'large'}
+     */
+    size = "",
+    /**
+     * Color of the File Input
+     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     */
+    color = "";
 
   /**
-   * Message displayed in uploader
-   * @type {string}
+   * CSS classes for the Uploader
    */
-  export let message = "Choose File...";
-
-  /**
-   * Display helper information
-   * @type {string}
-   */
-  export let info = "";
-
-  /**
-   * Maximum allowed size
-   * @type {number}
-   */
-  export let max = 5000000;
-
-  /**
-   * Allowed file types - accepts the string `"*"`, or an array of file type suffixes
-   * @type {any}
-   */
-  export let allowed = "*";
-
-  /**
-   * CSS classes
-   * @type {string}
-   */
-  export let classes = "";
-
-  /**
-   * Uploader disable - true/false
-   * @type {boolean}
-   */
-  export let disabled = false;
+  let klass = "";
+  export { klass as class };
 
   let _filename = "No file selected",
     _error = false,
@@ -184,8 +202,10 @@
       formData = null;
       uploadField.value = "";
       uploadField.files = null;
-
-      fire("file_uploaded", { message });
+      /**
+       * Triggered when upload completes
+       */
+      fire("file_uploaded");
     }, 3000);
   }
   function error(msg) {
@@ -197,7 +217,11 @@
     uploadField.value = "";
     uploadField.files = null;
 
-    fire("file_upload_error", { message });
+    /**
+     * Triggered when an error occurs on upload.
+     * Returns error message in `event.detail`
+     */
+    fire("file_upload_error", { _error_message });
   }
 
   function updateFile() {
@@ -278,6 +302,15 @@
     if (valid) {
       _total = size;
       formData.append("userfile", file);
+      /**
+       * Triggered when file is chosen by user.
+       * The following functions are returned in `event.detail`:
+       *
+       *  - `getFile()`: Returns information about the chosen file
+       *  - `progress()`: Function to call for updating progress, send file uploaded bytes as parameter
+       *  - `uploaded()`: Function to call when upload completes
+       *  - `error()`: Function to call on upload error, send error message as parameter
+       */
       fire("file_chosen", { getFile, progress, uploaded, error });
     }
   }
@@ -286,6 +319,4 @@
     uploadField = uploadInput;
     _filename = message;
   });
-
-  // fileuplode working
 </script>
