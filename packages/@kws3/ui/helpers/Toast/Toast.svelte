@@ -63,11 +63,7 @@
     /**
      * Persistent message
      */
-    is_persistent = false,
-    /**
-     * Message unique id
-     */
-    id = null;
+    is_persistent = false;
 
   let timeout;
 
