@@ -2,23 +2,32 @@
   {text}
   {color}
   {icon}
-  {doing_icon}
   {done_icon}
-  {doing_text}
   {done_text}
   {context}
+  {size}
+  {cy}
+  {icon_only}
+  {button_class}
+  {disabled}
+  {should_confirm}
+  class=""
   on:do={onDo} />
 
 <script>
   import { ConfirmButton as KwsButton } from "@kws3/ui";
 
-  export let text = "Click Me",
+  export let button_class = "",
+    text = "Click Me",
+    size = "",
     icon = "check",
     color = "primary",
-    doing_icon = "hourglass",
-    doing_text = "Doing...",
+    cy = "",
     done_icon = "check",
     done_text = "Done",
+    icon_only = false,
+    disabled = false,
+    should_confirm = true,
     context = null;
 
   function onDo(e, success = true) {

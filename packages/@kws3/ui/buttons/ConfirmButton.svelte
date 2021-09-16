@@ -8,8 +8,6 @@
   @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
   @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - Name of the icon displayed during task processing, Default: `"hourglass"`
-  @param {string} [doing_text="Please Wait..."] - Message displayed when processing task, Default: `"Please Wait..."`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
@@ -53,11 +51,6 @@
         <Icon size={icon_size} icon={done_icon} />
         {#if !icon_only}
           <span>{done_text}</span>
-        {/if}
-      {:else if _doing}
-        <Icon size={icon_size} icon={doing_icon} />
-        {#if !icon_only}
-          <span>{doing_text}</span>
         {/if}
       {:else if _confirm}
         <span>
@@ -113,14 +106,6 @@
      * data-cy attribute for cypress
      */
     cy = "",
-    /**
-     * Name of the icon displayed during task processing
-     */
-    doing_icon = "hourglass",
-    /**
-     * Message displayed when processing task
-     */
-    doing_text = "Please Wait...",
     /**
      * Name of the icon displayed after task is completed successfully
      */

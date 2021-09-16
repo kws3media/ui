@@ -5,18 +5,19 @@ import { action } from '@storybook/addon-actions';
 import ConfirmButtonDecorator from "./ConfirmButton.svelte";
 
 export let args={
-  color : "primary",
-  disabled : false,
-  size : "",
-  class : "",
-  icon_only : false,
-  text : "Do it?",
-  icon : "minus-circle",
-  doing_icon : "hourglass",
-  done_icon : "check",
-  doing_text : "Doing",
-  done_text : "Done",
-  context : "_context_confirm"
+  button_class: "",
+  text: "Click Me",
+  size: "",
+  icon: "check",
+  color: "primary",
+  cy: "",
+  done_icon: "check",
+  done_text: "Done",
+  icon_only: false,
+  disabled: false,
+  should_confirm: true,
+  context: null,
+  class: ""
 };
 
 <Meta
