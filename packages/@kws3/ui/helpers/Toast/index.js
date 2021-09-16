@@ -32,7 +32,9 @@ Toast.push = (props) => {
     props,
   });
 
-  toast.$on("destroy", () => toast.$destroy());
+  toast.$on("destroy", ({ detail }) => {
+    toast.$destroy();
+  });
 };
 
 export default Toast;

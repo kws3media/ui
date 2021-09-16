@@ -67,7 +67,7 @@
 
   let timeout;
 
-  const destroy = () => fire("destroy", { id });
+  const destroy = () => fire("destroy", { ...$$props });
 
   onMount(() => {
     timeout = setTimeout(() => {
