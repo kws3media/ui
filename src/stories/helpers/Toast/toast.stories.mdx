@@ -72,7 +72,9 @@ export let args={
   //---
   Toast.push({ message: 'I am a Toast...', position: 'top-left' });
   //---
-  Toast.pop(props);
+  function destroy(props) {
+    Toast.pop(props);
+  }
   `}
 />
 
