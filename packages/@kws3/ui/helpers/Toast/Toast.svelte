@@ -2,6 +2,7 @@
   @component
 
 
+  @param {string} [title=""] - Title for display, Default: `""`
   @param {string} [message=""] - Message for display, Default: `""`
   @param {number} [duration=3000] - Duration for display message, Default: `3000`
   @param {'warning'|'info'|'danger'|'primary'|'success'} [color="primary"] - Message background color, Default: `"primary"`
@@ -21,6 +22,9 @@
     {#if component}
       <svelte:component this={component} {...$$props} />
     {:else}
+      {#if title}
+        <h4 class="title is-5 is-marginless">{title}</h4>
+      {/if}
       <div class="field is-grouped is-marginless" style="align-items:center;">
         <div class="control is-expanded">
           <p>{@html message}</p>
@@ -44,9 +48,13 @@
   const fire = createEventDispatcher();
 
   /**
-   * Message for display
+   * Title for display
    */
-  export let message = "",
+  export let title = "",
+    /**
+     * Message for display
+     */
+    message = "",
     /**
      * Duration for display message
      */

@@ -15,7 +15,8 @@
   import { Toast as KwsToast, ToastOutput } from "@kws3/ui";
   import CustomToast from "./CustomToast.svelte";
 
-  export let message = "I am a Toast...",
+  export let title = "Heading Toast",
+    message = "I am a Toast...",
     duration = 3000,
     color = "primary",
     position = "bottom-right",
@@ -24,6 +25,7 @@
     context = 1;
 
   let payload = {
+    title,
     message,
     duration,
     color,
@@ -38,6 +40,7 @@
   const pushCustom = () => {
     KwsToast.push({
       component: CustomToast,
+      title: "Customised Toast",
       message: "I am a customized Toast...",
       is_persistent: true,
       is_dismissable: false,
