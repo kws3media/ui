@@ -42,6 +42,11 @@ export let args={
   {(args) => ({
     Component: FileUploadDecorator,
     props: args,
+    on:{
+      'file_uploaded': action('file_uploaded'),
+      'file_upload_error': action('file_upload_error'),
+      'file_chosen': action('file_chosen')
+    }
   })}
   </Story>
 </Canvas>

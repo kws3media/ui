@@ -48,7 +48,11 @@
 {/if}
 
 <script>
+  import { createEventDispatcher } from "svelte";
   import { FileUpload as KwsFileUpload } from "@kws3/ui";
+
+  const fire = createEventDispatcher();
+
   export let key = "",
     message = "Choose File...",
     info = "",
@@ -65,6 +69,9 @@
   let image = "";
 
   function onFileChosen(event, error_state = false) {
+    //refire handled event for sotrybook to pick up in actions
+    fire("file_chosen");
+
     event.preventDefault();
     let { getFile, progress, uploaded, error } = event.detail;
     var file = getFile();
