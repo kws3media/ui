@@ -64,7 +64,7 @@
     disabled = false,
     size = "",
     color = "",
-    info_color = "warning";
+    info_color = "grey";
 
   let klass = "";
   export { klass as class };

@@ -75,7 +75,7 @@ The following functions are returned in `event.detail`:
         </div>
       </div>
       <div class="level-item" style="max-width:100%">
-        <span class="help is-{info_color}">{info}</span>
+        <span class="help has-text-{info_color}">{info}</span>
       </div>
       <div class="level-right">
         <span class="help">{fileTypes}</span>
@@ -91,7 +91,9 @@ The following functions are returned in `event.detail`:
   const fire = createEventDispatcher();
 
   /**
-   * Key property
+   * A property you can send to uniquely identify an uploader.
+   *
+   * It is returned back in the `getFile()` call from `file_chosen` event
    */
   export let key = "",
     /**
@@ -99,14 +101,14 @@ The following functions are returned in `event.detail`:
      */
     message = "Choose File...",
     /**
-     * Information/help/subtitle displayed under the uploader
+     * Information / help / subtitle displayed under the uploader
      */
     info = "",
     /**
      * Color of the information text
-     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
-    info_color = "warning",
+    info_color = "grey",
     /**
      * Maximum allowed size in bytes
      */
@@ -117,7 +119,7 @@ The following functions are returned in `event.detail`:
      */
     allowed = "*",
     /**
-     * Disabled the Uploader
+     * Disables the uploader
      */
     disabled = false,
     /**
