@@ -55,7 +55,7 @@ The following functions are returned in `event.detail`:
       {:else if _is_finished}
         <div class="filename">Upload complete!</div>
       {:else}
-        <div class="filename">{_filename}</div>
+        <div class="filename"><span>{_filename}</span></div>
       {/if}
     </div>
     <input

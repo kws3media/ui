@@ -13,7 +13,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      right: 1.875rem;
+      right: 2rem;
       box-shadow: $input-shadow;
       .filename,
       .upload-progress,
@@ -26,7 +26,9 @@
         left: 0;
         right: 0;
         height: 100%;
-        line-height: 1;
+        line-height: 1.3;
+        display: flex;
+        align-items: center;
       }
       .upload-progress {
         padding: 0;
@@ -48,18 +50,28 @@
         text-shadow: none;
         color: $text;
       }
+      .filename {
+        span {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
     }
     .up-icon {
       border-radius: 0 $radius $radius 0;
       background: $input-border-color;
       color: #fff;
       padding: 0.5rem 0;
-      width: 1.875rem;
+      width: 2rem;
       text-align: center;
       position: absolute;
       right: 0;
       top: 0;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       .icon {
         height: 1.4rem;
       }
@@ -123,12 +135,9 @@
     .file-upload-inner {
       font-size: 0.75rem;
       height: 2rem;
-      // .filename {
-      //   padding: 0.3rem 0.5rem;
-      // }
-      .up-icon {
-        padding: 0.2rem 0;
-      }
+    }
+    .up-icon {
+      width: 1.75rem;
     }
   }
   &.is-medium {
@@ -137,7 +146,7 @@
       height: 3rem;
     }
     .up-icon {
-      width: 2rem;
+      width: 2.5rem;
     }
   }
   &.is-large {
@@ -146,7 +155,7 @@
       height: 3.5rem;
     }
     .up-icon {
-      width: 2.5rem;
+      width: 3rem;
     }
   }
 }
