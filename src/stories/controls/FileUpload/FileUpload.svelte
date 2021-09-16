@@ -75,7 +75,6 @@
     //refire handled event for sotrybook to pick up in actions
     fire("file_chosen");
 
-    event.preventDefault();
     let { getFile, progress, uploaded, error } = event.detail;
     var file = getFile();
     var size = file.size;

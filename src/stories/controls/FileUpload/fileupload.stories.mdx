@@ -89,13 +89,11 @@ export let args={
     <script>
       import { FileUpload } from "@kws3/ui";
       function onFileChosen(event){
-        event.preventDefault();
         let {getFile, progress, uploaded, error} = event.detail;
-        var file = getFile();
-        var size = file.size;
+        var {name, key, size, file} = getFile();
         progress(0);
         uploadImage(
-          file.file,
+          file,
           function(e){
             progress(e.loaded);
           }
