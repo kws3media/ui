@@ -17,6 +17,14 @@
     context = 1;
 
   function create() {
-    KwsToast.push({ ...$$props });
+    KwsToast.push({
+      message,
+      duration,
+      color,
+      position,
+      is_dismissable,
+      is_persistent,
+      context,
+    });
   }
 </script>
