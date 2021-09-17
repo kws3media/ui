@@ -1,5 +1,4 @@
 import Toast from "./Toast.svelte";
-import ToastOutput from "./ToastOutput.svelte";
 import { writable, get } from "svelte/store";
 import { defaultToastPlacement } from "../../settings";
 
@@ -64,5 +63,4 @@ export const closeToast = (props) => notifications.pop(props);
 Toast.push = pushToast;
 Toast.close = closeToast;
 
-export { ToastOutput };
 export default Toast;
