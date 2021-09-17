@@ -5,9 +5,6 @@
 
   ### Module
   @param {any} [notifications=undefined] - `CONST` Notifications property, Default: `undefined`
-
-  ### Events
-  - `destroyed`
 -->
 
 {#each Object.keys($notifications) as position}
