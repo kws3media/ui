@@ -2,26 +2,26 @@
   @component
 
 
-  @param {string} [text="Copy to clipboard"] - Default tooltip text next to the copy icon, Default: `"Copy to clipboard"`
+  @param {string} [text="Copy to clipboard"] - Default tooltip text, Default: `"Copy to clipboard"`
   @param {string} [icon="copy"] - Icon to be used as the copy button, Default: `"copy"`
-  @param {string} [copied_text="Copied!"] - Tooltip displayed after text is copied, Default: `"Copied!"`
+  @param {string} [copied_text="Copied!"] - Tooltip displayed after a succesful copy operation, Default: `"Copied!"`
   @param {string} [copied_icon="check"] - Icon displayed on successful copy operation, Default: `"check"`
-  @param {string} [copy=""] - Text copied into clipboard, Default: `""`
+  @param {string} [copy=""] - Text to be copied into clipboard, Default: `""`
   @param {boolean} [copied=false] - Determines if the copy operation has taken place, Default: `false`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [copied_icon_color="success"] - Color of the Icon
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [copied_icon_color="success"] - Color of the Icon after a succesful copy operation
 
-If `''` is selected, the copied icon will take the colour of copy icon, Default: `"success"`
+If `''` is selected, Icon will not change colour after copying, Default: `"success"`
   @param {string} [class=""] - CSS classes for the whole component, Default: `""`
 
   ### Slots
-  - `<slot name="default"  />` - Used to store clipboard text initially
+  - `<slot name="default"  />` - Description label displayed before copy icon
 
 -->
 <span
   class="kws-clipboard-copier {klass} has-tooltip"
   on:click={copyToClipboard}
   data-tooltip={copied ? copied_text : text}>
-  <!--Used to store clipboard text initially--><slot />
+  <!--Description label displayed before copy icon--><slot />
   <Icon
     icon={copied ? copied_icon : icon}
     size="small"
@@ -39,7 +39,7 @@ If `''` is selected, the copied icon will take the colour of copy icon, Default:
   import { Icon } from "@kws3/ui";
 
   /**
-   * Default tooltip text next to the copy icon
+   * Default tooltip text
    */
   export let text = "Copy to clipboard",
     /**
@@ -47,7 +47,7 @@ If `''` is selected, the copied icon will take the colour of copy icon, Default:
      */
     icon = "copy",
     /**
-     * Tooltip displayed after text is copied
+     * Tooltip displayed after a succesful copy operation
      */
     copied_text = "Copied!",
     /**
@@ -55,7 +55,7 @@ If `''` is selected, the copied icon will take the colour of copy icon, Default:
      */
     copied_icon = "check",
     /**
-     * Text copied into clipboard
+     * Text to be copied into clipboard
      */
     copy = "",
     /**
@@ -63,9 +63,9 @@ If `''` is selected, the copied icon will take the colour of copy icon, Default:
      */
     copied = false,
     /**
-     * Color of the Icon
+     * Color of the Icon after a succesful copy operation
      *
-     * If `''` is selected, the copied icon will take the colour of copy icon
+     * If `''` is selected, Icon will not change colour after copying
      *
      * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */

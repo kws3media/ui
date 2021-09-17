@@ -13,8 +13,8 @@
           class={klass} />
       </div>
       <p>{text_area_1}</p>
+      <hr cass="is-small" />
       <div class="has-text-danger is-size-6">
-        <p class="help is-warning">Example of Copier with Text</p>
         <KwsClipboardCopier
           {text}
           {icon}
@@ -25,6 +25,7 @@
           {copied_icon_color}
           class={klass}>Copy above text</KwsClipboardCopier>
       </div>
+      <p class="help">Example of Copier with text in the <code>slot</code></p>
     </Panel>
     <Panel>
       <div class="has-text-info is-size-4">
@@ -41,14 +42,19 @@
         </div>
       </div>
       <p>{copy}</p>
+      <p class="help">
+        Fill/Update <code>copy</code> property in table <em>(ArgsTable)</em> below
+      </p>
     </Panel>
   </div>
 </div>
 
 <div class="columns">
   <div class="column">
-    <h4 class="subtitle">Paste copied text</h4>
-    <textarea class="input is-fullwidth" />
+    <div class="field">
+      <label for="" class="label">Paste copied text</label>
+      <textarea class="input is-fullwidth" />
+    </div>
   </div>
 </div>
 
