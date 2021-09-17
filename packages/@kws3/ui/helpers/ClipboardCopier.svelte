@@ -1,15 +1,20 @@
-<a
-  href={"javascript:void(0)"}
-  class="kws-clipboard-copier has-text-{color} {text_size} {klass}"
+<span
+  class="kws-clipboard-copier {klass} has-tooltip"
   on:click={copyToClipboard}
   data-tooltip={copied ? copied_text : text}>
   <!--Used to display clipboard text--><slot />
   <Icon
     icon={copied ? copied_icon : icon}
-    {size}
-    color={copied ? "success" : color}
+    size="small"
+    color={copied ? copied_icon_color : ""}
     icon_class={copied ? "is-bouncing-once" : ""} />
-</a>
+</span>
+
+<style lang="scss">
+  span {
+    cursor: pointer;
+  }
+</style>
 
 <script>
   import { Icon } from "@kws3/ui";
@@ -39,32 +44,16 @@
      */
     copied = false,
     /**
-     * Size of the copier
-     *  @type {''|'small'|'medium'|'large'}
-     */
-    size = "",
-    /**
      * Color of the Icon
      * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
-    color = "";
+    copied_icon_color = "success";
 
   /**
    * Additional CSS classes
    */
   let klass = "";
   export { klass as class };
-
-  let text_size = "";
-  let sizeArr = {
-    small: "is-size-7",
-    medium: "is-size-6",
-    large: "is-size-5",
-  };
-
-  $: {
-    text_size = sizeArr[size];
-  }
 
   function copyToClipboard() {
     const textArea = document.createElement("textarea");

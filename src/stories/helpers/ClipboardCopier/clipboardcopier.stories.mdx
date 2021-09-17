@@ -5,14 +5,13 @@ import ClipboardCopierDecorator from "./ClipboardCopier.svelte";
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  text : "Copy to clipboard",
-  icon : "copy",
+  copied_icon_color:"success",
   copied_text : "Copied!",
   copied_icon : "check",
+  text : "Copy to clipboard",
+  icon : "copy",
   copy : "",
   copied : false,
-  size : "",
-  color : "",
   class : ""
 };
 
@@ -21,10 +20,7 @@ export let args={
   component={ClipboardCopier}
   args={args}
   argTypes={{
-    size:{
-      control: {type: "select"},
-    },
-    color:{
+    copied_icon_color:{
       control: {type: "select"},
     }
   }}
