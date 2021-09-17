@@ -1,6 +1,6 @@
 <a
   href={"javascript:void(0)"}
-  class="kws-clipboard-copier has-text-{color} {klass}"
+  class="kws-clipboard-copier has-text-{color} {text_size} {klass}"
   on:click={copyToClipboard}
   data-tooltip={copied ? copied_text : text}>
   <!--Used to display clipboard text--><slot />
@@ -42,7 +42,7 @@
      * Size of the Icon
      *  @type {''|'small'|'medium'|'large'}
      */
-    size = "small",
+    size = "",
     /**
      * Color of the Icon
      * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
@@ -54,6 +54,17 @@
    */
   let klass = "";
   export { klass as class };
+
+  let text_size = "";
+  let sizeArr = {
+    small: "is-size-7",
+    medium: "is-size-6",
+    large: "is-size-5",
+  };
+
+  $: {
+    text_size = sizeArr[size];
+  }
 
   function copyToClipboard() {
     const textArea = document.createElement("textarea");
