@@ -12,7 +12,7 @@
 <ToastOutput />
 
 <script>
-  import { Toast as KwsToast, ToastOutput } from "@kws3/ui";
+  import { Toast as KwsToast, ToastOutput, closeToast } from "@kws3/ui";
   import CustomToast from "./CustomToast.svelte";
 
   export let title = "Heading Toast",
@@ -49,6 +49,14 @@
       is_dismissable: false,
       position,
       color,
+      beforeClose: (props) => {
+        //do something here before close
+        console.log("before close");
+      },
+      afterClose: (props) => {
+        //do something here after close
+        console.log("after close");
+      },
     });
   };
 </script>

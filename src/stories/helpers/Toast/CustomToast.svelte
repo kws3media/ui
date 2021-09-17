@@ -7,19 +7,18 @@
     <p>{@html message}</p>
   </div>
   <div class="control">
-    <button class="button is-danger is-small" type="button" on:click={close}
-      >Close</button>
+    <button
+      class="button is-danger is-small"
+      type="button"
+      on:click={() => fire("destroy", $$props)}>Close</button>
   </div>
 </div>
 
 <script>
-  import { closeToast } from "@kws3/ui";
+  import { createEventDispatcher } from "svelte";
+
+  const fire = createEventDispatcher();
 
   export let title = "",
     message = "";
-
-  const close = () => {
-    closeToast($$props);
-    //do something else here
-  };
 </script>

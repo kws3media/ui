@@ -77,12 +77,6 @@
 <script>
   import Toast from "./Toast.svelte";
   import ToastBox from "./ToastBox.svelte";
-  import { createEventDispatcher } from "svelte";
 
-  const fire = createEventDispatcher();
-
-  const destroy = ({ detail }) => {
-    Toast.close(detail);
-    fire("destroyed", detail);
-  };
+  const destroy = ({ detail }) => Toast.close(detail);
 </script>

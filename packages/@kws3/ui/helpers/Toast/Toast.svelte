@@ -11,6 +11,8 @@
   @param {boolean} [is_persistent=false] - Persistent message, Default: `false`
   @param {string} [context=""] - Context value, Default: `""`
   @param {object} [component=null] - Custom component, Default: `null`
+  @param {function} [beforeClose(props)] - Callback function call before close event
+  @param {function} [afterClose(props)] - Callback function call after close event
 
   ### Module
   @param {function} [setDefaultPlacement(position)] - It can set default position
@@ -23,7 +25,7 @@
 <div class="toast is-{usedPosition}">
   <div class="notification is-{color}">
     {#if component}
-      <svelte:component this={component} {...$$props} />
+      <svelte:component this={component} {...$$props} on:destroy={destroy} />
     {:else}
       {#if title}
         <h4 class="title is-5 is-marginless">{title}</h4>
@@ -102,7 +104,15 @@
     /**
      * Custom component
      */
-    component = null;
+    component = null,
+    /**
+     * Callback function call before close event
+     */
+    beforeClose = (props) => {},
+    /**
+     * Callback function call after close event
+     */
+    afterClose = (props) => {};
 
   let timeout, usedPosition;
 
@@ -115,7 +125,11 @@
         : "bottom-right";
   }
 
-  const destroy = () => fire("destroy", $$props);
+  const destroy = () =>
+    Promise.resolve(beforeClose($$props)).then(() => {
+      fire("destroy", $$props);
+      afterClose($$props);
+    });
 
   onMount(() => {
     timeout = setTimeout(() => {
