@@ -38,7 +38,7 @@ export { default as Timepicker } from "./forms/Timepicker.svelte";
 export { datepicker as DatepickerAction } from "./forms/actions.js";
 export { timepicker as TimepickerAction } from "./forms/actions.js";
 
-export { default as GridView } from "./datagrid/gridview/GridView.svelte";
+export { default as GridView } from "./datagrid/GridView/GridView.svelte";
 export { default as TileView } from "./datagrid/TileView/TileView.svelte";
 export { default as DataSearch } from "./datagrid/DataSearch/DataSearch.svelte";
 export { default as Pagination } from "./datagrid/Pagination/Pagination.svelte";
