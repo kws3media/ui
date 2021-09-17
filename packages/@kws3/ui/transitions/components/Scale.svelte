@@ -7,7 +7,7 @@
   @param {object} [easing=null] - Easing property, Default: `null`
   @param {number} [delay=0] - Delay property, Default: `0`
   @param {number} [duration=300] - Duration property, Default: `300`
-  @param {string} [klass=""] - Klass property, Default: `""`
+  @param {string} [class=""] - CSS classes for the wrapper element, Default: `""`
 
   ### Slots
   - `<slot name="default"  />`
@@ -15,6 +15,7 @@
 -->
 <div
   class="transible {klass}"
+  style="transform:translate3d(0,0,0)"
   in:scale={{
     from: from || 0.5,
     to: to || 1,
@@ -33,6 +34,11 @@
     to = 1,
     easing = null,
     delay = 0,
-    duration = 300,
-    klass = "";
+    duration = 300;
+
+  /**
+   * CSS classes for the wrapper element
+   */
+  let klass = "";
+  export { klass as class };
 </script>
