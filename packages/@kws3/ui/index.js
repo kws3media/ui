@@ -1,8 +1,6 @@
-import Icon from "./helpers/Icon.svelte";
-import { setDefaultIconType } from "./helpers/Icon.svelte";
-Icon.setDefaultIconType = setDefaultIconType;
-export { Icon };
+export { applySettings } from "./settings";
 
+export { default as Icon } from "./helpers/Icon.svelte";
 export { default as Message } from "./helpers/Message.svelte";
 export { default as Modal } from "./helpers/Modal.svelte";
 export { default as CardModal } from "./helpers/CardModal.svelte";
@@ -15,6 +13,7 @@ export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
 export { default as DeleteButton } from "./buttons/DeleteButton.svelte";
 export { default as SubmitButton } from "./buttons/SubmitButton.svelte";
+export { default as ProcessButton } from "./buttons/ProcessButton.svelte";
 
 export { default as Checkbox } from "./controls/Checkbox.svelte";
 export { default as FileUpload } from "./controls/FileUpload.svelte";
@@ -44,3 +43,4 @@ export { default as GridView } from "./datagrid/GridView/GridView.svelte";
 export { default as TileView } from "./datagrid/TileView/TileView.svelte";
 export { default as DataSearch } from "./datagrid/DataSearch/DataSearch.svelte";
 export { default as Pagination } from "./datagrid/Pagination/Pagination.svelte";
+export { default as DataSort } from "./datagrid/DataSort/DataSort.svelte";

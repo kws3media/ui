@@ -1,32 +1,32 @@
 <!--
   @component
-  
 
-  @param {string} [classes=""] - CSS classes, Default: `""`
-  @param {string} [button_class=""] - CSS classes for button, Default: `""`
+
+  @param {string} [button_class=""] - CSS classes for the Confirm button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
-  @param {'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {string} [icon="check"] - Icon of the Button - can use any fa icon, Default: `"check"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Button, Default: `"info"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
+  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - Icon shows during process, Default: `"hourglass"`
-  @param {string} [doing_text="Please Wait..."] - Text shows during process, Default: `"Please Wait..."`
-  @param {string} [done_icon="check"] - Icon shows after process complete, Default: `"check"`
-  @param {string} [done_text="Done"] - Text shows after process complete, Default: `"Done"`
-  @param {boolean} [confirm=false] - Boolean - true/false, Default: `false`
-  @param {boolean} [icon_only=false] - Display icon only - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Button disable - true/false, Default: `false`
+  @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
+  @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`
+  @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
+  @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
+  @param {boolean} [should_confirm=true] - When `false`, skips the confirmation prompt, and makes it a one step process, Default: `true`
+  @param {string} [context=""] - Context property, Default: `""`
+  @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
-  - `done`
-  - `error`
+  - `do` - Fires an event when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
+  - `done` - Fires an event when task completes
+  - `error` - Fires an event when there is an error
 
 -->
-<div class="field {confirm ? 'has-addons' : ''} {classes}" data-cy={cy}>
+<div class="field {_confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
   <p class="control">
-    {#if confirm}
+    {#if _confirm}
       <button
-        class="button is-success is-outlined is-shadowless is-{size} {button_class}"
+        class="button is-success is-light is-shadowless is-{size} {button_class}"
         type="button"
         on:click|preventDefault|stopPropagation={cancel}>
         Cancel
@@ -42,7 +42,7 @@
         : _done
         ? main_color
         : confirm
-        ? 'is-outlined ' + main_color
+        ? main_color
         : main_color} {button_class}"
       type="button"
       on:click|preventDefault|stopPropagation={doit}
@@ -52,12 +52,7 @@
         {#if !icon_only}
           <span>{done_text}</span>
         {/if}
-      {:else if _doing}
-        <Icon size={icon_size} icon={doing_icon} />
-        {#if !icon_only}
-          <span>{doing_text}</span>
-        {/if}
-      {:else if confirm}
+      {:else if _confirm}
         <span>
           {#if !icon_only}
             Are you sure
@@ -69,7 +64,7 @@
       {:else if _error}
         <Icon size={icon_size} icon="exclamation" />
         <span>Failed</span>
-      {:else if !confirm && !_doing && !_done && !_error}
+      {:else}
         <Icon size={icon_size} {icon} />
         {#if !icon_only}
           <span>{text}</span>
@@ -86,107 +81,87 @@
   const fire = createEventDispatcher();
 
   /**
-   * CSS classes
-   * @type {string}
+   * CSS classes for the Confirm button
    */
-  export let classes = "";
+  export let button_class = "",
+    /**
+     * Button text
+     */
+    text = "",
+    /**
+     * Size of the Button
+     * @type {''|'small'|'medium'|'large'}
+     */
+    size = "",
+    /**
+     * Name of the icon that is to be displayed in the button
+     */
+    icon = "check",
+    /**
+     * Color of the Button
+     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     */
+    color = "primary",
+    /**
+     * data-cy attribute for cypress
+     */
+    cy = "",
+    /**
+     * Name of the icon displayed after task is completed successfully
+     */
+    done_icon = "check",
+    /**
+     * Button text displayed after task is completed successfully
+     */
+    done_text = "Done",
+    /**
+     * Removes text, and text space in the button
+     */
+    icon_only = false,
+    /**
+     * Disables the button when `true`
+     */
+    disabled = false,
+    /**
+     * When `false`, skips the confirmation prompt, and makes it a one step process
+     */
+    should_confirm = true,
+    /**
+     * Context property
+     */
+    context = "";
 
   /**
-   * CSS classes for button
-   * @type {string}
+   * CSS classes for button container
    */
-  export let button_class = "";
-
-  /**
-   * Button text
-   * @type {string}
-   */
-  export let text = "";
-
-  /**
-   * Size of the Button
-   * @type {'small'|'medium'|'large'}
-   */
-  export let size = "";
-
-  /**
-   * Icon of the Button - can use any fa icon
-   * @type {string}
-   */
-  export let icon = "check";
-
-  /**
-   * Color of the Button
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export let color = "info";
-
-  /**
-   * data-cy attribute for cypress
-   * @type {string}
-   */
-  export let cy = "";
-
-  /**
-   * Icon shows during process
-   * @type {string}
-   */
-  export let doing_icon = "hourglass";
-
-  /**
-   * Text shows during process
-   * @type {string}
-   */
-  export let doing_text = "Please Wait...";
-
-  /**
-   * Icon shows after process complete
-   * @type {string}
-   */
-  export let done_icon = "check";
-
-  /**
-   * Text shows after process complete
-   * @type {string}
-   */
-  export let done_text = "Done";
-
-  /**
-   * Boolean - true/false
-   * @type {boolean}
-   */
-  export let confirm = false;
-
-  /**
-   * Display icon only - true/false
-   * @type {boolean}
-   */
-  export let icon_only = false;
-
-  /**
-   * Button disable - true/false
-   * @type {boolean}
-   */
-  export let disabled = false;
+  let klass = "";
+  export { klass as class };
 
   let _doing = false,
     _done = false,
     _error = false;
 
+  let confirm = false;
+
   $: main_color = "is-" + color;
   $: icon_size = "small";
+  $: _confirm = should_confirm && confirm;
 
   function cancel() {
     confirm = false;
   }
+
   function doit() {
-    let _confirm = confirm;
+    let _confirm = should_confirm ? confirm : true;
     if (!_confirm) {
       confirm = true;
       return;
     }
     if (_confirm) {
-      fire("do", { doing, done, error });
+      /**
+       * Fires an event when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
+       */
+      fire("do", { doing, done, error, context });
     }
   }
 
@@ -196,6 +171,7 @@
     _done = false;
     _error = false;
   }
+
   function done() {
     _doing = false;
     _done = true;
@@ -203,9 +179,13 @@
 
     setTimeout(() => {
       _done = false;
+      /**
+       * Fires an event when task completes
+       */
       fire("done");
     }, 1500);
   }
+
   function error() {
     _done = false;
     _doing = false;
@@ -213,6 +193,9 @@
 
     setTimeout(() => {
       _error = false;
+      /**
+       * Fires an event when there is an error
+       */
       fire("error");
     }, 1500);
   }
