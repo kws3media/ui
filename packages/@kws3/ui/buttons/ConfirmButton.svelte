@@ -13,7 +13,7 @@
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {boolean} [should_confirm=true] - ask confirm question if it is true, Default: `true`
-  @param {object} [context=null] - Context property, Default: `null`
+  @param {string} [context=""] - Context property, Default: `""`
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
@@ -64,7 +64,7 @@
       {:else if _error}
         <Icon size={icon_size} icon="exclamation" />
         <span>Failed</span>
-      {:else if !confirm && !_doing && !_done && !_error}
+      {:else}
         <Icon size={icon_size} {icon} />
         {#if !icon_only}
           <span>{text}</span>
@@ -129,7 +129,7 @@
     /**
      * Context property
      */
-    context = null;
+    context = "";
 
   /**
    * CSS classes for button container
