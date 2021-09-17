@@ -5,22 +5,31 @@ import { action } from '@storybook/addon-actions';
 import SubmitButtonDecorator from "./SubmitButton.svelte";
 
 export let args={
-  classes : "",
-  size : "",
-  color : "primary",
+  class : "",
   text : "Save Changes",
+  icon : "save",
+  icon_only : false,
   saved_text : "Saved",
   error_text : "Failed to Save",
-  icon : "save",
+  disabled : false,
   cy : "submit",
-  icon_only : false,
-  disabled : false
+  tracker : {},
+  color : "primary",
+  size : "",
 };
 
 <Meta
   title="Buttons/Submit Button"
   component={SubmitButton}
   args={args}
+  argTypes={{
+    color: {
+      control: 'select'
+    },
+    size: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
@@ -41,6 +50,29 @@ export let args={
 </Canvas>
 
 <ArgsTable story="Submit Button" />
+
+### Expects a tracker object to be sent from outside, in this format:
+<div class="columns">
+  <div class="column">
+<Source
+  language="javascript"
+  code={
+    dedent`
+      {
+        saving: false,
+        saved: false,
+        error: false
+      }
+    `
+  }
+/>
+  </div>
+  <div class="column">
+    <p>This tracker object can be manipulated from outside to change the state of the button.</p>
+    <p>For example, you can set tracker.saving = true before performing a network operation. And then set tracker.saved = true after the network request has completed.</p>
+</div>
+
+</div>
 
 ### Usage
 #### Import the component:
