@@ -28,7 +28,7 @@
     icon_only = false,
     disabled = false,
     should_confirm = true,
-    context = "";
+    context = "_context_confirm";
 
   function onDo(e, success = true) {
     let { doing, done, error, context } = e.detail;
