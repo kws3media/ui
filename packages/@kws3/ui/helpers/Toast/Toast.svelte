@@ -126,10 +126,9 @@
   }
 
   const destroy = () =>
-    Promise.resolve(beforeClose($$props)).then(() => {
-      fire("destroy", $$props);
-      afterClose($$props);
-    });
+    Promise.resolve(beforeClose($$props))
+      .then(() => fire("destroy", $$props))
+      .then(() => afterClose($$props));
 
   onMount(() => {
     timeout = setTimeout(() => {
