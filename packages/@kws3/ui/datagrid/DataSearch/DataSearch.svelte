@@ -1,3 +1,22 @@
+<!--
+  @component
+
+
+  @param {boolean} [hasSearch=true] - HasSearch property, Default: `true`
+  @param {boolean} [hasFilters=true] - HasFilters property, Default: `true`
+  @param {string} [placeholder=""] - Placeholder property, Default: `""`
+  @param {object} [filters={}] - Filters property, Default: `{}`
+  @param {string} [q=""] - Q property, Default: `""`
+  @param {string} [filter_in_use_class="is-in-use"] - Filter_in_use_class property, Default: `"is-in-use"`
+  @param {string} [filter_not_in_use_class="is-not-in-use"] - Filter_not_in_use_class property, Default: `"is-not-in-use"`
+  @param {object} [filterComponent=null] - FilterComponent property, Default: `null`
+  @param {object} [filter_label_map={}] - Filter_label_map property, Default: `{}`
+
+  ### Events
+  - `resetSearch`
+  - `search`
+
+-->
 <form on:submit|preventDefault={dosearch}>
   <div class="field has-addons">
     {#if hasSearch}

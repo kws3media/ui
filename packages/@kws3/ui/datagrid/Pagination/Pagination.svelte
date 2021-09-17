@@ -1,3 +1,24 @@
+<!--
+  @component
+
+
+  @param {object} [meta={}] - Meta property, Default: `{}`
+  @param {boolean} [showTotal=true] - ShowTotal property, Default: `true`
+  @param {boolean} [showCurrent=true] - ShowCurrent property, Default: `true`
+  @param {boolean} [showPerPage=true] - ShowPerPage property, Default: `true`
+  @param {number} [breakThreshold=10] - BreakThreshold property, Default: `10`
+  @param {string} [entityName="entries"] - EntityName property, Default: `"entries"`
+  @param {string} [size="small"] - Size property, Default: `"small"`
+  @param {boolean} [frame=false] - Frame property, Default: `false`
+  @param {string} [iconRight="chevron-right"] - IconRight property, Default: `"chevron-right"`
+  @param {string} [iconLeft="chevron-left"] - IconLeft property, Default: `"chevron-left"`
+  @param {array} [perPageOptions=[]] - PerPageOptions property, Default: `[]`
+
+  ### Events
+  - `setLimit`
+  - `paginate`
+
+-->
 <div
   class="pagination_frame {frame ? 'has-frame' : ''}"
   data-cy="pagination-frame">

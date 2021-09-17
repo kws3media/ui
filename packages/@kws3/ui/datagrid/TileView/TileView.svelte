@@ -1,3 +1,30 @@
+<!--
+  @component
+
+
+  @param {string} [iteration_key="id"] - Iteration_key property, Default: `"id"`
+  @param {array} [data=[]] - Data property, Default: `[]`
+  @param {boolean} [transition=false] - Transition property, Default: `false`
+  @param {object} [tileItemComponent=null] - TileItemComponent property, Default: `null`
+  @param {number} [per_row=3] - Per_row property, Default: `3`
+  @param {string} [columns=""] - Columns property, Default: `""`
+  @param {boolean} [clickableRows=false] - ClickableRows property, Default: `false`
+  @param {boolean} [bulk_actions=false] - Bulk_actions property, Default: `false`
+  @param {boolean} [selectAll=false] - SelectAll property, Default: `false`
+  @param {array} [selectedIds=[]] - SelectedIds property, Default: `[]`
+  @param {string} [selectCheckboxColor="info"] - SelectCheckboxColor property, Default: `"info"`
+  @param {string} [selectCheckboxSize="medium"] - SelectCheckboxSize property, Default: `"medium"`
+  @param {object} [valueTransformers={}] - ValueTransformers property, Default: `{}`
+  @param {object} [classTransformers={}] - ClassTransformers property, Default: `{}`
+  @param {object} [styleTransformers={}] - StyleTransformers property, Default: `{}`
+  @param {object} [visibilityMap={}] - VisibilityMap property, Default: `{}`
+
+  ### Events
+  - `rowClick`
+  - `rowSelectChecked`
+  - `_forwardEvent`
+
+-->
 <div class="columns is-multiline">
   {#each data as row, row_index (row[iteration_key])}
     <div class="column is-{column_size}">

@@ -1,3 +1,33 @@
+<!--
+  @component
+
+
+  @param {string} [iteration_key="id"] - Iteration_key property, Default: `"id"`
+  @param {array} [data=[]] - Data property, Default: `[]`
+  @param {object} [columns={}] - Columns property, Default: `{}`
+  @param {boolean} [transition=false] - Transition property, Default: `false`
+  @param {boolean} [is_striped=true] - Is_striped property, Default: `true`
+  @param {boolean} [clickableRows=false] - ClickableRows property, Default: `false`
+  @param {boolean} [bulk_actions=false] - Bulk_actions property, Default: `false`
+  @param {boolean} [selectAll=false] - SelectAll property, Default: `false`
+  @param {array} [selectedIds=[]] - SelectedIds property, Default: `[]`
+  @param {string} [selectAllCheckboxColor="primary"] - SelectAllCheckboxColor property, Default: `"primary"`
+  @param {string} [selectCheckboxColor="info"] - SelectCheckboxColor property, Default: `"info"`
+  @param {string} [selectCheckboxSize="medium"] - SelectCheckboxSize property, Default: `"medium"`
+  @param {object} [valueTransformers={}] - ValueTransformers property, Default: `{}`
+  @param {object} [classTransformers={}] - ClassTransformers property, Default: `{}`
+  @param {object} [styleTransformers={}] - StyleTransformers property, Default: `{}`
+  @param {object} [visibilityMap={}] - VisibilityMap property, Default: `{}`
+  @param {object} [cellComponentMap={}] - CellComponentMap property, Default: `{}`
+  @param {any} [rowComponent=undefined] - RowComponent property, Default: `undefined`
+
+  ### Events
+  - `toggleSelectAll`
+  - `rowClick`
+  - `rowSelectChecked`
+  - `_forwardEvent`
+
+-->
 <div class="data-table" data-cy="data-table">
   <table
     class="table is-fullwidth {is_striped ? 'is-striped' : ''} {clickableRows
