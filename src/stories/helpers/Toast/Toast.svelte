@@ -43,11 +43,12 @@
   const pushCustom = () => {
     KwsToast.push({
       component: CustomToast,
-      title: "Customised Toast",
+      title,
       message: "I am a customized Toast...",
       is_persistent: true,
       is_dismissable: false,
-      position: "top-left",
+      position,
+      color,
     });
   };
 </script>
