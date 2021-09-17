@@ -32,7 +32,7 @@ Requires `guide` to be `true`, Default: `true`
   bind:this={inputElement} />
 
 <script>
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
   import { createTextMaskInputElement, conformToMask } from "text-mask-core";
   /**
    * Mask array
@@ -102,8 +102,7 @@ Requires `guide` to be `true`, Default: `true`
     };
 
     const changeHandler = ({ target: { value: v } }) => {
-      const result = conformToMask(v, mask, { guide: guide_on_output });
-      value = result.conformedValue;
+      setOutgoingValue(v);
     };
 
     inputElement.addEventListener("input", inputHandler);
@@ -113,7 +112,7 @@ Requires `guide` to be `true`, Default: `true`
 
     _mounted = true;
 
-    updateValue();
+    handleIncomingValue();
 
     return () => {
       inputElement.removeEventListener("input", inputHandler);
@@ -121,9 +120,9 @@ Requires `guide` to be `true`, Default: `true`
     };
   });
 
-  $: value, updateValue();
+  $: value, handleIncomingValue();
 
-  function updateValue() {
+  function handleIncomingValue() {
     if (!_mounted) {
       return;
     }
@@ -131,5 +130,10 @@ Requires `guide` to be `true`, Default: `true`
     textMaskInputElement.update(result.conformedValue);
 
     _value = result.conformedValue;
+  }
+
+  function setOutgoingValue(v) {
+    const result = conformToMask(v, mask, { guide: guide_on_output });
+    value = result.conformedValue;
   }
 </script>
