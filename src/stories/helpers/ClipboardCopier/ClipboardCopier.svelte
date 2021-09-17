@@ -13,6 +13,17 @@
           class={klass} />
       </div>
       <p>{text_area_1}</p>
+      <div class="has-text-danger is-size-6">
+        <KwsClipboardCopier
+          {text}
+          {icon}
+          {copied_text}
+          {copied_icon}
+          copy={text_area_1}
+          {copied}
+          {copied_icon_color}
+          class={klass}>Copy above text</KwsClipboardCopier>
+      </div>
     </Panel>
     <Panel>
       <div class="has-text-info is-size-4">
@@ -22,26 +33,13 @@
             {icon}
             {copied_text}
             {copied_icon}
-            copy={text_area_2}
+            {copy}
             {copied}
             {copied_icon_color}
             class={klass} />
         </div>
       </div>
-
-      <p>{text_area_2}</p>
-
-      <div class="has-text-danger is-size-6">
-        <KwsClipboardCopier
-          {text}
-          {icon}
-          {copied_text}
-          {copied_icon}
-          copy={text_area_2}
-          {copied}
-          {copied_icon_color}
-          class={klass}>Copy above text</KwsClipboardCopier>
-      </div>
+      <p>{copy}</p>
     </Panel>
   </div>
 </div>
@@ -60,13 +58,12 @@
     copied_text = "Copied!",
     copied_icon = "check",
     copied = false,
-    copied_icon_color = "";
+    copied_icon_color = "",
+    copy = "";
 
   let klass = "";
   export { klass as class };
 
   let text_area_1 =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et libero in metus blandit malesuada vitae in dolor. ";
-  let text_area_2 =
-    "Praesent mattis neque sapien, ut aliquet eros maximus nec. Cras feugiat lectus non elit scelerisque dignissim.";
 </script>
