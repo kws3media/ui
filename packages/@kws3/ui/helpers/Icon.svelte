@@ -13,9 +13,6 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for icon, Default: `""`
   @param {string} [class=""] - CSS classes for icon container, Default: `""`
 
-  ### Module
-  @param {function} [setDefaultIconType(type)] - It can set default icon type
-
 -->
 
 <span class="icon is-{size} has-text-{color} {klass}" {style}>
