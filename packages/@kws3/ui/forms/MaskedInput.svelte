@@ -99,11 +99,15 @@ Requires `guide` to be `true`, Default: `true`
 
     const inputHandler = ({ target: { value: v } }) => {
       textMaskInputElement.update(v);
+    };
+
+    const changeHandler = ({ target: { value: v } }) => {
       const result = conformToMask(v, mask, { guide: guide_on_output });
       value = result.conformedValue;
     };
 
     inputElement.addEventListener("input", inputHandler);
+    inputElement.addEventListener("change", changeHandler);
 
     textMaskInputElement.update(inputElement.value);
 
@@ -113,6 +117,7 @@ Requires `guide` to be `true`, Default: `true`
 
     return () => {
       inputElement.removeEventListener("input", inputHandler);
+      inputElement.removeEventListener("change", changeHandler);
     };
   });
 
