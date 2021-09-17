@@ -14,6 +14,7 @@
       </div>
       <p>{text_area_1}</p>
       <div class="has-text-danger is-size-6">
+        <p class="help is-warning">Example of Copier with Text</p>
         <KwsClipboardCopier
           {text}
           {icon}
