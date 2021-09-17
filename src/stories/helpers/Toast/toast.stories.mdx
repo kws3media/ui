@@ -54,17 +54,26 @@ export let args={
   language='javascript'
   code={ dedent`
   import {  Toast, ToastOutput } from '@kws3/ui';
+  import CustomComponent from "YourCustomComponent.svelte";
   //
+  // Put this inside your body tag
+  <ToastOutput />
   //
-  <ToastOutput on:destroy />
-  //
-  //
-  Toast.push({ message: 'I am a Toast...', position: 'top-left' });
-  //
-  //
-  function destroy(props) {
-    Toast.pop(props);
-  }
+  // Push notification like this
+  Toast.push({
+    component: CustomComponent, //optional
+    title: "Test Title",
+    message: "I am a customized Toast...",
+    is_persistent: true,
+    is_dismissable: false,
+    position: "top",
+    color: "info",
+    beforeClose: (props) => {
+      //do something here before close
+    },
+    afterClose: (props) => {
+      //do something here after close
+    },
   `}
 />
 
