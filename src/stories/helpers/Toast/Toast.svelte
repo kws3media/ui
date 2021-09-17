@@ -24,18 +24,21 @@
     is_persistent = false,
     context = 1;
 
-  let payload = {
-    title,
-    message,
-    duration,
-    color,
-    position,
-    is_dismissable,
-    is_persistent,
-    context,
-  };
+  let count = 1;
 
-  const push = () => KwsToast.push(payload);
+  const push = () => {
+    KwsToast.push({
+      title,
+      duration,
+      color,
+      position,
+      is_dismissable,
+      is_persistent,
+      context,
+      message: count + " - " + message,
+    });
+    count++;
+  };
 
   const pushCustom = () => {
     KwsToast.push({
