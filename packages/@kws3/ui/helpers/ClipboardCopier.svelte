@@ -1,3 +1,20 @@
+<!--
+  @component
+
+
+  @param {string} [text="Copy to clipboard"] - Default tooltip text, Default: `"Copy to clipboard"`
+  @param {string} [icon="copy"] - Icon of the Clipboard copier, Default: `"copy"`
+  @param {string} [copied_text="Copied!"] - Tooltip displayed after copy text, Default: `"Copied!"`
+  @param {string} [copied_icon="check"] - Icon for displaying after successful copy, Default: `"check"`
+  @param {string} [copy=""] - Text copied into clipboard, Default: `""`
+  @param {boolean} [copied=false] - State after copy, Default: `false`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [copied_icon_color="success"] - Color of the Icon, Default: `"success"`
+  @param {string} [class=""] - Additional CSS classes, Default: `""`
+
+  ### Slots
+  - `<slot name="default"  />` - Used to display clipboard text
+
+-->
 <span
   class="kws-clipboard-copier {klass} has-tooltip"
   on:click={copyToClipboard}

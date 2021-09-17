@@ -1,6 +1,6 @@
 <div class="columns">
   <div class="column">
-    <Panel title="Sample Text 1" has_toolbar={true}>
+    <Panel title="Sample Text" has_toolbar={true}>
       <div slot="toolbar">
         <KwsClipboardCopier
           {text}
