@@ -1,0 +1,46 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { ClipboardCopier } from "@kws3/ui";
+import ClipboardCopierDecorator from "./ClipboardCopier.svelte";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  text : "Copy to clipboard",
+  icon : "copy",
+  copied_text : "Copied!",
+  copied_icon : "check",
+  copy : "",
+  copied : false
+};
+
+<Meta
+  title="Helpers/ClipboardCopier"
+  component={ClipboardCopier}
+  args={args}
+  argTypes={{}}
+/>
+
+<Description markdown={dedent`
+# ClipboardCopier
+## Message components for showing alerts.
+`}/>
+
+<Canvas>
+  <Story
+  name="ClipboardCopier"
+  args={args}
+  >
+  {(args) => ({
+    Component: ClipboardCopierDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ClipboardCopier" />
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`import { ClipboardCopier } from '@kws3/ui';`}
+/>
