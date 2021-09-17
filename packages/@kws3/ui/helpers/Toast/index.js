@@ -2,7 +2,17 @@ import Toast, { setDefaultPlacement, globalPosition } from "./Toast.svelte";
 import ToastOutput from "./ToastOutput.svelte";
 import { writable } from "svelte/store";
 
-export let notifications = (() => {
+const getPosition = (props) => {
+  if (props.position) {
+    return props.position.indexOf("top") === 0 ? "top" : "bottom";
+  }
+  if (globalPosition) {
+    return globalPosition.indexOf("top") === 0 ? "top" : "bottom";
+  }
+  return "bottom";
+};
+
+export const notifications = (() => {
   const { update, subscribe } = writable({
     top: [],
     bottom: [],
@@ -46,22 +56,12 @@ export let notifications = (() => {
   return { pop, push, subscribe };
 })();
 
-const getPosition = (props) => {
-  if (props.position) {
-    return props.position.indexOf("top") === 0 ? "top" : "bottom";
-  }
-  if (globalPosition) {
-    return globalPosition.indexOf("top") === 0 ? "top" : "bottom";
-  }
-  return "bottom";
-};
-
-const pushToast = (props) => notifications.push(props);
-const closeToast = (props) => notifications.pop(props);
+export const pushToast = (props) => notifications.push(props);
+export const closeToast = (props) => notifications.pop(props);
 
 Toast.push = pushToast;
 Toast.close = closeToast;
 Toast.setDefaultPlacement = setDefaultPlacement;
 
-export { ToastOutput, pushToast, closeToast };
+export { ToastOutput };
 export default Toast;

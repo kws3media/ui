@@ -1,12 +1,3 @@
-<!--
-  @component
-
-  @param [_] - No properties on this component
-
-  ### Module
-  @param {any} [notifications=undefined] - `CONST` Notifications property, Default: `undefined`
--->
-
 {#each Object.keys($notifications) as position}
   <ToastBox {position}>
     {#each $notifications[position] as notification}
