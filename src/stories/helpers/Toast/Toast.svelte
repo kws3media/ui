@@ -12,7 +12,7 @@
 <ToastOutput />
 
 <script>
-  import { Toast as KwsToast, ToastOutput, closeToast } from "@kws3/ui";
+  import { Toast as KwsToast, ToastOutput } from "@kws3/ui";
   import CustomToast from "./CustomToast.svelte";
 
   export let title = "Heading Toast",

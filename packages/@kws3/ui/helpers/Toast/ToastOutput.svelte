@@ -65,14 +65,18 @@
   })();
 
   function getPosition(props) {
-    return props.position && props.position.indexOf("top") === 0
-      ? "top"
-      : "bottom";
+    if (props.position) {
+      return props.position.indexOf("top") === 0 ? "top" : "bottom";
+    }
+    if (globalPosition) {
+      return globalPosition.indexOf("top") === 0 ? "top" : "bottom";
+    }
+    return "bottom";
   }
 </script>
 
 <script>
-  import Toast from "./Toast.svelte";
+  import Toast, { globalPosition } from "./Toast.svelte";
   import ToastBox from "./ToastBox.svelte";
 
   const destroy = ({ detail }) => Toast.close(detail);

@@ -48,7 +48,7 @@
 </div>
 
 <script context="module">
-  let globalPosition;
+  export let globalPosition;
 
   /**
    * It can set default position
