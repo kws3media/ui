@@ -5,18 +5,18 @@ import { action } from '@storybook/addon-actions';
 import DeleteButtonDecorator from "./DeleteButton.svelte";
 
 export let args={
-  color : "danger",
-  disabled : false,
-  size : "",
   class : "",
-  icon_only : false,
+  button_class : "",
   text : "Delete Me",
   icon : "minus-circle",
-  done_icon : "check",
+  icon_only : false,
   done_text : "Deleted",
+  done_icon : "check",
+  disabled : false,
+  cy : "",
   context : "_context_delete",
-  button_class : "",
-  cy : ""
+  color : "danger",
+  size : "",
 };
 
 <Meta

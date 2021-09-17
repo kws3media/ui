@@ -6,16 +6,16 @@ import SubmitButtonDecorator from "./SubmitButton.svelte";
 
 export let args={
   class : "",
-  size : "",
-  color : "primary",
   text : "Save Changes",
+  icon : "save",
+  icon_only : false,
   saved_text : "Saved",
   error_text : "Failed to Save",
-  icon : "save",
-  cy : "submit",
-  icon_only : false,
   disabled : false,
-  tracker : {}
+  cy : "submit",
+  tracker : {},
+  color : "primary",
+  size : "",
 };
 
 <Meta
