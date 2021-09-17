@@ -8,6 +8,7 @@
       {guide_on_output}
       {keep_char_positions}
       {placeholder}
+      {placeholder_char}
       on:change
       class={klass}
       bind:value={value1} />
@@ -24,6 +25,7 @@
       {guide_on_output}
       {keep_char_positions}
       {placeholder}
+      {placeholder_char}
       on:change
       class={klass}
       bind:value={value2} />
@@ -40,6 +42,7 @@
       {guide_on_output}
       {keep_char_positions}
       {placeholder}
+      {placeholder_char}
       on:change
       class={klass}
       bind:value={value3} />
@@ -98,7 +101,8 @@
     guide = true,
     guide_on_output = false,
     keep_char_positions = false,
-    placeholder = "";
+    placeholder = "",
+    placeholder_char = "_";
 
   let klass = "";
   export { klass as class };
