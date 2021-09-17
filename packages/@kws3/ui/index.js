@@ -30,6 +30,7 @@ export { default as Transition } from "./transitions/Transition.svelte";
 export { default as SlidingPane } from "./sliding-panes/SlidingPane.svelte";
 export { default as SlidingPaneSet } from "./sliding-panes/SlidingPaneSet.svelte";
 export { default as SearchableSelect } from "./forms/SearchableSelect.svelte";
+export { default as MaskedInput } from "./forms/MaskedInput.svelte";
 
 export { default as Colorpicker } from "./forms/colorpicker/Colorpicker.svelte";
 
