@@ -10,7 +10,8 @@
           copy={text_area_1}
           {copied}
           {size}
-          {color} />
+          {color}
+          class={klass} />
       </div>
       <p>{text_area_1}</p>
     </Panel>
@@ -23,9 +24,10 @@
           {copied_text}
           {copied_icon}
           copy={text_area_2}
+          {copied}
           {size}
           {color}
-          {copied}>Copy above text</KwsClipboardCopier>
+          class={klass}>Copy above text</KwsClipboardCopier>
       </p>
     </Panel>
   </div>
@@ -47,6 +49,9 @@
     copied = false,
     size = "",
     color = "";
+
+  let klass = "";
+  export { klass as class };
 
   let text_area_1 =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et libero in metus blandit malesuada vitae in dolor. ";

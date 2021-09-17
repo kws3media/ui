@@ -1,6 +1,6 @@
 <a
   href={"javascript:void(0)"}
-  class="kws-clipboard-copier has-text-{color}"
+  class="kws-clipboard-copier has-text-{color} {klass}"
   on:click={copyToClipboard}
   data-tooltip={copied ? copied_text : text}>
   <!--Used to display clipboard text--><slot />
@@ -48,6 +48,12 @@
      * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "";
+
+  /**
+   * Additional CSS classes
+   */
+  let klass = "";
+  export { klass as class };
 
   function copyToClipboard() {
     const textArea = document.createElement("textarea");
