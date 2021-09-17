@@ -1,1 +1,3 @@
-meta package to hold all other @kws3 packages
+UI components for use with Svelte v3 applications.
+
+Docs: [https://ui.kws3.media](https://ui.kws3.media)
