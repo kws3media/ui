@@ -10,14 +10,23 @@ export let args={
   copied_text : "Copied!",
   copied_icon : "check",
   copy : "",
-  copied : false
+  copied : false,
+  size : "small",
+  color : ""
 };
 
 <Meta
   title="Helpers/ClipboardCopier"
   component={ClipboardCopier}
   args={args}
-  argTypes={{}}
+  argTypes={{
+    size:{
+      control: {type: "select"},
+    },
+    color:{
+      control: {type: "select"},
+    }
+  }}
 />
 
 <Description markdown={dedent`

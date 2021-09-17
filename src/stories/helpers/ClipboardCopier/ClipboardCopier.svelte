@@ -1,27 +1,40 @@
 <div class="columns">
   <div class="column">
-    <Panel title="Sample Text 1">
+    <Panel title="Sample Text 1" has_toolbar={true}>
+      <div slot="toolbar">
+        <KwsClipboardCopier
+          {text}
+          {icon}
+          {copied_text}
+          {copied_icon}
+          copy={text_area_1}
+          {copied}
+          {size}
+          {color} />
+      </div>
       <p>{text_area_1}</p>
-      <KwsClipboardCopier
-        {text}
-        {icon}
-        {copied_text}
-        {copied_icon}
-        copy={text_area_1}
-        {copied} />
+    </Panel>
+    <Panel>
+      <p>{text_area_2}</p>
+      <p>
+        <KwsClipboardCopier
+          {text}
+          {icon}
+          {copied_text}
+          {copied_icon}
+          copy={text_area_2}
+          {size}
+          {color}
+          {copied}>Copy above text</KwsClipboardCopier>
+      </p>
     </Panel>
   </div>
+</div>
+
+<div class="columns">
   <div class="column">
-    <Panel title="Sample Text 2">
-      <p>{text_area_2}</p>
-      <KwsClipboardCopier
-        {text}
-        {icon}
-        {copied_text}
-        {copied_icon}
-        copy={text_area_2}
-        {copied}>Copy to clipboard</KwsClipboardCopier>
-    </Panel>
+    <h4 class="subtitle">Paste copied text</h4>
+    <textarea class="input is-fullwidth" />
   </div>
 </div>
 
@@ -31,7 +44,9 @@
     icon = "copy",
     copied_text = "Copied!",
     copied_icon = "check",
-    copied = false;
+    copied = false,
+    size = "",
+    color = "";
 
   let text_area_1 =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et libero in metus blandit malesuada vitae in dolor. ";
