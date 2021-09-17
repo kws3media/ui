@@ -1,0 +1,54 @@
+import { Meta, Source  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+
+<Meta
+  title="Framework Settings"
+/>
+
+## Framework Settings
+Framework wide settings can be applied in one place.
+Ideally in the entry file of your app.
+
+### Usage
+<Source
+  language='js'
+  code={ dedent`
+    import {applySettings} from '@kws3/ui';
+    applySettings({
+      defaultIconFamily: 'fa',
+      defaultToastPlacement: 'top-right',
+      hasTransitions: true
+    });
+    //
+    //you can also apply just one setting:
+    applySettings({
+      hasTransitions: false
+    });
+  `}
+/>
+
+### Available Settings
+<table class="table is-fullwidth">
+  <tr>
+    <th>Setting Name</th>
+    <th>Description</th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <th><code>defaultIconFamily</code></th>
+    <td>Default icon family used by all Icon components</td>
+    <td><code>"fa"</code></td>
+  </tr>
+  <tr>
+    <th><code>defaultToastPlacement</code></th>
+    <td>Default placement of toast notifications used by the Toast component.<br/>
+    When <code>Toast.push()</code> is used</td>
+    <td><code>"top-right"</code></td>
+  </tr>
+  <tr>
+    <th><code>hasTransitions</code></th>
+    <td>All components that have transitions, use this setting.<br/>
+    When turned off, no transitions will take place</td>
+    <td><code>true</code></td>
+  </tr>
+</table>

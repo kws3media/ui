@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
@@ -12,9 +12,6 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   @param {string} [inner_class=""] - CSS classes for icon, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for icon, Default: `""`
   @param {string} [class=""] - CSS classes for icon container, Default: `""`
-
-  ### Module
-  @param {function} [setDefaultIconType(type)] - It can set default icon type
 
 -->
 
@@ -52,22 +49,9 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   }
 </style>
 
-<script context="module">
-  let globalFamily;
-
-  /**
-   * It can set default icon type
-   *
-   * @description
-   * import {Icon} from `@kws3/ui`;
-   * Icon.setDefaultIconType("fa");
-   */
-  export function setDefaultIconType(type) {
-    globalFamily = type;
-  }
-</script>
-
 <script>
+  import { defaultIconFamily } from "../settings";
+
   /**
    * Size of the Icon
    *  @type {''|'small'|'medium'|'large'}
@@ -108,7 +92,10 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   let klass = "";
   export { klass as class };
 
-  let familyClass, internal_size, usedFamily;
+  let globalFamily = $defaultIconFamily,
+    familyClass,
+    internal_size,
+    usedFamily;
 
   $: {
     usedFamily =
