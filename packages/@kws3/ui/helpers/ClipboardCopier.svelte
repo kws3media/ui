@@ -39,7 +39,7 @@
      */
     copied = false,
     /**
-     * Size of the Icon
+     * Size of the copier
      *  @type {''|'small'|'medium'|'large'}
      */
     size = "",
