@@ -30,44 +30,56 @@ Only visible when the
 
 -->
 <div class="modal {klass} {is_active ? 'is-active' : ''}" {style} data-cy={cy}>
-  <div class="modal-background" on:click={clickOutside} />
+  {#if is_active}<div
+      transition:fade={{ duration: transitionDuration }}
+      class="modal-background"
+      on:click={clickOutside} />
 
-  <div class="modal-card is-{size} {inner_class}" style={inner_style}>
-    <div class="modal-card-head">
-      <div class="modal-card-title">
-        <!--
+    <div
+      transition:scale={{
+        duration: transitionDuration,
+        from: 0.8,
+        to: 1,
+        delay: transitionDelay,
+      }}
+      class="modal-card is-{size} {inner_class}"
+      style="transform:translate3d(0,0,0);{inner_style}">
+      <div class="modal-card-head">
+        <div class="modal-card-title">
+          <!--
           Used for the title of Modal
 
           This can be used instead of the `title`
           property, to send a `HTMLElement` in,
           instead of just plain text
         --><slot
-          name="title">{title}</slot>
+            name="title">{title}</slot>
+        </div>
+        {#if closable}
+          <button
+            class="delete"
+            type="button"
+            on:click={() => (is_active = false)} />
+        {/if}
       </div>
-      {#if closable}
-        <button
-          class="delete"
-          type="button"
-          on:click={() => (is_active = false)} />
-      {/if}
-    </div>
 
-    <div class="modal-card-body">
-      <!--Used for the Modal content--><slot />
-    </div>
+      <div class="modal-card-body">
+        <!--Used for the Modal content--><slot />
+      </div>
 
-    {#if has_footer}
-      <div class="modal-card-foot">
-        <!--
+      {#if has_footer}
+        <div class="modal-card-foot">
+          <!--
           Used for the footer of Modal
 
           Only visible when the
           `has_footer` property is `true`
         --><slot
-          name="footer" />
-      </div>
-    {/if}
-  </div>
+            name="footer" />
+        </div>
+      {/if}
+    </div>
+  {/if}
 </div>
 
 <style lang="scss">
@@ -85,6 +97,8 @@ Only visible when the
 </style>
 
 <script>
+  import { fade, scale } from "svelte/transition";
+  import { hasTransitions } from "../settings";
   /**
    * Title of the modal
    * @type {string}
@@ -144,6 +158,9 @@ Only visible when the
    */
   let klass = "";
   export { klass as class };
+
+  $: transitionDuration = $hasTransitions ? 150 : 0;
+  $: transitionDelay = $hasTransitions ? 50 : 0;
 
   function clickOutside() {
     if (close_on_click_outside && closable) {

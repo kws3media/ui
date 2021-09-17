@@ -1,8 +1,16 @@
+import { Meta, Source  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+
+<Meta
+  title="Welcome"
+/>
+
+
 <div class="main has-text-centered">
   <img
     width="200"
     src="https://npm.kws3.media/images/logo.png"
-    style="margin:10px 0"
+    style={{margin:'10px 0'}}
     alt="logo" />
   <h1 class="title">Welcome to UI Elements from KWS3 Media</h1>
   <p>
@@ -14,13 +22,11 @@
       all the time. <br />If you find anything that needs changing, get in
       touch!</em>
   </p>
-
   <div class="message is-warning">
     <div class="message-body">
       <p>
         This refers to Svelte v3 components.
-        <br />For v2 components please go to
-        <a href="https://ui-v2.kws3.media">https://ui-v2.kws3.media</a>
+        <br />For v2 components please go to: <a href="https://ui-v2.kws3.media">https://ui-v2.kws3.media</a>
       </p>
     </div>
   </div>

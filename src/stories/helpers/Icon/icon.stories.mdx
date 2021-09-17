@@ -86,11 +86,13 @@ export let args={
   code={ dedent`import { Icon } from '@kws3/ui';`}
 />
 
-#### Set default icon type:
-Instead of specifying an icon family on each icon, it can be set globally on your app, using the static method available
+#### Set default icon family:
+Instead of specifying an icon family on each icon, it can be set globally on your app, using the package's `defaultIconFamily` setting
 <Source
   language='javascript'
-  code={ dedent`import { Icon } from '@kws3/ui';
-  Icon.setDefaultIconType("lar");
+  code={ dedent`import { applySettings } from '@kws3/ui';
+  applySettings({
+    defaultIconFamily: "lar"
+  });
   //now all icons will use this family unless overriden on a per icon basis`}
 />

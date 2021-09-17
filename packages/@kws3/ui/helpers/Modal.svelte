@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {'small'|'medium'|'large'} [size="small"] - Size of the modal, Default: `"small"`
   @param {boolean} [is_active=false] - Determines whether modal is displayed or not, Default: `false`
@@ -20,15 +20,27 @@ Only programmatic closing is possible, Default: `true`
 -->
 
 <div class="modal {klass} {is_active ? 'is-active' : ''}" {style} data-cy={cy}>
-  <div class="modal-background" on:click={clickOutside} />
+  {#if is_active}<div
+      transition:fade={{ duration: transitionDuration }}
+      class="modal-background"
+      on:click={clickOutside} />
 
-  <div class="modal-content is-{size} {inner_class}" style={inner_style}>
-    <div class="box">
-      <!-- Used for the Modal content--><slot />
+    <div
+      transition:scale={{
+        duration: transitionDuration,
+        from: 0.8,
+        to: 1,
+        delay: transitionDelay,
+      }}
+      class="modal-content is-{size} {inner_class}"
+      style="transform:translate3d(0,0,0);{inner_style}">
+      <div class="box">
+        <!-- Used for the Modal content--><slot />
+      </div>
     </div>
-  </div>
-  {#if closable}
-    <button class="modal-close is-large" type="button" on:click={close} />
+    {#if closable}
+      <button class="modal-close is-large" type="button" on:click={close} />
+    {/if}
   {/if}
 </div>
 
@@ -48,6 +60,8 @@ Only programmatic closing is possible, Default: `true`
 </style>
 
 <script>
+  import { fade, scale } from "svelte/transition";
+  import { hasTransitions } from "../settings";
   /**
    * Size of the modal
    * @type {'small'|'medium'|'large'}
@@ -90,6 +104,9 @@ Only programmatic closing is possible, Default: `true`
    */
   let klass = "";
   export { klass as class };
+
+  $: transitionDuration = $hasTransitions ? 150 : 0;
+  $: transitionDelay = $hasTransitions ? 50 : 0;
 
   function clickOutside() {
     if (close_on_click_outside && closable) {
