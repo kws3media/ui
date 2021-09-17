@@ -1,8 +1,6 @@
-import Icon from "./helpers/Icon.svelte";
-import { setDefaultIconType } from "./helpers/Icon.svelte";
-Icon.setDefaultIconType = setDefaultIconType;
-export { Icon };
+export { applySettings } from "./settings";
 
+export { default as Icon } from "./helpers/Icon.svelte";
 export { default as Message } from "./helpers/Message.svelte";
 export { default as Modal } from "./helpers/Modal.svelte";
 export { default as CardModal } from "./helpers/CardModal.svelte";
