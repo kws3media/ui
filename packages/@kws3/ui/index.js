@@ -15,6 +15,7 @@ export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
 export { default as DeleteButton } from "./buttons/DeleteButton.svelte";
 export { default as SubmitButton } from "./buttons/SubmitButton.svelte";
+export { default as ProcessButton } from "./buttons/ProcessButton.svelte";
 
 export { default as Checkbox } from "./controls/Checkbox.svelte";
 export { default as FileUpload } from "./controls/FileUpload.svelte";
