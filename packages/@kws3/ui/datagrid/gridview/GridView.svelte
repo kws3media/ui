@@ -60,7 +60,6 @@
   export let iteration_key = "id",
     data = [],
     columns = {},
-    meta = {},
     transition = false,
     is_striped = true,
     clickableRows = false,
@@ -75,8 +74,6 @@
     styleTransformers = {},
     visibilityMap = {},
     cellComponentMap = {},
-    tileItemComponent = null,
-    per_row = 3,
     rowComponent = GridRow;
 
   $: mainRowComponent = rowComponent ? rowComponent : GridRow;

@@ -16,8 +16,7 @@
 
   const fire = createEventDispatcher();
 
-  export let row_index = 0,
-    row = {},
+  export let row = {},
     rowActive = false,
     clickableRows = false,
     isVisible = function () {},

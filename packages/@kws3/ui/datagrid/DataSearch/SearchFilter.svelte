@@ -27,7 +27,7 @@
 {/if}
 
 <script>
-  import SearchableSelect from "@kws3/ui";
+  import { SearchableSelect } from "@kws3/ui";
   export let filter = {},
     filterVals = {},
     filterWidthStyle = "",
