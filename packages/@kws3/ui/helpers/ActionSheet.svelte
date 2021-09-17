@@ -25,7 +25,11 @@ If `false` , the component won't have a close button, and will not close on clic
       class="modal-background"
       on:click={clickOutside} />
     <div
-      transition:fly={{ duration: transitionDuration, y: 300, delay: 50 }}
+      transition:fly={{
+        duration: transitionDuration,
+        y: 300,
+        delay: transitionDelay,
+      }}
       class="action-sheet {inner_class}"
       style={inner_style}>
       {#if closable}
@@ -73,7 +77,8 @@ If `false` , the component won't have a close button, and will not close on clic
   let klass = "";
   export { klass as class };
 
-  $: transitionDuration = $hasTransitions ? 300 : 0;
+  $: transitionDuration = $hasTransitions ? 150 : 0;
+  $: transitionDelay = $hasTransitions ? 50 : 0;
 
   function clickOutside() {
     if (close_on_click_outside && closable) {
