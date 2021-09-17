@@ -14,9 +14,9 @@ Requires `guide` to be `true`, Default: `false`
   @param {boolean} [keep_char_positions=false] - When set to `true`, deleting a character leaves an empty space to allow overwriting
 
 Requires `guide` to be `true`, Default: `false`
-  @param {string} [placeholder=""] - Input placeholder text, Default: `""`
+  @param {string} [placeholder=""] - Placeholder text. Requires `guide_when_empty` to be `false` to be displayed., Default: `""`
   @param {string} [value=""] - Input value, Default: `""`
-  @param {string} [class=""] - Additional class for input, Default: `""`
+  @param {string} [class=""] - CSS classes for the input, Default: `""`
 
   ### Events
   - `change` - Native input change event
@@ -65,7 +65,7 @@ Requires `guide` to be `true`, Default: `false`
      */
     keep_char_positions = false,
     /**
-     * Input placeholder text
+     * Placeholder text. Requires `guide_when_empty` to be `false` to be displayed.
      */
     placeholder = "",
     /**
@@ -76,7 +76,7 @@ Requires `guide` to be `true`, Default: `false`
   let inputElement = null;
 
   /**
-   * Additional class for input
+   * CSS classes for the input
    */
   let klass = "";
   export { klass as class };
