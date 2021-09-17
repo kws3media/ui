@@ -1,7 +1,6 @@
 <!--
   @component
 
-
   @param {string} [title=""] - Title for display, Default: `""`
   @param {string} [message=""] - Message for display, Default: `""`
   @param {number} [duration=3000] - Duration for display message, Default: `3000`
@@ -13,13 +12,6 @@
   @param {object} [component=null] - Custom component, Default: `null`
   @param {function} [beforeClose(props)] - Callback function call before close event
   @param {function} [afterClose(props)] - Callback function call after close event
-
-  ### Module
-  @param {function} [setDefaultPlacement(position)] - It can set default position
-
-  ### Events
-  - `destroy`
-
 -->
 
 <div class="toast is-{usedPosition}">
@@ -47,23 +39,9 @@
   </div>
 </div>
 
-<script context="module">
-  export let globalPosition;
-
-  /**
-   * It can set default position
-   *
-   * @description
-   * import { Toast } from `@kws3/ui`;
-   * Toast.setDefaultPlacement("bottom-left");
-   */
-  export function setDefaultPlacement(position) {
-    globalPosition = position;
-  }
-</script>
-
 <script>
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
+  import { defaultToastPlacement } from "../../settings";
 
   const fire = createEventDispatcher();
 
@@ -114,7 +92,9 @@
      */
     afterClose = (props) => {};
 
-  let timeout, usedPosition;
+  let timeout,
+    usedPosition,
+    globalPosition = $defaultToastPlacement;
 
   $: {
     usedPosition =

@@ -1,13 +1,15 @@
-import Toast, { setDefaultPlacement, globalPosition } from "./Toast.svelte";
+import Toast from "./Toast.svelte";
 import ToastOutput from "./ToastOutput.svelte";
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
+import { defaultToastPlacement } from "../../settings";
 
 const getPosition = (props) => {
+  let _defaultToastPlacement = get(defaultToastPlacement);
   if (props.position) {
     return props.position.indexOf("top") === 0 ? "top" : "bottom";
   }
-  if (globalPosition) {
-    return globalPosition.indexOf("top") === 0 ? "top" : "bottom";
+  if (_defaultToastPlacement) {
+    return _defaultToastPlacement.indexOf("top") === 0 ? "top" : "bottom";
   }
   return "bottom";
 };
@@ -61,7 +63,6 @@ export const closeToast = (props) => notifications.pop(props);
 
 Toast.push = pushToast;
 Toast.close = closeToast;
-Toast.setDefaultPlacement = setDefaultPlacement;
 
 export { ToastOutput };
 export default Toast;
