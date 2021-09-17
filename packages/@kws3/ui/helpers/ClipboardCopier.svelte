@@ -1,25 +1,53 @@
 <a
   href={"javascript:void(0)"}
-  class="kws-clipboard-copier"
+  class="kws-clipboard-copier has-text-{color}"
   on:click={copyToClipboard}
   data-tooltip={copied ? copied_text : text}>
-  <slot />
+  <!--Used to display clipboard text--><slot />
   <Icon
     icon={copied ? copied_icon : icon}
-    size="small"
-    color={copied ? "success" : ""}
+    {size}
+    color={copied ? "success" : color}
     icon_class={copied ? "is-bouncing-once" : ""} />
 </a>
 
 <script>
   import { Icon } from "@kws3/ui";
 
+  /**
+   * Default tooltip text
+   */
   export let text = "Copy to clipboard",
+    /**
+     * Icon of the Clipboard copier
+     */
     icon = "copy",
+    /**
+     * Tooltip displayed after copy text
+     */
     copied_text = "Copied!",
+    /**
+     * Icon for displaying after successful copy
+     */
     copied_icon = "check",
+    /**
+     * Text copied into clipboard
+     */
     copy = "",
-    copied = false;
+    /**
+     * State after copy
+     */
+    copied = false,
+    /**
+     * Size of the Icon
+     *  @type {''|'small'|'medium'|'large'}
+     */
+    size = "small",
+    /**
+     * Color of the Icon
+     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    color = "";
 
   function copyToClipboard() {
     const textArea = document.createElement("textarea");
