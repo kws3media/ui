@@ -8,8 +8,6 @@
   @param {string} [icon="minus-circle"] - Name of the icon that is to be displayed in the button, Default: `"minus-circle"`
   @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="danger"] - Color of the Button, Default: `"danger"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - Doc and property to be deleted, Default: `"hourglass"`
-  @param {string} [doing_text="Deleting..."] - Text showing after confirm, Default: `"Deleting..."`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Deleted"] - Button text displayed after task is completed successfully, Default: `"Deleted"`
   @param {object} [context=null] - Context property, Default: `null`

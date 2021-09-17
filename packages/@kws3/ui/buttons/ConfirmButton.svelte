@@ -12,12 +12,12 @@
   @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
-  @param {boolean} [should_confirm=true] - ask confirm question if it is true, Default: `true`
+  @param {boolean} [should_confirm=true] - When `false`, skips the confirmation prompt, and makes it a one step process, Default: `true`
   @param {string} [context=""] - Context property, Default: `""`
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
-  - `do` - Fires an event when user confirms action
+  - `do` - Fires an event when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
   - `done` - Fires an event when task completes
   - `error` - Fires an event when there is an error
 
@@ -123,7 +123,7 @@
      */
     disabled = false,
     /**
-     * ask confirm question if it is true
+     * When `false`, skips the confirmation prompt, and makes it a one step process
      */
     should_confirm = true,
     /**
@@ -159,7 +159,7 @@
     }
     if (_confirm) {
       /**
-       * Fires an event when user confirms action
+       * Fires an event when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
        */
       fire("do", { doing, done, error, context });
     }
