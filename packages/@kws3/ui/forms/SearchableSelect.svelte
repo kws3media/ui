@@ -1,3 +1,21 @@
+<!--
+  @component
+
+
+  @param {string} [value=""] - Bind value, Default: `""`
+  @param {string} [filter=""] - Filter, Default: `""`
+  @param {string} [style=""] - Inline styles, Default: `""`
+  @param {string} [classes=""] - Additional classes, Default: `""`
+  @param {string} [dd_class=""] - Dropdown class, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [searchKey="null"] - which key to search in each data object, Default: `"null"`
+  @param {string} [searchValue="null"] - which value to search in each data object, Default: `"null"`
+  @param {object} [data={}] - Object of option values, Default: `{}`
+  @param {boolean} [open=false] - Open - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
+  @param {string} [placeholder=""] - Placeholder string, Default: `""`
+
+-->
 <svelte:window on:resize={close} />
 <div
   bind:this={searchableselect}

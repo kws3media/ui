@@ -1,3 +1,20 @@
+<!--
+  @component
+
+
+  @param {object} [row={}] - Row property, Default: `{}`
+  @param {boolean} [rowActive=false] - RowActive property, Default: `false`
+  @param {boolean} [clickableRows=false] - ClickableRows property, Default: `false`
+  @param {function} [isVisible()] - IsVisible function
+  @param {function} [transforms()] - Transforms function
+  @param {function} [classNames()] - ClassNames function
+  @param {function} [styles()] - Styles function
+  @param {array} [column_keys=[]] - Column_keys property, Default: `[]`
+
+  ### Events
+  - `rowClick`
+
+-->
 <div
   class:is-selected={rowActive}
   class="box {clickableRows ? 'is-hoverable' : ''}"

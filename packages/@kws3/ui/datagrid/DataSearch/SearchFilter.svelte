@@ -1,3 +1,14 @@
+<!--
+  @component
+
+
+  @param {object} [filter={}] - Filter property, Default: `{}`
+  @param {object} [filterVals={}] - FilterVals property, Default: `{}`
+  @param {string} [filterWidthStyle=""] - FilterWidthStyle property, Default: `""`
+  @param {string} [hilightClass=""] - HilightClass property, Default: `""`
+  @param {object} [filter_label_map={}] - Filter_label_map property, Default: `{}`
+
+-->
 {#if filter.options.length > 10}
   <SearchableSelect
     data={filter.options}

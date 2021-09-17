@@ -1,3 +1,12 @@
+<!--
+  @component
+
+
+  @param {array} [options=[]] - Options property, Default: `[]`
+  @param {string} [sort_by=""] - Sort_by property, Default: `""`
+  @param {string} [value=""] - Value property, Default: `""`
+
+-->
 <div class="sorting-filters">
   <div class="field is-grouped">
     <div class="control">
@@ -8,7 +17,7 @@
         <select class="is-fullwidth" bind:value>
           <option value="">Default</option>
           {#each options as opt}
-            <option value="{opt.value}">{opt.name}</option>
+            <option value={opt.value}>{opt.name}</option>
           {/each}
         </select>
       </div>

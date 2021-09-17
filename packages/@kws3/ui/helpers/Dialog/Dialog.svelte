@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [title=""] - Title text of the Dialog box, Default: `""`
   @param {string} [help_text=""] - Additional text to provide further context to the user, Default: `""`
