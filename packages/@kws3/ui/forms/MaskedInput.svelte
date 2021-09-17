@@ -11,9 +11,9 @@ Each element in the array has to be either a string or a regular expression. Eac
 
 Requires `guide` to be `true`, Default: `false`
   @param {boolean} [guide_on_output=false] - Whether the output should contain guide characters, Default: `false`
-  @param {boolean} [keep_char_positions=true] - When set to `true`, deleting a character leaves an empty space to allow overwriting
+  @param {boolean} [keep_char_positions=false] - When set to `true`, deleting a character leaves an empty space to allow overwriting
 
-Requires `guide` to be `true`, Default: `true`
+Requires `guide` to be `true`, Default: `false`
   @param {string} [placeholder=""] - Input placeholder text, Default: `""`
   @param {string} [value=""] - Input value, Default: `""`
   @param {string} [class=""] - Additional class for input, Default: `""`
@@ -63,7 +63,7 @@ Requires `guide` to be `true`, Default: `true`
      *
      * Requires `guide` to be `true`
      */
-    keep_char_positions = true,
+    keep_char_positions = false,
     /**
      * Input placeholder text
      */
