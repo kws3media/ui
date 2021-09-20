@@ -2,32 +2,53 @@
   @component
 
 
-  @param {string} [classes=""] - `CONST` CSS classes, Default: `""`
-  @param {string} [button_class=""] - `CONST` CSS classes for button, Default: `""`
-  @param {string} [text="Delete"] - `CONST` Button text, Default: `"Delete"`
-  @param {'small'|'medium'|'large'} [size=""] - `CONST` Size of the Button, Default: `""`
-  @param {string} [icon="minus-circle"] - `CONST` Icon of the Button - can use any fa icon, Default: `"minus-circle"`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="danger"] - `CONST` Color of the Button, Default: `"danger"`
-  @param {string} [cy=""] - `CONST` data-cy attribute for cypress, Default: `""`
-  @param {string} [doing_icon="hourglass"] - `CONST` Icon showing after confirm - can use any fa icon, Default: `"hourglass"`
-  @param {string} [doing_text="Deleting..."] - `CONST` Text showing after confirm, Default: `"Deleting..."`
-  @param {string} [done_icon="check"] - `CONST` Icon showing after success - can use any fa icon, Default: `"check"`
-  @param {string} [done_text="Deleted"] - `CONST` Text showing after success - can use any fa icon, Default: `"Deleted"`
-  @param {object} [context=null] - `CONST` Context property, Default: `null`
-  @param {boolean} [icon_only=false] - `CONST` Boolean - true/false, Default: `false`
-  @param {boolean} [disabled=false] - `CONST` Boolean - true/false, Default: `false`
+  @param {string} [button_class=""] - CSS classes for the Delete button, Default: `""`
+  @param {string} [text="Delete"] - Button text, Default: `"Delete"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {string} [icon="minus-circle"] - Name of the icon that is to be displayed in the button, Default: `"minus-circle"`
+  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="danger"] - Color of the Button, Default: `"danger"`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+  @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
+  @param {string} [done_text="Deleted"] - Button text displayed after task is completed successfully, Default: `"Deleted"`
+  @param {object} [context=null] - Context property, Default: `null`
+  @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
+  @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
+  @param {string} [class=""] - CSS classes for the button container, Default: `""`
 
   ### Events
-  - `error`
-  - `erase`
-  - `erased`
+  - `erase` - Fires an event when user confirms delete
+  - `erased` - Fires an event when deletion completes
+  - `error` - Fires an event when there is an error
 
 -->
 <ConfirmButton
-  {...properties}
-  on:error
-  on:do={({ detail }) => fire("erase", detail)}
-  on:done={({ detail }) => fire("erased", detail)} />
+  {button_class}
+  {text}
+  {size}
+  {icon}
+  {color}
+  {cy}
+  {done_icon}
+  {done_text}
+  {context}
+  {icon_only}
+  {disabled}
+  class={klass}
+  on:do={({ detail }) =>
+    /**
+     * Fires an event when user confirms delete
+     */
+    fire("erase", detail)}
+  on:done={({ detail }) =>
+    /**
+     * Fires an event when deletion completes
+     */
+    fire("erased", detail)}
+  on:error={({ detail }) =>
+    /**
+     * Fires an event when there is an error
+     */
+    fire("error", detail)} />
 
 <script>
   import { ConfirmButton } from "@kws3/ui";
@@ -36,90 +57,57 @@
   const fire = createEventDispatcher();
 
   /**
-   * CSS classes
-   * @type {string}
+   * CSS classes for the Delete button
    */
-  export const classes = "";
+  export let button_class = "",
+    /**
+     * Button text
+     */
+    text = "Delete",
+    /**
+     * Size of the Button
+     * @type {''|'small'|'medium'|'large'}
+     */
+    size = "",
+    /**
+     * Name of the icon that is to be displayed in the button
+     */
+    icon = "minus-circle",
+    /**
+     * Color of the Button
+     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     */
+    color = "danger",
+    /**
+     * data-cy attribute for cypress
+     */
+    cy = "",
+    /**
+     * Name of the icon displayed after task is completed successfully
+     */
+    done_icon = "check",
+    /**
+     * Button text displayed after task is completed successfully
+     */
+    done_text = "Deleted",
+    /**
+     * Context property
+     */
+    context = null,
+    /**
+     * Removes text, and text space in the button
+     */
+    icon_only = false,
+    /**
+     * Disables the button when `true`
+     */
+    disabled = false;
 
   /**
-   * CSS classes for button
-   * @type {string}
+   * CSS classes for the button container
    */
-  export const button_class = "";
-
-  /**
-   * Button text
-   * @type {string}
-   */
-  export const text = "Delete";
-
-  /**
-   * Size of the Button
-   * @type {'small'|'medium'|'large'}
-   */
-  export const size = "";
-
-  /**
-   * Icon of the Button - can use any fa icon
-   * @type {string}
-   */
-  export const icon = "minus-circle";
-
-  /**
-   * Color of the Button
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
-   */
-  export const color = "danger";
-
-  /**
-   * data-cy attribute for cypress
-   * @type {string}
-   */
-  export const cy = "";
-
-  /**
-   * Icon showing after confirm - can use any fa icon
-   * @type {string}
-   */
-  export const doing_icon = "hourglass";
-
-  /**
-   * Text showing after confirm
-   * @type {string}
-   */
-  export const doing_text = "Deleting...";
-
-  /**
-   * Icon showing after success - can use any fa icon
-   * @type {string}
-   */
-  export const done_icon = "check";
-
-  /**
-   * Text showing after success - can use any fa icon
-   * @type {string}
-   */
-  export const done_text = "Deleted";
-
-  /**
-   * Context property
-   * @type {object}
-   */
-  export const context = null;
-
-  /**
-   * Boolean - true/false
-   * @type {boolean}
-   */
-  export const icon_only = false;
-
-  /**
-   * Boolean - true/false
-   * @type {boolean}
-   */
-  export const disabled = false;
-
-  $: properties = { ...$$props };
+  let klass = "";
+  export { klass as class };
 
   // reviwed
 </script>

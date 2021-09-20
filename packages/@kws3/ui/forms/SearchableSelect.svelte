@@ -1,19 +1,18 @@
 <!--
   @component
-  
 
   @param {string} [value=""] - Bind value, Default: `""`
   @param {string} [filter=""] - Filter, Default: `""`
-  @param {string} [style=""] - Inline CSS for the displayed text, Default: `""`
-  @param {string} [dd_class=""] - CSS classes for the dropdown, Default: `""`
+  @param {string} [style=""] - Inline styles, Default: `""`
+  @param {string} [classes=""] - Additional classes, Default: `""`
+  @param {string} [dd_class=""] - Dropdown class, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {object} [searchKey=null] - Key to be searched in each data object, Default: `null`
-  @param {object} [searchValue=null] - Value to be searched in each data object, Default: `null`
-  @param {array} [data=[]] - All searchable options as objects in an array, Default: `[]`
-  @param {boolean} [open=false] - Determines whether the dropdown is currently open, Default: `false`
-  @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {string} [searchKey="null"] - which key to search in each data object, Default: `"null"`
+  @param {string} [searchValue="null"] - which value to search in each data object, Default: `"null"`
+  @param {object} [data={}] - Object of option values, Default: `{}`
+  @param {boolean} [open=false] - Open - true/false, Default: `false`
+  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
   @param {string} [placeholder=""] - Placeholder string, Default: `""`
-  @param {string} [class=""] - CSS classes for the component, Default: `""`
 
 -->
 <svelte:window on:resize={close} />

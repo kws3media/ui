@@ -7,8 +7,8 @@ import { action } from '@storybook/addon-actions';
 export let args={
   title : "",
   subtitle : "",
-  outer_class : "",
-  outer_style : "",
+  class:"",
+  style : "",
   inner_class : "",
   inner_style : "",
   cy : "",
@@ -64,9 +64,9 @@ export let args={
 <Source
   language='css'
   code={ dedent`
-    $kws-panel-background: #fff;
-    $kws-panel-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
-    $kws-panel-title-color: #000;
+    $kws-panel-background: $scheme-main;
+    $kws-panel-box-shadow: $card-shadow;
+    $kws-panel-title-color: $text;
     $kws-panel-title-weight: 700;
     $kws-panel-caret-open-color: #888;
     $kws-panel-caret-closed-color: #00a4d8;

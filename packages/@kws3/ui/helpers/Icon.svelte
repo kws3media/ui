@@ -2,26 +2,23 @@
   @component
 
 
-  @param {'small'|'medium'|'large'} [size="null"] - Size of the Icon, Default: `"null"`
-  @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color="null"] - Color of the Icon, Default: `"null"`
-  @param {string} [icon=""] - Icon name to display, Default: `""`
-  @param {string} [icon_class=""] - CSS classes for icon, Default: `""`
-  @param {string} [icon_style=""] - Inline style of icon, Default: `""`
-  @param {string} [inner_class="null"] - Inner class of icon, Default: `"null"`
-  @param {string} [inner_style="null"] - Inline style for Icon, Default: `"null"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
+  @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
+  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [family=""] - Icon family, defaults to global family set via `setDefaultIconType()`
 
-  ### Module
-  @param {function} [setDefaultIconType(type)] - SetDefaultIconType function
+Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
+  @param {string} [style=""] - Inline CSS for icon container, Default: `""`
+  @param {string} [inner_class=""] - CSS classes for icon, Default: `""`
+  @param {string} [inner_style=""] - Inline CSS for icon, Default: `""`
+  @param {string} [class=""] - CSS classes for icon container, Default: `""`
 
 -->
-<span
-  class="icon {size ? 'is-' + size : ''} {color
-    ? 'has-text-' + color
-    : ''} {icon_class}"
-  style={icon_style}>
+
+<span class="icon is-{size} has-text-{color} {klass}" {style}>
   <i
-    class="icon-i {familyClass}{icon} {internal_size} {_used_inner_class}"
-    style={_used_inner_style} />
+    class="icon-i {familyClass}{icon} {internal_size} {inner_class}"
+    style={inner_style} />
 </span>
 
 <style>
@@ -52,65 +49,68 @@
   }
 </style>
 
-<script context="module">
-  let family;
-
-  export function setDefaultIconType(type) {
-    family = type;
-  }
-</script>
-
 <script>
+  import { defaultIconFamily } from "../settings";
+
   /**
    * Size of the Icon
-   * @type {'small'|'medium'|'large'}
+   *  @type {''|'small'|'medium'|'large'}
    */
-  export let size = null,
+  export let size = "",
     /**
      * Color of the Icon
-     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
-    color = null,
+    color = "",
     /**
-     * Icon name to display
-     * @type {string}
+     * The name of the icon that is to be displayed, from the relevant icon family
      */
     icon = "",
     /**
+     * Icon family, defaults to global family set via `setDefaultIconType()`
+     *
+     * Ultimately defaults to `fa`, if family is not set anywhere
+     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}
+     */
+    family = "",
+    /**
+     * Inline CSS for icon container
+     */
+    style = "",
+    /**
      * CSS classes for icon
-     * @type {string}
      */
-    icon_class = "",
+    inner_class = "",
     /**
-     * Inline style of icon
-     * @type {string}
+     * Inline CSS for icon
      */
-    icon_style = "",
-    /**
-     * Inner class of icon
-     * @type {string}
-     */
-    inner_class = null,
-    /**
-     * Inline style for Icon
-     * @type {string}
-     */
-    inner_style = null;
+    inner_style = "";
 
-  let _used_inner_class,
-    _used_inner_style,
+  /**
+   * CSS classes for icon container
+   */
+  let klass = "";
+  export { klass as class };
+
+  let globalFamily = $defaultIconFamily,
     familyClass,
     internal_size,
     usedFamily;
 
   $: {
-    _used_inner_class = inner_class || "";
-    _used_inner_style = inner_style || "";
-    usedFamily = family ? family : "fa";
-  }
+    usedFamily =
+      family && family != "" ? family : globalFamily ? globalFamily : "fa";
 
-  $: {
     switch (usedFamily) {
+      case "lar":
+        familyClass = "lar la-";
+        break;
+      case "las":
+        familyClass = "las la-";
+        break;
+      case "lab":
+        familyClass = "lab la-";
+        break;
       case "gg":
         familyClass = "gg gg-";
         break;

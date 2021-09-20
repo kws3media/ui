@@ -6,21 +6,24 @@ import { action } from '@storybook/addon-actions';
 
 export let args={
   x : 0,
-  y : 0,
+  y : 20,
   from : 0.5,
   to : 1,
   transition : true,
   type : "fly",
   duration : 300,
   delay : 0,
-  easing : null,
-  classes : ""
+  easing : "",
+  class : ""
 }
 
 <Meta
   title="Standalone/Transitions"
   component={Transition}
   args={args}
+  argTypes={{
+    type:{control: 'select'}
+  }}
 />
 
 <Description markdown={dedent`
@@ -42,74 +45,64 @@ export let args={
 
 <ArgsTable story="Transitions" />
 
-### Examples
-##### `1. Fly`
-<Source
-  language='html'
-  code={ dedent`
-    <Transition
-      type="fly"
-      duration="{300}"
-      x="{0}"
-      y="{20}"
-    />
-  `}
-/>
-
-##### `2. Fade`
-<Source
-  language='html'
-  code={ dedent`
-    <Transition
-      type="fade"
-      duration="{300}"
-    />
-  `}
-/>
-
-##### `3. Slide`
-<Source
-  language='html'
-  code={ dedent`
-    <Transition
-      type="slide"
-      duration="{300}"
-    />
-  `}
-/>
-
-##### `4. Scale`
-<Source
-  language='html'
-  code={ dedent`
-    <Transition
-      type="scale"
-      duration="{300}"
-      from="{0.5}"
-      to="{1}"
-    />
-  `}
-/>
-
-#### As can be seen from code examples above, some transition types accept extra properties relating to the transition. For example, `fly` accepts `x`, and `scale` accepts `from`.
-
-#### In addition to the properties in the examples. All transitions also accept the following properties:
-#### - `delay` - in milliseconds, delays the start of the transition
-#### - `classes` - CSS classes to to add to the wrapper element.
-#### - `transition` - boolean, if false, transition will not run, and behave as if its a static element.
-#### - `easing` - specifies the easing function to be used. Any one of the following strings:
-#### `sineOut`
-#### `elasticOut`
-#### `expoOut`
-#### `cubicOut` - (default easing)
-#### `circOut`
-#### `bounceOut`
-#### `backOut`
-
-
 ### Usage
 ##### Import the component:
 <Source
   language='javascript'
   code={ dedent`import { Transition } from '@kws3/ui';`}
 />
+
+### Examples
+<div class="columns">
+  <div class="column">
+    Fly
+    <Source
+      language='jsx'
+      code={ dedent`
+        <Transition
+          type="fly"
+          duration="{300}"
+          x="{0}"
+          y="{20}"
+        />`}
+    />
+  </div>
+  <div class="column">
+    Fade
+    <Source
+      language='jsx'
+      code={ dedent`
+        <Transition
+          type="fade"
+          duration="{300}"
+        />
+      `}
+    />
+  </div>
+  <div class="column">
+    Slide
+    <Source
+      language='jsx'
+      code={ dedent`
+        <Transition
+          type="slide"
+          duration="{300}"
+        />
+      `}
+    />
+  </div>
+  <div class="column">
+    Scale
+    <Source
+      language='jsx'
+      code={ dedent`
+        <Transition
+          type="scale"
+          duration="{300}"
+          from="{0.5}"
+          to="{1}"
+        />
+      `}
+    />
+  </div>
+</div>

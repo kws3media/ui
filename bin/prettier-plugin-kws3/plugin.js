@@ -58,10 +58,16 @@ let setTopComments = (node) => {
   let comp = getTag(_parsed.tags, "component");
   let params = COMPONENT_FEATURES.params;
   let moduleParams = COMPONENT_FEATURES.moduleParams;
+  let docDescription = rebuildMultilineText(comp);
+  if (docDescription.trim() == "") {
+    docDescription = "";
+  } else {
+    docDescription = "  " + docDescription;
+  }
 
   return (
-    "\n  @component\n  " +
-    rebuildMultilineText(comp) +
+    "\n  @component\n" +
+    docDescription +
     (params.length
       ? "\n\n  " + params.join("\n  ")
       : "\n\n  @param [_] - No properties on this component") +

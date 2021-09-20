@@ -2,36 +2,35 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import { DeleteButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
+import DeleteButtonDecorator from "./DeleteButton.svelte";
 
 export let args={
-  color : "primary",
-  disabled : false,
-  size : "",
-  icon_only : false,
+  class : "",
+  button_class : "",
   text : "Delete Me",
   icon : "minus-circle",
-  doing_icon : "hourglass",
+  icon_only : false,
+  done_text : "Deleted",
   done_icon : "check",
-  doing_text : "Doing",
-  done_text : "Deleted"
+  disabled : false,
+  cy : "",
+  context : "_context_delete",
+  color : "danger",
+  size : "",
 };
-
-export function eraseDo(event, success = true){
-  let {doing, done, error} = event.detail;
-  doing();
-  setTimeout(() => {
-    if(success){
-      done();
-    } else {
-      error();
-    }
-  }, 2000)
-}
 
 <Meta
   title="Buttons/Delete Button"
   component={Button}
   args={args}
+  argTypes={{
+    color: {
+      control: 'select'
+    },
+    size: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
@@ -45,12 +44,8 @@ export function eraseDo(event, success = true){
   args={args}
   >
   {(args) => ({
-    Component: Button,
-    props: args,
-    on: {
-      erase : eraseDo,
-      erased: action("Erased")
-    },
+    Component: DeleteButtonDecorator,
+    props: args
   })}
   </Story>
 </Canvas>
@@ -83,12 +78,11 @@ export function eraseDo(event, success = true){
       export let icon_only = false;
       export let text = "Delete";
       export let icon = "minus-circle";
-      export let doing_icon = "hourglass";
       export let done_icon = "check";
-      export let doing_text = "Doing";
       export let done_text = "Deleted";
+      export let context = "_context_delete";
       function eraseDo(event, success = true){
-        let {doing, done, error} = event.detail;
+        let { doing, done, error, context } = event.detail;
         doing();
         somePromise().then(() => {
           //set visual state to Done

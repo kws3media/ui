@@ -1,0 +1,99 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { ProcessButton as Button } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import ProcessButtonDecorator from "./ProcessButton.svelte";
+
+export let args={
+  class: "",
+  button_class: "",
+  text: "Click Me",
+  icon: "check",
+  icon_only: false,
+  done_text: "Done",
+  done_icon: "check",
+  disabled: false,
+  cy: "",
+  context: "_context_process",
+  size: "",
+  color: "primary",
+};
+
+<Meta
+  title="Buttons/Process Button"
+  component={Button}
+  args={args}
+  argTypes={{
+    color: {
+      control: 'select'
+    },
+    size: {
+      control: 'select'
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# ProcessButton
+## Process Button with properties.
+`}/>
+
+<Canvas>
+  <Story
+  name="Process Button"
+  args={args}
+  >
+  {(args) => ({
+    Component: ProcessButtonDecorator,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Process Button" />
+
+### Usage
+<Source
+  language="html"
+  code={
+    dedent`
+    <ProcessButton
+      {text}
+      {icon}
+      {done_icon}
+      {done_text}
+      {color}
+      {size}
+      {icon_only}
+      {disabled}
+      on:doing={onDoing}
+    />
+    <script>
+      import { ProcessButton } from '@kws3/ui';
+      export let color = "primary";
+      export let disabled = false;
+      export let size="";
+      export let icon_only = false;
+      export let text = "Click Me";
+      export let icon = "check";
+      export let done_icon = "check";
+      export let done_text = "Done";
+      function onDoing(event, success = true){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          component.error();
+        })
+      }
+    </script>`
+  }
+/>
