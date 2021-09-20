@@ -1,12 +1,12 @@
 <!-- z-index: 2 when showOptions is ture ensures the ul.tokens of one <MultiSelect /> display above those of another following shortly after it -->
 <div
   bind:this={el}
-  class="multiselect {outerDivClass}"
+  class="searchableselect input is-shadowless {outerDivClass}"
   class:readonly
   class:single
   style={showOptions ? `z-index: 2;` : ``}
   on:mouseup|stopPropagation={() => setOptionsVisible(true)}>
-  <ul class="tokens {ulTokensClass}">
+  <ul class="tokens tags {ulTokensClass}">
     {#if single}
       <span on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
         {value}
@@ -14,7 +14,7 @@
     {:else if value && value.length > 0}
       {#each value as tag}
         <li
-          class={liTokenClass}
+          class="tag {liTokenClass}"
           on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
           {tag}
           {#if !readonly}
@@ -71,7 +71,7 @@
   import { createEventDispatcher, onMount } from "svelte";
 
   export let value = "";
-  export let maxSelect = null; // null means any number of options are selectable
+  export let maxSelect = 1; // null means any number of options are selectable
   export let readonly = false;
   export let placeholder = ``;
   export let data = [];
@@ -130,7 +130,7 @@
     if (!container) {
       container = document.createElement("div");
       container.id = dropdownId;
-      container.className = "searchableselect";
+      container.className = "searchableselect-container";
       document.body.appendChild(container);
     }
     container.appendChild(dropdown);
