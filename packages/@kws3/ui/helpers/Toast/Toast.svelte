@@ -46,33 +46,33 @@
   const fire = createEventDispatcher();
 
   /**
-   * Title for display
+   * Title/Heading of the notification
    */
   export let title = "",
     /**
-     * Message for display
+     * Message in the notification
      */
     message = "",
     /**
-     * Duration for display message
+     * Duration of the notification
      */
     duration = 3000,
     /**
-     * Message background color
+     * Toast notification background color
      * @type {'warning'|'info'|'danger'|'primary'|'success'}
      */
     color = "primary",
     /**
-     * Position of the message
-     * @type {'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
+     * Position of the notification. `""` defaults to `top-right`
+     * @type {''|'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
      */
     position = "",
     /**
-     * Dismissable message
+     * Determines if notification is dismissable
      */
     is_dismissable = true,
     /**
-     * Persistent message
+     * A persistent notification without duration, stays till dismissed
      */
     is_persistent = false,
     /**
