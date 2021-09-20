@@ -1,403 +1,132 @@
-<!--
-  @component
-
-  @param {string} [value=""] - Bind value, Default: `""`
-  @param {string} [filter=""] - Filter, Default: `""`
-  @param {string} [style=""] - Inline styles, Default: `""`
-  @param {string} [classes=""] - Additional classes, Default: `""`
-  @param {string} [dd_class=""] - Dropdown class, Default: `""`
-  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-  @param {string} [searchKey="null"] - which key to search in each data object, Default: `"null"`
-  @param {string} [searchValue="null"] - which value to search in each data object, Default: `"null"`
-  @param {object} [data={}] - Object of option values, Default: `{}`
-  @param {boolean} [open=false] - Open - true/false, Default: `false`
-  @param {boolean} [disabled=false] - Disabled - true/false, Default: `false`
-  @param {string} [placeholder=""] - Placeholder string, Default: `""`
-
--->
-<svelte:window on:resize={close} />
+<!-- z-index: 2 when showOptions is ture ensures the ul.tokens of one <MultiSelect /> display above those of another following shortly after it -->
 <div
-  bind:this={searchableselect}
-  class="searchableselect input is-shadowless {disabled
-    ? ' is-disabled '
-    : ' '} {klass}"
-  on:click={openDropdown}
-  {style}
-  data-cy="select-container">
-  <span class="name-wrapper">
-    <span class="name"> {_name || placeholder} </span>
-  </span>
-
-  <input
-    type="text"
-    use:keyboardEvents
-    bind:value={filter}
-    on:focus={openDropdown}
-    on:enter={onEnter}
-    on:uparrow={onUparrow}
-    on:downarrow={onDownarrow}
-    on:escape={onEscape} />
-
-  <ul
-    bind:this={dropdown}
-    class="dropdown {open ? ' open ' : ' '} {dd_class}"
-    data-cy={cy}>
-    <li
-      class={selected && highlighted < 0 ? "selected" : ""}
-      on:click={() => select(null)}>
-      {placeholder}
-    </li>
-    {#if items && items.length}
-      {#each items as item, i}
+  bind:this={el}
+  class="multiselect {outerDivClass}"
+  class:readonly
+  class:single
+  style={showOptions ? `z-index: 2;` : ``}
+  on:mouseup|stopPropagation={() => setOptionsVisible(true)}>
+  <ul class="tokens {ulTokensClass}">
+    {#if single}
+      <span on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
+        {value}
+      </span>
+    {:else if value && value.length > 0}
+      {#each value as tag}
         <li
-          class="{highlighted == i ? ' selecting ' : ' '} {selected == i
-            ? 'selected '
-            : ' '}"
-          on:click={() => select(item, i)}>
-          {item[searchKey]}
+          class={liTokenClass}
+          on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
+          {tag}
+          {#if !readonly}
+            <button
+              on:mouseup|stopPropagation={() => remove(tag)}
+              type="button"
+              class="delete is-small"
+              title="{removeBtnTitle} {tag}" />
+          {/if}
         </li>
       {/each}
     {/if}
+    <input
+      bind:this={input}
+      autocomplete="off"
+      bind:value={searchText}
+      on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}
+      on:keydown={handleKeydown}
+      on:focus={() => setOptionsVisible(true)}
+      on:blur={() => dispatch(`blur`)}
+      on:blur={() => setOptionsVisible(false)}
+      placeholder={value.length ? `` : placeholder} />
+  </ul>
+  {#if !readonly}
+    <button
+      type="button"
+      class="remove-all delete is-small"
+      title={removeAllTitle}
+      on:mouseup|stopPropagation={removeAll}
+      style={value.length === 0 ? `display: none;` : ``} />
+  {/if}
+
+  <ul
+    bind:this={dropdown}
+    class="options {ulOptionsClass}"
+    class:hidden={!showOptions}>
+    {#each filteredOptions as option}
+      <li
+        on:mouseup|preventDefault|stopPropagation
+        on:mousedown|preventDefault|stopPropagation={() =>
+          isSelected(option) ? remove(option) : add(option)}
+        class:selected={isSelected(option)}
+        class:active={activeOption === option}
+        class={liOptionClass}>
+        {option}
+      </li>
+    {:else}
+      {noOptionsMsg}
+    {/each}
   </ul>
 </div>
 
 <script>
-  import { onMount, onDestroy, tick } from "svelte";
-  import { keyboardEvents } from "../utils/keyboard-events";
+  import { createEventDispatcher, onMount } from "svelte";
 
-  let dropdownId = "searchableselect-dropdown-container";
+  export let value = "";
+  export let maxSelect = null; // null means any number of options are selectable
+  export let readonly = false;
+  export let placeholder = ``;
+  export let data = [];
+  export let input = null;
+  export let noOptionsMsg = `No matching options`;
 
-  let searchableselect, el, dropdown, _dropdown, input_el, selected_el;
+  export let outerDivClass = ``;
+  export let ulTokensClass = ``;
+  export let liTokenClass = ``;
+  export let ulOptionsClass = ``;
+  export let liOptionClass = ``;
 
-  /**
-   * Bind value
-   */
-  export let value = "",
-    /**
-     * Filter
-     */
-    filter = "",
-    /**
-     * Inline CSS for the displayed text
-     */
-    style = "",
-    /**
-     * CSS classes for the dropdown
-     */
-    dd_class = "",
-    /**
-     * data-cy attribute for cypress
-     */
-    cy = "",
-    /**
-     * Key to be searched in each data object
-     */
-    searchKey = null,
-    /**
-     * Value to be searched in each data object
-     */
-    searchValue = null,
-    /**
-     * All searchable options as objects in an array
-     */
-    data = [],
-    /**
-     * Determines whether the dropdown is currently open
-     */
-    open = false,
-    /**
-     * Disables the component
-     */
-    disabled = false,
-    /**
-     * Placeholder string
-     */
-    placeholder = "";
+  export let removeBtnTitle = `Remove`;
+  export let removeAllTitle = `Remove all`;
 
-  /**
-   * CSS classes for the component
-   */
-  let klass = "";
-  export { klass as class };
+  let el, //whole wrapping element
+    dropdown, //dropdown ul
+    dropdownId = "searchableselect-dropdown-container";
 
-  let _name = "",
-    scrollTarget = null,
-    highlighted = -1, // for dropdown
-    selected = -1, // for selected items
-    items;
-
-  function prepareItems(_data, _filter) {
-    _filter = _filter.toLowerCase();
-    let _items = _data || [];
-
-    if (!_items || !(_items instanceof Array)) return null;
-
-    items = _items.slice().filter(function (item) {
-      // filter out items that don't match `filter`
-      if (typeof item === "object") {
-        if (searchKey) {
-          if (
-            typeof item[searchKey] === "string" &&
-            item[searchKey].toLowerCase().indexOf(filter) > -1
-          )
-            return true;
-        } else {
-          for (var key in item) {
-            if (
-              typeof item[key] === "string" &&
-              item[key].toLowerCase().indexOf(filter) > -1
-            )
-              return true;
-          }
-        }
-      } else {
-        return item.toLowerCase().indexOf(filter) > -1;
-      }
-    });
-
-    console.log(items);
+  if (maxSelect !== null && maxSelect < 0) {
+    throw new TypeError(
+      `maxSelect must be null or positive integer, got ${maxSelect}`
+    );
   }
+  $: single = maxSelect === 1;
+  if (!value) value = single ? `` : [];
 
-  let clickHandler = function (e) {
-    e.stopImmediatePropagation();
-    let el = searchableselect;
-    if (!el) {
-      return;
-    }
-    let dropdown = el.querySelector(".dropdown");
+  if (!data || !data.length) console.error(`MultiSelect missing options`);
 
-    let target = e.target;
+  const dispatch = createEventDispatcher();
+  let activeOption = "",
+    searchText = "";
+  let showOptions = false;
 
-    if (el.contains(target) || target === dropdown) return;
+  $: filteredOptions = searchText
+    ? data.filter((option) =>
+        option.toLowerCase().includes(searchText.toLowerCase())
+      )
+    : data;
+  $: if (
+    (activeOption && !filteredOptions.includes(activeOption)) ||
+    (!activeOption && searchText)
+  )
+    activeOption = filteredOptions[0];
 
-    open = false;
+  $: isSelected = (option) => {
+    if (!(value && value.length > 0)) return false; // nothing is selected if `value` is the empty array or string
+    if (single) return value === option;
+    else return value.includes(option);
   };
 
-  let scrollHandler = function (e) {
-    e.stopImmediatePropagation();
-    e.stopPropagation();
-
-    console.log(e);
-
-    if (!scrollTarget) {
-      scrollTarget = window;
-    } else if (typeof scrollTarget === "string") {
-      scrollTarget = document.getElementById(scrollTarget);
-    }
-    if (open && e.target == scrollTarget) {
-      close();
-    }
-  };
-
-  function onUparrow(e) {
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    e.preventDefault();
-
-    selected = -1;
-    if (highlighted <= -1) return;
-
-    // increase highlighted until we find a non group
-    do {
-      highlighted--;
-    } while (highlighted == -1);
-
-    highlighted = Math.max(-1, highlighted);
-
-    updateBounds();
-  }
-
-  function onDownarrow(e) {
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    e.preventDefault();
-
-    selected = -1;
-
-    if (highlighted >= items.length - 1) return;
-
-    if (!open) {
-      openDropdown();
-    }
-
-    do {
-      highlighted++;
-    } while (highlighted == items.length);
-
-    highlighted = Math.min(items.length, highlighted);
-
-    updateBounds();
-  }
-
-  function onEnter(e) {
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    e.preventDefault();
-
-    if (highlighted !== -1) {
-      if (open) {
-        select(items[highlighted], highlighted);
-      }
-    }
-
-    if (highlighted < 0) {
-      select(null);
-    }
-  }
-
-  function onEscape(e) {
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    e.preventDefault();
-
-    close();
-  }
-
-  function openDropdown() {
-    console.log("openDropdown");
-    if (!disabled) {
-      open = true;
-    }
-    updateBounds();
-  }
-
-  function close() {
-    open = false;
-  }
-
-  function select(item, i) {
-    if (!item) {
-      (value = ""), (_name = ""), (selected = null);
-    } else {
-      (value = item[searchValue]),
-        (_name = item[searchKey]),
-        (selected = +i),
-        (highlighted = +i);
-    }
-    filter = "";
-    close();
-    updateBounds();
-  }
-
-  function updateName(_value) {
-    if (_value === "") {
-      _name = "";
-      filter = "";
-      highlighted = -1;
-      selected = -1;
-    } else {
-      for (let i in data) {
-        if (data[i][searchValue] == _value) {
-          _name = data[i][searchKey];
-          selected = i;
-          highlighted = i;
-          break;
-        }
-      }
-    }
-  }
-
-  function updateHandler(_open) {
-    if (!scrollTarget) {
-      scrollTarget = window;
-    } else if (typeof scrollTarget === "string") {
-      scrollTarget = document.getElementById(scrollTarget);
-    }
-
-    updateBounds();
-    console.log(scrollTarget);
-    if (_open) {
-      document.addEventListener("click", clickHandler);
-      scrollTarget.addEventListener("scroll", scrollHandler);
-    } else {
-      document.removeEventListener("click", clickHandler);
-      scrollTarget.removeEventListener("scroll", scrollHandler);
-    }
-  }
-
-  async function updateElementState() {
-    await tick();
-    if (!open) {
-      input_el.style.display = "none";
-      selected_el.style.display = "block";
-
-      if (value === "") {
-        (highlighted = -1), (selected = -1);
-      }
-    } else {
-      input_el.style.display = "block";
-      selected_el.style.display = "none";
-      input_el.focus();
-      input_el.select();
-    }
-  }
-
-  function updateBounds() {
-    if (!dropdown) {
-      return;
-    }
-
-    let highlightedElement = dropdown.querySelector(".selecting");
-    let selectedElement = dropdown.querySelector(".selected");
-
-    let bounds = el.getBoundingClientRect();
-
-    // match dropdown width with el width
-    _dropdown.style.width = bounds.width + "px";
-
-    dropdown = _dropdown;
-
-    // console.log(bounds);
-
-    if (open) {
-      if (highlightedElement != null) {
-        if (highlightedElement.offsetTop > 358) {
-          dropdown.scrollTop = highlightedElement.offsetTop - 358;
-        } else {
-          dropdown.scrollTop = 0;
-        }
-      }
-
-      if (selectedElement != null) {
-        if (selectedElement.offsetTop > 358) {
-          dropdown.scrollTop = selectedElement.offsetTop - 358;
-        } else {
-          dropdown.scrollTop = 0;
-        }
-      }
-
-      dropdown.style.left = bounds.left + "px";
-      let top = bounds.bottom,
-        inht = window.innerHeight;
-      if (top + dropdown.offsetHeight > inht) {
-        //not enough space to render drop down below input,
-        //render it above
-        dropdown.style.bottom = inht - (bounds.top - 3) + "px";
-        dropdown.style.top = "auto";
-      } else {
-        dropdown.style.top = top + "px";
-        dropdown.style.bottom = "auto";
-      }
-    } else {
-      dropdown.style.left = "-9999px";
-    }
-  }
+  onMount(init);
 
   function init() {
-    input_el.style.display = "none";
-    selected_el.style.display = "block";
-
-    if (!data) {
-      data = [];
-    }
-
-    //hoist the dropdowns into a container on the body
-    dropdown = searchableselect.querySelector(".dropdown");
-
-    _dropdown = dropdown; // cache for later
-
     let container = document.getElementById(dropdownId);
-
     if (!container) {
       container = document.createElement("div");
       container.id = dropdownId;
@@ -406,33 +135,99 @@
     }
     container.appendChild(dropdown);
     updateBounds();
+
+    return () => {
+      container.removeChild(dropdown);
+    };
   }
 
-  $: data, prepareItems(data, filter);
-  $: value, updateName(value);
-  $: open, updateHandler(open), updateBounds(), updateElementState();
-
-  onMount(() => {
-    el = searchableselect;
-    selected_el = el.querySelector(".name");
-    input_el = el.querySelector("input");
-    init();
-  });
-
-  onDestroy(() => {
-    searchableselect.removeEventListener("click", clickHandler);
-    window.removeEventListener("click", clickHandler);
-    document.removeEventListener("scroll", scrollHandler);
-
-    //have to manually clean this up since we hoisted it from under svelte's nose
-    if (_dropdown) {
-      _dropdown.parentNode.removeChild(_dropdown);
+  function add(token) {
+    if (
+      !readonly &&
+      !value.includes(token) &&
+      // (... || single) because in single mode, we always replace current token with new selection
+      (maxSelect === null || value.length < maxSelect || single)
+    ) {
+      searchText = ``; // reset search string on selection
+      value = single ? token : [token, ...value];
+      if (
+        (Array.isArray(value) && value.length === maxSelect) ||
+        typeof value === `string`
+      ) {
+        setOptionsVisible(false);
+        input && input.blur();
+      }
+      dispatch(`add`, { token });
+      dispatch(`change`, { token, type: `add` });
     }
+  }
 
-    let container = document.getElementById(dropdownId);
+  function remove(token) {
+    if (readonly || typeof value === `string`) return;
+    value = value.filter((item) => item !== token);
+    dispatch(`remove`, { token });
+    dispatch(`change`, { token, type: `remove` });
+  }
 
-    if (container && container.childNodes.length == 0) {
-      container.parentNode.removeChild(container);
+  function setOptionsVisible(show) {
+    // nothing to do if visibility is already as intended
+    if (readonly || show === showOptions) return;
+    showOptions = show;
+    if (show) input && input.focus();
+    updateBounds();
+  }
+
+  function updateBounds() {
+    let bounds = el.getBoundingClientRect();
+    dropdown.style.width = bounds.width + "px";
+
+    dropdown.style.left = bounds.left + "px";
+    let top = bounds.bottom,
+      inht = window.innerHeight;
+    if (top + dropdown.offsetHeight > inht) {
+      //not enough space to render drop down below input,
+      //render it above
+      dropdown.style.bottom = inht - (bounds.top - 3) + "px";
+      dropdown.style.top = "auto";
+    } else {
+      dropdown.style.top = top + "px";
+      dropdown.style.bottom = "auto";
     }
-  });
+  }
+
+  function handleKeydown(event) {
+    if (event.key === `Escape`) {
+      setOptionsVisible(false);
+      searchText = ``;
+    } else if (event.key === `Enter`) {
+      if (activeOption) {
+        value.includes(activeOption) ? remove(activeOption) : add(activeOption);
+        searchText = ``;
+      } // no active option means the options are closed in which case enter means open
+      else setOptionsVisible(true);
+    } else if ([`ArrowDown`, `ArrowUp`].includes(event.key)) {
+      const increment = event.key === `ArrowUp` ? -1 : 1;
+      const newActiveIdx = filteredOptions.indexOf(activeOption) + increment;
+
+      if (newActiveIdx < 0) {
+        activeOption = filteredOptions[filteredOptions.length - 1];
+      } else {
+        if (newActiveIdx === filteredOptions.length)
+          activeOption = filteredOptions[0];
+        else activeOption = filteredOptions[newActiveIdx];
+      }
+    } else if (event.key === `Backspace`) {
+      // only remove selected tags on backspace if if there are any and no searchText characters remain
+      if (value.length > 0 && searchText.length === 0) {
+        value = value.slice(0, value.length - 1);
+      }
+    }
+  }
+
+  const removeAll = () => {
+    dispatch(`remove`, { token: value });
+    dispatch(`change`, { token: value, type: `remove` });
+    value = single ? `` : [];
+    searchText = ``;
+  };
 </script>
