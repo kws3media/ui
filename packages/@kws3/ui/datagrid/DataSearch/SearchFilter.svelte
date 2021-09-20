@@ -9,7 +9,25 @@
   @param {object} [filter_label_map={}] - Filter_label_map property, Default: `{}`
 
 -->
-{#if filter.options.length > 10}
+
+{#if filter.type == "multiselect"}
+  <div class="control" style={filterWidthStyle}>NOT IMPLEMENTED YET</div>
+{:else if filter.type == "date"}
+  <div class="control" style={filterWidthStyle}>
+    <Datepicker
+      class={hilightClass}
+      bind:value={filterVals[filter.name]}
+      placeholder="{capitaliseFirstLetter(name)} Date" />
+  </div>
+{:else if filter.type == "daterange"}
+  <div class="control" style={filterWidthStyle}>
+    <Datepicker
+      class={hilightClass}
+      bind:value={filterVals[filter.name]}
+      range_mode
+      placeholder="{capitaliseFirstLetter(name)} Date Range" />
+  </div>
+{:else if filter.options.length > 10}
   <SearchableSelect
     data={filter.options}
     placeholder={`Any ${name}`}
@@ -38,7 +56,9 @@
 {/if}
 
 <script>
-  import { SearchableSelect } from "@kws3/ui";
+  import { SearchableSelect, Datepicker } from "@kws3/ui";
+  import { capitaliseFirstLetter } from "@kws3/ui/utils";
+
   export let filter = {},
     filterVals = {},
     filterWidthStyle = "",
