@@ -1,7 +1,6 @@
 <!--
   @component
 
-
   @param {string} [value=""] - Bind value, Default: `""`
   @param {string} [filter=""] - Filter, Default: `""`
   @param {string} [style=""] - Inline styles, Default: `""`
@@ -21,7 +20,7 @@
   bind:this={searchableselect}
   class="searchableselect input is-shadowless {disabled
     ? ' is-disabled '
-    : ' '} {classes}"
+    : ' '} {klass}"
   on:click={openDropdown}
   {style}
   data-cy="select-container">
@@ -72,64 +71,54 @@
 
   /**
    * Bind value
-   * @type {string}
    */
   export let value = "",
     /**
      * Filter
-     * @type {string}
      */
     filter = "",
     /**
-     * Inline styles
-     * @type {string}
+     * Inline CSS for the displayed text
      */
     style = "",
     /**
-     * Additional classes
-     * @type {string}
-     */
-    classes = "",
-    /**
-     * Dropdown class
-     * @type {string}
+     * CSS classes for the dropdown
      */
     dd_class = "",
     /**
      * data-cy attribute for cypress
-     * @type {string}
      */
     cy = "",
     /**
-     * which key to search in each data object
-     * @type {string}
+     * Key to be searched in each data object
      */
     searchKey = null,
     /**
-     * which value to search in each data object
-     * @type {string}
+     * Value to be searched in each data object
      */
     searchValue = null,
     /**
-     * Object of option values
-     * @type {object}
+     * All searchable options as objects in an array
      */
     data = [],
     /**
-     * Open - true/false
-     * @type {boolean}
+     * Determines whether the dropdown is currently open
      */
     open = false,
     /**
-     * Disabled - true/false
-     * @type {boolean}
+     * Disables the component
      */
     disabled = false,
     /**
      * Placeholder string
-     * @type {string}
      */
     placeholder = "";
+
+  /**
+   * CSS classes for the component
+   */
+  let klass = "";
+  export { klass as class };
 
   let _name = "",
     scrollTarget = null,
