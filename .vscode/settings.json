@@ -16,5 +16,8 @@
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode",
     "editor.formatOnSave": true
+  },
+  "[mdx]":{
+    "files.trimTrailingWhitespace": false
   }
 }
