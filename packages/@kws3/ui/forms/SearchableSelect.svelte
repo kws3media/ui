@@ -123,7 +123,7 @@
     if (single) return (value[searchKey] || value) === option[searchKey];
     if (!(value && value.length > 0)) return false;
     // nothing is selected if `value` is the empty array or string
-    else return value.includes(option);
+    else return value.some((v) => (v[searchKey] || v) === option[searchKey]);
   };
 
   function prepareItems() {
@@ -134,7 +134,6 @@
       filteredOptions = null;
       return;
     }
-
     filteredOptions = _items.slice().filter((item) => {
       // filter out items that don't match `filter`
       if (typeof item === "object") {
