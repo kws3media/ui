@@ -44,8 +44,8 @@
     open = false,
     disabled = false,
     placeholder = "Choose a Brand...",
-    selected_brand = "Blackberry",
-    selected_brand_2 = [{ id: 4, name: "Nokia" }];
+    selected_brand = "Blackberry", // max item one
+    selected_brand_2 = [{ id: 4, name: "Nokia" }]; // max item null, not works if string given. should work?
 
   let brands = [
     { id: 1, name: "LG" },

@@ -122,11 +122,12 @@
   $: isSelected = (option) => {
     if (single) return (value[searchKey] || value) === option[searchKey];
     if (!(value && value.length > 0)) return false;
+    else return value.some((v) => v[searchKey] === option[searchKey]);
     // nothing is selected if `value` is the empty array or string
-    else return value.some((v) => (v[searchKey] || v) === option[searchKey]);
   };
 
   function prepareItems() {
+    console.log("prepareItems");
     let filter = searchText.toLowerCase(),
       _items = data || [];
 
