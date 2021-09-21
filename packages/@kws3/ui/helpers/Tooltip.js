@@ -2,7 +2,7 @@ import { delegate } from "tippy.js";
 
 /**
  * Activates tooltips via event delegation
- * @param {string} container - CSS identifier of container
+ * @param {string} container - CSS selector of container
  * @param {object} opts - tooltip options
  */
 export default function (container, opts) {
