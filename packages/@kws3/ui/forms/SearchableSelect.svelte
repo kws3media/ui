@@ -120,8 +120,9 @@
     activeOption = filteredOptions[0];
 
   $: isSelected = (option) => {
-    if (!(value && value.length > 0)) return false; // nothing is selected if `value` is the empty array or string
-    if (single) return value === option;
+    if (single) return (value[searchKey] || value) === option[searchKey];
+    if (!(value && value.length > 0)) return false;
+    // nothing is selected if `value` is the empty array or string
     else return value.includes(option);
   };
 
