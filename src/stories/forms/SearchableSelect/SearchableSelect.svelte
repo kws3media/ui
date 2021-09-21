@@ -1,17 +1,22 @@
-<KwsSearchableSelect
-  scrollTarget="contentArea"
-  data={brands}
-  bind:value={selected_brand}
-  searchKey="name"
-  searchValue="name"
-  {placeholder}
-  {filter}
-  {style}
-  class={klass}
-  {dd_class}
-  {cy}
-  {open}
-  {disabled} />
+<div style="height:300px;overflow:auto">
+  <KwsSearchableSelect
+    scrollTarget="contentArea"
+    data={brands}
+    bind:value={selected_brand}
+    searchKey="name"
+    searchValue="name"
+    {placeholder}
+    {filter}
+    {style}
+    class={klass}
+    {dd_class}
+    {cy}
+    {open}
+    {disabled} />
+  <br />
+
+  {JSON.stringify(selected_brand, null, 2)}
+</div>
 
 <script>
   import { SearchableSelect as KwsSearchableSelect } from "@kws3/ui";
