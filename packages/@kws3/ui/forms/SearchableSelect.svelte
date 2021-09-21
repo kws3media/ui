@@ -9,14 +9,14 @@
   <ul class="tokens tags {ulTokensClass}">
     {#if single}
       <span on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
-        {value}
+        {value[searchKey] || value}
       </span>
     {:else if value && value.length > 0}
       {#each value as tag}
         <li
           class="tag is-primary is-light {liTokenClass}"
           on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
-          {tag}
+          {tag[searchKey] || tag}
           {#if !readonly}
             <button
               on:mouseup|stopPropagation={() => remove(tag)}
@@ -179,7 +179,8 @@
   function add(token) {
     if (
       !readonly &&
-      !value.includes(token) &&
+      // Array.isArray(value) &&
+      // !value.includes(token) &&
       // (... || single) because in single mode, we always replace current token with new selection
       (maxSelect === null || value.length < maxSelect || single)
     ) {
