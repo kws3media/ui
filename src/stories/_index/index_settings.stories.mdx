@@ -1,4 +1,4 @@
-import { Meta, Source  } from '@storybook/addon-docs';
+import { Meta  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 
 <Meta
@@ -10,22 +10,20 @@ Framework wide settings can be applied in one place.
 Ideally in the entry file of your app.
 
 ### Usage
-<Source
-  language='js'
-  code={ dedent`
-    import {applySettings} from '@kws3/ui';
-    applySettings({
-      defaultIconFamily: 'fa',
-      defaultToastPlacement: 'top-right',
-      hasTransitions: true
-    });
-    //
-    //you can also apply just one setting:
-    applySettings({
-      hasTransitions: false
-    });
-  `}
-/>
+```js
+import {applySettings} from '@kws3/ui';
+
+applySettings({
+  defaultIconFamily: 'fa',
+  defaultToastPlacement: 'top-right',
+  hasTransitions: true
+});
+
+//you can also apply just one setting:
+applySettings({
+  hasTransitions: false
+});
+```
 
 ### Available Settings
 <table class="table is-fullwidth">
