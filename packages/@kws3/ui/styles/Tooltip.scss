@@ -1,0 +1,135 @@
+/* ---------------------------- */
+/* ---- ToolTip  ---- */
+$kws-tt-background-color: $scheme-invert-ter;
+$kws-tt-foreground-color: $scheme-main;
+$kws-tt-arrow-size: 8px;
+$kws-tt-tooltip-padding: 0.5rem;
+$kws-tt-roundness: 3px; // 0 || border-radius
+$kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65); // 0 || box-shadow
+
+.tippy-iOS {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-tippy-root] {
+  max-width: calc(100vw - 10px);
+}
+
+.tippy-arrow {
+  & {
+    width: $kws-tt-arrow-size;
+    height: $kws-tt-arrow-size;
+    color: $kws-tt-background-color;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+  }
+}
+.tippy-content {
+  position: relative;
+  padding: $kws-tt-tooltip-padding;
+  z-index: 1;
+}
+
+.tippy-box {
+  $placements: "top", "bottom", "left", "right";
+  $origins: bottom, top, right, left;
+
+  &[data-animation="scale"] {
+    @each $placement in $placements {
+      &[data-placement^="#{$placement}"] {
+        transform-origin: nth($origins, index($placements, $placement));
+      }
+    }
+
+    &[data-state="hidden"] {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  &[data-animation="fade"][data-state="hidden"] {
+    opacity: 0;
+  }
+
+  position: relative;
+  background-color: $kws-tt-background-color;
+  color: $kws-tt-foreground-color;
+  border-radius: $kws-tt-roundness;
+  outline: 0;
+  box-shadow: $kws-tt-shadow;
+  transition-property: transform, visibility, opacity;
+
+  &[data-theme~="light"],
+  &[data-theme~="infobubble"] {
+    color: $text;
+    box-shadow: 0 0 20px 4px rgba(154, 161, 177, 0.25),
+      0 4px 40px -8px rgba(36, 40, 47, 0.45),
+      0 4px 4px -2px rgba(91, 94, 105, 0.25);
+    background-color: $background;
+    .tippy-arrow {
+      color: $background;
+    }
+  }
+  &[data-theme~="infobubble"] {
+    font-size: 1rem;
+    border-radius: $radius;
+    .tippy-content {
+      padding: 0;
+    }
+  }
+
+  &[data-placement^="top"] > .tippy-arrow {
+    bottom: 0;
+
+    &::before {
+      bottom: -7px;
+      left: 0;
+      border-width: 8px 8px 0;
+      border-top-color: initial;
+      transform-origin: center top;
+    }
+  }
+  &[data-placement^="bottom"] > .tippy-arrow {
+    top: 0;
+
+    &::before {
+      top: -7px;
+      left: 0;
+      border-width: 0 8px 8px;
+      border-bottom-color: initial;
+      transform-origin: center bottom;
+    }
+  }
+
+  &[data-placement^="left"] > .tippy-arrow {
+    right: 0;
+
+    &::before {
+      border-width: 8px 0 8px 8px;
+      border-left-color: initial;
+      right: -7px;
+      transform-origin: center left;
+    }
+  }
+
+  &[data-placement^="right"] > .tippy-arrow {
+    left: 0;
+
+    &::before {
+      left: -7px;
+      border-width: 8px 8px 8px 0;
+      border-right-color: initial;
+      transform-origin: center right;
+    }
+  }
+
+  &[data-inertia][data-state="visible"] {
+    transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
+  }
+}
