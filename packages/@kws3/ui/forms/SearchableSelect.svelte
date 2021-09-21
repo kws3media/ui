@@ -179,13 +179,12 @@
   function add(token) {
     if (
       !readonly &&
-      // Array.isArray(value) &&
       !isSelected(token) &&
       // (... || single) because in single mode, we always replace current token with new selection
       (maxSelect === null || value.length < maxSelect || single)
     ) {
       searchText = ``; // reset search string on selection
-      value = single ? token : [token, ...value];
+      value = single ? token : [...value, token];
       if (
         (Array.isArray(value) && value.length === maxSelect) ||
         typeof value === `string`
