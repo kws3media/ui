@@ -1,11 +1,9 @@
-/* ---------------------------- */
-/* ---- ToolTip  ---- */
-$kws-tt-background-color: $scheme-invert-ter;
-$kws-tt-foreground-color: $scheme-main;
-$kws-tt-arrow-size: 8px;
-$kws-tt-tooltip-padding: 0.5rem;
-$kws-tt-roundness: 3px; // 0 || border-radius
-$kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65); // 0 || box-shadow
+$kws-tt-background-color: $scheme-invert-ter !default;
+$kws-tt-foreground-color: $scheme-main !default;
+$kws-tt-arrow-size: 8px !default;
+$kws-tt-padding: 0.5rem !default;
+$kws-tt-radius: $radius-small !default;
+$kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65) !default;
 
 .tippy-iOS {
   cursor: pointer !important;
@@ -32,7 +30,7 @@ $kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65); // 0 || box-shadow
 }
 .tippy-content {
   position: relative;
-  padding: $kws-tt-tooltip-padding;
+  padding: $kws-tt-padding;
   z-index: 1;
 }
 
@@ -60,7 +58,7 @@ $kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65); // 0 || box-shadow
   position: relative;
   background-color: $kws-tt-background-color;
   color: $kws-tt-foreground-color;
-  border-radius: $kws-tt-roundness;
+  border-radius: $kws-tt-radius;
   outline: 0;
   box-shadow: $kws-tt-shadow;
   transition-property: transform, visibility, opacity;

@@ -8,11 +8,13 @@ import dedent from 'ts-dedent';
 ## Tooltips
 Tooltips can be applied application-wide in a single place. Ideally in the entry file of your app.
 
-### Usage
+#### Usage
 
 ```js
 import {activateTooltips} from '@kws3/ui';
 activateTooltips(container, { ...options });
+
+//also need to import css, see below
 ```
 
 `container` is the CSS selector of the root container of your app.  
@@ -35,4 +37,19 @@ Default values of the options object:
   offset: [0, 15], //placement offsets
   touch: true, //works on mobile, activated on touch
 }
+```
+
+#### Import the CSS:
+```js
+@import '@kws3/ui/styles/Tooltip.scss';
+```
+
+##### SCSS customization variables with default values:
+```css
+$kws-tt-background-color: $scheme-invert-ter;
+$kws-tt-foreground-color: $scheme-main;
+$kws-tt-arrow-size: 8px;
+$kws-tt-padding: 0.5rem;
+$kws-tt-radius: $radius-small;
+$kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65);
 ```
