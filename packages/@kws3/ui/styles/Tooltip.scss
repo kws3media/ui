@@ -66,9 +66,6 @@ $kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65) !default;
   &[data-theme~="light"],
   &[data-theme~="infobubble"] {
     color: $text;
-    box-shadow: 0 0 20px 4px rgba(154, 161, 177, 0.25),
-      0 4px 40px -8px rgba(36, 40, 47, 0.45),
-      0 4px 4px -2px rgba(91, 94, 105, 0.25);
     background-color: $background;
     .tippy-arrow {
       color: $background;
@@ -76,7 +73,7 @@ $kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65) !default;
   }
   &[data-theme~="infobubble"] {
     font-size: 1rem;
-    border-radius: $radius;
+    border-radius: $kws-tt-radius;
     .tippy-content {
       padding: 0;
     }
