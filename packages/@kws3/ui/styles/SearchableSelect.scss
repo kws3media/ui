@@ -76,31 +76,35 @@ ul.options {
   width: 100%;
   cursor: pointer;
   position: absolute;
-  border-radius: 1ex;
+  border-radius: 0 0 $radius $radius;
   overflow: auto;
-  background: var(--sms-options-bg, white);
+  background: #fff;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.4);
 }
 ul.options.hidden {
   visibility: hidden;
 }
 ul.options li {
-  padding: 3pt 2ex;
+  padding: 0.3em 0.5em;
+  &:hover {
+    background: lightgrey;
+  }
+  &.active {
+    // keyboard focused item
+    background: lighten($blue, 10%);
+  }
+  &.selected {
+    //current active selection
+    background: $blue;
+  }
 }
-ul.options li.selected {
-  border-left: var(
-    --sms-li-selected-border-left,
-    3pt solid var(--sms-selected-color, green)
-  );
-  background: var(--sms-li-selected-bg, inherit);
-  color: var(--sms-li-selected-color, inherit);
-}
-ul.options li:not(.selected):hover {
-  border-left: var(
-    --sms-li-not-selected-hover-border-left,
-    3pt solid var(--sms-active-color, cornflowerblue)
-  );
-  border-left: 3pt solid var(--blue);
-}
-ul.options li.active {
-  background: var(--sms-li-active-bg, var(--sms-active-color, cornflowerblue));
-}
+// ul.options li.selected {
+//   background: var(--sms-li-selected-bg, inherit);
+//   color: var(--sms-li-selected-color, inherit);
+// }
+// ul.options li:not(.selected):hover {
+
+// }
+// ul.options li.active {
+//   background: var(--sms-li-active-bg, var(--sms-active-color, cornflowerblue));
+// }

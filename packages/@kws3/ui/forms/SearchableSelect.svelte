@@ -14,7 +14,7 @@
     {:else if value && value.length > 0}
       {#each value as tag}
         <li
-          class="tag {liTokenClass}"
+          class="tag is-primary is-light {liTokenClass}"
           on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
           {tag}
           {#if !readonly}
@@ -34,7 +34,7 @@
       on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}
       on:keydown={handleKeydown}
       on:focus={() => setOptionsVisible(true)}
-      on:blur={() => dispatch(`blur`)}
+      on:blur={() => fire(`blur`)}
       on:blur={() => setOptionsVisible(false)}
       placeholder={value.length ? `` : placeholder} />
   </ul>
@@ -59,7 +59,7 @@
         class:selected={isSelected(option)}
         class:active={activeOption === option}
         class={liOptionClass}>
-        {option}
+        {option[searchKey]}
       </li>
     {:else}
       {noOptionsMsg}
@@ -77,6 +77,9 @@
   export let data = [];
   export let input = null;
   export let noOptionsMsg = `No matching options`;
+
+  export let searchKey = "name";
+  export let valueKey = "id";
 
   export let outerDivClass = ``;
   export let ulTokensClass = ``;
@@ -101,16 +104,15 @@
 
   if (!data || !data.length) console.error(`MultiSelect missing options`);
 
-  const dispatch = createEventDispatcher();
-  let activeOption = "",
-    searchText = "";
-  let showOptions = false;
+  const fire = createEventDispatcher();
 
-  $: filteredOptions = searchText
-    ? data.filter((option) =>
-        option.toLowerCase().includes(searchText.toLowerCase())
-      )
-    : data;
+  let activeOption = "",
+    searchText = "",
+    showOptions = false,
+    filteredOptions = [];
+
+  $: data, searchText, searchKey, valueKey, prepareItems();
+
   $: if (
     (activeOption && !filteredOptions.includes(activeOption)) ||
     (!activeOption && searchText)
@@ -122,6 +124,39 @@
     if (single) return value === option;
     else return value.includes(option);
   };
+
+  function prepareItems() {
+    let filter = searchText.toLowerCase(),
+      _items = data || [];
+
+    if (!_items || !(_items instanceof Array)) {
+      filteredOptions = null;
+      return;
+    }
+
+    filteredOptions = _items.slice().filter((item) => {
+      // filter out items that don't match `filter`
+      if (typeof item === "object") {
+        if (searchKey) {
+          if (
+            typeof item[searchKey] === "string" &&
+            item[searchKey].toLowerCase().indexOf(filter) > -1
+          )
+            return true;
+        } else {
+          for (var key in item) {
+            if (
+              typeof item[key] === "string" &&
+              item[key].toLowerCase().indexOf(filter) > -1
+            )
+              return true;
+          }
+        }
+      } else {
+        return item.toLowerCase().indexOf(filter) > -1;
+      }
+    });
+  }
 
   onMount(init);
 
@@ -157,16 +192,16 @@
         setOptionsVisible(false);
         input && input.blur();
       }
-      dispatch(`add`, { token });
-      dispatch(`change`, { token, type: `add` });
+      fire(`add`, { token });
+      fire(`change`, { token, type: `add` });
     }
   }
 
   function remove(token) {
     if (readonly || typeof value === `string`) return;
     value = value.filter((item) => item !== token);
-    dispatch(`remove`, { token });
-    dispatch(`change`, { token, type: `remove` });
+    fire(`remove`, { token });
+    fire(`change`, { token, type: `remove` });
   }
 
   function setOptionsVisible(show) {
@@ -225,8 +260,8 @@
   }
 
   const removeAll = () => {
-    dispatch(`remove`, { token: value });
-    dispatch(`change`, { token: value, type: `remove` });
+    fire(`remove`, { token: value });
+    fire(`change`, { token: value, type: `remove` });
     value = single ? `` : [];
     searchText = ``;
   };
