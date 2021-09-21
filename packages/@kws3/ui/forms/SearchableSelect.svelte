@@ -127,7 +127,6 @@
   };
 
   function prepareItems() {
-    console.log("prepareItems");
     let filter = searchText.toLowerCase(),
       _items = data || [];
 
@@ -181,7 +180,7 @@
     if (
       !readonly &&
       // Array.isArray(value) &&
-      // !value.includes(token) &&
+      !isSelected(token) &&
       // (... || single) because in single mode, we always replace current token with new selection
       (maxSelect === null || value.length < maxSelect || single)
     ) {
@@ -238,7 +237,7 @@
       searchText = ``;
     } else if (event.key === `Enter`) {
       if (activeOption) {
-        value.includes(activeOption) ? remove(activeOption) : add(activeOption);
+        isSelected(activeOption) ? remove(activeOption) : add(activeOption);
         searchText = ``;
       } // no active option means the options are closed in which case enter means open
       else setOptionsVisible(true);
