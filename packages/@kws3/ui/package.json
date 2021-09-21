@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "flatpickr": "^4.5.2",
-    "text-mask-core": "^5.1.2"
+    "text-mask-core": "^5.1.2",
+    "tippy.js": "^6.3.1"
   }
 }
