@@ -1,9 +1,9 @@
-$steps-maker-default-color: $grey-light !default;
-$steps-marker-default-border: 0.2em solid #fff !default;
-$steps-default-color: $grey-lighter !default;
-$steps-completed-color: $primary !default;
-$steps-active-color: $primary !default;
-$steps-divider-height: 0.2em !default;
+$kws-steps-maker-default-color: $grey-light !default;
+$kws-steps-marker-default-border: 0.2em solid #fff !default;
+$kws-steps-default-color: $grey-lighter !default;
+$kws-steps-completed-color: $primary !default;
+$kws-steps-active-color: $primary !default;
+$kws-steps-divider-height: 0.2em !default;
 
 @mixin steps-size($size) {
   font-size: $size;
@@ -11,7 +11,7 @@ $steps-divider-height: 0.2em !default;
 
   .step-item {
     &:not(:first-child)::before {
-      height: $steps-divider-height;
+      height: $kws-steps-divider-height;
       width: 100%;
       bottom: 0;
       left: -50%;
@@ -64,8 +64,8 @@ $steps-divider-height: 0.2em !default;
     &::before {
       background: linear-gradient(
         to left,
-        $steps-default-color 50%,
-        $steps-active-color 50%
+        $kws-steps-default-color 50%,
+        $kws-steps-active-color 50%
       );
       background-size: 200% 100%;
       background-position: right bottom;
@@ -79,8 +79,8 @@ $steps-divider-height: 0.2em !default;
       }
       .step-marker {
         background-color: $white;
-        border-color: $steps-active-color;
-        color: $steps-active-color;
+        border-color: $kws-steps-active-color;
+        color: $kws-steps-active-color;
       }
     }
     &.is-completed {
@@ -89,7 +89,7 @@ $steps-divider-height: 0.2em !default;
       }
       .step-marker {
         color: $white;
-        background-color: $steps-completed-color;
+        background-color: $kws-steps-completed-color;
       }
     }
     .step-marker {
@@ -98,9 +98,9 @@ $steps-divider-height: 0.2em !default;
       border-radius: 50%;
       font-weight: $weight-bold;
       justify-content: center;
-      background: $steps-maker-default-color;
+      background: $kws-steps-maker-default-color;
       color: $white;
-      border: $steps-marker-default-border;
+      border: $kws-steps-marker-default-border;
       z-index: 1;
     }
     .step-details {
@@ -114,7 +114,7 @@ $steps-divider-height: 0.2em !default;
         &::before {
           background: linear-gradient(
             to left,
-            $steps-default-color 50%,
+            $kws-steps-default-color 50%,
             $color 50%
           );
           background-size: 200% 100%;
