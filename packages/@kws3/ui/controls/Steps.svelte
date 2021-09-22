@@ -68,7 +68,7 @@ If its `false`, it doesn't display number, icon or character, Default: `true`
      */
     color = "",
     /**
-     * Determine, can able to navigate through steps
+     * Determine the steps navigation
      */
     clickable = false,
     /**
