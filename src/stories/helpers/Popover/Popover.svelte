@@ -48,7 +48,7 @@
   </div>
   <div class="column">
     <p>
-      A para of text with a
+      A paragraph of text with a
       <KwsPopover
         class={klass}
         {style}
@@ -69,7 +69,7 @@
           </Message>
         </svelte:fragment>
       </KwsPopover>
-      within it
+      within it.
     </p>
   </div>
 </div>
