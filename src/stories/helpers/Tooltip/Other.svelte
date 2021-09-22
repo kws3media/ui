@@ -48,6 +48,33 @@
   <hr class="is-small" />
   <div class="columns is-multiline">
     <div class="column is-6">
+      <p><strong>Hide on click</strong></p>
+      <p>
+        By default, tooltips disappear after clicking anywhere, even the target
+        element.<br />But, sometimes you would like to keep showing the tooltip
+        even after the target element has been clicked.
+      </p>
+      <p>
+        Use <code>hideOnClick: false</code> in init config.
+        <br />
+        Or, use <code>data-tippy-hideOnClick="false"</code>
+      </p>
+    </div>
+    <div class="column is-6">
+      <pre
+        data-tooltip="This is a tooltip"
+        data-tippy-hideOnClick="false">
+&lt;span
+  data-tooltip="This is a tooltip"
+  data-tippy-hideOnClick="false"&gt;
+  hello
+&lt;/span&gt;
+      </pre>
+    </div>
+  </div>
+  <hr class="is-small" />
+  <div class="columns is-multiline">
+    <div class="column is-6">
       <p><strong>Themes</strong></p>
       <p>
         Use <code>theme: "[theme_name]"</code> in init config.
