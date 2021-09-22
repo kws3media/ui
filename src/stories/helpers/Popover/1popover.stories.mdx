@@ -1,0 +1,78 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Popover } from "@kws3/ui";
+import PopoverDecorator from './Popover.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  icon: "info-circle",
+  icon_color: "primary",
+  icon_size: "small",
+  trigger: "click",
+  placement: "auto",
+  interactive: false,
+  external_target: null,
+  max_width: "none",
+  style: "",
+  class:""
+}
+
+<Meta
+  title="Helpers/Popover/1. Component Usage"
+  component={Popover}
+  args={args}
+  argTypes={{
+    icon: {},
+    icon_color: {
+      control: { type: 'select' }
+    },
+    icon_size:{
+      control: {type:"select"},
+    },
+  }}
+/>
+
+<Description markdown={dedent`
+# Popover
+## Display contextual popovers
+`}/>
+
+<Canvas>
+  <Story
+  name="Popover"
+  args={args}
+  >
+  {(args) => ({
+    Component: PopoverDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Popover" />
+
+
+### Usage
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { Popover } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+This requires css from `Tooltip` component.
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/Tooltip.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws-popover-background-color: $background;
+    $kws-popover-foreground-color: $text;
+    $kws-popover-arrow-color: $background;
+    $kws-popover-radius: $kws-tt-radius;
+  `}
+/>
