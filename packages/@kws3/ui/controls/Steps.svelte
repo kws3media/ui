@@ -11,7 +11,7 @@
   @param {string} [step_icon="check"] - Icon used to displayed in steps, Default: `"check"`
   @param {boolean} [have_step_value=true] - Determine the step circle needs value.
 If its `false`, it doesn't display number, icon or character, Default: `true`
-  @param {boolean} [hollow_step=true] - Determine the step circle design is hollow or filled, Default: `true`
+  @param {boolean} [filled_step=false] - Determine the circle design is filled/hollow, Default: `false`
   @param {string} [class=""] - CSS classes for the steps container, Default: `""`
 
 -->
