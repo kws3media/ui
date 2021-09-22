@@ -120,13 +120,15 @@
     activeOption = filteredOptions[0];
 
   $: isSelected = (option) => {
-    if (single) return (value[searchKey] || value) === option[searchKey];
+    if (single)
+      return (value[searchKey] || value) === (option[searchKey] || option);
     if (!(value && value.length > 0)) return false;
-    else return value.some((v) => v[searchKey] === option[searchKey]);
     // nothing is selected if `value` is the empty array or string
+    else return value.some((v) => v[searchKey] === option[searchKey]);
   };
 
   function prepareItems() {
+    console.log("prepareItems");
     let filter = searchText.toLowerCase(),
       _items = data || [];
 
@@ -255,8 +257,11 @@
       }
     } else if (event.key === `Backspace`) {
       // only remove selected tags on backspace if if there are any and no searchText characters remain
-      if (value.length > 0 && searchText.length === 0) {
-        value = value.slice(0, value.length - 1);
+      if ((value[searchKey] || value).length > 0 && searchText.length === 0) {
+        value = (value[searchKey] || value).slice(
+          0,
+          (value[searchKey] || value).length - 1
+        );
       }
     }
   }
