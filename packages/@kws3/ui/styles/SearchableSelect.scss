@@ -92,7 +92,7 @@ ul.options li {
   &.active {
     // keyboard focused item
     color: $white;
-    background: lighten($blue, 10%);
+    background: lighten($blue, 20%);
   }
   &.selected {
     color: $white;
