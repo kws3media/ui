@@ -1,6 +1,7 @@
 <!--
   @component
 
+
   @param {boolean} [hasSearch=true] - Weather it has a search input or not, Default: `true`
   @param {boolean} [hasFilters=true] - Weather it has a filters or not, Default: `true`
   @param {string} [placeholder=""] - Placeholder for the search input, Default: `""`
@@ -14,6 +15,7 @@
   ### Events
   - `resetSearch` - It fire an event on reset search
   - `search` - It fire an event on search
+
 -->
 
 <form on:submit|preventDefault={dosearch}>

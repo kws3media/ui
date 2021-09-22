@@ -1,8 +1,10 @@
 <!--
   @component
 
-  @param {array} [options=[]] - List of option for the dropdown, Default: `[]`
-  @param {string} [sort_by=""] - It holds the selected sort value, Default: `""`
+
+  @param {array} [options=[]] - List of options in the dropdown, Default: `[]`
+  @param {string} [sort_by=""] - It holds the selected option value, Default: `""`
+
 -->
 
 <div class="sorting-filters">

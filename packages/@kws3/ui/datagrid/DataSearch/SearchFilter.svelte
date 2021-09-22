@@ -2,11 +2,11 @@
   @component
 
 
-  @param {object} [filter={}] - Filter property, Default: `{}`
-  @param {object} [filterVals={}] - FilterVals property, Default: `{}`
-  @param {string} [filterWidthStyle=""] - FilterWidthStyle property, Default: `""`
-  @param {string} [hilightClass=""] - HilightClass property, Default: `""`
-  @param {object} [filter_label_map={}] - Filter_label_map property, Default: `{}`
+  @param {object} [filter={}] - Contains filter options for dropdown, Default: `{}`
+  @param {object} [filterVals={}] - Contains the selected filter values, Default: `{}`
+  @param {string} [filterWidthStyle=""] - css style for the filters, Default: `""`
+  @param {string} [hilightClass=""] - css class for heighlight the filter, Default: `""`
+  @param {object} [filter_label_map={}] - Contains custome labes for the filter, Default: `{}`
 
 -->
 
