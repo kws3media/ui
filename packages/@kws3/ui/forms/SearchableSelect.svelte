@@ -120,11 +120,10 @@
     activeOption = filteredOptions[0];
 
   $: isSelected = (option) => {
-    if (single)
-      return (value[searchKey] || value) === (option[searchKey] || option);
+    if (single) return matchAlter(value, option);
     if (!(value && value.length > 0)) return false;
     // nothing is selected if `value` is the empty array or string
-    else return value.some((v) => v[searchKey] === option[searchKey]);
+    else return value.some((v) => matchAlter(v, option));
   };
 
   function prepareItems() {
@@ -269,4 +268,7 @@
     value = single ? `` : [];
     searchText = ``;
   };
+
+  const matchAlter = (_value, _option) =>
+    (_value[searchKey] || _value) === (_option[searchKey] || _option);
 </script>
