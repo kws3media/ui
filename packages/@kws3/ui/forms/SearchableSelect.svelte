@@ -59,7 +59,7 @@
         class:selected={isSelected(option)}
         class:active={activeOption === option}
         class={liOptionClass}>
-        {option[searchKey]}
+        {option[searchKey] || option}
       </li>
     {:else}
       {noOptionsMsg}
@@ -177,6 +177,7 @@
   }
 
   function add(token) {
+    console.log("add", token);
     if (
       !readonly &&
       !isSelected(token) &&
@@ -198,6 +199,7 @@
   }
 
   function remove(token) {
+    console.log(token);
     if (readonly || typeof value === `string`) return;
     value = value.filter((item) => item !== token);
     fire(`remove`, { token });
