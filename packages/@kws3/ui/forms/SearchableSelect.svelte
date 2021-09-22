@@ -188,10 +188,7 @@
     ) {
       searchText = ``; // reset search string on selection
       value = single ? token : [...value, token];
-      if (
-        (Array.isArray(value) && value.length === maxSelect) ||
-        typeof value === `string`
-      ) {
+      if ((Array.isArray(value) && value.length === maxSelect) || single) {
         setOptionsVisible(false);
         input && input.blur();
       }
