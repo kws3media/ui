@@ -47,7 +47,7 @@
      */
     color = "",
     /**
-     * Determine whether the step is clickable or not
+     * Determine, can able to navigate through steps
      */
     clickable = false,
     /**
