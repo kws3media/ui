@@ -6,7 +6,7 @@
   @param {number} [active_index=0] - Index used to determine which step needs to be active, Default: `0`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the step, Default: `""`
   @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the step, Default: `""`
-  @param {boolean} [clickable=false] - Determine, can able to navigate through steps, Default: `false`
+  @param {boolean} [clickable=false] - Determine the steps navigation, Default: `false`
   @param {boolean} [icon_only=false] - Show step icon given in `step_icon` property instead of numbers, Default: `false`
   @param {string} [step_icon="check"] - Icon used to displayed in steps, Default: `"check"`
   @param {boolean} [have_step_value=true] - Determine the step circle needs value.
