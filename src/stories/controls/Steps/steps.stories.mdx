@@ -1,0 +1,96 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Steps } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  steps : [
+    {
+      "name": "Step One",
+      "description" : "Description 1"
+    },
+    {
+      "name": "Step Two",
+      "description" : "Description 2"
+    },
+    {
+      "name": "Step Three",
+      "description" : "Description 3"
+    },
+    {
+      "name": "Step Four",
+      "description" : "Description 4"
+    }
+  ],
+  active_index : 0,
+  size : "small",
+  color : "primary",
+  clickable : false,
+  icon_only : false,
+  step_icon : "check"
+};
+
+<Meta
+  title="Forms/Controls/Steps"
+  component={Steps}
+  args={args}
+  argTypes={{
+  color: {
+    control: 'select'
+  },
+  size: {
+    control: 'select'
+  }
+}}
+/>
+
+<Description markdown={dedent`
+# Steps
+## Display steps for a process
+`}/>
+
+<Canvas>
+  <Story
+  name="Steps"
+  args={args}
+  >
+  {(args) => ({
+    Component: Steps,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Steps" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Steps } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import '@kws3/ui/styles/Steps.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-steps-maker-default-color: $grey-light !default;
+      $kws-steps-marker-default-border: 0.2em solid #fff !default;
+      $kws-steps-default-color: $grey-lighter !default;
+      $kws-steps-completed-color: $primary !default;
+      $kws-steps-active-color: $primary !default;
+      $kws-steps-divider-height: 0.2em !default;
+    `
+  }
+/>
