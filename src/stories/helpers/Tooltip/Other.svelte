@@ -52,7 +52,21 @@
       <p>
         Use <code>theme: "[theme_name]"</code> in init config.
         <br />
-        Or, use <code>data-tippy-theme="[theme_name>]"</code>
+        Or, use <code>data-tippy-theme="[theme_name]"</code>
+      </p>
+      <p>
+        Available themes are:<br />
+        <code>primary</code>,
+        <code>primary-light</code>,
+        <code>info</code>,
+        <code>info-light</code>,
+        <code>success</code>,
+        <code>success-light</code>,
+        <code>danger</code>,
+        <code>danger-light</code>,
+        <code>dark</code>,
+        <code>dark-light</code> and
+        <code>light</code>
       </p>
     </div>
     <div class="column is-6">
