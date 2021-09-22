@@ -127,7 +127,6 @@
   };
 
   function prepareItems() {
-    console.log("prepareItems");
     let filter = searchText.toLowerCase(),
       _items = data || [];
 
@@ -178,7 +177,6 @@
   }
 
   function add(token) {
-    console.log("add", token);
     if (
       !readonly &&
       !isSelected(token) &&
@@ -197,9 +195,10 @@
   }
 
   function remove(token) {
-    console.log(token);
     if (readonly || typeof value === `string`) return;
-    value = value.filter((item) => item !== token);
+    value = value.filter
+      ? value.filter((item) => !matchAlter(item, token))
+      : value;
     fire(`remove`, { token });
     fire(`change`, { token, type: `remove` });
   }
