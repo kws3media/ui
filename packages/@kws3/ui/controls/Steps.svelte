@@ -18,9 +18,9 @@ If its `false`, it doesn't display number, icon or character, Default: `true`
 <ul class="steps {klass} is-{size}">
   {#each steps as step, idx}
     <li
-      class="step-item is-{color} {active_index >= idx && hollow_step
+      class="step-item is-{color} {active_index >= idx && filled_step
         ? 'is-active'
-        : ''} {active_index >= idx && !hollow_step ? 'is-completed' : ''}"
+        : ''} {active_index >= idx && !filled_step ? 'is-completed' : ''}"
       on:click={() => navigateStep(idx)}
       style={clickable ? "cursor:pointer;" : ""}>
       <div class="step-marker">
@@ -85,9 +85,9 @@ If its `false`, it doesn't display number, icon or character, Default: `true`
      */
     have_step_value = true,
     /**
-     * Determine the step circle design is hollow or filled
+     * Determine the circle design is filled/hollow
      */
-    hollow_step = true;
+    filled_step = true;
 
   /**
    * CSS classes for the steps container
