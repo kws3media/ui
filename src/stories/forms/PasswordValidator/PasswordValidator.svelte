@@ -10,7 +10,9 @@
           bind:value={password}
           autocomplete="off" />
       </p>
-      <p><KwsPasswordValidator {password} bind:is_valid /></p>
+      <p>
+        <KwsPasswordValidator {password} bind:is_valid class={klass} {style} />
+      </p>
     </div>
   </div>
 </div>
@@ -18,5 +20,9 @@
 <script>
   import { PasswordValidator as KwsPasswordValidator } from "@kws3/ui";
   export let password = "",
-    is_valid = false;
+    is_valid = false,
+    style = "";
+
+  let klass = "";
+  export { klass as class };
 </script>

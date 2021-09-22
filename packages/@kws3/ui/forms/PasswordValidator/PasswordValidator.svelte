@@ -6,7 +6,7 @@
   @param {boolean} [is_valid=false] - Variable used to check passwordValidator returns true or false, Default: `false`
 
 -->
-<div class="level is-mobile" style="margin:0;max-width: 100%;">
+<div class="level is-mobile {klass}" style="margin:0;max-width: 100%;{style}">
   <div class="level-left" style="max-width: 60%">
     <div class="level-item" style="max-width: 100%">
       {#if password && !result.overall}
@@ -44,9 +44,19 @@
    */
   export let password = "",
     /**
+     * Inline CSS style for container
+     */
+    style = "",
+    /**
      * Variable used to check passwordValidator returns true or false
      */
     is_valid = false;
+
+  /**
+   * CSS classes for container
+   */
+  let klass = "";
+  export { klass as class };
 
   $: result = validate(password);
 
