@@ -91,10 +91,11 @@ ul.options li {
   }
   &.active {
     // keyboard focused item
+    color: $white;
     background: lighten($blue, 10%);
   }
   &.selected {
-    //current active selection
+    color: $white;
     background: $blue;
   }
 }
