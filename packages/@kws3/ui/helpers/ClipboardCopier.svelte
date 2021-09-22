@@ -66,7 +66,7 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
      */
     copied = false,
     /**
-     * Colour of the Icon after a succesful copy operation
+     * Colour of the `copied_icon` after a succesful copy operation
      *
      * If `''` is selected, Icon will not change colour after copying
      *
