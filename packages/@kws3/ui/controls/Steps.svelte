@@ -6,7 +6,9 @@
       style={clickable ? "cursor:pointer;" : ""}>
       <div class="step-marker">
         {#if icon_only}
-          <Icon icon={step_icon} />
+          <Icon icon={step.step_icon ? step.step_icon : step_icon} />
+        {:else if step.value}
+          {step.value}
         {:else}
           {idx + 1}
         {/if}
@@ -26,7 +28,7 @@
 <script>
   import { Icon } from "@kws3/ui";
   /**
-   * Object, which contains name and description of each steps
+   * Object, which contains name, description, custom value and custom icon of each steps
    * @any
    */
   export let steps = [],
@@ -38,14 +40,14 @@
      * Size of the step
      * @type {''|'small'|'medium'|'large'}
      */
-    size = "small",
+    size = "",
     /**
      * Color of the step
      * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
-    color = "primary",
+    color = "",
     /**
-     * Determine step is clickable
+     * Determine whether the step is clickable or not
      */
     clickable = false,
     /**
