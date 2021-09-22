@@ -18,8 +18,10 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
 
 -->
 <span
+  bind:this={el}
   class="kws-clipboard-copier {klass} has-tooltip"
   on:click={copyToClipboard}
+  data-tippy-hideOnClick="false"
   data-tooltip={copied ? copied_text : text}>
   <!--Description label displayed before copy icon--><slot />
   <Icon
@@ -36,6 +38,7 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
 </style>
 
 <script>
+  import { tick } from "svelte";
   import { Icon } from "@kws3/ui";
 
   /**
@@ -77,6 +80,8 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
   let klass = "";
   export { klass as class };
 
+  let el;
+
   function copyToClipboard() {
     const textArea = document.createElement("textarea");
     textArea.textContent = copy;
@@ -86,8 +91,16 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
     textArea.remove();
 
     copied = true;
+    updateTooltip();
     setTimeout(() => {
       copied = false;
+      updateTooltip();
     }, 3000);
+  }
+
+  function updateTooltip() {
+    tick().then(() => {
+      el && el._tippy && el._tippy.setContent(el.getAttribute("data-tooltip"));
+    });
   }
 </script>
