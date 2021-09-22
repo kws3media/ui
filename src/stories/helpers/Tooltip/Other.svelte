@@ -48,7 +48,7 @@
   <hr class="is-small" />
   <div class="columns is-multiline">
     <div class="column is-6">
-      <p><strong>Hide on click</strong></p>
+      <p><strong>Don't hide on click</strong></p>
       <p>
         By default, tooltips disappear after clicking anywhere, even the target
         element.<br />But, sometimes you would like to keep showing the tooltip
