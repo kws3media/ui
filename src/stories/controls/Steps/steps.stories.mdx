@@ -19,21 +19,23 @@ export let args={
     },
     {
       "value" : "F",
-      "step_icon" : "flag",
       "name" : "Finish",
-      "description" : "Icon and Value from object"
+      "description" : "Icon and Value from object",
+      "step_icon" : "flag"
     }
   ],
   active_index : 0,
   size : "",
   color : "",
-  clickable : false,
+  clickable : true,
   icon_only : false,
-  step_icon : "check"
+  step_icon : "check",
+  have_step_value:true,
+  hollow_step : true
 };
 
 <Meta
-  title="Forms/Controls/Steps"
+  title="Forms/Steps"
   component={Steps}
   args={args}
   argTypes={{
