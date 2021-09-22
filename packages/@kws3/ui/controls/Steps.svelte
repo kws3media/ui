@@ -49,7 +49,7 @@ If its `false`, it doesn't display number, icon or character, Default: `true`
 <script>
   import { Icon } from "@kws3/ui";
   /**
-   * Object, which contains name, description, custom value and custom icon of each steps
+   * Array of steps, which contains value, name, description and step_icon of each steps
    * @any
    */
   export let steps = [],
