@@ -15,7 +15,7 @@ If its `false`, it doesn't display number, icon or character, Default: `true`
   @param {string} [class=""] - CSS classes for the steps container, Default: `""`
 
 -->
-<ul class="steps {klass} is-{size}">
+<ul class="steps {klass} is-{size}" {style}>
   {#each steps as step, idx}
     <li
       class="step-item is-{color} {active_index >= idx && !filled_step
@@ -87,7 +87,11 @@ If its `false`, it doesn't display number, icon or character, Default: `true`
     /**
      * Determine the circle design is filled/hollow
      */
-    filled_step = false;
+    filled_step = false,
+    /**
+     * Inline css style of Steps container
+     */
+    style = "";
 
   /**
    * CSS classes for the steps container
