@@ -1,83 +1,140 @@
+<!--
+  @component
+
+
+  @param {string} [icon="info-circle"] - Icon used when default slot has no content, Default: `"info-circle"`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [icon_color="primary"] - Icon color of icon used when default slot has no content, Default: `"primary"`
+  @param {''|'small'|'medium'|'large'} [icon_size="small"] - Icon size of icon used when default slot has no content, Default: `"small"`
+  @param {string} [trigger="click"] - Determines the events that cause the Popover to show. Multiple event names are separated by spaces.
+
+**Examples:** `click`, `mouseenter`, `mouseenter focus`, Default: `"click"`
+  @param {string} [placement="auto"] - Preferred placement of the Popover
+
+Available options: https://atomiks.github.io/tippyjs/v6/all-props/#placement, Default: `"auto"`
+  @param {boolean} [interactive=false] - Allows you to interact with the Popover content, when turned on, Default: `false`
+  @param {object} [external_target=null] - Specify a target node reference to use as the Popover content
+
+When set to `null`, it will use the content of the `popover` slot, Default: `null`
+  @param {string} [max_width="none"] - Maximum allowed width of the popover
+
+It can either be `"none"` or a numeric value, Default: `"none"`
+  @param {string} [style=""] - Inline CSS for Popover trigger, Default: `""`
+  @param {string} [class=""] - CSS classes for Popover trigger, Default: `""`
+
+  ### Slots
+  - `<slot name="default"  />` - Content of the Popover Trigger, by default it displays an Icon
+  - `<slot name="popover"  />` - Slot containing the popover content
+
+-->
 <span
-  data-info-bubble={external_target ? external_target : id}
-  data-render-component={render_component ? "true" : "false"}
+  bind:this={rootNode}
   data-tippy-trigger={trigger}
   data-tippy-placement={placement}
   data-tippy-offset="[0, 10]"
-  data-tippy-interactive={interactive}
-  style={_style}>
-  <slot><Icon {icon} color={icon_color} size={icon_size} /></slot>
+  data-tippy-interactive={interactive ? "true" : "false"}
+  data-tippy-maxWidth={max_width}
+  style={_style}
+  class={klass}>
+  <!--Content of the Popover Trigger, by default it displays an Icon--><slot
+    ><Icon {icon} color={icon_color} size={icon_size} /></slot>
 </span>
-<div class="is-hidden" {id}>
-  <div class="tt-body">
-    <slot name="popover" />
+<div class="is-hidden">
+  <div class="tt-body" bind:this={popoverNode}>
+    <!--Slot containing the popover content--><slot name="popover" />
   </div>
 </div>
 
-<script context="module">
-  import { activateTooltips } from "@kws3/ui";
-  console.log("activating popovers");
-  activateTooltips("html", {
-    target: "[data-info-bubble]",
-    appendTo: () => document.body,
-    content: "...",
-    onShow(instance) {
-      let { reference, popper } = instance,
-        id = reference.getAttribute("data-info-bubble"),
-        render_component = reference.getAttribute("data-render-component"),
-        target = popper.querySelector(".tippy-content");
-
-      instance.__component && instance.__component.destroy();
-      instance.__component = null;
-      instance.setContent("");
-
-      if (render_component == "true") {
-        let component = new StockTooltip({
-          store,
-          target,
-          data: { identifier: id },
-        });
-        instance.__component = component;
-      } else {
-        let template = document.getElementById(id),
-          content = template.innerHTML;
-        instance.setContent(content);
-      }
-    },
-    // onShown(instance){
-    //   let {popper} = instance;
-    //   popper.addEventListener('click', MakePopupInteractive);
-    // },
-    onHidden(instance) {
-      instance.__component && instance.__component.destroy();
-      instance.__component = null;
-    },
-    maxWidth: "none",
-    hideOnClick: true,
-    theme: "infobubble",
-    interactive: true,
-    animation: "scale",
-    allowHTML: true,
-    inertia: true,
-    offset: [0, 0],
-    touch: true,
-  });
-</script>
-
 <script>
+  import tippy from "tippy.js";
+  import { onMount } from "svelte";
   import { Icon } from "@kws3/ui";
-
+  /**
+   * Icon used when default slot has no content
+   */
   export let icon = "info-circle";
-  export let icon_color = "grey";
+  /**
+   * Icon color of icon used when default slot has no content
+   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   */
+  export let icon_color = "primary";
+  /**
+   * Icon size of icon used when default slot has no content
+   * @type {''|'small'|'medium'|'large'}
+   */
   export let icon_size = "small";
+  /**
+   * Determines the events that cause the Popover to show. Multiple event names are separated by spaces.
+   *
+   * **Examples:** `click`, `mouseenter`, `mouseenter focus`
+   */
   export let trigger = "click";
+  /**
+   * Preferred placement of the Popover
+   *
+   * Available options: https://atomiks.github.io/tippyjs/v6/all-props/#placement
+   */
   export let placement = "auto";
-  export let interactive = "false";
+  /**
+   * Allows you to interact with the Popover content, when turned on
+   */
+  export let interactive = false;
+  /**
+   * Specify a target node reference to use as the Popover content
+   *
+   * When set to `null`, it will use the content of the `popover` slot
+   */
   export let external_target = null;
-  export let render_component = false;
+  /**
+   * Maximum allowed width of the popover
+   *
+   * It can either be `"none"` or a numeric value
+   */
+  export let max_width = "none";
+  /**
+   * Inline CSS for Popover trigger
+   */
   export let style = "";
 
+  /**
+   * CSS classes for Popover trigger
+   */
+  let klass = "";
+  export { klass as class };
+
   let id = "__popover__" + (Math.random() * Math.pow(10, 8)).toFixed(0);
+  let rootNode, popoverNode, instance;
 
   $: _style = `cursor:pointer;${style}`;
+
+  $: external_target, remakeInstance();
+
+  onMount(() => {
+    makeInstance();
+
+    return () => {
+      destroyInstance();
+    };
+  });
+
+  function remakeInstance() {
+    destroyInstance();
+    makeInstance();
+  }
+
+  function destroyInstance() {
+    instance && instance.destroy();
+  }
+
+  function makeInstance() {
+    instance = tippy(rootNode, {
+      appendTo: () => document.body,
+      content: external_target ? external_target : popoverNode,
+      hideOnClick: true,
+      theme: "popover",
+      animation: "scale",
+      allowHTML: true,
+      inertia: true,
+      touch: true,
+    });
+  }
 </script>
