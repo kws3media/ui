@@ -59,10 +59,25 @@
   import { SearchableSelect, Datepicker } from "@kws3/ui";
   import { capitaliseFirstLetter } from "@kws3/ui/utils";
 
+  /**
+   * Contains filter options for dropdown
+   */
   export let filter = {},
+    /**
+     * Contains the selected filter values
+     */
     filterVals = {},
+    /**
+     * css style for the filters
+     */
     filterWidthStyle = "",
+    /**
+     * css class for heighlight the filter
+     */
     hilightClass = "",
+    /**
+     * Contains custome labes for the filter
+     */
     filter_label_map = {};
 
   $: name = filter_label_map[filter.name]
