@@ -6,7 +6,7 @@ import dedent from 'ts-dedent';
 />
 
 ## Tooltips
-Tooltips can be applied application-wide in a single place. Ideally in the entry file of your app.
+Tooltips can be applied application-wide from a single place. Ideally in the entry file of your app.
 
 #### Usage
 
@@ -19,11 +19,11 @@ activateTooltips(container, { ...options });
 
 `container` is the CSS selector of the root container of your app.  
 For example: `#mainApp` or `html>body`.  
-Tooltips work via event dalegation. So all events get attached to the root container.
+Tooltips work via event delegation. So all events get attached to the root container.
 
 ---
 
-`options` are an object, and they mirror all the options listed here: https://atomiks.github.io/tippyjs/v6/all-props/  
+`options` is an object, and it mirrors all the options listed here: https://atomiks.github.io/tippyjs/v6/all-props/  
 Default values of the options object:
 ```js
 {
