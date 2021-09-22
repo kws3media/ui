@@ -13,7 +13,7 @@
 @import "_variables";
 //bulma itself
 @import "../../node_modules/bulma/bulma";
-@import "_steps.sass";
+
 html {
   overflow-x: scroll;
 }
@@ -98,6 +98,9 @@ pre.prismjs > code {
 
 //Pagination
 @import "../../packages/@kws3/ui/styles/Pagination.scss";
+
+//Steps
+@import "../../packages/@kws3/ui/styles/Steps.scss";
 
 // #stepsHolder{
 //   padding-top: 1.2rem;
