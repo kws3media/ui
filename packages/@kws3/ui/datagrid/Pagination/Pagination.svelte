@@ -2,8 +2,8 @@
   @component
 
 
-  @param {object} [meta={}] - Meta property, Default: `{}`
-  @param {boolean} [showTotal=true] - ShowTotal property, Default: `true`
+  @param {object} [meta={}] - It contains the total, count, limit, offset values, Default: `{}`
+  @param {boolean} [showTotal=true] - Determines whether to show total results or not, Default: `true`
   @param {boolean} [showCurrent=true] - ShowCurrent property, Default: `true`
   @param {boolean} [showPerPage=true] - ShowPerPage property, Default: `true`
   @param {number} [breakThreshold=10] - BreakThreshold property, Default: `10`
@@ -128,6 +128,9 @@
 
   const fire = createEventDispatcher();
 
+  /**
+   * It contains the total, count, limit, offset values
+   */
   export let meta = {
       limit: 0,
       total: 0,
@@ -135,6 +138,9 @@
       offset: 0,
       status: "",
     },
+    /**
+     * Determines whether to show total results or not
+     */
     showTotal = true,
     showCurrent = true,
     showPerPage = true,
