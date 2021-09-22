@@ -1,3 +1,11 @@
+<!--
+  @component
+
+
+  @param {string} [password=""] - Password for validating, Default: `""`
+  @param {boolean} [is_valid=false] - Variable used to check passwordValidator returns true or false, Default: `false`
+
+-->
 <div class="level is-mobile" style="margin:0;max-width: 100%;">
   <div class="level-left" style="max-width: 60%">
     <div class="level-item" style="max-width: 100%">
@@ -31,7 +39,13 @@
 <script>
   import validate from "./validatePassword";
 
+  /**
+   * Password for validating
+   */
   export let password = "",
+    /**
+     * Variable used to check passwordValidator returns true or false
+     */
     is_valid = false;
 
   $: result = validate(password);
