@@ -5,9 +5,14 @@
       on:click={() => navigateStep(idx)}
       style="cursor:pointer;">
       <div class="step-marker">{idx + 1}</div>
-      <div class="step-details">
-        <p class="step-title">{steps[active_index].name}</p>
-      </div>
+      {#if steps[idx].name || steps[idx].description}
+        <div class="step-details">
+          <p class="step-title">{steps[idx].name}</p>
+          {#if steps[idx].description}
+            <p>{steps[idx].description}</p>
+          {/if}
+        </div>
+      {/if}
     </div>
   {/each}
 </div>
