@@ -33,7 +33,8 @@
         Or, use <code>data-tippy-trigger="click"</code>
       </p>
       <p class="has-text-info">
-        Tooltip will remain visible until another click anywhere on the page.
+        These tooltips don't disappear on hover out, and will remain visible
+        until another click anywhere on the page.
       </p>
     </div>
     <div class="column is-6">
