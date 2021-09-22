@@ -1,3 +1,4 @@
+$kws-theme-colors: $colors !default;
 $kws-tt-background-color: $scheme-invert-ter !default;
 $kws-tt-foreground-color: $scheme-main !default;
 $kws-tt-arrow-size: 8px !default;
@@ -63,17 +64,36 @@ $kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65) !default;
   box-shadow: $kws-tt-shadow;
   transition-property: transform, visibility, opacity;
 
-  &[data-theme~="light"],
+  @each $name, $pair in $kws-theme-colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+    $color-light: findLightColor($color);
+    $color-dark: findDarkColor($color);
+
+    &[data-theme~="#{$name}"] {
+      color: $color-invert;
+      background-color: $color;
+      .tippy-arrow {
+        color: $color;
+      }
+    }
+    &[data-theme~="#{$name}-light"] {
+      color: $color-dark;
+      background-color: $color-light;
+      .tippy-arrow {
+        color: $color-light;
+      }
+    }
+  }
+
   &[data-theme~="infobubble"] {
+    font-size: 1rem;
+    border-radius: $kws-tt-radius;
     color: $text;
     background-color: $background;
     .tippy-arrow {
       color: $background;
     }
-  }
-  &[data-theme~="infobubble"] {
-    font-size: 1rem;
-    border-radius: $kws-tt-radius;
     .tippy-content {
       padding: 0;
     }
