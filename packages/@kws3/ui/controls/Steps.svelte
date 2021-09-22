@@ -1,7 +1,7 @@
-<div class="steps {klass}">
+<div class="steps {klass} is-{size}">
   {#each steps as step, idx}
     <div
-      class="step-item is-success {active_index == idx ? 'is-active' : ''}"
+      class="step-item is-{color} {active_index >= idx ? 'is-active' : ''}"
       on:click={() => navigateStep(idx)}
       style="cursor:pointer;">
       <div class="step-marker">{idx + 1}</div>
@@ -24,7 +24,10 @@
    * Minumum permitted value
    */
   export let steps = [],
-    active_index = 0;
+    active_index = 0,
+    size = "small",
+    color = "primary",
+    clickable = false;
 
   /**
    * CSS classes for the slider
@@ -33,6 +36,7 @@
   export { klass as class };
 
   function navigateStep(index) {
+    if (!clickable) return;
     active_index = index;
   }
 </script>
