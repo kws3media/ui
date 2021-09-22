@@ -1,4 +1,4 @@
-<div class="columns" style="width:900px;">
+<div class="columns" style="width:500px;">
   <div class="column">
     <div class="field">
       <p class="control">
