@@ -1,4 +1,4 @@
-<div class="columns">
+<div class="columns" id="cc-parent">
   <div class="column">
     <Panel title="Sample Text" has_toolbar={true}>
       <div slot="toolbar">
@@ -59,7 +59,13 @@
 </div>
 
 <script>
-  import { ClipboardCopier as KwsClipboardCopier, Panel } from "@kws3/ui";
+  import {
+    activateTooltips,
+    ClipboardCopier as KwsClipboardCopier,
+    Panel,
+  } from "@kws3/ui";
+  import { onMount } from "svelte";
+
   export let text = "Copy to clipboard",
     icon = "copy",
     copied_text = "Copied!",
@@ -73,4 +79,8 @@
 
   let text_area_1 =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et libero in metus blandit malesuada vitae in dolor. ";
+
+  onMount(() => {
+    activateTooltips("#cc-parent");
+  });
 </script>
