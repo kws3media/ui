@@ -5,19 +5,13 @@
       inner_style="border-width:0"
       style="margin: -1rem -1.3rem -0.8rem;">
       <div id="stepsHolder">
-        <ul class="steps has-content-centered is-horizontal">
-          {#each steps as step, idx}
-            <li
-              class="steps-segment {active_index == idx ? 'is-active' : ''}"
-              on:click={() => activateStep(idx)}
-              style="cursor:pointer;">
-              <span class="steps-marker">{idx + 1}</span>
-              <div class="steps-content">
-                <p>{steps[active_index].name}</p>
-              </div>
-            </li>
-          {/each}
-        </ul>
+        <Steps
+          {steps}
+          bind:active_index
+          size="small"
+          color="success"
+          clickable={true}
+          icon_only={true} />
       </div>
     </Message>
   </div>
@@ -145,7 +139,7 @@
 
 <script>
   import { onMount } from "svelte";
-  import { SlidingPane, SlidingPaneSet, Icon, Message } from "@kws3/ui";
+  import { SlidingPane, SlidingPaneSet, Steps, Icon, Message } from "@kws3/ui";
   export let pane_height = 150,
     style = "",
     v_center = true,
