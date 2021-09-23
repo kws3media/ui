@@ -27,7 +27,7 @@ It can either be `"none"` or a numeric value, Default: `"none"`
 
 -->
 <span
-  bind:this={rootNode}
+  use:popover={{ content: targetNode }}
   data-tippy-trigger={trigger}
   data-tippy-placement={placement}
   data-tippy-offset="[0, 10]"
@@ -44,9 +44,14 @@ It can either be `"none"` or a numeric value, Default: `"none"`
   </div>
 </div>
 
+<style>
+  .is-hidden {
+    display: none !important;
+  }
+</style>
+
 <script>
-  import tippy from "tippy.js";
-  import { onMount } from "svelte";
+  import popover from "./actions";
   import { Icon } from "@kws3/ui";
   /**
    * Icon used when default slot has no content
@@ -101,40 +106,8 @@ It can either be `"none"` or a numeric value, Default: `"none"`
   let klass = "";
   export { klass as class };
 
-  let id = "__popover__" + (Math.random() * Math.pow(10, 8)).toFixed(0);
-  let rootNode, popoverNode, instance;
+  let popoverNode;
 
   $: _style = `cursor:pointer;${style}`;
-
-  $: external_target, remakeInstance();
-
-  onMount(() => {
-    makeInstance();
-
-    return () => {
-      destroyInstance();
-    };
-  });
-
-  function remakeInstance() {
-    destroyInstance();
-    makeInstance();
-  }
-
-  function destroyInstance() {
-    instance && instance.destroy();
-  }
-
-  function makeInstance() {
-    instance = tippy(rootNode, {
-      appendTo: () => document.body,
-      content: external_target ? external_target : popoverNode,
-      hideOnClick: true,
-      theme: "popover",
-      animation: "scale",
-      allowHTML: true,
-      inertia: true,
-      touch: true,
-    });
-  }
+  $: targetNode = external_target ? external_target : popoverNode;
 </script>

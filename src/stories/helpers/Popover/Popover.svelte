@@ -58,7 +58,7 @@
         {max_width}>
         <em style="text-decoration:underline;">popover trigger</em>
         <svelte:fragment slot="popover">
-          <Message>
+          <Message color="danger">
             Make <code>interactive: true</code> and you can click the button
             below
             <br /><br />
