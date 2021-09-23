@@ -46,3 +46,5 @@ export { default as TileView } from "./datagrid/TileView/TileView.svelte";
 export { default as DataSearch } from "./datagrid/DataSearch/DataSearch.svelte";
 export { default as Pagination } from "./datagrid/Pagination/Pagination.svelte";
 export { default as DataSort } from "./datagrid/DataSort/DataSort.svelte";
+
+export { default as Timeline } from "./helpers/Timeline/Timeline.svelte";
