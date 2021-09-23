@@ -20,7 +20,7 @@
     {:else if value && value.length > 0}
       {#each value as tag}
         <li
-          class="tag is-primary is-light"
+          class="tag is-{size} is-{color || 'primary'} is-light"
           on:click|self|stopPropagation={() => setOptionsVisible(true)}>
           {tag[searchKey] || tag}
           {#if !readonly && !disabled}
@@ -73,6 +73,8 @@
 </div>
 
 <script>
+  //TODO: fix layout when multiselect goes to next line
+  //TODO: fix tag size when is-small
   //TODO: Fix placeholder bug
   //TODO: Style "No matching Options"
   //TODO: make clearAll button optional
