@@ -56,14 +56,7 @@ export let args={
   language='html'
   code={ dedent`
     <SlidingPaneSet {style} class={klass} {vertical}>
-      <SlidingPane active={true}>
-        <p class="title is-3">One</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-      </SlidingPane>
-      <SlidingPane>
-        <p class="title is-3">Two</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-      </SlidingPane>
+      <SlidingPane />
     </SlidingPaneSet>
     <script>
       import { SlidingPaneSet, SlidingPane } from "@kws3/ui";

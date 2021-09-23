@@ -41,76 +41,43 @@ export let args={
 
 <ArgsTable story="SlidingPane" />
 
-### Usage Example
+### Usage 
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { SlidingPane, SlidingPaneSet } from '@kws3/ui';`}
+/>
+
+##### Import the SCSS:
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/SlidingPane.scss';`}
+/>
+
+##### Example
 <Source
   language='html'
   code={ dedent`
-      <Message color="grey" inner_style="border-width:0" style="margin: -1rem -1.3rem -0.8rem;">
-        <div id="stepsHolder">
-          <ul class="steps has-content-centered is-horizontal">
-            {#each steps as step, idx}
-              <li class="steps-segment {active_index == idx ? 'is-active' : ''}">
-                <span class="steps-marker">{idx + 1}</span>
-                <div class="steps-content">
-                  <p>{steps[active_index].name}</p>
-                </div>
-              </li>
-            {/each}
-          </ul>
-        </div>
-      </Message>
-      <div style="height:100%;width:800px;">
-        <SlidingPaneSet style="height:{pane_height}px">
-          <SlidingPane
-            active={steps[active_index].key == "step_one"}
-            {v_center}
-            {h_center}
-            {track_height}
-            class={klass}>
-            <div class="buttons">
-              <button class="button is-info">Info</button>
-              <button class="button is-success">Success</button>
-              <button class="button is-warning">Warning</button>
-              <button class="button is-danger">Danger</button>
-            </div>
-          </SlidingPane>
-          <SlidingPane
-            active={steps[active_index].key == "step_two"}
-            {v_center}
-            {h_center}
-            {track_height}
-            class={klass}>
-            <Message>
-              <p class="title is-3">Ah, You wont believe that is 2nd step</p>
-            </Message>
-          </SlidingPane>
-          <SlidingPane
-            active={steps[active_index].key == "step_three"}
-            {v_center}
-            {h_center}
-            {track_height}
-            class={klass}
-            {style}>
-            <Message color="warning">
-              <p class="title is-3">Oh, noo, You reached at 3rd step</p>
-            </Message>
-          </SlidingPane>
-        </SlidingPaneSet>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <div class="buttons is-centered">
-            <button class="button is-info" on:click={() => changeStep(-1)}>
-              <Icon icon="arrow-left" />
-            </button>
-            <button class="button is-success" on:click={() => changeStep(+1)}>
-              <Icon icon="arrow-right" />
-            </button>
-          </div>
-        </div>
-      </div>
+      <SlidingPaneSet style="height:{pane_height}px">
+        <SlidingPane
+          active={steps[active_index].key == "step_one"}
+          {v_center}
+          {h_center}
+          {track_height}
+          class={klass}>
+          <p>1st Slide</p>
+        </SlidingPane>
+        <SlidingPane
+          active={steps[active_index].key == "step_two"}
+          {v_center}
+          {h_center}
+          {track_height}
+          class={klass}>
+          <p>2nd Slide</p>
+        </SlidingPane>
+      </SlidingPaneSet>
       <script>
-        import { SlidingPane, SlidingPaneSet, Icon, Message } from "@kws3/ui";
+        import { SlidingPane, SlidingPaneSet } from "@kws3/ui";
         export let pane_height = 150,
           style = "",
           v_center = true,
@@ -118,8 +85,7 @@ export let args={
           track_height = false,
           steps = [
             { key: "step_one", name: "Step One" },
-            { key: "step_two", name: "Step Two" },
-            { key: "step_three", name: "Step Three" },
+            { key: "step_two", name: "Step Two" }
           ],
           active_index = 0;
         export function changeStep(i) {
@@ -131,16 +97,4 @@ export let args={
         export { klass as class };
       </script>
   `}
-/>
-
-##### Import the component:
-<Source
-  language='javascript'
-  code={ dedent`import { SlidingPane, SlidingPaneSet } from '@kws3/ui';`}
-/>
-
-##### Import the SCSS:
-<Source
-  language='javascript'
-  code={ dedent`@import '@kws3/ui/styles/SlidingPane.scss';`}
 />
