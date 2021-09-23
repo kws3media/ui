@@ -1,0 +1,77 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Timeline } from "@kws3/ui";
+import TimelineDecorator from './Timeline.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  data : [
+    {
+      'title' : 'Title 1',
+      'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      'title' : 'Title 2',
+      'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    },
+    {
+      'title' : 'Title 3',
+      'description' : 'Test 3'
+    },
+    {
+      'title' : 'Title 4',
+      'description' : 'Test 4'
+    },
+    {
+      'title' : 'Title 5',
+      'description' : 'Test 5'
+    },
+    {
+      'title' : 'Title 6',
+      'description' : 'Test 6'
+    },
+    {
+      'title' : 'Title 7',
+      'description' : 'Test 7'
+    }
+  ]
+}
+
+<Meta
+  title="Helpers/Timeline"
+  component={Timeline}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Timeline
+## A Panel component that allows wrapping elements.
+`}/>
+
+<Canvas>
+  <Story
+  name="Timeline"
+  args={args}
+  >
+  {(args) => ({
+    Component: TimelineDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Timeline" />
+
+
+### Usage
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { Timeline } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/Timeline.scss';`}
+/>
