@@ -1,0 +1,57 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { SlidingPaneSet } from "@kws3/ui";
+import SlidingpaneDecorator from './SlidingPaneSet.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  class : "",
+  style : "height:150px;",
+  vertical : false
+}
+
+<Meta
+  title="Standalone/SlidingPane/SlidingPaneSet"
+  component={SlidingPaneSet}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# SlidingPaneSet
+## SlidingPaneSet component for the container of SlidingPane
+`}/>
+
+<Canvas>
+  <Story
+  name="SlidingPaneSet"
+  args={args}
+  >
+  {(args) => ({
+    Component: SlidingpaneDecorator,
+    props: args,
+    on: {
+      heightChange : action("Changed")
+    },
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="SlidingPaneSet" />
+
+### Usage
+<Source
+  language='html'
+  code={ dedent` `}
+/>
+
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { SlidingPaneSet } from '@kws3/ui';`}
+/>
+
+##### Import the SCSS:
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/SlidingPane.scss';`}
+/>
