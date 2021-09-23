@@ -5,21 +5,21 @@
   class:readonly
   class:single
   style={showOptions ? `z-index: 2;` : ``}
-  on:mouseup|stopPropagation={() => setOptionsVisible(true)}>
+  on:click|stopPropagation={() => setOptionsVisible(true)}>
   <ul class="tokens tags {ulTokensClass}">
     {#if single}
-      <span on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
+      <span on:click|self|stopPropagation={() => setOptionsVisible(true)}>
         {value[searchKey] || value}
       </span>
     {:else if value && value.length > 0}
       {#each value as tag}
         <li
           class="tag is-primary is-light {liTokenClass}"
-          on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}>
+          on:click|self|stopPropagation={() => setOptionsVisible(true)}>
           {tag[searchKey] || tag}
           {#if !readonly}
             <button
-              on:mouseup|stopPropagation={() => remove(tag)}
+              on:click|self|stopPropagation={() => remove(tag)}
               type="button"
               class="delete is-small"
               title="{removeBtnTitle} {tag}" />
@@ -31,7 +31,7 @@
       bind:this={input}
       autocomplete="off"
       bind:value={searchText}
-      on:mouseup|self|stopPropagation={() => setOptionsVisible(true)}
+      on:click|self|stopPropagation={() => setOptionsVisible(true)}
       on:keydown={handleKeydown}
       on:focus={() => setOptionsVisible(true)}
       on:blur={() => fire(`blur`)}
@@ -43,7 +43,7 @@
       type="button"
       class="remove-all delete is-small"
       title={removeAllTitle}
-      on:mouseup|stopPropagation={removeAll}
+      on:click|stopPropagation={removeAll}
       style={value.length === 0 ? `display: none;` : ``} />
   {/if}
 
@@ -53,7 +53,6 @@
     class:hidden={!showOptions}>
     {#each filteredOptions as option}
       <li
-        on:mouseup|preventDefault|stopPropagation
         on:mousedown|preventDefault|stopPropagation={() =>
           isSelected(option) ? remove(option) : add(option)}
         class:selected={isSelected(option)}
@@ -186,8 +185,8 @@
       searchText = ``; // reset search string on selection
       value = single ? token : [...value, token];
       if ((Array.isArray(value) && value.length === maxSelect) || single) {
-        setOptionsVisible(false);
         input && input.blur();
+        setOptionsVisible(false);
       }
       fire(`add`, { token });
       fire(`change`, { token, type: `add` });
@@ -207,8 +206,10 @@
     // nothing to do if visibility is already as intended
     if (readonly || show === showOptions) return;
     showOptions = show;
-    if (show) input && input.focus();
-    updateBounds();
+    if (show) {
+      input && input.focus();
+      updateBounds();
+    }
   }
 
   function updateBounds() {
