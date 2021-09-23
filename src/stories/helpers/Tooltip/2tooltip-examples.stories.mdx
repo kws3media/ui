@@ -1,0 +1,24 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import DataAttributes from './DataAttributes.svelte';
+
+<Meta
+  title="Helpers/Tooltips/2. Examples/1. Data Attributes"
+/>
+
+### Data Attributes
+Once initialised, tooltips can be controlled to some extent using `data-tippy-*` attributes  
+Comprehensive list of supported attributes can be found here: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/">https://atomiks.github.io/tippyjs/v6/all-props/</a>  
+**Examples:**
+
+
+<Canvas>
+  <Story
+  name="1. Data Attributes"
+  args={{}}
+  >
+  {(args) => ({
+    Component: DataAttributes,
+  })}
+  </Story>
+</Canvas>

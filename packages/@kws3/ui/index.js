@@ -1,5 +1,8 @@
 export { applySettings } from "./settings";
 
+export { activateTooltips, tooltip, popover } from "./helpers/Tooltip";
+export { default as Popover } from "./helpers/Popover.svelte";
+
 export { default as Icon } from "./helpers/Icon.svelte";
 export { default as Message } from "./helpers/Message.svelte";
 export { default as Modal } from "./helpers/Modal.svelte";
