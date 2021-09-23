@@ -10,7 +10,7 @@
 **Examples:** `click`, `mouseenter`, `mouseenter focus`, Default: `"click"`
   @param {string} [placement="auto"] - Preferred placement of the Popover
 
-Available options: https://atomiks.github.io/tippyjs/v6/all-props/#placement, Default: `"auto"`
+Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>, Default: `"auto"`
   @param {boolean} [interactive=false] - Allows you to interact with the Popover content, when turned on, Default: `false`
   @param {object} [external_target=null] - Specify a target node reference to use as the Popover content
 
@@ -76,7 +76,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   /**
    * Preferred placement of the Popover
    *
-   * Available options: https://atomiks.github.io/tippyjs/v6/all-props/#placement
+   * Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>
    */
   export let placement = "auto";
   /**
