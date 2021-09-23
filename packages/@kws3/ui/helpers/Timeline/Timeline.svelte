@@ -80,7 +80,10 @@
 
   let timeline = null,
     visibleData = [],
-    typeWiseData = [];
+    typeWiseData = [],
+    _data = [],
+    ret = [];
+
   $: is_tree = type == "tree";
 
   $: {
@@ -90,7 +93,22 @@
         !showAll && data.length > visible + 1 ? data.slice(0, visible) : data;
     }
 
-    if (is_tree) {
+    if (is_tree && data.length > 0) {
+      _data = (data || []).slice();
+      _data.forEach((item) => {
+        var date = new Date(item.date),
+          year = date.getFullYear();
+
+        if (typeof ret[year] == "undefined") {
+          ret[year] = [];
+        }
+        ret[year].push(item);
+      });
+
+      typeWiseData = ret;
+    }
+
+    if (is_tree && typeWiseData) {
       data = Object.assign({}, typeWiseData);
       let ret = {};
 
@@ -108,31 +126,11 @@
           visible -= item.length;
         }
       }
-
       visibleData = ret;
     }
   }
 
   $: numUnVisibleData = !showAll ? data.length - visible : 0;
-
-  onMount(() => {
-    if (!is_tree) typeWiseData = data;
-    if (is_tree) {
-      var _data = (data || []).slice();
-
-      _data.forEach((item) => {
-        var date = new Date(item.date),
-          year = date.getFullYear();
-
-        if (typeof ret[year] == "undefined") {
-          ret[year] = [];
-        }
-        ret[year].push(item);
-      });
-
-      typeWiseData = ret;
-    }
-  });
 
   function setVisible() {
     visible = visible + offset;
