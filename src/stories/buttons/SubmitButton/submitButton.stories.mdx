@@ -52,22 +52,29 @@ export let args={
 <ArgsTable story="Submit Button" />
 
 ### Usage
-#### Import the component:
 <Source
   language="javascript"
   code={
-    dedent`import { SubmitButton } from '@kws3/buttons';
-    let BUTTON_SUBMIT;
-    <SubmitButton bind:this={BUTTON_SUBMIT}
-    //
-    //Then we can use like
-    BUTTON_SUBMIT.saving();
-    BUTTON_SUBMIT.saved(() => {
-      //some callback function
-    }, 1000);
-    BUTTON_SUBMIT.error(() => {
-      //some callback function
-    }, 1000);
+    dedent`<form on:submit|preventDefault={save}>
+      <SubmitButton bind:this={BUTTON_STATE} />
+    </form>
+    <script>
+      import { SubmitButton } from '@kws3/buttons';
+      let BUTTON_STATE;
+      function save(e){
+        BUTTON_STATE.saving();
+        somepromise.then((r) => {
+          BUTTON_STATE.saved(() => {
+            //some callback function
+          }, 1000);
+        })
+        .catch((r) => {
+          BUTTON_STATE.error(() => {
+            //some callback function
+          }, 1000);
+        })
+      }
+    </script>
     `
   }
 />
