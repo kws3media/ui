@@ -36,6 +36,7 @@
 </div>
 
 <script>
+  import { onMount } from "svelte";
   import { Icon, Message } from "@kws3/ui";
   import TimelineItem from "./TimelineItem.svelte";
 
@@ -60,31 +61,9 @@
     typeWiseData = [];
   $: is_tree = type == "tree";
 
-  // cyclic dependencies
-  // $: {
-
-  //   if (!is_tree) typeWiseData = data;
-
-  //   if (is_tree) {
-  //     var _data = (data || []).slice();
-
-  //     _data.forEach((item) => {
-  //       var date = new Date(item.date),
-  //           year = date.getFullYear();
-
-  //       if (typeof ret[year] == 'undefined') {
-  //         ret[year] = [];
-  //       }
-  //       ret[year].push(item);
-  //     });
-
-  //     typeWiseData = ret;
-  //   }
-  // }
-
   $: {
     if (!is_tree) {
-      //data = (typeWiseData || []).slice();
+      data = (data || []).slice();
       visibleData =
         !showAll && data.length > visible + 1 ? data.slice(0, visible) : data;
     }
@@ -126,10 +105,37 @@
   //   }
   // }
 
+  onMount(() => {
+    if (!is_tree) typeWiseData = data;
+    if (is_tree) {
+      var _data = (data || []).slice();
+
+      _data.forEach((item) => {
+        var date = new Date(item.date),
+          year = date.getFullYear();
+
+        if (typeof ret[year] == "undefined") {
+          ret[year] = [];
+        }
+        ret[year].push(item);
+      });
+
+      typeWiseData = ret;
+    }
+  });
+
   function setVisible() {
     visible = visible + offset;
     if (visible > data.length) {
       visible = data.length;
+    }
+
+    if (can_scroll) {
+      var elm = timeline.querySelectorAll("li");
+      var e = elm[elm.length - 1];
+      setTimeout(() => {
+        e.scrollIntoView({ behavior: "smooth" });
+      }, 10);
     }
   }
 </script>

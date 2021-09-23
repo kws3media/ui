@@ -1,5 +1,5 @@
 <li class:is-past={item.is_past} on:click={setView}>
-  {#if item.title}
+  {#if item.image}
     <img class="avatar" src={item.image} alt="" />
   {/if}
 
@@ -26,57 +26,55 @@
 </li>
 
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
 
   export let item = {},
     is_tree = false,
-    months = [
-      "JAN",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
-    ],
     formatDate = "",
     formatTime = "";
+  let months = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC",
+  ];
 
-  // $: {
-  //   if(!is_tree){
-  //     formatDate = item.date;
-  //   }
+  onMount(() => {
+    //Date Format
+    if (!is_tree && item && item.date) {
+      formatDate = item.date;
+    }
+    if (is_tree && item && item.date) {
+      var date = new Date(item.date),
+        day = date.getDate(),
+        day = ("0" + day).slice(-2),
+        month = date.getMonth();
+      formatDate = months[month] + " " + day;
+    }
 
-  //   if(is_tree){
-  //     var date = new Date(item.date),
-  //     day = date.getDate(),
-  //     day = ('0'+day).slice(-2),
-  //     month = date.getMonth();
-  //     formatDate = months[month] + ' ' + day;
-  //   }
-  // }
+    //Time Format
+    if (!is_tree && item && item.time) {
+      formatTime = item.time;
+    }
+    if (is_tree && item && item.time) {
+      var [hour, min] = item.time.split(":");
+      let _hour = hour % 12 ? hour % 12 : 12,
+        _min = ("0" + min).slice(-2),
+        meridiem = hour >= 12 ? "PM" : "AM";
 
-  // $: {
-  //   if(!is_tree){
-  //     formatTime = item.time;
-  //   }
-
-  //   if(is_tree){
-  //     var [hour, min] = item.time.split(':');
-  //     let _hour = hour % 12 ? (hour%12) : 12,
-  //         _min = ('0'+min).slice(-2) ,
-  //         meridiem = hour >= 12 ? 'PM' : 'AM';
-
-  //     formatTime = `${_hour}:${_min} ${meridiem}`;
-  //   }
-  // }
+      formatTime = `${_hour}:${_min} ${meridiem}`;
+    }
+  });
 
   function setView() {
     if (is_tree) {
