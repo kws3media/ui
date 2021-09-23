@@ -79,6 +79,71 @@
   <hr class="is-small" />
   <div class="columns is-multiline">
     <div class="column is-6">
+      <p><strong>Persistent Tooltips</strong></p>
+      <p class="notification is-warning is-light">
+        This does not work with event delegation.<br />
+        Instead the <code>tooltip</code> action has to be used.<br />
+        See:
+        <a href="/?path=/docs/helpers-tooltips-3-tooltip-action--page"
+          >Tooltip Action</a>
+      </p>
+      <div>
+        Three parameters are required to achieve this:
+        <ol style="margin-left:1.5rem;margin-bottom:2rem">
+          <li><code>showOnCreate: true</code></li>
+          <li><code>hideOnClick: false</code></li>
+          <li><code>trigger: 'manual'</code></li>
+        </ol>
+      </div>
+      <p>
+        These options can be supplied either via <code>data-tippy-*</code> attributes,
+        or as parameters to the action.
+      </p>
+    </div>
+    <div class="column is-6">
+      <pre
+        use:tooltip
+        data-tooltip="This is a persistent tooltip"
+        data-tippy-theme="danger"
+        data-tippy-showOnCreate="true"
+        data-tippy-hideOnClick="false"
+        data-tippy-trigger="manual">
+&lt;span
+  use:tooltip
+  data-tooltip="This is a persistent tooltip"
+  data-tippy-theme="danger"
+  data-tippy-showOnCreate="true"
+  data-tippy-hideOnClick="false"
+  data-tippy-trigger="manual"&gt;
+  hello
+&lt;/span&gt;
+      </pre>
+      <br />
+      <pre
+        use:tooltip={{
+          theme: "danger",
+          showOnCreate: true,
+          hideOnClick: false,
+          trigger: "manual",
+        }}
+        data-tooltip="This is a persistent tooltip">
+
+&lt;span
+  use:tooltip=&#123;&#123;
+    theme: "danger",
+    showOnCreate: true,
+    hideOnClick: false,
+    trigger: "manual"
+  &#125;&#125;
+  data-tooltip="This is a persistent tooltip"&gt;
+  hello
+&lt;/span&gt;
+      </pre>
+    </div>
+  </div>
+  <hr class="is-small" />
+  <div class="columns is-multiline">
+    <div class="column is-6">
       <p><strong>Themes</strong></p>
       <p>
         Use <code>theme: "[theme_name]"</code> in init config.
@@ -182,7 +247,7 @@
 </div>
 
 <script>
-  import { activateTooltips } from "@kws3/ui";
+  import { activateTooltips, tooltip } from "@kws3/ui";
   import { onMount } from "svelte";
 
   onMount(() => {
