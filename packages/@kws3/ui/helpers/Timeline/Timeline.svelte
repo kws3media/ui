@@ -72,7 +72,7 @@
     style = "",
     /**
      * Color of the timeline
-     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "primary";
 
