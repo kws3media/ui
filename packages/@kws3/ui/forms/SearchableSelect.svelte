@@ -68,6 +68,7 @@
 
 <script>
   import { createEventDispatcher, onMount } from "svelte";
+  import { createPopper } from "@popperjs/core";
 
   export let value = "";
   export let maxSelect = 1; // null means any number of options are selectable
@@ -105,7 +106,8 @@
 
   const fire = createEventDispatcher();
 
-  let activeOption = "",
+  let POPPER,
+    activeOption = "",
     searchText = "",
     showOptions = false,
     filteredOptions = [];
@@ -157,23 +159,21 @@
     });
   }
 
-  onMount(init);
-
-  function init() {
-    let container = document.getElementById(dropdownId);
-    if (!container) {
-      container = document.createElement("div");
-      container.id = dropdownId;
-      container.className = "searchableselect-container";
-      document.body.appendChild(container);
-    }
-    container.appendChild(dropdown);
-    updateBounds();
-
+  onMount(() => {
+    POPPER = createPopper(el, dropdown, {
+      modifiers: [
+        {
+          name: "offset",
+          options: {
+            offset: [0, 10],
+          },
+        },
+      ],
+    });
     return () => {
-      container.removeChild(dropdown);
+      POPPER.destroy();
     };
-  }
+  });
 
   function add(token) {
     if (
@@ -208,26 +208,8 @@
     showOptions = show;
     if (show) {
       input && input.focus();
-      updateBounds();
     }
-  }
-
-  function updateBounds() {
-    let bounds = el.getBoundingClientRect();
-    dropdown.style.width = bounds.width + "px";
-
-    dropdown.style.left = bounds.left + "px";
-    let top = bounds.bottom,
-      inht = window.innerHeight;
-    if (top + dropdown.offsetHeight > inht) {
-      //not enough space to render drop down below input,
-      //render it above
-      dropdown.style.bottom = inht - (bounds.top - 3) + "px";
-      dropdown.style.top = "auto";
-    } else {
-      dropdown.style.top = top + "px";
-      dropdown.style.bottom = "auto";
-    }
+    POPPER.update();
   }
 
   function handleKeydown(event) {
