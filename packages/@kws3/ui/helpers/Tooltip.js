@@ -1,4 +1,4 @@
-import { delegate } from "tippy.js";
+import tippy, { delegate } from "tippy.js";
 
 /**
  * Activates tooltips via event delegation
@@ -24,11 +24,67 @@ export function activateTooltips(container, opts) {
   delegate(container, _opts);
 }
 
-export function tooltip(node, opts) {
-  const instance = tippy(node, opts);
-  return {
-    destroy() {
+function createTippyAction(defaultOpts) {
+  return function (node, opts) {
+    let instance;
+
+    function makeOptions() {
+      return Object.assign({}, defaultOpts, opts);
+    }
+
+    function remakeInstance() {
+      destroyInstance();
+      makeInstance();
+    }
+
+    function destroyInstance() {
       instance && instance.destroy();
-    },
+    }
+
+    function makeInstance() {
+      const options = makeOptions();
+      if (!options.content) {
+        return;
+      }
+      instance = tippy(node, options);
+    }
+
+    makeInstance();
+
+    return {
+      update(_opts) {
+        opts = _opts;
+        remakeInstance();
+      },
+      destroy() {
+        destroyInstance();
+      },
+    };
   };
 }
+
+export let popover = createTippyAction({
+  appendTo: () => document.body,
+  hideOnClick: true,
+  theme: "popover",
+  animation: "scale",
+  allowHTML: true,
+  inertia: true,
+  touch: true,
+  placement: "auto",
+  trigger: "click",
+  offset: [0, 10],
+  interactive: true,
+  maxWidth: "none",
+});
+
+export let tooltip = createTippyAction({
+  animation: "scale",
+  content(el) {
+    return el.getAttribute("data-tooltip");
+  },
+  allowHTML: true,
+  inertia: true,
+  offset: [0, 15],
+  touch: true,
+});

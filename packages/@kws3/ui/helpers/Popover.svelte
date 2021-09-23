@@ -51,7 +51,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
 </style>
 
 <script>
-  import popover from "./actions";
+  import { popover } from "./Tooltip";
   import { Icon } from "@kws3/ui";
   /**
    * Icon used when default slot has no content
