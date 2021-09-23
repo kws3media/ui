@@ -67,6 +67,17 @@
 </div>
 
 <script>
+  //TODO: Match bulma input styles
+  //TODO: make clearAll button optional
+  //TODO: check property namings
+  //TODO: remove unused properties
+  //TODO: theme colors for input
+  //TODO: theme color for tags
+  //TODO: abstract out Multiselect to separate component
+  //TODO: backward compat for valueKey property
+  //TODO: support for empty default value
+  //TODO: select triangle on right edge matching bulma
+
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
 
