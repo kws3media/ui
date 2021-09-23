@@ -5,7 +5,7 @@ import { delegate } from "tippy.js";
  * @param {string} container - CSS selector of container
  * @param {object} opts - tooltip options
  */
-export default function (container, opts) {
+export function activateTooltips(container, opts) {
   let _opts = Object.assign(
     {
       target: "[data-tooltip]",
@@ -22,4 +22,13 @@ export default function (container, opts) {
   );
 
   delegate(container, _opts);
+}
+
+export function tooltip(node, opts) {
+  const instance = tippy(node, opts);
+  return {
+    destroy() {
+      instance && instance.destroy();
+    },
+  };
 }
