@@ -70,6 +70,19 @@
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
 
+  const sameWidthPopperModifier = {
+    name: "sameWidth",
+    enabled: true,
+    phase: "beforeWrite",
+    requires: ["computeStyles"],
+    fn: ({ state }) => {
+      state.styles.popper.width = `${state.rects.reference.width}px`;
+    },
+    effect: ({ state }) => {
+      state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`;
+    },
+  };
+
   export let value = "";
   export let maxSelect = 1; // null means any number of options are selectable
   export let readonly = false;
@@ -91,8 +104,7 @@
   export let removeAllTitle = `Remove all`;
 
   let el, //whole wrapping element
-    dropdown, //dropdown ul
-    dropdownId = "searchableselect-dropdown-container";
+    dropdown; //dropdown ul
 
   if (maxSelect !== null && maxSelect < 0) {
     throw new TypeError(
@@ -161,11 +173,13 @@
 
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
+      strategy: "fixed",
       modifiers: [
+        sameWidthPopperModifier,
         {
           name: "offset",
           options: {
-            offset: [0, 10],
+            offset: [0, 5],
           },
         },
       ],

@@ -26,36 +26,12 @@ ul.tokens {
 }
 ul.tokens > li.tag {
   margin: 0.25rem !important;
-  // background: var(--sms-token-bg, var(--sms-active-color, cornflowerblue));
-  // align-items: center;
-  // border-radius: 4pt;
-  // display: flex;
-  // margin: 2pt;
-  // padding: 0 0 0 1ex;
-  // transition: 0.3s;
-  // white-space: nowrap;
-  // height: 16pt;
 }
-ul.tokens > li button,
-button.remove-all {
-  // align-items: center;
-  // border-radius: 50%;
-  // display: flex;
-  // cursor: pointer;
-  // transition: 0.2s;
-}
+
 ul.tokens > li button:hover,
 button.remove-all:hover {
   color: var(--sms-remove-x-hover-color, lightgray);
 }
-// button {
-//   color: inherit;
-//   background: transparent;
-//   border: none;
-//   cursor: pointer;
-//   outline: none;
-//   padding: 0 2pt;
-// }
 
 .searchableselect input {
   border: none;
@@ -72,17 +48,14 @@ ul.options {
   list-style: none;
   max-height: 50vh;
   padding: 0;
-  top: 100%;
-  width: 100%;
   cursor: pointer;
-  position: absolute;
   border-radius: 0 0 $radius $radius;
   overflow: auto;
   background: #fff;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.4);
 }
 ul.options.hidden {
-  //visibility: hidden;
+  display: none;
 }
 ul.options li {
   padding: 0.3em 0.5em;
@@ -99,13 +72,3 @@ ul.options li {
     background: $blue;
   }
 }
-// ul.options li.selected {
-//   background: var(--sms-li-selected-bg, inherit);
-//   color: var(--sms-li-selected-color, inherit);
-// }
-// ul.options li:not(.selected):hover {
-
-// }
-// ul.options li.active {
-//   background: var(--sms-li-active-bg, var(--sms-active-color, cornflowerblue));
-// }
