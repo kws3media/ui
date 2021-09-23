@@ -17,7 +17,7 @@ Available options: https://atomiks.github.io/tippyjs/v6/all-props/#placement, De
 When set to `null`, it will use the content of the `popover` slot, Default: `null`
   @param {string} [max_width="none"] - Maximum allowed width of the popover
 
-It can either be `"none"` or a numeric value, Default: `"none"`
+It can be any CSS value associated with `max-width` property, including `"none"`, Default: `"none"`
   @param {string} [style=""] - Inline CSS for Popover trigger, Default: `""`
   @param {string} [class=""] - CSS classes for Popover trigger, Default: `""`
 
@@ -92,7 +92,7 @@ It can either be `"none"` or a numeric value, Default: `"none"`
   /**
    * Maximum allowed width of the popover
    *
-   * It can either be `"none"` or a numeric value
+   * It can be any CSS value associated with `max-width` property, including `"none"`
    */
   export let max_width = "none";
   /**
