@@ -1,3 +1,5 @@
+$kws-theme-colors: $colors !default;
+
 .searchableselect {
   position: relative;
   align-items: center;
@@ -19,6 +21,14 @@
   }
   &.is-readonly {
     box-shadow: none;
+  }
+
+  @each $name, $pair in $kws-theme-colors {
+    $color: nth($pair, 1);
+    &:focus-within {
+      border-color: $color;
+      box-shadow: $input-focus-box-shadow-size bulmaRgba($color, 0.25);
+    }
   }
 }
 ul.tokens {
