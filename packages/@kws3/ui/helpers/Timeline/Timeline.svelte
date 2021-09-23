@@ -5,12 +5,13 @@
         {#each Object.entries(visibleData) as [year, items]}
           <li class="year">{year.trim()}</li>
           {#each items as item}
-            <TimelineItem {item} {is_tree} on:viewItem />
+            <!--Used to fires an event for viewing specific item-->
+            <TimelineItem {item} {is_tree} on:viewItem {color} />
           {/each}
         {/each}
       {:else}
         {#each visibleData as item}
-          <TimelineItem {item} />
+          <TimelineItem {item} on:viewItem {color} />
         {/each}
       {/if}
     </ul>
@@ -19,7 +20,7 @@
       <div class="columns">
         <div class="column">
           <button
-            class="button is-info is-small is-fullwidth is-block"
+            class="button is-{color} is-small is-fullwidth is-block"
             type="button"
             on:click={setVisible}>
             <Icon icon="chevron-down" size="small" />
@@ -41,9 +42,7 @@
   import TimelineItem from "./TimelineItem.svelte";
 
   /**
-   * Array of timeline objects
-   * Array format is like this
-   * `[{'title' : '', 'description' : '', 'image' : '', 'date' : '', 'time' : ''},..]`
+   * Array of objects for timeline data
    */
   export let data = [],
     /**
@@ -51,7 +50,7 @@
      */
     visible = 5,
     /**
-     * Offset set for `more items` button
+     * Limit the number of rows displayed
      */
     offset = 5,
     /**
@@ -70,7 +69,12 @@
     /**
      * CSS styles to the Timeline container
      */
-    style = "";
+    style = "",
+    /**
+     * Color of the timeline
+     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
+    color = "primary";
 
   /**
    * CSS classes for the Timeline container
@@ -109,13 +113,13 @@
     }
 
     if (is_tree && typeWiseData) {
-      data = Object.assign({}, typeWiseData);
+      _data = Object.assign({}, typeWiseData);
       let ret = {};
 
-      let years = Object.keys(data);
+      let years = Object.keys(_data);
       for (let i = years.length - 1; i >= 0; i--) {
         let year = years[i],
-          item = data[year];
+          item = _data[year];
 
         if (showAll) {
           ret[" " + year] = item.slice();

@@ -36,12 +36,23 @@
       width: 15px;
       border-radius: 10px;
       border: 5px solid $dark;
-      background-color: $primary;
+      background-color: $light;
       content: " ";
     }
     &:last-child {
       &:before {
         margin-top: -8px;
+      }
+    }
+
+    @each $name, $pair in $colors {
+      $color: nth($pair, 1);
+      $color-invert: nth($pair, 2);
+      &.is-#{$name} {
+        border-left: 1px solid $color !important;
+        &:before {
+          border: 5px solid $color !important;
+        }
       }
     }
   }

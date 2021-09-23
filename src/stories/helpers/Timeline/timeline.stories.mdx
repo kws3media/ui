@@ -6,6 +6,7 @@ import { action } from '@storybook/addon-actions';
 export let args={
   data : [
     {
+      'id' : '1',
       'title' : 'User 1',
       'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       'image' : 'https://bulma.io/images/placeholders/32x32.png',
@@ -13,32 +14,38 @@ export let args={
       'time' : '15:25:00'
     },
     {
+      'id' : '2',
       'title' : 'User 2',
       'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       'image' : 'https://bulma.io/images/placeholders/64x64.png',
       'date' : '2021-09-23',
     },
     {
+      'id' : '3',
       'title' : 'User 3',
       'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       'date' : '2021-09-23',
     },
     {
+      'id' : '4',
       'title' : 'User 4',
       'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       'date' : '2021-09-23',
     },
     {
+      'id' : '5',
       'title' : 'User 5',
       'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       'date' : '2021-09-23',
     },
     {
+      'id' : '6',
       'title' : 'User 6',
       'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       'date' : '2021-09-23',
     },
     {
+      'id' : '7',
       'title' : 'User 7',
       'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       'date' : '2021-09-23',
@@ -48,7 +55,8 @@ export let args={
   can_scroll : false,
   showAll : false,
   visible : 5,
-  offset : 5
+  offset : 5,
+  color : "primary"
 }
 
 <Meta
@@ -57,6 +65,9 @@ export let args={
   args={args}
   argTypes={{
     type: {
+      control: 'select'
+    },
+    color: {
       control: 'select'
     }
   }}
@@ -74,7 +85,7 @@ export let args={
   >
   {(args) => ({
     Component: Timeline,
-    props: args,
+    props: args
   })}
   </Story>
 </Canvas>

@@ -1,4 +1,4 @@
-<li class:is-past={item.is_past} on:click={setView}>
+<li class="is-{color}" class:is-past={item.is_past} on:click={setView}>
   {#if item.image}
     <img class="avatar" src={item.image} alt="" />
   {/if}
@@ -33,7 +33,8 @@
   export let item = {},
     is_tree = false,
     formatDate = "",
-    formatTime = "";
+    formatTime = "",
+    color = "primary";
   let months = [
     "JAN",
     "FEB",
