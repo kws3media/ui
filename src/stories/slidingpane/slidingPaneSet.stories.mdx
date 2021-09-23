@@ -39,11 +39,6 @@ export let args={
 <ArgsTable story="SlidingPaneSet" />
 
 ### Usage
-<Source
-  language='html'
-  code={ dedent` `}
-/>
-
 ##### Import the component:
 <Source
   language='javascript'
@@ -54,4 +49,28 @@ export let args={
 <Source
   language='javascript'
   code={ dedent`@import '@kws3/ui/styles/SlidingPane.scss';`}
+/>
+
+#### Example
+<Source
+  language='html'
+  code={ dedent`
+    <SlidingPaneSet {style} class={klass} {vertical}>
+      <SlidingPane active={true}>
+        <p class="title is-3">One</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+      </SlidingPane>
+      <SlidingPane>
+        <p class="title is-3">Two</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+      </SlidingPane>
+    </SlidingPaneSet>
+    <script>
+      import { SlidingPaneSet, SlidingPane } from "@kws3/ui";
+      export let style = "height:250px",
+        vertical = true;
+      let klass = "some-class";
+      export { klass as class };
+    </script>
+  `}
 />
