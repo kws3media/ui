@@ -2,17 +2,17 @@
   @component
 
 
-  @param {object} [row={}] - It contains all the columns value in a row, Default: `{}`
+  @param {object} [row={}] - List of all values in a row, Default: `{}`
   @param {boolean} [rowActive=false] - Determines whether the row is selected or not, Default: `false`
   @param {boolean} [clickableRows=false] - Determines whether the row is clickable or not, Default: `false`
-  @param {function} [isVisible()] - It returns whether a column can be visible or not
-  @param {function} [transforms()] - It returns column custom value
-  @param {function} [classNames()] - It returns column custom css class
-  @param {function} [styles()] - It returns column custom css styles
-  @param {array} [column_keys=[]] - It contains all the column key names, Default: `[]`
+  @param {function} [isVisible()] - Returns whether a column can be visible or not
+  @param {function} [transforms()] - Returns column custom value
+  @param {function} [classNames()] - Returns column custom CSS class
+  @param {function} [styles()] - Returns column custom CSS styles
+  @param {array} [column_keys=[]] - Contains all the column key names, Default: `[]`
 
   ### Events
-  - `rowClick` - Fire an event on click item
+  - `rowClick` - Fires an event when a row is clicked
 
 -->
 <div
@@ -34,7 +34,7 @@
   const fire = createEventDispatcher();
 
   /**
-   * It contains all the columns value in a row
+   * List of all values in a row
    */
   export let row = {},
     /**
@@ -46,23 +46,23 @@
      */
     clickableRows = false,
     /**
-     * It returns whether a column can be visible or not
+     * Returns whether a column can be visible or not
      */
     isVisible = function () {},
     /**
-     * It returns column custom value
+     * Returns column custom value
      */
     transforms = function () {},
     /**
-     * It returns column custom css class
+     * Returns column custom CSS class
      */
     classNames = function () {},
     /**
-     * It returns column custom css styles
+     * Returns column custom CSS styles
      */
     styles = function () {},
     /**
-     * It contains all the column key names
+     * Contains all the column key names
      */
     column_keys = [];
 
@@ -70,7 +70,7 @@
     if (clickableRows) {
       rowActive = true;
       /**
-       * Fire an event on click item
+       * Fires an event when a row is clicked
        */
       fire("rowClick", { row });
     }

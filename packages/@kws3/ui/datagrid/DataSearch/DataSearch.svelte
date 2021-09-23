@@ -2,19 +2,19 @@
   @component
 
 
-  @param {boolean} [hasSearch=true] - Weather it has a search input or not, Default: `true`
-  @param {boolean} [hasFilters=true] - Weather it has a filters or not, Default: `true`
-  @param {string} [placeholder=""] - Placeholder for the search input, Default: `""`
-  @param {object} [filters={}] - It contains all the filter dropdown values, Default: `{}`
+  @param {boolean} [hasSearch=true] - Determines whether there is a search input or not, Default: `true`
+  @param {boolean} [hasFilters=true] - Determines if there are filters on search, Default: `true`
+  @param {string} [placeholder=""] - Placeholder text for the search input, Default: `""`
+  @param {object} [filters={}] - Contains all the filter dropdown values, Default: `{}`
   @param {string} [q=""] - Query string from the browser url, Default: `""`
-  @param {string} [filter_in_use_class="is-in-use"] - Css class for in use filter, Default: `"is-in-use"`
+  @param {string} [filter_in_use_class="is-in-use"] - CSS class for in use filters, Default: `"is-in-use"`
   @param {string} [filter_not_in_use_class="is-not-in-use"] - Css class for not in use filters, Default: `"is-not-in-use"`
-  @param {object} [filterComponent=null] - Use a custom component for filters, Default: `null`
-  @param {object} [filter_label_map={}] - Contains all the lables for the filter dropdowns, Default: `{}`
+  @param {object} [filterComponent=null] - To use a custom component for filters, Default: `null`
+  @param {object} [filter_label_map={}] - Contains all the labels for the filter dropdowns, Default: `{}`
 
   ### Events
-  - `resetSearch` - It fire an event on reset search
-  - `search` - It fire an event on search
+  - `resetSearch` - Triggered when the search is reset
+  - `search` - Event triggered on search
 
 -->
 
@@ -68,19 +68,19 @@
   const fire = createEventDispatcher();
 
   /**
-   * Weather it has a search input or not
+   * Determines whether there is a search input or not
    */
   export let hasSearch = true,
     /**
-     * Weather it has a filters or not
+     * Determines if there are filters on search
      */
     hasFilters = true,
     /**
-     * Placeholder for the search input
+     * Placeholder text for the search input
      */
     placeholder = "",
     /**
-     * It contains all the filter dropdown values
+     * Contains all the filter dropdown values
      */
     filters = {},
     /**
@@ -88,7 +88,7 @@
      */
     q = "",
     /**
-     * Css class for in use filter
+     * CSS class for in use filters
      */
     filter_in_use_class = "is-in-use",
     /**
@@ -96,11 +96,11 @@
      */
     filter_not_in_use_class = "is-not-in-use",
     /**
-     * Use a custom component for filters
+     * To use a custom component for filters
      */
     filterComponent = null,
     /**
-     * Contains all the lables for the filter dropdowns
+     * Contains all the labels for the filter dropdowns
      */
     filter_label_map = {};
 
@@ -162,7 +162,7 @@
     filterVals = filterVals;
 
     /**
-     * It fire an event on reset search
+     * Triggered when the search is reset
      */
     fire("resetSearch");
   }
@@ -174,7 +174,7 @@
       filterVals[i] && ret.push(i + ":" + filterVals[i]);
     }
     /**
-     * It fire an event on search
+     * Event triggered on search
      */
     fire("search", ret.join("~"));
   }

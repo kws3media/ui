@@ -3,26 +3,26 @@
 
 
   @param {string} [iteration_key="id"] - Iteration key, Default: `"id"`
-  @param {array} [data=[]] - Contains all the results which need to display in table, Default: `[]`
-  @param {object} [columns={}] - Table coulumn names. {db_field_name: column_name}, Default: `{}`
-  @param {boolean} [transition=false] - Determines whether it has transision effect or not, Default: `false`
-  @param {boolean} [is_striped=true] - Determines whether it has stripes to the table, Default: `true`
+  @param {array} [data=[]] - Contains all the results that needs to be displayed, Default: `[]`
+  @param {object} [columns={}] - Table column names. {db_field_name: column_name}, Default: `{}`
+  @param {boolean} [transition=false] - Determines if a transision effect is used, Default: `false`
+  @param {boolean} [is_striped=true] - Determines whether to use alternating row shading in the table view, Default: `true`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
-  @param {boolean} [bulk_actions=false] - If it is true, can select multiple rows and do multiple actions, Default: `false`
-  @param {boolean} [selectAll=false] - If it is true, it will select all rows checkbox, Default: `false`
-  @param {array} [selectedIds=[]] - This one contains all the selected rows unique id value, Default: `[]`
-  @param {string} [selectAllCheckboxColor="primary"] - This will set color for the select all checkbox, Default: `"primary"`
-  @param {string} [selectCheckboxColor="info"] - This will set color for the checkbox on each row, Default: `"info"`
-  @param {string} [selectCheckboxSize="medium"] - This will set the size of each checkbox, Default: `"medium"`
-  @param {object} [valueTransformers={}] - It contains all the custom values for each column, Default: `{}`
-  @param {object} [classTransformers={}] - It contains css class names for each column, Default: `{}`
-  @param {object} [styleTransformers={}] - It contains css styles for each column, Default: `{}`
-  @param {object} [visibilityMap={}] - it contains list of columns which can be visible or not, Default: `{}`
-  @param {object} [cellComponentMap={}] - it contains list of columns with its custom cell component, Default: `{}`
-  @param {any} [rowComponent="GridRow"] - it contains a custom row component, Default: `"GridRow"`
+  @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
+  @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
+  @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
+  @param {string} [selectAllCheckboxColor="primary"] - Colour of the `select all` checkbox, Default: `"primary"`
+  @param {string} [selectCheckboxColor="info"] - Color of the checkbox on each row, Default: `"info"`
+  @param {string} [selectCheckboxSize="medium"] - Size of the checkbox, Default: `"medium"`
+  @param {object} [valueTransformers={}] - Contains all custom values for each column, Default: `{}`
+  @param {object} [classTransformers={}] - CSS classes for each column, Default: `{}`
+  @param {object} [styleTransformers={}] - CSS styles for each column, Default: `{}`
+  @param {object} [visibilityMap={}] - Contains list of columns which can be visible or not, Default: `{}`
+  @param {object} [cellComponentMap={}] - Contains list of columns with its custom cell component, Default: `{}`
+  @param {any} [rowComponent="GridRow"] - Contains a custom row component, Default: `"GridRow"`
 
   ### Events
-  - `toggleSelectAll` - It fires an event on every time toggle the select all checkbox
+  - `toggleSelectAll` - Fires an event every time the `select all` checkbox is toggled
   - `rowClick`
   - `rowSelectChecked`
   - `_forwardEvent`
@@ -92,19 +92,19 @@
    */
   export let iteration_key = "id",
     /**
-     * Contains all the results which need to display in table
+     * Contains all the results that needs to be displayed
      */
     data = [],
     /**
-     * Table coulumn names. {db_field_name: column_name}
+     * Table column names. {db_field_name: column_name}
      */
     columns = {},
     /**
-     * Determines whether it has transision effect or not
+     * Determines if a transision effect is used
      */
     transition = false,
     /**
-     * Determines whether it has stripes to the table
+     * Determines whether to use alternating row shading in the table view
      * @link https://bulma.io/documentation/elements/table/#modifiers
      */
     is_striped = true,
@@ -113,51 +113,51 @@
      */
     clickableRows = false,
     /**
-     * If it is true, can select multiple rows and do multiple actions
+     * Determines if selecting multiple rows and doing multiple actions is allowed
      */
     bulk_actions = false,
     /**
-     *If it is true, it will select all rows checkbox
+     *Determines if all rows are selected
      */
     selectAll = false,
     /**
-     * This one contains all the selected rows unique id value
+     * List of unique IDs of all the selected rows
      */
     selectedIds = [],
     /**
-     * This will set color for the select all checkbox
+     * Colour of the `select all` checkbox
      */
     selectAllCheckboxColor = "primary",
     /**
-     * This will set color for the checkbox on each row
+     * Color of the checkbox on each row
      */
     selectCheckboxColor = "info",
     /**
-     * This will set the size of each checkbox
+     * Size of the checkbox
      */
     selectCheckboxSize = "medium",
     /**
-     * It contains all the custom values for each column
+     * Contains all custom values for each column
      */
     valueTransformers = {},
     /**
-     * It contains css class names for each column
+     * CSS classes for each column
      */
     classTransformers = {},
     /**
-     * It contains css styles for each column
+     * CSS styles for each column
      */
     styleTransformers = {},
     /**
-     * it contains list of columns which can be visible or not
+     * Contains list of columns which can be visible or not
      */
     visibilityMap = {},
     /**
-     * it contains list of columns with its custom cell component
+     * Contains list of columns with its custom cell component
      */
     cellComponentMap = {},
     /**
-     *  it contains a custom row component
+     * Contains a custom row component
      * @default "GridRow"
      */
     rowComponent = GridRow;
@@ -210,7 +210,7 @@
 
   function changed() {
     /**
-     * It fires an event on every time toggle the select all checkbox
+     * Fires an event every time the `select all` checkbox is toggled
      */
     fire("toggleSelectAll", selectAll);
   }

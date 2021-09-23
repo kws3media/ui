@@ -4,9 +4,9 @@
 
   @param {object} [filter={}] - Contains filter options for dropdown, Default: `{}`
   @param {object} [filterVals={}] - Contains the selected filter values, Default: `{}`
-  @param {string} [filterWidthStyle=""] - css style for the filters, Default: `""`
-  @param {string} [hilightClass=""] - css class for heighlight the filter, Default: `""`
-  @param {object} [filter_label_map={}] - Contains custome labes for the filter, Default: `{}`
+  @param {string} [filterWidthStyle=""] - Inline CSS style for the filters, Default: `""`
+  @param {string} [hilightClass=""] - CSS classes for highlighted filter, Default: `""`
+  @param {object} [filter_label_map={}] - Contains custom labels for the filter, Default: `{}`
 
 -->
 
@@ -68,15 +68,15 @@
      */
     filterVals = {},
     /**
-     * css style for the filters
+     * Inline CSS style for the filters
      */
     filterWidthStyle = "",
     /**
-     * css class for heighlight the filter
+     * CSS classes for highlighted filter
      */
     hilightClass = "",
     /**
-     * Contains custome labes for the filter
+     * Contains custom labels for the filter
      */
     filter_label_map = {};
 

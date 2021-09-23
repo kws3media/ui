@@ -2,11 +2,11 @@
   @component
 
 
-  @param {string} [column=""] - It holds the column name in db, Default: `""`
-  @param {object} [row={}] - It has all column value, Default: `{}`
-  @param {object} [transforms={}] - It finds custom values for the column, Default: `{}`
-  @param {object} [classNames={}] - It finds css class for the column, Default: `{}`
-  @param {object} [styles={}] - It finds css styles for the column, Default: `{}`
+  @param {string} [column=""] - Name of the column in the DB, Default: `""`
+  @param {object} [row={}] - List of all values in a row, Default: `{}`
+  @param {object} [transforms={}] - Finds custom values for the column, Default: `{}`
+  @param {object} [classNames={}] - Finds CSS class for the column, Default: `{}`
+  @param {object} [styles={}] - Finds CSS styles for the column, Default: `{}`
 
 -->
 
@@ -16,23 +16,23 @@
 
 <script>
   /**
-   * It holds the column name in db
+   * Name of the column in the DB
    */
   export let column = "",
     /**
-     * It has all column value
+     * List of all values in a row
      */
     row = {},
     /**
-     * It finds custom values for the column
+     * Finds custom values for the column
      */
     transforms = {},
     /**
-     * It finds css class for the column
+     * Finds CSS class for the column
      */
     classNames = {},
     /**
-     * It finds css styles for the column
+     * Finds CSS styles for the column
      */
     styles = {};
 </script>

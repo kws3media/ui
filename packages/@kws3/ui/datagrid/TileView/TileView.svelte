@@ -3,21 +3,21 @@
 
 
   @param {string} [iteration_key="id"] - Iteration key, Default: `"id"`
-  @param {array} [data=[]] - Contains all the results which need to list, Default: `[]`
-  @param {boolean} [transition=false] - Determines whether it has transision effect or not, Default: `false`
-  @param {object} [tileItemComponent=null] - It contains a custom component, Default: `null`
-  @param {number} [per_row=3] - Set how many items in a row, Default: `3`
-  @param {string} [columns=""] - Table coulumn names. {db_field_name: column_name}, Default: `""`
+  @param {array} [data=[]] - Contains all the results to be listed, Default: `[]`
+  @param {boolean} [transition=false] - Determines if a transition effect is used, Default: `false`
+  @param {object} [tileItemComponent=null] - Contains a custom component, Default: `null`
+  @param {number} [per_row=3] - Sets how many items to display in a row, Default: `3`
+  @param {string} [columns=""] - Column names for the displayed table {db_field_name: column_name}, Default: `""`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
-  @param {boolean} [bulk_actions=false] - If it is true, can select multiple rows and do multiple actions, Default: `false`
-  @param {boolean} [selectAll=false] - If it is true, it will select all rows checkbox, Default: `false`
-  @param {array} [selectedIds=[]] - This one contains all the selected rows unique id value, Default: `[]`
-  @param {string} [selectCheckboxColor="info"] - This will set color for the select all checkbox, Default: `"info"`
-  @param {string} [selectCheckboxSize="medium"] - This will set the size of each checkbox, Default: `"medium"`
-  @param {object} [valueTransformers={}] - It contains all the custom values for each column, Default: `{}`
-  @param {object} [classTransformers={}] - It contains css class names for each column, Default: `{}`
-  @param {object} [styleTransformers={}] - It contains css styles for each column, Default: `{}`
-  @param {object} [visibilityMap={}] - it contains list of columns which can be visible or not, Default: `{}`
+  @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
+  @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
+  @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
+  @param {string} [selectCheckboxColor="info"] - Color of the `select all` checkbox, Default: `"info"`
+  @param {string} [selectCheckboxSize="medium"] - Size of each checkbox, Default: `"medium"`
+  @param {object} [valueTransformers={}] - Contains all custom values for each column, Default: `{}`
+  @param {object} [classTransformers={}] - CSS class names for each column, Default: `{}`
+  @param {object} [styleTransformers={}] - CSS styles for each column, Default: `{}`
+  @param {object} [visibilityMap={}] - Contains list of columns which can be visible or not, Default: `{}`
 
   ### Events
   - `rowClick`
@@ -61,23 +61,23 @@
    */
   export let iteration_key = "id",
     /**
-     * Contains all the results which need to list
+     * Contains all the results to be listed
      */
     data = [],
     /**
-     * Determines whether it has transision effect or not
+     * Determines if a transition effect is used
      */
     transition = false,
     /**
-     * It contains a custom component
+     * Contains a custom component
      */
     tileItemComponent = null,
     /**
-     * Set how many items in a row
+     * Sets how many items to display in a row
      */
     per_row = 3,
     /**
-     * Table coulumn names. {db_field_name: column_name}
+     * Column names for the displayed table {db_field_name: column_name}
      */
     columns = "",
     /**
@@ -85,39 +85,39 @@
      */
     clickableRows = false,
     /**
-     * If it is true, can select multiple rows and do multiple actions
+     * Determines if selecting multiple rows and doing multiple actions is allowed
      */
     bulk_actions = false,
     /**
-     *If it is true, it will select all rows checkbox
+     *Determines if all rows are selected
      */
     selectAll = false,
     /**
-     * This one contains all the selected rows unique id value
+     * List of unique IDs of all the selected rows
      */
     selectedIds = [],
     /**
-     * This will set color for the select all checkbox
+     * Color of the `select all` checkbox
      */
     selectCheckboxColor = "info",
     /**
-     * This will set the size of each checkbox
+     * Size of each checkbox
      */
     selectCheckboxSize = "medium",
     /**
-     * It contains all the custom values for each column
+     * Contains all custom values for each column
      */
     valueTransformers = {},
     /**
-     * It contains css class names for each column
+     * CSS class names for each column
      */
     classTransformers = {},
     /**
-     * It contains css styles for each column
+     * CSS styles for each column
      */
     styleTransformers = {},
     /**
-     * it contains list of columns which can be visible or not
+     * Contains list of columns which can be visible or not
      */
     visibilityMap = {};
 

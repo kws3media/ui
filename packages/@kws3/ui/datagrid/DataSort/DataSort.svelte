@@ -3,7 +3,7 @@
 
 
   @param {array} [options=[]] - List of options in the dropdown, Default: `[]`
-  @param {string} [sort_by=""] - It holds the selected option value, Default: `""`
+  @param {string} [sort_by=""] - Stores the selected option value, Default: `""`
 
 -->
 
@@ -35,7 +35,7 @@
    */
   export let options = [],
     /**
-     * It holds the selected option value
+     * Stores the selected option value
      */
     sort_by = "";
 

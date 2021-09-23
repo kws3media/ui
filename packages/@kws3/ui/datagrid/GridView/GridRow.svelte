@@ -3,18 +3,18 @@
 
 
   @param {number} [row_index=0] - Row index value, Default: `0`
-  @param {object} [row={}] - It contains all the columns value in a row, Default: `{}`
+  @param {object} [row={}] - Contains all the column values in a row, Default: `{}`
   @param {boolean} [rowActive=false] - Determines whether the row is selected or not, Default: `false`
-  @param {object} [isVisible={}] - weather coulum is visible or not, Default: `{}`
+  @param {object} [isVisible={}] - Determines whether column is visible or not, Default: `{}`
   @param {boolean} [clickableRows=false] - Determines whether the row is clickable or not, Default: `false`
-  @param {object} [transforms={}] - Contails all the custom values for each columns, Default: `{}`
-  @param {object} [classNames={}] - Contails all the css class for each columns, Default: `{}`
+  @param {object} [transforms={}] - Contains all custom values for each columns, Default: `{}`
+  @param {object} [classNames={}] - Contails all CSS class for each column, Default: `{}`
   @param {boolean} [transition=false] - Determines whether the row has transition effect or not, Default: `false`
-  @param {object} [styles={}] - Contails all the css styles for each columns, Default: `{}`
+  @param {object} [styles={}] - Contains all CSS styles for each column, Default: `{}`
   @param {array} [column_keys=[]] - Column_keys property, Default: `[]`
-  @param {boolean} [bulk_actions=false] - Determines whether the row has bulk actions or not, Default: `false`
+  @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
   @param {boolean} [checked=false] - Determines whether the checkbox is checked or not, Default: `false`
-  @param {array} [selectedIds=[]] - List of all selected row unique is values, Default: `[]`
+  @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
   @param {string} [selectCheckboxColor="info"] - Selected checkbox color, Default: `"info"`
   @param {string} [selectCheckboxSize="medium"] - selected checkbox size, Default: `"medium"`
   @param {function} [cellComponent()] - Custom cell component for a column
@@ -95,7 +95,7 @@
    */
   export let row_index = 0,
     /**
-     * It contains all the columns value in a row
+     * Contains all the column values in a row
      */
     row = {},
     /**
@@ -103,7 +103,7 @@
      */
     rowActive = false,
     /**
-     * weather coulum is visible or not
+     * Determines whether column is visible or not
      */
     isVisible = {},
     /**
@@ -111,11 +111,11 @@
      */
     clickableRows = false,
     /**
-     * Contails all the custom values for each columns
+     * Contains all custom values for each columns
      */
     transforms = {},
     /**
-     * Contails all the css class for each columns
+     * Contails all CSS class for each column
      */
     classNames = {},
     /**
@@ -123,12 +123,12 @@
      */
     transition = false,
     /**
-     * Contails all the css styles for each columns
+     * Contains all CSS styles for each column
      */
     styles = {},
     column_keys = [],
     /**
-     * Determines whether the row has bulk actions or not
+     * Determines if selecting multiple rows and doing multiple actions is allowed
      */
     bulk_actions = false,
     /**
@@ -136,7 +136,7 @@
      */
     checked = false,
     /**
-     * List of all selected row unique is values
+     * List of unique IDs of all the selected rows
      */
     selectedIds = [],
     /**
