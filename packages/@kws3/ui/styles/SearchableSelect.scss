@@ -25,9 +25,11 @@ $kws-theme-colors: $colors !default;
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    &:focus-within {
+    &.is-#{$name} {
       border-color: $color;
-      box-shadow: $input-focus-box-shadow-size bulmaRgba($color, 0.25);
+      &:focus-within {
+        box-shadow: $input-focus-box-shadow-size bulmaRgba($color, 0.25);
+      }
     }
   }
 }
