@@ -1,9 +1,27 @@
+<!--
+  @component
+
+
+  @param {array} [data=[]] - Array of objects for timeline data, Default: `[]`
+  @param {number} [visible=5] - Number of visible rows, Default: `5`
+  @param {number} [offset=5] - Limit the number of rows displayed, Default: `5`
+  @param {'list'|'tree'} [type="list"] - Type of the timeline, Default: `"list"`
+  @param {boolean} [showAll=false] - Used to show all rows on loading, Default: `false`
+  @param {boolean} [can_scroll=false] - Scroll to the bottom of timeline, when clicking `more items` button, Default: `false`
+  @param {string} [style=""] - CSS styles to the Timeline container, Default: `""`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the timeline, Default: `"primary"`
+  @param {string} [class=""] - CSS classes for the Timeline container, Default: `""`
+
+  ### Events
+  - `viewItem` - Used to fires an event for viewing specific item
+
+-->
 <div bind:this={timeline} class={klass} {style}>
   {#if visibleData != null && Object.values(visibleData).length > 0}
     <ul class="timeline is-{type}">
       {#if is_tree}
         {#each Object.entries(visibleData) as [year, items]}
-          <li class="year">{year.trim()}</li>
+          <li class="is-{color} year">{year.trim()}</li>
           {#each items as item}
             <!--Used to fires an event for viewing specific item-->
             <TimelineItem {item} {is_tree} on:viewItem {color} />
