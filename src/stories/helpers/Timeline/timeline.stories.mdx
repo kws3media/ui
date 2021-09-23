@@ -7,34 +7,38 @@ import { action } from '@storybook/addon-actions';
 export let args={
   data : [
     {
-      'title' : 'Title 1',
-      'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      'title' : 'User 1',
+      'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      'image' : 'https://bulma.io/images/placeholders/32x32.png',
+      'date' : '2021-09-23',
+      'time' : '15:25:00'
     },
     {
-      'title' : 'Title 2',
+      'title' : 'User 2',
       'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
     {
-      'title' : 'Title 3',
-      'description' : 'Test 3'
+      'title' : 'User 3',
+      'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
-      'title' : 'Title 4',
-      'description' : 'Test 4'
+      'title' : 'User 4',
+      'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
     {
-      'title' : 'Title 5',
-      'description' : 'Test 5'
+      'title' : 'User 5',
+      'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
-      'title' : 'Title 6',
-      'description' : 'Test 6'
+      'title' : 'User 6',
+      'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
     {
-      'title' : 'Title 7',
-      'description' : 'Test 7'
+      'title' : 'User 7',
+      'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     }
-  ]
+  ],
+  type : 'list'
 }
 
 <Meta
@@ -45,7 +49,7 @@ export let args={
 
 <Description markdown={dedent`
 # Timeline
-## A Panel component that allows wrapping elements.
+## A Timeline component.
 `}/>
 
 <Canvas>
