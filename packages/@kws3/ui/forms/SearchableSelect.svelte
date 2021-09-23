@@ -1,23 +1,29 @@
-<!-- z-index: 2 when showOptions is ture ensures the ul.tokens of one <MultiSelect /> display above those of another following shortly after it -->
 <div
   bind:this={el}
-  class="searchableselect input is-shadowless {outerDivClass}"
+  class="
+    searchableselect input
+    {disabled ? 'is-disabled' : ''}
+    {readonly ? 'is-readonly' : ''}
+    is-{size} is-{color} {klass}
+  "
   class:readonly
   class:single
-  style={showOptions ? `z-index: 2;` : ``}
+  {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
-  <ul class="tokens tags {ulTokensClass}">
+  <ul class="tokens tags">
     {#if single}
-      <span on:click|self|stopPropagation={() => setOptionsVisible(true)}>
+      <span
+        class="single-value"
+        on:click|self|stopPropagation={() => setOptionsVisible(true)}>
         {value[searchKey] || value}
       </span>
     {:else if value && value.length > 0}
       {#each value as tag}
         <li
-          class="tag is-primary is-light {liTokenClass}"
+          class="tag is-primary is-light"
           on:click|self|stopPropagation={() => setOptionsVisible(true)}>
           {tag[searchKey] || tag}
-          {#if !readonly}
+          {#if !readonly && !disabled}
             <button
               on:click|self|stopPropagation={() => remove(tag)}
               type="button"
@@ -28,8 +34,11 @@
       {/each}
     {/if}
     <input
+      class="input is-{size}"
       bind:this={input}
       autocomplete="off"
+      {disabled}
+      {readonly}
       bind:value={searchText}
       on:click|self|stopPropagation={() => setOptionsVisible(true)}
       on:keydown={handleKeydown}
@@ -38,7 +47,7 @@
       on:blur={() => setOptionsVisible(false)}
       placeholder={value.length ? `` : placeholder} />
   </ul>
-  {#if !readonly}
+  {#if !readonly && !disabled}
     <button
       type="button"
       class="remove-all delete is-small"
@@ -47,10 +56,7 @@
       style={value.length === 0 ? `display: none;` : ``} />
   {/if}
 
-  <ul
-    bind:this={dropdown}
-    class="options {ulOptionsClass}"
-    class:hidden={!showOptions}>
+  <ul bind:this={dropdown} class="options" class:hidden={!showOptions}>
     {#each filteredOptions as option}
       <li
         on:mousedown|preventDefault|stopPropagation={() =>
@@ -67,11 +73,11 @@
 </div>
 
 <script>
-  //TODO: Match bulma input styles
+  //TODO: Fix placeholder bug
+  //TODO: Style "No matching Options"
   //TODO: make clearAll button optional
   //TODO: check property namings
   //TODO: remove unused properties
-  //TODO: theme colors for input
   //TODO: theme color for tags
   //TODO: abstract out Multiselect to separate component
   //TODO: backward compat for valueKey property
@@ -105,14 +111,17 @@
   export let searchKey = "name";
   export let valueKey = "id";
 
-  export let outerDivClass = ``;
-  export let ulTokensClass = ``;
-  export let liTokenClass = ``;
-  export let ulOptionsClass = ``;
+  export let size = "";
+  export let color = "";
+  export let style = "";
+  export let disabled = false;
   export let liOptionClass = ``;
 
   export let removeBtnTitle = `Remove`;
   export let removeAllTitle = `Remove all`;
+
+  let klass = "";
+  export { klass as class };
 
   let el, //whole wrapping element
     dropdown; //dropdown ul
@@ -203,6 +212,7 @@
   function add(token) {
     if (
       !readonly &&
+      !disabled &&
       !isSelected(token) &&
       // (... || single) because in single mode, we always replace current token with new selection
       (maxSelect === null || value.length < maxSelect || single)
@@ -219,7 +229,7 @@
   }
 
   function remove(token) {
-    if (readonly || typeof value === `string`) return;
+    if (readonly || disabled || typeof value === `string`) return;
     value = value.filter
       ? value.filter((item) => !matchAlter(item, token))
       : value;
@@ -229,7 +239,7 @@
 
   function setOptionsVisible(show) {
     // nothing to do if visibility is already as intended
-    if (readonly || show === showOptions) return;
+    if (readonly || disabled || show === showOptions) return;
     showOptions = show;
     if (show) {
       input && input.focus();
