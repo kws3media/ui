@@ -1,0 +1,79 @@
+import { Story  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+
+
+<Meta
+  title="Helpers/Popover/2. Popover Action"
+/>
+
+
+### Usage via Svelte actions
+Popovers can also initialised using Svelte actions, instead of using the component.  
+
+<div class="columns">
+  <div class="column">
+
+The action accepts an object of parameters.  
+The most important of which is `content`.  
+
+`content` needs to be, either a reference to a dom node, or a string.  
+When a string is provided, the string will be displayed as the popover content.
+
+For a list of other supported parameters, see: https://atomiks.github.io/tippyjs/v6/all-props/
+
+  </div>
+  <div class="column">
+
+```html
+<div use:popover={{content: popoverContent}}>
+  Some Content
+</div>
+
+<div bind:this={popoverContent}>
+  Content of popover
+</div>
+
+<script>
+  import { popover } from '@kws3/ui'; //notice lowercase import name
+
+  let popoverContent;
+</script>
+```
+
+  </div>
+</div>
+
+Parameters can be sent during action initialisation, or as `data-tippy-*` attributes.  
+The following examples are functionally indentical:
+
+<div class="columns">
+  <div class="column">
+
+```html
+<div 
+  use:popover={{
+    content: popoverContent,
+    placement: 'bottom',
+    offset: [0, 10],
+    maxWidth: '500px'
+  }}>
+  Some Content
+</div>
+```
+
+  </div>
+  <div class="column">
+
+```html
+<div 
+  use:popover={{content: popoverContent}}
+  data-tippy-placement="bottom"
+  data-tippy-offset="[0, 10]"
+  data-tippy-maxWdith="500px"
+  >
+  Some Content
+</div>
+```
+
+  </div>
+</div>
