@@ -20,7 +20,7 @@
    */
   export let style = "",
     /**
-     * Vertical Alignment
+     * Vertical transform of SlidingPane.
      */
     vertical = false;
 
