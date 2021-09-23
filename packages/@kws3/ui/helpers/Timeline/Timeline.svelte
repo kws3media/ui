@@ -1,4 +1,4 @@
-<div bind:this={timeline}>
+<div bind:this={timeline} class={klass} {style}>
   {#if visibleData != null && Object.values(visibleData).length > 0}
     <ul class="timeline is-{type}">
       {#if is_tree}
@@ -40,24 +40,46 @@
   import { Icon, Message } from "@kws3/ui";
   import TimelineItem from "./TimelineItem.svelte";
 
-  export let data = [
-      {
-        user: "User 1",
-        description: "Test",
-      },
-      {
-        user: "User 2",
-        description: "Test 2",
-      },
-    ],
+  /**
+   * Array of timeline objects
+   * Array format is like this
+   * `[{'title' : '', 'description' : '', 'image' : '', 'date' : '', 'time' : ''},..]`
+   */
+  export let data = [],
+    /**
+     * Number of visible rows
+     */
     visible = 5,
+    /**
+     * Offset set for `more items` button
+     */
     offset = 5,
-    type = "list", // 'list' || 'tree'
+    /**
+     * Type of the timeline
+     * @type {'list'|'tree'}
+     */
+    type = "list",
+    /**
+     * Used to show all rows on loading
+     */
     showAll = false,
+    /**
+     * Scroll to the bottom of timeline, when clicking `more items` button
+     */
     can_scroll = false,
-    timeline = null;
+    /**
+     * CSS styles to the Timeline container
+     */
+    style = "";
 
-  let visibleData = [],
+  /**
+   * CSS classes for the Timeline container
+   */
+  let klass = "";
+  export { klass as class };
+
+  let timeline = null,
+    visibleData = [],
     typeWiseData = [];
   $: is_tree = type == "tree";
 
@@ -92,18 +114,6 @@
   }
 
   $: numUnVisibleData = !showAll ? data.length - visible : 0;
-
-  // onstate({changed, current}){
-  //   if(changed.visible){
-  //     if(this.refs && this.refs.timeline && current.can_scroll){
-  //       var elm = this.refs.timeline.querySelectorAll('li');
-  //       var e = elm[elm.length - 1]
-  //       setTimeout(() => {
-  //         e.scrollIntoView({behavior: 'smooth'});
-  //       }, 10);
-  //     }
-  //   }
-  // }
 
   onMount(() => {
     if (!is_tree) typeWiseData = data;

@@ -1,7 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import { Timeline } from "@kws3/ui";
-import TimelineDecorator from './Timeline.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
@@ -15,7 +14,8 @@ export let args={
     },
     {
       'title' : 'User 2',
-      'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+      'description' : 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'image' : 'https://bulma.io/images/placeholders/64x64.png',
     },
     {
       'title' : 'User 3',
@@ -38,13 +38,22 @@ export let args={
       'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     }
   ],
-  type : 'list'
+  type : 'list',
+  can_scroll : false,
+  showAll : false,
+  visible : 5,
+  offset : 5
 }
 
 <Meta
   title="Helpers/Timeline"
   component={Timeline}
   args={args}
+  argTypes={{
+    type: {
+      control: 'select'
+    }
+  }}
 />
 
 <Description markdown={dedent`
@@ -58,7 +67,7 @@ export let args={
   args={args}
   >
   {(args) => ({
-    Component: TimelineDecorator,
+    Component: Timeline,
     props: args,
   })}
   </Story>
