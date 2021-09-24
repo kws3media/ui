@@ -3,7 +3,9 @@
 
 
   @param {string} [password=""] - Password for validating, Default: `""`
-  @param {boolean} [is_valid=false] - Variable used to check passwordValidator returns true or false, Default: `false`
+  @param {string} [style=""] - Inline CSS style for container, Default: `""`
+  @param {boolean} [is_valid=false] - Variable used to check if password Validator returns true or false, Default: `false`
+  @param {string} [class=""] - CSS classes for container, Default: `""`
 
 -->
 <div class="level is-mobile {klass}" style="margin:0;max-width: 100%;{style}">
@@ -48,7 +50,7 @@
      */
     style = "",
     /**
-     * Variable used to check passwordValidator returns true or false
+     * Variable used to check if password Validator returns true or false
      */
     is_valid = false;
 
