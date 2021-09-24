@@ -90,7 +90,10 @@ this property of each object will be returned as the value, Default: `"id"`
       style={value.length === 0 ? `display: none;` : ``} />
   {/if}
 
-  <ul bind:this={dropdown} class="options" class:hidden={!showOptions}>
+  <ul
+    bind:this={dropdown}
+    class="options {single ? '' : 'is-multi'}"
+    class:hidden={!showOptions}>
     {#each filteredOptions as option}
       <li
         on:mousedown|preventDefault|stopPropagation={() =>
@@ -109,7 +112,6 @@ this property of each object will be returned as the value, Default: `"id"`
 </div>
 
 <script>
-  //TODO: make clearAll button optional
   //TODO: abstract out Multiselect to separate component
   //TODO: data bug
 

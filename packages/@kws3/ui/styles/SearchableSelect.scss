@@ -93,6 +93,28 @@ $kws-theme-colors: $colors !default;
 
     li {
       padding: 0.3em 0.5em;
+
+      &:before,
+      &:after {
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        top: 0.58em;
+        left: 0.5em;
+        content: "";
+        display: none;
+      }
+      &:before {
+        border: 0.05em solid currentColor;
+        border-radius: 50%;
+      }
+      &:after {
+        transform: none;
+        border: 0.25em solid $primary-light;
+        background: currentColor;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0.05em currentColor;
+      }
       &.selected {
         color: $primary-dark;
         background: $primary-light;
@@ -102,9 +124,34 @@ $kws-theme-colors: $colors !default;
         color: $primary-invert;
         background: $primary;
       }
+    }
 
-      &.no-options {
-        pointer-events: none;
+    &.is-multi {
+      li {
+        position: relative;
+        padding-left: 2em;
+        &:before {
+          display: inline-block;
+        }
+        &.selected {
+          &:after {
+            display: inline-block;
+          }
+          &.active {
+            &:after {
+              background: $primary;
+            }
+          }
+        }
+      }
+    }
+
+    li.no-options {
+      pointer-events: none;
+      padding: 0.3em 0.5em !important;
+      &:before,
+      &:after {
+        display: none;
       }
     }
   }
@@ -130,6 +177,20 @@ $kws-theme-colors: $colors !default;
           &.active {
             color: $color-invert;
             background: $color;
+          }
+        }
+        &.is-multi {
+          li {
+            &.selected {
+              &:after {
+                border-color: $color-light;
+              }
+              &.active {
+                &:after {
+                  background: $color;
+                }
+              }
+            }
           }
         }
       }
