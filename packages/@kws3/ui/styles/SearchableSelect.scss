@@ -5,6 +5,10 @@ $kws-theme-colors: $colors !default;
   align-items: center;
   display: flex;
   cursor: text;
+  height: auto;
+  min-height: 2.5em;
+  padding-top: calc(0.4em - 1px);
+  padding-bottom: calc(0.4em - 1px);
   &:focus-within {
     border-color: $input-focus-border-color;
     box-shadow: $input-focus-box-shadow-size $input-focus-box-shadow-color;
@@ -38,6 +42,8 @@ ul.tokens {
   flex: 1;
   &.tags {
     margin: 0;
+    margin-top: -0.25rem;
+    margin-bottom: -0.25rem;
   }
 }
 ul.tokens > li.tag {
