@@ -3,17 +3,17 @@
 
 
   @param {array} [data=[]] - Array of objects for timeline data, Default: `[]`
-  @param {number} [visible=5] - Number of visible rows, Default: `5`
-  @param {number} [offset=5] - Limit the number of rows displayed, Default: `5`
-  @param {'list'|'tree'} [type="list"] - Type of the timeline, Default: `"list"`
-  @param {boolean} [showAll=false] - Used to show all rows on loading, Default: `false`
-  @param {boolean} [can_scroll=false] - Scroll to the bottom of timeline, when clicking `more items` button, Default: `false`
-  @param {string} [style=""] - CSS styles to the Timeline container, Default: `""`
+  @param {number} [visible=2] - Number of rows displayed when collapsed, and `showAll` is `false`, Default: `2`
+  @param {number} [offset=2] - Number of additional rows to display when “more items” is clicked, Default: `2`
+  @param {'list'|'tree'} [type="list"] - Type of Timeline to be displayed, Default: `"list"`
+  @param {boolean} [showAll=false] - When `true` , the Timeline is displayed in full, uncollapsed state, Default: `false`
+  @param {boolean} [can_scroll=false] - When `true`, Timeline scrolls up when expanded by clicking `show more`, Default: `false`
+  @param {string} [style=""] - Inline CSS for the Timeline container, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the timeline, Default: `"primary"`
   @param {string} [class=""] - CSS classes for the Timeline container, Default: `""`
 
   ### Events
-  - `viewItem` - Used to fires an event for viewing specific item
+  - `viewItem` - Fired when a  specific item is clicked for viewing
 
 -->
 <div bind:this={timeline} class={klass} {style}>
@@ -23,7 +23,7 @@
         {#each Object.entries(visibleData) as [year, items]}
           <li class="is-{color} year">{year.trim()}</li>
           {#each items as item}
-            <!--Used to fires an event for viewing specific item-->
+            <!--Fired when a  specific item is clicked for viewing-->
             <TimelineItem {item} {is_tree} on:viewItem {color} />
           {/each}
         {/each}
@@ -64,28 +64,28 @@
    */
   export let data = [],
     /**
-     * Number of visible rows
+     * Number of rows displayed when collapsed, and `showAll` is `false`
      */
-    visible = 5,
+    visible = 2,
     /**
-     * Limit the number of rows displayed
+     * Number of additional rows to display when “more items” is clicked
      */
-    offset = 5,
+    offset = 2,
     /**
-     * Type of the timeline
+     * Type of Timeline to be displayed
      * @type {'list'|'tree'}
      */
     type = "list",
     /**
-     * Used to show all rows on loading
+     * When `true` , the Timeline is displayed in full, uncollapsed state
      */
     showAll = false,
     /**
-     * Scroll to the bottom of timeline, when clicking `more items` button
+     * When `true`, Timeline scrolls up when expanded by clicking `show more`
      */
     can_scroll = false,
     /**
-     * CSS styles to the Timeline container
+     * Inline CSS for the Timeline container
      */
     style = "",
     /**
