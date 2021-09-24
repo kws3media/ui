@@ -2,16 +2,19 @@
   @component
 
 
-  @param {array} [steps=[]] - Object, which contains name, description, custom value and custom icon of each steps, Default: `[]`
-  @param {number} [active_index=0] - Index used to determine which step needs to be active, Default: `0`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the step, Default: `""`
-  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the step, Default: `""`
-  @param {boolean} [clickable=false] - Determine the steps navigation, Default: `false`
-  @param {boolean} [icon_only=false] - Show step icon given in `step_icon` property instead of numbers, Default: `false`
-  @param {string} [step_icon="check"] - Icon used to displayed in steps, Default: `"check"`
-  @param {boolean} [have_step_value=true] - Determine the step circle needs value.
-If its `false`, it doesn't display number, icon or character, Default: `true`
-  @param {boolean} [filled_step=false] - Determine the circle design is filled/hollow, Default: `false`
+  @param {array} [steps=[]] - Array of steps, which contains the `value`, `name`, `description` and `step_icon` property for each step
+
+Steps are automatically “numbered” by default,
+unless overridden by what is in the `value` property inside the steps array, Default: `[]`
+  @param {number} [active_index=0] - Index used to determine which step is active, Default: `0`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the steps, Default: `""`
+  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the active steps, Default: `""`
+  @param {boolean} [clickable=false] - Determines If the steps are navigable by clicking on the steps themselves, Default: `false`
+  @param {boolean} [icon_only=false] - If `true`, then the steps will display the icon from the default `step_icon` property, or the `step_icon` value from within the `steps` array; instead of numbers, or `value` in the `steps` array, Default: `false`
+  @param {string} [step_icon="check"] - The default icon used in all steps when `icon_only` is `true` unless overridden by another `step_icon` property within the steps array, Default: `"check"`
+  @param {boolean} [have_step_value=true] - When `false`, the step circle will not display numbers or `value` or `step_icon`, and be empty instead, Default: `true`
+  @param {boolean} [filled_step=false] - Determines if active steps appearance is filled(inverted) or not, Default: `false`
+  @param {string} [style=""] - Inline CSS for the Steps container, Default: `""`
   @param {string} [class=""] - CSS classes for the steps container, Default: `""`
 
 -->
@@ -49,47 +52,49 @@ If its `false`, it doesn't display number, icon or character, Default: `true`
 <script>
   import { Icon } from "@kws3/ui";
   /**
-   * Array of steps, which contains value, name, description and step_icon of each steps
+   * Array of steps, which contains the `value`, `name`, `description` and `step_icon` property for each step
+   *
+   * Steps are automatically “numbered” by default,
+unless overridden by what is in the `value` property inside the steps array
    * @any
    */
   export let steps = [],
     /**
-     * Index used to determine which step needs to be active
+     * Index used to determine which step is active
      */
     active_index = 0,
     /**
-     * Size of the step
+     * Size of the steps
      * @type {''|'small'|'medium'|'large'}
      */
     size = "",
     /**
-     * Color of the step
+     * Colour of the active steps
      * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
-     * Determine the steps navigation
+     * Determines If the steps are navigable by clicking on the steps themselves
      */
     clickable = false,
     /**
-     * Show step icon given in `step_icon` property instead of numbers
+     * If `true`, then the steps will display the icon from the default `step_icon` property, or the `step_icon` value from within the `steps` array; instead of numbers, or `value` in the `steps` array
      */
     icon_only = false,
     /**
-     * Icon used to displayed in steps
+     * The default icon used in all steps when `icon_only` is `true` unless overridden by another `step_icon` property within the steps array
      */
     step_icon = "check",
     /**
-     * Determine the step circle needs value.
-     * If its `false`, it doesn't display number, icon or character
+     * When `false`, the step circle will not display numbers or `value` or `step_icon`, and be empty instead
      */
     have_step_value = true,
     /**
-     * Determine the circle design is filled/hollow
+     * Determines if active steps appearance is filled(inverted) or not
      */
     filled_step = false,
     /**
-     * Inline css style of Steps container
+     * Inline CSS for the Steps container
      */
     style = "";
 
