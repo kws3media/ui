@@ -13,7 +13,6 @@
         value_key="id"
         {placeholder}
         {style}
-        max={1}
         class={klass}
         {cy} />
     </div>
@@ -22,14 +21,13 @@
   <br />
   {JSON.stringify(selected_brand, null, 2)}
 
-  <KwsSearchableSelect
+  <KwsMultiSelect
     {size}
     {color}
     options={brands}
     bind:value={selected_brand_multi}
     search_key="name"
     value_key="id"
-    max={null}
     {placeholder}
     {style}
     class={klass}
@@ -41,16 +39,14 @@
   <KwsSearchableSelect
     {placeholder}
     options={brands_string_only}
-    max={1}
     bind:value={selected_brand_string} />
 
   {selected_brand_string}
 
-  <KwsSearchableSelect
+  <KwsMultiSelect
     {placeholder}
     options={brands_string_only}
-    bind:value={selected_brand_string_multi}
-    max={null} />
+    bind:value={selected_brand_string_multi} />
 
   {selected_brand_string_multi}
 </div>
@@ -58,6 +54,7 @@
 <script>
   import {
     SearchableSelect as KwsSearchableSelect,
+    MultiSelect as KwsMultiSelect,
     activateTooltips,
   } from "@kws3/ui";
 
