@@ -1,0 +1,50 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Accordion } from "@kws3/ui";
+import AccordionDecorator from "./Accordion.svelte";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  active: false,
+  color : "danger"
+};
+
+<Meta
+  title="Helpers/Accordion"
+  component={Accordion}
+  args={args}
+  argTypes={{}}
+/>
+
+<Description markdown={dedent`
+# Accordion
+## Accordion component for toggling sections.
+`}/>
+
+<Canvas>
+  <Story
+  name="Accordion"
+  args={args}
+  >
+  {(args) => ({
+    Component: AccordionDecorator,
+    props: args,    
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Accordion" />
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`import { Accordion } from '@kws3/ui';`}
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import '@kws3/ui/styles/Accordion.scss';`
+  }
+/>
