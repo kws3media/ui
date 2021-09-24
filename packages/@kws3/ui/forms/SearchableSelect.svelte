@@ -1,3 +1,37 @@
+<!--
+  @component
+
+
+  @param {string} [value=""] - Value of the Input
+
+This property can be bound to, to fetch the current value, Default: `""`
+  @param {object} [max=null] - Maximum number of selectable items from dropdown list.
+
+`null` means unlimited, Default: `null`
+  @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
+  @param {array} [options=[]] - Array of strings, or objects.
+Used to populate the list of options in the dropdown, Default: `[]`
+  @param {string} [search_key="name"] - If `options` is an array of objects,
+this property of each object will be searched, Default: `"name"`
+  @param {string} [value_key="id"] - If `options` is an array of objects,
+this property of each object will be returned as the value, Default: `"id"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string} [style=""] - Inline CSS for input container, Default: `""`
+  @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
+  @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
+  @param {string} [remove_btn_tip="Remove"] - Hover text for Remove button, Default: `"Remove"`
+  @param {string} [remove_all_tip="Remove all"] - Hover text for Remove All button, Default: `"Remove all"`
+  @param {string} [class=""] - CSS classes for input container, Default: `""`
+
+  ### Events
+  - `add`
+  - `change`
+  - `remove`
+  - `blur`
+
+-->
 <div
   bind:this={el}
   class="
@@ -61,6 +95,9 @@
       <li
         on:mousedown|preventDefault|stopPropagation={() =>
           isSelected(option) ? remove(option) : add(option)}
+        on:mouseenter|preventDefault|stopPropagation={() => {
+          activeOption = option;
+        }}
         class:selected={isSelected(option)}
         class:active={activeOption === option}>
         {option[search_key] || option}
@@ -248,7 +285,7 @@
         {
           name: "offset",
           options: {
-            offset: [0, 5],
+            offset: [0, 0],
           },
         },
       ],
