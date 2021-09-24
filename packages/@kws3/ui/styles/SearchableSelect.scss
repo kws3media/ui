@@ -44,6 +44,17 @@ ul.tokens {
     margin: 0;
     margin-top: -0.25rem;
     margin-bottom: -0.25rem;
+    .tag.is-small {
+      font-size: 0.6rem;
+      .delete.is-small {
+        height: 14px;
+        max-height: 14px;
+        max-width: 14px;
+        min-height: 14px;
+        min-width: 14px;
+        width: 14px;
+      }
+    }
   }
 }
 ul.tokens > li.tag {
