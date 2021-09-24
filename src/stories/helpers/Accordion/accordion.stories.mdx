@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 
 export let args={
   active: false,
-  color : "danger"
+  color : "primary"
 };
 
 <Meta
@@ -17,7 +17,7 @@ export let args={
   parameters = {{
       docs: {
         source: {
-          code: '<Accordion><AccordionItem color="success" active={true}  header="Title">Test</AccordionItem></Accordion>',
+          code: '<Accordion><AccordionItem color="success" active={true}  header="Title"></AccordionItem></Accordion>',
         },
       },
     }}
@@ -45,7 +45,7 @@ export let args={
 ### Usage
 <Source
   language='javascript'
-  code={ dedent`import { Accordion } from '@kws3/ui';`}
+  code={ dedent`import { Accordion, AccordionItem } from '@kws3/ui';`}
 />
 
 #### Import the SCSS:
