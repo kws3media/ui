@@ -58,8 +58,9 @@ button.remove-all:hover {
   color: var(--sms-text-color, inherit);
   flex: 1;
   width: 1pt;
-  padding-left: 1pt;
-  padding-right: 1pt;
+  padding: 1pt;
+  height: auto;
+  min-height: 0;
 }
 
 ul.options {
