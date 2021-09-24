@@ -67,13 +67,12 @@
         {option[searchKey] || option}
       </li>
     {:else}
-      {noOptionsMsg}
+      <li class="no-options">{noOptionsMsg}</li>
     {/each}
   </ul>
 </div>
 
 <script>
-  //TODO: Style "No matching Options"
   //TODO: make clearAll button optional
   //TODO: check property namings
   //TODO: remove unused properties
