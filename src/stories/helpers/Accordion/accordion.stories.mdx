@@ -14,6 +14,13 @@ export let args={
   component={Accordion}
   args={args}
   argTypes={{}}
+  parameters = {{
+      docs: {
+        source: {
+          code: '<Accordion><AccordionItem color="success" active={true}  header="Title">Test</AccordionItem></Accordion>',
+        },
+      },
+    }}
 />
 
 <Description markdown={dedent`
@@ -28,7 +35,7 @@ export let args={
   >
   {(args) => ({
     Component: AccordionDecorator,
-    props: args,    
+    props: args,        
   })}
   </Story>
 </Canvas>

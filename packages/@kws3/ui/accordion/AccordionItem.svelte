@@ -1,8 +1,7 @@
 <article
   class="accordion {active ? 'is-active' : ''} is-{color}"
-  bind:this={item}
-  on:click={() => onToggle()}>
-  <div class="accordion-header toggle">
+  bind:this={item}>
+  <div class="accordion-header toggle" on:click={() => onToggle()}>
     <slot name="header" />
     {header}
     <button class="toggle" aria-label="toggle" />
