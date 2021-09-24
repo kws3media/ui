@@ -45,7 +45,7 @@
       on:focus={() => setOptionsVisible(true)}
       on:blur={() => fire(`blur`)}
       on:blur={() => setOptionsVisible(false)}
-      placeholder={value.length ? `` : placeholder} />
+      placeholder={_placeholder} />
   </ul>
   {#if !readonly && !disabled}
     <button
@@ -73,9 +73,6 @@
 </div>
 
 <script>
-  //TODO: fix layout when multiselect goes to next line
-  //TODO: fix tag size when is-small
-  //TODO: Fix placeholder bug
   //TODO: Style "No matching Options"
   //TODO: make clearAll button optional
   //TODO: check property namings
@@ -105,17 +102,33 @@
   export let value = "";
   export let maxSelect = 1; // null means any number of options are selectable
   export let readonly = false;
-  export let placeholder = ``;
+  /**
+   * Placeholder text for the input
+   */
+  export let placeholder = "";
   export let data = [];
   export let input = null;
   export let noOptionsMsg = `No matching options`;
 
   export let searchKey = "name";
   export let valueKey = "id";
-
+  /**
+   * Size of the input
+   *  @type {''|'small'|'medium'|'large'}
+   */
   export let size = "";
+  /**
+   * Color of the input
+   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   */
   export let color = "";
+  /**
+   * Inline CSS for input container
+   */
   export let style = "";
+  /**
+   * Disables the component
+   */
   export let disabled = false;
   export let liOptionClass = ``;
 
@@ -125,22 +138,30 @@
   let klass = "";
   export { klass as class };
 
-  let el, //whole wrapping element
-    dropdown; //dropdown ul
+  $: single = maxSelect === 1;
+  $: _placeholder = single
+    ? value
+      ? ""
+      : placeholder
+    : value.length
+    ? ""
+    : placeholder;
+
+  if (!value) value = single ? `` : [];
+
+  if (!data || !data.length) console.error(`MultiSelect missing options`);
 
   if (maxSelect !== null && maxSelect < 0) {
     throw new TypeError(
       `maxSelect must be null or positive integer, got ${maxSelect}`
     );
   }
-  $: single = maxSelect === 1;
-  if (!value) value = single ? `` : [];
-
-  if (!data || !data.length) console.error(`MultiSelect missing options`);
 
   const fire = createEventDispatcher();
 
-  let POPPER,
+  let el, //whole wrapping element
+    dropdown, //dropdown ul
+    POPPER,
     activeOption = "",
     searchText = "",
     showOptions = false,
