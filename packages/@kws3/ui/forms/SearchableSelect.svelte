@@ -15,20 +15,20 @@
       <span
         class="single-value"
         on:click|self|stopPropagation={() => setOptionsVisible(true)}>
-        {value[searchKey] || value}
+        {value[search_key] || value}
       </span>
     {:else if value && value.length > 0}
       {#each value as tag}
         <li
           class="tag is-{size} is-{color || 'primary'} is-light"
           on:click|self|stopPropagation={() => setOptionsVisible(true)}>
-          {tag[searchKey] || tag}
+          {tag[search_key] || tag}
           {#if !readonly && !disabled}
             <button
               on:click|self|stopPropagation={() => remove(tag)}
               type="button"
               class="delete is-small"
-              title="{removeBtnTitle} {tag}" />
+              data-tooltip="{remove_btn_tip} {tag[search_key] || tag}" />
           {/if}
         </li>
       {/each}
@@ -43,7 +43,7 @@
       on:click|self|stopPropagation={() => setOptionsVisible(true)}
       on:keydown={handleKeydown}
       on:focus={() => setOptionsVisible(true)}
-      on:blur={() => fire(`blur`)}
+      on:blur={() => fire("blur")}
       on:blur={() => setOptionsVisible(false)}
       placeholder={_placeholder} />
   </ul>
@@ -51,7 +51,7 @@
     <button
       type="button"
       class="remove-all delete is-small"
-      title={removeAllTitle}
+      data-tooltip={remove_all_tip}
       on:click|stopPropagation={removeAll}
       style={value.length === 0 ? `display: none;` : ``} />
   {/if}
@@ -62,25 +62,19 @@
         on:mousedown|preventDefault|stopPropagation={() =>
           isSelected(option) ? remove(option) : add(option)}
         class:selected={isSelected(option)}
-        class:active={activeOption === option}
-        class={liOptionClass}>
-        {option[searchKey] || option}
+        class:active={activeOption === option}>
+        {option[search_key] || option}
       </li>
     {:else}
-      <li class="no-options">{noOptionsMsg}</li>
+      <li class="no-options">{no_options_msg}</li>
     {/each}
   </ul>
 </div>
 
 <script>
   //TODO: make clearAll button optional
-  //TODO: check property namings
-  //TODO: remove unused properties
-  //TODO: theme color for tags
   //TODO: abstract out Multiselect to separate component
-  //TODO: backward compat for valueKey property
-  //TODO: support for empty default value
-  //TODO: select triangle on right edge matching bulma
+  //TODO: data bug
 
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
@@ -98,19 +92,38 @@
     },
   };
 
+  /**
+   * Value of the Input
+   *
+   * This property can be bound to, to fetch the current value
+   */
   export let value = "";
-  export let maxSelect = 1; // null means any number of options are selectable
-  export let readonly = false;
+  /**
+   * Maximum number of selectable items from dropdown list.
+   *
+   * `null` means unlimited
+   */
+  export let max = null;
   /**
    * Placeholder text for the input
    */
   export let placeholder = "";
-  export let data = [];
-  export let input = null;
-  export let noOptionsMsg = `No matching options`;
+  /**
+   * Array of strings, or objects.
+   * Used to populate the list of options in the dropdown
+   */
+  export let options = [];
 
-  export let searchKey = "name";
-  export let valueKey = "id";
+  /**
+   * If `options` is an array of objects,
+   * this property of each object will be searched
+   */
+  export let search_key = "name";
+  /**
+   * If `options` is an array of objects,
+   * this property of each object will be returned as the value
+   */
+  export let value_key = "id";
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
@@ -126,18 +139,33 @@
    */
   export let style = "";
   /**
+   * Marks component as read-only
+   */
+  export let readonly = false;
+  /**
    * Disables the component
    */
   export let disabled = false;
-  export let liOptionClass = ``;
+  /**
+   * Message to display when no matching options are found
+   */
+  export let no_options_msg = "No matching options";
+  /**
+   * Hover text for Remove button
+   * */
+  export let remove_btn_tip = "Remove";
+  /**
+   * Hover text for Remove All button
+   */
+  export let remove_all_tip = "Remove all";
 
-  export let removeBtnTitle = `Remove`;
-  export let removeAllTitle = `Remove all`;
-
+  /**
+   * CSS classes for input container
+   */
   let klass = "";
   export { klass as class };
 
-  $: single = maxSelect === 1;
+  $: single = max === 1;
   $: _placeholder = single
     ? value
       ? ""
@@ -148,25 +176,24 @@
 
   if (!value) value = single ? `` : [];
 
-  if (!data || !data.length) console.error(`MultiSelect missing options`);
+  if (!options || !options.length) console.error(`Missing options`);
 
-  if (maxSelect !== null && maxSelect < 0) {
-    throw new TypeError(
-      `maxSelect must be null or positive integer, got ${maxSelect}`
-    );
+  if (max !== null && max < 0) {
+    throw new TypeError(`max must be null or positive integer, got ${max}`);
   }
 
   const fire = createEventDispatcher();
 
   let el, //whole wrapping element
     dropdown, //dropdown ul
+    input, //the textbox to type in
     POPPER,
     activeOption = "",
     searchText = "",
     showOptions = false,
     filteredOptions = [];
 
-  $: data, searchText, searchKey, valueKey, prepareItems();
+  $: options, searchText, search_key, value_key, prepareItems();
 
   $: if (
     (activeOption && !filteredOptions.includes(activeOption)) ||
@@ -176,14 +203,14 @@
 
   $: isSelected = (option) => {
     if (single) return matchAlter(value, option);
-    if (!(value && value.length > 0)) return false;
+    if (!(value && value.length > 0) || value == "") return false;
     // nothing is selected if `value` is the empty array or string
     else return value.some((v) => matchAlter(v, option));
   };
 
   function prepareItems() {
     let filter = searchText.toLowerCase(),
-      _items = data || [];
+      _items = options || [];
 
     if (!_items || !(_items instanceof Array)) {
       filteredOptions = null;
@@ -192,10 +219,10 @@
     filteredOptions = _items.slice().filter((item) => {
       // filter out items that don't match `filter`
       if (typeof item === "object") {
-        if (searchKey) {
+        if (search_key) {
           if (
-            typeof item[searchKey] === "string" &&
-            item[searchKey].toLowerCase().indexOf(filter) > -1
+            typeof item[search_key] === "string" &&
+            item[search_key].toLowerCase().indexOf(filter) > -1
           )
             return true;
         } else {
@@ -237,16 +264,16 @@
       !disabled &&
       !isSelected(token) &&
       // (... || single) because in single mode, we always replace current token with new selection
-      (maxSelect === null || value.length < maxSelect || single)
+      (max === null || value.length < max || single)
     ) {
       searchText = ``; // reset search string on selection
       value = single ? token : [...value, token];
-      if ((Array.isArray(value) && value.length === maxSelect) || single) {
+      if ((Array.isArray(value) && value.length === max) || single) {
         input && input.blur();
         setOptionsVisible(false);
       }
-      fire(`add`, { token });
-      fire(`change`, { token, type: `add` });
+      fire("add", { token });
+      fire("change", { token, type: `add` });
     }
   }
 
@@ -255,8 +282,8 @@
     value = value.filter
       ? value.filter((item) => !matchAlter(item, token))
       : value;
-    fire(`remove`, { token });
-    fire(`change`, { token, type: `remove` });
+    fire("remove", { token });
+    fire("change", { token, type: `remove` });
   }
 
   function setOptionsVisible(show) {
@@ -292,22 +319,22 @@
       }
     } else if (event.key === `Backspace`) {
       // only remove selected tags on backspace if if there are any and no searchText characters remain
-      if ((value[searchKey] || value).length > 0 && searchText.length === 0) {
-        value = (value[searchKey] || value).slice(
+      if ((value[search_key] || value).length > 0 && searchText.length === 0) {
+        value = (value[search_key] || value).slice(
           0,
-          (value[searchKey] || value).length - 1
+          (value[search_key] || value).length - 1
         );
       }
     }
   }
 
   const removeAll = () => {
-    fire(`remove`, { token: value });
-    fire(`change`, { token: value, type: `remove` });
+    fire("remove", { token: value });
+    fire("change", { token: value, type: `remove` });
     value = single ? `` : [];
     searchText = ``;
   };
 
   const matchAlter = (_value, _option) =>
-    (_value[searchKey] || _value) === (_option[searchKey] || _option);
+    (_value[search_key] || _value) === (_option[search_key] || _option);
 </script>

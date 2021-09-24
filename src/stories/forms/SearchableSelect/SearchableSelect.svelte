@@ -1,67 +1,76 @@
-<div style="height:300px;overflow:auto">
-  <KwsSearchableSelect
-    scrollTarget="contentArea"
-    data={brands}
-    bind:value={selected_brand}
-    searchKey="name"
-    valueKey="id"
-    {placeholder}
-    {filter}
-    {style}
-    class={klass}
-    {dd_class}
-    {cy}
-    {open}
-    {disabled} />
+<div>
+  <div class="columns is-marginless">
+    <div class="column is-paddingless">
+      <input type="text" value="sdsd" class="input is-{color} is-{size}" />
+    </div>
+    <div class="column is-paddingless">
+      <KwsSearchableSelect
+        {size}
+        {color}
+        options={brands}
+        bind:value={selected_brand}
+        search_key="name"
+        value_key="id"
+        {placeholder}
+        {style}
+        max={1}
+        class={klass}
+        {cy} />
+    </div>
+  </div>
+
   <br />
   {JSON.stringify(selected_brand, null, 2)}
 
   <KwsSearchableSelect
-    scrollTarget="contentArea"
-    data={brands}
+    {size}
+    {color}
+    options={brands}
     bind:value={selected_brand_multi}
-    searchKey="name"
-    valueKey="id"
-    maxSelect={null}
+    search_key="name"
+    value_key="id"
+    max={null}
     {placeholder}
-    {filter}
     {style}
     class={klass}
-    {dd_class}
     {cy}
-    {open}
     {disabled} />
 
   {JSON.stringify(selected_brand_multi, null, 2)}
 
   <KwsSearchableSelect
-    scrollTarget="contentArea"
-    data={brands_string_only}
+    {placeholder}
+    options={brands_string_only}
+    max={1}
     bind:value={selected_brand_string} />
 
   {selected_brand_string}
 
   <KwsSearchableSelect
-    scrollTarget="contentArea"
-    data={brands_string_only}
+    {placeholder}
+    options={brands_string_only}
     bind:value={selected_brand_string_multi}
-    maxSelect={null} />
+    max={null} />
 
   {selected_brand_string_multi}
 </div>
 
 <script>
-  import { SearchableSelect as KwsSearchableSelect } from "@kws3/ui";
+  import {
+    SearchableSelect as KwsSearchableSelect,
+    activateTooltips,
+  } from "@kws3/ui";
 
-  export let filter = "",
+  activateTooltips("body");
+
+  export let size = "",
+    color = "",
     style = "",
-    dd_class = "",
     cy = "",
-    open = false,
     disabled = false,
     placeholder = "Choose a Brand...",
-    selected_brand = "Blackberry", // single , also work with { id: 10, name: "Blackberry" }
-    selected_brand_multi = [{ id: 4, name: "Nokia" }], // max item null, not works if string given. should work?
+    selected_brand = "", // single , also work with { id: 10, name: "Blackberry" }
+    selected_brand_multi = "", // max item null, not works if string given. should work?
     selected_brand_string = "Blackberry",
     selected_brand_string_multi = ["HTC"];
 
@@ -92,7 +101,7 @@
     "Blackberry",
     "Apple",
   ];
-  export { brands as data };
+  export { brands as options };
 
   let klass = "";
   export { klass as class };

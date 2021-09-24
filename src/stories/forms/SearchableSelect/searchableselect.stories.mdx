@@ -6,14 +6,11 @@ import { action } from '@storybook/addon-actions';
 
 export let args={
   value : "",
-  filter : "",
   style : "",
   class : "",
-  dd_class : "",
-  cy : "",
-  searchKey : null,
-  searchValue : null,
-  data : [
+  size:"",
+  color:"",
+  options : [
     { id: 1, name: "LG" },
     { id: 2, name: "Samsung" },
     { id: 3, name: "Xiaomi" },
@@ -26,15 +23,24 @@ export let args={
     { id: 10, name: "Blackberry" },
     { id: 11, name: "Apple" }
   ],
-  open : false,
+  search_key : null,
+  value_key : null,
   disabled : false,
-  placeholder : ""
+  placeholder : "Choose a brand..."
 };
 
 <Meta
   title="Forms/SearchableSelect"
   component={SearchableSelect}
   args={args}
+  argTypes={{
+    color: {
+      control: { type: 'select' }
+    },
+    size:{
+      control: {type:"select"},
+    },
+  }}
 />
 
 <Description markdown={dedent`
