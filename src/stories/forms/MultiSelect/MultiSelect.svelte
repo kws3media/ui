@@ -1,7 +1,8 @@
-<div>
-  <KwsSearchableSelect
+<div id="ms_container">
+  <KwsMultiSelect
     {size}
     {color}
+    {max}
     options={brands}
     bind:value={selected_brand}
     search_key="name"
@@ -12,13 +13,15 @@
     {disabled}
     {readonly}
     {no_options_msg}
-    {remove_all_tip} />
+    {remove_all_tip}
+    {remove_btn_tip} />
 
   <code>{JSON.stringify(selected_brand, null, 2)}</code>
   <hr />
-  <KwsSearchableSelect
+  <KwsMultiSelect
     {size}
     {color}
+    {max}
     options={brands_string_only}
     bind:value={selected_brand_string}
     {search_key}
@@ -29,27 +32,32 @@
     {disabled}
     {readonly}
     {no_options_msg}
-    {remove_all_tip} />
+    {remove_all_tip}
+    {remove_btn_tip} />
 
   <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
 </div>
 
 <script>
-  import { SearchableSelect as KwsSearchableSelect } from "@kws3/ui";
+  import { MultiSelect as KwsMultiSelect, activateTooltips } from "@kws3/ui";
+
+  activateTooltips("#ms_container");
 
   export let size = "",
     color = "",
     style = "",
     disabled = false,
     readonly = false,
+    max = null,
     search_key = "name",
     value_key = "id",
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
+    remove_btn_tip = "Remove",
     placeholder = "Choose a Brand...",
-    selected_brand = "", // single , also work with { id: 10, name: "Blackberry" }
+    selected_brand = [], // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = "Blackberry";
+    selected_brand_string = ["Blackberry"];
 
   let brands = [
     { id: 1, name: "LG" },

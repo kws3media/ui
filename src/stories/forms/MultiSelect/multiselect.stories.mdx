@@ -1,7 +1,7 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import { SearchableSelect } from '@kws3/ui';
-import SearchableSelectDecorator from './SearchableSelect.svelte';
+import { MultiSelect } from '@kws3/ui';
+import MultiSelectDecorator from './MultiSelect.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
@@ -15,14 +15,16 @@ export let args={
   value_key : "id",
   disabled : false,
   readonly: false,
+  max: null,
   placeholder : "Choose a brand...",
   no_options_msg: "No matching options",
   remove_all_tip: "Remove all",
+  remove_btn_tip: "Remove",
 };
 
 <Meta
-  title="Forms/SearchableSelect"
-  component={SearchableSelect}
+  title="Forms/MultiSelect"
+  component={MultiSelect}
   args={args}
   argTypes={{
     color: {
@@ -35,30 +37,30 @@ export let args={
 />
 
 <Description markdown={dedent`
-# SearchableSelect
-## A select component that allows you to search by typing into it.
+# MultiSelect
+## A select component that allows you to search and select multiple items by typing into it.
 `}/>
 
 <Canvas>
   <Story
-  name="SearchableSelect"
+  name="MultiSelect"
   args={args}
   >
   {(args) => ({
-    Component: SearchableSelectDecorator,
+    Component: MultiSelectDecorator,
     props: args,
   })}
   </Story>
 </Canvas>
 
-<ArgsTable story="SearchableSelect" />
+<ArgsTable story="MultiSelect" />
 
 ### Usage
 #### Import the component:
 <Source
   language="javascript"
   code={
-    dedent`import { SearchableSelect } from '@kws3/ui';`
+    dedent`import { MultiSelect } from '@kws3/ui';`
   }
 />
 
