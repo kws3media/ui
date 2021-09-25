@@ -7,7 +7,8 @@
 This property can be bound to, to fetch the current value, Default: `""`
   @param {object} [max=null] - Maximum number of selectable items from dropdown list.
 
-`null` means unlimited, Default: `null`
+Accepts a `null` value for unlimited selected items.
+Or a number value, Default: `null`
   @param {string} [placeholder="Please select..."] - Placeholder text for the input, Default: `"Please select..."`
   @param {array} [options=[]] - Array of strings, or objects.
 Used to populate the list of options in the dropdown, Default: `[]`
@@ -50,24 +51,24 @@ Default value: `<span>{option[search_key] || option}</span>`
   {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
   <ul class="tokens tags">
-    {#if single}
+    {#if single && selectedOptions && selectedOptions.length && selectedOptions[0]}
       <span
         class="single-value"
         on:click|self|stopPropagation={() => setOptionsVisible(true)}>
-        {value[used_search_key] || value}
+        {selectedOptions[0][used_search_key]}
       </span>
-    {:else if value && value.length > 0}
-      {#each value as tag}
+    {:else if selectedOptions && selectedOptions.length > 0}
+      {#each selectedOptions as tag}
         <li
           class="tag is-{size} is-{color || 'primary'} is-light"
           on:click|self|stopPropagation={() => setOptionsVisible(true)}>
-          {tag[used_search_key] || tag}
+          {tag[used_search_key]}
           {#if !readonly && !disabled}
             <button
               on:click|self|stopPropagation={() => remove(tag)}
               type="button"
               class="delete is-small"
-              data-tooltip="{remove_btn_tip} {tag[used_search_key] || tag}" />
+              data-tooltip="{remove_btn_tip} {tag[used_search_key]}" />
           {/if}
         </li>
       {/each}
@@ -123,10 +124,9 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
-  //TODO: data bug
-  //TODO: normalise displayed value
   //TODO: match and correct sent value on init
   //TODO: optimise isSelected function
+  //TODO: input behaviour when single selected item is clicked
 
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
@@ -153,7 +153,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * Maximum number of selectable items from dropdown list.
    *
-   * `null` means unlimited
+   * Accepts a `null` value for unlimited selected items.
+   * Or a number value
    */
   export let max = null;
   /**
@@ -217,15 +218,6 @@ Default value: `<span>{option[search_key] || option}</span>`
   let klass = "";
   export { klass as class };
 
-  $: single = max === 1;
-  $: _placeholder = single
-    ? value
-      ? ""
-      : placeholder
-    : value.length
-    ? ""
-    : placeholder;
-
   if (!options || !options.length) console.error(`Missing options`);
 
   if (max !== null && max < 0) {
@@ -241,14 +233,31 @@ Default value: `<span>{option[search_key] || option}</span>`
     activeOption = "",
     searchText = "",
     showOptions = false,
-    filteredOptions = [],
-    normalisedOptions = [];
+    filteredOptions = [], //list of options filtered by search query
+    normalisedOptions = [], //list of options normalised
+    selectedOptions = []; //list of options that are selected
+
+  $: single = max === 1;
+  $: _placeholder = single
+    ? value
+      ? ""
+      : placeholder
+    : value.length
+    ? ""
+    : placeholder;
 
   //ensure search_key and value_key are no empty strings
   $: used_search_key = search_key && search_key != "" ? search_key : "name";
   $: used_value_key = value_key && value_key != "" ? value_key : "id";
 
-  $: options, searchText, used_search_key, used_value_key, prepareItems();
+  $: options, normaliseOptions();
+  $: normalisedOptions,
+    searchText,
+    used_search_key,
+    used_value_key,
+    updateFilteredOptions();
+
+  $: value, single, fillSelectedOptions();
 
   $: if (
     (activeOption && !filteredOptions.includes(activeOption)) ||
@@ -263,16 +272,14 @@ Default value: `<span>{option[search_key] || option}</span>`
     else return value.some((v) => matchesValue(v, option));
   };
 
-  function prepareItems() {
-    let filter = searchText.toLowerCase(),
-      _items = options || [];
-
+  //convert arrays of strings into normalised arrays of objects
+  function normaliseOptions() {
+    let _items = options || [];
     if (!_items || !(_items instanceof Array)) {
-      filteredOptions = null;
+      normalisedOptions = [];
       return;
     }
 
-    //convert arrays of strings into normalised arrays of objects
     normalisedOptions = _items.slice().map((item) => {
       if (typeof item === "object") {
         return item;
@@ -282,6 +289,10 @@ Default value: `<span>{option[search_key] || option}</span>`
       __obj[used_value_key] = item;
       return __obj;
     });
+  }
+
+  function updateFilteredOptions() {
+    let filter = searchText.toLowerCase();
 
     filteredOptions = normalisedOptions.slice().filter((item) => {
       // filter out items that don't match `filter`
@@ -305,6 +316,18 @@ Default value: `<span>{option[search_key] || option}</span>`
         return item.toLowerCase().indexOf(filter) > -1;
       }
     });
+  }
+
+  function fillSelectedOptions() {
+    if (single) {
+      selectedOptions = normalisedOptions.filter(
+        (v) => v[used_value_key] == value
+      );
+    } else {
+      selectedOptions = normalisedOptions.filter((v) =>
+        value.some((vl) => v[used_value_key] == vl)
+      );
+    }
   }
 
   onMount(() => {
