@@ -24,7 +24,7 @@ this property of each object will be returned as the value, Default: `"id"`
 
   ### Events
   - `change` - Triggered when value changes
-  - `blur` - Triggered when component looses focus
+  - `blur` - Triggered when input looses focus
 
   ### Slots
   - `<slot name="default" {search_key} {option} />` - Slot containing text for each selectable item
@@ -32,7 +32,7 @@ this property of each object will be returned as the value, Default: `"id"`
 Default value: `<span>{option[search_key] || option}</span>`
 
 -->
-<Select
+<MultiSelect
   bind:value
   class={klass}
   max={1}
@@ -59,11 +59,11 @@ Default value: `<span>{option[search_key] || option}</span>`
   --><slot
     {search_key}
     {option}>{option[search_key] || option}</slot>
-</Select>
+</MultiSelect>
 
 <script>
   import { createEventDispatcher } from "svelte";
-  import Select from "./Select.svelte";
+  import MultiSelect from "./MultiSelect.svelte";
 
   const fire = createEventDispatcher();
 
@@ -142,7 +142,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
   function blur({ detail }) {
     /**
-     * Triggered when component looses focus
+     * Triggered when input looses focus
      */
     fire("blur", detail);
   }
