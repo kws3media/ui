@@ -1,45 +1,68 @@
 <div id="ms_container">
-  <KwsMultiSelect
-    {size}
-    {color}
-    {max}
-    options={brands}
-    bind:value={selected_brand}
-    search_key="name"
-    value_key="id"
-    {placeholder}
-    {style}
-    class={klass}
-    {disabled}
-    {readonly}
-    {no_options_msg}
-    {remove_all_tip}
-    {remove_btn_tip} />
+  <div class="columns">
+    <div class="column">
+      <Panel title="Input data" collapsible collapsed>
+        <pre>{JSON.stringify(brands, null, 1)}</pre>
+      </Panel>
+    </div>
+    <div class="column">
+      <KwsMultiSelect
+        {size}
+        {color}
+        {max}
+        options={brands}
+        bind:value={selected_brand}
+        search_key="name"
+        value_key="id"
+        {placeholder}
+        {style}
+        class={klass}
+        {disabled}
+        {readonly}
+        {no_options_msg}
+        {remove_all_tip}
+        {remove_btn_tip} />
+      Output data:
+      <code>{JSON.stringify(selected_brand, null)}</code>
+    </div>
+  </div>
 
-  <code>{JSON.stringify(selected_brand, null, 2)}</code>
   <hr />
-  <KwsMultiSelect
-    {size}
-    {color}
-    {max}
-    options={brands_string_only}
-    bind:value={selected_brand_string}
-    {search_key}
-    {value_key}
-    {placeholder}
-    {style}
-    class={klass}
-    {disabled}
-    {readonly}
-    {no_options_msg}
-    {remove_all_tip}
-    {remove_btn_tip} />
-
-  <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
+  <div class="columns">
+    <div class="column">
+      <Panel title="Input data" collapsible collapsed>
+        <pre>{JSON.stringify(brands_string_only, null, 1)}</pre>
+      </Panel>
+    </div>
+    <div class="column">
+      <KwsMultiSelect
+        {size}
+        {color}
+        {max}
+        options={brands_string_only}
+        bind:value={selected_brand_string}
+        {search_key}
+        {value_key}
+        {placeholder}
+        {style}
+        class={klass}
+        {disabled}
+        {readonly}
+        {no_options_msg}
+        {remove_all_tip}
+        {remove_btn_tip} />
+      Output data:
+      <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
+    </div>
+  </div>
 </div>
 
 <script>
-  import { MultiSelect as KwsMultiSelect, activateTooltips } from "@kws3/ui";
+  import {
+    Panel,
+    MultiSelect as KwsMultiSelect,
+    activateTooltips,
+  } from "@kws3/ui";
   import { onMount } from "svelte";
 
   onMount(() => activateTooltips("#ms_container"));

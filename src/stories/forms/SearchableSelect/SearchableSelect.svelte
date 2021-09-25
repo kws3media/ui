@@ -1,41 +1,59 @@
 <div id="ss_container">
-  <KwsSearchableSelect
-    {size}
-    {color}
-    options={brands}
-    bind:value={selected_brand}
-    search_key="name"
-    value_key="id"
-    {placeholder}
-    {style}
-    class={klass}
-    {disabled}
-    {readonly}
-    {no_options_msg}
-    {remove_all_tip} />
+  <div class="columns">
+    <div class="column">
+      <Panel title="Input data" collapsible collapsed>
+        <pre>{JSON.stringify(brands, null, 1)}</pre>
+      </Panel>
+    </div>
+    <div class="column">
+      <KwsSearchableSelect
+        {size}
+        {color}
+        options={brands}
+        bind:value={selected_brand}
+        search_key="name"
+        value_key="id"
+        {placeholder}
+        {style}
+        class={klass}
+        {disabled}
+        {readonly}
+        {no_options_msg}
+        {remove_all_tip} />
+      Output data: <code>{JSON.stringify(selected_brand, null, 2)}</code>
+    </div>
+  </div>
 
-  <code>{JSON.stringify(selected_brand, null, 2)}</code>
   <hr />
-  <KwsSearchableSelect
-    {size}
-    {color}
-    options={brands_string_only}
-    bind:value={selected_brand_string}
-    {search_key}
-    {value_key}
-    {placeholder}
-    {style}
-    class={klass}
-    {disabled}
-    {readonly}
-    {no_options_msg}
-    {remove_all_tip} />
-
-  <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
+  <div class="columns">
+    <div class="column">
+      <Panel title="Input data" collapsible collapsed>
+        <pre>{JSON.stringify(brands_string_only, null, 1)}</pre>
+      </Panel>
+    </div>
+    <div class="column">
+      <KwsSearchableSelect
+        {size}
+        {color}
+        options={brands_string_only}
+        bind:value={selected_brand_string}
+        {search_key}
+        {value_key}
+        {placeholder}
+        {style}
+        class={klass}
+        {disabled}
+        {readonly}
+        {no_options_msg}
+        {remove_all_tip} />
+      Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
+    </div>
+  </div>
 </div>
 
 <script>
   import {
+    Panel,
     SearchableSelect as KwsSearchableSelect,
     activateTooltips,
   } from "@kws3/ui";

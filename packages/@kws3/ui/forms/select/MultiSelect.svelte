@@ -2,9 +2,9 @@
   @component
 
 
-  @param {string} [value=""] - Value of the Input
+  @param {array} [value=[]] - Value of the Input
 
-This property can be bound to, to fetch the current value, Default: `""`
+This property can be bound to, to fetch the current value, Default: `[]`
   @param {object} [max=null] - Maximum number of selectable items from dropdown list.
 
 Accepts a `null` value for unlimited selected items.
@@ -150,7 +150,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    *
    * This property can be bound to, to fetch the current value
    */
-  export let value = "";
+  export let value = [];
   /**
    * Maximum number of selectable items from dropdown list.
    *
