@@ -54,20 +54,20 @@ Default value: `<span>{option[search_key] || option}</span>`
       <span
         class="single-value"
         on:click|self|stopPropagation={() => setOptionsVisible(true)}>
-        {value[search_key] || value}
+        {value[used_search_key] || value}
       </span>
     {:else if value && value.length > 0}
       {#each value as tag}
         <li
           class="tag is-{size} is-{color || 'primary'} is-light"
           on:click|self|stopPropagation={() => setOptionsVisible(true)}>
-          {tag[search_key] || tag}
+          {tag[used_search_key] || tag}
           {#if !readonly && !disabled}
             <button
               on:click|self|stopPropagation={() => remove(tag)}
               type="button"
               class="delete is-small"
-              data-tooltip="{remove_btn_tip} {tag[search_key] || tag}" />
+              data-tooltip="{remove_btn_tip} {tag[used_search_key] || tag}" />
           {/if}
         </li>
       {/each}
@@ -113,8 +113,8 @@ Default value: `<span>{option[search_key] || option}</span>`
 
           Default value: `<span>{option[search_key] || option}</span>`
         --><slot
-          {search_key}
-          {option}>{option[search_key] || option}</slot>
+          search_key={used_search_key}
+          {option}>{option[used_search_key] || option}</slot>
       </li>
     {:else}
       <li class="no-options">{no_options_msg}</li>
@@ -124,6 +124,9 @@ Default value: `<span>{option[search_key] || option}</span>`
 
 <script>
   //TODO: data bug
+  //TODO: normalise displayed value
+  //TODO: match and correct sent value on init
+  //TODO: optimise isSelected function
 
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
@@ -238,9 +241,14 @@ Default value: `<span>{option[search_key] || option}</span>`
     activeOption = "",
     searchText = "",
     showOptions = false,
-    filteredOptions = [];
+    filteredOptions = [],
+    normalisedOptions = [];
 
-  $: options, searchText, search_key, value_key, prepareItems();
+  //ensure search_key and value_key are no empty strings
+  $: used_search_key = search_key && search_key != "" ? search_key : "name";
+  $: used_value_key = value_key && value_key != "" ? value_key : "id";
+
+  $: options, searchText, used_search_key, used_value_key, prepareItems();
 
   $: if (
     (activeOption && !filteredOptions.includes(activeOption)) ||
@@ -249,10 +257,10 @@ Default value: `<span>{option[search_key] || option}</span>`
     activeOption = filteredOptions[0];
 
   $: isSelected = (option) => {
-    if (single) return matchAlter(value, option);
+    if (single) return matchesValue(value, option);
     if (!(value && value.length > 0) || value == "") return false;
     // nothing is selected if `value` is the empty array or string
-    else return value.some((v) => matchAlter(v, option));
+    else return value.some((v) => matchesValue(v, option));
   };
 
   function prepareItems() {
@@ -263,13 +271,25 @@ Default value: `<span>{option[search_key] || option}</span>`
       filteredOptions = null;
       return;
     }
-    filteredOptions = _items.slice().filter((item) => {
+
+    //convert arrays of strings into normalised arrays of objects
+    normalisedOptions = _items.slice().map((item) => {
+      if (typeof item === "object") {
+        return item;
+      }
+      let __obj = {};
+      __obj[used_search_key] = item;
+      __obj[used_value_key] = item;
+      return __obj;
+    });
+
+    filteredOptions = normalisedOptions.slice().filter((item) => {
       // filter out items that don't match `filter`
       if (typeof item === "object") {
-        if (search_key) {
+        if (used_search_key) {
           if (
-            typeof item[search_key] === "string" &&
-            item[search_key].toLowerCase().indexOf(filter) > -1
+            typeof item[used_search_key] === "string" &&
+            item[used_search_key].toLowerCase().indexOf(filter) > -1
           )
             return true;
         } else {
@@ -317,8 +337,10 @@ Default value: `<span>{option[search_key] || option}</span>`
       // (... || single) because in single mode, we always replace current token with new selection
       (max === null || value.length < max || single)
     ) {
-      searchText = ``; // reset search string on selection
-      value = single ? token : [...value, token];
+      searchText = ""; // reset search string on selection
+      value = single
+        ? token[used_value_key]
+        : [...value, token[used_value_key]];
       if ((Array.isArray(value) && value.length === max) || single) {
         input && input.blur();
         setOptionsVisible(false);
@@ -335,7 +357,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   function remove(token) {
     if (readonly || disabled || typeof value === `string`) return;
     value = value.filter
-      ? value.filter((item) => !matchAlter(item, token))
+      ? value.filter((item) => !matchesValue(item, token))
       : value;
     /**
      * Triggered when an item is removed from selected options
@@ -387,10 +409,13 @@ Default value: `<span>{option[search_key] || option}</span>`
       }
     } else if (event.key === `Backspace`) {
       // only remove selected tags on backspace if if there are any and no searchText characters remain
-      if ((value[search_key] || value).length > 0 && searchText.length === 0) {
-        value = (value[search_key] || value).slice(
+      if (
+        (value[used_search_key] || value).length > 0 &&
+        searchText.length === 0
+      ) {
+        value = (value[used_search_key] || value).slice(
           0,
-          (value[search_key] || value).length - 1
+          (value[used_search_key] || value).length - 1
         );
       }
     }
@@ -403,6 +428,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     searchText = ``;
   };
 
-  const matchAlter = (_value, _option) =>
-    (_value[search_key] || _value) === (_option[search_key] || _option);
+  const matchesValue = (_value, _option) =>
+    (_value[used_value_key] || _value) === (_option[used_value_key] || _option);
 </script>
