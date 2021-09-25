@@ -124,9 +124,10 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
-  //TODO: match and correct sent value on init
   //TODO: optimise isSelected function
   //TODO: input behaviour when single selected item is clicked
+  //TODO: fix width of dorpdown for narrow controls
+  //TODO: fix width of dropdown for long options
 
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
@@ -361,9 +362,16 @@ Default value: `<span>{option[search_key] || option}</span>`
       (max === null || value.length < max || single)
     ) {
       searchText = ""; // reset search string on selection
-      value = single
-        ? token[used_value_key]
-        : [...value, token[used_value_key]];
+      if (single) {
+        value = token[used_value_key];
+      } else {
+        //attach to value array while filtering out invalid values
+        value = [...value, token[used_value_key]].filter((v) => {
+          return normalisedOptions.filter((nv) => nv[used_value_key] == v)
+            .length;
+        });
+      }
+
       if ((Array.isArray(value) && value.length === max) || single) {
         input && input.blur();
         setOptionsVisible(false);
