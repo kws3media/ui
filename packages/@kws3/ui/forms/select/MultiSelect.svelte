@@ -8,7 +8,7 @@ This property can be bound to, to fetch the current value, Default: `""`
   @param {object} [max=null] - Maximum number of selectable items from dropdown list.
 
 `null` means unlimited, Default: `null`
-  @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
+  @param {string} [placeholder="Please select..."] - Placeholder text for the input, Default: `"Please select..."`
   @param {array} [options=[]] - Array of strings, or objects.
 Used to populate the list of options in the dropdown, Default: `[]`
   @param {string} [search_key="name"] - If `options` is an array of objects,
@@ -21,7 +21,7 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
-  @param {string} [remove_btn_tip="Remove"] - Hover text for Remove button, Default: `"Remove"`
+  @param {string} [remove_btn_tip="Remove"] - Hover text for Remove item button, Default: `"Remove"`
   @param {string} [remove_all_tip="Remove all"] - Hover text for Remove All button, Default: `"Remove all"`
   @param {string} [class=""] - CSS classes for input container, Default: `""`
 
@@ -123,7 +123,6 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
-  //TODO: abstract out Multiselect to separate component
   //TODO: data bug
 
   import { createEventDispatcher, onMount } from "svelte";
@@ -157,7 +156,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * Placeholder text for the input
    */
-  export let placeholder = "";
+  export let placeholder = "Please select...";
   /**
    * Array of strings, or objects.
    * Used to populate the list of options in the dropdown
@@ -201,7 +200,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let no_options_msg = "No matching options";
   /**
-   * Hover text for Remove button
+   * Hover text for Remove item button
    * */
   export let remove_btn_tip = "Remove";
   /**
@@ -223,8 +222,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     : value.length
     ? ""
     : placeholder;
-
-  if (!value) value = single ? `` : [];
 
   if (!options || !options.length) console.error(`Missing options`);
 
@@ -303,6 +300,10 @@ Default value: `<span>{option[search_key] || option}</span>`
         },
       ],
     });
+
+    //normalize value for single versus multiselect
+    if (!value) value = single ? "" : [];
+
     return () => {
       POPPER.destroy();
     };
