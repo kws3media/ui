@@ -1,4 +1,4 @@
-<div>
+<div id="ss_container">
   <KwsSearchableSelect
     {size}
     {color}
@@ -35,7 +35,14 @@
 </div>
 
 <script>
-  import { SearchableSelect as KwsSearchableSelect } from "@kws3/ui";
+  import {
+    SearchableSelect as KwsSearchableSelect,
+    activateTooltips,
+  } from "@kws3/ui";
+
+  import { onMount } from "svelte";
+
+  onMount(() => activateTooltips("#ss_container"));
 
   export let size = "",
     color = "",

@@ -40,8 +40,9 @@
 
 <script>
   import { MultiSelect as KwsMultiSelect, activateTooltips } from "@kws3/ui";
+  import { onMount } from "svelte";
 
-  activateTooltips("#ms_container");
+  onMount(() => activateTooltips("#ms_container"));
 
   export let size = "",
     color = "",
