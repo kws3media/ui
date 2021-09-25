@@ -1,3 +1,37 @@
+<!--
+  @component
+
+
+  @param {string} [value=""] - Value of the Input
+
+This property can be bound to, to fetch the current value, Default: `""`
+  @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
+  @param {array} [options=[]] - Array of strings, or objects.
+Used to populate the list of options in the dropdown, Default: `[]`
+  @param {string} [search_key="name"] - If `options` is an array of objects,
+this property of each object will be searched, Default: `"name"`
+  @param {string} [value_key="id"] - If `options` is an array of objects,
+this property of each object will be returned as the value, Default: `"id"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string} [style=""] - Inline CSS for input container, Default: `""`
+  @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
+  @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
+  @param {string} [remove_btn_tip="Remove"] - Hover text for Remove button, Default: `"Remove"`
+  @param {string} [remove_all_tip="Remove all"] - Hover text for Remove All button, Default: `"Remove all"`
+  @param {string} [class=""] - CSS classes for input container, Default: `""`
+
+  ### Events
+  - `change` - Triggered when value changes
+  - `blur` - Triggered when component looses focus
+
+  ### Slots
+  - `<slot name="default" {search_key} {option} />` - Slot containing text for each selectable item
+
+Default value: `<span>{option[search_key] || option}</span>`
+
+-->
 <Select
   bind:value
   class={klass}
@@ -13,10 +47,25 @@
   {disabled}
   {remove_all_tip}
   {remove_btn_tip}
-  {no_options_msg} />
+  {no_options_msg}
+  on:change={change}
+  on:blur={blur}
+  let:option
+  let:search_key>
+  <!--
+    Slot containing text for each selectable item
+
+    Default value: `<span>{option[search_key] || option}</span>`
+  --><slot
+    {search_key}
+    {option}>{option[search_key] || option}</slot>
+</Select>
 
 <script>
+  import { createEventDispatcher } from "svelte";
   import Select from "./Select.svelte";
+
+  const fire = createEventDispatcher();
 
   /**
    * Value of the Input
@@ -84,4 +133,17 @@
    */
   let klass = "";
   export { klass as class };
+
+  function change({ detail }) {
+    /**
+     * Triggered when value changes
+     */
+    fire("change", detail);
+  }
+  function blur({ detail }) {
+    /**
+     * Triggered when component looses focus
+     */
+    fire("blur", detail);
+  }
 </script>

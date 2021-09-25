@@ -25,6 +25,17 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {string} [remove_all_tip="Remove all"] - Hover text for Remove All button, Default: `"Remove all"`
   @param {string} [class=""] - CSS classes for input container, Default: `""`
 
+  ### Events
+  - `add` - Triggered when an item is added from dropdown list
+  - `remove` - Triggered when an item is removed from selected options
+  - `change` - Triggered when value changes
+  - `blur` - Triggered when component looses focus
+
+  ### Slots
+  - `<slot name="default" {search_key} {option} />` - Slot containing text for each selectable item
+
+Default value: `<span>{option[search_key] || option}</span>`
+
 -->
 <Select
   bind:value
@@ -41,10 +52,27 @@ this property of each object will be returned as the value, Default: `"id"`
   {disabled}
   {remove_all_tip}
   {remove_btn_tip}
-  {no_options_msg} />
+  {no_options_msg}
+  on:add={add}
+  on:change={change}
+  on:remove={remove}
+  on:blur={blur}
+  let:option
+  let:search_key>
+  <!--
+    Slot containing text for each selectable item
+
+    Default value: `<span>{option[search_key] || option}</span>`
+  --><slot
+    {search_key}
+    {option}>{option[search_key] || option}</slot>
+</Select>
 
 <script>
+  import { createEventDispatcher } from "svelte";
   import Select from "./Select.svelte";
+
+  const fire = createEventDispatcher();
 
   /**
    * Value of the Input
@@ -118,4 +146,29 @@ this property of each object will be returned as the value, Default: `"id"`
    */
   let klass = "";
   export { klass as class };
+
+  function add({ detail }) {
+    /**
+     * Triggered when an item is added from dropdown list
+     */
+    fire("add", detail);
+  }
+  function remove({ detail }) {
+    /**
+     * Triggered when an item is removed from selected options
+     */
+    fire("remove", detail);
+  }
+  function change({ detail }) {
+    /**
+     * Triggered when value changes
+     */
+    fire("change", detail);
+  }
+  function blur({ detail }) {
+    /**
+     * Triggered when component looses focus
+     */
+    fire("blur", detail);
+  }
 </script>

@@ -1,21 +1,3 @@
-<!--
-  @component
-
-
-  @param {string} [size=""] - Size property, Default: `""`
-  @param {string} [color=""] - Color property, Default: `""`
-  @param {string} [style=""] - Style property, Default: `""`
-  @param {string} [cy=""] - Cy property, Default: `""`
-  @param {boolean} [disabled=false] - Disabled property, Default: `false`
-  @param {string} [placeholder="Choose a Brand..."] - Placeholder property, Default: `"Choose a Brand..."`
-  @param {string} [selected_brand=""] - Selected_brand property, Default: `""`
-  @param {string} [selected_brand_multi=""] - single , also work with { id: 10, name: "Blackberry" }, Default: `""`
-  @param {string} [selected_brand_string="Blackberry"] - max item null, not works if string given. should work?, Default: `"Blackberry"`
-  @param {array} [selected_brand_string_multi=[]] - Selected_brand_string_multi property, Default: `[]`
-  @param {array} [options=[]] - Options property, Default: `[]`
-  @param {string} [class=""] - Class property, Default: `""`
-
--->
 <div>
   <div class="columns is-marginless">
     <div class="column is-paddingless">
@@ -32,7 +14,9 @@
         {placeholder}
         {style}
         class={klass}
-        {cy} />
+        {cy}
+        let:option
+        let:search_key>{option[search_key]} + hello</KwsSearchableSelect>
     </div>
   </div>
 
@@ -50,7 +34,9 @@
     {style}
     class={klass}
     {cy}
-    {disabled} />
+    {disabled}
+    let:option
+    let:search_key>{option[search_key]} <Icon icon="user" /></KwsMultiSelect>
 
   {JSON.stringify(selected_brand_multi, null, 2)}
 
@@ -74,6 +60,7 @@
     SearchableSelect as KwsSearchableSelect,
     MultiSelect as KwsMultiSelect,
     activateTooltips,
+    Icon,
   } from "@kws3/ui";
 
   activateTooltips("body");

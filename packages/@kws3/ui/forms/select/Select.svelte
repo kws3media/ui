@@ -31,6 +31,11 @@ this property of each object will be returned as the value, Default: `"id"`
   - `remove`
   - `blur`
 
+  ### Slots
+  - `<slot name="default" {search_key} {option} />` - Slot containing text for each selectable item
+
+Default value: `<span>{option[search_key] || option}</span>`
+
 -->
 <div
   bind:this={el}
@@ -103,7 +108,13 @@ this property of each object will be returned as the value, Default: `"id"`
         }}
         class:selected={isSelected(option)}
         class:active={activeOption === option}>
-        {option[search_key] || option}
+        <!--
+          Slot containing text for each selectable item
+
+          Default value: `<span>{option[search_key] || option}</span>`
+        --><slot
+          {search_key}
+          {option}>{option[search_key] || option}</slot>
       </li>
     {:else}
       <li class="no-options">{no_options_msg}</li>
