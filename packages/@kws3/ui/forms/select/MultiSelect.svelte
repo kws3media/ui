@@ -124,7 +124,6 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
-  //TODO: optimise isSelected function
   //TODO: input behaviour when single selected item is clicked
 
   import { createEventDispatcher, onMount } from "svelte";
@@ -264,6 +263,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   )
     activeOption = filteredOptions[0];
 
+  //TODO: optimise isSelected function
   $: isSelected = (option) => {
     if (single) return matchesValue(value, option);
     if (!(value && value.length > 0) || value == "") return false;
@@ -437,15 +437,15 @@ Default value: `<span>{option[search_key] || option}</span>`
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else if (event.key === `Backspace`) {
-      // only remove selected tags on backspace if if there are any and no searchText characters remain
-      if (
-        (value[used_search_key] || value).length > 0 &&
-        searchText.length === 0
-      ) {
-        value = (value[used_search_key] || value).slice(
-          0,
-          (value[used_search_key] || value).length - 1
-        );
+      // only remove selected tags on backspace if there are any and no searchText characters remain
+      if (single) {
+        if (value && value != "" && searchText.length === 0) {
+          value = "";
+        }
+      } else {
+        if (value.length > 0 && searchText.length === 0) {
+          value = value.slice(0, value.length - 1);
+        }
       }
     }
   }
