@@ -34,10 +34,12 @@ $kws-theme-colors: $colors !default;
   ul.tokens {
     flex-wrap: wrap;
     flex: 1;
+    overflow: hidden;
     &.tags {
       margin: 0;
       margin-top: -0.25rem;
       margin-bottom: -0.25rem;
+      margin-right: 0.25rem;
       .tag.is-small {
         font-size: 0.6rem;
         .delete.is-small {
@@ -93,13 +95,13 @@ $kws-theme-colors: $colors !default;
 
     li {
       padding: 0.3em 0.5em;
-
+      word-break: break-all;
       &:before,
       &:after {
         position: absolute;
         width: 1em;
         height: 1em;
-        top: 0.58em;
+        top: calc(50% - 0.5em);
         left: 0.5em;
         content: "";
         display: none;

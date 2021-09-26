@@ -1,11 +1,11 @@
 <div id="ss_container">
   <div class="columns">
-    <div class="column">
+    <div class="column is-6">
       <Panel title="Input data" collapsible collapsed>
         <pre>{JSON.stringify(brands, null, 1)}</pre>
       </Panel>
     </div>
-    <div class="column">
+    <div class="column is-6">
       <KwsSearchableSelect
         {size}
         {color}
@@ -26,12 +26,12 @@
 
   <hr />
   <div class="columns">
-    <div class="column">
+    <div class="column is-6">
       <Panel title="Input data" collapsible collapsed>
         <pre>{JSON.stringify(brands_string_only, null, 1)}</pre>
       </Panel>
     </div>
-    <div class="column">
+    <div class="column is-6">
       <KwsSearchableSelect
         {size}
         {color}

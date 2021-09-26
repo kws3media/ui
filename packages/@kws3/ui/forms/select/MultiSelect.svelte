@@ -126,8 +126,6 @@ Default value: `<span>{option[search_key] || option}</span>`
 <script>
   //TODO: optimise isSelected function
   //TODO: input behaviour when single selected item is clicked
-  //TODO: fix width of dorpdown for narrow controls
-  //TODO: fix width of dropdown for long options
 
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
