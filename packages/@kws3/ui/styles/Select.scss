@@ -25,9 +25,6 @@ $kws-select-selected-background: $primary-light !default;
     box-shadow: $kws-select-focus-box-shadow-size
       $kws-select-focus-box-shadow-color;
   }
-  .single-value {
-    margin-right: 0.25rem;
-  }
   &.is-disabled {
     background-color: $kws-select-disabled-background-color;
     border-color: $kws-select-disabled-border-color;

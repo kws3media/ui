@@ -51,13 +51,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
   <ul class="tokens tags">
-    {#if single && selectedOptions && selectedOptions.length && selectedOptions[0]}
-      <span
-        class="single-value"
-        on:click|self|stopPropagation={() => setOptionsVisible(true)}>
-        {selectedOptions[0][used_search_key]}
-      </span>
-    {:else if selectedOptions && selectedOptions.length > 0}
+    {#if !single && selectedOptions && selectedOptions.length > 0}
       {#each selectedOptions as tag}
         <li
           class="tag is-{size} is-{color || 'primary'} is-light"
@@ -93,7 +87,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       class="remove-all delete is-small"
       data-tooltip={remove_all_tip}
       on:click|stopPropagation={removeAll}
-      style={value.length === 0 ? `display: none;` : ``} />
+      style={value.length === 0 ? `display: none;` : ""} />
   {/if}
 
   <ul
@@ -103,7 +97,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     {#each filteredOptions as option}
       <li
         on:mousedown|preventDefault|stopPropagation={() =>
-          isSelected(option) ? remove(option) : add(option)}
+          handleOptionMouseDown(option)}
         on:mouseenter|preventDefault|stopPropagation={() => {
           activeOption = option;
         }}
@@ -124,8 +118,6 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
-  //TODO: input behaviour when single selected item is clicked
-
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
 
@@ -230,6 +222,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER,
     activeOption = "",
     searchText = "",
+    searching = false,
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
@@ -251,6 +244,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   $: options, normaliseOptions();
   $: normalisedOptions,
     searchText,
+    searching,
     used_search_key,
     used_value_key,
     updateFilteredOptions();
@@ -291,7 +285,15 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
 
   function updateFilteredOptions() {
-    let filter = searchText.toLowerCase();
+    let filter;
+
+    //when in single mode, searchText contains the selected value
+    //so we need to check if we are actually searching
+    if (single && !searching) {
+      filter = "";
+    } else {
+      filter = searchText.toLowerCase();
+    }
 
     filteredOptions = normalisedOptions.slice().filter((item) => {
       // filter out items that don't match `filter`
@@ -346,28 +348,36 @@ Default value: `<span>{option[search_key] || option}</span>`
     //normalize value for single versus multiselect
     if (!value) value = single ? "" : [];
 
+    setSingleVisibleValue();
+
     return () => {
       POPPER.destroy();
     };
   });
 
   function add(token) {
+    let isAlreadySelected = isSelected(token);
     if (
       !readonly &&
       !disabled &&
-      !isSelected(token) &&
+      !isAlreadySelected &&
       // (... || single) because in single mode, we always replace current token with new selection
       (max === null || value.length < max || single)
     ) {
-      searchText = ""; // reset search string on selection
       if (single) {
         value = token[used_value_key];
+        searchText = token[used_search_key];
+        searching = false;
       } else {
         //attach to value array while filtering out invalid values
         value = [...value, token[used_value_key]].filter((v) => {
           return normalisedOptions.filter((nv) => nv[used_value_key] == v)
             .length;
         });
+        searchText = ""; // reset search string on selection
+
+        //update popper position in case values start wrapping to next line
+        POPPER.update();
       }
 
       if ((Array.isArray(value) && value.length === max) || single) {
@@ -380,11 +390,13 @@ Default value: `<span>{option[search_key] || option}</span>`
       fire("add", { token });
 
       fire("change", { token, type: `add` });
+    } else if (single && isAlreadySelected) {
+      setSingleVisibleValue();
     }
   }
 
   function remove(token) {
-    if (readonly || disabled || typeof value === `string`) return;
+    if (readonly || disabled || single) return;
     value = value.filter
       ? value.filter((item) => !matchesValue(item, token))
       : value;
@@ -415,16 +427,33 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER.update();
   }
 
+  function setSingleVisibleValue() {
+    if (single && value) {
+      searchText =
+        selectedOptions && selectedOptions[0]
+          ? selectedOptions[0][used_search_key]
+          : "";
+      searching = false;
+    }
+  }
+
   function handleKeydown(event) {
     if (event.key === `Escape`) {
       setOptionsVisible(false);
-      searchText = ``;
-    } else if (event.key === `Enter`) {
+    } else {
+      setOptionsVisible(true);
+    }
+
+    if (event.key === `Enter`) {
       if (activeOption) {
-        isSelected(activeOption) ? remove(activeOption) : add(activeOption);
-        searchText = ``;
-      } // no active option means the options are closed in which case enter means open
-      else setOptionsVisible(true);
+        handleOptionMouseDown(activeOption);
+        if (!single) {
+          searchText = "";
+        }
+      } else {
+        // no active option means the options are closed in which case enter means open
+        setOptionsVisible(true);
+      }
     } else if ([`ArrowDown`, `ArrowUp`].includes(event.key)) {
       const increment = event.key === `ArrowUp` ? -1 : 1;
       const newActiveIdx = filteredOptions.indexOf(activeOption) + increment;
@@ -438,23 +467,44 @@ Default value: `<span>{option[search_key] || option}</span>`
       }
     } else if (event.key === `Backspace`) {
       // only remove selected tags on backspace if there are any and no searchText characters remain
-      if (single) {
-        if (value && value != "" && searchText.length === 0) {
-          value = "";
+      if (searchText.length === 0) {
+        if (single) {
+          if (value && value != "") {
+            value = "";
+          }
+        } else {
+          if (value.length > 0) {
+            value = value.slice(0, value.length - 1);
+          }
         }
       } else {
-        if (value.length > 0 && searchText.length === 0) {
-          value = value.slice(0, value.length - 1);
+        if (single) {
+          searching = true;
         }
       }
+
+      //update popper position in case values stop wrapping from next line
+      POPPER.update();
+    } else {
+      if (single) {
+        searching = true;
+      }
+    }
+  }
+
+  function handleOptionMouseDown(option) {
+    if (single) {
+      add(option);
+    } else {
+      isSelected(option) ? remove(option) : add(option);
     }
   }
 
   const removeAll = () => {
     fire("remove", { token: value });
     fire("change", { token: value, type: `remove` });
-    value = single ? `` : [];
-    searchText = ``;
+    value = single ? "" : [];
+    searchText = "";
   };
 
   const matchesValue = (_value, _option) =>
