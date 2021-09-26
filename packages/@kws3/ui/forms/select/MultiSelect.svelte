@@ -439,7 +439,9 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   function handleKeydown(event) {
     if (event.key === `Escape`) {
-      setOptionsVisible(false);
+      if (!single) {
+        searchText = "";
+      }
     } else {
       setOptionsVisible(true);
     }
