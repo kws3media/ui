@@ -20,16 +20,19 @@ function createDialog(msg, props) {
 }
 
 export function alert(msg, props) {
+  props = props || {};
   props._type = "alert";
   return createDialog(msg, props);
 }
 
 export function prompt(msg, props) {
+  props = props || {};
   props._type = "prompt";
   return createDialog(msg, props);
 }
 
 export function confirm(msg, props) {
+  props = props || {};
   props._type = "confirm";
   return createDialog(msg, props);
 }

@@ -1,0 +1,144 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Popover } from "@kws3/ui";
+import PopoverDecorator from './Popover.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  icon: "info-circle",
+  icon_color: "primary",
+  icon_size: "small",
+  trigger: "click",
+  placement: "auto",
+  interactive: false,
+  external_target: null,
+  max_width: "none",
+  style: "",
+  class:""
+}
+
+<Meta
+  title="Helpers/Popover/1. Popover Component"
+  component={Popover}
+  args={args}
+  argTypes={{
+    icon: {},
+    icon_color: {
+      control: { type: 'select' }
+    },
+    icon_size:{
+      control: {type:"select"},
+    },
+  }}
+/>
+
+<Description markdown={dedent`
+# Popover
+## Display contextual popovers
+`}/>
+
+<Canvas>
+  <Story
+  name="Popover"
+  args={args}
+  >
+  {(args) => ({
+    Component: PopoverDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Popover" />
+
+
+### Usage
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { Popover } from '@kws3/ui';`}
+/>
+
+<div class="columns">
+  <div class="column">
+
+#### Default
+```html
+<Popover>
+  Click me to see popover
+  <svelte:fragment 
+    slot="popover">
+    This is the popover content
+  </svelte:fragment>
+</Popover>
+
+<script>
+import {Popover} from '@kws3/ui';
+</script>
+```
+
+  </div>
+  <div class="column">
+
+#### Component in `popover` slot
+```html
+<Popover>
+  Click me to see popover
+  <svelte:fragment 
+    slot="popover">
+    <Message color="success">
+      This is the popover content
+    </Message>
+  </svelte:fragment>
+</Popover>
+
+<script>
+import {
+  Popover, 
+  Message
+} from '@kws3/ui';
+</script>
+```
+
+  </div>
+  <div class="column">
+
+#### Usage of `external_reference`
+```html
+<Popover
+  external_reference={aNode}>
+  Click me to see popover
+</Popover>
+
+<div bind:this={aNode}>
+  This is the popover content
+</div>
+
+<script>
+import {Popover} from '@kws3/ui';
+
+let aNode;
+
+</script>
+```
+
+  </div>
+</div>
+
+##### Import the CSS:
+This requires css from `Tooltip` component.
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/Tooltip.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws-popover-background-color: $background;
+    $kws-popover-foreground-color: $text;
+    $kws-popover-arrow-color: $background;
+    $kws-popover-radius: $kws-tt-radius;
+  `}
+/>
