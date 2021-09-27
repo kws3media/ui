@@ -333,9 +333,12 @@ Default value: `<span>{option[search_key] || option}</span>`
         (v) => v[used_value_key] == value
       );
     } else {
-      selectedOptions = normalisedOptions.filter((v) =>
-        value.some((vl) => v[used_value_key] == vl)
-      );
+      selectedOptions = normalisedOptions
+        .filter((v) => value.some((vl) => v[used_value_key] == vl))
+        .sort(
+          (a, b) =>
+            value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
+        );
     }
   }
 
