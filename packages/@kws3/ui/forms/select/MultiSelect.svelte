@@ -103,7 +103,8 @@ Default value: `<span>{option[search_key] || option}</span>`
         }}
         class:selected={isSelected(option)}
         class:active={activeOption === option}>
-        <!--
+        <span class="kws-selected-icon"><Icon icon="check" size="small" /></span
+        ><!--
           Slot containing text for each selectable item
 
           Default value: `<span>{option[search_key] || option}</span>`
@@ -118,6 +119,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
+  import { Icon } from "@kws3/ui";
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
 

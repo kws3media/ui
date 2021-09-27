@@ -61,7 +61,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
 <script>
   import { createEventDispatcher } from "svelte";
-  import MultiSelect from "./MultiSelect.svelte";
+  import { MultiSelect } from "@kws3/ui";
 
   const fire = createEventDispatcher();
 

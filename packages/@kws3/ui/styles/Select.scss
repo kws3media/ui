@@ -99,7 +99,7 @@ $kws-select-selected-background: $primary-light !default;
       padding: 0.3em 0.5em;
       word-break: break-all;
       &:before,
-      &:after {
+      .kws-selected-icon {
         position: absolute;
         width: 1em;
         height: 1em;
@@ -110,14 +110,18 @@ $kws-select-selected-background: $primary-light !default;
       }
       &:before {
         border: 0.05em solid currentColor;
-        border-radius: 50%;
+        border-radius: 0.14em;
       }
-      &:after {
-        transform: none;
-        border: 0.25em solid $kws-select-selected-background;
-        background: currentColor;
-        border-radius: 50%;
-        box-shadow: 0 0 0 0.05em currentColor;
+      .kws-selected-icon {
+        .icon {
+          align-items: center;
+          width: 1em !important;
+          height: 1em !important;
+          .icon-i {
+            font-size: 0.7em;
+            line-height: 1.5;
+          }
+        }
       }
       &.selected {
         color: $kws-select-selected-color;
@@ -138,13 +142,8 @@ $kws-select-selected-background: $primary-light !default;
           display: inline-block;
         }
         &.selected {
-          &:after {
-            display: inline-block;
-          }
-          &.active {
-            &:after {
-              background: $kws-select-selecting-background;
-            }
+          .kws-selected-icon {
+            display: inline-flex;
           }
         }
       }
@@ -181,20 +180,6 @@ $kws-select-selected-background: $primary-light !default;
           &.active {
             color: $color-invert;
             background: $color;
-          }
-        }
-        &.is-multi {
-          li {
-            &.selected {
-              &:after {
-                border-color: $color-light;
-              }
-              &.active {
-                &:after {
-                  background: $color;
-                }
-              }
-            }
           }
         }
       }
