@@ -10,7 +10,7 @@ const getPosition = (props) => {
   if (_defaultToastPlacement) {
     return _defaultToastPlacement.indexOf("top") === 0 ? "top" : "bottom";
   }
-  return "bottom";
+  return "top";
 };
 
 export const notifications = (() => {
@@ -21,7 +21,7 @@ export const notifications = (() => {
 
   const push = (newItem) => {
     update((items) => {
-      if (!newItem.id) newItem.id = new Date().getTime();
+      if (!newItem.id) newItem.id = "__kws_alert_" + new Date().getTime();
       items[getPosition(newItem)].push(newItem);
       return items;
     });
