@@ -23,7 +23,6 @@ $accordion-content-pre-code-background-color: transparent !default;
     background-color: $accordion-background-color;
     border-radius: $accordion-radius;
     font-size: $size-normal;
-    border-bottom: 1px solid $accordion-background-color;
     strong {
       color: currentColor;
     }
@@ -154,6 +153,7 @@ $accordion-content-pre-code-background-color: transparent !default;
       $desaturate-percentage: $color-luminance * 30%;
       &.is-#{$name} {
         background-color: lighten($color, $color-lightning);
+        border-bottom: 1px solid lighten($color, $color-lightning);
         .accordion-header {
           background-color: $color;
           color: $color-invert;
