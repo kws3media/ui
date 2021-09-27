@@ -1,6 +1,6 @@
-$kws3-toast-width: 30rem;
+$kws3-toast-width: 25rem;
 
-.toast-box {
+.kws-toast-output {
   position: fixed;
   top: 0;
   left: 0;
@@ -19,7 +19,7 @@ $kws3-toast-width: 30rem;
   }
 }
 
-.toast {
+.kws-toast-item {
   display: inline-flex;
   transform: translate3d(0, 0, 0);
   animation: toast-slide-up 0.4s ease;
@@ -41,22 +41,24 @@ $kws3-toast-width: 30rem;
     align-self: flex-end;
   }
   .notification {
-    padding: 1.25rem;
+    padding: 0.5rem 0.75rem;
     position: relative;
     font-size: 1rem;
     width: 100%;
-    .delete {
-      transform: scale(1.6);
+    p {
+      margin: 0;
     }
   }
   .toast-progress {
-    background: white;
-    height: 2px;
+    background: currentColor;
+    height: 0.25em;
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    bottom: 0;
+    left: 0;
     width: 0%;
     animation-name: toast-progress-running;
+    animation-fill-mode: forwards;
+    border-radius: 0 $radius $radius $radius;
   }
 }
 
@@ -65,7 +67,7 @@ $kws3-toast-width: 30rem;
     width: 0%;
   }
   100% {
-    width: 96%;
+    width: 100%;
   }
 }
 

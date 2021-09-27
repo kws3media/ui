@@ -20,6 +20,7 @@
     duration = 3000,
     color = "primary",
     position = "bottom-right",
+    light = false,
     is_dismissable = true,
     is_persistent = false,
     context = 1;
@@ -35,6 +36,7 @@
       is_dismissable,
       is_persistent,
       context,
+      light,
       message: count + " - " + message,
     });
     count++;

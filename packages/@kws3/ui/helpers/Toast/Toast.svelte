@@ -14,24 +14,20 @@
   @param {function} [afterClose(props)] - Callback function call after close event
 -->
 
-<div class="toast is-{usedPosition}">
-  <div class="notification is-{color}">
+<div class="kws-toast-item is-{usedPosition}">
+  <div class="notification is-{color} {light ? 'is-light' : ''}">
     {#if component}
       <svelte:component this={component} {...$$props} on:destroy={destroy} />
     {:else}
+      {#if is_dismissable}
+        <button class="delete" on:click={destroy} />
+      {/if}
       {#if title}
         <h4 class="title is-5 is-marginless">{title}</h4>
       {/if}
-      <div class="field is-grouped is-marginless" style="align-items:center;">
-        <div class="control is-expanded">
-          <p>{@html message}</p>
-        </div>
-        {#if is_dismissable}
-          <div class="control">
-            <button class="delete" on:click={destroy} />
-          </div>
-        {/if}
-      </div>
+
+      <p>{@html message}</p>
+
       {#if !is_persistent}
         <div class="toast-progress" style="animation-duration:{duration}ms" />
       {/if}
@@ -40,6 +36,10 @@
 </div>
 
 <script>
+  //TODO: use svelte animation so we can transition out
+  //TODO: document multiline
+  //TODO: snackbar variant
+  //TODO: toast variant
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
   import { defaultToastPlacement } from "../../settings";
 
@@ -59,9 +59,13 @@
     duration = 3000,
     /**
      * Toast notification background color
-     * @type {'warning'|'info'|'danger'|'primary'|'success'}
+     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "primary",
+    /**
+     * Inverted colors for notification box and contents
+     */
+    light = false,
     /**
      * Position of the notification. `""` defaults to `top-right`
      * @type {''|'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
