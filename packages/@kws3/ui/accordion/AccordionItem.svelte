@@ -39,19 +39,20 @@
   $: active = $open === item;
   $: {
     if (expanded) {
-      nextSection(item);
+      toggleSection(item);
     }
   }
 
   /*onMount(() => {
     if (expanded) {
-      active = true;
+      toggleSection(item);
     }
   });*/
 
-  function nextSection(item) {
+  function toggleSection(item) {
     changeSection(item);
     active = true;
+    expanded = false;
   }
 
   function activateSection(item) {
