@@ -4,8 +4,8 @@
     {color}
     key="one"
     {allow_header_click}
-    {item_class}
-    {item_style}>
+    class={klass}
+    {style}>
     <div slot="header">Slot Title 1</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -25,8 +25,8 @@
     key="two"
     bind:expanded={active_item_2}
     {allow_header_click}
-    {item_class}
-    {item_style}>
+    class={klass}
+    {style}>
     <div slot="header">Slot Title 2</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -47,8 +47,8 @@
     key="three"
     bind:expanded={active_item_3}
     {allow_header_click}
-    {item_class}
-    {item_style}>
+    class={klass}
+    {style}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
     >, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit
@@ -66,9 +66,10 @@
   export let color = "danger",
     allow_header_click = true,
     header = "Property Title",
-    item_class = "",
-    item_style = "",
+    style = "",
     expanded = true;
+  let klass = "";
+  export { klass as class };
   let item = null;
   let active_item_1 = true;
   let active_item_2 = false;

@@ -8,8 +8,8 @@ export let args={
   color : "primary",
   allow_header_click : true,
   header : "Property Title",
-  item_class : "",
-  item_style : "",
+  class : "",
+  style : "",
   expanded : true
 };
 
@@ -25,7 +25,8 @@ export let args={
   parameters = {{
       docs: {
         source: {
-          code: `<Accordion><AccordionItem color="${args.color}" expanded={true}  header="${args.header}"></AccordionItem></Accordion>`,
+          code: `
+          <Accordion> <AccordionItem color="${args.color}" expanded={true}  header="${args.header}"></AccordionItem> </Accordion>`,
         },
       },
     }}

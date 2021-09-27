@@ -1,6 +1,6 @@
 <article
-  class="accordion {active ? 'is-active' : ''} is-{color} {item_class}"
-  style={item_style}
+  class="accordion {active ? 'is-active' : ''} is-{color} {klass}"
+  {style}
   bind:this={item}>
   <div class="accordion-header toggle" on:click={() => activateSection(item)}>
     <slot name="header" />
@@ -23,14 +23,17 @@
 
   export let header = "",
     expanded = false,
-    item_class = "",
-    item_style = "",
+    style = "",
     /**
      * Color of the Button
      * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "primary",
     allow_header_click = true;
+
+  let klass = "";
+  export { klass as class };
+
   let item = null,
     active = false;
 
