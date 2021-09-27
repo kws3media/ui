@@ -1,6 +1,6 @@
 <Accordion>
   <AccordionItem
-    expanded={active_item_1}
+    {expanded}
     {color}
     key="one"
     {allow_header_click}
@@ -17,7 +17,7 @@
     porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis
     sodales sem.
     <hr />
-    <button class="button is-primary" on:click={() => activateSectionTwo()}
+    <button class="button is-primary" on:click={() => (active_item_2 = true)}
       >Open Slot Title 2</button>
   </AccordionItem>
   <AccordionItem
@@ -38,7 +38,7 @@
     porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis
     sodales sem.
     <hr />
-    <button class="button is-warning" on:click={() => activateSectionThree()}
+    <button class="button is-warning" on:click={() => (active_item_3 = true)}
       >Open Property Title</button>
   </AccordionItem>
   <AccordionItem
@@ -67,16 +67,10 @@
     allow_header_click = true,
     header = "Property Title",
     item_class = "",
-    item_style = "";
+    item_style = "",
+    expanded = true;
   let item = null;
   let active_item_1 = true;
   let active_item_2 = false;
   let active_item_3 = false;
-
-  function activateSectionTwo() {
-    active_item_2 = true;
-  }
-  function activateSectionThree() {
-    active_item_3 = true;
-  }
 </script>

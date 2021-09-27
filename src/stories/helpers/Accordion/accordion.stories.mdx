@@ -9,7 +9,8 @@ export let args={
   allow_header_click : true,
   header : "Property Title",
   item_class : "",
-  item_style : ""
+  item_style : "",
+  expanded : true
 };
 
 <Meta
@@ -24,7 +25,7 @@ export let args={
   parameters = {{
       docs: {
         source: {
-          code: '<Accordion><AccordionItem color="success" active={true}  header="Title"></AccordionItem></Accordion>',
+          code: `<Accordion><AccordionItem color="${args.color}" expanded={true}  header="${args.header}"></AccordionItem></Accordion>`,
         },
       },
     }}

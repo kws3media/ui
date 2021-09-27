@@ -2,9 +2,7 @@
   class="accordion {active ? 'is-active' : ''} is-{color} {item_class}"
   style={item_style}
   bind:this={item}>
-  <div
-    class="accordion-header toggle"
-    on:click={() => activateThisSection(item)}>
+  <div class="accordion-header toggle" on:click={() => activateSection(item)}>
     <slot name="header" />
     {header}
     <button class="toggle" aria-label="toggle" />
@@ -56,7 +54,7 @@
     active = true;
   }
 
-  function activateThisSection(item) {
+  function activateSection(item) {
     if (!allow_header_click) return;
     changeSection(item);
     expanded = false;
