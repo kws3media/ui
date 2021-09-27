@@ -1,29 +1,38 @@
 <article
-  class="accordion {active ? 'is-active' : ''} is-{color}"
+  class="accordion {_active ? 'is-active' : ''} is-{color}"
   bind:this={item}>
-  <div class="accordion-header toggle" on:click={() => onToggle()}>
+  <div class="accordion-header toggle" on:click={() => changeSection(item)}>
     <slot name="header" />
     {header}
     <button class="toggle" aria-label="toggle" />
   </div>
-  <div class="accordion-body">
-    <div class="accordion-content">
-      <slot />
+  {#if _active}
+    <div class="accordion-body" transition:slide>
+      <div class="accordion-content">
+        <slot />
+      </div>
     </div>
-  </div>
+  {/if}
 </article>
 
 <script>
   import { createEventDispatcher, getContext, onMount } from "svelte";
+  import { slide } from "svelte/transition";
+  const fire = createEventDispatcher();
+
   export let header = "",
-    active = false,
-    color = "primary";
-  let item;
+    is_active = false,
+    color = "primary",
+    item = null;
+  let _active;
 
-  const { toggle, open } = getContext("accordion");
-  $: active = $open === item ? true : false;
+  var { changeSection, open } = getContext("accordion");
+  $: _active = $open === item;
 
-  const onToggle = () => {
-    toggle(item);
-  };
+  onMount(() => {
+    if (is_active) {
+      _active = true;
+      changeSection(item);
+    }
+  });
 </script>
