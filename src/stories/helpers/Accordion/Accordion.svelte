@@ -16,7 +16,9 @@
     sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
     porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis
     sodales sem.
-    <button on:click={() => activateSectionTwo()}>Open 2nd Item</button>
+    <hr />
+    <button class="button is-primary" on:click={() => activateSectionTwo()}
+      >Open Slot Title 2</button>
   </AccordionItem>
   <AccordionItem
     {color}
@@ -35,7 +37,9 @@
     sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
     porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis
     sodales sem.
-    <button on:click={() => activateSectionThree()}>Open 3rd Item</button>
+    <hr />
+    <button class="button is-warning" on:click={() => activateSectionThree()}
+      >Open Property Title</button>
   </AccordionItem>
   <AccordionItem
     {header}

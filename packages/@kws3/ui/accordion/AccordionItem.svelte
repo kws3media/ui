@@ -1,5 +1,3 @@
-{active}
-{expanded}
 <article
   class="accordion {active ? 'is-active' : ''} is-{color} {item_class}"
   style={item_style}
