@@ -118,9 +118,9 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let no_options_msg = "No matching options";
   /**
-   * Tooltip text for the Clear All button
+   * Tooltip text for the Clear selection button
    */
-  export let remove_all_tip = "Remove all";
+  export let remove_all_tip = "Clear Selection";
 
   /**
    * CSS classes for input container
