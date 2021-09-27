@@ -1,4 +1,5 @@
 $kws3-toast-width: 25rem;
+$kws-theme-colors: $colors !default;
 
 .kws-toast-output {
   position: fixed;
@@ -24,30 +25,24 @@ $kws3-toast-width: 25rem;
   transform: translate3d(0, 0, 0);
   animation: toast-slide-up 0.4s ease;
   pointer-events: fill;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   max-width: $kws3-toast-width;
   min-width: $kws3-toast-width;
   width: 100%;
   &.is-top,
   &.is-bottom {
     align-self: center;
+    justify-content: center;
   }
   &.is-top-left,
   &.is-bottom-left {
     align-self: flex-start;
+    justify-content: flex-start;
   }
   &.is-top-right,
   &.is-bottom-right {
     align-self: flex-end;
-  }
-  .notification {
-    padding: 0.5rem 0.75rem;
-    position: relative;
-    font-size: 1rem;
-    width: 100%;
-    p {
-      margin: 0;
-    }
+    justify-content: flex-end;
   }
   .toast-progress {
     background: currentColor;
@@ -59,6 +54,68 @@ $kws3-toast-width: 25rem;
     animation-name: toast-progress-running;
     animation-fill-mode: forwards;
     border-radius: 0 $radius $radius $radius;
+  }
+  .notification {
+    padding: 0.5em 0.75em;
+    position: relative;
+    font-size: 1rem;
+    width: 100%;
+    p {
+      margin: 0;
+    }
+  }
+  .snackbar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: $radius;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04); /* super subtle... */
+    pointer-events: auto;
+    min-height: 3em;
+    background: $scheme-invert;
+    color: $scheme-main;
+    font-size: 1rem;
+
+    .text {
+      margin: 0.5em 0.75em;
+    }
+
+    .action {
+      display: inline-flex;
+      align-items: flex-end;
+      margin-left: auto;
+      margin-right: 0.5em;
+      padding-left: 0;
+
+      .button {
+        font-weight: 600;
+        text-transform: uppercase;
+        position: relative;
+        background: transparent;
+        color: currentColor;
+        border: none;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+
+    @each $name, $pair in $kws-theme-colors {
+      $color: nth($pair, 1);
+      $color-invert: nth($pair, 2);
+      $color-light: findLightColor($color);
+      $color-dark: findDarkColor($color);
+      &.is-#{$name} {
+        background: $color;
+        color: $color-invert;
+        &.is-light {
+          background: $color-light;
+          color: $color-dark;
+        }
+      }
+    }
   }
 }
 
