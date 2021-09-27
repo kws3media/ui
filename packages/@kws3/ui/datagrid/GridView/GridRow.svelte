@@ -1,3 +1,30 @@
+<!--
+  @component
+
+
+  @param {number} [row_index=0] - Row_index property, Default: `0`
+  @param {object} [row={}] - Row property, Default: `{}`
+  @param {boolean} [rowActive=false] - RowActive property, Default: `false`
+  @param {object} [isVisible={}] - IsVisible property, Default: `{}`
+  @param {boolean} [clickableRows=false] - ClickableRows property, Default: `false`
+  @param {object} [transforms={}] - Transforms property, Default: `{}`
+  @param {object} [classNames={}] - ClassNames property, Default: `{}`
+  @param {boolean} [transition=false] - Transition property, Default: `false`
+  @param {object} [styles={}] - Styles property, Default: `{}`
+  @param {array} [column_keys=[]] - Column_keys property, Default: `[]`
+  @param {boolean} [bulk_actions=false] - Bulk_actions property, Default: `false`
+  @param {boolean} [checked=false] - Checked property, Default: `false`
+  @param {array} [selectedIds=[]] - SelectedIds property, Default: `[]`
+  @param {string} [selectCheckboxColor="info"] - SelectCheckboxColor property, Default: `"info"`
+  @param {string} [selectCheckboxSize="medium"] - SelectCheckboxSize property, Default: `"medium"`
+  @param {function} [cellComponent()] - CellComponent function
+
+  ### Events
+  - `rowSelectChecked`
+  - `rowClick`
+  - `_forwardEvent`
+
+-->
 {#if transition}
   <tr
     in:fly={{ x: 20, delay: 25 * row_index }}

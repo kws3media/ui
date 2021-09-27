@@ -4,9 +4,12 @@
 
   @param {number} [min=0] - Minumum permitted value, Default: `0`
   @param {number} [max=100] - Maximum permitted value, Default: `100`
+  @param {number} [step=1] - Stepping interval or Rate of change of value, Default: `1`
   @param {number} [value=0] - Current value
 
-This property can be bound to, to fetch the current value, Default: `0`
+This property can be bound to, to fetch the current value
+
+This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {boolean} [output=false] - Displays the current value, Default: `false`
   @param {boolean} [disabled=false] - Disables the Slider, Default: `false`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Slider, Default: `""`

@@ -33,7 +33,10 @@ Requires `guide` to be `true`, Default: `false`
 
 <script>
   import { onMount, tick } from "svelte";
-  import { createTextMaskInputElement, conformToMask } from "text-mask-core";
+  import {
+    createTextMaskInputElement,
+    conformToMask,
+  } from "text-mask-core/src";
   /**
    * Mask array
    *

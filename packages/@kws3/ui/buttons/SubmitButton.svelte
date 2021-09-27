@@ -118,7 +118,7 @@
   /**
    * call this function after form saved
    */
-  export function saved(callback) {
+  export function saved(callback, timeout = 3000) {
     tracker = {
       saving: false,
       saved: true,
@@ -136,13 +136,13 @@
        */
       fire("saved");
       callback && callback();
-    }, 1000);
+    }, timeout);
   }
 
   /**
    * call this function on form error state
    */
-  export function error(callback) {
+  export function error(callback, timeout = 3000) {
     tracker = {
       saving: false,
       saved: false,
@@ -160,7 +160,7 @@
        */
       fire("error");
       callback && callback();
-    }, 1000);
+    }, timeout);
   }
 
   $: err_text = error_text == "" ? text : error_text;

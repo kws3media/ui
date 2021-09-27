@@ -1,0 +1,154 @@
+$kws-theme-colors: $colors !default;
+$kws-tt-background-color: $scheme-invert-ter !default;
+$kws-tt-foreground-color: $scheme-main !default;
+$kws-tt-arrow-size: 8px !default;
+$kws-tt-padding: 0.5rem !default;
+$kws-tt-radius: $radius-small !default;
+$kws-tt-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.4) !default;
+$kws-popover-background-color: $background !default;
+$kws-popover-foreground-color: $text !default;
+$kws-popover-arrow-color: $background !default;
+$kws-popover-radius: $kws-tt-radius !default;
+
+.tippy-iOS {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-tippy-root] {
+  max-width: calc(100vw - 10px);
+}
+
+.tippy-arrow {
+  & {
+    width: $kws-tt-arrow-size;
+    height: $kws-tt-arrow-size;
+    color: $kws-tt-background-color;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+  }
+}
+.tippy-content {
+  position: relative;
+  padding: $kws-tt-padding;
+  z-index: 1;
+}
+
+.tippy-box {
+  $placements: "top", "bottom", "left", "right";
+  $origins: bottom, top, right, left;
+
+  &[data-animation="scale"] {
+    @each $placement in $placements {
+      &[data-placement^="#{$placement}"] {
+        transform-origin: nth($origins, index($placements, $placement));
+      }
+    }
+
+    &[data-state="hidden"] {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  &[data-animation="fade"][data-state="hidden"] {
+    opacity: 0;
+  }
+
+  position: relative;
+  background-color: $kws-tt-background-color;
+  color: $kws-tt-foreground-color;
+  border-radius: $kws-tt-radius;
+  outline: 0;
+  box-shadow: $kws-tt-shadow;
+  transition-property: transform, visibility, opacity;
+
+  @each $name, $pair in $kws-theme-colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+    $color-light: findLightColor($color);
+    $color-dark: findDarkColor($color);
+
+    &[data-theme~="#{$name}"] {
+      color: $color-invert;
+      background-color: $color;
+      .tippy-arrow {
+        color: $color;
+      }
+    }
+    &[data-theme~="#{$name}-light"] {
+      color: $color-dark;
+      background-color: $color-light;
+      .tippy-arrow {
+        color: $color-light;
+      }
+    }
+  }
+
+  &[data-theme~="popover"] {
+    font-size: 1rem;
+    border-radius: $kws-popover-radius;
+    color: $kws-popover-foreground-color;
+    background-color: $kws-popover-background-color;
+    .tippy-arrow {
+      color: $kws-popover-arrow-color;
+    }
+    .tippy-content {
+      padding: 0;
+    }
+  }
+
+  &[data-placement^="top"] > .tippy-arrow {
+    bottom: 0;
+
+    &::before {
+      bottom: -7px;
+      left: 0;
+      border-width: 8px 8px 0;
+      border-top-color: initial;
+      transform-origin: center top;
+    }
+  }
+  &[data-placement^="bottom"] > .tippy-arrow {
+    top: 0;
+
+    &::before {
+      top: -7px;
+      left: 0;
+      border-width: 0 8px 8px;
+      border-bottom-color: initial;
+      transform-origin: center bottom;
+    }
+  }
+
+  &[data-placement^="left"] > .tippy-arrow {
+    right: 0;
+
+    &::before {
+      border-width: 8px 0 8px 8px;
+      border-left-color: initial;
+      right: -7px;
+      transform-origin: center left;
+    }
+  }
+
+  &[data-placement^="right"] > .tippy-arrow {
+    left: 0;
+
+    &::before {
+      left: -7px;
+      border-width: 8px 8px 8px 0;
+      border-right-color: initial;
+      transform-origin: center right;
+    }
+  }
+
+  &[data-inertia][data-state="visible"] {
+    transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
+  }
+}

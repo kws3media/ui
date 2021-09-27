@@ -1,0 +1,25 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import InitVariations from './InitVariations.svelte';
+
+<Meta
+  title="Helpers/Tooltips/2. Examples/2. Variations"
+/>
+
+### Variations
+You can also initialise multiple variations of tooltips within the same app.  
+Each variation either needs a common parent, or a different target selector.
+
+Each variation's initialisation options will determine how the tooltips look and behave.  
+**Examples:**
+
+<Canvas>
+  <Story
+  name="2. Variations"
+  args={{}}
+  >
+  {(args) => ({
+    Component: InitVariations,
+  })}
+  </Story>
+</Canvas>

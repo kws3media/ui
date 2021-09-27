@@ -92,10 +92,18 @@
     if (filters) {
       _filters = [];
       for (let i in filters) {
-        _filters.push({
-          name: i,
-          options: filters[i],
-        });
+        let obj = { name: i, options: [], type: "select" };
+        if (Array.isArray(filters[i])) {
+          obj.options = filters[i];
+        } else {
+          if (filters[i].options) {
+            obj.options = filters[i].options;
+          }
+          if (filters[i].type) {
+            obj.type = filters[i].type;
+          }
+        }
+        _filters.push(obj);
       }
     }
   }

@@ -20,7 +20,7 @@ This property can be bound to, to fetch the current value, Default: `null`
   @param {string} [active_class="is-primary"] - CSS classes to apply when a button is active (pressed), Default: `"is-primary"`
   @param {string} [inactive_class="is-outlined"] - CSS classes to apply when a button is inactive (not pressed), Default: `"is-outlined"`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle Buttons, Default: `""`
-  @param {boolean} [fullwidth=false] - Exapnd all buttons so that they occupy full width of wrapping element, Default: `false`
+  @param {boolean} [fullwidth=false] - Expand all buttons so that they occupy full width of wrapping element, Default: `false`
   @param {string} [class=""] - CSS classes for the Button container, Default: `""`
 
   ### Events
