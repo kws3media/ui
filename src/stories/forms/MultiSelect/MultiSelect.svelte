@@ -19,6 +19,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {selected_icon}
         {no_options_msg}
         {remove_all_tip}
         {remove_btn_tip} />
@@ -48,6 +49,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {selected_icon}
         {no_options_msg}
         {remove_all_tip}
         {remove_btn_tip} />
@@ -75,6 +77,7 @@
     max = null,
     search_key = "name",
     value_key = "id",
+    selected_icon = "check",
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
     remove_btn_tip = "Remove",
