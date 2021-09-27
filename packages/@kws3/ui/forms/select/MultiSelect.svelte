@@ -22,15 +22,15 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
-  @param {string} [remove_btn_tip="Remove"] - Hover text for Remove item button, Default: `"Remove"`
-  @param {string} [remove_all_tip="Remove all"] - Hover text for Remove All button, Default: `"Remove all"`
+  @param {string} [remove_btn_tip="Remove"] - Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip., Default: `"Remove"`
+  @param {string} [remove_all_tip="Remove all"] - Tooltip text for the Clear All button, Default: `"Remove all"`
   @param {string} [class=""] - CSS classes for input container, Default: `""`
 
   ### Events
   - `add` - Triggered when an item is added from dropdown list
-  - `change` - Triggered when value changes
-  - `remove` - Triggered when an item is removed from selected options
-  - `blur` - Triggered when input looses focus
+  - `change` - Triggered when the value changes
+  - `remove` - Triggered when an item is removed from selected Items
+  - `blur` - Triggered when the input loses focus
 
   ### Slots
   - `<slot name="default" {search_key} {option} />` - Slot containing text for each selectable item
@@ -194,11 +194,11 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let no_options_msg = "No matching options";
   /**
-   * Hover text for Remove item button
+   * Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip.
    * */
   export let remove_btn_tip = "Remove";
   /**
-   * Hover text for Remove All button
+   * Tooltip text for the Clear All button
    */
   export let remove_all_tip = "Remove all";
 
@@ -401,18 +401,18 @@ Default value: `<span>{option[search_key] || option}</span>`
       ? value.filter((item) => !matchesValue(item, token))
       : value;
     /**
-     * Triggered when an item is removed from selected options
+     * Triggered when an item is removed from selected Items
      */
     fire("remove", { token });
     /**
-     * Triggered when value changes
+     * Triggered when the value changes
      */
     fire("change", { token, type: `remove` });
   }
 
   function blurEvent() {
     /**
-     * Triggered when input looses focus
+     * Triggered when the input loses focus
      */
     fire("blur");
   }

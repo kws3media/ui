@@ -23,7 +23,7 @@ this property of each object will be returned as the value, Default: `"id"`
 
   ### Events
   - `change` - Triggered when the value changes
-  - `blur` - Triggered when input loses focus
+  - `blur` - Triggered when the input loses focus
 
   ### Slots
   - `<slot name="default" {search_key} {option} />` - Slot containing text for each selectable item
@@ -136,7 +136,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
   function blur({ detail }) {
     /**
-     * Triggered when input loses focus
+     * Triggered when the input loses focus
      */
     fire("blur", detail);
   }
