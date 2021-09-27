@@ -23,6 +23,7 @@ $accordion-content-pre-code-background-color: transparent !default;
     background-color: $accordion-background-color;
     border-radius: $accordion-radius;
     font-size: $size-normal;
+    border-bottom: 1px solid $accordion-background-color;
     strong {
       color: currentColor;
     }

@@ -1,5 +1,5 @@
 <Accordion>
-  <AccordionItem bind:is_active={active_item_1} {color} key="one">
+  <AccordionItem expanded={active_item_1} {color} key="one">
     <div slot="header">Slot Title 1</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -10,9 +10,9 @@
     sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
     porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis
     sodales sem.
-    <button on:click={nextSection}>Open 2nd Item</button>
+    <button on:click={() => activateSectionTwo()}>Open 2nd Item</button>
   </AccordionItem>
-  <AccordionItem {color} key="two" bind:is_active={active_item_2}>
+  <AccordionItem {color} key="two" bind:expanded={active_item_2}>
     <div slot="header">Slot Title 2</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -23,8 +23,13 @@
     sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
     porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis
     sodales sem.
+    <button on:click={() => activateSectionThree()}>Open 3rd Item</button>
   </AccordionItem>
-  <AccordionItem header="Property Title" {color} key="three">
+  <AccordionItem
+    header="Property Title"
+    {color}
+    key="three"
+    bind:expanded={active_item_3}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
     >, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit
@@ -43,8 +48,12 @@
   let item = null;
   let active_item_1 = true;
   let active_item_2 = false;
+  let active_item_3 = false;
 
-  function nextSection() {
+  function activateSectionTwo() {
     active_item_2 = true;
+  }
+  function activateSectionThree() {
+    active_item_3 = true;
   }
 </script>

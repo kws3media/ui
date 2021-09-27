@@ -1,12 +1,15 @@
 <article
-  class="accordion {_active ? 'is-active' : ''} is-{color}"
+  class="accordion {active ? 'is-active' : ''} is-{color} {item_class}"
+  {item_style}
   bind:this={item}>
-  <div class="accordion-header toggle" on:click={() => changeSection(item)}>
+  <div
+    class="accordion-header toggle"
+    on:click={() => activateThisSection(item)}>
     <slot name="header" />
     {header}
     <button class="toggle" aria-label="toggle" />
   </div>
-  {#if _active}
+  {#if active}
     <div class="accordion-body" transition:slide>
       <div class="accordion-content">
         <slot />
@@ -21,23 +24,42 @@
   const fire = createEventDispatcher();
 
   export let header = "",
-    is_active = false,
+    expanded = false,
+    item_class = "",
+    item_style = "",
+    /**
+     * Color of the Button
+     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     */
     color = "primary",
-    item = null;
-  let _active;
+    item = null,
+    not_allowed_header_toggle = false;
+  let active = false;
 
   var { changeSection, open } = getContext("accordion");
-  $: _active = $open === item;
-  $: is_active, nextSection();
 
-  onMount(() => {
-    if (is_active) {
+  $: active = $open === item;
+  $: {
+    if (expanded) {
+      active = true;
       changeSection(item);
     }
-  });
+  }
+
+  /*onMount(() => {
+    if (expanded) {
+      active = true;
+    }
+  });*/
 
   function nextSection(item) {
-    _active = true;
     changeSection(item);
+    active = true;
+  }
+
+  function activateThisSection(item) {
+    if (not_allowed_header_toggle) return;
+    changeSection(item);
+    console.log(item);
   }
 </script>
