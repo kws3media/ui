@@ -14,8 +14,6 @@
   const open = writable();
 
   function changeSection(item) {
-    console.log($open);
-    console.log(item);
     if ($open === item) open.set();
     else open.set(item);
     fire("changeSection", item);

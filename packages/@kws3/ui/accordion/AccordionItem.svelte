@@ -1,6 +1,8 @@
+{active}
+{expanded}
 <article
   class="accordion {active ? 'is-active' : ''} is-{color} {item_class}"
-  {item_style}
+  style={item_style}
   bind:this={item}>
   <div
     class="accordion-header toggle"
@@ -32,17 +34,16 @@
      * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "primary",
-    item = null,
-    not_allowed_header_toggle = false;
-  let active = false;
+    allow_header_click = true;
+  let item = null,
+    active = false;
 
   var { changeSection, open } = getContext("accordion");
 
   $: active = $open === item;
   $: {
     if (expanded) {
-      active = true;
-      changeSection(item);
+      nextSection(item);
     }
   }
 
@@ -58,8 +59,8 @@
   }
 
   function activateThisSection(item) {
-    if (not_allowed_header_toggle) return;
+    if (!allow_header_click) return;
     changeSection(item);
-    console.log(item);
+    expanded = false;
   }
 </script>

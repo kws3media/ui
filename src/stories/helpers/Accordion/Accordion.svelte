@@ -1,5 +1,11 @@
 <Accordion>
-  <AccordionItem expanded={active_item_1} {color} key="one">
+  <AccordionItem
+    expanded={active_item_1}
+    {color}
+    key="one"
+    {allow_header_click}
+    {item_class}
+    {item_style}>
     <div slot="header">Slot Title 1</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -12,7 +18,13 @@
     sodales sem.
     <button on:click={() => activateSectionTwo()}>Open 2nd Item</button>
   </AccordionItem>
-  <AccordionItem {color} key="two" bind:expanded={active_item_2}>
+  <AccordionItem
+    {color}
+    key="two"
+    bind:expanded={active_item_2}
+    {allow_header_click}
+    {item_class}
+    {item_style}>
     <div slot="header">Slot Title 2</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -26,10 +38,13 @@
     <button on:click={() => activateSectionThree()}>Open 3rd Item</button>
   </AccordionItem>
   <AccordionItem
-    header="Property Title"
+    {header}
     {color}
     key="three"
-    bind:expanded={active_item_3}>
+    bind:expanded={active_item_3}
+    {allow_header_click}
+    {item_class}
+    {item_style}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
     >, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit
@@ -44,7 +59,11 @@
 
 <script>
   import { Accordion, AccordionItem } from "@kws3/ui";
-  export let color = "danger";
+  export let color = "danger",
+    allow_header_click = true,
+    header = "Property Title",
+    item_class = "",
+    item_style = "";
   let item = null;
   let active_item_1 = true;
   let active_item_2 = false;
