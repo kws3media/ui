@@ -28,11 +28,16 @@
 
   var { changeSection, open } = getContext("accordion");
   $: _active = $open === item;
+  $: is_active, nextSection();
 
   onMount(() => {
     if (is_active) {
-      _active = true;
       changeSection(item);
     }
   });
+
+  function nextSection(item) {
+    _active = true;
+    changeSection(item);
+  }
 </script>

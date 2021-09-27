@@ -1,5 +1,5 @@
 <Accordion>
-  <AccordionItem is_active={true} {color} key="one">
+  <AccordionItem bind:is_active={active_item_1} {color} key="one">
     <div slot="header">Slot Title 1</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -10,9 +10,9 @@
     sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id
     porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis
     sodales sem.
-    <button on:click={changeSection}>Open 2nd Item</button>
+    <button on:click={nextSection}>Open 2nd Item</button>
   </AccordionItem>
-  <AccordionItem {color} key="two">
+  <AccordionItem {color} key="two" bind:is_active={active_item_2}>
     <div slot="header">Slot Title 2</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -41,8 +41,10 @@
   import { Accordion, AccordionItem } from "@kws3/ui";
   export let color = "danger";
   let item = null;
+  let active_item_1 = true;
+  let active_item_2 = false;
 
-  function changeSection() {
-    //console.log(item);
+  function nextSection() {
+    active_item_2 = true;
   }
 </script>
