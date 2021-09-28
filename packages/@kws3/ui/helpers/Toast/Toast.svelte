@@ -15,31 +15,47 @@
 -->
 
 <div class="kws-toast-item is-{usedPosition}">
-  <div class="notification is-{color} {light ? 'is-light' : ''}">
-    {#if component}
-      <svelte:component this={component} {...$$props} on:destroy={destroy} />
-    {:else}
-      {#if is_dismissable}
-        <button class="delete" on:click={destroy} />
-      {/if}
-      {#if title}
-        <h4 class="title is-5 is-marginless">{title}</h4>
-      {/if}
-
-      <p>{@html message}</p>
-
+  {#if variant == "snackbar"}
+    <div class="snackbar is-{color} {light ? 'is-light' : ''}">
+      <div class="text">{message}</div>
+      <div class="action">
+        <button class="button is-{color}">Undo</button>
+        <button class="button is-{color}">Dismiss</button>
+      </div>
       {#if !is_persistent}
         <div class="toast-progress" style="animation-duration:{duration}ms" />
       {/if}
-    {/if}
-  </div>
+    </div>
+  {:else if variant == "toast"}
+    <div class="toast is-{color} {light ? 'is-light' : ''}">
+      {message}
+    </div>
+  {:else}
+    <div class="notification is-{color} {light ? 'is-light' : ''}">
+      {#if component}
+        <svelte:component this={component} {...$$props} on:destroy={destroy} />
+      {:else}
+        {#if is_dismissable}
+          <button class="delete" on:click={destroy} />
+        {/if}
+        {#if title}
+          <h4 class="title is-5 is-marginless">{title}</h4>
+        {/if}
+
+        <p>{@html message}</p>
+
+        {#if !is_persistent}
+          <div class="toast-progress" style="animation-duration:{duration}ms" />
+        {/if}
+      {/if}
+    </div>
+  {/if}
 </div>
 
 <script>
   //TODO: use svelte animation so we can transition out
   //TODO: document multiline
-  //TODO: snackbar variant
-  //TODO: toast variant
+  //TODO: different output containers based on variant
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
   import { defaultToastPlacement } from "../../settings";
 
@@ -53,6 +69,11 @@
      * Message in the notification
      */
     message = "",
+    /**
+     * variation of floating UI
+     * @type {'notification'|'snackbar'|'toast'}
+     */
+    variant = "notification",
     /**
      * Duration of the notification
      */
@@ -115,9 +136,9 @@
       .then(() => afterClose($$props));
 
   onMount(() => {
-    timeout = setTimeout(() => {
-      if (!is_persistent) destroy();
-    }, duration);
+    // timeout = setTimeout(() => {
+    //   if (!is_persistent) destroy();
+    // }, duration);
   });
 
   onDestroy(() => clearTimeout(timeout));
