@@ -1,5 +1,5 @@
 <article
-  class="accordion {is_active ? 'is-is_active' : ''} is-{color} {klass}"
+  class="accordion {is_active ? 'is-active' : ''} is-{color} {klass}"
   {style}
   bind:this={item}>
   <div class="accordion-header toggle" on:click={() => activateSection(item)}>
