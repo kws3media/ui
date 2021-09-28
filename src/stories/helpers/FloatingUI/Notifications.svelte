@@ -18,11 +18,11 @@
   /**
    * Title/Heading of the notification
    */
-  export let title = "Heading Notification",
+  export let title = "",
     /**
      * Message in the notification
      */
-    message = "I am a Notification...",
+    message = "",
     /**
      * Duration of the notification
      */
@@ -37,7 +37,7 @@
      *
      * @type {''|'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
      */
-    position = "",
+    position = "top-right",
     /**
      * Light color variant for notification box and contents
      */
@@ -58,7 +58,7 @@
   /**
    * This allows you to pass in a whole component, to be shown in the notification area
    */
-  export let component = null;
+  export const component = null;
 
   let count = 1;
 
@@ -74,7 +74,7 @@
       light,
       message: count + " - " + message,
     });
-    console.log(JSON.stringify(props, null, 2));
+
     count++;
   };
 

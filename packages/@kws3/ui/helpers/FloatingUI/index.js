@@ -54,7 +54,6 @@ export const FloatiesStore = (() => {
       if (!newItem.id) {
         newItem.id = `__kws_${newItem.variant}_${new Date().getTime()}`;
       }
-      console.log(newItem);
 
       items[getPosition(newItem)][newItem.variant].push(newItem);
 
@@ -86,7 +85,7 @@ export const FloatiesStore = (() => {
 
 const buildInitialiser = (defaultOpts, mandatoryOpts) => {
   return (opts) => {
-    let _opts = Object.assign(defaultOpts, opts, mandatoryOpts);
+    let _opts = Object.assign({}, defaultOpts, opts, mandatoryOpts);
     return FloatiesStore.create(_opts);
   };
 };

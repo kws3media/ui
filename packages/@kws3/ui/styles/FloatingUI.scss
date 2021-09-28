@@ -61,6 +61,7 @@ $kws-theme-colors: $colors !default;
     font-size: 1rem;
     width: 100%;
     pointer-events: auto;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
     p {
       margin: 0;
     }
