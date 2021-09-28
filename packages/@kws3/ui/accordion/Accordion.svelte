@@ -30,7 +30,11 @@
     },
     toggle: (item) => {
       items.update((i) => {
-        Object.keys(i).forEach((context) => (i[context] = false));
+        if (i[item.context] === true) {
+          i[item.context] = false;
+        } else {
+          Object.keys(i).forEach((context) => (i[context] = false));
+        }
         i[item.context] = item.expanded;
         return i;
       });
