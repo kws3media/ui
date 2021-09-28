@@ -32,13 +32,14 @@
 
   let unsubscribe;
 
-  onMount(() => {
+  $: {
     add({ context, expanded });
-
     unsubscribe = items.subscribe((item) => {
       expanded = item[context];
     });
+  }
 
+  onMount(() => {
     return () => {
       remove && remove({ context });
       unsubscribe && unsubscribe();

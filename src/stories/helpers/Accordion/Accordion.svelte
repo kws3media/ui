@@ -17,7 +17,7 @@
     </button>
   </AccordionItem>
 
-  <AccordionItem expanded={is_active_item_2} class={klass} {color} {style}>
+  <AccordionItem bind:expanded={is_active_item_2} class={klass} {color} {style}>
     <div slot="title">Slot Title 2</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -37,7 +37,7 @@
   </AccordionItem>
 
   <AccordionItem
-    expanded={is_active_item_3}
+    bind:expanded={is_active_item_3}
     class={klass}
     {title}
     {color}
