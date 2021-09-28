@@ -29,14 +29,22 @@
   </div>
 {:else if filter.options.length > 10}
   <SearchableSelect
-    data={filter.options}
+    options={filter.options}
     placeholder={`Any ${name}`}
     bind:value={filterVals[filter.name]}
-    searchKey="name"
-    searchValue="id"
-    classes={`control ${hilightClass}`}
-    style={filterWidthStyle}
-    {cy} />
+    search_key="name"
+    value_key="id"
+    class={`control ${hilightClass}`}
+    style={filterWidthStyle} />
+{:else if filter.type == "multiselect"}
+  <MultiSelect
+    options={filter.options}
+    placeholder={`Any ${name}`}
+    bind:value={filterVals[filter.name]}
+    search_key="name"
+    value_key="id"
+    class={`control ${hilightClass}`}
+    style={filterWidthStyle} />
 {:else}
   <div
     class="select {hilightClass}"
@@ -56,7 +64,7 @@
 {/if}
 
 <script>
-  import { SearchableSelect, Datepicker } from "@kws3/ui";
+  import { SearchableSelect, MultiSelect, Datepicker } from "@kws3/ui";
   import { capitaliseFirstLetter } from "@kws3/ui/utils";
 
   /**
