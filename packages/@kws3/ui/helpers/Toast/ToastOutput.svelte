@@ -1,5 +1,5 @@
 {#each Object.keys($notifications) as position}
-  <div class="kws-toast-output is-{position}" id="toast-box-{position}">
+  <div class="kws-toast-output is-{position}">
     {#each $notifications[position] as notification}
       {#if notification}
         <Toast {...notification} on:destroy={destroy} />

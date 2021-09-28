@@ -22,8 +22,8 @@
     position = "bottom-right",
     variant = "notification",
     light = false,
-    is_dismissable = true,
-    is_persistent = false,
+    dismissable = true,
+    persistent = false,
     context = 1;
 
   let count = 1;
@@ -35,8 +35,8 @@
       color,
       position,
       variant,
-      is_dismissable,
-      is_persistent,
+      dismissable,
+      persistent,
       context,
       light,
       message: count + " - " + message,
@@ -49,8 +49,8 @@
       component: CustomToast,
       title,
       message: "I am a customized Toast...",
-      is_persistent: true,
-      is_dismissable: false,
+      persistent: true,
+      dismissable: false,
       position,
       color,
       beforeClose: (props) => {

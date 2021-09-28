@@ -6,8 +6,8 @@
   @param {number} [duration=3000] - Duration for display message, Default: `3000`
   @param {'warning'|'info'|'danger'|'primary'|'success'} [color="primary"] - Message background color, Default: `"primary"`
   @param {'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'} [position=""] - Position of the message, Default: `""`
-  @param {boolean} [is_dismissable=true] - Dismissable message, Default: `true`
-  @param {boolean} [is_persistent=false] - Persistent message, Default: `false`
+  @param {boolean} [dismissable=true] - Dismissable message, Default: `true`
+  @param {boolean} [persistent=false] - Persistent message, Default: `false`
   @param {string} [context=""] - Context value, Default: `""`
   @param {object} [component=null] - Custom component, Default: `null`
   @param {function} [beforeClose(props)] - Callback function call before close event
@@ -22,7 +22,7 @@
         <button class="button is-{color}">Undo</button>
         <button class="button is-{color}">Dismiss</button>
       </div>
-      {#if !is_persistent}
+      {#if !persistent}
         <div class="toast-progress" style="animation-duration:{duration}ms" />
       {/if}
     </div>
@@ -35,7 +35,7 @@
       {#if component}
         <svelte:component this={component} {...$$props} on:destroy={destroy} />
       {:else}
-        {#if is_dismissable}
+        {#if dismissable}
           <button class="delete" on:click={destroy} />
         {/if}
         {#if title}
@@ -44,7 +44,7 @@
 
         <p>{@html message}</p>
 
-        {#if !is_persistent}
+        {#if !persistent}
           <div class="toast-progress" style="animation-duration:{duration}ms" />
         {/if}
       {/if}
@@ -56,6 +56,7 @@
   //TODO: use svelte animation so we can transition out
   //TODO: document multiline
   //TODO: different output containers based on variant
+  //TODO: button event support for snackbars
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
   import { defaultToastPlacement } from "../../settings";
 
@@ -95,11 +96,11 @@
     /**
      * Determines if notification is dismissable
      */
-    is_dismissable = true,
+    dismissable = true,
     /**
      * A persistent notification without duration, stays till dismissed
      */
-    is_persistent = false,
+    persistent = false,
     /**
      * Context value
      */
@@ -136,9 +137,9 @@
       .then(() => afterClose($$props));
 
   onMount(() => {
-    // timeout = setTimeout(() => {
-    //   if (!is_persistent) destroy();
-    // }, duration);
+    timeout = setTimeout(() => {
+      if (!persistent) destroy();
+    }, duration);
   });
 
   onDestroy(() => clearTimeout(timeout));

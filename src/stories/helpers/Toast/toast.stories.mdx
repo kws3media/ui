@@ -12,8 +12,8 @@ export let args={
   light:false,
   position: "bottom-right",
   variant:'notification',
-  is_dismissable: true,
-  is_persistent: false,
+  dismissable: true,
+  persistent: false,
   context: 1
 };
 
@@ -66,8 +66,8 @@ export let args={
     component: CustomComponent, //optional
     title: "Test Title",
     message: "I am a customized Toast...",
-    is_persistent: true,
-    is_dismissable: false,
+    persistent: true,
+    dismissable: false,
     position: "top",
     color: "info",
     beforeClose: (props) => {

@@ -24,7 +24,7 @@ $kws-theme-colors: $colors !default;
   display: inline-flex;
   transform: translate3d(0, 0, 0);
   animation: toast-slide-up 0.4s ease;
-  pointer-events: fill;
+  pointer-events: none;
   margin-bottom: 1rem;
   max-width: $kws3-toast-width;
   min-width: $kws3-toast-width;
@@ -60,12 +60,14 @@ $kws-theme-colors: $colors !default;
     position: relative;
     font-size: 1rem;
     width: 100%;
+    pointer-events: auto;
     p {
       margin: 0;
     }
   }
   .snackbar {
     display: inline-flex;
+    position: relative;
     align-items: center;
     justify-content: space-around;
     border-radius: $radius;
