@@ -1,6 +1,6 @@
 <Accordion>
   <AccordionItem class={klass} {color} {style}>
-    <div slot="header">Slot Title 1</div>
+    <div slot="title">Slot Title 1</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec
     nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
@@ -22,7 +22,7 @@
     class={klass}
     {color}
     {style}>
-    <div slot="header">Slot Title 2</div>
+    <div slot="title">Slot Title 2</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
     >, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit
@@ -42,7 +42,7 @@
 
   <AccordionItem
     bind:is_active={is_active_item_3}
-    {header}
+    {title}
     {color}
     key="three"
     class={klass}
@@ -63,7 +63,7 @@
   import { Accordion, AccordionItem } from "@kws3/ui";
 
   export let color = "danger",
-    header = "Property Title",
+    title = "Property Title",
     style = "";
 
   let klass = "";

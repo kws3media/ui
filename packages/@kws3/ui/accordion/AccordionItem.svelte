@@ -2,7 +2,7 @@
   class="accordion {is_active ? 'is-active' : ''} is-{color} {klass}"
   {style}>
   <div class="accordion-header toggle" on:click={toggle}>
-    <slot name="header">{header}</slot>
+    <slot name="title">{title}</slot>
     <button class="toggle" aria-label="toggle" />
   </div>
   {#if is_active}
@@ -20,7 +20,7 @@
 
   const fire = createEventDispatcher();
 
-  export let header = "",
+  export let title = "",
     style = "",
     color = "primary",
     is_active = false;
