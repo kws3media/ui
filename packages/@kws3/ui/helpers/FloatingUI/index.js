@@ -1,4 +1,3 @@
-import Toast from "./Toast.svelte";
 import { writable, get } from "svelte/store";
 import {
   defaultToastPlacement,
@@ -24,7 +23,7 @@ const getPosition = (props) => {
   return "top";
 };
 
-export const notifications = (() => {
+export const FloatiesStore = (() => {
   const { update, subscribe } = writable({
     top: {
       notification: [],
@@ -38,7 +37,7 @@ export const notifications = (() => {
     },
   });
 
-  const push = (newItem) => {
+  const create = (newItem) => {
     update((items) => {
       //verify we have a correct variant
       if (!newItem.variant) {
@@ -55,6 +54,7 @@ export const notifications = (() => {
       if (!newItem.id) {
         newItem.id = `__kws_${newItem.variant}_${new Date().getTime()}`;
       }
+      console.log(newItem);
 
       items[getPosition(newItem)][newItem.variant].push(newItem);
 
@@ -63,11 +63,11 @@ export const notifications = (() => {
 
     return {
       props: newItem,
-      destroy: () => pop(newItem),
+      destroy: () => remove(newItem),
     };
   };
 
-  const pop = (props) => {
+  const remove = (props) => {
     update((items) => {
       let _position = getPosition(props);
       let _variant = props.variant;
@@ -81,13 +81,61 @@ export const notifications = (() => {
     });
   };
 
-  return { pop, push, subscribe };
+  return { create, remove, subscribe };
 })();
 
-export const pushToast = (props) => notifications.push(props);
-export const closeToast = (props) => notifications.pop(props);
+const buildInitialiser = (defaultOpts, mandatoryOpts) => {
+  return (opts) => {
+    let _opts = Object.assign(defaultOpts, opts, mandatoryOpts);
+    return FloatiesStore.create(_opts);
+  };
+};
 
-Toast.push = pushToast;
-Toast.close = closeToast;
+export const Notifications = {
+  create: buildInitialiser(
+    {
+      //default Options
+      position: DEFAULT_POSITIONS["notification"],
+      dismissable: true,
+      persistent: false,
+    },
+    {
+      //mandatory options
+      variant: "notification",
+    }
+  ),
+  remove: FloatiesStore.remove,
+};
 
-export default Toast;
+export const Toasts = {
+  create: buildInitialiser(
+    {
+      //default Options
+      position: DEFAULT_POSITIONS["toast"],
+    },
+    {
+      //mandatory options
+      variant: "toast",
+      dismissable: true,
+      persistent: false,
+      title: "",
+    }
+  ),
+  remove: FloatiesStore.remove,
+};
+
+export const Snackbars = {
+  create: buildInitialiser(
+    {
+      //default Options
+      position: DEFAULT_POSITIONS["snackbar"],
+      dismissable: true,
+      persistent: false,
+    },
+    {
+      //mandatory options
+      variant: "snackbar",
+    }
+  ),
+  remove: FloatiesStore.remove,
+};

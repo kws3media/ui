@@ -12,8 +12,13 @@ export { default as Notification } from "./helpers/Notification.svelte";
 export { default as Loader } from "./helpers/Loader.svelte";
 export { default as ActionSheet } from "./helpers/ActionSheet.svelte";
 export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
-export { default as ToastOutput } from "./helpers/Toast/ToastOutput.svelte";
-export { pushToast, closeToast, default as Toast } from "./helpers/Toast";
+export { default as FloatingUIOutput } from "./helpers/FloatingUI/FloatingUIOutput.svelte";
+export {
+  Notifications,
+  Toasts,
+  Snackbars,
+  FloatiesStore,
+} from "./helpers/FloatingUI";
 
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
 export { default as DeleteButton } from "./buttons/DeleteButton.svelte";

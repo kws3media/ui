@@ -1,7 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import { Toast } from "@kws3/ui";
-import ToastDecorator from "./Toast.svelte";
+import Notifications from "./Notifications.svelte";
 import { action } from '@storybook/addon-actions';
 
 export let args={
@@ -18,8 +17,8 @@ export let args={
 };
 
 <Meta
-  title="Helpers/Toast"
-  component={Toast}
+  title="Helpers/Floating UI/Notifications"
+  component={Notifications}
   args={args}
   argTypes={{
     color: {
@@ -32,40 +31,40 @@ export let args={
 />
 
 <Description markdown={dedent`
-# Toast
-## Toast components for showing alerts.
+# Notifications
+## Notifications components for showing floating alerts.
 `}/>
 
 <Canvas>
   <Story
-  name="Toast"
+  name="Notifications"
   args={args}
   >
   {(args) => ({
-    Component: ToastDecorator,
+    Component: Notifications,
     props: args,
   })}
   </Story>
 </Canvas>
 
-<ArgsTable story="Toast" />
+<ArgsTable story="Notifications" />
 
 
 ### Usage
 <Source
   language='javascript'
   code={ dedent`
-  import {  Toast, ToastOutput } from '@kws3/ui';
+  import {  Notifications, FloatingUIOutput } from '@kws3/ui';
   import CustomComponent from "YourCustomComponent.svelte";
   //
   // Put this inside your body tag
-  <ToastOutput />
+  <FloatingUIOutput />
   //
   // Push notification like this
-  Toast.push({
+  Notifications.create({
     component: CustomComponent, //optional
     title: "Test Title",
-    message: "I am a customized Toast...",
+    message: "I am a customized Floating notification...",
     persistent: true,
     dismissable: false,
     position: "top",
@@ -83,7 +82,7 @@ export let args={
 ##### Import the CSS:
 <Source
   language='javascript'
-  code={ dedent`@import 'path/to/node_modules/@kws3/ui/styles/Toast.scss';`}
+  code={ dedent`@import 'path/to/node_modules/@kws3/ui/styles/FloatingUI.scss';`}
 />
 
 ##### SCSS customization variables with default values:

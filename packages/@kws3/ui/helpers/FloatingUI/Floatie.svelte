@@ -84,11 +84,6 @@
      */
     light = false,
     /**
-     * Position of the notification. `""` defaults to `top-right`
-     * @type {''|'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
-     */
-    position = "",
-    /**
      * Determines if notification is dismissable
      */
     dismissable = true,
