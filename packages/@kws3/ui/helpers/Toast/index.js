@@ -48,6 +48,10 @@ export const notifications = (() => {
         newItem.variant = "notification";
       }
 
+      if (!newItem.position || newItem.position == "") {
+        newItem.position = DEFAULT_POSITIONS[newItem.variant];
+      }
+
       if (!newItem.id) {
         newItem.id = `__kws_${newItem.variant}_${new Date().getTime()}`;
       }
