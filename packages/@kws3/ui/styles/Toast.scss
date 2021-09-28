@@ -52,7 +52,7 @@ $kws-theme-colors: $colors !default;
     width: 0%;
     animation-name: toast-progress-running;
     animation-fill-mode: forwards;
-    animation-timing-function: ease;
+    animation-timing-function: linear;
     border-radius: 0 $radius $radius $radius;
   }
   .notification {

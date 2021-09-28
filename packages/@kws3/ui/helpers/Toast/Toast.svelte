@@ -14,58 +14,46 @@
   @param {function} [afterClose(props)] - Callback function call after close event
 -->
 
-<div
-  class="kws-toast-item is-{position}"
-  {id}
-  transition:fly={{
-    y: transitionDistance,
-    duration: transitionDuration,
-    easing: sineOut,
-  }}>
-  {#if variant == "snackbar"}
-    <div class="snackbar is-{color} {light ? 'is-light' : ''}">
-      <div class="text">{message}</div>
-      <div class="action">
-        <button class="button is-{color}">Undo</button>
-        <button class="button is-{color}">Dismiss</button>
-      </div>
+{#if variant == "snackbar"}
+  <div class="snackbar is-{color} {light ? 'is-light' : ''}">
+    <div class="text">{message}</div>
+    <div class="action">
+      <button class="button is-{color}">Undo</button>
+      <button class="button is-{color}">Dismiss</button>
+    </div>
+    {#if !persistent}
+      <div class="toast-progress" style="animation-duration:{duration}ms" />
+    {/if}
+  </div>
+{:else if variant == "toast"}
+  <div class="toast is-{color} {light ? 'is-light' : ''}">
+    {message}
+  </div>
+{:else}
+  <div class="notification is-{color} {light ? 'is-light' : ''}">
+    {#if component}
+      <svelte:component this={component} {...$$props} on:destroy={destroy} />
+    {:else}
+      {#if dismissable}
+        <button class="delete" on:click={destroy} />
+      {/if}
+      {#if title}
+        <h4 class="title is-5 is-marginless">{title}</h4>
+      {/if}
+
+      <p>{@html message}</p>
+
       {#if !persistent}
         <div class="toast-progress" style="animation-duration:{duration}ms" />
       {/if}
-    </div>
-  {:else if variant == "toast"}
-    <div class="toast is-{color} {light ? 'is-light' : ''}">
-      {message}
-    </div>
-  {:else}
-    <div class="notification is-{color} {light ? 'is-light' : ''}">
-      {#if component}
-        <svelte:component this={component} {...$$props} on:destroy={destroy} />
-      {:else}
-        {#if dismissable}
-          <button class="delete" on:click={destroy} />
-        {/if}
-        {#if title}
-          <h4 class="title is-5 is-marginless">{title}</h4>
-        {/if}
-
-        <p>{@html message}</p>
-
-        {#if !persistent}
-          <div class="toast-progress" style="animation-duration:{duration}ms" />
-        {/if}
-      {/if}
-    </div>
-  {/if}
-</div>
+    {/if}
+  </div>
+{/if}
 
 <script>
   //TODO: document multiline
   //TODO: button event support for snackbars
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
-  import { fly } from "svelte/transition";
-  import { sineOut } from "svelte/easing";
-  import { hasTransitions } from "../../settings";
 
   const fire = createEventDispatcher();
 
@@ -109,10 +97,6 @@
      */
     persistent = false,
     /**
-     * Id value
-     */
-    id = "",
-    /**
      * Context value
      */
     context = "",
@@ -128,9 +112,6 @@
      * Callback function call after close event
      */
     afterClose = (props) => {};
-
-  $: transitionDuration = $hasTransitions ? 150 : 0;
-  $: transitionDistance = position.indexOf("top") === 0 ? -50 : 50;
 
   let timeout;
 

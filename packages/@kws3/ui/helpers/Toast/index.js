@@ -60,6 +60,11 @@ export const notifications = (() => {
 
       return items;
     });
+
+    return {
+      props: newItem,
+      destroy: () => pop(newItem),
+    };
   };
 
   const pop = (props) => {
@@ -67,24 +72,10 @@ export const notifications = (() => {
       let _position = getPosition(props);
       let _variant = props.variant;
       let _items = items[_position][_variant];
-      let _index;
 
-      _items.forEach((e, i) => {
-        if (e && e.id == props.id) {
-          _index = i;
-          return;
-        }
+      items[_position][_variant] = _items.slice().filter((el) => {
+        return el && el.id && el.id != props.id;
       });
-
-      if (typeof _index != "undefined") {
-        delete _items[_index];
-      }
-
-      //reset the array index to 0
-      let _filterdItems = _items.filter((i) => i);
-      if (!_filterdItems.length) _items = [];
-
-      items[_position][_variant] = _items;
 
       return items;
     });
