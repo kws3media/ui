@@ -36,7 +36,6 @@
     add({ context, expanded });
 
     unsubscribe = items.subscribe((item) => {
-      console.log(item);
       expanded = item[context];
     });
 
