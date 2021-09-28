@@ -23,13 +23,14 @@
   export let title = "",
     style = "",
     color = "primary",
-    is_active = false;
+    is_active = false,
+    context = "";
 
   let klass = "";
   export { klass as class };
 
   function toggle() {
     is_active = !is_active;
-    fire("change");
+    fire("change", { context });
   }
 </script>
