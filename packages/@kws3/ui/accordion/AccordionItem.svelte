@@ -1,12 +1,12 @@
 <article
-  class="accordion {active ? 'is-active' : ''} is-{color} {klass}"
+  class="accordion {is_active ? 'is-is_active' : ''} is-{color} {klass}"
   {style}
   bind:this={item}>
   <div class="accordion-header toggle" on:click={() => activateSection(item)}>
     <slot name="header">{header}</slot>
     <button class="toggle" aria-label="toggle" />
   </div>
-  {#if active}
+  {#if is_active}
     <div class="accordion-body" transition:slide>
       <div class="accordion-content">
         <slot />
@@ -34,11 +34,11 @@
   export { klass as class };
 
   let item = null,
-    active = false;
+    is_active = false;
 
   var { changeSection, open } = getContext("accordion");
 
-  $: active = $open === item;
+  $: is_active = $open === item;
   $: {
     if (expanded) {
       toggleSection(item);
@@ -53,7 +53,7 @@
 
   function toggleSection(item) {
     changeSection(item);
-    active = true;
+    is_active = true;
     expanded = false;
   }
 
