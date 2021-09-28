@@ -1,11 +1,13 @@
 {#each Object.keys($notifications) as position}
-  <div class="kws-toast-output is-{position}">
-    {#each $notifications[position] as notification}
-      {#if notification}
-        <Toast {...notification} on:destroy={destroy} />
-      {/if}
-    {/each}
-  </div>
+  {#each Object.keys($notifications[position]) as variant}
+    <div class="kws-toast-output is-{position} is-{variant}-holder">
+      {#each $notifications[position][variant] as notification}
+        {#if notification}
+          <Toast {...notification} on:destroy={destroy} />
+        {/if}
+      {/each}
+    </div>
+  {/each}
 {/each}
 
 <script>

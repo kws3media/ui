@@ -1,28 +1,59 @@
 import Toast from "./Toast.svelte";
 import { writable, get } from "svelte/store";
-import { defaultToastPlacement } from "../../settings";
+import {
+  defaultToastPlacement,
+  defaultSnackbarPlacement,
+  defaultNotificationPlacement,
+} from "../../settings";
+
+const DEFAULT_POSITIONS = {
+  notification: get(defaultNotificationPlacement),
+  snackbar: get(defaultSnackbarPlacement),
+  toast: get(defaultToastPlacement),
+};
 
 const getPosition = (props) => {
-  let _defaultToastPlacement = get(defaultToastPlacement);
   if (props.position) {
     return props.position.indexOf("top") === 0 ? "top" : "bottom";
   }
-  if (_defaultToastPlacement) {
-    return _defaultToastPlacement.indexOf("top") === 0 ? "top" : "bottom";
+  if (DEFAULT_POSITIONS[props.variant]) {
+    return DEFAULT_POSITIONS[props.variant].indexOf("top") === 0
+      ? "top"
+      : "bottom";
   }
   return "top";
 };
 
 export const notifications = (() => {
   const { update, subscribe } = writable({
-    top: [],
-    bottom: [],
+    top: {
+      notification: [],
+      snackbar: [],
+      toast: [],
+    },
+    bottom: {
+      notification: [],
+      snackbar: [],
+      toast: [],
+    },
   });
 
   const push = (newItem) => {
     update((items) => {
-      if (!newItem.id) newItem.id = "__kws_alert_" + new Date().getTime();
-      items[getPosition(newItem)].push(newItem);
+      //verify we have a correct variant
+      if (!newItem.variant) {
+        newItem.variant = "notification";
+      }
+      if (!["notification", "snackbar", "toast"].includes(newItem.variant)) {
+        newItem.variant = "notification";
+      }
+
+      if (!newItem.id) {
+        newItem.id = `__kws_${newItem.variant}_${new Date().getTime()}`;
+      }
+
+      items[getPosition(newItem)][newItem.variant].push(newItem);
+
       return items;
     });
   };
@@ -30,7 +61,8 @@ export const notifications = (() => {
   const pop = (props) => {
     update((items) => {
       let _position = getPosition(props);
-      let _items = items[_position];
+      let _variant = props.variant;
+      let _items = items[_position][_variant];
       let _index;
 
       _items.forEach((e, i) => {
@@ -48,7 +80,7 @@ export const notifications = (() => {
       let _filterdItems = _items.filter((i) => i);
       if (!_filterdItems.length) _items = [];
 
-      items[_position] = _items;
+      items[_position][_variant] = _items;
 
       return items;
     });
