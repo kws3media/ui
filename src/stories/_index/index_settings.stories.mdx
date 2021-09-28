@@ -15,7 +15,9 @@ import {applySettings} from '@kws3/ui';
 
 applySettings({
   defaultIconFamily: 'fa',
-  defaultToastPlacement: 'top-right',
+  defaultToastPlacement: 'bottom',
+  defaultSnackbarPlacement:'bottom-right',
+  defaultNotificationPlacement:'top-right'
   hasTransitions: true
 });
 
@@ -41,7 +43,19 @@ applySettings({
     <tr>
       <th><code>defaultToastPlacement</code></th>
       <td>Default placement of toast notifications used by the Toast component.<br/>
-      When <code>Toast.push()</code> is used</td>
+      When <code>Toasts.create()</code> is used</td>
+      <td><code>"bottom"</code></td>
+    </tr>
+    <tr>
+      <th><code>defaultSnackbarPlacement</code></th>
+      <td>Default placement of snackbar notifications used by the Snackbars component.<br/>
+      When <code>Snackbar.create()</code> is used</td>
+      <td><code>"bottom-right"</code></td>
+    </tr>
+    <tr>
+      <th><code>defaultNotificationPlacement</code></th>
+      <td>Default placement of floating notifications used by the Notifications component.<br/>
+      When <code>Notifications.create()</code> is used</td>
       <td><code>"top-right"</code></td>
     </tr>
     <tr>
