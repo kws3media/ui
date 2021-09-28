@@ -14,7 +14,14 @@
   @param {function} [afterClose(props)] - Callback function call after close event
 -->
 
-<div class="kws-toast-item is-{usedPosition}">
+<div
+  class="kws-toast-item is-{position}"
+  {id}
+  transition:fly={{
+    y: transitionDistance,
+    duration: transitionDuration,
+    easing: sineOut,
+  }}>
   {#if variant == "snackbar"}
     <div class="snackbar is-{color} {light ? 'is-light' : ''}">
       <div class="text">{message}</div>
@@ -53,12 +60,12 @@
 </div>
 
 <script>
-  //TODO: use svelte animation so we can transition out
   //TODO: document multiline
-  //TODO: different output containers based on variant
   //TODO: button event support for snackbars
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
-  import { defaultToastPlacement } from "../../settings";
+  import { fly } from "svelte/transition";
+  import { sineOut } from "svelte/easing";
+  import { hasTransitions } from "../../settings";
 
   const fire = createEventDispatcher();
 
@@ -102,6 +109,10 @@
      */
     persistent = false,
     /**
+     * Id value
+     */
+    id = "",
+    /**
      * Context value
      */
     context = "",
@@ -118,18 +129,10 @@
      */
     afterClose = (props) => {};
 
-  let timeout,
-    usedPosition,
-    globalPosition = $defaultToastPlacement;
+  $: transitionDuration = $hasTransitions ? 150 : 0;
+  $: transitionDistance = position.indexOf("top") === 0 ? -50 : 50;
 
-  $: {
-    usedPosition =
-      position && position != ""
-        ? position
-        : globalPosition
-        ? globalPosition
-        : "bottom-right";
-  }
+  let timeout;
 
   const destroy = () =>
     Promise.resolve(beforeClose($$props))
