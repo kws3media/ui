@@ -1,11 +1,11 @@
 <article
-  class="accordion {is_active ? 'is-active' : ''} is-{color} {klass}"
+  class="accordion {expanded ? 'is-active' : ''} is-{color} {klass}"
   {style}>
-  <div class="accordion-header toggle" on:click={toggle}>
+  <div class="accordion-header toggle" on:click={onToggle}>
     <slot name="title">{title}</slot>
     <button class="toggle" aria-label="toggle" />
   </div>
-  {#if is_active}
+  {#if expanded}
     <div class="accordion-body" transition:slide>
       <div class="accordion-content">
         <slot />
@@ -15,22 +15,39 @@
 </article>
 
 <script>
-  import { createEventDispatcher } from "svelte";
   import { slide } from "svelte/transition";
+  import { onMount, createEventDispatcher, getContext } from "svelte";
 
   const fire = createEventDispatcher();
+  const { items, add, remove, toggle } = getContext("kws-accordion");
 
   export let title = "",
     style = "",
     color = "primary",
-    is_active = false,
-    context = "";
+    expanded = false,
+    context = `__kws_accordion_item_${Math.random().toString(36)}`;
 
   let klass = "";
   export { klass as class };
 
-  function toggle() {
-    is_active = !is_active;
+  let unsubscribe;
+
+  onMount(() => {
+    add({ context, expanded });
+
+    unsubscribe = items.subscribe((item) => {
+      console.log(item);
+      expanded = item[context];
+    });
+
+    return () => {
+      remove && remove({ context });
+      unsubscribe && unsubscribe();
+    };
+  });
+
+  function onToggle() {
+    toggle({ context, expanded: !expanded });
     fire("change", { context });
   }
 </script>

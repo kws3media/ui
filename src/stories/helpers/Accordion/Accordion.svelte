@@ -1,5 +1,5 @@
 <Accordion>
-  <AccordionItem class={klass} {color} {style}>
+  <AccordionItem expanded={true} class={klass} {color} {style}>
     <div slot="title">Slot Title 1</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec
@@ -17,11 +17,7 @@
     </button>
   </AccordionItem>
 
-  <AccordionItem
-    bind:is_active={is_active_item_2}
-    class={klass}
-    {color}
-    {style}>
+  <AccordionItem expanded={is_active_item_2} class={klass} {color} {style}>
     <div slot="title">Slot Title 2</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
@@ -41,11 +37,10 @@
   </AccordionItem>
 
   <AccordionItem
-    bind:is_active={is_active_item_3}
+    expanded={is_active_item_3}
+    class={klass}
     {title}
     {color}
-    key="three"
-    class={klass}
     {style}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
