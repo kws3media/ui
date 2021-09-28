@@ -3,8 +3,7 @@
   {style}
   bind:this={item}>
   <div class="accordion-header toggle" on:click={() => activateSection(item)}>
-    <slot name="header" />
-    {header}
+    <slot name="header">{header}</slot>
     <button class="toggle" aria-label="toggle" />
   </div>
   {#if active}
