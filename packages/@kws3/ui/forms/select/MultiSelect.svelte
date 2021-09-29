@@ -88,7 +88,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       class="remove-all delete is-small"
       data-tooltip={remove_all_tip}
       on:click|stopPropagation={removeAll}
-      style={value && value.length === 0 ? `display: none;` : ""} />
+      style={shouldShowClearAll ? "" : "display: none;"} />
   {/if}
 
   <ul
@@ -248,6 +248,14 @@ Default value: `<span>{option[search_key] || option}</span>`
   //ensure search_key and value_key are no empty strings
   $: used_search_key = search_key && search_key != "" ? search_key : "name";
   $: used_value_key = value_key && value_key != "" ? value_key : "id";
+
+  $: shouldShowClearAll = single
+    ? value
+      ? true
+      : false
+    : value.length > 0
+    ? true
+    : false;
 
   $: options, normaliseOptions();
   $: normalisedOptions,
