@@ -55,56 +55,12 @@ $accordion-content-pre-code-background-color: transparent !default;
       cursor: pointer;
     }
     .accordion-header {
-      align-items: center;
       background-color: $accordion-header-background-color;
       border-radius: $accordion-header-radius $accordion-header-radius 0 0;
       color: $accordion-header-color;
-      display: flex;
-      justify-content: space-between;
       line-height: 1.25;
       padding: $accordion-header-padding;
       position: relative;
-      .toggle {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        background-color: rgba(10, 10, 10, 0.2);
-        border: none;
-        border-radius: 290486px;
-        display: inline-block;
-        flex-grow: 0;
-        flex-shrink: 0;
-        margin-left: 0.75em;
-        height: 20px;
-        width: 20px;
-        max-height: 20px;
-        max-width: 20px;
-        min-height: 20px;
-        min-width: 20px;
-        outline: none;
-        position: relative;
-        vertical-align: top;
-        &::before {
-          color: $white;
-          display: flex;
-          left: 0;
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          content: "\002B";
-          line-height: 0;
-          justify-content: center;
-          align-items: center;
-        }
-        &::after {
-          display: none;
-        }
-      }
       & + .accordion-body {
         overflow-y: hidden;
         max-height: 0;

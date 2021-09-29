@@ -6,8 +6,14 @@
     on:click={() => {
       if (title_click) onToggle();
     }}>
-    <slot name="title">{title}</slot>
-    <button class="toggle" aria-label="toggle" />
+    <div class="field is-grouped" style="align-items: center">
+      <div class="control is-expanded">
+        <slot name="title">{title}</slot>
+      </div>
+      <div class="control">
+        <Icon icon="{active ? 'minus' : 'plus'}-circle" size="small" />
+      </div>
+    </div>
   </div>
   {#if active}
     <div class="accordion-body" transition:slide>
@@ -19,6 +25,7 @@
 </article>
 
 <script>
+  import { Icon } from "@kws3/ui";
   import { slide } from "svelte/transition";
   import {
     onMount,
