@@ -52,7 +52,6 @@
       duration,
       color,
       position,
-      dismissable,
       persistent,
       context,
       light,
