@@ -82,6 +82,9 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     appearance: none;
     margin: 0;
   }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 </style>
 
 <script>
