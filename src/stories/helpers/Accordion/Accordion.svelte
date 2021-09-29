@@ -1,6 +1,21 @@
+<div class="columns">
+  <div class="column">
+    {#if !title_click && !expanded}
+      <button class="button is-primary" on:click={() => (expanded = true)}>
+        Open Section 1
+      </button>
+    {/if}
+  </div>
+</div>
+
 <Accordion>
-  <AccordionItem bind:expanded={is_active_item_1} class={klass} {color} {style}>
-    <div slot="title">Slot Title 1</div>
+  <AccordionItem
+    bind:expanded
+    title={"1 - " + title}
+    class={klass}
+    {color}
+    {style}
+    {title_click}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec
     nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
@@ -13,17 +28,17 @@
     <button
       class="button is-primary"
       on:click={() => (is_active_item_2 = true)}>
-      Open Disabled Title
+      Open Section 2
     </button>
   </AccordionItem>
 
   <AccordionItem
     bind:expanded={is_active_item_2}
+    title={"2 - " + title}
     class={klass}
     {color}
     {style}
-    title_click={false}>
-    <div slot="title">Disabled Title Click</div>
+    {title_click}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
     >, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit
@@ -37,16 +52,17 @@
     <button
       class="button is-warning"
       on:click={() => (is_active_item_3 = true)}>
-      Open Property Title
+      Open Section 3
     </button>
   </AccordionItem>
 
   <AccordionItem
     bind:expanded={is_active_item_3}
+    title={"3 - " + title}
     class={klass}
-    {title}
     {color}
-    {style}>
+    {style}
+    {title_click}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
     >, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit
@@ -62,14 +78,15 @@
 <script>
   import { Accordion, AccordionItem } from "@kws3/ui";
 
-  export let color = "danger",
-    title = "Property Title",
-    style = "";
+  export let title = "Title",
+    color = "primary",
+    style = "",
+    expanded = true,
+    title_click = true;
 
   let klass = "";
   export { klass as class };
 
-  let is_active_item_1 = true;
   let is_active_item_2 = false;
   let is_active_item_3 = false;
 </script>

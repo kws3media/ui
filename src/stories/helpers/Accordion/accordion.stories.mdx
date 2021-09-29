@@ -5,12 +5,12 @@ import AccordionDecorator from "./Accordion.svelte";
 import { action } from '@storybook/addon-actions';
 
 export let args={
+  title : "Title",
   color : "primary",
-  allow_header_click : true,
-  header : "Property Title",
   class : "",
   style : "",
-  expanded : true
+  expanded : true,
+  title_click: true
 };
 
 <Meta
