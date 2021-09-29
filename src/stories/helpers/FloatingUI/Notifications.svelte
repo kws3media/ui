@@ -19,6 +19,8 @@
   export let title = "",
     /**
      * Message in the notification
+     *
+     * Renders as HTML, so can use `<br>` tags for line breaks
      */
     message = "",
     /**
