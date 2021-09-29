@@ -50,30 +50,27 @@ export let args={
 
 
 ### Usage
-<Source
-  language='javascript'
-  code={ dedent`
-  import {  Notifications } from '@kws3/ui';
-  import CustomComponent from "YourCustomComponent.svelte";
-  //
-  //
-  // Push notification like this
-  Notifications.create({
-    component: CustomComponent, //optional
-    title: "Test Title",
-    message: "I am a customized Floating notification...",
-    persistent: true,
-    dismissable: false,
-    position: "top",
-    color: "info",
-    beforeClose: (props) => {
-      //do something here before close
-    },
-    afterClose: (props) => {
-      //do something here after close
-    },
-  `}
-/>
+```js
+import {  Notifications } from '@kws3/ui';
+import CustomComponent from "YourCustomComponent.svelte";
+
+// Push notification like this
+Notifications.create({
+  component: CustomComponent, //optional
+  title: "Test Title",
+  message: "I am a customized Floating notification...",
+  persistent: true,
+  dismissable: false,
+  position: "top",
+  color: "info",
+  beforeClose: (props) => {
+    //do something here before close
+  },
+  afterClose: (props) => {
+    //do something here after close
+  },
+})
+```
 
 
 ##### Import the CSS:
@@ -86,6 +83,7 @@ export let args={
 <Source
   language='css'
   code={ dedent`
-    $kws3-toast-width: 30rem;
+    $kws-theme-colors: $colors;
+    $kws3-floating-item-width: 30rem;
   `}
 />

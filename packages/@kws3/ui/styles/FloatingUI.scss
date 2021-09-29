@@ -1,5 +1,5 @@
-$kws3-toast-width: 25rem;
 $kws-theme-colors: $colors !default;
+$kws3-floating-item-width: 25rem !default;
 
 .kws-toast-output {
   position: fixed;
@@ -25,8 +25,8 @@ $kws-theme-colors: $colors !default;
   transform: translate3d(0, 0, 0);
   pointer-events: none;
   margin-bottom: 1rem;
-  max-width: $kws3-toast-width;
-  min-width: $kws3-toast-width;
+  max-width: $kws3-floating-item-width;
+  min-width: $kws3-floating-item-width;
   width: 100%;
   &.is-top,
   &.is-bottom {

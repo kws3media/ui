@@ -1,9 +1,11 @@
-{#if title}
-  <h4 class="title is-5 is-marginless">{title}</h4>
-{/if}
-
 <div class="field is-grouped is-marginless" style="align-items:center;">
+  <div class="control">
+    <Icon icon="car" size="medium" />
+  </div>
   <div class="control is-expanded">
+    {#if title}
+      <h4 class="title is-5 is-marginless">{title}</h4>
+    {/if}
     <p>{@html message}</p>
   </div>
   <div class="control">
@@ -15,6 +17,7 @@
 </div>
 
 <script>
+  import { Icon } from "@kws3/ui";
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
