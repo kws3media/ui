@@ -48,15 +48,15 @@ export let args={
 
 <ArgsTable story="Notifications" />
 
+<div class="columns">
+<div class="column is-6">
 
 ### Usage
 ```js
 import { Notifications } from '@kws3/ui';
-import CustomComponent from "YourCustomComponent.svelte";
 
 // Push notification like this
 let {props, destroy} = Notifications.create({
-  component: CustomComponent, //optional
   title: "Test Title",
   message: "I am a customized Floating notification...",
   persistent: true,
@@ -79,6 +79,40 @@ destroy();
 Notifications.remove(props);
 //where `props` is the from the output of Notifications.create() 
 ```
+
+</div>
+<div class="column is-6">
+
+### Usage with custom component
+```js
+import { Notifications } from '@kws3/ui';
+import CustomComponent from "YourCustomComponent.svelte";
+
+let {props, destroy} = Notifications.create({
+  conmponent: CustomComponent,
+  ...other_opts
+});
+```
+
+Your custom component has to dispatch an event called `destroy`
+with `$$props` as an argument, so that it can close itself.
+Example:
+```html
+<!--YourCustomComponent.svelte-->
+<div>This is custom notification</div>
+<button on:click={closeMyself}>close</button>
+
+<script>
+import { createEventDispatcher } from "svelte";
+const fire = createEventDispatcher();
+
+const closeMyself = () => fire("destroy", $$props);
+</script>
+```
+
+</div>
+</div>
+
 
 
 ##### Import the CSS:
