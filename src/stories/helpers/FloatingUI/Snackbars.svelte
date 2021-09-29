@@ -45,7 +45,9 @@
     context = 1;
 
   /**
-   * List of buttons to show in snackbar
+   * List of buttons to show in snackbar, can be an array of objects or array of strings
+   *
+   * If objects are used, the shape is:  `{text: <string>, color: <string>, click: <function>}`
    */
   export const buttons = ["Ok"];
 
