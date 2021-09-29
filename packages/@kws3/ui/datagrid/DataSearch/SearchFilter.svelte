@@ -11,14 +11,15 @@
 -->
 
 {#if filter.type == "multiselect"}
-  <MultiSelect
-    options={filter.options}
-    placeholder={`Any ${name}`}
-    bind:value={filterVals[filter.name]}
-    search_key="name"
-    value_key="id"
-    class={`control ${hilightClass}`}
-    style={filterWidthStyle} />
+  <div class="control" style={filterWidthStyle}>
+    <MultiSelect
+      options={filter.options}
+      placeholder={`Any ${name}`}
+      bind:value={filterVals[filter.name]}
+      search_key="name"
+      value_key="id"
+      class={hilightClass} />
+  </div>
 {:else if filter.type == "date"}
   <div class="control" style={filterWidthStyle}>
     <Datepicker
@@ -35,14 +36,15 @@
       placeholder="{capitaliseFirstLetter(name)} Date Range" />
   </div>
 {:else if filter.options.length > 10}
-  <SearchableSelect
-    options={filter.options}
-    placeholder={`Any ${name}`}
-    bind:value={filterVals[filter.name]}
-    search_key="name"
-    value_key="id"
-    class={`control ${hilightClass}`}
-    style={filterWidthStyle} />
+  <div class="control" style={filterWidthStyle}>
+    <SearchableSelect
+      options={filter.options}
+      placeholder={`Any ${name}`}
+      bind:value={filterVals[filter.name]}
+      search_key="name"
+      value_key="id"
+      class={hilightClass} />
+  </div>
 {:else}
   <div
     class="select {hilightClass}"
