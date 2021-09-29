@@ -333,9 +333,6 @@ Default value: `<span>{option[search_key] || option}</span>`
         (v) => v[used_value_key] == value
       );
     } else {
-      //convert string into array, if any string comes
-      if (value && !Array.isArray(value)) {
-      }
       selectedOptions = normalisedOptions
         .filter((v) => value && value.some((vl) => v[used_value_key] == vl))
         .sort(
