@@ -1,9 +1,9 @@
 {#each Object.keys($FloatiesStore) as position}
   {#each Object.keys($FloatiesStore[position]) as variant}
-    <div class="kws-toast-output is-{position} is-{variant}-holder">
+    <div class="kws-floatie-output is-{position} is-{variant}-holder">
       {#each $FloatiesStore[position][variant] as item (item.id)}
         <div
-          class="kws-toast-item is-{item.position}"
+          class="kws-floatie-item has-{variant} is-{item.position}"
           id={item.id}
           animate:flip={{ easing: sineOut }}
           transition:fly={{

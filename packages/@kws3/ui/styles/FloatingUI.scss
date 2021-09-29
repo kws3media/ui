@@ -1,7 +1,7 @@
 $kws-theme-colors: $colors !default;
 $kws3-floating-item-width: 25rem !default;
 
-.kws-toast-output {
+.kws-floatie-output {
   position: fixed;
   top: 0;
   left: 0;
@@ -20,14 +20,17 @@ $kws3-floating-item-width: 25rem !default;
   }
 }
 
-.kws-toast-item {
+.kws-floatie-item {
   display: inline-flex;
   transform: translate3d(0, 0, 0);
   pointer-events: none;
   margin-bottom: 1rem;
   max-width: $kws3-floating-item-width;
   min-width: $kws3-floating-item-width;
-  width: 100%;
+  &.has-toast {
+    max-width: 100%;
+    width: fit-content;
+  }
   &.is-top,
   &.is-bottom {
     align-self: center;
@@ -43,14 +46,14 @@ $kws3-floating-item-width: 25rem !default;
     align-self: flex-end;
     justify-content: flex-end;
   }
-  .toast-progress {
+  .floatie-progress {
     background: currentColor;
     height: 0.25em;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0%;
-    animation-name: toast-progress-running;
+    animation-name: floatie-progress-running;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
     border-radius: 0 $radius $radius $radius;
@@ -131,6 +134,8 @@ $kws3-floating-item-width: 25rem !default;
     background: $scheme-invert;
     color: $scheme-main;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @each $name, $pair in $kws-theme-colors {
       $color: nth($pair, 1);
       $color-invert: nth($pair, 2);
@@ -148,7 +153,7 @@ $kws3-floating-item-width: 25rem !default;
   }
 }
 
-@keyframes toast-progress-running {
+@keyframes floatie-progress-running {
   0% {
     width: 0%;
   }

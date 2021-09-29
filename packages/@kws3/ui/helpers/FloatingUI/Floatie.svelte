@@ -26,7 +26,7 @@
       {/each}
     </div>
     {#if !persistent}
-      <div class="toast-progress" style="animation-duration:{duration}ms" />
+      <div class="floatie-progress" style="animation-duration:{duration}ms" />
     {/if}
   </div>
 {:else if variant == "toast"}
@@ -48,7 +48,7 @@
       <p>{@html message}</p>
 
       {#if !persistent}
-        <div class="toast-progress" style="animation-duration:{duration}ms" />
+        <div class="floatie-progress" style="animation-duration:{duration}ms" />
       {/if}
     {/if}
   </div>
