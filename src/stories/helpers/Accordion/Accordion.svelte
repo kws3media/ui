@@ -1,5 +1,5 @@
 <Accordion>
-  <AccordionItem expanded={true} class={klass} {color} {style}>
+  <AccordionItem bind:expanded={is_active_item_1} class={klass} {color} {style}>
     <div slot="title">Slot Title 1</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec
@@ -13,12 +13,17 @@
     <button
       class="button is-primary"
       on:click={() => (is_active_item_2 = true)}>
-      Open Slot Title 2
+      Open Disabled Title
     </button>
   </AccordionItem>
 
-  <AccordionItem bind:expanded={is_active_item_2} class={klass} {color} {style}>
-    <div slot="title">Slot Title 2</div>
+  <AccordionItem
+    bind:expanded={is_active_item_2}
+    class={klass}
+    {color}
+    {style}
+    title_click={false}>
+    <div slot="title">Disabled Title Click</div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<strong
       >Pellentesque risus mi</strong
     >, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit
@@ -64,6 +69,7 @@
   let klass = "";
   export { klass as class };
 
+  let is_active_item_1 = true;
   let is_active_item_2 = false;
   let is_active_item_3 = false;
 </script>

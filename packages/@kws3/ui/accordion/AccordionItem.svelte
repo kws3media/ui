@@ -1,7 +1,11 @@
 <article
   class="accordion {active ? 'is-active' : ''} is-{color} {klass}"
   {style}>
-  <div class="accordion-header toggle" on:click={onToggle}>
+  <div
+    class="accordion-header {title_click ? ' toggle' : ''}"
+    on:click={() => {
+      if (title_click) onToggle();
+    }}>
     <slot name="title">{title}</slot>
     <button class="toggle" aria-label="toggle" />
   </div>
@@ -30,6 +34,7 @@
     style = "",
     color = "primary",
     expanded = false,
+    title_click = true,
     context = `__kws_accordion_item_${Math.random().toString(36)}`;
 
   let klass = "";
