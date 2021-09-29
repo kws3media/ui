@@ -37,14 +37,12 @@
       </div>
     </div>
   </div>
-  {#if active}
-    <div class="accordion-body" transition:slide>
-      <div class="accordion-content">
-        <!--Content slot-->
-        <slot />
-      </div>
+  <div class="accordion-body" transition:slide>
+    <div class="accordion-content">
+      <!--Content slot-->
+      <slot />
     </div>
-  {/if}
+  </div>
 </article>
 
 <script>
