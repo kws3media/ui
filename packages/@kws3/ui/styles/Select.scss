@@ -28,7 +28,6 @@ $kws-select-selected-background: $primary-light !default;
   &.is-disabled {
     background-color: $kws-select-disabled-background-color;
     border-color: $kws-select-disabled-border-color;
-    box-shadow: none !important;
     color: $kws-select-disabled-color;
     cursor: not-allowed;
   }
