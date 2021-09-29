@@ -52,8 +52,8 @@ export let args={
 ```js
 import { Snackbars } from '@kws3/ui';
 
-// Push notification like this
-Snackbars.create({
+// Push snackbar like this
+let {props, destroy} = Snackbars.create({
   title: "Test Title",
   message: "I am a snackbar...",
   persistent: true,
@@ -65,7 +65,15 @@ Snackbars.create({
   afterClose: (props) => {
     //do something here after close
   },
-})
+});
+
+// snackbar will close after duration expires
+// or you can close it manually like this:
+destroy();
+
+//you can also close it like this:
+Snackbars.remove(props);
+//where `props` is the from the output of Snackbars.create() 
 ```
 
 

@@ -55,7 +55,7 @@ import { Notifications } from '@kws3/ui';
 import CustomComponent from "YourCustomComponent.svelte";
 
 // Push notification like this
-Notifications.create({
+let {props, destroy} = Notifications.create({
   component: CustomComponent, //optional
   title: "Test Title",
   message: "I am a customized Floating notification...",
@@ -69,7 +69,15 @@ Notifications.create({
   afterClose: (props) => {
     //do something here after close
   },
-})
+});
+
+// notification will close after duration expires
+// or you can close it manually like this:
+destroy();
+
+//you can also close it like this:
+Notifications.remove(props);
+//where `props` is the from the output of Notifications.create() 
 ```
 
 

@@ -50,8 +50,8 @@ export let args={
 ```js
 import { Toasts } from '@kws3/ui';
 
-// Push notification like this
-Toasts.create({
+// Push toast like this
+let {props, destroy} = Toasts.create({
   message: "I am a toast, butter me!...",
   position: "top",
   color: "info",
@@ -61,7 +61,15 @@ Toasts.create({
   afterClose: (props) => {
     //do something here after close
   },
-})
+});
+
+// toast will close after duration expires
+// or you can close it manually like this:
+destroy();
+
+//you can also close it like this:
+Toasts.remove(props);
+//where `props` is the from the output of Toasts.create() 
 ```
 
 

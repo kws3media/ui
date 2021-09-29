@@ -53,6 +53,7 @@
 <script>
   //TODO: document multiline
   //TODO: button event support for snackbars
+  //TODO: Icon support
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
