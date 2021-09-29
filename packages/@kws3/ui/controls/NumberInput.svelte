@@ -49,7 +49,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
       max
       step
       {disabled}
-      readonly={typeable}
+      readonly={!typeable}
       bind:value
       on:blur={isBlurred()}
       on:focus={isFocused()} />
@@ -81,6 +81,9 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   input[type="number"]::outer-spin-button {
     appearance: none;
     margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 </style>
 
