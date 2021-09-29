@@ -28,7 +28,7 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
     icon={copied ? copied_icon : icon}
     size="small"
     color={copied ? copied_icon_color : ""}
-    icon_class={copied ? "is-bouncing-once" : ""} />
+    class={copied ? "is-bouncing-once" : ""} />
 </span>
 
 <style lang="scss">
