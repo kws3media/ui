@@ -16,7 +16,12 @@
 
 <script>
   import { slide } from "svelte/transition";
-  import { onMount, createEventDispatcher, getContext } from "svelte";
+  import {
+    onMount,
+    afterUpdate,
+    createEventDispatcher,
+    getContext,
+  } from "svelte";
 
   const fire = createEventDispatcher();
   const { items, add, remove, toggle } = getContext("kws-accordion");
@@ -47,8 +52,13 @@
     };
   });
 
+  afterUpdate(() => {
+    if (expanded === true) onToggle();
+  });
+
   function onToggle() {
     toggle({ context, active: !active });
     fire("change", { context });
+    expanded = false;
   }
 </script>
