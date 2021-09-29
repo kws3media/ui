@@ -137,13 +137,11 @@ $kws3-floating-item-width: 25rem !default;
       $color-light: findLightColor($color);
       $color-dark: findDarkColor($color);
       &.is-#{$name} {
-        background: transparentize($color, 0.2);
+        background: $color;
         color: $color-invert;
-        text-shadow: 0 -1px 0 transparentize($color-light, 0.5);
         &.is-light {
           background: $color-light;
           color: $color-dark;
-          text-shadow: 0 1px 0 transparentize($color-dark, 0.5);
         }
       }
     }

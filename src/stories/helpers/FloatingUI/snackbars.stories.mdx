@@ -1,23 +1,22 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import Notifications from "./Notifications.svelte";
+import Snackbars from "./Snackbars.svelte";
 import { action } from '@storybook/addon-actions';
 
 export let args={
   title: "Heading",
-  message: "I am a Notification...",
+  message: "I am a Snackbar...",
   duration: 3000,
   color: "primary",
   light:false,
-  position: "top-right",
-  dismissable: true,
+  position: "bottom-right",
   persistent: false,
   context: 1
 };
 
 <Meta
-  title="Helpers/Floating UI/Notifications"
-  component={Notifications}
+  title="Helpers/Floating UI/Snackbars"
+  component={Snackbars}
   args={args}
   argTypes={{
     color: {
@@ -30,37 +29,34 @@ export let args={
 />
 
 <Description markdown={dedent`
-# Notifications
-## Notifications components for showing floating alerts.
+# Snackbars
+## Snackbars components for showing floating alerts.
 `}/>
 
 <Canvas>
   <Story
-  name="Notifications"
+  name="Snackbars"
   args={args}
   >
   {(args) => ({
-    Component: Notifications,
+    Component: Snackbars,
     props: args,
   })}
   </Story>
 </Canvas>
 
-<ArgsTable story="Notifications" />
+<ArgsTable story="Snackbars" />
 
 
 ### Usage
 ```js
-import { Notifications } from '@kws3/ui';
-import CustomComponent from "YourCustomComponent.svelte";
+import { Snackbars } from '@kws3/ui';
 
 // Push notification like this
-Notifications.create({
-  component: CustomComponent, //optional
+Snackbars.create({
   title: "Test Title",
-  message: "I am a customized Floating notification...",
+  message: "I am a snackbar...",
   persistent: true,
-  dismissable: false,
   position: "top",
   color: "info",
   beforeClose: (props) => {
