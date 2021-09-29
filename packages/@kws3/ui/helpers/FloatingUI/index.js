@@ -149,6 +149,7 @@ export const Snackbars = {
     {
       //mandatory options
       variant: "snackbar",
+      title: "",
     }
   ),
   remove: FloatiesStore.remove,

@@ -3,19 +3,19 @@
     <button class="button is-primary" type="button" on:click={push}
       >Create Snackbar</button>
   </div>
+  <div class="column has-text-centered">
+    <button class="button is-primary" type="button" on:click={pushCB}
+      >Create Snackbar With Custom Buttons</button>
+  </div>
 </div>
 
 <script>
   import { Snackbars as KWSSnack } from "@kws3/ui";
 
   /**
-   * Title/Heading of the snackbar
+   * Message in the snackbar
    */
-  export let title = "",
-    /**
-     * Message in the snackbar
-     */
-    message = "",
+  export let message = "",
     /**
      * Duration of the snackbar
      */
@@ -44,11 +44,15 @@
      */
     context = 1;
 
+  /**
+   * List of buttons to show in snackbar
+   */
+  export const buttons = ["Ok"];
+
   let count = 1;
 
   const push = () => {
     let { props, destroy } = KWSSnack.create({
-      title,
       duration,
       color,
       position,
@@ -56,6 +60,24 @@
       context,
       light,
       message: count + " - " + message,
+    });
+
+    count++;
+  };
+
+  const pushCB = () => {
+    let { props, destroy } = KWSSnack.create({
+      duration,
+      color,
+      position,
+      persistent,
+      context,
+      light,
+      message: count + " - " + message,
+      buttons: [
+        { text: "Undo", color: "danger", click: () => alert("Undo clicked") },
+        "Ok",
+      ],
     });
 
     count++;

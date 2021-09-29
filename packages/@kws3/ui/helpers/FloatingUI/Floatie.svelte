@@ -18,8 +18,12 @@
   <div class="snackbar is-{color} {light ? 'is-light' : ''}">
     <div class="text">{message}</div>
     <div class="action">
-      <button class="button is-{color}">Undo</button>
-      <button class="button is-{color}">Dismiss</button>
+      {#each buttonsToRender as { text, color: text_color, click }}
+        <button
+          class="button is-{color} has-text-{text_color}"
+          on:click={click}
+          on:click={destroy}>{text}</button>
+      {/each}
     </div>
     {#if !persistent}
       <div class="toast-progress" style="animation-duration:{duration}ms" />
@@ -107,9 +111,22 @@
     /**
      * Callback function call after close event
      */
-    afterClose = (props) => {};
+    afterClose = (props) => {},
+    /**
+     * List of buttons to show in snackbar
+     */
+    buttons = ["Ok"];
 
   let timeout;
+
+  $: buttonsToRender = (buttons || []).map((b) => {
+    let defaults = { text: "Ok", color: "", click: () => {} },
+      obj = b;
+    if (typeof b == "string") {
+      obj = { text: b };
+    }
+    return Object.assign({}, defaults, obj);
+  });
 
   const destroy = () =>
     Promise.resolve(beforeClose($$props))
