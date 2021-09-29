@@ -23,18 +23,17 @@ export let args={
     }
   }}
   parameters = {{
-      docs: {
-        source: {
-          code: `
-          <Accordion> <AccordionItem color="${args.color}" expanded={true}  header="${args.header}"></AccordionItem> </Accordion>`,
-        },
+    docs: {
+      source: {
+        code: `
+        <Accordion><AccordionItem class="" style="" color="${args.color}" expanded={true} title="${args.title}" title_click={true}></AccordionItem></Accordion>`,
       },
-    }}
+    },
+  }}
 />
 
 <Description markdown={dedent`
 # Accordion
-## Accordion component for toggling sections.
 `}/>
 
 <Canvas>
@@ -63,4 +62,28 @@ export let args={
   code={
     dedent`@import '@kws3/ui/styles/Accordion.scss';`
   }
+/>
+
+### Example
+<Source
+  language='html'
+  code={ dedent`
+    <Accordion>
+      <AccordionItem expanded={true} title={"Title 1"} class="" {color} {style} {title_click}>
+        Section 1
+        <button class="button is-primary" on:click={() => (is_active_item_2 = true)}>Trigger Section 2</button>
+      </AccordionItem>
+      <AccordionItem bind:expanded={is_active_item_2} title={"Title 2"} class="" {color} {style} {title_click}>Section 2</AccordionItem>
+      <AccordionItem title={"Title 3"} class="" {color} {style} {title_click}>Section 3</AccordionItem>
+    </Accordion>
+    <script>
+      import { Accordion, AccordionItem } from "@kws3/ui";
+      export let title = "Title",
+        color = "primary",
+        style = "",
+        expanded = true,
+        title_click = true;      
+      let is_active_item_2 = false;
+    </script>
+  `}
 />
