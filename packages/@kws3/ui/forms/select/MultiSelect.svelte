@@ -88,7 +88,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       class="remove-all delete is-small"
       data-tooltip={remove_all_tip}
       on:click|stopPropagation={removeAll}
-      style={value.length === 0 ? `display: none;` : ""} />
+      style={value && value.length === 0 ? `display: none;` : ""} />
   {/if}
 
   <ul
@@ -241,7 +241,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     ? value
       ? ""
       : placeholder
-    : value.length
+    : value && value.length
     ? ""
     : placeholder;
 
@@ -333,8 +333,12 @@ Default value: `<span>{option[search_key] || option}</span>`
         (v) => v[used_value_key] == value
       );
     } else {
+      //convert string into array, if any string comes
+      if (value && !Array.isArray(value)) {
+        value = value.split(",");
+      }
       selectedOptions = normalisedOptions
-        .filter((v) => value.some((vl) => v[used_value_key] == vl))
+        .filter((v) => value && value.some((vl) => v[used_value_key] == vl))
         .sort(
           (a, b) =>
             value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
@@ -388,7 +392,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         searchText = ""; // reset search string on selection
 
         //update popper position in case values start wrapping to next line
-        POPPER.update();
+        POPPER && POPPER.update();
       }
 
       if ((Array.isArray(value) && value.length === max) || single) {
@@ -435,7 +439,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (show) {
       input && input.focus();
     }
-    POPPER.update();
+    POPPER && POPPER.update();
   }
 
   function setSingleVisibleValue() {
@@ -486,7 +490,7 @@ Default value: `<span>{option[search_key] || option}</span>`
             value = "";
           }
         } else {
-          if (value.length > 0) {
+          if (value && value.length > 0) {
             value = value.slice(0, value.length - 1);
           }
         }
@@ -497,7 +501,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       }
 
       //update popper position in case values stop wrapping from next line
-      POPPER.update();
+      POPPER && POPPER.update();
     } else {
       if (single) {
         searching = true;
@@ -521,5 +525,6 @@ Default value: `<span>{option[search_key] || option}</span>`
   };
 
   const matchesValue = (_value, _option) =>
-    (_value[used_value_key] || _value) === (_option[used_value_key] || _option);
+    (_value && (_value[used_value_key] || _value)) ===
+    (_option && (_option[used_value_key] || _option));
 </script>
