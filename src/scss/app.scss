@@ -41,22 +41,6 @@ pre.prismjs > code {
   }
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type="number"]::-moz-inner-spin-button,
-input[type="number"]::-moz-outer-spin-button {
-  -moz-appearance: none;
-  margin: 0;
-}
-input[type="number"]::inner-spin-button,
-input[type="number"]::outer-spin-button {
-  appearance: none;
-  margin: 0;
-}
-
 @keyframes bounce-proportional {
   0%,
   20%,
