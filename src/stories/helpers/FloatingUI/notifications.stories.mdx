@@ -53,11 +53,9 @@ export let args={
 <Source
   language='javascript'
   code={ dedent`
-  import {  Notifications, FloatingUIOutput } from '@kws3/ui';
+  import {  Notifications } from '@kws3/ui';
   import CustomComponent from "YourCustomComponent.svelte";
   //
-  // Put this inside your body tag
-  <FloatingUIOutput />
   //
   // Push notification like this
   Notifications.create({

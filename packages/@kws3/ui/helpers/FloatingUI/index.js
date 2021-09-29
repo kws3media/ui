@@ -1,3 +1,4 @@
+import FloatingUIOutput from "./FloatingUIOutput.svelte";
 import { writable, get } from "svelte/store";
 import {
   defaultToastPlacement,
@@ -10,6 +11,18 @@ const DEFAULT_POSITIONS = {
   snackbar: get(defaultSnackbarPlacement),
   toast: get(defaultToastPlacement),
 };
+
+let OUTPUT_IS_ON_PAGE = false;
+
+function ensureOutputIsOnPage() {
+  if (OUTPUT_IS_ON_PAGE) {
+    return;
+  }
+
+  OUTPUT_IS_ON_PAGE = new FloatingUIOutput({
+    target: document.body,
+  });
+}
 
 const getPosition = (props) => {
   if (props.position) {
@@ -39,6 +52,8 @@ export const FloatiesStore = (() => {
 
   const create = (newItem) => {
     update((items) => {
+      ensureOutputIsOnPage();
+
       //verify we have a correct variant
       if (!newItem.variant) {
         newItem.variant = "notification";

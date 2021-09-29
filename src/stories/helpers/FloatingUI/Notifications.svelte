@@ -9,10 +9,8 @@
   </div>
 </div>
 
-<FloatingUIOutput />
-
 <script>
-  import { Notifications as KWSNotif, FloatingUIOutput } from "@kws3/ui";
+  import { Notifications as KWSNotif } from "@kws3/ui";
   import CustomNotification from "./CustomNotification.svelte";
 
   /**
