@@ -1,11 +1,11 @@
 <article
-  class="accordion {expanded ? 'is-active' : ''} is-{color} {klass}"
+  class="accordion {active ? 'is-active' : ''} is-{color} {klass}"
   {style}>
   <div class="accordion-header toggle" on:click={onToggle}>
     <slot name="title">{title}</slot>
     <button class="toggle" aria-label="toggle" />
   </div>
-  {#if expanded}
+  {#if active}
     <div class="accordion-body" transition:slide>
       <div class="accordion-content">
         <slot />
@@ -30,12 +30,13 @@
   let klass = "";
   export { klass as class };
 
-  let unsubscribe;
+  let unsubscribe,
+    active = false;
 
   $: {
-    add({ context, expanded });
+    add({ context, active });
     unsubscribe = items.subscribe((item) => {
-      expanded = item[context];
+      active = item[context];
     });
   }
 
@@ -47,7 +48,7 @@
   });
 
   function onToggle() {
-    toggle({ context, expanded: !expanded });
+    toggle({ context, active: !active });
     fire("change", { context });
   }
 </script>

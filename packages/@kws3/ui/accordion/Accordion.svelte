@@ -17,7 +17,7 @@
     items,
     add: (item) => {
       items.update((i) => {
-        i[item.context] = item.expanded;
+        i[item.context] = item.active;
         return i;
       });
     },
@@ -35,7 +35,7 @@
         } else {
           Object.keys(i).forEach((context) => (i[context] = false));
         }
-        i[item.context] = item.expanded;
+        i[item.context] = item.active;
         return i;
       });
     },
