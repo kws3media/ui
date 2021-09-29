@@ -12,12 +12,12 @@ This property can be bound to, to fetch the selected date or date range. Output 
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [placeholder="Select Date.."] - Placeholder text for the input, Default: `"Select Date.."`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
-  @param {any} [min_date=null] - Set earliest selectable date as an object or string
+  @param {string} [min_date=""] - Set earliest selectable date as an object or string
 
-**Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `null`
-  @param {any} [max_date=null] - Set latest selectable date as an object or string
+**Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `""`
+  @param {string} [max_date=""] - Set latest selectable date as an object or string
 
-**Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `null`
+**Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`, Default: `""`
   @param {array} [enable_dates=[]] - Enables a range of dates and disables all others, Default: `[]`
   @param {array} [disable_dates=[]] - Disables a range of dates and enables all others, Default: `[]`
   @param {boolean} [range_mode=false] - Allows selecting a date range, Default: `false`
@@ -94,16 +94,16 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    * Set earliest selectable date as an object or string
    *
    * **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`
-   * @type {any}
+   * @type {string}
    */
-  export let min_date = null;
+  export let min_date = "";
   /**
    * Set latest selectable date as an object or string
    *
    * **Example:** `'2021-06-06'` or `{(new Date('2021-01-01'))}`
-   * @type {any}
+   * @type {string}
    */
-  export let max_date = null;
+  export let max_date = "";
   /**
    * Enables a range of dates and disables all others
    * @type {array}
