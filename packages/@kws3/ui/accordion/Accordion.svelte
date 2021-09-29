@@ -1,4 +1,16 @@
+<!--
+  @component
+
+
+  @param {string} [style=""] - CSS styles for the item, Default: `""`
+  @param {string} [class=""] - CSS classes for the item, Default: `""`
+
+  ### Slots
+  - `<slot name="default"  />` - Content slot
+
+-->
 <section class="accordions {klass}" {style}>
+  <!--Content slot-->
   <slot />
 </section>
 
@@ -6,8 +18,14 @@
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
 
+  /**
+   * CSS styles for the item
+   */
   export let style = "";
 
+  /**
+   * CSS classes for the item
+   */
   let klass = "";
   export { klass as class };
 
