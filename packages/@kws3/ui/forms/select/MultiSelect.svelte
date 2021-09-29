@@ -335,7 +335,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     } else {
       //convert string into array, if any string comes
       if (value && !Array.isArray(value)) {
-        value = value.split(",");
       }
       selectedOptions = normalisedOptions
         .filter((v) => value && value.some((vl) => v[used_value_key] == vl))
