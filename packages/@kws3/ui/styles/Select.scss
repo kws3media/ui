@@ -152,8 +152,9 @@ $kws-select-selected-background: $primary-light !default;
           display: none;
         }
         &.selected {
-          &:before {
-            display: inline-block;
+          .icon-i {
+            font-size: 1em;
+            line-height: 1.5;
           }
         }
       }
