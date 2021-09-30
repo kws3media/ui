@@ -22,14 +22,17 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
+  @param {boolean} [summary_mode=false] - When activated, it will show the number of selected items.
+
+Instead of listing all the selected items inside the input., Default: `false`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
   @param {string} [remove_btn_tip="Remove"] - Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip., Default: `"Remove"`
   @param {string} [remove_all_tip="Remove all"] - Tooltip text for the Clear All button, Default: `"Remove all"`
   @param {string} [class=""] - CSS classes for input container, Default: `""`
 
   ### Events
-  - `add` - Triggered when an item is added from dropdown list
   - `change` - Triggered when the value changes
+  - `add` - Triggered when an item is added from dropdown list
   - `remove` - Triggered when an item is removed from selected Items
   - `blur` - Triggered when the input loses focus
 
@@ -51,22 +54,32 @@ Default value: `<span>{option[search_key] || option}</span>`
   class:single
   {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
-  <ul class="tokens tags">
+  <ul class="tokens tags {summary_mode ? 'has-addons' : ''}">
     {#if !single && selectedOptions && selectedOptions.length > 0}
-      {#each selectedOptions as tag}
-        <li
-          class="tag is-{size} is-{color || 'primary'} is-light"
-          on:click|self|stopPropagation={() => setOptionsVisible(true)}>
-          {tag[used_search_key]}
-          {#if !readonly && !disabled}
-            <button
-              on:click|self|stopPropagation={() => remove(tag)}
-              type="button"
-              class="delete is-small"
-              data-tooltip="{remove_btn_tip} {tag[used_search_key]}" />
-          {/if}
+      {#if summary_mode}
+        <li class="tag summary-count is-{size} is-{color || 'primary'}">
+          {selectedOptions.length}
         </li>
-      {/each}
+        <li
+          class="tag is-{size} summary-text  is-{color || 'primary'} is-light">
+          Item{selectedOptions.length == 1 ? "" : "s"} selected
+        </li>
+      {:else}
+        {#each selectedOptions as tag}
+          <li
+            class="tag is-{size} is-{color || 'primary'} is-light"
+            on:click|self|stopPropagation={() => setOptionsVisible(true)}>
+            {tag[used_search_key]}
+            {#if !readonly && !disabled}
+              <button
+                on:click|self|stopPropagation={() => remove(tag)}
+                type="button"
+                class="delete is-small"
+                data-tooltip="{remove_btn_tip} {tag[used_search_key]}" />
+            {/if}
+          </li>
+        {/each}
+      {/if}
     {/if}
     <input
       class="input is-{size}"
@@ -200,6 +213,12 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Icon used to mark selected items in dropdown list
    */
   export let selected_icon = "check";
+  /**
+   * When activated, it will show the number of selected items.
+   *
+   * Instead of listing all the selected items inside the input.
+   */
+  export let summary_mode = false;
   /**
    * Message to display when no matching options are found
    */
