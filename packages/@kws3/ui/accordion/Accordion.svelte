@@ -2,8 +2,8 @@
   @component
 
 
-  @param {string} [style=""] - CSS styles for the item, Default: `""`
-  @param {string} [class=""] - CSS classes for the item, Default: `""`
+  @param {string} [style=""] - Inline CSS for the component, Default: `""`
+  @param {string} [class=""] - CSS classes for the component, Default: `""`
 
   ### Slots
   - `<slot name="default"  />` - Content slot
@@ -19,12 +19,12 @@
   import { writable } from "svelte/store";
 
   /**
-   * CSS styles for the item
+   * Inline CSS for the component
    */
   export let style = "";
 
   /**
-   * CSS classes for the item
+   * CSS classes for the component
    */
   let klass = "";
   export { klass as class };

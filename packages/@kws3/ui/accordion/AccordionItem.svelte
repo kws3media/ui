@@ -2,16 +2,16 @@
   @component
 
 
-  @param {string} [title=""] - Title for the item, Default: `""`
-  @param {string} [style=""] - CSS styles for the item, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color for the item, Default: `"primary"`
-  @param {boolean} [expanded=false] - If it is true, it will expand one item, Default: `false`
-  @param {boolean} [title_click=true] - If it is true, it allow toggle section by click on its title, Default: `true`
+  @param {string} [title=""] - Title for the component, Default: `""`
+  @param {string} [style=""] - Inline CSS for the component, Default: `""`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the component, Default: `"primary"`
+  @param {boolean} [expanded=false] - Determines whether Accordion has one item expanded, Default: `false`
+  @param {boolean} [title_click=true] - Allows items in Accordion to be expanded or collapsed by clicking the item title, Default: `true`
   @param {any} [context=undefined] - A unique context value, Default: `undefined`
-  @param {string} [class=""] - CSS classes for the item, Default: `""`
+  @param {string} [class=""] - CSS classes for the component, Default: `""`
 
   ### Events
-  - `change` - This will fire an event on change
+  - `change` - Fires an event on any change initiated by the user
 
   ### Slots
   - `<slot name="title"  />` - Title slot
@@ -59,24 +59,24 @@
   const { items, add, remove, toggle } = getContext("kws-accordion");
 
   /**
-   * Title for the item
+   * Title for the component
    */
   export let title = "",
     /**
-     * CSS styles for the item
+     * Inline CSS for the component
      */
     style = "",
     /**
-     * Color for the item
+     * Color of the component
      * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "primary",
     /**
-     * If it is true, it will expand one item
+     * Determines whether Accordion has one item expanded
      */
     expanded = false,
     /**
-     * If it is true, it allow toggle section by click on its title
+     * Allows items in Accordion to be expanded or collapsed by clicking the item title
      */
     title_click = true,
     /**
@@ -85,7 +85,7 @@
     context = `__kws_accordion_item_${Math.random().toString(36)}`;
 
   /**
-   * CSS classes for the item
+   * CSS classes for the component
    */
   let klass = "";
   export { klass as class };
@@ -114,7 +114,7 @@
   function onToggle() {
     toggle({ context, active: !active });
     /**
-     * This will fire an event on change
+     * Fires an event on any change initiated by the user
      */
     fire("change", { context });
     expanded = false;
