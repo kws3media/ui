@@ -340,6 +340,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       selectedOptions = normalisedOptions.filter(
         (v) => v[used_value_key] == value
       );
+      setSingleVisibleValue();
     } else {
       selectedOptions = normalisedOptions
         .filter((v) => value && value.some((vl) => v[used_value_key] == vl))
@@ -385,8 +386,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     ) {
       if (single) {
         value = token[used_value_key];
-        searchText = token[used_search_key];
-        searching = false;
       } else {
         //attach to value array while filtering out invalid values
         value = [...value, token[used_value_key]].filter((v) => {
