@@ -70,7 +70,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    *
    * This property can be bound to, to fetch the current value
    */
-  export let value = "";
+  export let value = null;
   /**
    * Placeholder text for the input
    */

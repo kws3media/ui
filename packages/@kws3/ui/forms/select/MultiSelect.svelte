@@ -333,12 +333,14 @@ Default value: `<span>{option[search_key] || option}</span>`
   function fillSelectedOptions() {
     if (single) {
       selectedOptions = normalisedOptions.filter(
-        (v) => v[used_value_key] == value
+        (v) => `${v[used_value_key]}` == `${value}`
       );
       setSingleVisibleValue();
     } else {
       selectedOptions = normalisedOptions
-        .filter((v) => value && value.some((vl) => v[used_value_key] == vl))
+        .filter(
+          (v) => value && value.some((vl) => `${v[used_value_key]}` == `${vl}`)
+        )
         .sort(
           (a, b) =>
             value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
@@ -361,7 +363,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
 
     //normalize value for single versus multiselect
-    if (!value) value = single ? "" : [];
+    if (value === null) value = single ? null : [];
 
     setSingleVisibleValue();
 
@@ -398,7 +400,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       //update popper position in case values start wrapping to next line
       POPPER && POPPER.update();
 
-      if (Array.isArray(value) && value.length === max) {
+      if (value && value.length && value.length === max) {
         input && input.blur();
         setOptionsVisible(false);
       }
@@ -444,7 +446,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
 
   function setSingleVisibleValue() {
-    if (single && value) {
+    if (single && hasValue) {
       searchText =
         selectedOptions && selectedOptions[0]
           ? selectedOptions[0][used_search_key]
@@ -525,7 +527,12 @@ Default value: `<span>{option[search_key] || option}</span>`
     searchText = "";
   };
 
-  const matchesValue = (_value, _option) =>
-    (_value && (_value[used_value_key] || _value)) ===
-    (_option && (_option[used_value_key] || _option));
+  const matchesValue = (_value, _option) => {
+    if (_value === null) {
+      return false;
+    }
+    return (
+      `${_value[used_value_key] || _value}` === `${_option[used_value_key]}`
+    );
+  };
 </script>
