@@ -18,6 +18,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
       Output data: <code>{JSON.stringify(selected_brand, null, 2)}</code>
@@ -44,6 +45,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
       Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
@@ -69,6 +71,7 @@
     readonly = false,
     search_key = "name",
     value_key = "id",
+    selected_icon = "check",
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
     placeholder = "Choose a Brand...",

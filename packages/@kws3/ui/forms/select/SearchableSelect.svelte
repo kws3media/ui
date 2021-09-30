@@ -2,9 +2,9 @@
   @component
 
 
-  @param {string} [value=""] - Value of the Input
+  @param {object} [value=null] - Value of the Input
 
-This property can be bound to, to fetch the current value, Default: `""`
+This property can be bound to, to fetch the current value, Default: `null`
   @param {string} [placeholder="Please select..."] - Placeholder text for the input, Default: `"Please select..."`
   @param {array} [options=[]] - Array of strings, or objects.
 Used to populate the list of options in the dropdown, Default: `[]`
@@ -17,6 +17,7 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
   @param {string} [remove_all_tip="Clear Selection"] - Tooltip text for the Clear selection button, Default: `"Clear Selection"`
   @param {string} [class=""] - CSS classes for input container, Default: `""`
@@ -44,6 +45,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {style}
   {readonly}
   {disabled}
+  {selected_icon}
   {remove_all_tip}
   {no_options_msg}
   on:change={change}
@@ -113,6 +115,10 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Disables the component
    */
   export let disabled = false;
+  /**
+   * Icon used to mark selected items in dropdown list
+   */
+  export let selected_icon = "check";
   /**
    * Message to display when no matching options are found
    */
