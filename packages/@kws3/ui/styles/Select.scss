@@ -132,16 +132,28 @@ $kws-select-selected-background: $primary-light !default;
       }
     }
 
-    &.is-multi {
+    //&.is-multi {
+    li {
+      position: relative;
+      padding-left: 2em;
+      &:before {
+        display: inline-block;
+      }
+      &.selected {
+        .kws-selected-icon {
+          display: inline-flex;
+        }
+      }
+    }
+    //}
+    &.is-single {
       li {
-        position: relative;
-        padding-left: 2em;
         &:before {
-          display: inline-block;
+          display: none;
         }
         &.selected {
-          .kws-selected-icon {
-            display: inline-flex;
+          &:before {
+            display: inline-block;
           }
         }
       }
