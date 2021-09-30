@@ -13,7 +13,7 @@
 {#if filter.type == "multiselect"}
   <div class="control" style={filterWidthStyle}>
     <MultiSelect
-      options={filter.options}
+      options={sanitizedOptions}
       placeholder={`Any ${name}`}
       bind:value={filterVals[filter.name]}
       search_key="name"
@@ -38,7 +38,7 @@
 {:else if filter.options.length > 10}
   <div class="control" style={filterWidthStyle}>
     <SearchableSelect
-      options={filter.options}
+      options={sanitizedOptions}
       placeholder={`Any ${name}`}
       bind:value={filterVals[filter.name]}
       search_key="name"
@@ -55,9 +55,10 @@
       class="is-radiusless {hilightClass}"
       style="max-width:100%"
       data-cy={cy}>
-      <option value="">Any {name}</option>
-      {#each filter.options as option}
-        <option value={option.id + ""}>{option.name}</option>
+      {#each sanitizedOptions as option}
+        {#if option}
+          <option value={option.id}>{option.name}</option>
+        {/if}
       {/each}
     </select>
   </div>
@@ -88,8 +89,22 @@
      */
     filter_label_map = {};
 
+  let sanitizedOptions = [];
+
   $: name = filter_label_map[filter.name]
     ? filter_label_map[filter.name]
     : filter.name.replace(/_/g, " ");
+  $: filter, name, sanitizeOptions();
   $: cy = name ? name.replace(/\s+/g, "-").toLowerCase() : "";
+
+  function sanitizeOptions() {
+    let options = filter.options || [];
+    if (options.length) {
+      options = [{ id: "", name: `Any ${name}` }, ...options].map((el) => {
+        el.id = el.id + "";
+        return el;
+      });
+    }
+    sanitizedOptions = options;
+  }
 </script>
