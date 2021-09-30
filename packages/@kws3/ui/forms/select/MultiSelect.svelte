@@ -131,7 +131,10 @@ Default value: `<span>{option[search_key] || option}</span>`
     phase: "beforeWrite",
     requires: ["computeStyles"],
     fn: ({ state }) => {
-      state.styles.popper.width = `${state.rects.reference.width}px`;
+      state.styles.popper.width = `${Math.max(
+        200,
+        state.rects.reference.width
+      )}px`;
     },
     effect: ({ state }) => {
       state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`;
@@ -351,15 +354,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
-      modifiers: [
-        sameWidthPopperModifier,
-        {
-          name: "offset",
-          options: {
-            offset: [0, 0],
-          },
-        },
-      ],
+      modifiers: [sameWidthPopperModifier],
     });
 
     //normalize value for single versus multiselect
