@@ -237,25 +237,20 @@ Default value: `<span>{option[search_key] || option}</span>`
     selectedOptions = []; //list of options that are selected
 
   $: single = max === 1;
-  $: _placeholder = single
-    ? value
-      ? ""
-      : placeholder
+  $: hasValue = single
+    ? value !== null
+      ? true
+      : false
     : value && value.length
-    ? ""
-    : placeholder;
+    ? true
+    : false;
+  $: _placeholder = hasValue ? "" : placeholder;
 
   //ensure search_key and value_key are no empty strings
   $: used_search_key = search_key && search_key != "" ? search_key : "name";
   $: used_value_key = value_key && value_key != "" ? value_key : "id";
 
-  $: shouldShowClearAll = single
-    ? value
-      ? true
-      : false
-    : value.length > 0
-    ? true
-    : false;
+  $: shouldShowClearAll = hasValue;
 
   $: options, normaliseOptions();
   $: normalisedOptions,
@@ -376,29 +371,34 @@ Default value: `<span>{option[search_key] || option}</span>`
   });
 
   function add(token) {
+    if (readonly || disabled) {
+      return;
+    }
+
     let isAlreadySelected = isSelected(token);
-    if (
-      !readonly &&
-      !disabled &&
-      !isAlreadySelected &&
-      // (... || single) because in single mode, we always replace current token with new selection
-      (max === null || value.length < max || single)
-    ) {
-      if (single) {
-        value = token[used_value_key];
+
+    if (single) {
+      if (isAlreadySelected) {
+        setSingleVisibleValue();
       } else {
-        //attach to value array while filtering out invalid values
-        value = [...value, token[used_value_key]].filter((v) => {
-          return normalisedOptions.filter((nv) => nv[used_value_key] == v)
-            .length;
-        });
-        searchText = ""; // reset search string on selection
-
-        //update popper position in case values start wrapping to next line
-        POPPER && POPPER.update();
+        value = token[used_value_key];
+        input && input.blur();
+        setOptionsVisible(false);
+        fire("change", { token, type: `add` });
       }
+    }
 
-      if ((Array.isArray(value) && value.length === max) || single) {
+    if (!isAlreadySelected && !single && (max === null || value.length < max)) {
+      //attach to value array while filtering out invalid values
+      value = [...value, token[used_value_key]].filter((v) => {
+        return normalisedOptions.filter((nv) => nv[used_value_key] == v).length;
+      });
+      searchText = ""; // reset search string on selection
+
+      //update popper position in case values start wrapping to next line
+      POPPER && POPPER.update();
+
+      if (Array.isArray(value) && value.length === max) {
         input && input.blur();
         setOptionsVisible(false);
       }
@@ -408,8 +408,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       fire("add", { token });
 
       fire("change", { token, type: `add` });
-    } else if (single && isAlreadySelected) {
-      setSingleVisibleValue();
     }
   }
 
@@ -489,8 +487,8 @@ Default value: `<span>{option[search_key] || option}</span>`
       // only remove selected tags on backspace if there are any and no searchText characters remain
       if (searchText.length === 0) {
         if (single) {
-          if (value && value != "") {
-            value = "";
+          if (value) {
+            value = null;
           }
         } else {
           if (value && value.length > 0) {
@@ -523,7 +521,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   const removeAll = () => {
     fire("remove", { token: value });
     fire("change", { token: value, type: `remove` });
-    value = single ? "" : [];
+    value = single ? null : [];
     searchText = "";
   };
 
