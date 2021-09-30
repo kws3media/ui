@@ -100,7 +100,11 @@
   function sanitizeOptions() {
     let options = filter.options || [];
     if (options.length) {
-      options = [{ id: "", name: `Any ${name}` }, ...options].map((el) => {
+      options =
+        filter.type == "multiselect"
+          ? options
+          : [{ id: "", name: `Any ${name}` }, ...options];
+      options = options.map((el) => {
         el.id = el.id + "";
         return el;
       });
