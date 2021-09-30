@@ -81,20 +81,20 @@ export let args={
       export let done_icon = "check";
       export let done_text = "Deleted";
       export let context = "_context_delete";
-      function eraseDo(event, success = true){
+      function eraseDo(event){
         let { doing, done, error, context } = event.detail;
         doing();
         somePromise().then(() => {
           //set visual state to Done
           //it will autmatically revert back to
           //normal state after 3 seconds
-          component.done();
+          done();
         })
         .catch(() => {
           //set visual state to Error
           //it will autmatically revert back to
           //normal state after 3 seconds
-          component.error();
+          error();
         })
       }
     </script>`
