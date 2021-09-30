@@ -15,7 +15,8 @@
     <MultiSelect
       options={sanitizedOptions}
       placeholder={`Any ${name}`}
-      bind:value={filterVals[filter.name]}
+      bind:value={multiSelectValue}
+      on:change={convertValuesToString}
       search_key="name"
       value_key="id"
       class={hilightClass} />
@@ -65,6 +66,7 @@
 {/if}
 
 <script>
+  import { tick } from "svelte";
   import { SearchableSelect, MultiSelect, Datepicker } from "@kws3/ui";
   import { capitaliseFirstLetter } from "@kws3/ui/utils";
 
@@ -89,13 +91,31 @@
      */
     filter_label_map = {};
 
-  let sanitizedOptions = [];
+  let sanitizedOptions = [],
+    multiSelectValue = [];
 
   $: name = filter_label_map[filter.name]
     ? filter_label_map[filter.name]
     : filter.name.replace(/_/g, " ");
   $: filter, name, sanitizeOptions();
   $: cy = name ? name.replace(/\s+/g, "-").toLowerCase() : "";
+
+  $: filterVals, filter, convertToValuesArray();
+
+  function convertValuesToString() {
+    tick().then(() => {
+      filterVals[filter.name] = multiSelectValue
+        ? multiSelectValue.join("|")
+        : "";
+    });
+  }
+  function convertToValuesArray() {
+    if (filter && filter.type == "multiselect") {
+      multiSelectValue = filterVals[filter.name]
+        ? filterVals[filter.name].split("|")
+        : [];
+    }
+  }
 
   function sanitizeOptions() {
     let options = filter.options || [];
