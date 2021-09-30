@@ -1,0 +1,51 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Pagination } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import PaginationDecorator from "./Pagination.svelte";
+
+export let args={
+  meta : {
+    limit: 0,
+    total: 0,
+    count: 0,
+    offset: 0,
+    status: "",
+  },
+  showTotal : true,
+  showCurrent : true,
+  showPerPage : true,
+  breakThreshold : 10,
+  entityName : "entries",
+  size : "small",
+  frame : false,
+  iconRight : "chevron-right",
+  iconLeft : "chevron-left",
+  perPageOptions : [20, 50, 100, 150, 200, 250]
+};
+
+<Meta
+  title="Datagrid/Pagination"
+  component={Pagination}
+  args={args}
+  argTypes={{}}
+/>
+
+<Description markdown={dedent`
+# Pagination
+## Pagination component in datagrid.
+`}/>
+
+<Canvas>
+  <Story
+  name="Pagination"
+  args={args}
+  >
+  {(args) => ({
+    Component: PaginationDecorator,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Pagination" />
