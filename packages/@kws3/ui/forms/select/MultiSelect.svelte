@@ -241,7 +241,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   $: single = max === 1;
   $: hasValue = single
-    ? value !== null
+    ? value !== null && typeof value != "undefined"
       ? true
       : false
     : value && value.length
@@ -358,7 +358,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
 
     //normalize value for single versus multiselect
-    if (value === null) value = single ? null : [];
+    if (value === null || typeof value == "undefined")
+      value = single ? null : [];
 
     setSingleVisibleValue();
 
@@ -523,7 +524,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   };
 
   const matchesValue = (_value, _option) => {
-    if (_value === null) {
+    if (_value === null || typeof _value == "undefined") {
       return false;
     }
     return (
