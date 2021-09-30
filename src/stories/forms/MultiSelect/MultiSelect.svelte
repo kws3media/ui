@@ -96,6 +96,8 @@
     { id: 7, name: "Huawei" },
     { id: 8, name: "Sony" },
     { id: 9, name: "HTC" },
+    { id: 0, name: "Zero" },
+    { id: "", name: "Empty String" },
     { id: 10, name: "Blackberry" },
     { id: 11, name: "Apple" },
   ];

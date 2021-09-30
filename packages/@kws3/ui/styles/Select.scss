@@ -95,6 +95,8 @@ $kws-select-selected-background: $primary-light !default;
 
     li {
       padding: 0.3em 0.5em;
+      position: relative;
+      padding-left: 2em;
       word-break: break-all;
       &:before,
       .kws-selected-icon {
@@ -104,13 +106,14 @@ $kws-select-selected-background: $primary-light !default;
         top: calc(50% - 0.5em);
         left: 0.5em;
         content: "";
-        display: none;
+        display: inline-block;
       }
       &:before {
         border: 0.05em solid currentColor;
         border-radius: 0.14em;
       }
       .kws-selected-icon {
+        display: none;
         .icon {
           align-items: center;
           width: 1em !important;
@@ -124,6 +127,9 @@ $kws-select-selected-background: $primary-light !default;
       &.selected {
         color: $kws-select-selected-color;
         background: $kws-select-selected-background;
+        .kws-selected-icon {
+          display: inline-flex;
+        }
       }
       &.active {
         // keyboard focused item
@@ -132,16 +138,19 @@ $kws-select-selected-background: $primary-light !default;
       }
     }
 
-    &.is-multi {
+    &.is-single {
       li {
-        position: relative;
-        padding-left: 2em;
-        &:before {
-          display: inline-block;
+        &:before,
+        .kws-selected-icon {
+          display: none;
         }
         &.selected {
           .kws-selected-icon {
             display: inline-flex;
+          }
+          .icon-i {
+            font-size: 1em;
+            line-height: 1.5;
           }
         }
       }

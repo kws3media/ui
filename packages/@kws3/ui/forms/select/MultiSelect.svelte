@@ -93,7 +93,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   <ul
     bind:this={dropdown}
-    class="options {single ? '' : 'is-multi'}"
+    class="options {single ? 'is-single' : 'is-multi'}"
     class:hidden={!showOptions}>
     {#each filteredOptions as option}
       <li
@@ -131,7 +131,10 @@ Default value: `<span>{option[search_key] || option}</span>`
     phase: "beforeWrite",
     requires: ["computeStyles"],
     fn: ({ state }) => {
-      state.styles.popper.width = `${state.rects.reference.width}px`;
+      state.styles.popper.width = `${Math.max(
+        200,
+        state.rects.reference.width
+      )}px`;
     },
     effect: ({ state }) => {
       state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`;
@@ -237,25 +240,20 @@ Default value: `<span>{option[search_key] || option}</span>`
     selectedOptions = []; //list of options that are selected
 
   $: single = max === 1;
-  $: _placeholder = single
-    ? value
-      ? ""
-      : placeholder
+  $: hasValue = single
+    ? value !== null
+      ? true
+      : false
     : value && value.length
-    ? ""
-    : placeholder;
+    ? true
+    : false;
+  $: _placeholder = hasValue ? "" : placeholder;
 
   //ensure search_key and value_key are no empty strings
   $: used_search_key = search_key && search_key != "" ? search_key : "name";
   $: used_value_key = value_key && value_key != "" ? value_key : "id";
 
-  $: shouldShowClearAll = single
-    ? value
-      ? true
-      : false
-    : value.length > 0
-    ? true
-    : false;
+  $: shouldShowClearAll = hasValue;
 
   $: options, normaliseOptions();
   $: normalisedOptions,
@@ -338,11 +336,14 @@ Default value: `<span>{option[search_key] || option}</span>`
   function fillSelectedOptions() {
     if (single) {
       selectedOptions = normalisedOptions.filter(
-        (v) => v[used_value_key] == value
+        (v) => `${v[used_value_key]}` == `${value}`
       );
+      setSingleVisibleValue();
     } else {
       selectedOptions = normalisedOptions
-        .filter((v) => value && value.some((vl) => v[used_value_key] == vl))
+        .filter(
+          (v) => value && value.some((vl) => `${v[used_value_key]}` == `${vl}`)
+        )
         .sort(
           (a, b) =>
             value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
@@ -353,19 +354,11 @@ Default value: `<span>{option[search_key] || option}</span>`
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
-      modifiers: [
-        sameWidthPopperModifier,
-        {
-          name: "offset",
-          options: {
-            offset: [0, 0],
-          },
-        },
-      ],
+      modifiers: [sameWidthPopperModifier],
     });
 
     //normalize value for single versus multiselect
-    if (!value) value = single ? "" : [];
+    if (value === null) value = single ? null : [];
 
     setSingleVisibleValue();
 
@@ -375,31 +368,34 @@ Default value: `<span>{option[search_key] || option}</span>`
   });
 
   function add(token) {
+    if (readonly || disabled) {
+      return;
+    }
+
     let isAlreadySelected = isSelected(token);
-    if (
-      !readonly &&
-      !disabled &&
-      !isAlreadySelected &&
-      // (... || single) because in single mode, we always replace current token with new selection
-      (max === null || value.length < max || single)
-    ) {
-      if (single) {
-        value = token[used_value_key];
-        searchText = token[used_search_key];
-        searching = false;
+
+    if (single) {
+      if (isAlreadySelected) {
+        setSingleVisibleValue();
       } else {
-        //attach to value array while filtering out invalid values
-        value = [...value, token[used_value_key]].filter((v) => {
-          return normalisedOptions.filter((nv) => nv[used_value_key] == v)
-            .length;
-        });
-        searchText = ""; // reset search string on selection
-
-        //update popper position in case values start wrapping to next line
-        POPPER && POPPER.update();
+        value = token[used_value_key];
+        input && input.blur();
+        setOptionsVisible(false);
+        fire("change", { token, type: `add` });
       }
+    }
 
-      if ((Array.isArray(value) && value.length === max) || single) {
+    if (!isAlreadySelected && !single && (max === null || value.length < max)) {
+      //attach to value array while filtering out invalid values
+      value = [...value, token[used_value_key]].filter((v) => {
+        return normalisedOptions.filter((nv) => nv[used_value_key] == v).length;
+      });
+      searchText = ""; // reset search string on selection
+
+      //update popper position in case values start wrapping to next line
+      POPPER && POPPER.update();
+
+      if (value && value.length && value.length === max) {
         input && input.blur();
         setOptionsVisible(false);
       }
@@ -409,8 +405,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       fire("add", { token });
 
       fire("change", { token, type: `add` });
-    } else if (single && isAlreadySelected) {
-      setSingleVisibleValue();
     }
   }
 
@@ -447,7 +441,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
 
   function setSingleVisibleValue() {
-    if (single && value) {
+    if (single && hasValue) {
       searchText =
         selectedOptions && selectedOptions[0]
           ? selectedOptions[0][used_search_key]
@@ -490,8 +484,8 @@ Default value: `<span>{option[search_key] || option}</span>`
       // only remove selected tags on backspace if there are any and no searchText characters remain
       if (searchText.length === 0) {
         if (single) {
-          if (value && value != "") {
-            value = "";
+          if (value) {
+            value = null;
           }
         } else {
           if (value && value.length > 0) {
@@ -524,11 +518,16 @@ Default value: `<span>{option[search_key] || option}</span>`
   const removeAll = () => {
     fire("remove", { token: value });
     fire("change", { token: value, type: `remove` });
-    value = single ? "" : [];
+    value = single ? null : [];
     searchText = "";
   };
 
-  const matchesValue = (_value, _option) =>
-    (_value && (_value[used_value_key] || _value)) ===
-    (_option && (_option[used_value_key] || _option));
+  const matchesValue = (_value, _option) => {
+    if (_value === null) {
+      return false;
+    }
+    return (
+      `${_value[used_value_key] || _value}` === `${_option[used_value_key]}`
+    );
+  };
 </script>
