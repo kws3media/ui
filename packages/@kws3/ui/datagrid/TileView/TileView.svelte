@@ -79,7 +79,7 @@
     /**
      * Column names for the displayed table {db_field_name: column_name}
      */
-    columns = "",
+    columns = {},
     /**
      * Determines whether rows are clickable or not
      */
