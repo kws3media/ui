@@ -19,6 +19,7 @@
       on:change={convertValuesToString}
       search_key="name"
       value_key="id"
+      summary_mode
       class={hilightClass} />
   </div>
 {:else if filter.type == "date"}
