@@ -2,22 +2,22 @@
   @component
 
 
-  @param {string} [iteration_key="id"] - Iteration_key property, Default: `"id"`
-  @param {array} [data=[]] - Data property, Default: `[]`
-  @param {boolean} [transition=false] - Transition property, Default: `false`
-  @param {object} [tileItemComponent=null] - TileItemComponent property, Default: `null`
-  @param {number} [per_row=3] - Per_row property, Default: `3`
-  @param {string} [columns=""] - Columns property, Default: `""`
-  @param {boolean} [clickableRows=false] - ClickableRows property, Default: `false`
-  @param {boolean} [bulk_actions=false] - Bulk_actions property, Default: `false`
-  @param {boolean} [selectAll=false] - SelectAll property, Default: `false`
-  @param {array} [selectedIds=[]] - SelectedIds property, Default: `[]`
-  @param {string} [selectCheckboxColor="info"] - SelectCheckboxColor property, Default: `"info"`
-  @param {string} [selectCheckboxSize="medium"] - SelectCheckboxSize property, Default: `"medium"`
-  @param {object} [valueTransformers={}] - ValueTransformers property, Default: `{}`
-  @param {object} [classTransformers={}] - ClassTransformers property, Default: `{}`
-  @param {object} [styleTransformers={}] - StyleTransformers property, Default: `{}`
-  @param {object} [visibilityMap={}] - VisibilityMap property, Default: `{}`
+  @param {string} [iteration_key="id"] - Iteration key, Default: `"id"`
+  @param {array} [data=[]] - Contains all the results to be listed, Default: `[]`
+  @param {boolean} [transition=false] - Determines if a transition effect is used, Default: `false`
+  @param {object} [tileItemComponent=null] - Contains a custom component, Default: `null`
+  @param {number} [per_row=3] - Sets how many items to display in a row, Default: `3`
+  @param {string} [columns=""] - Column names for the displayed table {db_field_name: column_name}, Default: `""`
+  @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
+  @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
+  @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
+  @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
+  @param {string} [selectCheckboxColor="info"] - Color of the `select all` checkbox, Default: `"info"`
+  @param {string} [selectCheckboxSize="medium"] - Size of each checkbox, Default: `"medium"`
+  @param {object} [valueTransformers={}] - Contains all custom values for each column, Default: `{}`
+  @param {object} [classTransformers={}] - CSS class names for each column, Default: `{}`
+  @param {object} [styleTransformers={}] - CSS styles for each column, Default: `{}`
+  @param {object} [visibilityMap={}] - Contains list of columns which can be visible or not, Default: `{}`
 
   ### Events
   - `rowClick`
@@ -56,21 +56,69 @@
   import { Transition } from "@kws3/ui";
   import TileViewItem from "./TileViewItem.svelte";
 
+  /**
+   * Iteration key
+   */
   export let iteration_key = "id",
+    /**
+     * Contains all the results to be listed
+     */
     data = [],
+    /**
+     * Determines if a transition effect is used
+     */
     transition = false,
+    /**
+     * Contains a custom component
+     */
     tileItemComponent = null,
+    /**
+     * Sets how many items to display in a row
+     */
     per_row = 3,
+    /**
+     * Column names for the displayed table {db_field_name: column_name}
+     */
     columns = "",
+    /**
+     * Determines whether rows are clickable or not
+     */
     clickableRows = false,
+    /**
+     * Determines if selecting multiple rows and doing multiple actions is allowed
+     */
     bulk_actions = false,
+    /**
+     *Determines if all rows are selected
+     */
     selectAll = false,
+    /**
+     * List of unique IDs of all the selected rows
+     */
     selectedIds = [],
+    /**
+     * Color of the `select all` checkbox
+     */
     selectCheckboxColor = "info",
+    /**
+     * Size of each checkbox
+     */
     selectCheckboxSize = "medium",
+    /**
+     * Contains all custom values for each column
+     */
     valueTransformers = {},
+    /**
+     * CSS class names for each column
+     */
     classTransformers = {},
+    /**
+     * CSS styles for each column
+     */
     styleTransformers = {},
+    /**
+     * Contains list of columns which can be visible or not
+     */
     visibilityMap = {};
 
   $: mainTileComponent = tileItemComponent ? tileItemComponent : TileViewItem;
