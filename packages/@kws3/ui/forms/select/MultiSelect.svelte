@@ -93,7 +93,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   <ul
     bind:this={dropdown}
-    class="options {single ? '' : 'is-multi'}"
+    class="options {single ? 'is-single' : 'is-multi'}"
     class:hidden={!showOptions}>
     {#each filteredOptions as option}
       <li
