@@ -10,12 +10,13 @@
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - It will hold the drawing image data, Default: `""`
-  @param {string} [expandFrom="center center"] - Expand position values, Default: `"center center"`
+  @param {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'} [expandFrom="center center"] - Expand position values, Default: `"center center"`
   @param {number} [initialScale=1] - Canvas transform scale before expand, Default: `1`
   @param {number} [expandedScale=2] - Canvas transform scale after expand, Default: `2`
   @param {'Pen'|'Eraser'|'Circle'} [tools=undefined] - List of available tools, Default: `undefined`
   @param {'Pen'|'Eraser'|'Circle'} [activeTool="Pen"] - Initially active tool, Default: `"Pen"`
   @param {string} [drawing_label=""] - The label for brawing box, only active if it is `readonly` or `disabled`, Default: `""`
+  @param {boolean} [hide_colorpicker=false] - Determines whether pen colorpicker is visible or not, Default: `false`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 
 -->
@@ -182,6 +183,7 @@
     image = "",
     /**
      * Expand position values
+     * @type {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'}
      * @link https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
      */
     expandFrom = "center center",
