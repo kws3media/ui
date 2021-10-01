@@ -15,6 +15,15 @@
   </div>
 </div>
 
+{#if is_loading}
+  <Loader
+    spinner_color="primary"
+    spinner_size="medium"
+    background_color="transparent"
+    background_size="medium"
+    has_overlay={true} />
+{/if}
+
 {#if data}
   <div class="columns">
     <div class="column">
@@ -103,6 +112,7 @@
     Pagination,
     Toggle,
     ToggleControl,
+    Loader,
   } from "@kws3/ui";
   const response = require("./users.json");
 
@@ -111,7 +121,7 @@
     placeholder = "",
     filters = response.filters,
     options = response.options,
-    data = response.records,
+    data = [],
     columns = {
       id: "ID",
       name: "Name",
@@ -143,6 +153,8 @@
     per_row = 3,
     perPageOptions = [5];
 
+  let is_loading = false;
+  let original_data = response.records;
   let is_tile_view = false;
   let limit = meta.limit;
   let page_number = 1;
@@ -161,14 +173,16 @@
   };
 
   $: {
-    data = data.slice((page_number - 1) * limit, page_number * limit);
+    data = original_data.slice((page_number - 1) * limit, page_number * limit);
+    is_loading = false;
   }
 
-  function search() {
-    is_searching = true;
+  function search({ detail }) {
+    console.log(detail);
+    /*is_searching = true;
     setTimeout(() => {
       is_searching = false;
-    }, 2000);
+    }, 2000);*/
   }
 
   function resetSearch() {
@@ -179,8 +193,10 @@
     is_tile_view = !is_tile_view;
   }
 
-  function paginate() {
-    alert(1);
+  function paginate({ detail }) {
+    var pageArr = { 0: 1, 5: 2, 10: 3 };
+    page_number = pageArr[detail.offset];
+    meta.offset = detail.offset;
   }
 
   onMount(() => {});
