@@ -132,8 +132,6 @@
     readonly = false,
     disabled = false,
     image = "",
-    canUndo = false,
-    canRedo = false,
     expandFrom = "center center",
     initialScale = 1,
     expandedScale = 2,
@@ -144,7 +142,9 @@
 
   let EXPANDED_BUTTON, CANVAS_IMAGE;
 
-  let expanded = false,
+  let canUndo = false,
+    canRedo = false,
+    expanded = false,
     showTools = false,
     settingFlag = false;
 

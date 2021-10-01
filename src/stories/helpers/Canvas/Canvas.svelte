@@ -7,8 +7,6 @@
   {readonly}
   {disabled}
   {image}
-  {canUndo}
-  {canRedo}
   {expandFrom}
   {initialScale}
   {expandedScale}
@@ -32,8 +30,6 @@
     readonly = false,
     disabled = false,
     image = "",
-    canUndo = false,
-    canRedo = false,
     expandFrom = "center center",
     initialScale = 1,
     expandedScale = 2,
