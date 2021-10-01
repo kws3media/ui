@@ -249,7 +249,7 @@
 
   $: expanded, setScaleFactor();
   $: image, syncImage();
-  $: penColor, setTool(activeTool);
+  $: penColor, setLineColor();
 
   onMount(() => {
     setTool(activeTool);
@@ -258,12 +258,16 @@
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
-    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool, `#${penColor}`);
+    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool);
   }
 
   function setScaleFactor() {
     CANVAS_IMAGE &&
       CANVAS_IMAGE.setScaleFactor(expanded ? expandedScale : initialScale);
+  }
+
+  function setLineColor() {
+    CANVAS_IMAGE && CANVAS_IMAGE.setLineColor(`#${penColor}`);
   }
 
   function syncImage() {
