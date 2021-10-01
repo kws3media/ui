@@ -1,19 +1,35 @@
-<KwsCanvas
-  {styles}
-  {lineWidth}
-  {eraserWidth}
-  {lineColor}
-  {backgroundImage}
-  {readonly}
-  {disabled}
-  {image}
-  {expandFrom}
-  {initialScale}
-  {expandedScale}
-  {tools}
-  {activeTool}
-  {drawing_label}
-  {cy} />
+<div class="columns">
+  <div class="column has-text-centered">
+    <label for="" class="label">Input</label>
+    <KwsCanvas
+      bind:image
+      {styles}
+      {lineWidth}
+      {eraserWidth}
+      {lineColor}
+      {backgroundImage}
+      {readonly}
+      {disabled}
+      {expandFrom}
+      {initialScale}
+      {expandedScale}
+      {tools}
+      {activeTool}
+      {drawing_label}
+      {cy} />
+  </div>
+  <div class="column has-text-centered">
+    <label for="" class="label">Output</label>
+    {#if image}
+      <img
+        alt="canvasoutput"
+        src={image}
+        width={styles.width}
+        height={styles.height}
+        style="border: 1px solid #b5b5b5;" />
+    {/if}
+  </div>
+</div>
 
 <script>
   import { Canvas as KwsCanvas } from "@kws3/ui";
