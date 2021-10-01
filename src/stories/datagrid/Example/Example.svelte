@@ -1,7 +1,9 @@
 <div class="columns">
-  <div class="column is-3">
+  <div class="column is-3 is-pulled-right">
     <ToggleControl>
-      <label for="some-primary-text" class="label"> Grid/Tile view </label>
+      <label for="some-primary-text" class="label">
+        {is_tile_view ? "Tile" : "Grid"} view
+      </label>
       <Toggle
         on={false}
         on:change={switchView}
@@ -14,6 +16,8 @@
     </ToggleControl>
   </div>
 </div>
+
+<hr />
 
 {#if is_loading}
   <Loader
@@ -86,11 +90,13 @@
     </div>
   </div>
 
-  <div class="columns">
-    <div class="column">
-      <Pagination {meta} {perPageOptions} on:paginate={paginate} />
+  {#if has_pagination}
+    <div class="columns">
+      <div class="column">
+        <Pagination {meta} {perPageOptions} on:paginate={paginate} />
+      </div>
     </div>
-  </div>
+  {/if}
 {/if}
 
 <!--<div class="">
@@ -99,6 +105,9 @@
 <style global>
   .has-addons .select {
     margin-top: 8px;
+  }
+  .sorting-filters {
+    margin-top: -0.5rem;
   }
 </style>
 
@@ -118,7 +127,7 @@
 
   let hasSearch = true,
     hasFilters = true,
-    placeholder = "",
+    placeholder = "Search by name",
     filters = response.filters,
     options = response.options,
     data = [],
@@ -173,13 +182,37 @@
   };
 
   $: data = original_data.slice((page_number - 1) * limit, page_number * limit);
+  $: has_pagination = original_data.length > limit;
 
   function search({ detail }) {
-    console.log(detail);
+    var data_from_json = response.records;
+    var search_vals = detail.split("~");
+    var input_field = search_vals[0];
+    input_field = input_field.trim();
+
+    if (input_field) {
+      var filtered = data_from_json.filter(function (item) {
+        var nameArray = item.name.split("");
+        var nameToMatch = [];
+        for (var i = 0; i < input_field.length; i++) {
+          nameToMatch.push(nameArray[i]);
+        }
+        return input_field.toLowerCase() == nameToMatch.join("").toLowerCase();
+      });
+      original_data = filtered;
+      q = input_field;
+    }
+    //Dropdown searches
+    if (search_vals.length > 1) {
+      /*for(var i = 1; i < search_vals.length; i++){
+
+      }*/
+    }
   }
 
   function resetSearch() {
-    alert("Reset");
+    q = "";
+    original_data = response.records;
   }
 
   function switchView() {
@@ -196,7 +229,6 @@
     var sort_val = detail.split(" ");
     var key = sort_val[0];
     var val = sort_val[1];
-    //var ndata = [];
     if (val == "DESC") {
       original_data = original_data.sort(
         (a, b) => Number(b[key]) - Number(a[key])
