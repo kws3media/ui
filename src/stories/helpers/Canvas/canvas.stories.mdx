@@ -1,0 +1,72 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Canvas as KWS3Canvas } from "@kws3/ui";
+import CanvasDecorator from "./Canvas.svelte";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  styles: {
+    width: "200px",
+    height: "200px",
+    border: "1px solid #b5b5b5",
+  },
+  lineWidth: 2,
+  eraserWidth: 6,
+  lineColor: "#ff0000",
+  backgroundImage: "",
+  readonly: false,
+  disabled: false,
+  image: "",
+  canUndo: false,
+  canRedo: false,
+  expandFrom: "center center",
+  initialScale: 1,
+  expandedScale: 2,
+  tools: [
+    {
+      name: "Pen",
+      icon: "pencil",
+    },
+    {
+      name: "Eraser",
+      icon: "eraser",
+    },
+  ],
+  activeTool: {
+    name: "Pen",
+    icon: "pencil",
+  },
+  drawing_label: "",
+  cy: ""
+};
+
+<Meta
+  title="Helpers/Canvas"
+  component={KWS3Canvas}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Canvas
+## Canvas components for drawing.
+`}/>
+
+<Canvas>
+  <Story
+  name="Canvas"
+  args={args}
+  >
+  {(args) => ({
+    Component: CanvasDecorator,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Canvas" />
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`import { Canvas } from '@kws3/ui';`}
+/>
