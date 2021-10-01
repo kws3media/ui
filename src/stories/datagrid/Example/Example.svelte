@@ -140,13 +140,13 @@
     visibilityMap = {},
     cellComponentMap = {},
     tileItemComponent = null,
-    per_row = 5,
+    per_row = 3,
     perPageOptions = [5];
 
   let is_tile_view = false;
-
-  let is_searching = false;
+  let limit = meta.limit;
   let page_number = 1;
+
   let valueTransformers = {
     role(v, row) {
       switch (row.role) {
@@ -161,7 +161,7 @@
   };
 
   $: {
-    data = data.slice((page_number - 1) * per_row, page_number * per_row);
+    data = data.slice((page_number - 1) * limit, page_number * limit);
   }
 
   function search() {
