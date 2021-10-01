@@ -39,7 +39,7 @@
         {filter_label_map}
         on:search={search}
         on:resetSearch={resetSearch} />
-      <DataSort {options} {sort_by} />
+      <DataSort {options} {sort_by} on:sort={sort} />
     </div>
   </div>
 
@@ -172,17 +172,10 @@
     },
   };
 
-  $: {
-    data = original_data.slice((page_number - 1) * limit, page_number * limit);
-    is_loading = false;
-  }
+  $: data = original_data.slice((page_number - 1) * limit, page_number * limit);
 
   function search({ detail }) {
     console.log(detail);
-    /*is_searching = true;
-    setTimeout(() => {
-      is_searching = false;
-    }, 2000);*/
   }
 
   function resetSearch() {
@@ -197,6 +190,22 @@
     var pageArr = { 0: 1, 5: 2, 10: 3 };
     page_number = pageArr[detail.offset];
     meta.offset = detail.offset;
+  }
+
+  function sort({ detail }) {
+    var sort_val = detail.split(" ");
+    var key = sort_val[0];
+    var val = sort_val[1];
+    //var ndata = [];
+    if (val == "DESC") {
+      original_data = original_data.sort(
+        (a, b) => Number(b[key]) - Number(a[key])
+      );
+    } else {
+      original_data = original_data.sort(
+        (a, b) => Number(a[key]) - Number(b[key])
+      );
+    }
   }
 
   onMount(() => {});
