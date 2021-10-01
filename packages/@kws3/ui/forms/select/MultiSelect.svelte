@@ -244,6 +244,18 @@ Default value: `<span>{option[search_key] || option}</span>`
     throw new TypeError(`max must be null or positive integer, got ${max}`);
   }
 
+  //ensure we have a root container for all our hoisitng related stuff
+  let rootContainerId = "kws-overlay-root";
+  let rootContainer = document.getElementById(rootContainerId);
+  if (!rootContainer) {
+    rootContainer = document.createElement("div");
+    rootContainer.id = rootContainerId;
+    document.body.appendChild(rootContainer);
+  }
+
+  //this is the container that will hold the dropdown
+  let container;
+
   const fire = createEventDispatcher();
 
   let el, //whole wrapping element
@@ -372,9 +384,25 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER && POPPER.update();
   }
 
+  /**
+   * Moves dropdown to rootContainer, so that
+   * overflows etc do not mess with it
+   */
+  function hoistDropdown() {
+    if (!container) {
+      container = document.createElement("div");
+      container.className = "searchableselect";
+      rootContainer.appendChild(container);
+      container.appendChild(dropdown);
+    }
+  }
+
   onMount(() => {
+    hoistDropdown();
+
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
+      placement: "bottom-start",
       modifiers: [sameWidthPopperModifier],
     });
 
@@ -386,6 +414,10 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     return () => {
       POPPER.destroy();
+      //remove hoisted items
+      container &&
+        container.parentNode &&
+        container.parentNode.removeChild(container);
     };
   });
 
