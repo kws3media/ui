@@ -43,6 +43,19 @@
           </div>
         </div>
 
+        <div class="control" use:tooltip data-tooltip="Pen Color">
+          <button
+            use:colorpicker={inputColor}
+            use:tooltip
+            type="button"
+            class="button is-small"
+            data-tooltip="Pen Color"
+            style="background-color:#{inputColor};"
+            disabled={activeTool != "Pen"}>
+            <Icon icon="crosshairs" size="small" />
+          </button>
+        </div>
+
         <div class="control">
           <div class="field has-addons">
             <div class="control">
@@ -103,6 +116,7 @@
 
 <script>
   import CanvasInput from "./CanvasInput.svelte";
+  import ColorPicker from "../../forms/colorpicker/Colorpicker";
   import { Icon, tooltip } from "@kws3/ui";
   import { onMount } from "svelte";
 
@@ -149,8 +163,16 @@
     },
   };
 
+  let _colorpicker,
+    inputColor = "000000";
+
+  $: {
+    inputColor = lineColor.substring(lineColor.indexOf("#"));
+  }
+
   $: expanded, setScaleFactor();
   $: image, syncImage();
+  $: inputColor, setTool(activeTool);
 
   onMount(() => {
     setTool(activeTool);
@@ -159,7 +181,7 @@
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
-    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool);
+    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool, `#${inputColor}`);
   }
 
   function setScaleFactor() {
@@ -188,5 +210,21 @@
     canUndo = detail.canUndo;
     canRedo = detail.canRedo;
     settingFlag = false;
+  }
+
+  function colorpicker(node) {
+    _colorpicker = new ColorPicker(node);
+
+    _colorpicker.on("change", (_color) => (inputColor = _color));
+    _colorpicker.set("#" + inputColor);
+
+    return {
+      update(newColor) {
+        _colorpicker.set("#" + newColor);
+      },
+      destroy() {
+        _colorpicker.destroy();
+      },
+    };
   }
 </script>

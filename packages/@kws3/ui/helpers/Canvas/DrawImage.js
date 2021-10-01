@@ -251,11 +251,11 @@ export default function DrawImage(app, opts) {
     scaleFactor = f;
   };
 
-  this.setTool = (toolType) => {
+  this.setTool = (toolType, color) => {
     if (toolType == "Pen") {
       drawingType = "line";
       context.globalCompositeOperation = "source-over";
-      context.strokeStyle = opts.lineColor || "#3d44c8";
+      context.strokeStyle = color || opts.lineColor || "#3d44c8";
       context.lineWidth = opts.lineWidth || 1;
     } else if (toolType == "Eraser") {
       context.globalCompositeOperation = "destination-out";
