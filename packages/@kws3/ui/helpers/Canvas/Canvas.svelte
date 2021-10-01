@@ -1,0 +1,189 @@
+<div
+  class="drawing-wrapper {expanded ? 'expanded' : ''}"
+  style="width:{styles.width || '200px'}; transform: scale({expanded
+    ? expandedScale
+    : initialScale});transform-origin:{expandFrom || 'center center'}"
+  data-cy={cy}>
+  <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
+
+  <div class="drawing-controls" style="width:{styles.width || '200px'};">
+    {#if !readonly && !disabled}
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <div class="dropdown is-{showTools ? 'active' : ''} is-up">
+            <div class="dropdown-trigger">
+              <button
+                use:tooltip
+                class="button is-info is-small "
+                data-tooltip="Tools"
+                aria-controls="tools-dropdown"
+                on:click={() => (showTools = !showTools)}>
+                <Icon icon={activeTool.icon} size="small" />
+              </button>
+            </div>
+
+            <div
+              class="dropdown-menu"
+              id="tools-dropdown"
+              role="menu"
+              style="min-width:auto;">
+              <div class="dropdown-content">
+                {#each tools as tool}
+                  <a
+                    href="/#"
+                    class="dropdown-item"
+                    on:click|preventDefault={() => setTool(tool)}
+                    style="padding-right:1rem;">
+                    <Icon icon={tool.icon} size="small" />
+                    <span>{tool.name}</span>
+                  </a>
+                {/each}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="control">
+          <div class="field has-addons">
+            <div class="control">
+              <button
+                use:tooltip
+                type="button"
+                class="button is-small is-warning "
+                data-tooltip="Undo"
+                on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.undo()}
+                disabled={!canUndo}>
+                <Icon icon="undo" size="small" />
+              </button>
+            </div>
+            <div class="control">
+              <button
+                use:tooltip
+                type="button"
+                class="button is-small is-warning "
+                data-tooltip="Redo"
+                on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.redo()}
+                disabled={!canRedo}>
+                <Icon icon="repeat" size="small" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="control">
+          <button
+            use:tooltip
+            type="button"
+            class="button is-small is-danger"
+            data-tooltip="Reset"
+            on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.reset()}>
+            <Icon icon="refresh" size="small" />
+          </button>
+        </div>
+
+        <div class="control">
+          <button
+            use:tooltip
+            bind:this={EXPANDED_BUTTON}
+            type="button"
+            class="button is-small is-dark"
+            data-tooltip={expanded ? "Contract" : "Expand"}
+            on:click={expandContract}>
+            <Icon icon={expanded ? "compress" : "expand"} size="small" />
+          </button>
+        </div>
+      </div>
+    {:else if drawing_label}
+      <p class="title is-5 has-text-centered">
+        {drawing_label}
+      </p>
+    {/if}
+  </div>
+</div>
+
+<script>
+  import CanvasInput from "./CanvasInput.svelte";
+  import { Icon, tooltip } from "@kws3/ui";
+  import { onMount } from "svelte";
+
+  export let styles = {
+      width: "200px",
+      height: "200px",
+      border: "1px solid #b5b5b5",
+    },
+    lineWidth = 2,
+    eraserWidth = 6,
+    lineColor = "#ff0000",
+    backgroundImage = "",
+    readonly = false,
+    disabled = false,
+    image = "",
+    canUndo = false,
+    canRedo = false,
+    expandFrom = "center center",
+    initialScale = 1,
+    expandedScale = 2,
+    tools = [
+      {
+        name: "Pen",
+        icon: "pencil",
+      },
+      {
+        name: "Eraser",
+        icon: "eraser",
+      },
+    ],
+    activeTool = {
+      name: "Pen",
+      icon: "pencil",
+    },
+    drawing_label = "",
+    cy = "";
+
+  let EXPANDED_BUTTON,
+    CANVAS_IMAGE,
+    _settingFlag = false,
+    expanded = false,
+    showTools = false;
+
+  $: expanded, setScaleFactor();
+  $: image, syncImage();
+
+  onMount(() => {
+    setTool(activeTool);
+  });
+
+  function setTool(tool) {
+    activeTool = tool;
+    showTools = false;
+    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool.name);
+  }
+
+  function setScaleFactor() {
+    CANVAS_IMAGE &&
+      CANVAS_IMAGE.setScaleFactor(expanded ? expandedScale : initialScale);
+  }
+
+  function syncImage() {
+    if (!_settingFlag) {
+      CANVAS_IMAGE && CANVAS_IMAGE.syncImage(image);
+    }
+  }
+
+  function expandContract() {
+    expanded = !expanded;
+    if (EXPANDED_BUTTON) {
+      EXPANDED_BUTTON._tippy.setContent(
+        EXPANDED_BUTTON.getAttribute("data-tooltip")
+      );
+    }
+  }
+
+  function onChange({ detail }) {
+    _settingFlag = true;
+    image = detail.canvasImage;
+    canUndo = detail.canUndo;
+    canRedo = detail.canRedo;
+    _settingFlag = false;
+  }
+</script>

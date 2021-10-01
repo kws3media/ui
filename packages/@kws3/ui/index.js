@@ -33,6 +33,7 @@ export { default as ToggleButtons } from "./controls/ToggleButtons.svelte";
 export { default as ToggleControl } from "./controls/ToggleControl.svelte";
 export { default as RangeSlider } from "./controls/RangeSlider.svelte";
 export { default as Nl2br } from "./helpers/Nl2br.svelte";
+export { default as Canvas } from "./helpers/Canvas/Canvas.svelte";
 
 export { default as Transition } from "./transitions/Transition.svelte";
 export { default as SlidingPane } from "./sliding-panes/SlidingPane.svelte";

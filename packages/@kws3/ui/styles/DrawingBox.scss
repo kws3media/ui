@@ -1,0 +1,52 @@
+.drawing-wrapper {
+  margin: 0 auto;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s $easeOutCustom;
+  transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  .drawing-controls {
+    width: 100%;
+    min-height: 2.4rem;
+    background: transparentize($grey-light, 0.5);
+    padding: 0.25rem;
+    margin: 0 auto;
+    .control {
+      .button {
+        &.is-always-rounded {
+          border-radius: 1rem !important;
+          padding-left: 1em;
+          padding-right: 1em;
+        }
+      }
+    }
+  }
+  &.expanded {
+    z-index: 999;
+    position: relative;
+    box-shadow: $card-shadow;
+    .drawing-controls {
+      background: $grey-lighter;
+    }
+  }
+}
+
+.drawing-box {
+  position: relative;
+  margin: auto auto;
+  overflow: hidden;
+  img {
+    display: block;
+  }
+  canvas {
+    display: block;
+    cursor: crosshair;
+    box-sizing: border-box;
+  }
+  &.is-readonly {
+    canvas {
+      cursor: default;
+    }
+  }
+}
