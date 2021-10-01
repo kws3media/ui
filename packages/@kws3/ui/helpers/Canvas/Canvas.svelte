@@ -21,14 +21,14 @@
 -->
 
 <div
-  class="drawing-wrapper {expanded ? 'expanded' : ''}"
+  class="canvas-wrapper {expanded ? 'expanded' : ''}"
   style="width:{styles.width || '250px'}; transform: scale({expanded
     ? expandedScale
     : initialScale});transform-origin:{expandFrom || 'center center'}"
   data-cy={cy}>
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
 
-  <div class="drawing-controls" style="width:{styles.width || '250px'};">
+  <div class="canvas-controls" style="width:{styles.width || '250px'};">
     {#if !readonly && !disabled}
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

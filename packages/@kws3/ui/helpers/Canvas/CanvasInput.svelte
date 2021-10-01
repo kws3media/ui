@@ -1,5 +1,5 @@
 <div
-  class="drawing-box {readonly || disabled ? 'is-readonly' : ''}"
+  class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
   style="width:{styles.width || '340px'};height:{styles.height || '100px'}">
   {#if disabled || readonly}
     <img alt="canvasimage" src={image || emptyImage} style={_image_syles} />

@@ -1,4 +1,4 @@
-.drawing-wrapper {
+.canvas-wrapper {
   margin: 0 auto;
   transform: translate3d(0, 0, 0);
   transition: transform 0.3s $easeOutCustom;
@@ -6,7 +6,7 @@
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  .drawing-controls {
+  .canvas-controls {
     width: 100%;
     min-height: 2.4rem;
     background: transparentize($grey-light, 0.5);
@@ -26,13 +26,13 @@
     z-index: 999;
     position: relative;
     box-shadow: $card-shadow;
-    .drawing-controls {
+    .canvas-controls {
       background: $grey-lighter;
     }
   }
 }
 
-.drawing-box {
+.canvas-box {
   position: relative;
   margin: auto auto;
   overflow: hidden;
