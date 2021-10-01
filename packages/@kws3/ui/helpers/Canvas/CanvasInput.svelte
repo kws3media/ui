@@ -14,8 +14,8 @@
   const fire = createEventDispatcher();
 
   export let styles = {
-      width: "200px",
-      height: "200px",
+      width: "250px",
+      height: "250px",
     },
     lineColor = "#3d44c8",
     lineWidth = 2,
@@ -35,8 +35,8 @@
     emptyImage =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 
-  $: _image_syles = `width:${styles.width || "200px"}; height:${
-    styles.height || "200px"
+  $: _image_syles = `width:${styles.width || "250px"}; height:${
+    styles.height || "250px"
   }; border:${
     styles.border || "1px solid #000000"
   }; pointer-events: none; background-image:url(${

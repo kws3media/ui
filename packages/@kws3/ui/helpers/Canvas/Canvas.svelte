@@ -1,12 +1,12 @@
 <div
   class="drawing-wrapper {expanded ? 'expanded' : ''}"
-  style="width:{styles.width || '200px'}; transform: scale({expanded
+  style="width:{styles.width || '250px'}; transform: scale({expanded
     ? expandedScale
     : initialScale});transform-origin:{expandFrom || 'center center'}"
   data-cy={cy}>
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
 
-  <div class="drawing-controls" style="width:{styles.width || '200px'};">
+  <div class="drawing-controls" style="width:{styles.width || '250px'};">
     {#if !readonly && !disabled}
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
@@ -45,12 +45,12 @@
 
         <div class="control" use:tooltip data-tooltip="Pen Color">
           <button
-            use:colorpicker={inputColor}
+            use:colorpicker={penColor}
             use:tooltip
             type="button"
             class="button is-small"
             data-tooltip="Pen Color"
-            style="background-color:#{inputColor};"
+            style="background-color:#{penColor};"
             disabled={activeTool != "Pen"}>
             <Icon icon="crosshairs" size="small" />
           </button>
@@ -121,8 +121,8 @@
   import { onMount } from "svelte";
 
   export let styles = {
-      width: "200px",
-      height: "200px",
+      width: "250px",
+      height: "250px",
       border: "1px solid #b5b5b5",
     },
     lineWidth = 2,
@@ -164,15 +164,15 @@
   };
 
   let _colorpicker,
-    inputColor = "000000";
+    penColor = "000000";
 
   $: {
-    inputColor = lineColor.substring(lineColor.indexOf("#"));
+    penColor = lineColor.substring(lineColor.indexOf("#"));
   }
 
   $: expanded, setScaleFactor();
   $: image, syncImage();
-  $: inputColor, setTool(activeTool);
+  $: penColor, setTool(activeTool);
 
   onMount(() => {
     setTool(activeTool);
@@ -181,7 +181,7 @@
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
-    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool, `#${inputColor}`);
+    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool, `#${penColor}`);
   }
 
   function setScaleFactor() {
@@ -215,8 +215,8 @@
   function colorpicker(node) {
     _colorpicker = new ColorPicker(node);
 
-    _colorpicker.on("change", (_color) => (inputColor = _color));
-    _colorpicker.set("#" + inputColor);
+    _colorpicker.on("change", (_color) => (penColor = _color));
+    _colorpicker.set("#" + penColor);
 
     return {
       update(newColor) {

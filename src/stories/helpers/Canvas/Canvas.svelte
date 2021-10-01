@@ -21,8 +21,8 @@
   import { Canvas as KwsCanvas } from "@kws3/ui";
 
   export let styles = {
-      width: "200px",
-      height: "200px",
+      width: "250px",
+      height: "250px",
       border: "1px solid #b5b5b5",
     },
     lineWidth = 2,
