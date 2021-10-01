@@ -368,6 +368,8 @@ Default value: `<span>{option[search_key] || option}</span>`
             value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
         );
     }
+
+    POPPER && POPPER.update();
   }
 
   onMount(() => {
@@ -411,9 +413,6 @@ Default value: `<span>{option[search_key] || option}</span>`
         return normalisedOptions.filter((nv) => nv[used_value_key] == v).length;
       });
       searchText = ""; // reset search string on selection
-
-      //update popper position in case values start wrapping to next line
-      POPPER && POPPER.update();
 
       if (value && value.length && value.length === max) {
         input && input.blur();
@@ -517,9 +516,6 @@ Default value: `<span>{option[search_key] || option}</span>`
           searching = true;
         }
       }
-
-      //update popper position in case values stop wrapping from next line
-      POPPER && POPPER.update();
     } else {
       if (single) {
         searching = true;
