@@ -17,7 +17,7 @@
       width: "250px",
       height: "250px",
     },
-    lineColor = "#3d44c8",
+    lineColor = "#ff0000",
     lineWidth = 2,
     eraserWidth = 6,
     image = "",
