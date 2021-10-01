@@ -239,7 +239,12 @@
     penColor = "000000";
 
   $: {
-    penColor = lineColor.substring(lineColor.indexOf("#"));
+    penColor =
+      lineColor.substr(0, 1) == "#"
+        ? lineColor.substr(1)
+        : lineColor.length == 6
+        ? lineColor
+        : "000000";
   }
 
   $: expanded, setScaleFactor();
