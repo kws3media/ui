@@ -30,6 +30,14 @@ export let args={
   title="Helpers/Canvas"
   component={KWS3Canvas}
   args={args}
+  argTypes={{
+    activeTool: {
+      control: 'select'
+    },
+    tools: {
+      control: 'check'
+    }
+  }}
 />
 
 <Description markdown={dedent`

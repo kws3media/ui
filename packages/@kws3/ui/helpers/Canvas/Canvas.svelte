@@ -1,3 +1,25 @@
+<!--
+  @component
+
+
+  @param {object} [styles={}] - CSS styles for the canvas, Default: `{}`
+  @param {number} [lineWidth=2] - Pen input line width, Default: `2`
+  @param {number} [eraserWidth=6] - Eraser width, Default: `6`
+  @param {string} [lineColor="#ff0000"] - Pen input line color, Default: `"#ff0000"`
+  @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
+  @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
+  @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
+  @param {string} [image=""] - It will hold the drawing image data, Default: `""`
+  @param {string} [expandFrom="center center"] - Expand position values, Default: `"center center"`
+  @param {number} [initialScale=1] - Canvas transform scale before expand, Default: `1`
+  @param {number} [expandedScale=2] - Canvas transform scale after expand, Default: `2`
+  @param {'Pen'|'Eraser'|'Circle'} [tools=undefined] - List of available tools, Default: `undefined`
+  @param {'Pen'|'Eraser'|'Circle'} [activeTool="Pen"] - Initially active tool, Default: `"Pen"`
+  @param {string} [drawing_label=""] - The label for brawing box, only active if it is `readonly` or `disabled`, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+
+-->
+
 <div
   class="drawing-wrapper {expanded ? 'expanded' : ''}"
   style="width:{styles.width || '250px'}; transform: scale({expanded
@@ -120,24 +142,72 @@
   import { Icon, tooltip } from "@kws3/ui";
   import { onMount } from "svelte";
 
+  /**
+   * CSS styles for the canvas
+   */
   export let styles = {
       width: "250px",
       height: "250px",
       border: "1px solid #b5b5b5",
     },
+    /**
+     * Pen input line width
+     */
     lineWidth = 2,
+    /**
+     * Eraser width
+     */
     eraserWidth = 6,
+    /**
+     * Pen input line color
+     */
     lineColor = "#ff0000",
+    /**
+     * Background image for the canvas
+     */
     backgroundImage = "",
+    /**
+     * Determines whether canvas is readonly or not
+     */
     readonly = false,
+    /**
+     * Determines whether canvas is disabled or not
+     */
     disabled = false,
+    /**
+     * It will hold the drawing image data
+     */
     image = "",
+    /**
+     * Expand position values
+     * @link https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
+     */
     expandFrom = "center center",
+    /**
+     * Canvas transform scale before expand
+     */
     initialScale = 1,
+    /**
+     * Canvas transform scale after expand
+     */
     expandedScale = 2,
-    tools = ["Pen", "Eraser"],
+    /**
+     * List of available tools
+     * @type {'Pen'|'Eraser'|'Circle'}
+     */
+    tools = ["Pen", "Eraser", "Circle"],
+    /**
+     * Initially active tool
+     * @type {'Pen'|'Eraser'|'Circle'}
+     */
     activeTool = "Pen",
+    /**
+     * The label for brawing box, only active if it is `readonly` or `disabled`
+     */
     drawing_label = "",
+    /**
+     * data-cy attribute for cypress
+     */
     cy = "";
 
   let EXPANDED_BUTTON, CANVAS_IMAGE;
