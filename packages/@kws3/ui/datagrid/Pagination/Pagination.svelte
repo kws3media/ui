@@ -4,15 +4,15 @@
 
   @param {object} [meta={}] - Contains the total, count, limit, offset values, Default: `{}`
   @param {boolean} [showTotal=true] - Determines whether to show total or not, Default: `true`
-  @param {boolean} [showCurrent=true] - ShowCurrent property, Default: `true`
-  @param {boolean} [showPerPage=true] - ShowPerPage property, Default: `true`
-  @param {number} [breakThreshold=10] - BreakThreshold property, Default: `10`
-  @param {string} [entityName="entries"] - EntityName property, Default: `"entries"`
-  @param {string} [size="small"] - Size property, Default: `"small"`
-  @param {boolean} [frame=false] - Frame property, Default: `false`
-  @param {string} [iconRight="chevron-right"] - IconRight property, Default: `"chevron-right"`
-  @param {string} [iconLeft="chevron-left"] - IconLeft property, Default: `"chevron-left"`
-  @param {array} [perPageOptions=[]] - PerPageOptions property, Default: `[]`
+  @param {boolean} [showCurrent=true] - Determines whether to show current page details, Default: `true`
+  @param {boolean} [showPerPage=true] - Determines whether to show per page options, Default: `true`
+  @param {number} [breakThreshold=10] - Limit the number of visible pages in pagination, Default: `10`
+  @param {string} [entityName="entries"] - String to display total entries, Default: `"entries"`
+  @param {string} [size="small"] - Size of the pagination, Default: `"small"`
+  @param {boolean} [frame=false] - Determines whether to show pagination frame or not, Default: `false`
+  @param {string} [iconRight="chevron-right"] - Right navigation icon, Default: `"chevron-right"`
+  @param {string} [iconLeft="chevron-left"] - Left navigation icon, Default: `"chevron-left"`
+  @param {array} [perPageOptions=[]] - Determines the number of rows displayed in a page., Default: `[]`
 
   ### Events
   - `setLimit`
@@ -142,14 +142,41 @@
      * Determines whether to show total or not
      */
     showTotal = true,
+    /**
+     * Determines whether to show current page details
+     */
     showCurrent = true,
+    /**
+     * Determines whether to show per page options
+     */
     showPerPage = true,
+    /**
+     * Limit the number of visible pages in pagination
+     */
     breakThreshold = 10,
+    /**
+     * String to display total entries
+     */
     entityName = "entries",
+    /**
+     * Size of the pagination
+     */
     size = "small",
+    /**
+     * Determines whether to show pagination frame or not
+     */
     frame = false,
+    /**
+     * Right navigation icon
+     */
     iconRight = "chevron-right",
+    /**
+     * Left navigation icon
+     */
     iconLeft = "chevron-left",
+    /**
+     * Determines the number of rows displayed in a page.
+     */
     perPageOptions = [20, 50, 100, 150, 200, 250];
 
   let pages = [],
