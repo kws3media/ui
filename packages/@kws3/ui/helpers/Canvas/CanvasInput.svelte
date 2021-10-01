@@ -2,16 +2,7 @@
   class="drawing-box {readonly || disabled ? 'is-readonly' : ''}"
   style="width:{styles.width || '340px'};height:{styles.height || '100px'}">
   {#if disabled || readonly}
-    <img
-      alt="canvasimage"
-      src={image || emptyImage}
-      style="width:{styles.width || '200px'}; height:{styles.height ||
-        '200px'}; border:{styles.border ||
-        '1px solid #000000'}; pointer-events: none;
-    background-image:url({backgroundImage || ''});
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;" />
+    <img alt="canvasimage" src={image || emptyImage} style={_image_syles} />
   {/if}
   <canvas bind:this={CANVAS} style={_styles} />
 </div>
@@ -43,6 +34,14 @@
     _styles = {},
     emptyImage =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+
+  $: _image_syles = `width:${styles.width || "200px"}; height:${
+    styles.height || "200px"
+  }; border:${
+    styles.border || "1px solid #000000"
+  }; pointer-events: none; background-image:url(${
+    backgroundImage || ""
+  }); background-repeat: no-repeat; background-size: contain; background-position: center center;`;
 
   $: {
     let default_styles = {
