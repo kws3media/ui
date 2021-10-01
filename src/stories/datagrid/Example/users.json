@@ -1,0 +1,40 @@
+{
+  "records" : [
+    { "id": 1, "username": "user1", "name": "User", "surname": "One", "role": "A" },
+    { "id": 2, "username": "user2", "name": "User", "surname": "Two", "role": "U" },
+    { "id": 3, "username": "user3", "name": "User", "surname": "Three", "role": "U" },
+    { "id": 4, "username": "user4", "name": "User", "surname": "Four", "role": "U" },
+    { "id": 5, "username": "user5", "name": "User", "surname": "Five", "role": "U" },
+    { "id": 6, "username": "user6", "name": "User", "surname": "Six", "role": "U" },
+    { "id": 7, "username": "user7", "name": "User", "surname": "Seven", "role": "U" },
+    { "id": 8, "username": "user8", "name": "User", "surname": "Eight", "role": "U" },
+    { "id": 9, "username": "user9", "name": "User", "surname": "Nine", "role": "U" },
+    { "id": 10, "username": "user10", "name": "User", "surname": "Ten", "role": "A" },
+    { "id": 11, "username": "user11", "name": "User", "surname": "Eleven", "role": "A" },
+    { "id": 12, "username": "user12", "name": "User", "surname": "Twelve", "role": "U" },
+    { "id": 13, "username": "user13", "name": "User", "surname": "Thirteen", "role": "U" },
+    { "id": 14, "username": "user14", "name": "User", "surname": "Fourteen", "role": "A" },
+    { "id": 15, "username": "user15", "name": "User", "surname": "Fifteen", "role": "A" }
+  ],
+  "meta" : {
+    "limit": 5,
+    "total": 15,
+    "count": 5,
+    "offset": 0,
+    "status": ""
+  },
+  "filters" : {
+    "role": [
+      { "name": "Administrator", "id": "A" },
+      { "name": "User", "id": "U" }
+    ],
+    "status": [
+      { "name": "Active", "id": 1 },
+      { "name": "Disabled", "id": 0 }
+    ]
+  },
+  "options" :[
+    { "name": "ID Newest First", "value": "id DESC" },
+    { "name": "ID Oldest First", "value": "id ASC" }
+  ]
+}
