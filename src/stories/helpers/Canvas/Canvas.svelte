@@ -16,6 +16,7 @@
       {tools}
       {activeTool}
       {drawing_label}
+      {hide_colorpicker}
       {cy} />
   </div>
   <div class="column has-text-centered">
@@ -52,5 +53,6 @@
     tools = ["Pen", "Eraser"],
     activeTool = "Pen",
     drawing_label = "",
+    hide_colorpicker = false,
     cy = "";
 </script>

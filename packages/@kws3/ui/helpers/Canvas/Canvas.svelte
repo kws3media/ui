@@ -65,7 +65,7 @@
           </div>
         </div>
 
-        {#if tools.indexOf("Pen") != -1}
+        {#if tools.indexOf("Pen") != -1 && !hide_colorpicker}
           <div class="control" use:tooltip data-tooltip="Pen Color">
             <button
               use:colorpicker={penColor}
@@ -207,6 +207,10 @@
      * The label for brawing box, only active if it is `readonly` or `disabled`
      */
     drawing_label = "",
+    /**
+     * Determines whether pen colorpicker is visible or not
+     */
+    hide_colorpicker = false,
     /**
      * data-cy attribute for cypress
      */
