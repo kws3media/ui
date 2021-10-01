@@ -18,7 +18,7 @@
                 data-tooltip="Tools"
                 aria-controls="tools-dropdown"
                 on:click={() => (showTools = !showTools)}>
-                <Icon icon={activeTool.icon} size="small" />
+                <Icon icon={toolMap[activeTool].icon} size="small" />
               </button>
             </div>
 
@@ -34,8 +34,8 @@
                     class="dropdown-item"
                     on:click|preventDefault={() => setTool(tool)}
                     style="padding-right:1rem;">
-                    <Icon icon={tool.icon} size="small" />
-                    <span>{tool.name}</span>
+                    <Icon icon={toolMap[tool].icon} size="small" />
+                    <span>{toolMap[tool].name}</span>
                   </a>
                 {/each}
               </div>
@@ -123,28 +123,31 @@
     expandFrom = "center center",
     initialScale = 1,
     expandedScale = 2,
-    tools = [
-      {
-        name: "Pen",
-        icon: "pencil",
-      },
-      {
-        name: "Eraser",
-        icon: "eraser",
-      },
-    ],
-    activeTool = {
-      name: "Pen",
-      icon: "pencil",
-    },
+    tools = ["Pen", "Eraser"],
+    activeTool = "Pen",
     drawing_label = "",
     cy = "";
 
-  let EXPANDED_BUTTON,
-    CANVAS_IMAGE,
-    _settingFlag = false,
-    expanded = false,
-    showTools = false;
+  let EXPANDED_BUTTON, CANVAS_IMAGE;
+
+  let expanded = false,
+    showTools = false,
+    settingFlag = false;
+
+  let toolMap = {
+    Pen: {
+      name: "Pen",
+      icon: "pencil",
+    },
+    Eraser: {
+      name: "Eraser",
+      icon: "eraser",
+    },
+    Circle: {
+      name: "Circle",
+      icon: "circle",
+    },
+  };
 
   $: expanded, setScaleFactor();
   $: image, syncImage();
@@ -156,7 +159,7 @@
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
-    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool.name);
+    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool);
   }
 
   function setScaleFactor() {
@@ -165,7 +168,7 @@
   }
 
   function syncImage() {
-    if (!_settingFlag) {
+    if (!settingFlag) {
       CANVAS_IMAGE && CANVAS_IMAGE.syncImage(image);
     }
   }
@@ -180,10 +183,10 @@
   }
 
   function onChange({ detail }) {
-    _settingFlag = true;
+    settingFlag = true;
     image = detail.canvasImage;
     canUndo = detail.canUndo;
     canRedo = detail.canRedo;
-    _settingFlag = false;
+    settingFlag = false;
   }
 </script>
