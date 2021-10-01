@@ -65,18 +65,20 @@
           </div>
         </div>
 
-        <div class="control" use:tooltip data-tooltip="Pen Color">
-          <button
-            use:colorpicker={penColor}
-            use:tooltip
-            type="button"
-            class="button is-small"
-            data-tooltip="Pen Color"
-            style="background-color:#{penColor};"
-            disabled={activeTool != "Pen"}>
-            <Icon icon="crosshairs" size="small" />
-          </button>
-        </div>
+        {#if tools.indexOf("Pen") != -1}
+          <div class="control" use:tooltip data-tooltip="Pen Color">
+            <button
+              use:colorpicker={penColor}
+              use:tooltip
+              type="button"
+              class="button is-small"
+              data-tooltip="Pen Color"
+              style="background-color:#{penColor};"
+              disabled={activeTool != "Pen"}>
+              <Icon icon="crosshairs" size="small" />
+            </button>
+          </div>
+        {/if}
 
         <div class="control">
           <div class="field has-addons">
