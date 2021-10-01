@@ -61,7 +61,6 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
 
   &.collapsible .panel-content-outer {
     transition: max-height 0.3s;
-    transform: translate3d(0, 0, 0);
 
     max-height: 5000px;
     overflow: hidden;
