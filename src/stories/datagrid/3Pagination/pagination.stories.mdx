@@ -6,9 +6,9 @@ import PaginationDecorator from "./Pagination.svelte";
 
 export let args={
   meta : {
-    limit: 0,
-    total: 0,
-    count: 0,
+    limit: 10,
+    total: 50,
+    count: 20,
     offset: 0,
     status: "",
   },
@@ -25,7 +25,7 @@ export let args={
 };
 
 <Meta
-  title="Datagrid/3. Pagination"
+  title="Datagrid/Pagination"
   component={Pagination}
   args={args}
   argTypes={{}}
@@ -38,7 +38,7 @@ export let args={
 
 <Canvas>
   <Story
-  name="3. Pagination"
+  name="Pagination"
   args={args}
   >
   {(args) => ({
@@ -48,7 +48,7 @@ export let args={
   </Story>
 </Canvas>
 
-<ArgsTable story="3. Pagination" />
+<ArgsTable story="Pagination" />
 
 
 ### Usage

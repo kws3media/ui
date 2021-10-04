@@ -214,7 +214,7 @@
         });
       }
     }
-    q = input_field;
+    q = input_field + "~";
     original_data = filtered;
     meta.total = original_data.length;
   }

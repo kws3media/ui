@@ -6,7 +6,7 @@
     { "id": 4, "username": "user4", "name": "Captain", "surname": "America", "role": "U", "status" : "1" },
     { "id": 5, "username": "user5", "name": "Natasha", "surname": "Romanoff", "role": "U", "status" : "1" },
     { "id": 6, "username": "user6", "name": "Julie", "surname": "Doe", "role": "U", "status" : "1" },
-    { "id": 7, "username": "user7", "name": "Nick", "surname": "Fury", "role": "U", "status" : "1" },
+    { "id": 7, "username": "user7", "name": "Nick", "surname": "Fury", "role": "A", "status" : "1" },
     { "id": 8, "username": "user8", "name": "Peter", "surname": "Parker", "role": "U", "status" : "1" },
     { "id": 9, "username": "user9", "name": "Robert", "surname": "Bruce", "role": "U", "status" : "1" },
     { "id": 10, "username": "user10", "name": "Thor", "surname": "Odinson", "role": "U", "status" : "1" },
