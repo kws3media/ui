@@ -103,6 +103,9 @@
   {#if is_searching}Searching...{/if}
 </div>-->
 <style global>
+  #datagrid-demo .has-addons .select {
+    margin-top: 8px;
+  }
   .sorting-filters {
     margin-top: -0.5rem;
   }
