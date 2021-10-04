@@ -242,3 +242,10 @@ pre.prismjs > code {
     background: #f8f8f8;
   }
 }
+
+.datagrid-example {
+  .box.is-selected {
+    background-color: $primary;
+    color: #fff;
+  }
+}

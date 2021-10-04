@@ -85,6 +85,23 @@
      */
     clickableRows = false,
     /**
+     * Contains all custom values for each column
+     */
+    valueTransformers = {},
+    /**
+     * CSS class names for each column
+     */
+    classTransformers = {},
+    /**
+     * CSS styles for each column
+     */
+    styleTransformers = {},
+    /**
+     * Contains list of columns which can be visible or not
+     */
+    visibilityMap = {};
+
+  let /**
      * Determines if selecting multiple rows and doing multiple actions is allowed
      */
     bulk_actions = false,
@@ -103,23 +120,7 @@
     /**
      * Size of each checkbox
      */
-    selectCheckboxSize = "medium",
-    /**
-     * Contains all custom values for each column
-     */
-    valueTransformers = {},
-    /**
-     * CSS class names for each column
-     */
-    classTransformers = {},
-    /**
-     * CSS styles for each column
-     */
-    styleTransformers = {},
-    /**
-     * Contains list of columns which can be visible or not
-     */
-    visibilityMap = {};
+    selectCheckboxSize = "medium";
 
   $: mainTileComponent = tileItemComponent ? tileItemComponent : TileViewItem;
   $: column_size = per_row < 12 ? Math.floor(12 / per_row) : 12;

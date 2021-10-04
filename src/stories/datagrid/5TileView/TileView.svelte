@@ -1,20 +1,19 @@
-<KwsTileView
-  {iteration_key}
-  {data}
-  {transition}
-  {tileItemComponent}
-  {per_row}
-  {columns}
-  {clickableRows}
-  {bulk_actions}
-  {selectAll}
-  {selectedIds}
-  {selectCheckboxColor}
-  {selectCheckboxSize}
-  {valueTransformers}
-  {classTransformers}
-  {styleTransformers}
-  {visibilityMap} />
+<div class="columns datagrid-example">
+  <div class="column">
+    <KwsTileView
+      {iteration_key}
+      {data}
+      {transition}
+      {tileItemComponent}
+      {per_row}
+      {columns}
+      {clickableRows}
+      {valueTransformers}
+      {classTransformers}
+      {styleTransformers}
+      {visibilityMap} />
+  </div>
+</div>
 
 <script>
   import { TileView as KwsTileView } from "@kws3/ui";
@@ -26,11 +25,6 @@
     per_row = 3,
     columns = {},
     clickableRows = false,
-    bulk_actions = false,
-    selectAll = false,
-    selectedIds = [],
-    selectCheckboxColor = "info",
-    selectCheckboxSize = "medium",
     valueTransformers = {},
     classTransformers = {},
     styleTransformers = {},
