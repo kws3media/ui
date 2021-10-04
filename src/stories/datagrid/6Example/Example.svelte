@@ -109,6 +109,9 @@
   .sorting-filters {
     margin-top: -0.5rem;
   }
+  .sorting-filters .select {
+    margin-top: 0px;
+  }
 </style>
 
 <script>
