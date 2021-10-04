@@ -78,20 +78,20 @@ export let args={
       export let icon = "check";
       export let done_icon = "check";
       export let done_text = "Done";
-      function onDoing(event, success = true){
+      function onDoing(event){
         let {doing, done, error} = event.detail;
         doing();
         somePromise().then(() => {
           //set visual state to Done
           //it will autmatically revert back to
           //normal state after 3 seconds
-          component.done();
+          done();
         })
         .catch(() => {
           //set visual state to Error
           //it will autmatically revert back to
           //normal state after 3 seconds
-          component.error();
+          error();
         })
       }
     </script>`

@@ -1,6 +1,7 @@
 export { applySettings } from "./settings";
 
-export { default as activateTooltips } from "./helpers/Tooltip";
+export { activateTooltips, tooltip, popover } from "./helpers/Tooltip";
+export { default as Popover } from "./helpers/Popover.svelte";
 
 export { default as Icon } from "./helpers/Icon.svelte";
 export { default as Message } from "./helpers/Message.svelte";
@@ -11,6 +12,12 @@ export { default as Notification } from "./helpers/Notification.svelte";
 export { default as Loader } from "./helpers/Loader.svelte";
 export { default as ActionSheet } from "./helpers/ActionSheet.svelte";
 export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
+export {
+  Notifications,
+  Toasts,
+  Snackbars,
+  FloatiesStore,
+} from "./helpers/FloatingUI";
 
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
 export { default as DeleteButton } from "./buttons/DeleteButton.svelte";
@@ -30,8 +37,9 @@ export { default as Nl2br } from "./helpers/Nl2br.svelte";
 export { default as Transition } from "./transitions/Transition.svelte";
 export { default as SlidingPane } from "./sliding-panes/SlidingPane.svelte";
 export { default as SlidingPaneSet } from "./sliding-panes/SlidingPaneSet.svelte";
-export { default as SearchableSelect } from "./forms/SearchableSelect.svelte";
-export { default as MaskedInput } from "./forms//MaskedInput.svelte";
+export { default as SearchableSelect } from "./forms/select/SearchableSelect.svelte";
+export { default as MultiSelect } from "./forms/select/MultiSelect.svelte";
+export { default as MaskedInput } from "./forms/MaskedInput.svelte";
 
 export { default as Colorpicker } from "./forms/colorpicker/Colorpicker.svelte";
 

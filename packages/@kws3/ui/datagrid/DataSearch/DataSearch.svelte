@@ -2,21 +2,22 @@
   @component
 
 
-  @param {boolean} [hasSearch=true] - HasSearch property, Default: `true`
-  @param {boolean} [hasFilters=true] - HasFilters property, Default: `true`
-  @param {string} [placeholder=""] - Placeholder property, Default: `""`
-  @param {object} [filters={}] - Filters property, Default: `{}`
-  @param {string} [q=""] - Q property, Default: `""`
-  @param {string} [filter_in_use_class="is-in-use"] - Filter_in_use_class property, Default: `"is-in-use"`
-  @param {string} [filter_not_in_use_class="is-not-in-use"] - Filter_not_in_use_class property, Default: `"is-not-in-use"`
-  @param {object} [filterComponent=null] - FilterComponent property, Default: `null`
-  @param {object} [filter_label_map={}] - Filter_label_map property, Default: `{}`
+  @param {boolean} [hasSearch=true] - Determines whether there is a search input or not, Default: `true`
+  @param {boolean} [hasFilters=true] - Determines if there are filters on search, Default: `true`
+  @param {string} [placeholder=""] - Placeholder text for the search input, Default: `""`
+  @param {object} [filters={}] - Contains all the filter dropdown values, Default: `{}`
+  @param {string} [q=""] - Query string from the browser url, Default: `""`
+  @param {string} [filter_in_use_class="is-in-use"] - CSS class for in use filters, Default: `"is-in-use"`
+  @param {string} [filter_not_in_use_class="is-not-in-use"] - Css class for not in use filters, Default: `"is-not-in-use"`
+  @param {object} [filterComponent=null] - To use a custom component for filters, Default: `null`
+  @param {object} [filter_label_map={}] - Contains all the labels for the filter dropdowns, Default: `{}`
 
   ### Events
-  - `resetSearch`
-  - `search`
+  - `resetSearch` - Triggered when the search is reset
+  - `search` - Event triggered on search
 
 -->
+
 <form on:submit|preventDefault={dosearch}>
   <div class="field has-addons">
     {#if hasSearch}
@@ -66,14 +67,41 @@
 
   const fire = createEventDispatcher();
 
+  /**
+   * Determines whether there is a search input or not
+   */
   export let hasSearch = true,
+    /**
+     * Determines if there are filters on search
+     */
     hasFilters = true,
+    /**
+     * Placeholder text for the search input
+     */
     placeholder = "",
+    /**
+     * Contains all the filter dropdown values
+     */
     filters = {},
+    /**
+     * Query string from the browser url
+     */
     q = "",
+    /**
+     * CSS class for in use filters
+     */
     filter_in_use_class = "is-in-use",
+    /**
+     * Css class for not in use filters
+     */
     filter_not_in_use_class = "is-not-in-use",
+    /**
+     * To use a custom component for filters
+     */
     filterComponent = null,
+    /**
+     * Contains all the labels for the filter dropdowns
+     */
     filter_label_map = {};
 
   let query = "",
@@ -133,6 +161,9 @@
     query = "";
     filterVals = filterVals;
 
+    /**
+     * Triggered when the search is reset
+     */
     fire("resetSearch");
   }
 
@@ -142,6 +173,9 @@
     for (var i in filterVals) {
       filterVals[i] && ret.push(i + ":" + filterVals[i]);
     }
+    /**
+     * Event triggered on search
+     */
     fire("search", ret.join("~"));
   }
 </script>

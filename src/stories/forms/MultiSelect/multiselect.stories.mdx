@@ -1,11 +1,11 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import { SearchableSelect } from '@kws3/ui';
-import SearchableSelectDecorator from './SearchableSelect.svelte';
+import { MultiSelect } from '@kws3/ui';
+import MultiSelectDecorator from './MultiSelect.svelte';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  value : "",
+  value : [],
   style : "",
   class : "",
   size:"",
@@ -15,15 +15,18 @@ export let args={
   value_key : "id",
   disabled : false,
   readonly: false,
+  summary_mode: false,
+  max: null,
   placeholder : "Choose a brand...",
   selected_icon:'check',
   no_options_msg: "No matching options",
-  remove_all_tip: "Clear Selection",
+  remove_all_tip: "Remove all",
+  remove_btn_tip: "Remove",
 };
 
 <Meta
-  title="Forms/SearchableSelect"
-  component={SearchableSelect}
+  title="Forms/MultiSelect"
+  component={MultiSelect}
   args={args}
   argTypes={{
     color: {
@@ -36,23 +39,23 @@ export let args={
 />
 
 <Description markdown={dedent`
-# SearchableSelect
-## A select component that allows you to search by typing into it.
+# MultiSelect
+## A select component that allows you to search and select multiple items by typing into it.
 `}/>
 
 <Canvas>
   <Story
-  name="SearchableSelect"
+  name="MultiSelect"
   args={args}
   >
   {(args) => ({
-    Component: SearchableSelectDecorator,
+    Component: MultiSelectDecorator,
     props: args,
   })}
   </Story>
 </Canvas>
 
-<ArgsTable story="SearchableSelect" />
+<ArgsTable story="MultiSelect" />
 
 <div class="notification is-primary is-light">
   <div class="columns">
@@ -66,6 +69,8 @@ export let args={
       </br>
       and <code>array_item[value_key]</code> is returned as the value once an item is selected.</p>
       <p>See supported data formats in example story above.</p>
+      <h3>Output format <code>value</code></h3>
+      <p>The output in <code>value</code> will always be an array, even if a single item is selected.</p>
     </div>
     <div class="column">
     <h3>Customising dropdown text items</h3>
@@ -74,14 +79,14 @@ export let args={
     <Source
   language="jsx"
   code={
-    dedent`<SearchableSelect
+    dedent`<MultiSelect
       ...other_options
       let:search_key 
       let:option>
       <span class="has-text-danger">
         {option[search_key]}
       </span>
-    </SearchableSelect>`
+    </MultiSelect>`
   }
 />
     </div>
@@ -93,10 +98,9 @@ export let args={
 <Source
   language="javascript"
   code={
-    dedent`import { SearchableSelect } from '@kws3/ui';`
+    dedent`import { MultiSelect } from '@kws3/ui';`
   }
 />
-
 
 #### Import the SCSS:
 <Source

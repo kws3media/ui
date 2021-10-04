@@ -4,7 +4,11 @@ $kws-tt-foreground-color: $scheme-main !default;
 $kws-tt-arrow-size: 8px !default;
 $kws-tt-padding: 0.5rem !default;
 $kws-tt-radius: $radius-small !default;
-$kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65) !default;
+$kws-tt-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.4) !default;
+$kws-popover-background-color: $background !default;
+$kws-popover-foreground-color: $text !default;
+$kws-popover-arrow-color: $background !default;
+$kws-popover-radius: $kws-tt-radius !default;
 
 .tippy-iOS {
   cursor: pointer !important;
@@ -86,13 +90,13 @@ $kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65) !default;
     }
   }
 
-  &[data-theme~="infobubble"] {
+  &[data-theme~="popover"] {
     font-size: 1rem;
-    border-radius: $kws-tt-radius;
-    color: $text;
-    background-color: $background;
+    border-radius: $kws-popover-radius;
+    color: $kws-popover-foreground-color;
+    background-color: $kws-popover-background-color;
     .tippy-arrow {
-      color: $background;
+      color: $kws-popover-arrow-color;
     }
     .tippy-content {
       padding: 0;
