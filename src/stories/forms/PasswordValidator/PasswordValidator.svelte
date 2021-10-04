@@ -9,7 +9,18 @@
           required
           bind:value={password}
           autocomplete="off" />
-        <KwsPasswordValidator {password} bind:valid class={klass} {style} />
+        <KwsPasswordValidator
+          {compact}
+          {password}
+          {min}
+          {lower}
+          {upper}
+          {digit}
+          {special}
+          {custom_rules}
+          bind:valid
+          class={klass}
+          {style} />
       </p>
     </div>
   </div>
@@ -27,6 +38,13 @@
   });
 
   export let password = "",
+    compact = true,
+    min = 8,
+    lower = true,
+    upper = true,
+    digit = true,
+    special = true,
+    custom_rules = [],
     valid = false,
     style = "";
 
