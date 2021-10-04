@@ -12,8 +12,11 @@ export default function (password, options) {
           opt.passed = true;
         }
       } else {
-        if (new RegExp(opt.regex).test(password)) {
-          opt.passed = true;
+        let passed = new RegExp(opt.regex).test(password);
+        if (typeof opt.negate != "undefined" && opt.negate) {
+          opt.passed = !passed;
+        } else {
+          opt.passed = passed;
         }
       }
     }
