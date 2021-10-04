@@ -29,7 +29,7 @@
 {/if}
 
 {#if data}
-  <div class="columns">
+  <div class="columns" id="datagrid-demo">
     <div class="column">
       <DataSearch
         {hasSearch}
@@ -103,9 +103,6 @@
   {#if is_searching}Searching...{/if}
 </div>-->
 <style global>
-  .has-addons .select {
-    margin-top: 8px;
-  }
   .sorting-filters {
     margin-top: -0.5rem;
   }
