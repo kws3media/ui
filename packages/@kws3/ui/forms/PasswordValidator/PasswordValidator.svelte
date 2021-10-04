@@ -103,7 +103,15 @@
      */
     special = true,
     /**
-     * Array of custom rules
+     * Array of custom rules defined as objects
+     *
+     * Object must contain:
+     * `name`
+     * `text`
+     * `identifier`
+     * `regex`
+     * `negate (optional)`
+     *
      */
     custom_rules = [],
     /**
