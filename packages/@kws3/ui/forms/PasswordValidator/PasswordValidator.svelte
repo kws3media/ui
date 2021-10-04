@@ -8,43 +8,116 @@
   @param {string} [class=""] - CSS classes for container, Default: `""`
 
 -->
-<div class="level is-mobile {klass}" style="margin:0;max-width: 100%;{style}">
-  <div class="level-left" style="max-width: 60%">
-    <div class="level-item" style="max-width: 100%">
-      {#if password && !result.overall}
-        <p class="help has-text-danger">
-          Should be at least 8 characters in length and include at least one
-          lower-case letter, one upper-case letter, one number, and one special
-          character.
-        </p>
-      {:else if password && result.overall}
-        <p class="help has-text-success">Password is strong.</p>
-      {/if}
-    </div>
-  </div>
-  <div class="level-right">
-    <span class="tags">
-      <span class="tag is-small is-{result.min_length ? 'success' : 'danger'}"
-        >8+</span>
-      <span class="tag is-small is-{result.lowercase ? 'success' : 'danger'}"
-        >a-z</span>
-      <span class="tag is-small is-{result.uppercase ? 'success' : 'danger'}"
-        >A-Z</span>
-      <span class="tag is-small is-{result.digit ? 'success' : 'danger'}"
-        >0-9</span>
-      <span class="tag is-small is-{result.special ? 'success' : 'danger'}"
-        >!#@</span>
-    </span>
-  </div>
+<div class={klass} style="margin:0;max-width: 100%;{style}">
+  <ul class:expanded>
+    {#each result.items as opt (opt.name)}
+      <li animate:flip={{ easing: sineOut }}>
+        <span class="help expanded">
+          <span
+            class="tag is-small is-normal is-light pv-identifier {opt.passed
+              ? 'is-success'
+              : 'is-danger'}">{opt.identifier}</span>
+          <span class="pv-text">{opt.text}</span>
+          <Icon
+            class="pv-icon"
+            icon={opt.passed ? "check" : "ban"}
+            color={opt.passed ? "success" : "danger"} />
+        </span>
+        <span class="summarized">
+          <span
+            data-tooltip={opt.text}
+            data-tippy-hideOnClick="false"
+            class="tag is-small is-normal is-light pv-identifier {opt.passed
+              ? 'is-success'
+              : 'is-danger'}">{opt.identifier}</span>
+        </span>
+      </li>
+    {/each}
+  </ul>
 </div>
 
+<style lang="scss">
+  ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    li {
+      padding: 0;
+      margin: 0;
+      .tag.pv-identifier {
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .expanded {
+        display: none;
+      }
+      .summarized {
+        display: flex;
+      }
+    }
+
+    &.expanded {
+      display: block;
+      li {
+        .tag.pv-identifier {
+          min-width: 2.5rem;
+        }
+        .expanded {
+          display: block;
+        }
+        .summarized {
+          display: none;
+        }
+      }
+    }
+  }
+</style>
+
 <script>
+  import { flip } from "svelte/animate";
+  import { sineOut } from "svelte/easing";
   import validate from "./validatePassword";
+  import { Icon } from "@kws3/ui";
 
   /**
-   * Password for validating
+   * Minimum number of characters required
    */
-  export let password = "",
+  export let min = 8,
+    options = [
+      {
+        name: "lowercase",
+        active: true,
+        text: "At least one lower-case letter",
+        identifier: "a-z",
+        regex: /[a-z]/,
+      },
+      {
+        name: "uppercase",
+        active: true,
+        text: "At least one upper-case letter",
+        identifier: "A-Z",
+        regex: /[A-Z]/,
+      },
+      {
+        name: "digits",
+        active: true,
+        text: "At least one number",
+        identifier: "0-9",
+        regex: /[0-9]/,
+      },
+      {
+        name: "special",
+        active: true,
+        text: "At least one special character",
+        identifier: "!#@",
+        regex: /[^A-Za-z0-9]/,
+      },
+    ],
+    /**
+     * Password for validating
+     */
+    password = "",
     /**
      * Inline CSS style for container
      */
@@ -52,7 +125,7 @@
     /**
      * Variable used to check if password Validator returns true or false
      */
-    is_valid = false;
+    valid = false;
 
   /**
    * CSS classes for container
@@ -60,11 +133,29 @@
   let klass = "";
   export { klass as class };
 
-  $: result = validate(password);
+  $: expanded = password && !result.overall;
+
+  $: sanitizedOptions = [
+    {
+      name: "kws_min_length",
+      active: true,
+      text: `At least ${min} characters`,
+      identifier: `${min}+`,
+      value: min,
+    },
+    ...options,
+  ]
+    .filter((el) => el.active)
+    .map((el) => {
+      el.passed = false;
+      return el;
+    });
+
+  $: result = validate(password, sanitizedOptions);
 
   $: {
     if (result.overall) {
-      is_valid = true;
+      valid = true;
     }
   }
 </script>

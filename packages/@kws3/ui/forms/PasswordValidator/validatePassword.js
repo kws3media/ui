@@ -1,42 +1,27 @@
-export default function (password) {
-  var result = {
-      overall: false,
-      min_length: false,
-      special: false,
-      uppercase: false,
-      lowercase: false,
-      digit: false,
-    },
-    regex = {
-      min_length: 8,
-      special: "[^A-Za-z0-9]", // Special Character
-      uppercase: "[A-Z]", // Uppercase Alphabets
-      lowercase: "[a-z]", // Lowercase Alphabets
-      digit: "[0-9]", // Numbers
-    };
+export default function (password, options) {
+  const result = {
+    items: [],
+    overall: false,
+  };
 
-  Object.entries(regex).forEach((item) => {
-    if (item[0] == "min_length") {
-      if (password && password.length >= item[1]) {
-        result[item[0]] = true;
-      }
-    } else {
-      if (new RegExp(item[1]).test(password)) {
-        result[item[0]] = true;
+  result.items = (options || []).slice().map((_opt) => {
+    const opt = Object.assign({}, _opt);
+    if (opt && opt.active) {
+      if (opt.name == "kws_min_length") {
+        if (password && password.length >= opt.value) {
+          opt.passed = true;
+        }
+      } else {
+        if (new RegExp(opt.regex).test(password)) {
+          opt.passed = true;
+        }
       }
     }
+    return opt;
   });
 
-  var passed = 0,
-    values = Object.values(result);
-  values.forEach((item) => {
-    if (item) {
-      passed++;
-    }
-  });
-  if (passed == values.length - 1) {
-    result.overall = true;
-  }
+  result.overall =
+    result.items.filter((el) => el.passed).length == result.items.length;
 
   return result;
 }
