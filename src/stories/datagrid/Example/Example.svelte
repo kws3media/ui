@@ -209,7 +209,7 @@
         var key = dd_field[0];
         var filter_data = filtered.length > 0 ? filtered : data_from_json;
         filtered = filter_data.filter(function (item) {
-          console.log(item[key]);
+          console.log(item[key], dd_field[1]);
           return item[key] == dd_field[1];
         });
       }
