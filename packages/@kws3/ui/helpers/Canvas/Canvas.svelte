@@ -2,21 +2,23 @@
   @component
 
 
-  @param {object} [styles={}] - CSS styles for the canvas, Default: `{}`
-  @param {number} [lineWidth=2] - Pen input line width, Default: `2`
+  @param {object} [styles={}] - Inline CSS for the canvas, Default: `{}`
+  @param {number} [lineWidth=2] - Pen input width, Default: `2`
   @param {number} [eraserWidth=6] - Eraser width, Default: `6`
-  @param {string} [lineColor="#ff0000"] - Pen input line color, Default: `"#ff0000"`
+  @param {string} [lineColor="#ff0000"] - Pen input color, Default: `"#ff0000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
-  @param {string} [image=""] - It will hold the drawing image data, Default: `""`
-  @param {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'} [expandFrom="center center"] - Expand position values, Default: `"center center"`
-  @param {number} [initialScale=1] - Canvas transform scale before expand, Default: `1`
-  @param {number} [expandedScale=2] - Canvas transform scale after expand, Default: `2`
-  @param {'Pen'|'Eraser'|'Circle'} [tools=undefined] - List of available tools, Default: `undefined`
-  @param {'Pen'|'Eraser'|'Circle'} [activeTool="Pen"] - Initially active tool, Default: `"Pen"`
-  @param {string} [drawing_label=""] - The label for brawing box, only active if it is `readonly` or `disabled`, Default: `""`
-  @param {boolean} [hide_colorpicker=false] - Determines whether pen colorpicker is visible or not, Default: `false`
+  @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
+  @param {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'} [expandFrom="center center"] - The direction from which the canvas should expand, Default: `"center center"`
+  @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
+  @param {number} [expandedScale=2] - Transform scale of the canvas on expansion, Default: `2`
+  @param {'Pen'|'Eraser'|'Circle'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
+  @param {'Pen'|'Eraser'|'Circle'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
+  @param {string} [drawing_label=""] - Label for the canvas drawing box
+
+Only active when canvas is `readonly` or `disabled`, Default: `""`
+  @param {boolean} [hide_colorpicker=false] - Determines whether to make the colorpicker available or not, Default: `false`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 
 -->
@@ -146,7 +148,7 @@
   import { onMount } from "svelte";
 
   /**
-   * CSS styles for the canvas
+   * Inline CSS for the canvas
    */
   export let styles = {
       width: "250px",
@@ -154,7 +156,7 @@
       border: "1px solid #b5b5b5",
     },
     /**
-     * Pen input line width
+     * Pen input width
      */
     lineWidth = 2,
     /**
@@ -162,7 +164,7 @@
      */
     eraserWidth = 6,
     /**
-     * Pen input line color
+     * Pen input color
      */
     lineColor = "#ff0000",
     /**
@@ -178,39 +180,41 @@
      */
     disabled = false,
     /**
-     * It will hold the drawing image data
+     * The Data created in the canvas by the user
      */
     image = "",
     /**
-     * Expand position values
+     * The direction from which the canvas should expand
      * @type {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'}
      * @link https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
      */
     expandFrom = "center center",
     /**
-     * Canvas transform scale before expand
+     * Initial transform scale for the canvas before expansion
      */
     initialScale = 1,
     /**
-     * Canvas transform scale after expand
+     * Transform scale of the canvas on expansion
      */
     expandedScale = 2,
     /**
-     * List of available tools
+     * List of tools available for user to select from
      * @type {'Pen'|'Eraser'|'Circle'}
      */
     tools = ["Pen", "Eraser", "Circle"],
     /**
-     * Initially active tool
+     * Default active tool
      * @type {'Pen'|'Eraser'|'Circle'}
      */
     activeTool = "Pen",
     /**
-     * The label for brawing box, only active if it is `readonly` or `disabled`
+     * Label for the canvas drawing box
+     *
+     * Only active when canvas is `readonly` or `disabled`
      */
     drawing_label = "",
     /**
-     * Determines whether pen colorpicker is visible or not
+     * Determines whether to make the colorpicker available or not
      */
     hide_colorpicker = false,
     /**
