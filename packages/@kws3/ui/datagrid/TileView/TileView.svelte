@@ -7,7 +7,7 @@
   @param {boolean} [transition=false] - Determines if a transition effect is used, Default: `false`
   @param {object} [tileItemComponent=null] - Contains a custom component, Default: `null`
   @param {number} [per_row=3] - Sets how many items to display in a row, Default: `3`
-  @param {string} [columns=""] - Column names for the displayed table {db_field_name: column_name}, Default: `""`
+  @param {object} [columns={}] - Column names for the displayed table {db_field_name: column_name}, Default: `{}`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
   @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
   @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
