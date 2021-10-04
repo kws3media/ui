@@ -127,7 +127,7 @@
 
   let hasSearch = true,
     hasFilters = true,
-    placeholder = "Search by name",
+    placeholder = "Search by name or surname",
     filters = response.filters,
     options = response.options,
     data = [],
@@ -136,6 +136,7 @@
       name: "Name",
       surname: "Surname",
       role: "Role",
+      status: "Status",
     },
     meta = response.meta,
     q = "",
@@ -179,6 +180,9 @@
           break;
       }
     },
+    status(v, row) {
+      return v == 1 ? "Active" : "Inactive";
+    },
   };
 
   $: data = original_data.slice((page_number - 1) * limit, page_number * limit);
@@ -189,30 +193,36 @@
     var search_vals = detail.split("~");
     var input_field = search_vals[0];
     input_field = input_field.trim();
-
+    var filtered = original_data;
     if (input_field) {
-      var filtered = data_from_json.filter(function (item) {
-        var nameArray = item.name.split("");
-        var nameToMatch = [];
-        for (var i = 0; i < input_field.length; i++) {
-          nameToMatch.push(nameArray[i]);
-        }
-        return input_field.toLowerCase() == nameToMatch.join("").toLowerCase();
+      filtered = data_from_json.filter(function (item) {
+        return (
+          item.name.toLowerCase().includes(input_field.toLowerCase()) ||
+          item.surname.toLowerCase().includes(input_field.toLowerCase())
+        );
       });
-      original_data = filtered;
-      q = input_field;
     }
     //Dropdown searches
     if (search_vals.length > 1) {
-      /*for(var i = 1; i < search_vals.length; i++){
-
-      }*/
+      for (var i = 1; i < search_vals.length; i++) {
+        var dd_field = search_vals[i].split(":");
+        var key = dd_field[0];
+        var filter_data = filtered.length > 0 ? filtered : data_from_json;
+        filtered = filter_data.filter(function (item) {
+          console.log(item[key]);
+          return item[key] == dd_field[1];
+        });
+      }
     }
+    q = input_field;
+    original_data = filtered;
+    meta.total = original_data.length;
   }
 
   function resetSearch() {
     q = "";
     original_data = response.records;
+    meta.total = original_data.length;
   }
 
   function switchView() {
