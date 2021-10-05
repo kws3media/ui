@@ -25,8 +25,8 @@
       line-height: 1;
       margin-bottom: 0;
     }
-    :global(.toggle-button),
-    :global(.toggle-buttons) {
+    :global(.kws-toggle-button),
+    :global(.kws-toggle-buttons) {
       flex: none;
       margin-left: 0.5rem;
     }

@@ -27,7 +27,7 @@ This property can be bound to, to fetch the current value, Default: `null`
   - `change` - Toggle button change event
 
 -->
-<div class="toggle-buttons field has-addons {klass}">
+<div class="kws-toggle-buttons field has-addons {klass}">
   {#each options as option}
     <div class="control {fullwidth ? 'is-expanded' : ''} {inner_class}">
       <button
