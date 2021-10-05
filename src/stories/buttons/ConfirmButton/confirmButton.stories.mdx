@@ -89,17 +89,21 @@ export let args={
       export let done_icon = "check";
       export let doing_text = "Doing";
       export let done_text = "Done";
-      function confirmDo(event, success = true){
+      function confirmDo(event){
         let {doing, done, error} = event.detail;
         doing();
-        setTimeout(() => {
-          if(success){
-            done();
-          }
-          else {
-            error();
-          }
-        },'2000')
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after 3 seconds
+          error();
+        });        
       }
     </script>`
   }

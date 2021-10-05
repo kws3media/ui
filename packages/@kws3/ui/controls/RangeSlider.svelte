@@ -25,7 +25,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   - `change` - Native input change event
 
 -->
-<div class="range-control">
+<div class="kws-range-control">
   <!--Native input change event-->
   <input
     class="slider is-fullwidth
