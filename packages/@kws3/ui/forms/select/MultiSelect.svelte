@@ -45,7 +45,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 <div
   bind:this={el}
   class="
-    searchableselect input
+    kws-searchableselect input
     {disabled ? 'is-disabled' : ''}
     {readonly ? 'is-readonly' : ''}
     is-{size} is-{color} {klass}
@@ -391,7 +391,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   function hoistDropdown() {
     if (!container) {
       container = document.createElement("div");
-      container.className = "searchableselect";
+      container.className = "kws-searchableselect";
       rootContainer.appendChild(container);
       container.appendChild(dropdown);
     }

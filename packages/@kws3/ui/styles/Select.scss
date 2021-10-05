@@ -11,7 +11,7 @@ $kws-select-selecting-background: $primary !default;
 $kws-select-selected-color: $primary-dark !default;
 $kws-select-selected-background: $primary-light !default;
 
-.searchableselect {
+.kws-searchableselect {
   position: relative;
   align-items: center;
   display: flex;
@@ -199,5 +199,11 @@ $kws-select-selected-background: $primary-light !default;
         }
       }
     }
+  }
+}
+
+#kws-overlay-root {
+  .searchableselect {
+    position: absolute;
   }
 }
