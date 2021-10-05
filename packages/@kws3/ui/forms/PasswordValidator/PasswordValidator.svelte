@@ -42,13 +42,14 @@
     max-width: 100%;
   }
   ul {
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin: 0 -0.25em 0 0;
     li {
       padding: 0;
-      margin: 0;
+      margin: 0 0.25em 0.25em 0.25em;
       .tag.pv-identifier {
         font-weight: bold;
         cursor: pointer;
