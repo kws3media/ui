@@ -48,6 +48,8 @@ export { default as Timepicker } from "./forms/Timepicker.svelte";
 export { datepicker as DatepickerAction } from "./forms/actions.js";
 export { timepicker as TimepickerAction } from "./forms/actions.js";
 
+export { default as PasswordValidator } from "./forms/PasswordValidator/PasswordValidator.svelte";
+
 export { default as ClipboardCopier } from "./helpers/ClipboardCopier.svelte";
 export { default as GridView } from "./datagrid/GridView/GridView.svelte";
 export { default as TileView } from "./datagrid/TileView/TileView.svelte";
