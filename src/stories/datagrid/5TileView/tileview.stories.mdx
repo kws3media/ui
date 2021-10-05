@@ -1,0 +1,74 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { TileView } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import TileViewDecorator from "./TileView.svelte";
+
+export let args={
+  iteration_key : "id",
+  data : [
+    {
+      "id": 2,
+      "username": "user2",
+      "name": "User",
+      "surname": "Two",
+      "role": "U"
+    },
+    {
+      "id": 1,
+      "username": "user1",
+      "name": "User",
+      "surname": "One",
+      "role": "A"
+    }
+  ],
+  transition : false,
+  tileItemComponent : null,
+  per_row : 3,
+  columns : {
+    "id": "ID",
+    "name": "Name",
+    "surname": "Surname"
+  },
+  clickableRows : false,
+  valueTransformers : {},
+  classTransformers : {},
+  styleTransformers : {},
+  visibilityMap : {}
+};
+
+<Meta
+  title="Datagrid/TileView"
+  component={TileView}
+  args={args}
+  argTypes={{}}
+/>
+
+<Description markdown={dedent`
+# TileView
+## TileView component in datagrid.
+`}/>
+
+<Canvas>
+  <Story
+  name="TileView"
+  args={args}
+  >
+  {(args) => ({
+    Component: TileViewDecorator,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="TileView" />
+
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { TileView } from '@kws3/ui';`
+  }
+/>

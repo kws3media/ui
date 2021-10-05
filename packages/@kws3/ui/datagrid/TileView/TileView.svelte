@@ -7,7 +7,7 @@
   @param {boolean} [transition=false] - Determines if a transition effect is used, Default: `false`
   @param {object} [tileItemComponent=null] - Contains a custom component, Default: `null`
   @param {number} [per_row=3] - Sets how many items to display in a row, Default: `3`
-  @param {string} [columns=""] - Column names for the displayed table {db_field_name: column_name}, Default: `""`
+  @param {object} [columns={}] - Column names for the displayed table {db_field_name: column_name}, Default: `{}`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
   @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
   @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
@@ -79,12 +79,29 @@
     /**
      * Column names for the displayed table {db_field_name: column_name}
      */
-    columns = "",
+    columns = {},
     /**
      * Determines whether rows are clickable or not
      */
     clickableRows = false,
     /**
+     * Contains all custom values for each column
+     */
+    valueTransformers = {},
+    /**
+     * CSS class names for each column
+     */
+    classTransformers = {},
+    /**
+     * CSS styles for each column
+     */
+    styleTransformers = {},
+    /**
+     * Contains list of columns which can be visible or not
+     */
+    visibilityMap = {};
+
+  let /**
      * Determines if selecting multiple rows and doing multiple actions is allowed
      */
     bulk_actions = false,
@@ -103,23 +120,7 @@
     /**
      * Size of each checkbox
      */
-    selectCheckboxSize = "medium",
-    /**
-     * Contains all custom values for each column
-     */
-    valueTransformers = {},
-    /**
-     * CSS class names for each column
-     */
-    classTransformers = {},
-    /**
-     * CSS styles for each column
-     */
-    styleTransformers = {},
-    /**
-     * Contains list of columns which can be visible or not
-     */
-    visibilityMap = {};
+    selectCheckboxSize = "medium";
 
   $: mainTileComponent = tileItemComponent ? tileItemComponent : TileViewItem;
   $: column_size = per_row < 12 ? Math.floor(12 / per_row) : 12;

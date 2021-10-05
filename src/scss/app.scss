@@ -172,6 +172,8 @@ pre.prismjs > code {
 //Tooltip
 @import "../../packages/@kws3/ui/styles/Tooltip.scss";
 
+//DataSort
+@import "../../packages/@kws3/ui/styles/DataSort.scss";
 // #stepsHolder{
 //   padding-top: 1.2rem;
 //   overflow: auto;
@@ -266,5 +268,12 @@ pre.prismjs > code {
   }
   .docblock-argstable {
     background: #f8f8f8;
+  }
+}
+
+.datagrid-example {
+  .box.is-selected {
+    background-color: $primary;
+    color: #fff;
   }
 }
