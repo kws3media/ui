@@ -35,8 +35,12 @@ async function collectAndRun(cmd, name) {
     }
     _cmd = applyCommand(_cmd, _result);
   } else {
-    var { options, result } = await prompt(cmd);
-    _cmd = applyCommand(_cmd, formatResult(result, options));
+    if (typeof cmd == "string") {
+      _cmd = applyCommand(_cmd, {});
+    } else {
+      var { options, result } = await prompt(cmd);
+      _cmd = applyCommand(_cmd, formatResult(result, options));
+    }
   }
 
   console.log(chalk.bold.green.underline("Running " + name));
