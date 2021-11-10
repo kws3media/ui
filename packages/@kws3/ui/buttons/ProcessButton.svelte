@@ -13,7 +13,7 @@
   @param {object} [context=null] - Context property, Default: `null`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
-  @param {number} [completion_timeout=1500] - How long to wait before `done` or `error` events are fired, Default: `1500`
+  @param {number} [completion_timeout=1500] - How long to wait before `done` or `error` events are fired, and the UI state reverts back to normal, Default: `1500`
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
@@ -106,7 +106,7 @@
      */
     disabled = false,
     /**
-     * How long to wait before `done` or `error` events are fired
+     * How long to wait before `done` or `error` events are fired, and the UI state reverts back to normal
      */
     completion_timeout = 1500;
 
