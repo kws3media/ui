@@ -1,1 +1,0 @@
-export {default} from './components/SearchableSelect/SearchableSelect.html';
