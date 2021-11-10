@@ -13,6 +13,7 @@
       class={klass}
       {button_class}
       {cy}
+      {completion_timeout}
       on:erase={success} />
     <p class="is-block mt-2">This will succeed.</p>
   </div>
@@ -30,6 +31,7 @@
       class={klass}
       {button_class}
       {cy}
+      {completion_timeout}
       on:erase={failed} />
     <p class="is-block mt-2">This will fail.</p>
   </div>
@@ -48,7 +50,8 @@
     icon_only = false,
     disabled = false,
     button_class = "",
-    cy = "";
+    cy = "",
+    completion_timeout = 1500;
 
   let klass = "";
   export { klass as class };

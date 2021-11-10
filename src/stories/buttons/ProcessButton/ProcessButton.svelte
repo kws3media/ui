@@ -13,6 +13,7 @@
       {icon_only}
       {disabled}
       class={klass}
+      {completion_timeout}
       on:do={success} />
     <p class="is-block mt-2">This will succeed.</p>
   </div>
@@ -30,6 +31,7 @@
       {icon_only}
       {disabled}
       class={klass}
+      {completion_timeout}
       on:do={failed} />
     <p class="is-block mt-2">This will fail.</p>
   </div>
@@ -48,7 +50,8 @@
     done_text = "Done",
     icon_only = false,
     disabled = false,
-    context = "_context_process";
+    context = "_context_process",
+    completion_timeout = 1500;
 
   let klass = "";
   export { klass as class };

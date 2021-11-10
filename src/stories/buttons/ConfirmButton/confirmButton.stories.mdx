@@ -18,6 +18,7 @@ export let args={
   should_confirm: true,
   size: "",
   color: "primary",
+  completion_timeout: 1500
 };
 
 <Meta
@@ -78,7 +79,7 @@ export let args={
       on:do={confirmDo}
     />
     <script>
-      import { DeleteButton } from '@kws3/buttons';
+      import { ConfirmButton } from '@kws3/buttons';
       export let color = "primary";
       export let disabled = false;
       export let size = "";
@@ -95,15 +96,39 @@ export let args={
         somePromise().then(() => {
           //set visual state to Done
           //it will autmatically revert back to
-          //normal state after 3 seconds
+          //normal state after "completion_timeout"
           done();
         })
         .catch(() => {
           //set visual state to Error
           //it will autmatically revert back to
-          //normal state after 3 seconds
+          //normal state after "completion_timeout"
           error();
         });        
+      }
+    </script>`
+  }
+/>
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+<Source
+  language="html"
+  code={
+    dedent`
+    <script>
+      function confirmDo(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          done(() => {
+            //some callback
+          }, 500);
+        })
+        .catch(() => {
+          error(() => {
+            //some callback
+          }, 500);
+        });
       }
     </script>`
   }

@@ -13,6 +13,7 @@
       {button_class}
       {disabled}
       {should_confirm}
+      {completion_timeout}
       class=""
       on:do={success} />
     <p class="is-block mt-2">This will succeed.</p>
@@ -31,6 +32,7 @@
       {button_class}
       {disabled}
       {should_confirm}
+      {completion_timeout}
       class=""
       on:do={failed} />
     <p class="is-block mt-2">This will fail.</p>
@@ -51,7 +53,8 @@
     icon_only = false,
     disabled = false,
     should_confirm = true,
-    context = "_context_confirm";
+    context = "_context_confirm",
+    completion_timeout = 1500;
 
   function success(e) {
     let { doing, done, context } = e.detail;
