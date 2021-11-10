@@ -14,12 +14,13 @@
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {boolean} [should_confirm=true] - When `false`, skips the confirmation prompt, and makes it a one step process, Default: `true`
   @param {string} [context=""] - Context property, Default: `""`
+  @param {number} [completion_timeout=1500] - How long to wait before `done` or `error` events are fired, Default: `1500`
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
-  - `do` - Fires an event when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
-  - `done` - Fires an event when task completes
-  - `error` - Fires an event when there is an error
+  - `do` - Fired when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
+  - `done` - Fired when task completes
+  - `error` - Fired when there is an error
 
 -->
 <div class="field {_confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
@@ -129,7 +130,11 @@
     /**
      * Context property
      */
-    context = "";
+    context = "",
+    /**
+     * How long to wait before `done` or `error` events are fired
+     */
+    completion_timeout = 1500;
 
   /**
    * CSS classes for button container
@@ -159,7 +164,7 @@
     }
     if (_confirm) {
       /**
-       * Fires an event when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
+       * Fired when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
        */
       fire("do", { doing, done, error, context });
     }
@@ -172,7 +177,7 @@
     _error = false;
   }
 
-  function done() {
+  function done(callback, timeout = completion_timeout) {
     _doing = false;
     _done = true;
     _error = false;
@@ -180,13 +185,14 @@
     setTimeout(() => {
       _done = false;
       /**
-       * Fires an event when task completes
+       * Fired when task completes
        */
       fire("done");
-    }, 1500);
+      callback && callback();
+    }, timeout);
   }
 
-  function error() {
+  function error(callback, timeout = completion_timeout) {
     _done = false;
     _doing = false;
     _error = true;
@@ -194,11 +200,10 @@
     setTimeout(() => {
       _error = false;
       /**
-       * Fires an event when there is an error
+       * Fired when there is an error
        */
       fire("error");
-    }, 1500);
+      callback && callback();
+    }, timeout);
   }
-
-  // reviwed
 </script>

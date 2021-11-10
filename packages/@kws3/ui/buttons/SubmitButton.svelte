@@ -14,12 +14,12 @@
   @param {object} [tracker={}] - Tracker object to be sent from outside to change the state of the button., Default: `{}`
   @param {string} [class=""] - CSS classes for Button container, Default: `""`
   @param {function} [saving()] - call this function on form saving state
-  @param {function} [saved(callback)] - call this function after form saved
-  @param {function} [error(callback)] - call this function on form error state
+  @param {function} [saved(callback, timeout = 3000)] - call this function after form saved
+  @param {function} [error(callback, timeout = 3000)] - call this function on form error state
 
   ### Events
-  - `saved` - Fires an event on successful submission
-  - `error` - Fires an event when there is an error
+  - `saved` - Fired on successful submission
+  - `error` - Fired when there is an error
 
 -->
 <button
@@ -132,7 +132,7 @@
         error: false,
       };
       /**
-       * Fires an event on successful submission
+       * Fired on successful submission
        */
       fire("saved");
       callback && callback();
@@ -156,7 +156,7 @@
         error: false,
       };
       /**
-       * Fires an event when there is an error
+       * Fired when there is an error
        */
       fire("error");
       callback && callback();
@@ -165,6 +165,4 @@
 
   $: err_text = error_text == "" ? text : error_text;
   $: icon_size = size == "large" ? "" : "small";
-
-  // reviwed
 </script>

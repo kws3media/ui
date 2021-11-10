@@ -13,12 +13,13 @@
   @param {object} [context=null] - Context property, Default: `null`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
+  @param {number} [completion_timeout=1500] - How long to wait before `done` or `error` events are fired, Default: `1500`
   @param {string} [class=""] - CSS classes for the button container, Default: `""`
 
   ### Events
-  - `erase` - Fires an event when user confirms delete
-  - `erased` - Fires an event when deletion completes
-  - `error` - Fires an event when there is an error
+  - `erase` - Fired when user confirms delete
+  - `erased` - Fired when deletion completes
+  - `error` - Fired when there is an error
 
 -->
 <ConfirmButton
@@ -33,20 +34,21 @@
   {context}
   {icon_only}
   {disabled}
+  {completion_timeout}
   class={klass}
   on:do={({ detail }) =>
     /**
-     * Fires an event when user confirms delete
+     * Fired when user confirms delete
      */
     fire("erase", detail)}
   on:done={({ detail }) =>
     /**
-     * Fires an event when deletion completes
+     * Fired when deletion completes
      */
     fire("erased", detail)}
   on:error={({ detail }) =>
     /**
-     * Fires an event when there is an error
+     * Fired when there is an error
      */
     fire("error", detail)} />
 
@@ -101,7 +103,11 @@
     /**
      * Disables the button when `true`
      */
-    disabled = false;
+    disabled = false,
+    /**
+     * How long to wait before `done` or `error` events are fired
+     */
+    completion_timeout = 1500;
 
   /**
    * CSS classes for the button container
