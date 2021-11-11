@@ -1,3 +1,10 @@
+<!--
+  @component
+
+
+  @param [_] - No properties on this component
+
+-->
 {#each Object.keys($FloatiesStore) as position}
   {#each Object.keys($FloatiesStore[position]) as variant}
     <div class="kws-floatie-output is-{position} is-{variant}-holder">

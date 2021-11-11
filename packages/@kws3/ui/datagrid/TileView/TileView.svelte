@@ -9,11 +9,6 @@
   @param {number} [per_row=3] - Sets how many items to display in a row, Default: `3`
   @param {object} [columns={}] - Column names for the displayed table {db_field_name: column_name}, Default: `{}`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
-  @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
-  @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
-  @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
-  @param {string} [selectCheckboxColor="info"] - Color of the `select all` checkbox, Default: `"info"`
-  @param {string} [selectCheckboxSize="medium"] - Size of each checkbox, Default: `"medium"`
   @param {object} [valueTransformers={}] - Contains all custom values for each column, Default: `{}`
   @param {object} [classTransformers={}] - CSS class names for each column, Default: `{}`
   @param {object} [styleTransformers={}] - CSS styles for each column, Default: `{}`

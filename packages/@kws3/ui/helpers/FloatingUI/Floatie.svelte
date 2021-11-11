@@ -1,17 +1,21 @@
 <!--
   @component
 
-  @param {string} [title=""] - Title for display, Default: `""`
-  @param {string} [message=""] - Message for display, Default: `""`
-  @param {number} [duration=3000] - Duration for display message, Default: `3000`
-  @param {'warning'|'info'|'danger'|'primary'|'success'} [color="primary"] - Message background color, Default: `"primary"`
-  @param {'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'} [position=""] - Position of the message, Default: `""`
-  @param {boolean} [dismissable=true] - Dismissable message, Default: `true`
-  @param {boolean} [persistent=false] - Persistent message, Default: `false`
+
+  @param {string} [title=""] - Title/Heading of the notification, Default: `""`
+  @param {string} [message=""] - Message in the notification, Default: `""`
+  @param {'notification'|'snackbar'|'toast'} [variant="notification"] - variation of floating UI, Default: `"notification"`
+  @param {number} [duration=3000] - Duration of the notification, Default: `3000`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Toast notification background color, Default: `"primary"`
+  @param {boolean} [light=false] - Inverted colors for notification box and contents, Default: `false`
+  @param {boolean} [dismissable=true] - Determines if notification is dismissable, Default: `true`
+  @param {boolean} [persistent=false] - A persistent notification without duration, stays till dismissed, Default: `false`
   @param {string} [context=""] - Context value, Default: `""`
   @param {object} [component=null] - Custom component, Default: `null`
   @param {function} [beforeClose(props)] - Callback function call before close event
   @param {function} [afterClose(props)] - Callback function call after close event
+  @param {array} [buttons=[]] - List of buttons to show in snackbar, Default: `[]`
+
 -->
 
 {#if variant == "snackbar"}
