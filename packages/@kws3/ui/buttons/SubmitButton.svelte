@@ -12,10 +12,12 @@
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {object} [tracker={}] - Tracker object to be sent from outside to change the state of the button., Default: `{}`
+  @param {number} [completion_timeout=600] - How long to wait before `saved` event is fired, and the UI state reverts back to normal, Default: `600`
+  @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for Button container, Default: `""`
   @param {function} [saving()] - call this function on form saving state
-  @param {function} [saved(callback, timeout = 3000)] - call this function after form saved
-  @param {function} [error(callback, timeout = 3000)] - call this function on form error state
+  @param {function} [saved(callback, timeout)] - call this function after form saved
+  @param {function} [error(callback, timeout)] - call this function on form error state
 
   ### Events
   - `saved` - Fired on successful submission
