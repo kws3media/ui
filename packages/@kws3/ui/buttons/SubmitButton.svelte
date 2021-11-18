@@ -96,7 +96,15 @@
       saving: false,
       saved: false,
       error: false,
-    };
+    },
+    /**
+     * How long to wait before `saved` event is fired, and the UI state reverts back to normal
+     */
+    completion_timeout = 600,
+    /**
+     * How long to wait before `error` event is fired, and the UI state reverts back to normal
+     */
+    error_timeout = 3000;
 
   /**
    * CSS classes for Button container
@@ -118,7 +126,7 @@
   /**
    * call this function after form saved
    */
-  export function saved(callback, timeout = 3000) {
+  export function saved(callback, timeout = completion_timeout) {
     tracker = {
       saving: false,
       saved: true,
@@ -142,7 +150,7 @@
   /**
    * call this function on form error state
    */
-  export function error(callback, timeout = 3000) {
+  export function error(callback, timeout = error_timeout) {
     tracker = {
       saving: false,
       saved: false,

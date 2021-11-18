@@ -33,6 +33,7 @@
       {disabled}
       {should_confirm}
       {completion_timeout}
+      {error_timeout}
       class=""
       on:do={failed} />
     <p class="is-block mt-2">This will fail.</p>
@@ -54,7 +55,8 @@
     disabled = false,
     should_confirm = true,
     context = "_context_confirm",
-    completion_timeout = 1500;
+    completion_timeout = 600,
+    error_timeout = 3000;
 
   function success(e) {
     let { doing, done, context } = e.detail;

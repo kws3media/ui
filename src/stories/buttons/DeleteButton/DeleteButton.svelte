@@ -32,6 +32,7 @@
       {button_class}
       {cy}
       {completion_timeout}
+      {error_timeout}
       on:erase={failed} />
     <p class="is-block mt-2">This will fail.</p>
   </div>
@@ -51,7 +52,8 @@
     disabled = false,
     button_class = "",
     cy = "",
-    completion_timeout = 1500;
+    completion_timeout = 600,
+    error_timeout = 3000;
 
   let klass = "";
   export { klass as class };

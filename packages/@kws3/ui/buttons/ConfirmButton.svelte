@@ -14,7 +14,8 @@
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {boolean} [should_confirm=true] - When `false`, skips the confirmation prompt, and makes it a one step process, Default: `true`
   @param {string} [context=""] - Context property, Default: `""`
-  @param {number} [completion_timeout=1500] - How long to wait before `done` or `error` events are fired, and the UI state reverts back to normal, Default: `1500`
+  @param {number} [completion_timeout=600] - How long to wait before `done` event is fired, and the UI state reverts back to normal, Default: `600`
+  @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
@@ -132,9 +133,13 @@
      */
     context = "",
     /**
-     * How long to wait before `done` or `error` events are fired, and the UI state reverts back to normal
+     * How long to wait before `done` event is fired, and the UI state reverts back to normal
      */
-    completion_timeout = 1500;
+    completion_timeout = 600,
+    /**
+     * How long to wait before `error` event is fired, and the UI state reverts back to normal
+     */
+    error_timeout = 3000;
 
   /**
    * CSS classes for button container
@@ -192,7 +197,7 @@
     }, timeout);
   }
 
-  function error(callback, timeout = completion_timeout) {
+  function error(callback, timeout = error_timeout) {
     _done = false;
     _doing = false;
     _error = true;

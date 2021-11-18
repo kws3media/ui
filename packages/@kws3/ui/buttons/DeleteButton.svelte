@@ -13,7 +13,8 @@
   @param {object} [context=null] - Context property, Default: `null`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
-  @param {number} [completion_timeout=1500] - How long to wait before `erased` or `error` events are fired, and the UI state reverts back to normal, Default: `1500`
+  @param {number} [completion_timeout=600] - How long to wait before `done` event is fired, and the UI state reverts back to normal, Default: `600`
+  @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for the button container, Default: `""`
 
   ### Events
@@ -35,6 +36,7 @@
   {icon_only}
   {disabled}
   {completion_timeout}
+  {error_timeout}
   class={klass}
   on:do={({ detail }) =>
     /**
@@ -105,9 +107,13 @@
      */
     disabled = false,
     /**
-     * How long to wait before `erased` or `error` events are fired, and the UI state reverts back to normal
+     * How long to wait before `erased` event is fired, and the UI state reverts back to normal
      */
-    completion_timeout = 1500;
+    completion_timeout = 600,
+    /**
+     * How long to wait before `error` event is fired, and the UI state reverts back to normal
+     */
+    error_timeout = 3000;
 
   /**
    * CSS classes for the button container
