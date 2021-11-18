@@ -18,6 +18,8 @@ export {
   Snackbars,
   FloatiesStore,
 } from "./helpers/FloatingUI";
+export { default as FloatingUIOutput } from "./helpers/FloatingUI/FloatingUIOutput.svelte";
+export { default as Floatie } from "./helpers/FloatingUI/Floatie.svelte";
 
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
 export { default as DeleteButton } from "./buttons/DeleteButton.svelte";

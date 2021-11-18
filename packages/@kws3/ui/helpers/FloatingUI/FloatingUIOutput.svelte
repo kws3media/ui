@@ -29,11 +29,12 @@
   import { fly } from "svelte/transition";
   import { sineOut } from "svelte/easing";
   import { flip } from "svelte/animate";
-  import { FloatiesStore } from "./index";
   import { hasTransitions } from "../../settings";
-  import Floatie from "./Floatie.svelte";
+  import { Floatie, FloatiesStore } from "@kws3/ui";
 
-  const destroy = ({ detail }) => FloatiesStore.remove(detail);
+  const destroy = ({ detail }) => {
+    FloatiesStore.remove(detail);
+  };
   const transitionDistance = (position) =>
     position.indexOf("top") === 0 ? -50 : 50;
 
