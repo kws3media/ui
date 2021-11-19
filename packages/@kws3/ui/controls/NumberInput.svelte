@@ -187,11 +187,18 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   };
 
   function validateInput() {
+    let old_value = value;
+
     if (typeof value == "undefined" || value === null) value = min;
 
     if (value < min) value = min;
     if (value > max) value = max;
 
-    fire("change");
+    if (old_value != value) {
+      /**
+       * Triggered when value changes
+       */
+      fire("change");
+    }
   }
 </script>
