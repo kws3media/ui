@@ -159,7 +159,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      */
     plus_button_color = "";
 
-  let _has_focus = false;
+  let _has_focus = false,
+    _old_value = null;
 
   $: value && !_has_focus, validateInput(); // will work like on state changed
 
@@ -187,7 +188,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   };
 
   function validateInput() {
-    let old_value = value;
+    if (_old_value == null) _old_value = value;
 
     if (typeof value == "undefined" || value === null) value = min;
 
@@ -195,6 +196,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     if (value > max) value = max;
 
     if (old_value != value) {
+      _old_value = value;
       /**
        * Triggered when value changes
        */
