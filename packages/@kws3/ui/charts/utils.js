@@ -1,12 +1,12 @@
 import ApexCharts from "apexcharts";
 
 const themeColors = [
-  "#00aec1",
-  "#ec6726",
-  "#f39db1",
-  "#f5cc54",
-  "#C5D86D",
-  "#534572",
+  "#284BED",
+  "#ED6134",
+  "#1DAFEC",
+  "#EDB405",
+  "#11EDB7",
+  "#77ED11",
 ];
 
 export const merge = ApexCharts.merge;
