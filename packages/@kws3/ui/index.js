@@ -58,3 +58,4 @@ export { default as Pagination } from "./datagrid/Pagination/Pagination.svelte";
 export { default as DataSort } from "./datagrid/DataSort/DataSort.svelte";
 
 export { default as Chart } from "./charts/Chart.svelte";
+export { default as DonutChart } from "./charts/DonutChart.svelte";

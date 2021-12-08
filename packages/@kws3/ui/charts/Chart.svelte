@@ -14,6 +14,7 @@
 <script>
   import { onMount, createEventDispatcher } from "svelte";
   import ApexCharts from "apexcharts";
+  import { merge } from "./utils";
 
   const fire = createEventDispatcher();
   let canvas, chart;
@@ -82,7 +83,7 @@
       options.chart.events = {};
     }
 
-    const config = ApexCharts.merge(options, newOptions);
+    const config = merge(options, newOptions);
 
     if (canvas) {
       config.chart.events = events;

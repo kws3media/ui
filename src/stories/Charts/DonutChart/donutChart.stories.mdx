@@ -1,0 +1,36 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { DonutChart as Chart } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import DonutChartDecorator from "./DonutChart.svelte";
+
+export let args={
+  data: [60, 20, 10, 10],
+  labels: ["Me", "You", "Her", "Them"],
+  width: "100%",
+  height:"400"
+};
+
+<Meta
+  title="Charts/Donut Chart"
+  component={Chart}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Donut Chart
+`}/>
+
+<Canvas>
+  <Story
+  name="Donut Chart"
+  args={args}
+  >
+  {(args) => ({
+    Component: DonutChartDecorator,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Donut Chart" />
