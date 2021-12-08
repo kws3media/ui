@@ -14,6 +14,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-actions",
     "@storybook/addon-viewport",
+    "@storybook/addon-interactions",
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({

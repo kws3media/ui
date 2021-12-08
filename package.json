@@ -18,6 +18,7 @@
     "global": "^4.3.2"
   },
   "devDependencies": {
+    "@storybook/addon-interactions": "^6.4.8",
     "@storybook/addon-actions": "6.4.8",
     "@storybook/addon-backgrounds": "6.4.8",
     "@storybook/addon-docs": "6.4.8",
