@@ -18,7 +18,15 @@ applySettings({
   defaultToastPlacement: 'bottom',
   defaultSnackbarPlacement:'bottom-right',
   defaultNotificationPlacement:'top-right'
-  hasTransitions: true
+  hasTransitions: true,
+  chartColors: [
+    "#1b998b",
+    "#d7263d",
+    "#f46036",
+    "#e2c044",
+    "#c5d86d",
+    "#03a9f4",
+  ]
 });
 
 //you can also apply just one setting:
@@ -63,6 +71,15 @@ applySettings({
       <td>All components that have transitions, use this setting.<br/>
       When turned off, no transitions will take place</td>
       <td><code>true</code></td>
+    </tr>
+    <tr>
+      <th><code>chartColors</code></th>
+      <td>Default array of colors for chart visualisations shared by all charts.<br/>The order of colors matter, they will be used in sequence for each series of data.</td>
+      <td><pre>[
+"#1b998b", "#d7263d", "#f46036", 
+"#e2c044", "#c5d86d", "#03a9f4"
+          ]</pre>
+      </td>
     </tr>
   </tbody>
 </table>
