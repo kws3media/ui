@@ -2,6 +2,8 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import { NumberInput } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
+import { expect } from '@storybook/jest';
+import { within, userEvent, waitFor } from '@storybook/testing-library';
 
 export let args={
   input : null,
@@ -54,6 +56,18 @@ export let args={
   <Story
   name="NumberInput"
   args={args}
+  play={async ({ args, canvasElement }) => {
+      const canvas = within(canvasElement);
+      await userEvent.click(canvas.getByTestId('plus-button'));
+      await expect(Number(canvas.getByTestId('number-input').value)).toEqual(1);
+      await userEvent.click(canvas.getByTestId('plus-button'));
+      await expect(Number(canvas.getByTestId('number-input').value)).toEqual(2);
+      await userEvent.click(canvas.getByTestId('minus-button'));
+      await expect(Number(canvas.getByTestId('number-input').value)).toEqual(1);
+      await userEvent.click(canvas.getByTestId('minus-button'));
+      await expect(Number(canvas.getByTestId('number-input').value)).toEqual(0);
+    }
+  }
   >
   {(args) => ({
     Component: NumberInput,
