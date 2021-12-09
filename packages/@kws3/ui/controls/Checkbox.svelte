@@ -34,7 +34,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
   class="checkbox kws-checkbox is-{size} is-{color} {klass}"
   {style}>
   <!--Checkbox change event-->
-  <input type="checkbox" {disabled} bind:checked on:change />
+  <input role="checkbox" type="checkbox" {disabled} bind:checked on:change />
   <span class="kws-checkbox-label" style={label_style}>
     <!-- Used for the Checkbox label--><slot />
   </span>
