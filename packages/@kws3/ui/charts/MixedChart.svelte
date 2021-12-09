@@ -80,7 +80,6 @@ Send an array of colors to override the default colors, or do not send anything 
     }
     normaliseSets();
     normaliseData();
-    console.log(yAxis, _data);
   };
 
   const normaliseSets = () => {
