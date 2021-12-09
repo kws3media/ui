@@ -1,7 +1,7 @@
 <Chart {options} {colors} {data} {labels} {width} {height} />
 
 <script>
-  import { DonutChart as Chart } from "@kws3/ui";
+  import { PieChart as Chart } from "@kws3/ui";
 
   export let options = {},
     colors = null,

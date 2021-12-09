@@ -1,11 +1,11 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
-import { DonutChart as Chart } from '@kws3/ui';
+import { PieChart as Chart } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
-import DonutChartDecorator from "./DonutChart.svelte";
+import PieChartDecorator from "./PieChart.svelte";
 
 export let args={
-  data: [60, 20, 10, 10],
+  data: [10, 10, 20, 60],
   labels: ["Me", "You", "Her", "Them"],
   width: "100%",
   height: "400",
@@ -14,25 +14,25 @@ export let args={
 };
 
 <Meta
-  title="Charts/Donut Chart"
+  title="Charts/Pie Chart"
   component={Chart}
   args={args}
 />
 
 <Description markdown={dedent`
-# Donut Chart
+# Pie Chart
 `}/>
 
 <Canvas>
   <Story
-  name="Donut Chart"
+  name="Pie Chart"
   args={args}
   >
   {(args) => ({
-    Component: DonutChartDecorator,
+    Component: PieChartDecorator,
     props: args
   })}
   </Story>
 </Canvas>
 
-<ArgsTable story="Donut Chart" />
+<ArgsTable story="Pie Chart" />
