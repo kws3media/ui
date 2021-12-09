@@ -4,6 +4,9 @@ const autoPreprocess = require("svelte-preprocess");
 module.exports = {
   stories: ["../src/stories/index.stories.js", "../src/stories/**/*.stories.*"],
   logLevel: "debug",
+  features: {
+    interactionsDebugger: true,
+  },
   addons: [
     {
       name: "@storybook/addon-docs",
@@ -13,8 +16,8 @@ module.exports = {
     },
     "@storybook/addon-essentials",
     "@storybook/addon-actions",
-    "@storybook/addon-viewport",
     "@storybook/addon-interactions",
+    "@storybook/addon-viewport",
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({
