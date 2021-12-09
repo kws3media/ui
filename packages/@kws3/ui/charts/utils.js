@@ -69,3 +69,98 @@ export function donutChartOptions(labels) {
   obj.chart.type = "donut";
   return obj;
 }
+
+export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
+  return {
+    chart: {
+      type: "bar",
+      stacked: false,
+      dropShadow: {
+        enabled: false,
+      },
+      toolbar: {
+        show: false,
+      },
+      sparkline: {
+        enabled: is_sparkline ? true : false,
+      },
+    },
+    colors: themeColors,
+    fill: {
+      opacity: 1,
+    },
+    states: {
+      active: {
+        filter: {
+          type: "none",
+        },
+      },
+    },
+    grid: {
+      clipMarkers: false,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    markers: {
+      size: 1,
+      shape: "circle",
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+      },
+    },
+    tooltip: {
+      shared: true,
+      intersect: false,
+      x: {
+        show: is_sparkline ? true : false,
+      },
+      y: [
+        {},
+        {
+          formatter: undefined,
+        },
+      ],
+      fixed: {
+        enabled: true,
+        position: "topLeft",
+        offsetY: 5,
+        offsetX: 25,
+      },
+      theme: "dark",
+    },
+    xaxis: {
+      categories: xAxis,
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+    },
+    yaxis: yAxis,
+    stroke: {
+      width: 2,
+      curve: "smooth",
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "right",
+      fontSize: "10px",
+      labels: {
+        useSeriesColors: true,
+      },
+      markers: {
+        width: 8,
+        height: 8,
+        radius: 8,
+      },
+      itemMargin: {
+        horizontal: 5,
+        vertical: 10,
+      },
+    },
+  };
+}
