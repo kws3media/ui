@@ -11,7 +11,9 @@
     "deploy:dist": "grunt deploy:dist",
     "bootstrap": "lerna bootstrap --hoist",
     "publish": "lerna publish",
-    "list": "lerna list"
+    "list": "lerna list",
+    "cr": "npx chromatic -d build --project-token=dea1f66a7993",
+    "chromatic": "npm-run-all -s build:dist -s cr"
   },
   "dependencies": {
     "bulma": "^0.9.3",
