@@ -1,0 +1,144 @@
+<!--
+  @component
+
+
+  @param {object} [options={}] - Chart options, see ApexCharts options for bar charts, Default: `{}`
+  @param {array} [labels=[]] - Data labels, Default: `[]`
+  @param {array} [sets=[]] - Data sets, Default: `[]`
+  @param {array} [data=[]] - Chart data, Default: `[]`
+  @param {boolean} [sparklines=false] - Displays the chart as a sparkline chart.
+These are charts with minimal UI and can be
+squeezed into small spaces, Default: `false`
+  @param {object} [yAxisOptions={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
+  @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
+  @param {string} [height="auto"] - Chart height, supports CSS size strings, Default: `"auto"`
+  @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
+
+Send an array of colors to override the default colors, or do not send anything to use the default colors, Default: `null`
+  @param {string} [class=""] - CSS classes for container, Default: `""`
+
+-->
+<Chart
+  class={__class}
+  options={_options}
+  series={_data}
+  type="line"
+  {height}
+  {width} />
+
+<script>
+  import { Chart } from "@kws3/ui";
+  import { lineChartOptions, merge } from "./utils";
+  import { defaultChartColors } from "../settings";
+
+  /**
+   * Chart options, see ApexCharts options for bar charts
+   */
+  export let options = {},
+    /**
+     * Data labels
+     */
+    labels = [],
+    /**
+     * Data sets
+     */
+    sets = [],
+    /**
+     * Chart data
+     */
+    data = [],
+    /**
+     * Displays the chart as a sparkline chart.
+     * These are charts with minimal UI and can be
+     * squeezed into small spaces
+     */
+    sparklines = false,
+    /**
+     * Y Axis options, see ApexCharts options for Y Axis
+     */
+    yAxisOptions = {},
+    /**
+     * Chart width, supports CSS size strings
+     */
+    width = "100%",
+    /**
+     * Chart height, supports CSS size strings
+     */
+    height = "auto",
+    /**
+     * Chart colors, can be modified globally in framework settings
+     *
+     * Send an array of colors to override the default colors, or do not send anything to use the default colors
+     * @type {array}
+     */
+    colors = null;
+
+  /**
+   * CSS classes for container
+   */
+  let klass = "";
+  export { klass as class };
+
+  $: __class =
+    "kws-line-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
+
+  let _data = [];
+  let yAxis = {};
+
+  $: usedColors = colors
+    ? colors
+    : $defaultChartColors
+    ? $defaultChartColors
+    : [];
+
+  $: data, sets, normaliseAll();
+  $: _options = merge(
+    lineChartOptions(labels, yAxis, sparklines),
+    Object.assign({}, { colors: usedColors }, options)
+  );
+
+  const normaliseAll = () => {
+    if (data.length !== sets.length) {
+      console.warn("Data and sets lengths do not match");
+    }
+    normaliseSets();
+    normaliseData();
+  };
+
+  const normaliseSets = () => {
+    yAxis = merge(
+      {
+        floating: false,
+        opposite: false,
+        decimalsInFloat: 0,
+        axisBorder: {
+          show: true,
+        },
+        axisTicks: {
+          show: true,
+        },
+        labels: {
+          show: true,
+        },
+      },
+      yAxisOptions
+    );
+  };
+
+  const normaliseData = () => {
+    _data = [];
+
+    //ensuring data is an array of arrays
+    let sliced_data = (data || []).slice();
+    if (!Array.isArray(sliced_data[0])) {
+      sliced_data = [sliced_data];
+    }
+
+    sliced_data.forEach((set, idx) => {
+      _data.push({
+        name: sets[idx],
+        data: set,
+      });
+    });
+  };
+</script>

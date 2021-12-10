@@ -30,7 +30,9 @@ $kws-chart-tooltip-foreground-color: $scheme-invert-ter !default;
   }
 
   &.kws-mixed-chart:not(.kws-sparklines),
-  &.kws-bar-chart:not(.kws-sparklines) {
+  &.kws-bar-chart:not(.kws-sparklines),
+  &.kws-line-chart:not(.kws-sparklines),
+  &.kws-area-chart:not(.kws-sparklines) {
     .apexcharts-tooltip {
       flex-direction: row;
       box-shadow: none;

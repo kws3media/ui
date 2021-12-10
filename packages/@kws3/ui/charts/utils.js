@@ -174,3 +174,15 @@ export function barChartOptions(xAxis, yAxis, is_horizontal, is_sparkline) {
   opts.plotOptions.bar.horizontal = is_horizontal ? true : false;
   return opts;
 }
+
+export function lineChartOptions(xAxis, yAxis, is_sparkline) {
+  let opts = mixedChartOptions(xAxis, yAxis, is_sparkline);
+  opts.chart.type = "line";
+  return opts;
+}
+
+export function areaChartOptions(xAxis, yAxis, is_sparkline) {
+  let opts = mixedChartOptions(xAxis, yAxis, is_sparkline);
+  opts.chart.type = "area";
+  return opts;
+}
