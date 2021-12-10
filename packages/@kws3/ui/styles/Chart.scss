@@ -25,4 +25,12 @@ $kws-chart-tooltip-foreground-color: $scheme-invert-ter !default;
   .apexcharts-legend-text {
     font-size: 12px !important;
   }
+
+  &.kws-mixed-chart {
+    .apexcharts-tooltip {
+      flex-direction: row;
+      box-shadow: none;
+      background: transparent;
+    }
+  }
 }

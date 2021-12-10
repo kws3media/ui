@@ -126,7 +126,7 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
       fixed: {
         enabled: true,
         position: "topLeft",
-        offsetY: 5,
+        offsetY: 10,
         offsetX: 25,
       },
       theme: false,

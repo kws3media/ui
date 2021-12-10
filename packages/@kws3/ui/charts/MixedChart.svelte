@@ -70,7 +70,7 @@ Send an array of colors to override the default colors, or do not send anything 
   let klass = "";
   export { klass as class };
 
-  $: __class = "kws-donut-chart " + klass;
+  $: __class = "kws-mixed-chart " + klass;
 
   let _data = [];
   let yAxis = [];
