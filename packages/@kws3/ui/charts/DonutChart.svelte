@@ -59,7 +59,10 @@ Send an array of colors to override the default colors, or do not send anything 
   let klass = "";
   export { klass as class };
 
-  $: __class = "kws-donut-chart " + klass;
+  $: __class =
+    "kws-donut-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
+
+  let sparklines = false;
 
   $: usedColors = colors
     ? colors
@@ -69,7 +72,7 @@ Send an array of colors to override the default colors, or do not send anything 
 
   $: _data = data || Array(labels.length || 0).fill(0);
   $: _options = merge(
-    donutChartOptions(labels),
+    donutChartOptions(labels, sparklines),
     Object.assign({}, { colors: usedColors }, options)
   );
 </script>

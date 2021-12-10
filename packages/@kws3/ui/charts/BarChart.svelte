@@ -6,7 +6,6 @@
   @param {array} [labels=[]] - Data labels, Default: `[]`
   @param {array} [sets=[]] - Data sets, Default: `[]`
   @param {array} [data=[]] - Chart data, Default: `[]`
-  @param {boolean} [multiaxis=false] - Whether the chart has multiple axes, Default: `false`
   @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, supports CSS size strings, Default: `"auto"`
   @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
@@ -25,7 +24,7 @@ Send an array of colors to override the default colors, or do not send anything 
 
 <script>
   import { Chart } from "@kws3/ui";
-  import { mixedChartOptions, merge } from "./utils";
+  import { barChartOptions, merge } from "./utils";
   import { defaultChartColors } from "../settings";
 
   /**
@@ -44,10 +43,6 @@ Send an array of colors to override the default colors, or do not send anything 
      * Chart data
      */
     data = [],
-    /**
-     * Whether the chart has multiple axes
-     */
-    multiaxis = false,
     /**
      * Chart width, supports CSS size strings
      */
@@ -71,7 +66,7 @@ Send an array of colors to override the default colors, or do not send anything 
   export { klass as class };
 
   $: __class =
-    "kws-mixed-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
+    "kws-bar-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
 
   let _data = [];
   let yAxis = [];
@@ -86,7 +81,7 @@ Send an array of colors to override the default colors, or do not send anything 
 
   $: data, sets, normaliseAll();
   $: _options = merge(
-    mixedChartOptions(labels, multiaxis ? yAxis : yAxis[0], sparklines),
+    barChartOptions(labels, yAxis[0], sparklines),
     Object.assign({}, { colors: usedColors }, options)
   );
 
