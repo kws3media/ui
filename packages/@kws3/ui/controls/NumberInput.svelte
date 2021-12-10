@@ -28,7 +28,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 <div class="field has-addons">
   <div class="control">
     <button
-      data-testid="minus-button"
+      role="button"
       type="button"
       class="button is-{size} is-{minus_button_color}"
       style="box-shadow:none;"
@@ -42,7 +42,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   </div>
   <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
     <input
-      data-testid="number-input"
+      data-testid="input"
       class="input has-text-centered is-{size} is-{value < min || value > max
         ? 'danger'
         : ''}"
@@ -58,7 +58,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   </div>
   <div class="control">
     <button
-      data-testid="plus-button"
+      role="button"
       type="button"
       class="button is-{size} is-{plus_button_color}"
       style="box-shadow:none;"
