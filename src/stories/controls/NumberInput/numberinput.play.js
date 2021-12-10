@@ -4,16 +4,18 @@ import { within, userEvent, waitFor } from "@storybook/testing-library";
 export default async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 
-  console.log(canvas);
-  await userEvent.click(canvas.getByTestId("plus-button"));
-  await expect(Number(canvas.getByTestId("number-input").value)).toEqual(1);
+  const buttons = canvas.getAllByRole("button");
+  const input = canvas.getByTestId("input");
 
-  await userEvent.click(canvas.getByTestId("plus-button"));
-  await expect(Number(canvas.getByTestId("number-input").value)).toEqual(2);
+  await userEvent.click(buttons[1]);
+  await expect(Number(input.value)).toEqual(1);
 
-  await userEvent.click(canvas.getByTestId("minus-button"));
-  await expect(Number(canvas.getByTestId("number-input").value)).toEqual(1);
+  await userEvent.click(buttons[1]);
+  await expect(Number(input.value)).toEqual(2);
 
-  await userEvent.click(canvas.getByTestId("minus-button"));
-  await expect(Number(canvas.getByTestId("number-input").value)).toEqual(0);
+  await userEvent.click(buttons[0]);
+  await expect(Number(input.value)).toEqual(1);
+
+  await userEvent.click(buttons[0]);
+  await expect(Number(input.value)).toEqual(0);
 };
