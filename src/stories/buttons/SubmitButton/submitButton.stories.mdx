@@ -3,6 +3,7 @@ import dedent from 'ts-dedent';
 import { SubmitButton } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import SubmitButtonDecorator from "./SubmitButton.svelte";
+import playInteractions from "./submitButton.play.js";
 
 export let args={
   class : "",
@@ -43,6 +44,7 @@ export let args={
   <Story
   name="Submit Button"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: SubmitButtonDecorator,
