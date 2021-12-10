@@ -5,7 +5,7 @@
   @param {object} [options={}] - Chart options, see ApexCharts options for pie charts, Default: `{}`
   @param {array} [labels=[]] - Data labels, Default: `[]`
   @param {array} [data=[]] - Chart data, Default: `[]`
-  @param {boolean} [sparklines=false] - Displays the chart as a sparkline chart
+  @param {boolean} [sparklines=false] - Displays the chart as a sparkline chart.
 These are charts with minimal UI and can be
 squeezed into small spaces, Default: `false`
   @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
@@ -42,7 +42,7 @@ Send an array of colors to override the default colors, or do not send anything 
      */
     data = [],
     /**
-     * Displays the chart as a sparkline chart
+     * Displays the chart as a sparkline chart.
      * These are charts with minimal UI and can be
      * squeezed into small spaces
      */

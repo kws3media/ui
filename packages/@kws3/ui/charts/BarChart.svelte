@@ -6,7 +6,7 @@
   @param {array} [labels=[]] - Data labels, Default: `[]`
   @param {array} [sets=[]] - Data sets, Default: `[]`
   @param {array} [data=[]] - Chart data, Default: `[]`
-  @param {boolean} [sparklines=false] - Displays the chart as a sparkline chart
+  @param {boolean} [sparklines=false] - Displays the chart as a sparkline chart.
 These are charts with minimal UI and can be
 squeezed into small spaces, Default: `false`
   @param {boolean} [horizontal=false] - Whether the chart displays horizontal bars, Default: `false`
@@ -49,7 +49,7 @@ Send an array of colors to override the default colors, or do not send anything 
      */
     data = [],
     /**
-     * Displays the chart as a sparkline chart
+     * Displays the chart as a sparkline chart.
      * These are charts with minimal UI and can be
      * squeezed into small spaces
      */
