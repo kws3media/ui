@@ -12,7 +12,7 @@ $kws-chart-tooltip-foreground-color: $scheme-invert-ter !default;
       color: $kws-chart-tooltip-foreground-color;
       border: none;
     }
-    .apexcharts-tooltip-series-group.active,
+    .apexcharts-tooltip-series-group.apexcharts-active,
     .apexcharts-tooltip-series-group:last-child {
       padding-bottom: 0;
     }
