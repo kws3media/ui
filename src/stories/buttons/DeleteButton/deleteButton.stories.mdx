@@ -3,6 +3,7 @@ import dedent from 'ts-dedent';
 import { DeleteButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import DeleteButtonDecorator from "./DeleteButton.svelte";
+import playInteractions from "./deleteButton.play.js";
 
 export let args={
   class : "",
@@ -44,6 +45,7 @@ export let args={
   <Story
   name="Delete Button"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: DeleteButtonDecorator,
