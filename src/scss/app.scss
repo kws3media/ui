@@ -174,63 +174,9 @@ pre.prismjs > code {
 
 //DataSort
 @import "../../packages/@kws3/ui/styles/DataSort.scss";
-// #stepsHolder{
-//   padding-top: 1.2rem;
-//   overflow: auto;
-// }
-// .steps{
-//   font-size: 0.9rem;
-//   .steps-segment{
-//     cursor: pointer;
-//     .steps-marker{
-//       transform: scale(0.9);
-//       transition: transform 0.3s $easeOutCustom;
-//     }
-//     &.is-active{
-//       .steps-marker{
-//         transform: scale(1.5);
-//         border:2px solid $primary !important;
-//         background: $white !important;
-//         color: $text !important;
-//       }
-//       & ~ .steps-segment{
-//         cursor: default;
-//         .steps-marker{
-//           transform: scale(1);
-//         }
-//       }
-//     }
-//   }
-// }
 
-// @include mobile{
-//   .steps.is-horizontal.has-content-centered{
-//     .steps-segment{
-//       &:not(:last-child):after {
-//         height: 0.2em;
-//         left: 2.5rem;
-//         right: -1.75rem;
-//         top: calc(0.75rem - (0.1em));
-//       }
-//       .steps-marker {
-//         position: absolute;
-//         left: calc(50% - 0.75rem);
-//         height: 1.5rem;
-//         width: 1.5rem;
-//         font-size: 0.75rem;
-//         transition: transform 0.3s;
-//       }
-//       .steps-content {
-//         margin-top: 2rem;
-//         margin-left: .5em;
-//         margin-right: .5em;
-//         padding-top: .2em;
-//         font-size:0.75rem;
-//         line-height:1.2;
-//       }
-//     }
-//   }
-// }
+//Charts
+@import "../../packages/@kws3/ui/styles/Chart.scss";
 
 .theme-kws-light {
   color: #4a4a4a;

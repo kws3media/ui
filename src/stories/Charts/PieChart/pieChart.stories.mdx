@@ -1,0 +1,38 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { PieChart as Chart } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import PieChartDecorator from "./PieChart.svelte";
+
+export let args={
+  data: [10, 10, 20, 60],
+  labels: ["Me", "You", "Her", "Them"],
+  width: "100%",
+  height: "400",
+  colors: null,
+  options: {}
+};
+
+<Meta
+  title="Charts/Pie Chart"
+  component={Chart}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Pie Chart
+`}/>
+
+<Canvas>
+  <Story
+  name="Pie Chart"
+  args={args}
+  >
+  {(args) => ({
+    Component: PieChartDecorator,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Pie Chart" />

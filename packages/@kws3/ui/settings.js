@@ -5,6 +5,14 @@ const defaultToastPlacement = writable("bottom");
 const defaultSnackbarPlacement = writable("bottom-right");
 const defaultNotificationPlacement = writable("top-right");
 const hasTransitions = writable(true);
+const defaultChartColors = writable([
+  "#284BED",
+  "#ED6134",
+  "#1DAFEC",
+  "#EDB405",
+  "#11EDB7",
+  "#77ED11",
+]);
 
 const SETTINGS = {
   defaultIconFamily,
@@ -12,6 +20,7 @@ const SETTINGS = {
   defaultSnackbarPlacement,
   defaultNotificationPlacement,
   hasTransitions,
+  defaultChartColors,
 };
 
 export {
@@ -20,6 +29,7 @@ export {
   defaultSnackbarPlacement,
   defaultNotificationPlacement,
   hasTransitions,
+  defaultChartColors,
 };
 
 /**
@@ -28,6 +38,7 @@ export {
  * - `defaultSnackbarPlacement`: `"bottom-right"` - default placement of snackbar notifications
  * - `defaultNotificationPlacement`: `"top-right"` - default placement of floating notifications
  * - `hasTransitions`: `true` - Transitions are applied
+ * - `defaultChartColors`: `["#284BED", "#ED6134", "#1DAFEC", "#EDB405", "#11EDB7", "#77ED11"]` - default colors for charts
  *
  * @param {*} object containing all settings
  */
