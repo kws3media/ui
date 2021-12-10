@@ -1,4 +1,4 @@
-<Chart {options} {colors} {data} {labels} {width} {height} />
+<Chart {options} {colors} {data} {labels} {width} {height} {sparklines} />
 
 <script>
   import { DonutChart as Chart } from "@kws3/ui";
@@ -7,6 +7,7 @@
     colors = null,
     data = [],
     labels = [],
+    sparklines = false,
     width = "100%",
     height = "auto";
 </script>

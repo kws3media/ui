@@ -7,6 +7,7 @@
   {sets}
   {width}
   {height}
+  {sparklines}
   {horizontal} />
 
 <script>
@@ -20,5 +21,6 @@
     labels = [],
     yAxisOptions = {},
     horizontal = false,
+    sparklines = false,
     sets = [];
 </script>
