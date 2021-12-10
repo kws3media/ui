@@ -28,6 +28,7 @@
   <p class="control">
     {#if _confirm}
       <button
+        role="button"
         class="button is-success is-light is-shadowless is-{size} {button_class}"
         type="button"
         on:click|preventDefault|stopPropagation={cancel}>
@@ -37,6 +38,7 @@
   </p>
   <p class="control is-expanded">
     <button
+      role="button"
       class="button is-{size} {_doing
         ? main_color + ' is-loading'
         : _error
