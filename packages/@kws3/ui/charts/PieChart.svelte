@@ -60,7 +60,10 @@ Send an array of colors to override the default colors, or do not send anything 
   let klass = "";
   export { klass as class };
 
-  $: __class = "kws-pie-chart " + klass;
+  $: __class =
+    "kws-pie-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
+
+  let sparklines = false;
 
   $: usedColors = colors
     ? colors
@@ -70,7 +73,7 @@ Send an array of colors to override the default colors, or do not send anything 
 
   $: _data = data || Array(labels.length || 0).fill(0);
   $: _options = merge(
-    pieChartOptions(labels),
+    pieChartOptions(labels, sparklines),
     Object.assign({}, { colors: usedColors }, options)
   );
 </script>

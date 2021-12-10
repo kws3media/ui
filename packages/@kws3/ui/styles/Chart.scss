@@ -22,11 +22,15 @@ $kws-chart-tooltip-foreground-color: $scheme-invert-ter !default;
       margin-right: 5px;
     }
   }
-  .apexcharts-legend-text {
-    font-size: 12px !important;
+  .apexcharts-tooltip-title {
+    font-weight: bold;
+    margin-bottom: 0;
+    padding: 0 6px;
+    text-align: center;
   }
 
-  &.kws-mixed-chart {
+  &.kws-mixed-chart:not(.kws-sparklines),
+  &.kws-bar-chart:not(.kws-sparklines) {
     .apexcharts-tooltip {
       flex-direction: row;
       box-shadow: none;

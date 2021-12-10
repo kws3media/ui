@@ -11,7 +11,7 @@ const themeColors = [
 
 export const merge = ApexCharts.merge;
 
-export function pieChartOptions(labels) {
+export function pieChartOptions(labels, is_sparkline) {
   return {
     chart: {
       type: "pie",
@@ -20,6 +20,9 @@ export function pieChartOptions(labels) {
       },
       toolbar: {
         show: false,
+      },
+      sparkline: {
+        enabled: is_sparkline ? true : false,
       },
     },
     colors: themeColors,
@@ -64,8 +67,8 @@ export function pieChartOptions(labels) {
   };
 }
 
-export function donutChartOptions(labels) {
-  var obj = pieChartOptions(labels);
+export function donutChartOptions(labels, is_sparkline) {
+  var obj = pieChartOptions(labels, is_sparkline);
   obj.chart.type = "donut";
   return obj;
 }
@@ -112,7 +115,7 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
       },
     },
     tooltip: {
-      shared: true,
+      shared: is_sparkline ? false : true,
       intersect: false,
       x: {
         show: is_sparkline ? true : false,
@@ -124,7 +127,7 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
         },
       ],
       fixed: {
-        enabled: true,
+        enabled: is_sparkline ? false : true,
         position: "topLeft",
         offsetY: 10,
         offsetX: 25,
@@ -148,7 +151,7 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
     legend: {
       position: "top",
       horizontalAlign: "right",
-      fontSize: "10px",
+      fontSize: "12px",
       labels: {
         useSeriesColors: true,
       },
@@ -163,4 +166,11 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
       },
     },
   };
+}
+
+export function barChartOptions(xAxis, yAxis, is_sparkline) {
+  let opts = mixedChartOptions(xAxis, yAxis, is_sparkline);
+  opts.chart.type = "bar";
+  opts.plotOptions.bar.horizontal = true;
+  return opts;
 }
