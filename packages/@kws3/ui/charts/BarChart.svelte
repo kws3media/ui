@@ -104,7 +104,7 @@ Send an array of colors to override the default colors, or do not send anything 
 
   const normaliseAll = () => {
     if (data.length !== sets.length) {
-      throw new Error("Data and sets lengths do not match");
+      console.warn("Data and sets lengths do not match");
     }
     normaliseSets();
     normaliseData();
