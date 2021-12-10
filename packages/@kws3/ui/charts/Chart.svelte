@@ -14,7 +14,7 @@
 
 <script>
   import { onMount, createEventDispatcher } from "svelte";
-  import ApexCharts from "apexcharts";
+  import ApexCharts from "apexcharts/dist/apexcharts.esm";
   import { merge } from "./utils";
 
   const fire = createEventDispatcher();
