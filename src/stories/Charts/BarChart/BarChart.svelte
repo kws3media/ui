@@ -1,4 +1,13 @@
-<Chart {options} {colors} {data} {labels} {sets} {width} {height} />
+<Chart
+  {options}
+  {yAxisOptions}
+  {colors}
+  {data}
+  {labels}
+  {sets}
+  {width}
+  {height}
+  {horizontal} />
 
 <script>
   import { BarChart as Chart } from "@kws3/ui";
@@ -9,5 +18,7 @@
     options = {},
     data = [],
     labels = [],
+    yAxisOptions = {},
+    horizontal = false,
     sets = [];
 </script>

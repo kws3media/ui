@@ -6,6 +6,7 @@
   @param {array} [labels=[]] - Data labels, Default: `[]`
   @param {array} [sets=[]] - Data sets, Default: `[]`
   @param {array} [data=[]] - Chart data, Default: `[]`
+  @param {object} [yAxisOptions={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
   @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, supports CSS size strings, Default: `"auto"`
   @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
@@ -44,6 +45,14 @@ Send an array of colors to override the default colors, or do not send anything 
      */
     data = [],
     /**
+     * Whether the chart displays horizontal bars
+     */
+    horizontal = false,
+    /**
+     * Y Axis options, see ApexCharts options for Y Axis
+     */
+    yAxisOptions = {},
+    /**
      * Chart width, supports CSS size strings
      */
     width = "100%",
@@ -69,7 +78,7 @@ Send an array of colors to override the default colors, or do not send anything 
     "kws-bar-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
 
   let _data = [];
-  let yAxis = [];
+  let yAxis = {};
 
   let sparklines = false;
 
@@ -81,7 +90,7 @@ Send an array of colors to override the default colors, or do not send anything 
 
   $: data, sets, normaliseAll();
   $: _options = merge(
-    barChartOptions(labels, yAxis[0], sparklines),
+    barChartOptions(labels, yAxis, horizontal, sparklines),
     Object.assign({}, { colors: usedColors }, options)
   );
 
@@ -94,16 +103,8 @@ Send an array of colors to override the default colors, or do not send anything 
   };
 
   const normaliseSets = () => {
-    yAxis = [];
-
-    let _sets = sets || [],
-      oppositeAxisApplied = false,
-      mainSeriesName = null,
-      oppositeSeriesName = null;
-
-    _sets.forEach((set, idx) => {
-      let __set = {};
-      let obj = {
+    yAxis = merge(
+      {
         floating: false,
         opposite: false,
         decimalsInFloat: 0,
@@ -116,49 +117,9 @@ Send an array of colors to override the default colors, or do not send anything 
         labels: {
           show: true,
         },
-      };
-      if (typeof set === "string") {
-        __set = Object.assign(obj, {
-          name: set,
-          type: "column",
-        });
-      } else {
-        __set = Object.assign(obj, { name: "set-" + idx, type: "column" }, set);
-      }
-
-      //series names cannot be random,
-      //they have to be of one of the sets
-      if (!mainSeriesName) {
-        mainSeriesName = __set.name;
-      }
-
-      if (__set.opposite) {
-        //hide extras axes on the opposite side
-        if (!oppositeAxisApplied) {
-          oppositeAxisApplied = true;
-          if (!oppositeSeriesName) {
-            oppositeSeriesName = __set.name;
-          }
-        } else {
-          __set.show = false;
-        }
-      } else {
-        //hide extras axes on the main side
-        if (idx > 0) {
-          __set.show = false;
-        }
-      }
-
-      if (__set.forceDisplay) {
-        __set.show = true;
-      }
-
-      //set a common series name based on axis..
-      //so that scales for each axis are the same
-      __set.seriesName = __set.opposite ? oppositeSeriesName : mainSeriesName;
-
-      yAxis.push(__set);
-    });
+      },
+      yAxisOptions
+    );
   };
 
   const normaliseData = () => {
@@ -172,8 +133,7 @@ Send an array of colors to override the default colors, or do not send anything 
 
     sliced_data.forEach((set, idx) => {
       _data.push({
-        name: yAxis[idx].name,
-        type: yAxis[idx].type,
+        name: sets[idx],
         data: set,
       });
     });

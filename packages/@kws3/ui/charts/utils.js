@@ -168,9 +168,9 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
   };
 }
 
-export function barChartOptions(xAxis, yAxis, is_sparkline) {
+export function barChartOptions(xAxis, yAxis, is_horizontal, is_sparkline) {
   let opts = mixedChartOptions(xAxis, yAxis, is_sparkline);
   opts.chart.type = "bar";
-  opts.plotOptions.bar.horizontal = true;
+  opts.plotOptions.bar.horizontal = is_horizontal ? true : false;
   return opts;
 }

@@ -1,4 +1,13 @@
-<Chart {options} {multiaxis} {colors} {data} {labels} {sets} {width} {height} />
+<Chart
+  {options}
+  {yAxisOptions}
+  {multiaxis}
+  {colors}
+  {data}
+  {labels}
+  {sets}
+  {width}
+  {height} />
 
 <script>
   import { MixedChart as Chart } from "@kws3/ui";
@@ -10,5 +19,6 @@
     data = [],
     labels = [],
     sets = [],
+    yAxisOptions = {},
     multiaxis = false;
 </script>

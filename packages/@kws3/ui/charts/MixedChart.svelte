@@ -7,6 +7,7 @@
   @param {array} [sets=[]] - Data sets, Default: `[]`
   @param {array} [data=[]] - Chart data, Default: `[]`
   @param {boolean} [multiaxis=false] - Whether the chart has multiple axes, Default: `false`
+  @param {object} [yAxisOptions={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
   @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, supports CSS size strings, Default: `"auto"`
   @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
@@ -48,6 +49,10 @@ Send an array of colors to override the default colors, or do not send anything 
      * Whether the chart has multiple axes
      */
     multiaxis = false,
+    /**
+     * Y Axis options, see ApexCharts options for Y Axis
+     */
+    yAxisOptions = {},
     /**
      * Chart width, supports CSS size strings
      */
@@ -108,20 +113,23 @@ Send an array of colors to override the default colors, or do not send anything 
 
     _sets.forEach((set, idx) => {
       let __set = {};
-      let obj = {
-        floating: false,
-        opposite: false,
-        decimalsInFloat: 0,
-        axisBorder: {
-          show: true,
+      let obj = merge(
+        {
+          floating: false,
+          opposite: false,
+          decimalsInFloat: 0,
+          axisBorder: {
+            show: true,
+          },
+          axisTicks: {
+            show: true,
+          },
+          labels: {
+            show: true,
+          },
         },
-        axisTicks: {
-          show: true,
-        },
-        labels: {
-          show: true,
-        },
-      };
+        yAxisOptions
+      );
       if (typeof set === "string") {
         __set = Object.assign(obj, {
           name: set,
