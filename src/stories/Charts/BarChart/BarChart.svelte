@@ -1,6 +1,6 @@
 <Chart
   {options}
-  {yAxisOptions}
+  {y_axis_options}
   {colors}
   {data}
   {labels}
@@ -8,7 +8,9 @@
   {width}
   {height}
   {sparklines}
-  {horizontal} />
+  {horizontal}
+  {stacked}
+  {stacked_full_width} />
 
 <script>
   import { BarChart as Chart } from "@kws3/ui";
@@ -19,8 +21,10 @@
     options = {},
     data = [],
     labels = [],
-    yAxisOptions = {},
+    y_axis_options = {},
     horizontal = false,
+    stacked = false,
+    stacked_full_width = false,
     sparklines = false,
     sets = [];
 </script>

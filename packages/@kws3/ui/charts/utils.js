@@ -116,7 +116,7 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
     },
     tooltip: {
       shared: is_sparkline ? false : true,
-      intersect: false,
+      intersect: is_sparkline ? true : false,
       x: {
         show: is_sparkline ? true : false,
       },
@@ -168,9 +168,18 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
   };
 }
 
-export function barChartOptions(xAxis, yAxis, is_horizontal, is_sparkline) {
+export function barChartOptions(
+  xAxis,
+  yAxis,
+  is_sparkline,
+  is_horizontal,
+  is_stacked,
+  is_stacked_full
+) {
   let opts = mixedChartOptions(xAxis, yAxis, is_sparkline);
   opts.chart.type = "bar";
+  opts.chart.stacked = is_stacked ? true : false;
+  opts.chart.stackType = is_stacked_full ? "100%" : false;
   opts.plotOptions.bar.horizontal = is_horizontal ? true : false;
   return opts;
 }

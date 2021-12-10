@@ -10,7 +10,7 @@
 These are charts with minimal UI and can be
 squeezed into small spaces, Default: `false`
   @param {boolean} [multiaxis=false] - Whether the chart has multiple axes, Default: `false`
-  @param {object} [yAxisOptions={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
+  @param {object} [y_axis_options={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
   @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, supports CSS size strings, Default: `"auto"`
   @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
@@ -61,7 +61,7 @@ Send an array of colors to override the default colors, or do not send anything 
     /**
      * Y Axis options, see ApexCharts options for Y Axis
      */
-    yAxisOptions = {},
+    y_axis_options = {},
     /**
      * Chart width, supports CSS size strings
      */
@@ -135,7 +135,7 @@ Send an array of colors to override the default colors, or do not send anything 
             show: true,
           },
         },
-        yAxisOptions
+        y_axis_options
       );
       if (typeof set === "string") {
         __set = Object.assign(obj, {

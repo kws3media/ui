@@ -10,7 +10,7 @@
 These are charts with minimal UI and can be
 squeezed into small spaces, Default: `false`
   @param {boolean} [horizontal=false] - Whether the chart displays horizontal bars, Default: `false`
-  @param {object} [yAxisOptions={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
+  @param {object} [y_axis_options={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
   @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, supports CSS size strings, Default: `"auto"`
   @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
@@ -59,9 +59,17 @@ Send an array of colors to override the default colors, or do not send anything 
      */
     horizontal = false,
     /**
+     * Whether the bars are stacked on top of each other
+     */
+    stacked = false,
+    /**
+     * When bars are stacked, should they span the full width/height of the chart
+     */
+    stacked_full_width = false,
+    /**
      * Y Axis options, see ApexCharts options for Y Axis
      */
-    yAxisOptions = {},
+    y_axis_options = {},
     /**
      * Chart width, supports CSS size strings
      */
@@ -98,7 +106,14 @@ Send an array of colors to override the default colors, or do not send anything 
 
   $: data, sets, normaliseAll();
   $: _options = merge(
-    barChartOptions(labels, yAxis, horizontal, sparklines),
+    barChartOptions(
+      labels,
+      yAxis,
+      sparklines,
+      horizontal,
+      stacked,
+      stacked_full_width
+    ),
     Object.assign({}, { colors: usedColors }, options)
   );
 
@@ -126,7 +141,7 @@ Send an array of colors to override the default colors, or do not send anything 
           show: true,
         },
       },
-      yAxisOptions
+      y_axis_options
     );
   };
 

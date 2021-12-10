@@ -1,6 +1,6 @@
 <Chart
   {options}
-  {yAxisOptions}
+  {y_axis_options}
   {colors}
   {data}
   {labels}
@@ -18,7 +18,7 @@
     options = {},
     data = [],
     labels = [],
-    yAxisOptions = {},
+    y_axis_options = {},
     sparklines = false,
     sets = [];
 </script>
