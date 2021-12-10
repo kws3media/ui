@@ -47,7 +47,7 @@ export function pieChartOptions(labels) {
         show: true,
         formatter: undefined,
       },
-      theme: "dark",
+      theme: false,
     },
     labels: labels,
     legend: {
@@ -129,7 +129,7 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
         offsetY: 5,
         offsetX: 25,
       },
-      theme: "dark",
+      theme: false,
     },
     xaxis: {
       categories: xAxis,
