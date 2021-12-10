@@ -12,9 +12,16 @@
   @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
 
 Send an array of colors to override the default colors, or do not send anything to use the default colors, Default: `null`
+  @param {string} [class=""] - CSS classes for container, Default: `""`
 
 -->
-<Chart options={_options} series={_data} type="bar" {height} {width} />
+<Chart
+  class={__class}
+  options={_options}
+  series={_data}
+  type="bar"
+  {height}
+  {width} />
 
 <script>
   import { Chart } from "@kws3/ui";
@@ -56,6 +63,14 @@ Send an array of colors to override the default colors, or do not send anything 
      * @type {array}
      */
     colors = null;
+
+  /**
+   * CSS classes for container
+   */
+  let klass = "";
+  export { klass as class };
+
+  $: __class = "kws-donut-chart " + klass;
 
   let _data = [];
   let yAxis = [];

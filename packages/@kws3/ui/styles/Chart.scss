@@ -1,28 +1,28 @@
-$kws-chart-tooltip-background-color: $scheme-invert-ter !default;
-$kws-chart-tooltip-foreground-color: $scheme-main !default;
+$kws-chart-tooltip-background-color: $scheme-main !default;
+$kws-chart-tooltip-foreground-color: $scheme-invert-ter !default;
 
-.apexcharts-tooltip {
-  display: flex;
-  border: 0;
-  box-shadow: none;
-  font-size: 12px;
-  background: $kws-chart-tooltip-background-color;
-  border-radius: 0;
-  .apexcharts-tooltip-title {
+.kws-chart {
+  .apexcharts-tooltip {
+    display: flex;
+    border: 0;
     background: $kws-chart-tooltip-background-color;
-    color: $kws-chart-tooltip-foreground-color;
-    border: none;
+    border-radius: 0;
+    .apexcharts-tooltip-title {
+      background: $kws-chart-tooltip-background-color;
+      color: $kws-chart-tooltip-foreground-color;
+      border: none;
+    }
+    .apexcharts-tooltip-series-group.active,
+    .apexcharts-tooltip-series-group:last-child {
+      padding-bottom: 0;
+    }
+    .apexcharts-tooltip-marker {
+      width: 7px;
+      height: 7px;
+      margin-right: 5px;
+    }
   }
-  .apexcharts-tooltip-series-group.active,
-  .apexcharts-tooltip-series-group:last-child {
-    padding-bottom: 0;
+  .apexcharts-legend-text {
+    font-size: 12px !important;
   }
-  .apexcharts-tooltip-marker {
-    width: 7px;
-    height: 7px;
-    margin-right: 5px;
-  }
-}
-.apexcharts-legend-text {
-  font-size: 12px !important;
 }

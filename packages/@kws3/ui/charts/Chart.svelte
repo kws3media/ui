@@ -7,9 +7,10 @@
   @param {array} [series=[]] - Series data, Default: `[]`
   @param {string} [width="100%"] - Chart width, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, Default: `"auto"`
+  @param {string} [class=""] - CSS classes for container, Default: `""`
 
 -->
-<div bind:this={canvas} />
+<div class="kws-chart {klass}" bind:this={canvas} />
 
 <script>
   import { onMount, createEventDispatcher } from "svelte";
@@ -39,6 +40,12 @@
      * Chart height
      */
     height = "auto";
+
+  /**
+   * CSS classes for container
+   */
+  let klass = "";
+  export { klass as class };
 
   onMount(() => {
     init();
