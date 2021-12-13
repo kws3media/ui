@@ -68,9 +68,7 @@ export default async ({ args, canvasElement }) => {
   //Search for an item
   await userEvent.type(inputs[0], "no", { delay: 100 });
   await expect(Number(items.length)).toBe(1);
-  await expect(getNodeText(items[0]).trim().substring(0, 2).toLowerCase()).toBe(
-    "no"
-  );
+  await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("no");
 
   //clearout all selected items
   await sleep(1000);
@@ -82,12 +80,8 @@ export default async ({ args, canvasElement }) => {
   await userEvent.type(inputs[0], "hua", { delay: 100 });
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toBe(2);
-  await expect(getNodeText(tags[0]).trim().substring(0, 3).toLowerCase()).toBe(
-    "son"
-  );
-  await expect(getNodeText(tags[1]).trim().substring(0, 3).toLowerCase()).toBe(
-    "hua"
-  );
+  await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("son");
+  await expect(getNodeText(tags[1]).substring(0, 3).toLowerCase()).toBe("hua");
 
   //clearout selected items
   await sleep(1000);
