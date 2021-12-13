@@ -1,5 +1,10 @@
 import { expect } from "@storybook/jest";
-import { within, userEvent, waitFor } from "@storybook/testing-library";
+import {
+  within,
+  userEvent,
+  waitFor,
+  getNodeText,
+} from "@storybook/testing-library";
 import { sleep } from "../../../utils";
 
 export default async ({ args, canvasElement }) => {
@@ -63,7 +68,7 @@ export default async ({ args, canvasElement }) => {
   //Search for an item
   await userEvent.type(inputs[0], "no", { delay: 100 });
   await expect(Number(items.length)).toBe(1);
-  await expect(items[0].innerText.trim().substring(0, 2).toLowerCase()).toBe(
+  await expect(getNodeText(items[0]).trim().substring(0, 2).toLowerCase()).toBe(
     "no"
   );
 
@@ -77,14 +82,14 @@ export default async ({ args, canvasElement }) => {
   await userEvent.type(inputs[0], "hua", { delay: 100 });
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toBe(2);
-  await expect(tags[0].innerText.trim().substring(0, 3).toLowerCase()).toBe(
+  await expect(getNodeText(tags[0]).trim().substring(0, 3).toLowerCase()).toBe(
     "son"
   );
-  await expect(tags[1].innerText.trim().substring(0, 3).toLowerCase()).toBe(
+  await expect(getNodeText(tags[1]).trim().substring(0, 3).toLowerCase()).toBe(
     "hua"
   );
 
   //clearout selected items
   await sleep(1000);
-  await userEvent.click(canvasElement.querySelectorAlls(".remove-all")[0]);
+  await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
 };
