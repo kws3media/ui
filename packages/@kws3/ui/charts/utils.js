@@ -73,6 +73,18 @@ export function donutChartOptions(labels, is_sparkline) {
   return obj;
 }
 
+export function radialChartOptions(labels, startAngle, endAngle, is_sparkline) {
+  var obj = pieChartOptions(labels, is_sparkline);
+  obj.chart.type = "radialBar";
+  obj.plotOptions = {
+    radialBar: {
+      startAngle,
+      endAngle,
+    },
+  };
+  return obj;
+}
+
 export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
   return {
     chart: {

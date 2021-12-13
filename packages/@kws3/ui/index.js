@@ -64,3 +64,4 @@ export { default as MixedChart } from "./charts/MixedChart.svelte";
 export { default as BarChart } from "./charts/BarChart.svelte";
 export { default as LineChart } from "./charts/LineChart.svelte";
 export { default as AreaChart } from "./charts/AreaChart.svelte";
+export { default as RadialChart } from "./charts/RadialChart.svelte";

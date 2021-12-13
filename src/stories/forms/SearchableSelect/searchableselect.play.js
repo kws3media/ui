@@ -1,28 +1,20 @@
 import { expect } from "@storybook/jest";
 import { within, userEvent, waitFor } from "@storybook/testing-library";
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const setCustomMethods = (canvas) => {
-  const root = document.getElementById("root");
-
-  canvas.getByClassName = (className) => [
-    ...root.querySelectorAll(`.${className}`),
-  ];
-};
+import { sleep, setCanvasMethods } from "../../../utils";
 
 export default async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 
-  setCustomMethods(canvas);
+  setCanvasMethods(canvas);
 
   await sleep(1000);
-  await userEvent.click(canvas.getByClassName("input")[0]);
+  await userEvent.click(canvas.getElements("input.input")[0]);
 
   const items = document
     .getElementsByClassName("options")[0]
     .getElementsByTagName("li");
 
-  const input = canvas.getByClassName("input")[1];
+  const input = canvas.getElements("input.input")[0];
   await userEvent.click(items[0]);
   await expect(input.value.trim()).toBe(items[0].innerText.trim());
 
@@ -31,7 +23,7 @@ export default async ({ args, canvasElement }) => {
   await expect(input.value.trim()).toBe(items[3].innerText.trim());
 
   await sleep(300);
-  await userEvent.click(canvas.getByClassName("remove-all")[0]);
+  await userEvent.click(canvas.getElements(".remove-all")[0]);
   await expect(input.value.trim()).toBe("");
 
   await userEvent.type(input, "Sony", { delay: 100 });
