@@ -8,13 +8,13 @@ export default async ({ args, canvasElement }) => {
   setCanvasMethods(canvas);
 
   await sleep(1000);
-  await userEvent.click(canvas.getByClassName("input")[0]);
+  await userEvent.click(canvas.getElements("input.input")[0]);
 
   const items = document
     .getElementsByClassName("options")[0]
     .getElementsByTagName("li");
 
-  const input = canvas.getByClassName("input")[1];
+  const input = canvas.getElements("input.input")[0];
   await userEvent.click(items[0]);
   await expect(input.value.trim()).toBe(items[0].innerText.trim());
 
@@ -23,7 +23,7 @@ export default async ({ args, canvasElement }) => {
   await expect(input.value.trim()).toBe(items[3].innerText.trim());
 
   await sleep(300);
-  await userEvent.click(canvas.getByClassName("remove-all")[0]);
+  await userEvent.click(canvas.getElements(".remove-all")[0]);
   await expect(input.value.trim()).toBe("");
 
   await userEvent.type(input, "Sony", { delay: 100 });
