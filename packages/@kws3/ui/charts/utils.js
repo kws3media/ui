@@ -106,8 +106,12 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
       enabled: false,
     },
     markers: {
-      size: 1,
+      size: 3,
       shape: "circle",
+      strokeWidth: 1,
+      hover: {
+        sizeOffset: 3,
+      },
     },
     plotOptions: {
       bar: {

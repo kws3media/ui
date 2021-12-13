@@ -11,9 +11,7 @@
     "deploy:dist": "grunt deploy:dist",
     "bootstrap": "lerna bootstrap --hoist",
     "publish": "lerna publish",
-    "list": "lerna list",
-    "cr": "npx chromatic -d build --project-token=dea1f66a7993 --exit-zero-on-changes",
-    "chromatic": "npm-run-all -s build:dist -s cr"
+    "list": "lerna list"
   },
   "dependencies": {
     "bulma": "^0.9.3",
@@ -34,7 +32,6 @@
     "@storybook/svelte": "6.4.8",
     "@storybook/testing-library": "0.0.7",
     "chalk": "^4.0.0",
-    "chromatic": "^6.2.0",
     "comment-parser": "^1.2.3",
     "commenting": "^1.1.0",
     "css-loader": "^0.28.7",
