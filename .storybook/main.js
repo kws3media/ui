@@ -5,6 +5,7 @@ module.exports = {
   stories: ["../src/stories/index.stories.js", "../src/stories/**/*.stories.*"],
   logLevel: "debug",
   features: {
+    storyStoreV7: true,
     interactionsDebugger: true,
   },
   addons: [
