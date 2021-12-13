@@ -3,6 +3,7 @@ import dedent from 'ts-dedent';
 import { MultiSelect } from '@kws3/ui';
 import MultiSelectDecorator from './MultiSelect.svelte';
 import { action } from '@storybook/addon-actions';
+import playInteractions from "./multiselect.play.js";
 
 export let args={
   value : [],
@@ -47,6 +48,7 @@ export let args={
   <Story
   name="MultiSelect"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: MultiSelectDecorator,
