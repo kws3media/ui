@@ -22,15 +22,15 @@ export let args={
   height: "400",
   colors: null,
   sparklines: false,
-  horizontal: false,
-  stacked: false,
-  stacked_full_width: false,
+  horizontal: true,
+  stacked: true,
+  stacked_full_width: true,
   y_axis_options: {},
   options: {},
 };
 
 <Meta
-  title="Charts/Bar Chart"
+  title="Charts/Bar Charts/Horizontal Stacked Full Width"
   component={Chart}
   args={args}
 />
@@ -41,7 +41,7 @@ export let args={
 
 <Canvas>
   <Story
-  name="Bar Chart"
+  name="Horizontal Stacked Full Width"
   args={args}
   >
   {(args) => ({
@@ -51,7 +51,7 @@ export let args={
   </Story>
 </Canvas>
 
-<ArgsTable story="Bar Chart" />
+<ArgsTable story="Horizontal Stacked Full Width" />
 
 ### Usage
 #### Import the component:
