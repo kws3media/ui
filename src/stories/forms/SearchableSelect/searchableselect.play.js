@@ -1,19 +1,11 @@
 import { expect } from "@storybook/jest";
 import { within, userEvent, waitFor } from "@storybook/testing-library";
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const setCustomMethods = (canvas) => {
-  const root = document.getElementById("root");
-
-  canvas.getByClassName = (className) => [
-    ...root.querySelectorAll(`.${className}`),
-  ];
-};
+import { sleep, setCanvasMethods } from "../../../utils";
 
 export default async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 
-  setCustomMethods(canvas);
+  setCanvasMethods(canvas);
 
   await sleep(1000);
   await userEvent.click(canvas.getByClassName("input")[0]);
