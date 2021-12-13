@@ -1,13 +1,10 @@
 import { expect } from "@storybook/jest";
 import { within, userEvent, waitFor } from "@storybook/testing-library";
-import { sleep, setCanvasMethods } from "../../../utils";
+import { sleep } from "../../../utils";
 
 export default async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
-
-  setCanvasMethods(canvas);
-
-  const inputs = canvas.getElements("input.input");
+  const inputs = canvasElement.querySelectorAll("input.input");
 
   //Delay play
   await sleep(1000);
@@ -28,7 +25,9 @@ export default async ({ args, canvasElement }) => {
   await userEvent.click(items[4]);
 
   //Match with the selecte items
-  const tags = canvas.getElements(".tags")[0].getElementsByTagName("li");
+  const tags = canvasElement
+    .querySelectorAll(".tags")[0]
+    .getElementsByTagName("li");
   await expect(Number(tags.length)).toEqual(3);
 
   //Deselct one item
@@ -58,7 +57,7 @@ export default async ({ args, canvasElement }) => {
   //Removing all selected items
   //should remove all tags
   await sleep(300);
-  await userEvent.click(canvas.getElements(".remove-all")[0]);
+  await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
   await expect(Number(tags.length)).toEqual(0);
 
   //Search for an item
@@ -68,9 +67,9 @@ export default async ({ args, canvasElement }) => {
     "no"
   );
 
-  //clearout selected items
+  //clearout all selected items
   await sleep(1000);
-  await userEvent.click(canvas.getElements(".remove-all")[0]);
+  await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
 
   //Search and select for multiple items
   await userEvent.type(inputs[0], "son", { delay: 100 });
@@ -87,5 +86,5 @@ export default async ({ args, canvasElement }) => {
 
   //clearout selected items
   await sleep(1000);
-  await userEvent.click(canvas.getElements(".remove-all")[0]);
+  await userEvent.click(canvasElement.querySelectorAlls(".remove-all")[0]);
 };
