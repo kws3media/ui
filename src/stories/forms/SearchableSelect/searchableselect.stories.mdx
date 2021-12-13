@@ -3,6 +3,7 @@ import dedent from 'ts-dedent';
 import { SearchableSelect } from '@kws3/ui';
 import SearchableSelectDecorator from './SearchableSelect.svelte';
 import { action } from '@storybook/addon-actions';
+import playInteractions from "./searchableselect.play.js";
 
 export let args={
   value : "",
@@ -44,6 +45,7 @@ export let args={
   <Story
   name="SearchableSelect"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: SearchableSelectDecorator,
