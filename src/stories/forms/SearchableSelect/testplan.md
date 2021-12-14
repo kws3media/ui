@@ -1,3 +1,4 @@
+### SearchableSelect
 ### Legend: Numbered bullets are test instructions. Non-numbered bullets are expected results.
 
 ### ”empty string” is preselected on this, so will start by clearing that.
