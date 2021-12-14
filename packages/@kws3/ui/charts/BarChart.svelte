@@ -10,6 +10,8 @@
 These are charts with minimal UI and can be
 squeezed into small spaces, Default: `false`
   @param {boolean} [horizontal=false] - Whether the chart displays horizontal bars, Default: `false`
+  @param {boolean} [stacked=false] - Whether the bars are stacked on top of each other, Default: `false`
+  @param {boolean} [stacked_full_width=false] - When bars are stacked, should they span the full width/height of the chart, Default: `false`
   @param {object} [y_axis_options={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
   @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, supports CSS size strings, Default: `"auto"`
