@@ -67,16 +67,15 @@ export default async ({ args, canvasElement }) => {
   await expect(Number(tags.length)).toEqual(0);
 
   //Search for an item
-  // await sleep(300);
-  // await userEvent.type(inputs[0], "no", { delay: 100 });
-  // await expect(Number(items.length)).toBe(1);
-  // await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("no");
+  await sleep(300);
+  await userEvent.type(inputs[0], "no", { delay: 100 });
+  await expect(Number(items.length)).toBe(1);
+  await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("no");
 
   //Clear search input
-  //await sleep(300);
-  //await fireEvent.keyDown(inputs[0], { key: "Backspace" });
-  //await fireEvent.keyDown(inputs[0], { key: "Backspace" });
-  //await expect(inputs[0].value).toBe("");
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "Escape" });
+  await expect(inputs[0].value).toBe("");
 
   //Search and select for multiple items using Enter key
   await sleep(300);
