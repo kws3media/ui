@@ -73,6 +73,7 @@ Default value: `<span>{option[search_key] || option}</span>`
             {#if !readonly && !disabled}
               <button
                 on:click|self|stopPropagation={() => remove(tag)}
+                role="button"
                 type="button"
                 class="delete is-small"
                 data-tooltip="{remove_btn_tip} {tag[used_search_key]}" />
@@ -97,6 +98,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   </ul>
   {#if !readonly && !disabled}
     <button
+      role="button"
       type="button"
       class="remove-all delete is-small"
       data-tooltip={remove_all_tip}

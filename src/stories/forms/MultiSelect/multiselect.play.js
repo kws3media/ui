@@ -4,6 +4,7 @@ import {
   userEvent,
   waitFor,
   getNodeText,
+  fireEvent,
 } from "@storybook/testing-library";
 import { sleep } from "../../../utils";
 
@@ -17,73 +18,113 @@ export default async ({ args, canvasElement }) => {
   //Focus on Multi-select
   await userEvent.click(inputs[0]);
 
+  const options = document.querySelectorAll("ul.options"),
+    selected_options = canvasElement.querySelectorAll(".tags"),
+    items = options[0].getElementsByTagName("li"),
+    tags = selected_options[0].getElementsByTagName("li");
+
   //A dropdown showing all selectable items should appear
-  const options = document.querySelectorAll("ul.options");
   await expect(!options[0].classList.contains("hidden")).toEqual(true);
 
-  //Select few items from dropdown
-  const items = options[0].getElementsByTagName("li");
+  //Select items by mouse click
+  await sleep(300);
   await userEvent.click(items[0]);
-  await sleep(300);
-  await userEvent.click(items[2]);
-  await sleep(300);
-  await userEvent.click(items[4]);
+  await expect(Number(tags.length)).toEqual(1);
+  await expect(getNodeText(items[0]).trim()).toEqual(
+    getNodeText(tags[0]).trim()
+  );
 
-  //Match with the selecte items
-  const tags = canvasElement
-    .querySelectorAll(".tags")[0]
-    .getElementsByTagName("li");
-  await expect(Number(tags.length)).toEqual(3);
-
-  //Deselct one item
-  //Match with the selecte items
+  //Select items by using Enter key
   await sleep(300);
-  await userEvent.click(items[2]);
+  await fireEvent.mouseEnter(items[3]);
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await expect(Number(tags.length)).toEqual(2);
+  await expect(getNodeText(items[3]).trim()).toEqual(
+    getNodeText(tags[1]).trim()
+  );
 
-  //Deselct one item
-  //Match with the selecte items
+  //Deselct item by Backspace key
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await expect(Number(tags.length)).toEqual(1);
+
+  //Deselct item by mouse click on remove button
+  await sleep(300);
+  await userEvent.click(within(tags[0]).getByRole("button"));
+  await expect(Number(tags.length)).toEqual(0);
+
+  //Select item by mouse click on item
   await sleep(300);
   await userEvent.click(items[4]);
   await expect(Number(tags.length)).toEqual(1);
+  await expect(getNodeText(items[4]).trim()).toEqual(
+    getNodeText(tags[0]).trim()
+  );
 
-  //Deselct one item
-  //Match with the selecte items
+  //Deselect item by mouse click on item
   await sleep(300);
-  await userEvent.click(items[0]);
-  await expect(Number(tags.length)).toEqual(0);
-
-  //Again select few items from dropdown
-  await sleep(300);
-  await userEvent.click(items[1]);
-  await sleep(300);
-  await userEvent.click(items[3]);
-
-  //Removing all selected items
-  //should remove all tags
-  await sleep(300);
-  await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
+  await userEvent.click(items[4]);
   await expect(Number(tags.length)).toEqual(0);
 
   //Search for an item
-  await userEvent.type(inputs[0], "no", { delay: 100 });
-  await expect(Number(items.length)).toBe(1);
-  await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("no");
+  // await sleep(300);
+  // await userEvent.type(inputs[0], "no", { delay: 100 });
+  // await expect(Number(items.length)).toBe(1);
+  // await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("no");
 
-  //clearout all selected items
-  await sleep(1000);
-  await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
+  //Clear search input
+  //await sleep(300);
+  //await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  //await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  //await expect(inputs[0].value).toBe("");
 
-  //Search and select for multiple items
+  //Search and select for multiple items using Enter key
+  await sleep(300);
   await userEvent.type(inputs[0], "son", { delay: 100 });
-  await userEvent.click(items[0]);
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await userEvent.type(inputs[0], "hua", { delay: 100 });
-  await userEvent.click(items[0]);
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await expect(Number(tags.length)).toBe(2);
   await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("son");
   await expect(getNodeText(tags[1]).substring(0, 3).toLowerCase()).toBe("hua");
 
-  //clearout selected items
-  await sleep(1000);
+  //Clear selected items
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await expect(Number(tags.length)).toBe(1);
+  await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("son");
+  await userEvent.click(within(tags[0]).getByRole("button"));
+  await expect(Number(tags.length)).toEqual(0);
+
+  //Clear input using Escape key
+  await sleep(300);
+  await userEvent.type(inputs[0], "bl", { delay: 100 });
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await userEvent.type(inputs[0], "nok", { delay: 100 });
+  await fireEvent.keyDown(inputs[0], { key: "Escape" });
+  await expect(Number(tags.length)).toBe(1);
+  await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("bla");
+
+  //Select item using ArrowUp and Enter key
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+
+  //Select item using ArrowDown key & Mouse click
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await userEvent.click(options[0].querySelector("li.active"));
+  await expect(Number(tags.length)).toBe(3);
+  await expect(getNodeText(tags[0]).trim()).toBe("Blackberry");
+  await expect(getNodeText(tags[1]).trim()).toBe("LG");
+  await expect(getNodeText(tags[2]).trim()).toBe("Oppo");
+
+  //Removing all selected items
+  await sleep(300);
   await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
+  await expect(Number(tags.length)).toEqual(0);
 };
