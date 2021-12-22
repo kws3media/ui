@@ -16,5 +16,5 @@
    * Text to process and output
    */
   export let text = "";
-  $: text_parts = text.split("\n");
+  $: text_parts = text ? text.split("\n") : "";
 </script>
