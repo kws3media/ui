@@ -106,19 +106,24 @@
 
   let query = "",
     _filters = [],
-    filterVals = {};
+    filterVals = {},
+    filterWidthStyle = "";
 
   $: usedFilterComponent = filterComponent ? filterComponent : SearchFilter;
-  $: filterWidthStyle = hasSearch
-    ? `max-width:${(1 / (_filters.length + 2)) * 100}%`
-    : "";
   $: changed = q && q.trim() != "";
   $: q, qHasChanged();
   $: filters, filtersHaveChanged();
 
+  function calculateMaxWidths() {
+    filterWidthStyle = hasSearch
+      ? `max-width:${(1 / (_filters.length + 2)) * 100}%`
+      : "";
+  }
+
   function filtersHaveChanged() {
     if (filters) {
       _filters = [];
+      let temp = [];
       for (let i in filters) {
         let obj = { name: i, options: [], type: "select" };
         if (Array.isArray(filters[i])) {
@@ -131,9 +136,12 @@
             obj.type = filters[i].type;
           }
         }
-        _filters.push(obj);
+        temp.push(obj);
       }
+      _filters = temp;
     }
+
+    calculateMaxWidths();
   }
 
   function qHasChanged() {
