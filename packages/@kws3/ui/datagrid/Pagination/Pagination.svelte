@@ -47,7 +47,7 @@
       {:else}
         <div class="level-item">
           {#if showTotal}
-            <strong>Total {meta.total} {entityName}</strong>
+            <strong>Total {totalItems} {entityName}</strong>
           {:else if showCurrent}
             {#if meta.total > 0}Showing {meta.offset * 1 + 1} to {meta.offset *
                 1 +
@@ -72,12 +72,12 @@
           {/if}
         {/if}
         {#if showTotal}
-          <strong>{meta.total} {entityName}</strong>
+          <strong>{totalItems} {entityName}</strong>
         {/if}
       </div>
     {:else if showPerPage && showTotal && !showCurrent}
       <div class="level-item pagination-showing">
-        <strong>Total {meta.total} {entityName}</strong>
+        <strong>Total {totalItems} {entityName}</strong>
       </div>
     {/if}
 
@@ -204,6 +204,7 @@
     _perPageOptions = ret;
   }
 
+  $: totalItems = meta && meta.total ? meta.total : 0;
   $: currentPage = Math.floor(meta.offset / meta.limit);
   $: totalPages = Math.ceil(meta.total / (meta.limit || 1));
   $: totalPages, currentPage, breakThreshold, calculatePages();
