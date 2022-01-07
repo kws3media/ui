@@ -11,6 +11,13 @@ $kws-select-selecting-background: $primary !default;
 $kws-select-selected-color: $primary-dark !default;
 $kws-select-selected-background: $primary-light !default;
 
+$__modal-z: 41 !default;
+@if $modal-z {
+  $__modal-z: $modal-z;
+}
+
+$kws-select-options-z-index: $__modal-z + 1 !default;
+
 .kws-searchableselect {
   position: relative;
   align-items: center;
@@ -205,5 +212,6 @@ $kws-select-selected-background: $primary-light !default;
 #kws-overlay-root {
   .kws-searchableselect {
     position: absolute;
+    z-index: $kws-select-options-z-index;
   }
 }
