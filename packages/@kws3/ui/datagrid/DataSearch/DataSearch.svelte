@@ -18,10 +18,10 @@
 
 -->
 
-<form on:submit|preventDefault={dosearch}>
+<form class="kws-grid-search" on:submit|preventDefault={dosearch}>
   <div class="field has-addons">
     {#if hasSearch}
-      <p class="control is-expanded">
+      <div class="control is-expanded main-search">
         <input
           class="input {query != '' && query != undefined
             ? filter_in_use_class
@@ -29,7 +29,7 @@
           type="text"
           {placeholder}
           bind:value={query} />
-      </p>
+      </div>
     {/if}
     {#if hasFilters}
       {#each _filters as filter, i}
@@ -46,17 +46,17 @@
       {/each}
     {/if}
     {#if changed}
-      <p class="control">
+      <div class="control clear-search">
         <button class="button is-danger" type="button" on:click={doresetSearch}>
           <Icon icon="close" size="small" />
         </button>
-      </p>
+      </div>
     {/if}
-    <p class="control">
+    <div class="control search-submit">
       <button class="button is-primary" type="submit">
         <Icon icon="search" size="small" /> <span>Search</span>
       </button>
-    </p>
+    </div>
   </div>
 </form>
 

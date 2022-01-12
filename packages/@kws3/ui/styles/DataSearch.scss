@@ -1,0 +1,17 @@
+.kws-grid-search {
+  .is-not-in-use {
+  }
+  .is-in-use {
+    border-color: transparentize($success, 0.5);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.23) !important;
+    z-index: 2;
+  }
+}
+
+@include mobile {
+  .kws-grid-search {
+    .field {
+      display: block;
+    }
+  }
+}

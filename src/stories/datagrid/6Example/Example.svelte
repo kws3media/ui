@@ -1,5 +1,5 @@
-<div class="columns">
-  <div class="column is-3 is-pulled-right">
+<div class="columns is-mobile">
+  <div class="column is-3">
     <ToggleControl>
       <label for="some-primary-text" class="label">
         {is_tile_view ? "Tile" : "Grid"} view
@@ -43,9 +43,9 @@
         {filter_label_map}
         on:search={search}
         on:resetSearch={resetSearch} />
-      <DataSort {options} {sort_by} on:sort={sort} />
     </div>
   </div>
+  <DataSort {options} {sort_by} on:sort={sort} />
 
   <div class="columns">
     <div class="column">
@@ -68,24 +68,26 @@
           {styleTransformers}
           {visibilityMap} />
       {:else}
-        <GridView
-          {iteration_key}
-          {data}
-          {columns}
-          {transition}
-          {is_striped}
-          {clickableRows}
-          {bulk_actions}
-          {selectAll}
-          {selectedIds}
-          {selectAllCheckboxColor}
-          {selectCheckboxColor}
-          {selectCheckboxSize}
-          {valueTransformers}
-          {classTransformers}
-          {styleTransformers}
-          {visibilityMap}
-          {cellComponentMap} />
+        <div class="data-table-wrapper" style="max-width:100%;overflow:auto">
+          <GridView
+            {iteration_key}
+            {data}
+            {columns}
+            {transition}
+            {is_striped}
+            {clickableRows}
+            {bulk_actions}
+            {selectAll}
+            {selectedIds}
+            {selectAllCheckboxColor}
+            {selectCheckboxColor}
+            {selectCheckboxSize}
+            {valueTransformers}
+            {classTransformers}
+            {styleTransformers}
+            {visibilityMap}
+            {cellComponentMap} />
+        </div>
       {/if}
     </div>
   </div>
@@ -102,18 +104,6 @@
 <!--<div class="">
   {#if is_searching}Searching...{/if}
 </div>-->
-<style global>
-  #datagrid-demo .has-addons .select {
-    margin-top: 8px;
-  }
-  .sorting-filters {
-    margin-top: -0.5rem;
-  }
-  .sorting-filters .select {
-    margin-top: 0px;
-  }
-</style>
-
 <script>
   import { onMount } from "svelte";
   import {
