@@ -19,7 +19,7 @@
 -->
 
 <form class="kws-grid-search" on:submit|preventDefault={dosearch}>
-  <div class="field has-addons">
+  <div class="field has-addons outer-level-field">
     {#if hasSearch}
       <div class="control is-expanded main-search">
         <input
@@ -45,17 +45,24 @@
           {filter_label_map} />
       {/each}
     {/if}
-    {#if changed}
-      <div class="control clear-search">
-        <button class="button is-danger" type="button" on:click={doresetSearch}>
-          <Icon icon="close" size="small" />
+
+    <div class="field has-addons action-buttons-field">
+      {#if changed}
+        <div class="control is-expanded clear-search">
+          <button
+            class="button is-danger"
+            type="button"
+            on:click={doresetSearch}>
+            <Icon icon="close" size="small" />
+            <span class="is-hidden-desktop is-hidden-tablet">Clear</span>
+          </button>
+        </div>
+      {/if}
+      <div class="control is-expanded search-submit">
+        <button class="button is-primary" type="submit">
+          <Icon icon="search" size="small" /> <span>Search</span>
         </button>
       </div>
-    {/if}
-    <div class="control search-submit">
-      <button class="button is-primary" type="submit">
-        <Icon icon="search" size="small" /> <span>Search</span>
-      </button>
     </div>
   </div>
 </form>
