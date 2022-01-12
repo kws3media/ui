@@ -7,7 +7,7 @@
     margin: 0 !important;
     padding: 0.2rem 0;
     &:first-child {
-      padding-left: calc(0.625em - 1px);
+      padding-left: calc(0.625rem - 1px);
       border-radius: 0 0 0 $radius-large;
     }
     &:last-child {
@@ -17,8 +17,8 @@
   .select {
     height: auto;
     select {
-      padding-top: 0.2em;
-      padding-bottom: 0.2em;
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
       border: none;
       background: transparent;
       color: $primary;
@@ -32,6 +32,28 @@
     }
     &::after {
       border-color: $primary;
+    }
+  }
+}
+
+@include mobile {
+  .sorting-filters {
+    margin-top: 0rem;
+    .field {
+      justify-content: center;
+    }
+    .control {
+      &:first-child {
+        border-radius: $radius-large 0 0 $radius-large;
+      }
+      &:last-child {
+        border-radius: 0 $radius-large $radius-large 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        .select {
+          width: 100%;
+        }
+      }
     }
   }
 }
