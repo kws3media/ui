@@ -105,38 +105,41 @@ Default value: `<span>{option[search_key] || option}</span>`
       on:click|stopPropagation={removeAll}
       style={shouldShowClearAll ? "" : "display: none;"} />
   {/if}
+  {#if rootContainer}
+    <div class="kws-searchableselect" use:portal={"#" + rootContainerId}>
+      <ul
+        bind:this={dropdown}
+        class="options {single ? 'is-single' : 'is-multi'}"
+        class:hidden={!showOptions}>
+        {#each filteredOptions as option}
+          <li
+            on:mousedown|preventDefault|stopPropagation={() =>
+              handleOptionMouseDown(option)}
+            on:mouseenter|preventDefault|stopPropagation={() => {
+              activeOption = option;
+            }}
+            class:selected={isSelected(option)}
+            class:active={activeOption === option}>
+            <span class="kws-selected-icon"
+              ><Icon icon={selected_icon} size="small" /></span
+            ><!--
+              Slot containing text for each selectable item
 
-  <ul
-    bind:this={dropdown}
-    class="options {single ? 'is-single' : 'is-multi'}"
-    class:hidden={!showOptions}>
-    {#each filteredOptions as option}
-      <li
-        on:mousedown|preventDefault|stopPropagation={() =>
-          handleOptionMouseDown(option)}
-        on:mouseenter|preventDefault|stopPropagation={() => {
-          activeOption = option;
-        }}
-        class:selected={isSelected(option)}
-        class:active={activeOption === option}>
-        <span class="kws-selected-icon"
-          ><Icon icon={selected_icon} size="small" /></span
-        ><!--
-          Slot containing text for each selectable item
-
-          Default value: `<span>{option[search_key] || option}</span>`
-        --><slot
-          search_key={used_search_key}
-          {option}>{option[used_search_key] || option}</slot>
-      </li>
-    {:else}
-      <li class="no-options">{no_options_msg}</li>
-    {/each}
-  </ul>
+              Default value: `<span>{option[search_key] || option}</span>`
+            --><slot
+              search_key={used_search_key}
+              {option}>{option[used_search_key] || option}</slot>
+          </li>
+        {:else}
+          <li class="no-options">{no_options_msg}</li>
+        {/each}
+      </ul>
+    </div>
+  {/if}
 </div>
 
 <script>
-  import { Icon } from "@kws3/ui";
+  import { Icon, portal } from "@kws3/ui";
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
 
@@ -247,16 +250,13 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
 
   //ensure we have a root container for all our hoisitng related stuff
-  let rootContainerId = "kws-overlay-root";
+  const rootContainerId = "kws-overlay-root";
   let rootContainer = document.getElementById(rootContainerId);
   if (!rootContainer) {
     rootContainer = document.createElement("div");
     rootContainer.id = rootContainerId;
     document.body.appendChild(rootContainer);
   }
-
-  //this is the container that will hold the dropdown
-  let container;
 
   const fire = createEventDispatcher();
 
@@ -386,22 +386,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER && POPPER.update();
   }
 
-  /**
-   * Moves dropdown to rootContainer, so that
-   * overflows etc do not mess with it
-   */
-  function hoistDropdown() {
-    if (!container) {
-      container = document.createElement("div");
-      container.className = "kws-searchableselect";
-      rootContainer.appendChild(container);
-      container.appendChild(dropdown);
-    }
-  }
-
   onMount(() => {
-    hoistDropdown();
-
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
       placement: "bottom-start",
@@ -416,10 +401,6 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     return () => {
       POPPER.destroy();
-      //remove hoisted items
-      container &&
-        container.parentNode &&
-        container.parentNode.removeChild(container);
     };
   });
 
