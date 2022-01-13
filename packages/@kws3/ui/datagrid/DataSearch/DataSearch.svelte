@@ -166,6 +166,15 @@
       qfilters[qqp[0]] = qqp[1];
     }
 
+    if (hasFilters) {
+      for (let i in _filters) {
+        let filter = _filters[i];
+        if (typeof qfilters[filter.name] == "undefined") {
+          qfilters[filter.name] = "";
+        }
+      }
+    }
+
     filterVals = qfilters;
   }
 
@@ -186,7 +195,7 @@
     let ret = [];
     ret.push(query);
     for (var i in filterVals) {
-      ret.push(i + ":" + filterVals[i]);
+      filterVals[i] && ret.push(i + ":" + filterVals[i]);
     }
     /**
      * Event triggered on search
