@@ -28,6 +28,10 @@ Instead of listing all the selected items inside the input., Default: `false`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
   @param {string} [remove_btn_tip="Remove"] - Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip., Default: `"Remove"`
   @param {string} [remove_all_tip="Remove all"] - Tooltip text for the Clear All button, Default: `"Remove all"`
+  @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
+Can be a DOM element or a `string` with the CSS selector of the element.
+
+By default it renders in a custom container appended to `document.body`., Default: `undefined`
   @param {string} [class=""] - CSS classes for input container, Default: `""`
 
   ### Events
@@ -106,7 +110,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       style={shouldShowClearAll ? "" : "display: none;"} />
   {/if}
   {#if rootContainer}
-    <div class="kws-searchableselect" use:portal={"#" + rootContainerId}>
+    <div class="kws-searchableselect" use:portal={dropdown_portal}>
       <ul
         bind:this={dropdown}
         class="options {single ? 'is-single' : 'is-multi'}"
@@ -158,6 +162,8 @@ Default value: `<span>{option[search_key] || option}</span>`
       state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`;
     },
   };
+
+  const rootContainerId = "kws-overlay-root";
 
   /**
    * Value of the Input
@@ -238,6 +244,16 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let remove_all_tip = "Remove all";
 
   /**
+   * Where to render the dropdown list.
+   * Can be a DOM element or a `string` with the CSS selector of the element.
+   *
+   * By default it renders in a custom container appended to `document.body`.
+   *
+   * @type { HTMLElement|string}
+   */
+  export let dropdown_portal = "#" + rootContainerId;
+
+  /**
    * CSS classes for input container
    */
   let klass = "";
@@ -250,7 +266,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
 
   //ensure we have a root container for all our hoisitng related stuff
-  const rootContainerId = "kws-overlay-root";
+
   let rootContainer = document.getElementById(rootContainerId);
   if (!rootContainer) {
     rootContainer = document.createElement("div");
