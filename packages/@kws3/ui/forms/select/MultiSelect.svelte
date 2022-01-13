@@ -510,6 +510,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     }
 
     if (event.key === `Enter`) {
+      event.preventDefault();
       if (activeOption) {
         handleOptionMouseDown(activeOption);
         if (!single) {
