@@ -186,7 +186,7 @@
     let ret = [];
     ret.push(query);
     for (var i in filterVals) {
-      filterVals[i] && ret.push(i + ":" + filterVals[i]);
+      ret.push(i + ":" + filterVals[i]);
     }
     /**
      * Event triggered on search
