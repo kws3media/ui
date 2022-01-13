@@ -242,7 +242,6 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Tooltip text for the Clear All button
    */
   export let remove_all_tip = "Remove all";
-
   /**
    * Where to render the dropdown list.
    * Can be a DOM element or a `string` with the CSS selector of the element.
