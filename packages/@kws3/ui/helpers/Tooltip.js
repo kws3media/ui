@@ -31,9 +31,15 @@ function createTippyAction(defaultOpts) {
     function makeOptions() {
       return Object.assign({}, defaultOpts, opts, {
         onShow(instance) {
+          dispatch("showing", { instance });
+        },
+        onShown(instance) {
           dispatch("shown", { instance });
         },
         onHide(instance) {
+          dispatch("hiding", { instance });
+        },
+        onHidden(instance) {
           dispatch("hidden", { instance });
         },
         onTrigger(instance) {

@@ -30,8 +30,10 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   @param {function} [setProps(props)] - SetProps function
 
   ### Events
-  - `open` - Triggered when popoper is shown
-  - `close` - Triggered when popoper is hidden
+  - `opening` - Triggered when popover is opening
+  - `open` - Triggered when popover is opened
+  - `closing` - Triggered when popover is closing
+  - `close` - Triggered when popover is closed
   - `trigger` - Triggered when popover is triggered either programatically or by user interaction
 
   ### Slots
@@ -42,7 +44,9 @@ It can be any CSS value associated with `max-width` property, including `"none"`
 <span
   use:popover={{ content: targetNode }}
   bind:this={popoverParent}
+  on:showing={popoverShowing}
   on:shown={popoverShown}
+  on:hiding={popoverHiding}
   on:hidden={popoverHidden}
   on:triggered={popoverTriggered}
   data-tippy-trigger={trigger}
@@ -160,16 +164,30 @@ It can be any CSS value associated with `max-width` property, including `"none"`
     getInstance().setProps(props);
   }
 
+  const popoverShowing = ({ detail }) => {
+    /**
+     * Triggered when popover is opening
+     */
+    fire("opening", detail);
+  };
+
   const popoverShown = ({ detail }) => {
     /**
-     * Triggered when popoper is shown
+     * Triggered when popover is opened
      */
     fire("open", detail);
   };
 
+  const popoverHiding = ({ detail }) => {
+    /**
+     * Triggered when popover is closing
+     */
+    fire("closing", detail);
+  };
+
   const popoverHidden = ({ detail }) => {
     /**
-     * Triggered when popoper is hidden
+     * Triggered when popover is closed
      */
     fire("close", detail);
   };

@@ -1,8 +1,15 @@
 <div class="columns">
   <div class="column">
     <KwsPopover
+      on:opening={({ detail }) => {
+        console.log("opening", detail);
+      }}
       on:open={({ detail }) => {
+        x.focus();
         console.log("open", detail);
+      }}
+      on:closing={({ detail }) => {
+        console.log("closing", detail);
       }}
       on:close={({ detail }) => {
         console.log("close", detail);
@@ -24,6 +31,7 @@
           Make <code>interactive: true</code> and you can click the button below
           <br /><br />
           <button
+            bind:this={x}
             class="button is-small"
             on:click={() => Dialog.alert("Clicked!!!")}
             >Try to click me!</button>
@@ -162,6 +170,7 @@
   export { klass as class };
 
   let manual_popover;
+  let x;
 
   let notif;
 </script>

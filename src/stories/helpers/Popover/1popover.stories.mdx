@@ -155,7 +155,13 @@ function hidePopover(e){
 #### Events
 ```html
 <Popover 
+  on:opening={({detail}) => {
+    console.log(detail.instance)
+  }}
   on:open={({detail}) => {
+    console.log(detail.instance)
+  }}
+  on:closing={({detail}) => {
     console.log(detail.instance)
   }}
   on:close={({detail}) => {
