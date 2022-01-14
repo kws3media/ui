@@ -29,7 +29,17 @@ function createTippyAction(defaultOpts) {
     let instance;
 
     function makeOptions() {
-      return Object.assign({}, defaultOpts, opts);
+      return Object.assign({}, defaultOpts, opts, {
+        onShow(instance) {
+          dispatch("shown", { instance });
+        },
+        onHide(instance) {
+          dispatch("hidden", { instance });
+        },
+        onTrigger(instance) {
+          dispatch("triggered", { instance });
+        },
+      });
     }
 
     function remakeInstance() {
@@ -50,6 +60,11 @@ function createTippyAction(defaultOpts) {
     }
 
     makeInstance();
+
+    function dispatch(type, detail) {
+      const e = new CustomEvent(type, { bubbles: false, detail });
+      node.dispatchEvent(e);
+    }
 
     return {
       update(_opts) {
