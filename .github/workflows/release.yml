@@ -29,4 +29,4 @@ jobs:
         BRANCH: master
         FOLDER: build
         CLEAN: true
-        TARGET_FOLDER: public
+        TARGET_FOLDER: build
