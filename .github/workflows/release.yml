@@ -1,9 +1,9 @@
 name: Build and Deploy
 on:
   deployment:
-  push:
-    branches:
-     - 'master'
+  create:
+    tags:
+      - '@kws3/ui@*'
 jobs:
   deploy:
     name: Setup build and deploy
