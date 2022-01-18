@@ -10,6 +10,7 @@ $kws-gridview-icon-size: 1.5em !default;
   th {
     background: $kws-gridview-th-background;
     color: $kws-gridview-th-color;
+    vertical-align: middle;
   }
   &.is-bordered {
     tr {
