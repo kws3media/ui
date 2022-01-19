@@ -5,7 +5,7 @@ const autoPreprocess = require("svelte-preprocess");
 module.exports = {
   stories: [
     "../src/stories/_index/index.stories.mdx",
-    "../src/stories/_index/*.stories.*",
+    "../src/stories/_index/index*.stories.*",
     "../src/stories/_index/changelog.stories.mdx",
     "../src/stories/index.stories.js",
     "../src/stories/**/*.stories.*",
