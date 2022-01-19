@@ -13,12 +13,14 @@
   @param {object} [context=null] - Context property, Default: `null`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
+  @param {number} [completion_timeout=600] - How long to wait before `done` event is fired, and the UI state reverts back to normal, Default: `600`
+  @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
-  - `do` - Fires an event when user presses button
-  - `done` - Fires an event when task completes successfully
-  - `error` - Fires an event when there is an error
+  - `do` - Fired when user presses button
+  - `done` - Fired when task completes successfully
+  - `error` - Fired when there is an error
 
 -->
 <ConfirmButton
@@ -33,21 +35,23 @@
   {context}
   {icon_only}
   {disabled}
+  {completion_timeout}
+  {error_timeout}
   class={klass}
   should_confirm={false}
   on:do={({ detail }) =>
     /**
-     * Fires an event when user presses button
+     * Fired when user presses button
      */
     fire("do", detail)}
   on:done={({ detail }) =>
     /**
-     * Fires an event when task completes successfully
+     * Fired when task completes successfully
      */
     fire("done", detail)}
   on:error={({ detail }) =>
     /**
-     * Fires an event when there is an error
+     * Fired when there is an error
      */
     fire("error", detail)} />
 
@@ -102,7 +106,15 @@
     /**
      * Disables the button when `true`
      */
-    disabled = false;
+    disabled = false,
+    /**
+     * How long to wait before `done` event is fired, and the UI state reverts back to normal
+     */
+    completion_timeout = 600,
+    /**
+     * How long to wait before `error` event is fired, and the UI state reverts back to normal
+     */
+    error_timeout = 3000;
 
   /**
    * CSS classes for button container

@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { Dialog } from "@kws3/ui";
 import DialogDecorator from "./Dialog.svelte";
 import { action } from '@storybook/addon-actions';
@@ -13,6 +14,9 @@ export let args={
   icon_color : "primary",
   icon_size:""
 };
+
+
+<Version />
 
 <Meta
   title="Helpers/Dialog"

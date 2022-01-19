@@ -5,7 +5,7 @@
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
   @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
-  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [family=""] - Icon family, defaults to global family set via `setDefaultIconType()`
+  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [family=""] - Icon family, can be modified globally in framework settings
 
 Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   @param {string} [style=""] - Inline CSS for icon container, Default: `""`
@@ -67,7 +67,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
      */
     icon = "",
     /**
-     * Icon family, defaults to global family set via `setDefaultIconType()`
+     * Icon family, can be modified globally in framework settings
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
      * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}

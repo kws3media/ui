@@ -1,58 +1,32 @@
-on: ['deployment']
+name: Build and Deploy
+on:
+  deployment:
+  create:
+    tags:
+      - '@kws3/ui@*'
 jobs:
   deploy:
     name: Setup build and deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Public IP
-      id: ip
-      uses: haythem/public-ip@v1.2
-
-    - name: Install doctl
-      uses: digitalocean/action-doctl@v2
-      with:
-        token: ${{ secrets.DOCTL_KEY }}
-
-    - name: Install SSH key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{secrets.DEPLOY_KEY}}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
-
     - name: Checkout repo
       uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.deployment.ref }}
+        persist-credentials: false
 
-    - name: Write ftp pass file
-      uses: DamianReeves/write-file-action@v1.0
-      with:
-        path: ./.ftppass
-        contents: |
-          {"livekey":{"username": "root","passphrase": "","keyLocation": "id_rsa"}}
-        write-mode: overwrite
-
-    - name: Write npmrc file
-      uses: DamianReeves/write-file-action@v1.0
-      with:
-        path: ./.npmrc
-        contents: |
-          echo ${{secrets.NPM_RC}}
-        write-mode: overwrite
-
-    - name: whitelist ip
-      run: doctl compute firewall add-rules d82b3d3e-ded9-4dec-9e26-2769742ddb3e --inbound-rules protocol:tcp,ports:22,address:${{ steps.ip.outputs.ipv4 }}
-
-    - name: Run Deploy script
+    - name: Run Build script
       uses: actions/setup-node@v1
       with:
         node-version: '12.22.4'
     - run: npm ci
     - run: npx lerna bootstrap --hoist --no-ci
     - run: npm run build:dist
-    - run: npm run deploy:dist
 
-
-    - name: remove whitelisted ip
-      if: ${{ always() }}
-      run: doctl compute firewall remove-rules d82b3d3e-ded9-4dec-9e26-2769742ddb3e --inbound-rules protocol:tcp,ports:22,address:${{ steps.ip.outputs.ipv4 }}
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@3.6.2
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build
+        CLEAN: true
+        TARGET_FOLDER: docs

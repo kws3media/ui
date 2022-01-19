@@ -2,17 +2,17 @@
   @component
 
 
-  @param {object} [row={}] - Row property, Default: `{}`
-  @param {boolean} [rowActive=false] - RowActive property, Default: `false`
-  @param {boolean} [clickableRows=false] - ClickableRows property, Default: `false`
-  @param {function} [isVisible()] - IsVisible function
-  @param {function} [transforms()] - Transforms function
-  @param {function} [classNames()] - ClassNames function
-  @param {function} [styles()] - Styles function
-  @param {array} [column_keys=[]] - Column_keys property, Default: `[]`
+  @param {object} [row={}] - List of all values in a row, Default: `{}`
+  @param {boolean} [rowActive=false] - Determines whether the row is selected or not, Default: `false`
+  @param {boolean} [clickableRows=false] - Determines whether the row is clickable or not, Default: `false`
+  @param {function} [isVisible()] - Returns whether a column can be visible or not
+  @param {function} [transforms()] - Returns column custom value
+  @param {function} [classNames()] - Returns column custom CSS class
+  @param {function} [styles()] - Returns column custom CSS styles
+  @param {array} [column_keys=[]] - Contains all the column key names, Default: `[]`
 
   ### Events
-  - `rowClick`
+  - `rowClick` - Fires an event when a row is clicked
 
 -->
 <div
@@ -33,18 +33,45 @@
 
   const fire = createEventDispatcher();
 
+  /**
+   * List of all values in a row
+   */
   export let row = {},
+    /**
+     * Determines whether the row is selected or not
+     */
     rowActive = false,
+    /**
+     * Determines whether the row is clickable or not
+     */
     clickableRows = false,
+    /**
+     * Returns whether a column can be visible or not
+     */
     isVisible = function () {},
+    /**
+     * Returns column custom value
+     */
     transforms = function () {},
+    /**
+     * Returns column custom CSS class
+     */
     classNames = function () {},
+    /**
+     * Returns column custom CSS styles
+     */
     styles = function () {},
+    /**
+     * Contains all the column key names
+     */
     column_keys = [];
 
   function rowClick() {
     if (clickableRows) {
       rowActive = true;
+      /**
+       * Fires an event when a row is clicked
+       */
       fire("rowClick", { row });
     }
   }

@@ -1,6 +1,10 @@
 import { Meta } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import Other from './Other.svelte';
+
+
+<Version />
 
 <Meta
   title="Helpers/Tooltips/3. Tooltip Action"
@@ -21,7 +25,7 @@ The recommended way is to use tooltips via event delegation, see: <a href="/docs
 
 The action accepts an object of parameters.  
 
-For a list of other supported parameters, see: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/">https://atomiks.github.io/tippyjs/v6/all-props/</a>
+For a list of other supported parameters, see:  https://atomiks.github.io/tippyjs/v6/all-props/
 
 By default, it tries to use the content of `data-tooltip` attribute as the tooltip content.  
 However, you can also send a string as a parameter to the action.

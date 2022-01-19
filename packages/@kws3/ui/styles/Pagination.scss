@@ -8,57 +8,90 @@ $kws-pagination-item-disabled-color: $grey !default;
 $kws-pagination-item-ellipsis-background: $white-bis !default;
 $kws-pagination-item-ellipsis-border-color: $grey-lighter !default;
 $kws-pagination-item-active-background: $success !default;
-$kws-pagination-item-active-color: findColorInvert($kws-pagination-item-active-background) !default;
+$kws-pagination-item-active-color: findColorInvert(
+  $kws-pagination-item-active-background
+) !default;
 
-$kws-pagination-frame-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
-$kws-pagination-frame-background: linear-gradient(#fff, #fafafa);
+$kws-pagination-frame-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
+  0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
+$kws-pagination-frame-background: linear-gradient(#fff, #fafafa) !default;
 
-
-.pagination{
-  &.is-small{
-    .pagination-previous, .pagination-next, .pagination-link, .pagination-ellipsis{
-      min-height:1.8rem;
+.pagination {
+  &.is-small {
+    .pagination-previous,
+    .pagination-next,
+    .pagination-link,
+    .pagination-ellipsis {
+      min-height: 1.8rem;
     }
   }
-  .pagination-previous, .pagination-next{
-    padding-left:0;
-    padding-right:0;
+  .pagination-previous,
+  .pagination-next {
+    padding-left: 0;
+    padding-right: 0;
   }
-  .pagination-previous, .pagination-next, .pagination-link, .pagination-ellipsis{
-    background:$kws-pagination-item-background;
+  .pagination-previous,
+  .pagination-next,
+  .pagination-link,
+  .pagination-ellipsis {
+    background: $kws-pagination-item-background;
     color: $kws-pagination-item-color;
     border: $kws-pagination-item-border;
-    margin:0;
-    border-radius:0;
-    min-height:100%;
-    margin-left:-1px;
-    &.is-disabled{
-      background:$kws-pagination-item-disabled-background;
-      color:$kws-pagination-item-disabled-color;
+    margin: 0;
+    border-radius: 0;
+    min-height: 100%;
+    margin-left: -1px;
+    &.is-disabled {
+      background: $kws-pagination-item-disabled-background;
+      color: $kws-pagination-item-disabled-color;
     }
-    &:hover{
-      border:$kws-pagination-item-hover-border;
-      color:$kws-pagination-item-hover-color;
+    &:hover {
+      border: $kws-pagination-item-hover-border;
+      color: $kws-pagination-item-hover-color;
     }
   }
-  .pagination-ellipsis{
-    background:$kws-pagination-item-ellipsis-background;
-    border-color:$kws-pagination-item-ellipsis-border-color;
+  .pagination-ellipsis {
+    background: $kws-pagination-item-ellipsis-background;
+    border-color: $kws-pagination-item-ellipsis-border-color;
   }
-  .pagination-link.is-current{
-    text-shadow:none;
+  .pagination-link.is-current {
+    text-shadow: none;
     color: $kws-pagination-item-active-color;
     background: $kws-pagination-item-active-background;
     border-color: $kws-pagination-item-active-background;
   }
-  .pagination-list{
-    &.pagination-limit-chooser{
-      order:inherit;
+  .pagination-list {
+    &.pagination-limit-chooser {
+      order: inherit;
     }
   }
 }
-.pagination_frame.has-frame{
-  padding:0.625rem;
+.pagination_frame.has-frame {
+  padding: 0.625rem;
   box-shadow: $kws-pagination-frame-box-shadow;
   background: $kws-pagination-frame-background;
+}
+
+@include mobile {
+  .pagination_frame {
+    .level {
+      display: flex;
+      flex-wrap: wrap;
+      .level-right {
+        margin-top: 0.75rem;
+        flex-basis: 100%;
+      }
+    }
+    .pagination-showing {
+      margin-bottom: 0;
+    }
+    .pagination {
+      .pagination-previous,
+      .pagination-next,
+      .pagination-link,
+      .pagination-ellipsis {
+        margin: 0.25rem;
+      }
+    }
+  }
 }

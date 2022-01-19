@@ -30,7 +30,7 @@ If `false` , the component won't have a close button, and will not close on clic
         y: 300,
         delay: transitionDelay,
       }}
-      class="action-sheet {inner_class}"
+      class="kws-action-sheet {inner_class}"
       style={inner_style}>
       {#if closable}
         <button class="delete is-pulled-right" type="button" on:click={close} />

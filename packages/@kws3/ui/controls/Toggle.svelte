@@ -20,7 +20,7 @@ This property can be bound to, to fetch the current value, Default: `false`
 <div
   class:on
   class:disabled
-  class="toggle-button is-{color} is-{size} {klass}"
+  class="kws-toggle-button is-{color} is-{size} {klass}"
   on:click={toggle}
   data-cy={cy}>
   <div class="track">

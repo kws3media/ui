@@ -40,7 +40,7 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
   .collapsor {
     display: none;
   }
-  .collapsor :global(.icon-i) {
+  .collapsor .icon-i {
     transition: transform 0.4s, color 0.4s;
     transform: rotate(-90deg);
     color: $kws-panel-caret-open-color;
@@ -54,14 +54,13 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
     margin: 0 10px 0 20px;
   }
 
-  &.collapsed .collapsor :global(.icon-i) {
+  &.collapsed .collapsor .icon-i {
     transform: rotate(90deg) translate(5px, 0);
     color: $kws-panel-caret-closed-color;
   }
 
   &.collapsible .panel-content-outer {
     transition: max-height 0.3s;
-    transform: translate3d(0, 0, 0);
 
     max-height: 5000px;
     overflow: hidden;

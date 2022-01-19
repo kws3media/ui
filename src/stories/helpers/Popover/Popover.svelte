@@ -1,6 +1,22 @@
 <div class="columns">
   <div class="column">
     <KwsPopover
+      on:opening={({ detail }) => {
+        console.log("opening", detail);
+      }}
+      on:open={({ detail }) => {
+        x.focus();
+        console.log("open", detail);
+      }}
+      on:closing={({ detail }) => {
+        console.log("closing", detail);
+      }}
+      on:close={({ detail }) => {
+        console.log("close", detail);
+      }}
+      on:trigger={({ detail }) => {
+        console.log("trigger", detail);
+      }}
       class={klass}
       {icon}
       {icon_color}
@@ -15,6 +31,7 @@
           Make <code>interactive: true</code> and you can click the button below
           <br /><br />
           <button
+            bind:this={x}
             class="button is-small"
             on:click={() => Dialog.alert("Clicked!!!")}
             >Try to click me!</button>
@@ -74,6 +91,61 @@
   </div>
 </div>
 
+<div class="columns is-centered">
+  <div class="column is-narrow">
+    <Message color="light">
+      <KwsPopover
+        bind:this={manual_popover}
+        class={klass}
+        {icon}
+        {icon_color}
+        {icon_size}
+        {style}
+        trigger="manual"
+        hide_on_click={false}
+        {placement}
+        {interactive}
+        {max_width}>
+        <svelte:fragment slot="popover">
+          <Message>
+            Make <code>interactive: true</code> and you can click the button
+            below
+            <br /><br />
+            <button
+              class="button is-small"
+              on:click={() => Dialog.alert("Clicked!!!")}
+              >Try to click me!</button>
+          </Message>
+        </svelte:fragment>
+      </KwsPopover> This popover can only be opened and closed programatically using
+      the buttons below.
+      <hr class="is-small" />
+      <div class="is-block">
+        <div class="field is-grouped is-grouped-right">
+          <div class="control">
+            <button
+              class="button is-small"
+              on:click={() => {
+                manual_popover.open();
+              }}>
+              Open
+            </button>
+          </div>
+          <div class="control">
+            <button
+              class="button is-small"
+              on:click={() => {
+                manual_popover.close();
+              }}>
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </Message>
+  </div>
+</div>
+
 <div bind:this={notif}>
   <Notification>This is an <code>external_target</code></Notification>
 </div>
@@ -96,6 +168,9 @@
 
   let klass = "";
   export { klass as class };
+
+  let manual_popover;
+  let x;
 
   let notif;
 </script>
