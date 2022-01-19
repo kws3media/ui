@@ -36,6 +36,7 @@ $kws-gridview-checked-row-background: $primary-light !default;
   }
   td.is-icon {
     width: 25px;
+    vertical-align: middle;
     .icon {
       font-size: $kws-gridview-icon-size;
     }
