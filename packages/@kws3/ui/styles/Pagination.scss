@@ -14,7 +14,7 @@ $kws-pagination-item-active-color: findColorInvert(
 
 $kws-pagination-frame-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
   0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
-$kws-pagination-frame-background: linear-gradient(#fff, #fafafa);
+$kws-pagination-frame-background: linear-gradient(#fff, #fafafa) !default;
 
 .pagination {
   &.is-small {
