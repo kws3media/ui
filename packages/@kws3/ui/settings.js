@@ -1,21 +1,44 @@
 import { writable } from "svelte/store";
 
 const defaultIconFamily = writable("fa");
-const defaultToastPlacement = writable("top-right");
+const defaultToastPlacement = writable("bottom");
+const defaultSnackbarPlacement = writable("bottom-right");
+const defaultNotificationPlacement = writable("top-right");
 const hasTransitions = writable(true);
+const defaultChartColors = writable([
+  "#284BED",
+  "#ED6134",
+  "#1DAFEC",
+  "#EDB405",
+  "#11EDB7",
+  "#77ED11",
+]);
 
 const SETTINGS = {
   defaultIconFamily,
   defaultToastPlacement,
+  defaultSnackbarPlacement,
+  defaultNotificationPlacement,
   hasTransitions,
+  defaultChartColors,
 };
 
-export { defaultIconFamily, defaultToastPlacement, hasTransitions };
+export {
+  defaultIconFamily,
+  defaultToastPlacement,
+  defaultSnackbarPlacement,
+  defaultNotificationPlacement,
+  hasTransitions,
+  defaultChartColors,
+};
 
 /**
  * - `defaultIconFamily`: `"fa"` - default icon family
- * - `defaultToastPlacement`: `"top-right"` - default placement of toast notifications
+ * - `defaultToastPlacement`: `"bottom"` - default placement of toast notifications
+ * - `defaultSnackbarPlacement`: `"bottom-right"` - default placement of snackbar notifications
+ * - `defaultNotificationPlacement`: `"top-right"` - default placement of floating notifications
  * - `hasTransitions`: `true` - Transitions are applied
+ * - `defaultChartColors`: `["#284BED", "#ED6134", "#1DAFEC", "#EDB405", "#11EDB7", "#77ED11"]` - default colors for charts
  *
  * @param {*} object containing all settings
  */

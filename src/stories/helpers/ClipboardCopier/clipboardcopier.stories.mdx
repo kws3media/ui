@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { ClipboardCopier } from "@kws3/ui";
 import ClipboardCopierDecorator from "./ClipboardCopier.svelte";
 import { action } from '@storybook/addon-actions';
@@ -14,6 +15,9 @@ export let args={
   copied : false,
   class : ""
 };
+
+
+<Version />
 
 <Meta
   title="Helpers/ClipboardCopier"

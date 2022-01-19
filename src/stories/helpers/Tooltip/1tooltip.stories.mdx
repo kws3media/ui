@@ -1,5 +1,9 @@
-import { Meta } from '@storybook/addon-docs';
+import { Meta, LinkTo } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+
+
+<Version />
 
 <Meta
   title="Helpers/Tooltips/1. Overview"
@@ -18,12 +22,17 @@ activateTooltips(container, { ...options });
 ```
 
 `container` is the CSS selector of the root container of your app.  
-For example: `#mainApp` or `html>body`.  
-Tooltips work via event delegation. So all events get attached to the root container.
+For example: `#mainApp` or `html>body`.
+
+<div class="notification is-info is-light">
+Tooltips work via event delegation. So all events get attached to the root container.<br/>
+Tooltips can also be attached via the tooltip action, see: <a href="/docs/helpers-tooltips-3-tooltip-action--page">Tooltip Action</a>
+</div>
+
 
 ---
 
-`options` is an object, and it mirrors all the options listed here: https://atomiks.github.io/tippyjs/v6/all-props/  
+`options` is an object, and it mirrors all the options listed here: https://atomiks.github.io/tippyjs/v6/all-props/   
 Default values of the options object:
 ```js
 {

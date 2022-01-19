@@ -1,9 +1,9 @@
-# Kws package stories
+# KWS3 packages
 
+Currently this monorepo contains 2 packages.
+ - [KWS3 svelte3 UI components](packages/@kws3/ui/)
+ - [kws-cli](packages/@kws3/kws-cli/)
 
-### Stories  [view](https://ui.kws3.media/)
-
-### Packages [view](https://npm.kws3.media/)
 
 ## Development
 Install `Lerna` globally

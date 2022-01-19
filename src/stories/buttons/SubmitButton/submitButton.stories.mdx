@@ -1,8 +1,10 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { SubmitButton } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import SubmitButtonDecorator from "./SubmitButton.svelte";
+import playInteractions from "./submitButton.play.js";
 
 export let args={
   class : "",
@@ -16,7 +18,12 @@ export let args={
   tracker : {},
   color : "primary",
   size : "",
+  completion_timeout: 600,
+  error_timeout: 3000,
 };
+
+
+<Version />
 
 <Meta
   title="Buttons/Submit Button"
@@ -41,6 +48,7 @@ export let args={
   <Story
   name="Submit Button"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: SubmitButtonDecorator,
@@ -51,34 +59,30 @@ export let args={
 
 <ArgsTable story="Submit Button" />
 
-### Expects a tracker object to be sent from outside, in this format:
-<div class="columns">
-  <div class="column">
-<Source
-  language="javascript"
-  code={
-    dedent`
-      {
-        saving: false,
-        saved: false,
-        error: false
-      }
-    `
-  }
-/>
-  </div>
-  <div class="column">
-    <p>This tracker object can be manipulated from outside to change the state of the button.</p>
-    <p>For example, you can set tracker.saving = true before performing a network operation. And then set tracker.saved = true after the network request has completed.</p>
-</div>
-
-</div>
-
 ### Usage
-#### Import the component:
 <Source
   language="javascript"
   code={
-    dedent`import { SubmitButton } from '@kws3/buttons';`
+    dedent`<form on:submit|preventDefault={save}>
+      <SubmitButton bind:this={BUTTON_STATE} />
+    </form>
+    <script>
+      import { SubmitButton } from '@kws3/buttons';
+      let BUTTON_STATE;
+      function save(e){
+        BUTTON_STATE.saving();
+        somepromise.then((r) => {
+          BUTTON_STATE.saved(() => {
+            //some callback function
+          }, 1000);
+        })
+        .catch((r) => {
+          BUTTON_STATE.error(() => {
+            //some callback function
+          }, 1000);
+        })
+      }
+    </script>
+    `
   }
 />

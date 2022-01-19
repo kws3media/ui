@@ -12,14 +12,16 @@
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {object} [tracker={}] - Tracker object to be sent from outside to change the state of the button., Default: `{}`
+  @param {number} [completion_timeout=600] - How long to wait before `saved` event is fired, and the UI state reverts back to normal, Default: `600`
+  @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for Button container, Default: `""`
   @param {function} [saving()] - call this function on form saving state
-  @param {function} [saved(callback)] - call this function after form saved
-  @param {function} [error(callback)] - call this function on form error state
+  @param {function} [saved(callback, timeout)] - call this function after form saved
+  @param {function} [error(callback, timeout)] - call this function on form error state
 
   ### Events
-  - `saved` - Fires an event on successful submission
-  - `error` - Fires an event when there is an error
+  - `saved` - Fired on successful submission
+  - `error` - Fired when there is an error
 
 -->
 <button
@@ -96,7 +98,15 @@
       saving: false,
       saved: false,
       error: false,
-    };
+    },
+    /**
+     * How long to wait before `saved` event is fired, and the UI state reverts back to normal
+     */
+    completion_timeout = 600,
+    /**
+     * How long to wait before `error` event is fired, and the UI state reverts back to normal
+     */
+    error_timeout = 3000;
 
   /**
    * CSS classes for Button container
@@ -118,7 +128,7 @@
   /**
    * call this function after form saved
    */
-  export function saved(callback) {
+  export function saved(callback, timeout = completion_timeout) {
     tracker = {
       saving: false,
       saved: true,
@@ -132,17 +142,17 @@
         error: false,
       };
       /**
-       * Fires an event on successful submission
+       * Fired on successful submission
        */
       fire("saved");
       callback && callback();
-    }, 1000);
+    }, timeout);
   }
 
   /**
    * call this function on form error state
    */
-  export function error(callback) {
+  export function error(callback, timeout = error_timeout) {
     tracker = {
       saving: false,
       saved: false,
@@ -156,15 +166,13 @@
         error: false,
       };
       /**
-       * Fires an event when there is an error
+       * Fired when there is an error
        */
       fire("error");
       callback && callback();
-    }, 1000);
+    }, timeout);
   }
 
   $: err_text = error_text == "" ? text : error_text;
   $: icon_size = size == "large" ? "" : "small";
-
-  // reviwed
 </script>

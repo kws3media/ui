@@ -2,25 +2,26 @@
   @component
 
 
-  @param {boolean} [hasSearch=true] - HasSearch property, Default: `true`
-  @param {boolean} [hasFilters=true] - HasFilters property, Default: `true`
-  @param {string} [placeholder=""] - Placeholder property, Default: `""`
-  @param {object} [filters={}] - Filters property, Default: `{}`
-  @param {string} [q=""] - Q property, Default: `""`
-  @param {string} [filter_in_use_class="is-in-use"] - Filter_in_use_class property, Default: `"is-in-use"`
-  @param {string} [filter_not_in_use_class="is-not-in-use"] - Filter_not_in_use_class property, Default: `"is-not-in-use"`
-  @param {object} [filterComponent=null] - FilterComponent property, Default: `null`
-  @param {object} [filter_label_map={}] - Filter_label_map property, Default: `{}`
+  @param {boolean} [hasSearch=true] - Determines whether there is a search input or not, Default: `true`
+  @param {boolean} [hasFilters=true] - Determines if there are filters on search, Default: `true`
+  @param {string} [placeholder=""] - Placeholder text for the search input, Default: `""`
+  @param {object} [filters={}] - Contains all the filter dropdown values, Default: `{}`
+  @param {string} [q=""] - Query string from the browser url, Default: `""`
+  @param {string} [filter_in_use_class="is-in-use"] - CSS class for in use filters, Default: `"is-in-use"`
+  @param {string} [filter_not_in_use_class="is-not-in-use"] - Css class for not in use filters, Default: `"is-not-in-use"`
+  @param {object} [filterComponent=null] - To use a custom component for filters, Default: `null`
+  @param {object} [filter_label_map={}] - Contains all the labels for the filter dropdowns, Default: `{}`
 
   ### Events
-  - `resetSearch`
-  - `search`
+  - `resetSearch` - Triggered when the search is reset
+  - `search` - Event triggered on search
 
 -->
-<form on:submit|preventDefault={dosearch}>
-  <div class="field has-addons">
+
+<form class="kws-grid-search" on:submit|preventDefault={dosearch}>
+  <div class="field has-addons outer-level-field">
     {#if hasSearch}
-      <p class="control is-expanded">
+      <div class="control is-expanded main-search">
         <input
           class="input {query != '' && query != undefined
             ? filter_in_use_class
@@ -28,7 +29,7 @@
           type="text"
           {placeholder}
           bind:value={query} />
-      </p>
+      </div>
     {/if}
     {#if hasFilters}
       {#each _filters as filter, i}
@@ -44,18 +45,25 @@
           {filter_label_map} />
       {/each}
     {/if}
-    {#if changed}
-      <p class="control">
-        <button class="button is-danger" type="button" on:click={doresetSearch}>
-          <Icon icon="close" size="small" />
+
+    <div class="field has-addons action-buttons-field">
+      {#if changed}
+        <div class="control is-expanded clear-search">
+          <button
+            class="button is-danger"
+            type="button"
+            on:click={doresetSearch}>
+            <Icon icon="close" size="small" />
+            <span class="is-hidden-desktop is-hidden-tablet">Clear</span>
+          </button>
+        </div>
+      {/if}
+      <div class="control is-expanded search-submit">
+        <button class="button is-primary" type="submit">
+          <Icon icon="search" size="small" /> <span>Search</span>
         </button>
-      </p>
-    {/if}
-    <p class="control">
-      <button class="button is-primary" type="submit">
-        <Icon icon="search" size="small" /> <span>Search</span>
-      </button>
-    </p>
+      </div>
+    </div>
   </div>
 </form>
 
@@ -66,31 +74,63 @@
 
   const fire = createEventDispatcher();
 
+  /**
+   * Determines whether there is a search input or not
+   */
   export let hasSearch = true,
+    /**
+     * Determines if there are filters on search
+     */
     hasFilters = true,
+    /**
+     * Placeholder text for the search input
+     */
     placeholder = "",
+    /**
+     * Contains all the filter dropdown values
+     */
     filters = {},
+    /**
+     * Query string from the browser url
+     */
     q = "",
+    /**
+     * CSS class for in use filters
+     */
     filter_in_use_class = "is-in-use",
+    /**
+     * Css class for not in use filters
+     */
     filter_not_in_use_class = "is-not-in-use",
+    /**
+     * To use a custom component for filters
+     */
     filterComponent = null,
+    /**
+     * Contains all the labels for the filter dropdowns
+     */
     filter_label_map = {};
 
   let query = "",
     _filters = [],
-    filterVals = {};
+    filterVals = {},
+    filterWidthStyle = "";
 
   $: usedFilterComponent = filterComponent ? filterComponent : SearchFilter;
-  $: filterWidthStyle = hasSearch
-    ? `max-width:${(1 / (_filters.length + 2)) * 100}%`
-    : "";
   $: changed = q && q.trim() != "";
   $: q, qHasChanged();
   $: filters, filtersHaveChanged();
 
+  function calculateMaxWidths() {
+    filterWidthStyle = hasSearch
+      ? `max-width:${(1 / (_filters.length + 2)) * 100}%`
+      : "";
+  }
+
   function filtersHaveChanged() {
     if (filters) {
       _filters = [];
+      let temp = [];
       for (let i in filters) {
         let obj = { name: i, options: [], type: "select" };
         if (Array.isArray(filters[i])) {
@@ -103,9 +143,12 @@
             obj.type = filters[i].type;
           }
         }
-        _filters.push(obj);
+        temp.push(obj);
       }
+      _filters = temp;
     }
+
+    calculateMaxWidths();
   }
 
   function qHasChanged() {
@@ -123,6 +166,15 @@
       qfilters[qqp[0]] = qqp[1];
     }
 
+    if (hasFilters) {
+      for (let i in _filters) {
+        let filter = _filters[i];
+        if (typeof qfilters[filter.name] == "undefined") {
+          qfilters[filter.name] = "";
+        }
+      }
+    }
+
     filterVals = qfilters;
   }
 
@@ -133,6 +185,9 @@
     query = "";
     filterVals = filterVals;
 
+    /**
+     * Triggered when the search is reset
+     */
     fire("resetSearch");
   }
 
@@ -142,6 +197,9 @@
     for (var i in filterVals) {
       filterVals[i] && ret.push(i + ":" + filterVals[i]);
     }
+    /**
+     * Event triggered on search
+     */
     fire("search", ret.join("~"));
   }
 </script>

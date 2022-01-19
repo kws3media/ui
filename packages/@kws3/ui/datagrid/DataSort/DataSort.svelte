@@ -2,11 +2,11 @@
   @component
 
 
-  @param {array} [options=[]] - Options property, Default: `[]`
-  @param {string} [sort_by=""] - Sort_by property, Default: `""`
-  @param {string} [value=""] - Value property, Default: `""`
+  @param {array} [options=[]] - List of options in the dropdown, Default: `[]`
+  @param {string} [sort_by=""] - Stores the selected option value, Default: `""`
 
 -->
+
 <div class="sorting-filters">
   <div class="field is-grouped">
     <div class="control">
@@ -30,10 +30,20 @@
 
   const fire = createEventDispatcher();
 
+  /**
+   * List of options in the dropdown
+   */
   export let options = [],
-    sort_by = "",
-    value = "";
+    /**
+     * Stores the selected option value
+     */
+    sort_by = "";
+
+  let value = "";
 
   $: value, fire("sort", value);
-  $: value = sort_by.replace("%20", " ");
+
+  $: {
+    value = sort_by.replace("%20", " ");
+  }
 </script>

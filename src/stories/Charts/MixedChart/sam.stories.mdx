@@ -1,0 +1,82 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { MixedChart as Chart } from '@kws3/ui';
+import MixedChartDecorator from "./MixedChart.svelte";
+
+export let args={
+  data: [
+    [1, 2, 3, 9],
+    [4, 5, 6, 8],
+    [7, 8, 9, 7],
+    [6, 5, 4, 3],
+  ],
+  labels: ["2021", "2022", "2023", "2024"],
+  sets: [
+    "Me",
+    { name: "You", type: "line"},
+    { name: "Her", type: "area"},
+    "Them",
+  ],
+  width: "100%",
+  height: "400",
+  sparklines: false,
+  colors: null,
+  options: {},
+  multiaxis: false
+};
+
+
+<Version />
+
+<Meta
+  title="Charts/Complex Charts/Single Axis (Mixed)"
+  component={Chart}
+  args={args}
+/>
+
+<Description markdown={dedent`
+# Mixed Chart
+`}/>
+
+<Canvas>
+  <Story
+  name="Single Axis (Mixed)"
+  args={args}
+  >
+  {(args) => ({
+    Component: MixedChartDecorator,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Single Axis (Mixed)" />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { MixedChart } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import '@kws3/ui/styles/Chart.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-chart-tooltip-background-color: $scheme-main;
+      $kws-chart-tooltip-foreground-color: $scheme-invert-ter;
+    `
+  }
+/>
