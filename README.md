@@ -1,8 +1,8 @@
 # KWS3 packages
 
 Currently this monorepo contains 2 packages.
- - UI  [view](packages/@kws3/ui/README.md)
- - kws-cli  [view](packages/@kws3/kws-cli/README.md)
+ - [KWS3 svelte3 UI components](packages/@kws3/ui/)
+ - [kws-cli](packages/@kws3/kws-cli/)
 
 
 ## Development
