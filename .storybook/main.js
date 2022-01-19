@@ -38,6 +38,9 @@ module.exports = {
     );
     svelteLoader.options.preprocess = autoPreprocess({});
     config.resolve.modules.push(path.resolve("./packages"));
+    config.resolve.alias = {
+      ["~"]: path.resolve(__dirname + "/../src"),
+    };
     return config;
   },
   framework: "@storybook/svelte",
