@@ -220,6 +220,15 @@ pre.prismjs > code {
   }
 }
 
+.sbdocs-content {
+  position: relative;
+}
+.main-version-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .datagrid-example {
   .box.is-selected {
     background-color: $primary;
