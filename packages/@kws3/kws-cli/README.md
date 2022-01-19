@@ -89,7 +89,7 @@ Supported platform options for post-scaffold commands:
   }
 ```
 ### Commands that need to collect user input
-There are 3 supported ways of collecting user input before running a command
+There are 4 supported ways of collecting user input before running a command
 #### 1. Input
 Displays a text box to collect user input and makes it available to the command. example:
 ```js

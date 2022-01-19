@@ -9,6 +9,11 @@
     "description":"For apps that require URL based routing, such as admin panels",
     "repo": "kws3media/kws-fe-routed-starter"
   },
+  "fe-routed-sv3": {
+    "name":"Svelte3 Routed Frontend",
+    "description":"For svelte3 apps that require URL based routing, such as admin panels",
+    "repo": "kws3media/kws-fe-routed-svelte3-starter"
+  },
   "fe-unrouted": {
     "name":"Un-Routed Frontend",
     "description":"For apps that don't require URL based routing, such as sales apps",
