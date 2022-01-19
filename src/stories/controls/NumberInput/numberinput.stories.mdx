@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { NumberInput } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import playInteractions from './numberinput.play.js';
@@ -20,6 +21,9 @@ export let args={
   plus_icon_color : "success",
   plus_button_color : ""
 };
+
+
+<Version />
 
 <Meta
   title="Forms/Controls/NumberInput"

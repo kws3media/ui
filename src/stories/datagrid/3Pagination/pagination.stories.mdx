@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { Pagination } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import PaginationDecorator from "./Pagination.svelte";
@@ -23,6 +24,9 @@ export let args={
   iconLeft : "chevron-left",
   perPageOptions : [20, 50, 100, 150, 200, 250]
 };
+
+
+<Version />
 
 <Meta
   title="Datagrid/Pagination"

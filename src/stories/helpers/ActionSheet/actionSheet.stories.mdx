@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { ActionSheet } from "@kws3/ui";
 import ActionSheetDecorator from "./ActionSheet.svelte";
 import { action } from '@storybook/addon-actions';
@@ -13,6 +14,9 @@ export let args={
   inner_style: "",
   inner_class: ""
 };
+
+
+<Version />
 
 <Meta
   title="Helpers/ActionSheet"

@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { SearchableSelect } from '@kws3/ui';
 import SearchableSelectDecorator from './SearchableSelect.svelte';
 import { action } from '@storybook/addon-actions';
@@ -21,6 +22,9 @@ export let args={
   no_options_msg: "No matching options",
   remove_all_tip: "Clear Selection",
 };
+
+
+<Version />
 
 <Meta
   title="Forms/SearchableSelect"

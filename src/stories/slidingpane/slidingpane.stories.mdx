@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { SlidingPane } from "@kws3/ui";
 import SlidingpaneDecorator from './Slidingpane.svelte';
 import { action } from '@storybook/addon-actions';
@@ -12,6 +13,9 @@ export let args={
   h_center : true,
   track_height : true
 }
+
+
+<Version />
 
 <Meta
   title="Standalone/SlidingPane"

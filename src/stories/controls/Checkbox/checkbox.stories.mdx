@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { Checkbox } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import { expect } from '@storybook/jest';
@@ -18,6 +19,9 @@ export let args={
   icon : "check",
   icon_family : null
 };
+
+
+<Version />
 
 <Meta
   title="Forms/Controls/Checkbox"

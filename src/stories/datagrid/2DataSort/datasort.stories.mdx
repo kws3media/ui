@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { DataSort } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import DataSortDecorator from "./DataSort.svelte";
@@ -11,6 +12,9 @@ export let args={
   ],
   sort_by : ""
 };
+
+
+<Version />
 
 <Meta
   title="Datagrid/DataSort"

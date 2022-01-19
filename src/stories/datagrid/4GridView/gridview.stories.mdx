@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { GridView } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import GridViewDecorator from "./GridView.svelte";
@@ -42,6 +43,9 @@ export let args={
   visibilityMap : {},
   cellComponentMap : {}
 };
+
+
+<Version />
 
 <Meta
   title="Datagrid/GridView"

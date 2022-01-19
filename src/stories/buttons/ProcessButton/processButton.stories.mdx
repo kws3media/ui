@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { ProcessButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import ProcessButtonDecorator from "./ProcessButton.svelte";
@@ -21,6 +22,9 @@ export let args={
   completion_timeout: 600,
   error_timeout: 3000,
 };
+
+
+<Version />
 
 <Meta
   title="Buttons/Process Button"

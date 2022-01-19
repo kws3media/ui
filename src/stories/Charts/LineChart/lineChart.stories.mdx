@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { LineChart as Chart } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import LineChartDecorator from "./LineChart.svelte";
@@ -25,6 +26,9 @@ export let args={
   y_axis_options: {},
   options: {},
 };
+
+
+<Version />
 
 <Meta
   title="Charts/Line Chart"

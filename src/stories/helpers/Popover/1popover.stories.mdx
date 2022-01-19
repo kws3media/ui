@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { Popover } from "@kws3/ui";
 import PopoverDecorator from './Popover.svelte';
 import { action } from '@storybook/addon-actions';
@@ -16,6 +17,9 @@ export let args={
   style: "",
   class:""
 }
+
+
+<Version />
 
 <Meta
   title="Helpers/Popover/1. Popover Component"

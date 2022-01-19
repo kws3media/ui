@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { BarChart as Chart } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import BarChartDecorator from "./BarChart.svelte";
@@ -28,6 +29,9 @@ export let args={
   y_axis_options: {},
   options: {},
 };
+
+
+<Version />
 
 <Meta
   title="Charts/Bar Charts/Horizontal Stacked Full Width"
