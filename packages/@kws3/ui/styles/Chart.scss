@@ -1,0 +1,42 @@
+$kws-chart-tooltip-background-color: $scheme-main !default;
+$kws-chart-tooltip-foreground-color: $scheme-invert-ter !default;
+
+.kws-chart {
+  .apexcharts-tooltip {
+    display: flex;
+    border: 0;
+    background: $kws-chart-tooltip-background-color;
+    border-radius: 0;
+    .apexcharts-tooltip-title {
+      background: $kws-chart-tooltip-background-color;
+      color: $kws-chart-tooltip-foreground-color;
+      border: none;
+    }
+    .apexcharts-tooltip-series-group.apexcharts-active,
+    .apexcharts-tooltip-series-group:last-child {
+      padding-bottom: 0;
+    }
+    .apexcharts-tooltip-marker {
+      width: 7px;
+      height: 7px;
+      margin-right: 5px;
+    }
+  }
+  .apexcharts-tooltip-title {
+    font-weight: bold;
+    margin-bottom: 0;
+    padding: 0 6px;
+    text-align: center;
+  }
+
+  &.kws-mixed-chart:not(.kws-sparklines),
+  &.kws-bar-chart:not(.kws-sparklines),
+  &.kws-line-chart:not(.kws-sparklines),
+  &.kws-area-chart:not(.kws-sparklines) {
+    .apexcharts-tooltip {
+      flex-direction: row;
+      box-shadow: none;
+      background: transparent;
+    }
+  }
+}

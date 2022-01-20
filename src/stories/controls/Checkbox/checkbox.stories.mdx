@@ -1,7 +1,10 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { Checkbox } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
+import { expect } from '@storybook/jest';
+import { within, userEvent, waitFor } from '@storybook/testing-library';
 
 export let args={
   class : "",
@@ -16,6 +19,9 @@ export let args={
   icon : "check",
   icon_family : null
 };
+
+
+<Version />
 
 <Meta
   title="Forms/Controls/Checkbox"
@@ -51,6 +57,13 @@ export let args={
   <Story
   name="Checkbox"
   args={args}
+  play={async ({ args, canvasElement }) => {
+      const canvas = within(canvasElement);
+      console.log(canvas);
+      //await userEvent.click(canvas.getByRole('checkbox'));
+      //await expect(canvas.getByRole('checkbox').checked).toBe(true);
+    }
+  }
   >
   {(args) => ({
     Component: Checkbox,

@@ -1,8 +1,10 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { DeleteButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import DeleteButtonDecorator from "./DeleteButton.svelte";
+import playInteractions from "./deleteButton.play.js";
 
 export let args={
   class : "",
@@ -17,7 +19,12 @@ export let args={
   context : "_context_delete",
   color : "danger",
   size : "",
+  completion_timeout: 600,
+  error_timeout: 3000,
 };
+
+
+<Version />
 
 <Meta
   title="Buttons/Delete Button"
@@ -42,6 +49,7 @@ export let args={
   <Story
   name="Delete Button"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: DeleteButtonDecorator,
@@ -81,21 +89,45 @@ export let args={
       export let done_icon = "check";
       export let done_text = "Deleted";
       export let context = "_context_delete";
-      function eraseDo(event, success = true){
+      function eraseDo(event){
         let { doing, done, error, context } = event.detail;
         doing();
         somePromise().then(() => {
           //set visual state to Done
           //it will autmatically revert back to
-          //normal state after 3 seconds
-          component.done();
+          //normal state after "completion_timeout"
+          done();
         })
         .catch(() => {
           //set visual state to Error
           //it will autmatically revert back to
-          //normal state after 3 seconds
-          component.error();
+          //normal state after "completion_timeout"
+          error();
         })
+      }
+    </script>`
+  }
+/>
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+<Source
+  language="html"
+  code={
+    dedent`
+    <script>
+      function eraseDo(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          done(() => {
+            //some callback
+          }, 500);
+        })
+        .catch(() => {
+          error(() => {
+            //some callback
+          }, 500);
+        });
       }
     </script>`
   }

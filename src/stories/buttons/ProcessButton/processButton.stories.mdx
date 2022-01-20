@@ -1,8 +1,10 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { ProcessButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import ProcessButtonDecorator from "./ProcessButton.svelte";
+import playInteractions from "./processButton.play.js";
 
 export let args={
   class: "",
@@ -17,7 +19,12 @@ export let args={
   context: "_context_process",
   size: "",
   color: "primary",
+  completion_timeout: 600,
+  error_timeout: 3000,
 };
+
+
+<Version />
 
 <Meta
   title="Buttons/Process Button"
@@ -42,6 +49,7 @@ export let args={
   <Story
   name="Process Button"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: ProcessButtonDecorator,
@@ -78,21 +86,45 @@ export let args={
       export let icon = "check";
       export let done_icon = "check";
       export let done_text = "Done";
-      function onDoing(event, success = true){
+      function onDoing(event){
         let {doing, done, error} = event.detail;
         doing();
         somePromise().then(() => {
           //set visual state to Done
           //it will autmatically revert back to
-          //normal state after 3 seconds
-          component.done();
+          //normal state after "completion_timeout"
+          done();
         })
         .catch(() => {
           //set visual state to Error
           //it will autmatically revert back to
-          //normal state after 3 seconds
-          component.error();
+          //normal state after "completion_timeout"
+          error();
         })
+      }
+    </script>`
+  }
+/>
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+<Source
+  language="html"
+  code={
+    dedent`
+    <script>
+      function onDoing(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          done(() => {
+            //some callback
+          }, 500);
+        })
+        .catch(() => {
+          error(() => {
+            //some callback
+          }, 500);
+        });
       }
     </script>`
   }

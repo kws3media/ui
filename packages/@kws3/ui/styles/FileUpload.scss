@@ -15,7 +15,7 @@ $kws-fileupload-progress-anim-easing: linear !default;
   $kws-fileupload-progress-anim-easing: $easeOutCustom !default;
 }
 
-.file-upload {
+.kws-file-upload {
   width: 100%;
   .file-upload-inner {
     position: relative;

@@ -1,0 +1,74 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { Portal } from "@kws3/ui";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  target: "body"
+}
+
+
+<Version />
+
+<Meta
+  title="Helpers/Portal"
+  component={Portal}
+  args={args}
+  argTypes={{
+    target: {
+      control: 'text'
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# Portal
+## Component for rendering outside the DOM of parent component
+`}/>
+
+<Canvas>
+  <Story
+  name="Portal"
+  args={args}
+  >
+  {(args) => ({
+    Component: Portal,
+    props: args,
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Portal" />
+
+This is a re-export of `svelte-portal`.
+See https://github.com/romkor/svelte-portal/blob/2.1.2/README.md for more information.
+
+### Usage
+
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`
+  <Portal target="body">
+    <div class="toast">Entity successfully updated!</div>
+  </Portal>
+  
+  <script>
+    import { Portal } from '@kws3/ui';
+  </script>
+  `}
+/>
+
+##### Import the action:
+<Source
+  language='javascript'
+  code={ dedent`
+  <div class="toast" use:portal={document.body}>Entity successfully updated!</div>
+  
+  <script>
+    import { portal } from '@kws3/ui';
+    // notice the character case
+  </script>
+  `}
+/>

@@ -2,7 +2,7 @@ $kws-actionsheet-background: $background !default;
 $kws-actionsheet-box-shadow: $card-shadow !default;
 $kws-actionsheet-box-radius: $radius !default;
 
-.action-sheet {
+.kws-action-sheet {
   border-radius: $kws-actionsheet-box-radius $kws-actionsheet-box-radius 0 0;
   box-shadow: $kws-actionsheet-box-shadow;
   position: fixed;

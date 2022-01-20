@@ -41,6 +41,67 @@ pre.prismjs > code {
   }
 }
 
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes bounce-proportional {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  70% {
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -50%, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -13%, 0);
+  }
+}
+
+.is-shaking {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  animation-name: shake;
+}
+
+.is-bouncing-once {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-name: bounce-proportional;
+}
+
 /*pre:not([class*="language-"]) {
   visibility: hidden;
 }*/
@@ -54,7 +115,7 @@ pre.prismjs > code {
 // //Transitions
 // @import '../../packages/@kws3/transitions/styles.scss';
 // //searchable select
-@import "../../packages/@kws3/ui/styles/SearchableSelect.scss";
+@import "../../packages/@kws3/ui/styles/Select.scss";
 // //helpers - Panel
 @import "../../packages/@kws3/ui/styles/Panel.scss";
 // //helpers - Loader
@@ -74,16 +135,22 @@ pre.prismjs > code {
 @import "../../packages/@kws3/ui/styles/Toggle.scss";
 // @import '../../packages/@kws3/controls/components/ToggleButtons/styles.scss';
 // @import '../../packages/@kws3/controls/components/ToggleControl/styles.scss';
+
+// CheckRadio
 @import "../../packages/@kws3/ui/styles/CheckRadio.scss";
+
+// FileUpload
 @import "../../packages/@kws3/ui/styles/FileUpload.scss";
 
-// //sliding panes
+// sliding panes
 @import "../../packages/@kws3/ui/styles/SlidingPane.scss";
 
 // RangeSlider
 @import "../../packages/@kws3/ui/styles/RangeSlider.scss";
 
+// Flatpickr
 @import "../../node_modules/flatpickr/dist/flatpickr";
+
 // Datepicker
 @import "../../packages/@kws3/ui/styles/Datepicker.scss";
 
@@ -95,6 +162,9 @@ pre.prismjs > code {
 
 //ActionSheet
 @import "../../packages/@kws3/ui/styles/ActionSheet.scss";
+
+// FloatingUI
+@import "../../packages/@kws3/ui/styles/FloatingUI.scss";
 
 //Pagination
 @import "../../packages/@kws3/ui/styles/Pagination.scss";
@@ -161,6 +231,17 @@ pre.prismjs > code {
 //     }
 //   }
 // }
+//Grid
+@import "../../packages/@kws3/ui/styles/Grid.scss";
+
+//DataSort
+@import "../../packages/@kws3/ui/styles/DataSort.scss";
+
+//DataSearch
+@import "../../packages/@kws3/ui/styles/DataSearch.scss";
+
+//Charts
+@import "../../packages/@kws3/ui/styles/Chart.scss";
 
 .theme-kws-light {
   color: #4a4a4a;
@@ -198,5 +279,21 @@ pre.prismjs > code {
   }
   .docblock-argstable {
     background: #f8f8f8;
+  }
+}
+
+.sbdocs-content {
+  position: relative;
+}
+.main-version-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.datagrid-example {
+  .box.is-selected {
+    background-color: $primary;
+    color: #fff;
   }
 }

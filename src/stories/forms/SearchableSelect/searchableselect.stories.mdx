@@ -1,40 +1,43 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { SearchableSelect } from '@kws3/ui';
 import SearchableSelectDecorator from './SearchableSelect.svelte';
 import { action } from '@storybook/addon-actions';
+import playInteractions from "./searchableselect.play.js";
 
 export let args={
   value : "",
-  filter : "",
   style : "",
   class : "",
-  dd_class : "",
-  cy : "",
-  searchKey : null,
-  searchValue : null,
-  data : [
-    { id: 1, name: "LG" },
-    { id: 2, name: "Samsung" },
-    { id: 3, name: "Xiaomi" },
-    { id: 4, name: "Nokia" },
-    { id: 5, name: "Oppo" },
-    { id: 6, name: "Vivo" },
-    { id: 7, name: "Huawei" },
-    { id: 8, name: "Sony" },
-    { id: 9, name: "HTC" },
-    { id: 10, name: "Blackberry" },
-    { id: 11, name: "Apple" }
-  ],
-  open : false,
+  size:"",
+  color:"",
+  options : [],
+  search_key : "name",
+  value_key : "id",
   disabled : false,
-  placeholder : ""
+  readonly: false,
+  placeholder : "Choose a brand...",
+  selected_icon:'check',
+  no_options_msg: "No matching options",
+  remove_all_tip: "Clear Selection",
 };
+
+
+<Version />
 
 <Meta
   title="Forms/SearchableSelect"
   component={SearchableSelect}
   args={args}
+  argTypes={{
+    color: {
+      control: { type: 'select' }
+    },
+    size:{
+      control: {type:"select"},
+    },
+  }}
 />
 
 <Description markdown={dedent`
@@ -46,6 +49,7 @@ export let args={
   <Story
   name="SearchableSelect"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: SearchableSelectDecorator,
@@ -56,6 +60,40 @@ export let args={
 
 <ArgsTable story="SearchableSelect" />
 
+<div class="notification is-primary is-light">
+  <div class="columns">
+    <div class="column">
+      <h3>Input format <code>options</code></h3>
+      <p>Can send either an array of strings, or an array of objects.<br>
+      </br>Always ensure the shape of the array items are consistent.</p>
+      <p>When an array of objects is sent, <br>
+      </br>
+      <code>array_item[search_key]</code> is used for search-as-you-type, <br>
+      </br>
+      and <code>array_item[value_key]</code> is returned as the value once an item is selected.</p>
+      <p>See supported data formats in example story above.</p>
+    </div>
+    <div class="column">
+    <h3>Customising dropdown text items</h3>
+    <p>See documentation for default slot.</p>
+    <h4>Example:</h4>
+    <Source
+  language="jsx"
+  code={
+    dedent`<SearchableSelect
+      ...other_options
+      let:search_key 
+      let:option>
+      <span class="has-text-danger">
+        {option[search_key]}
+      </span>
+    </SearchableSelect>`
+  }
+/>
+    </div>
+  </div>
+</div>
+
 ### Usage
 #### Import the component:
 <Source
@@ -65,26 +103,12 @@ export let args={
   }
 />
 
+
 #### Import the SCSS:
 <Source
   language="javascript"
   code={
-    dedent`@import '@kws3/ui/styles/SearchableSelect.scss';`
-  }
-/>
-
-#### Data format
-<Source
-  language="javascript"
-  code={
-    dedent`
-    [
-      { id: 1, name: 'LG'},
-      { id: 2, name: 'Samsung'},
-      { id: 3, name: 'Xiaomi'},
-    ...
-    ]
-    `
+    dedent`@import '@kws3/ui/styles/Select.scss';`
   }
 />
 
@@ -93,13 +117,19 @@ export let args={
   language="css"
   code={
     dedent`
-      $kws-ss-item-selected-bg-color:#0071bc;
-      $kws-ss-item-selected-text-color:#ffffff;
-      $kws-ss-item-selecting-bg-color:#0071bc;
-      $kws-ss-item-selecting-text-color:#ffffff;
-      $kws-ss-dropdown-bg-color: #ffffff;
-      $kws-ss-dropdown-text-color: #333;
-      $kws-ss-caret-color: #0071bc;
+      $kws-theme-colors: $colors;
+      $kws-select-radius: $radius;
+      $kws-select-focus-border-color: $input-focus-border-color;
+      $kws-select-focus-box-shadow-size: $input-focus-box-shadow-size;
+      $kws-select-focus-box-shadow-color: $input-focus-box-shadow-color;
+      $kws-select-disabled-background-color: $input-disabled-background-color;
+      $kws-select-disabled-border-color: $input-disabled-border-color;
+      $kws-select-disabled-color: $input-disabled-color;
+      $kws-select-selecting-color: $primary-invert;
+      $kws-select-selecting-background: $primary;
+      $kws-select-selected-color: $primary-dark;
+      $kws-select-selected-background: $primary-light;
+      $kws-select-options-z-index: $modal-z + 1;
     `
   }
 />

@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { RangeSlider } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 
@@ -17,6 +18,9 @@ export let args={
   circle:false,
   tooltip:false
 };
+
+
+<Version />
 
 <Meta
   title="Forms/Controls/Range Slider"

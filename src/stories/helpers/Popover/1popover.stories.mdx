@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { Popover } from "@kws3/ui";
 import PopoverDecorator from './Popover.svelte';
 import { action } from '@storybook/addon-actions';
@@ -16,6 +17,9 @@ export let args={
   style: "",
   class:""
 }
+
+
+<Version />
 
 <Meta
   title="Helpers/Popover/1. Popover Component"
@@ -59,8 +63,8 @@ export let args={
   code={ dedent`import { Popover } from '@kws3/ui';`}
 />
 
-<div class="columns">
-  <div class="column">
+<div class="columns is-multiline">
+  <div class="column is-4">
 
 #### Default
 ```html
@@ -78,7 +82,7 @@ import {Popover} from '@kws3/ui';
 ```
 
   </div>
-  <div class="column">
+  <div class="column is-4">
 
 #### Component in `popover` slot
 ```html
@@ -101,7 +105,7 @@ import {
 ```
 
   </div>
-  <div class="column">
+  <div class="column is-4">
 
 #### Usage of `external_reference`
 ```html
@@ -119,6 +123,67 @@ import {Popover} from '@kws3/ui';
 
 let aNode;
 
+</script>
+```
+
+  </div>
+  <div class="column is-4">
+
+#### Manual Control
+```html
+<Popover bind:this={pop1}>
+  Popover Anchor
+  <svelte:fragment 
+    slot="popover">
+    This is the popover content
+  </svelte:fragment>
+</Popover>
+
+<script>
+import {Popover} from '@kws3/ui';
+let pop1;
+
+function showPopover(e){
+  pop1.show();
+}
+
+function hidePopover(e){
+  pop1.hide();
+}
+</script>
+```
+
+  </div>
+  <div class="column is-4">
+
+#### Events
+```html
+<Popover 
+  on:opening={({detail}) => {
+    console.log(detail.instance)
+  }}
+  on:open={({detail}) => {
+    console.log(detail.instance)
+  }}
+  on:closing={({detail}) => {
+    console.log(detail.instance)
+  }}
+  on:close={({detail}) => {
+    console.log(detail.instance)
+  }}
+  on:trigger={({detail}) => {
+    console.log(detail.instance)
+  }}
+>
+  Click me to see popover
+  <svelte:fragment 
+    slot="popover">
+    This is the popover content
+  </svelte:fragment>
+</Popover>
+
+<script>
+import {Popover} from '@kws3/ui';
 </script>
 ```
 

@@ -14,18 +14,21 @@
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
   @param {boolean} [should_confirm=true] - When `false`, skips the confirmation prompt, and makes it a one step process, Default: `true`
   @param {string} [context=""] - Context property, Default: `""`
+  @param {number} [completion_timeout=600] - How long to wait before `done` event is fired, and the UI state reverts back to normal, Default: `600`
+  @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for button container, Default: `""`
 
   ### Events
-  - `do` - Fires an event when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
-  - `done` - Fires an event when task completes
-  - `error` - Fires an event when there is an error
+  - `do` - Fired when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
+  - `done` - Fired when task completes
+  - `error` - Fired when there is an error
 
 -->
 <div class="field {_confirm ? 'has-addons' : ''} {klass}" data-cy={cy}>
   <p class="control">
     {#if _confirm}
       <button
+        role="button"
         class="button is-success is-light is-shadowless is-{size} {button_class}"
         type="button"
         on:click|preventDefault|stopPropagation={cancel}>
@@ -35,6 +38,7 @@
   </p>
   <p class="control is-expanded">
     <button
+      role="button"
       class="button is-{size} {_doing
         ? main_color + ' is-loading'
         : _error
@@ -129,7 +133,15 @@
     /**
      * Context property
      */
-    context = "";
+    context = "",
+    /**
+     * How long to wait before `done` event is fired, and the UI state reverts back to normal
+     */
+    completion_timeout = 600,
+    /**
+     * How long to wait before `error` event is fired, and the UI state reverts back to normal
+     */
+    error_timeout = 3000;
 
   /**
    * CSS classes for button container
@@ -159,7 +171,7 @@
     }
     if (_confirm) {
       /**
-       * Fires an event when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
+       * Fired when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
        */
       fire("do", { doing, done, error, context });
     }
@@ -172,7 +184,7 @@
     _error = false;
   }
 
-  function done() {
+  function done(callback, timeout = completion_timeout) {
     _doing = false;
     _done = true;
     _error = false;
@@ -180,13 +192,14 @@
     setTimeout(() => {
       _done = false;
       /**
-       * Fires an event when task completes
+       * Fired when task completes
        */
       fire("done");
-    }, 1500);
+      callback && callback();
+    }, timeout);
   }
 
-  function error() {
+  function error(callback, timeout = error_timeout) {
     _done = false;
     _doing = false;
     _error = true;
@@ -194,11 +207,10 @@
     setTimeout(() => {
       _error = false;
       /**
-       * Fires an event when there is an error
+       * Fired when there is an error
        */
       fire("error");
-    }, 1500);
+      callback && callback();
+    }, timeout);
   }
-
-  // reviwed
 </script>
