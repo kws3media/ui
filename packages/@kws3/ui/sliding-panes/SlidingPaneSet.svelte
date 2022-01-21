@@ -10,26 +10,23 @@
   - `<slot name="default"  />`
 
 -->
-<div
-  class="sliding-pane-set {vertical ? 'is-vertical' : ''}  {classes}"
-  {style}>
+<div class="sliding-pane-set {vertical ? 'is-vertical' : ''}  {klass}" {style}>
   <slot />
 </div>
 
 <script>
   /**
-   * Additional classes
-   * @type {string}
+   * Inline style of component
    */
-  export let classes = "",
+  export let style = "",
     /**
-     * Inline style of component
-     * @type {string}
-     */
-    style = "",
-    /**
-     * Vertical Aligned - true/false
-     * @type {boolean}
+     * Vertical transform of SlidingPane.
      */
     vertical = false;
+
+  /**
+   * CSS classes for the SlidingPaneSet
+   */
+  let klass = "";
+  export { klass as class };
 </script>

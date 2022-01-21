@@ -11,7 +11,8 @@
     "deploy:dist": "grunt deploy:dist",
     "bootstrap": "lerna bootstrap --hoist",
     "publish": "lerna publish",
-    "list": "lerna list"
+    "list": "lerna list",
+    "what_changed": "sh ./what_changed.sh"
   },
   "dependencies": {
     "bulma": "^0.9.3",
