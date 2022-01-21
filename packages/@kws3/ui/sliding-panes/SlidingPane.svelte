@@ -2,7 +2,7 @@
   @component
 
 
-  @param {boolean} [active=false] - Used to set the active pane., Default: `false`
+  @param {boolean} [active=false] - Used to set the active pane, Default: `false`
   @param {string} [style=""] - Inline CSS of component, Default: `""`
   @param {boolean} [v_center=true] - Vertical alignment of content inside the active pane., Default: `true`
   @param {boolean} [h_center=true] - Horizontal alignment of content inside the active pane., Default: `true`
@@ -40,7 +40,7 @@ This will work only when `track_height` is set to `true`
   const fire = createEventDispatcher();
 
   /**
-   * Used to set the active pane.
+   * Used to set the active pane
    */
   export let active = false,
     /**

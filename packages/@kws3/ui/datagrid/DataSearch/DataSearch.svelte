@@ -18,10 +18,10 @@
 
 -->
 
-<form on:submit|preventDefault={dosearch}>
-  <div class="field has-addons">
+<form class="kws-grid-search" on:submit|preventDefault={dosearch}>
+  <div class="field has-addons outer-level-field">
     {#if hasSearch}
-      <p class="control is-expanded">
+      <div class="control is-expanded main-search">
         <input
           class="input {query != '' && query != undefined
             ? filter_in_use_class
@@ -29,7 +29,7 @@
           type="text"
           {placeholder}
           bind:value={query} />
-      </p>
+      </div>
     {/if}
     {#if hasFilters}
       {#each _filters as filter, i}
@@ -45,18 +45,25 @@
           {filter_label_map} />
       {/each}
     {/if}
-    {#if changed}
-      <p class="control">
-        <button class="button is-danger" type="button" on:click={doresetSearch}>
-          <Icon icon="close" size="small" />
+
+    <div class="field has-addons action-buttons-field">
+      {#if changed}
+        <div class="control is-expanded clear-search">
+          <button
+            class="button is-danger"
+            type="button"
+            on:click={doresetSearch}>
+            <Icon icon="close" size="small" />
+            <span class="is-hidden-desktop is-hidden-tablet">Clear</span>
+          </button>
+        </div>
+      {/if}
+      <div class="control is-expanded search-submit">
+        <button class="button is-primary" type="submit">
+          <Icon icon="search" size="small" /> <span>Search</span>
         </button>
-      </p>
-    {/if}
-    <p class="control">
-      <button class="button is-primary" type="submit">
-        <Icon icon="search" size="small" /> <span>Search</span>
-      </button>
-    </p>
+      </div>
+    </div>
   </div>
 </form>
 
@@ -106,19 +113,24 @@
 
   let query = "",
     _filters = [],
-    filterVals = {};
+    filterVals = {},
+    filterWidthStyle = "";
 
   $: usedFilterComponent = filterComponent ? filterComponent : SearchFilter;
-  $: filterWidthStyle = hasSearch
-    ? `max-width:${(1 / (_filters.length + 2)) * 100}%`
-    : "";
   $: changed = q && q.trim() != "";
   $: q, qHasChanged();
   $: filters, filtersHaveChanged();
 
+  function calculateMaxWidths() {
+    filterWidthStyle = hasSearch
+      ? `max-width:${(1 / (_filters.length + 2)) * 100}%`
+      : "";
+  }
+
   function filtersHaveChanged() {
     if (filters) {
       _filters = [];
+      let temp = [];
       for (let i in filters) {
         let obj = { name: i, options: [], type: "select" };
         if (Array.isArray(filters[i])) {
@@ -131,9 +143,12 @@
             obj.type = filters[i].type;
           }
         }
-        _filters.push(obj);
+        temp.push(obj);
       }
+      _filters = temp;
     }
+
+    calculateMaxWidths();
   }
 
   function qHasChanged() {
@@ -149,6 +164,15 @@
     for (let i = 0; i < qparts.length; i++) {
       let qqp = qparts[i].split(":");
       qfilters[qqp[0]] = qqp[1];
+    }
+
+    if (hasFilters) {
+      for (let i in _filters) {
+        let filter = _filters[i];
+        if (typeof qfilters[filter.name] == "undefined") {
+          qfilters[filter.name] = "";
+        }
+      }
     }
 
     filterVals = qfilters;

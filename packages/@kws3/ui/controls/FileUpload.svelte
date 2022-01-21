@@ -29,7 +29,7 @@ The following functions are returned in `event.detail`:
 
 -->
 <div
-  class="file-upload {klass} is-{color} is-{size} is-{_error
+  class="kws-file-upload {klass} is-{color} is-{size} is-{_error
     ? 'danger'
     : ''} {disabled ? 'is-disabled' : ''} {_is_finished ? 'is-success' : ''}">
   <div class="file-upload-inner">

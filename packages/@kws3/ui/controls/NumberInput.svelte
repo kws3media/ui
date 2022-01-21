@@ -28,6 +28,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 <div class="field has-addons">
   <div class="control">
     <button
+      role="button"
       type="button"
       class="button is-{size} is-{minus_button_color}"
       style="box-shadow:none;"
@@ -41,6 +42,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   </div>
   <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
     <input
+      data-testid="input"
       class="input has-text-centered is-{size} is-{value < min || value > max
         ? 'danger'
         : ''}"
@@ -56,6 +58,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   </div>
   <div class="control">
     <button
+      role="button"
       type="button"
       class="button is-{size} is-{plus_button_color}"
       style="box-shadow:none;"
@@ -159,7 +162,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      */
     plus_button_color = "";
 
-  let _has_focus = false;
+  let _has_focus = false,
+    _old_value = null;
 
   $: value && !_has_focus, validateInput(); // will work like on state changed
 
@@ -180,18 +184,22 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     if (typeof value == "undefined" || value === null) value = min;
     value = Number(value) + i * step;
     if (step % 1 != 0) value = value.toFixed(1);
-    /**
-     * Triggered when value changes
-     */
-    fire("change");
   };
 
   function validateInput() {
+    if (_old_value == null) _old_value = value;
+
     if (typeof value == "undefined" || value === null) value = min;
 
     if (value < min) value = min;
     if (value > max) value = max;
 
-    fire("change");
+    if (_old_value != value) {
+      _old_value = value;
+      /**
+       * Triggered when value changes
+       */
+      fire("change");
+    }
   }
 </script>

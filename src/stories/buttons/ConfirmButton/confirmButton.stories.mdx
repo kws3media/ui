@@ -1,8 +1,10 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { ConfirmButton as Button } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 import ConfirmButtonDecorator from "./ConfirmButton.svelte";
+import playInteractions from "./confirmButton.play.js";
 
 export let args={
   class: "",
@@ -18,7 +20,12 @@ export let args={
   should_confirm: true,
   size: "",
   color: "primary",
+  completion_timeout: 600,
+  error_timeout: 3000,
 };
+
+
+<Version />
 
 <Meta
   title="Buttons/Confirm Button"
@@ -43,6 +50,7 @@ export let args={
   <Story
   name="Confirm Button"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: ConfirmButtonDecorator,
@@ -78,7 +86,7 @@ export let args={
       on:do={confirmDo}
     />
     <script>
-      import { DeleteButton } from '@kws3/buttons';
+      import { ConfirmButton } from '@kws3/buttons';
       export let color = "primary";
       export let disabled = false;
       export let size = "";
@@ -89,17 +97,45 @@ export let args={
       export let done_icon = "check";
       export let doing_text = "Doing";
       export let done_text = "Done";
-      function confirmDo(event, success = true){
+      function confirmDo(event){
         let {doing, done, error} = event.detail;
         doing();
-        setTimeout(() => {
-          if(success){
-            done();
-          }
-          else {
-            error();
-          }
-        },'2000')
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after "completion_timeout"
+          done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after "completion_timeout"
+          error();
+        });        
+      }
+    </script>`
+  }
+/>
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+<Source
+  language="html"
+  code={
+    dedent`
+    <script>
+      function confirmDo(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          done(() => {
+            //some callback
+          }, 500);
+        })
+        .catch(() => {
+          error(() => {
+            //some callback
+          }, 500);
+        });
       }
     </script>`
   }

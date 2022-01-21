@@ -4,12 +4,14 @@ $kws-gridview-th-background: $table-background-color !default;
 $kws-gridview-th-color: $text !default;
 $kws-gridview-tag-margin: 0 0.125rem 0.125rem 0 !default;
 $kws-gridview-icon-size: 1.5em !default;
+$kws-gridview-checked-row-background: $primary-light !default;
 
 .data-table .table {
   box-shadow: $kws-gridview-box-shadow;
   th {
     background: $kws-gridview-th-background;
     color: $kws-gridview-th-color;
+    vertical-align: middle;
   }
   &.is-bordered {
     tr {
@@ -34,6 +36,7 @@ $kws-gridview-icon-size: 1.5em !default;
   }
   td.is-icon {
     width: 25px;
+    vertical-align: middle;
     .icon {
       font-size: $kws-gridview-icon-size;
     }
@@ -41,6 +44,13 @@ $kws-gridview-icon-size: 1.5em !default;
   &.is-hoverable {
     tr {
       cursor: pointer;
+    }
+  }
+
+  tr.is-checked {
+    background-color: $kws-gridview-checked-row-background !important;
+    td {
+      background-color: $kws-gridview-checked-row-background !important;
     }
   }
 }

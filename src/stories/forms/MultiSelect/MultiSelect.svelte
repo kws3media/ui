@@ -19,6 +19,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {summary_mode}
         {selected_icon}
         {no_options_msg}
         {remove_all_tip}
@@ -49,6 +50,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {summary_mode}
         {selected_icon}
         {no_options_msg}
         {remove_all_tip}
@@ -82,6 +84,7 @@
     remove_all_tip = "Remove all",
     remove_btn_tip = "Remove",
     placeholder = "Choose a Brand...",
+    summary_mode = false,
     selected_brand = [], // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
     selected_brand_string = ["Blackberry"];
@@ -96,6 +99,8 @@
     { id: 7, name: "Huawei" },
     { id: 8, name: "Sony" },
     { id: 9, name: "HTC" },
+    { id: 0, name: "Zero" },
+    { id: "", name: "Empty String" },
     { id: 10, name: "Blackberry" },
     { id: 11, name: "Apple" },
   ];

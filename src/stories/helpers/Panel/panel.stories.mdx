@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { Panel } from "@kws3/ui";
 import PanelDecorator from './Panel.svelte';
 import { action } from '@storybook/addon-actions';
@@ -20,6 +21,9 @@ export let args={
   has_center : true,
   has_title:false
 }
+
+
+<Version />
 
 <Meta
   title="Helpers/Panel"

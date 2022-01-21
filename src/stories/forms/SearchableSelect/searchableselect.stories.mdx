@@ -1,8 +1,10 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { SearchableSelect } from '@kws3/ui';
 import SearchableSelectDecorator from './SearchableSelect.svelte';
 import { action } from '@storybook/addon-actions';
+import playInteractions from "./searchableselect.play.js";
 
 export let args={
   value : "",
@@ -16,9 +18,13 @@ export let args={
   disabled : false,
   readonly: false,
   placeholder : "Choose a brand...",
+  selected_icon:'check',
   no_options_msg: "No matching options",
   remove_all_tip: "Clear Selection",
 };
+
+
+<Version />
 
 <Meta
   title="Forms/SearchableSelect"
@@ -43,6 +49,7 @@ export let args={
   <Story
   name="SearchableSelect"
   args={args}
+  play={playInteractions}
   >
   {(args) => ({
     Component: SearchableSelectDecorator,
@@ -122,6 +129,7 @@ export let args={
       $kws-select-selecting-background: $primary;
       $kws-select-selected-color: $primary-dark;
       $kws-select-selected-background: $primary-light;
+      $kws-select-options-z-index: $modal-z + 1;
     `
   }
 />

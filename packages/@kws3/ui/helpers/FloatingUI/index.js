@@ -1,4 +1,4 @@
-import FloatingUIOutput from "./FloatingUIOutput.svelte";
+import { FloatingUIOutput } from "@kws3/ui";
 import { writable, get } from "svelte/store";
 import {
   defaultToastPlacement,

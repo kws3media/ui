@@ -41,6 +41,28 @@ pre.prismjs > code {
   }
 }
 
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
 @keyframes bounce-proportional {
   0%,
   20%,
@@ -65,6 +87,12 @@ pre.prismjs > code {
   90% {
     transform: translate3d(0, -13%, 0);
   }
+}
+
+.is-shaking {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  animation-name: shake;
 }
 
 .is-bouncing-once {
@@ -204,6 +232,17 @@ pre.prismjs > code {
 //     }
 //   }
 // }
+//Grid
+@import "../../packages/@kws3/ui/styles/Grid.scss";
+
+//DataSort
+@import "../../packages/@kws3/ui/styles/DataSort.scss";
+
+//DataSearch
+@import "../../packages/@kws3/ui/styles/DataSearch.scss";
+
+//Charts
+@import "../../packages/@kws3/ui/styles/Chart.scss";
 
 .theme-kws-light {
   color: #4a4a4a;
@@ -241,5 +280,21 @@ pre.prismjs > code {
   }
   .docblock-argstable {
     background: #f8f8f8;
+  }
+}
+
+.sbdocs-content {
+  position: relative;
+}
+.main-version-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.datagrid-example {
+  .box.is-selected {
+    background-color: $primary;
+    color: #fff;
   }
 }

@@ -29,6 +29,8 @@
         class={klass}
         {icon}
         {tracker}
+        {completion_timeout}
+        {error_timeout}
         bind:this={BUTTON_2} />
       <p class="is-block mt-2">This will fail.</p>
     </form>
@@ -50,7 +52,9 @@
       saving: false,
       saved: false,
       error: false,
-    };
+    },
+    completion_timeout = 600,
+    error_timeout = 3000;
 
   let klass = "";
   export { klass as class };

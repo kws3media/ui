@@ -29,7 +29,8 @@
   <tr
     in:fly={{ x: 20, delay: 25 * row_index }}
     on:click|stopPropagation={rowClick}
-    class:is-selected={rowActive}>
+    class:is-selected={rowActive}
+    class:is-checked={checked}>
     {#if bulk_actions}
       <td style="vertical-align:middle;">
         <Checkbox
@@ -55,7 +56,10 @@
     {/each}
   </tr>
 {:else}
-  <tr on:click|stopPropagation={rowClick} class:is-selected={rowActive}>
+  <tr
+    on:click|stopPropagation={rowClick}
+    class:is-selected={rowActive}
+    class:is-checked={checked}>
     {#if bulk_actions}
       <td style="vertical-align:middle;">
         <Checkbox
