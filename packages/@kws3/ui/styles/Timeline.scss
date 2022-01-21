@@ -1,3 +1,21 @@
+@mixin right-aligned-timeline-item {
+  flex-direction: row-reverse;
+  .timeline-marker {
+    right: 0;
+    left: auto;
+    transform: translateX(50%);
+  }
+  .timeline-content {
+    text-align: right;
+    padding-left: 0;
+    padding-right: 1.5rem;
+  }
+  &:before {
+    right: -0.5px;
+    left: auto;
+  }
+}
+
 .timeline {
   list-style: none;
   margin: 0;
@@ -8,14 +26,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-left: 1px solid $primary;
     position: relative;
     padding: 0.5rem 0;
     &:last-child {
       padding-bottom: 0;
     }
+    .timeline-marker {
+      position: absolute;
+      left: 0;
+      background: $grey;
+      border: 1px solid $grey;
+      border-radius: 100%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      &:empty {
+        min-height: 1rem;
+        min-width: 1rem;
+        padding: 0;
+        border-width: 4px;
+        background: $light;
+      }
+      .icon {
+        color: $light;
+        width: 16px;
+        height: 16px;
+        font-size: 0.75rem !important;
+      }
+    }
     .timeline-content {
-      padding-left: 1rem;
+      padding-left: 1.5rem;
       flex-grow: 1;
       flex-shrink: 1;
     }
@@ -33,32 +75,32 @@
     }
 
     &:before {
-      top: 50%;
-      left: 0;
-      margin-left: -9px;
-      margin-top: -16px;
+      content: "";
+      background-color: $grey;
+      display: block;
+      width: 1px;
+      height: 100%;
       position: absolute;
-      height: 16px;
-      width: 16px;
-      border-radius: 10px;
-      border: 5px solid $dark;
-      background-color: $light;
-      content: " ";
-    }
-    &:last-child {
-      &:before {
-        margin-top: -8px;
-      }
+      left: -0.5px;
+      top: 0;
     }
 
     @each $name, $pair in $colors {
       $color: nth($pair, 1);
       $color-invert: nth($pair, 2);
       &.is-#{$name} {
-        border-left-color: $color;
-        border-right-color: $color;
-        &:before {
+        .timeline-marker {
           border-color: $color;
+          background-color: $color;
+          &:empty {
+            background-color: $color-invert;
+          }
+          .icon {
+            color: $color-invert;
+          }
+        }
+        &:before {
+          background-color: $color;
         }
       }
     }
@@ -71,22 +113,19 @@
       flex-direction: row;
       &:nth-of-type(2n) {
         align-self: flex-start;
-        flex-direction: row-reverse;
-        border-left: none;
-        border-right-width: 1px;
-        border-right-style: solid;
-        .timeline-content {
-          text-align: right;
-          padding-left: 0;
-          padding-right: 1rem;
-        }
-        &:before {
-          left: auto;
-          right: 0;
-          margin-left: 0;
-          margin-right: -9px;
-        }
+        @include right-aligned-timeline-item;
       }
+    }
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+    align-items: flex-end;
+    .timeline-item {
+      width: 100%;
+      align-self: flex-end;
+      flex-direction: row-reverse;
+      @include right-aligned-timeline-item;
     }
   }
 }

@@ -2,6 +2,13 @@
   class="timeline-item is-{color}"
   class:is-past={item.is_past}
   on:click={setView}>
+  <div class="timeline-marker">
+    {#if icon && !image}
+      <Icon {icon} />
+    {/if}{#if image && !icon}
+      <figure class="image is-26x16"><img src={image} alt="" /></figure>
+    {/if}
+  </div>
   <div class="timeline-content">
     <small class="meta meta-top is-block">
       {formatDate}
@@ -31,12 +38,16 @@
 
 <script>
   import { onMount, createEventDispatcher } from "svelte";
+  import { Icon } from "@kws3/ui";
   const fire = createEventDispatcher();
   export let item = {},
     is_tree = false,
     formatDate = "",
     formatTime = "",
     color = "primary";
+
+  export let icon = null;
+  export let image = null;
   let months = [
     "JAN",
     "FEB",
