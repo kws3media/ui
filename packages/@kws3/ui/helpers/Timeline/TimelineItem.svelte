@@ -1,94 +1,63 @@
-<li
-  class="timeline-item is-{color}"
-  class:is-past={item.is_past}
-  on:click={setView}>
-  <div class="timeline-marker">
-    {#if icon && !image}
-      <Icon {icon} />
-    {/if}{#if image && !icon}
-      <figure class="image is-32x32"><img src={image} alt="" /></figure>
+<!--
+  @component
+
+
+  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of marker and border, Default: `"primary"`
+  @param {string} [marker_icon="null"] - Any icon name accepted by the Icon component, icon will be placed inside the marker, Default: `"null"`
+  @param {string} [marker_image="null"] - Any image URL, the image will be placed inside the marker, Default: `"null"`
+
+  ### Slots
+  - `<slot name="above"  />` - Optional text to be displayed above the main text
+  - `<slot name="default"  />` - Default slot containing the main text
+  - `<slot name="below"  />` - Optional text to be displayed below the main text
+  - `<slot name="thumbnail"  />` - Optional thumbnail image do be displayed next to the main content
+
+-->
+<li class="kws-timeline-item is-{color}">
+  <div class="kws-timeline-marker">
+    {#if marker_icon && !marker_image}
+      <Icon icon={marker_icon} />
+    {/if}{#if marker_image && !marker_icon}
+      <figure class="image is-32x32"><img src={marker_image} alt="" /></figure>
     {/if}
   </div>
-  <div class="timeline-content">
-    <small class="meta meta-top is-block">
-      {formatDate}
-      {#if item.time && !is_tree}
-        {formatTime}
-      {/if}
-    </small>
-
-    {#if item.time && is_tree}
-      <small class="meta is-block">
-        {formatTime}
-      </small>
-    {/if}
-
+  <div class="kws-timeline-content">
+    <span class="is-block has-text-grey"
+      ><!--Optional text to be displayed above the main text--><slot
+        name="above" /></span>
     <span class="is-block description">
-      {item.description ? item.description : ""}
+      <!--Default slot containing the main text--><slot />
     </span>
 
-    <span class="is-block meta meta-bottom">
-      {item.user ? item.user : ""}
+    <span class="is-block has-text-grey">
+      <!--Optional text to be displayed below the main text--><slot
+        name="below" />
     </span>
   </div>
-  {#if item.avatar}
-    <img class="timeline-image" src={item.avatar} alt="" />
+  {#if $$slots.thumbnail}
+    <div class="kws-timeline-image">
+      <!--Optional thumbnail image do be displayed next to the main content--><slot
+        name="thumbnail" />
+    </div>
   {/if}
 </li>
 
 <script>
-  import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
-  const fire = createEventDispatcher();
-  export let item = {},
-    is_tree = false,
-    formatDate = "",
-    formatTime = "",
-    color = "primary";
 
-  export let icon = null;
-  export let image = null;
-  let months = [
-    "JAN",
-    "FEB",
-    "MAR",
-    "APR",
-    "MAY",
-    "JUN",
-    "JUL",
-    "AUG",
-    "SEP",
-    "OCT",
-    "NOV",
-    "DEC",
-  ];
-  onMount(() => {
-    //Date Format
-    if (!is_tree && item && item.date) {
-      formatDate = item.date;
-    }
-    if (is_tree && item && item.date) {
-      var date = new Date(item.date),
-        day = date.getDate(),
-        day = ("0" + day).slice(-2),
-        month = date.getMonth();
-      formatDate = months[month] + " " + day;
-    }
-    //Time Format
-    if (!is_tree && item && item.time) {
-      formatTime = item.time;
-    }
-    if (is_tree && item && item.time) {
-      var [hour, min] = item.time.split(":");
-      let _hour = hour % 12 ? hour % 12 : 12,
-        _min = ("0" + min).slice(-2),
-        meridiem = hour >= 12 ? "PM" : "AM";
-      formatTime = `${_hour}:${_min} ${meridiem}`;
-    }
-  });
-  function setView() {
-    if (is_tree) {
-      fire("viewItem", item.id);
-    }
-  }
+  /**
+   * Color of marker and border
+   * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+   */
+  export let color = "primary";
+  /**
+   * Any icon name accepted by the Icon component, icon will be placed inside the marker
+   * @type {string}
+   */
+  export let marker_icon = null;
+  /**
+   * Any image URL, the image will be placed inside the marker
+   * @type {string}
+   */
+  export let marker_image = null;
 </script>

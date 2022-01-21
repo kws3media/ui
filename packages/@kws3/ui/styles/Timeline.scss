@@ -131,7 +131,7 @@ $kws-timeline-default-color-invert: $light !default;
   display: flex;
   flex-direction: column;
 
-  &.is-centered {
+  &.is-center {
     .kws-timeline-item {
       width: 50%;
       align-self: flex-end;
