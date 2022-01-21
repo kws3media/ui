@@ -2,39 +2,44 @@
   list-style: none;
   margin: 0;
   padding: 1em 0;
-  li {
-    display: block;
-    margin-left: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  .timeline-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-left: 1px solid $primary;
     position: relative;
-    &:not(:last-child) {
-      padding-bottom: 1rem;
+    padding: 0.5rem 0;
+    &:last-child {
+      padding-bottom: 0;
     }
-    .date,
-    .user {
-      font-size: 0.8em;
-      color: $grey;
+    .timeline-content {
+      padding-left: 1rem;
+      flex-grow: 1;
+      flex-shrink: 1;
     }
-    .avatar {
+    .timeline-image {
+      flex-grow: 0;
+      flex-shrink: 0;
       width: 32px;
-      top: 50%;
-      right: 0;
-      margin-top: -16px;
-      position: absolute;
       border-radius: $radius;
       box-shadow: 0 0.125rem 0.1875rem rgba(10, 10, 10, 0.1),
         0 0 0 0.0625rem rgba(10, 10, 10, 0.1);
     }
+    .meta {
+      font-size: 0.8em;
+      color: $grey;
+    }
+
     &:before {
       top: 50%;
       left: 0;
-      margin-left: -7.7px;
-      margin-top: -15px;
+      margin-left: -9px;
+      margin-top: -16px;
       position: absolute;
-      height: 15px;
-      width: 15px;
+      height: 16px;
+      width: 16px;
       border-radius: 10px;
       border: 5px solid $dark;
       background-color: $light;
@@ -50,9 +55,36 @@
       $color: nth($pair, 1);
       $color-invert: nth($pair, 2);
       &.is-#{$name} {
-        border-left: 1px solid $color !important;
+        border-left-color: $color;
+        border-right-color: $color;
         &:before {
-          border: 5px solid $color !important;
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+  &.is-centered {
+    .timeline-item {
+      width: 50%;
+      align-self: flex-end;
+      flex-direction: row;
+      &:nth-of-type(2n) {
+        align-self: flex-start;
+        flex-direction: row-reverse;
+        border-left: none;
+        border-right-width: 1px;
+        border-right-style: solid;
+        .timeline-content {
+          text-align: right;
+          padding-left: 0;
+          padding-right: 1rem;
+        }
+        &:before {
+          left: auto;
+          right: 0;
+          margin-left: 0;
+          margin-right: -9px;
         }
       }
     }
