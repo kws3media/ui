@@ -8,7 +8,7 @@
   .timeline-content {
     text-align: right;
     padding-left: 0;
-    padding-right: 1.5rem;
+    padding-right: 1.75rem;
   }
   &:before {
     right: -0.5px;
@@ -42,6 +42,7 @@
       align-items: center;
       justify-content: center;
       padding: 0.25rem;
+      overflow: hidden;
       &:empty {
         min-height: 1rem;
         min-width: 1rem;
@@ -55,9 +56,15 @@
         height: 16px;
         font-size: 0.75rem !important;
       }
+      .image {
+        margin: -0.25rem;
+        img {
+          border-radius: 100%;
+        }
+      }
     }
     .timeline-content {
-      padding-left: 1.5rem;
+      padding-left: 1.75rem;
       flex-grow: 1;
       flex-shrink: 1;
     }

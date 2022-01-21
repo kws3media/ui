@@ -6,7 +6,7 @@
     {#if icon && !image}
       <Icon {icon} />
     {/if}{#if image && !icon}
-      <figure class="image is-26x16"><img src={image} alt="" /></figure>
+      <figure class="image is-32x32"><img src={image} alt="" /></figure>
     {/if}
   </div>
   <div class="timeline-content">
