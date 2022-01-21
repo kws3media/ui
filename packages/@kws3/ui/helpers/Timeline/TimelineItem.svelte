@@ -5,6 +5,7 @@
   @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of marker and border, Default: `"primary"`
   @param {string} [marker_icon="null"] - Any icon name accepted by the Icon component, icon will be placed inside the marker, Default: `"null"`
   @param {string} [marker_image="null"] - Any image URL, the image will be placed inside the marker, Default: `"null"`
+  @param {string} [class=""] - CSS classes for the TimelineItem container, Default: `""`
 
   ### Slots
   - `<slot name="above"  />` - Optional text to be displayed above the main text
@@ -13,7 +14,7 @@
   - `<slot name="thumbnail"  />` - Optional thumbnail image do be displayed next to the main content
 
 -->
-<li class="kws-timeline-item is-{color}">
+<li class="kws-timeline-item is-{color} {klass}">
   <div class="kws-timeline-marker">
     {#if marker_icon && !marker_image}
       <Icon icon={marker_icon} />
@@ -60,4 +61,10 @@
    * @type {string}
    */
   export let marker_image = null;
+
+  /**
+   * CSS classes for the TimelineItem container
+   */
+  let klass = "";
+  export { klass as class };
 </script>
