@@ -15,4 +15,4 @@ fi
 
 latest_tag="@kws3/ui@${pkg_version}"
 # git log $latest_tag..HEAD  --oneline
-git log $latest_tag..$_head  --oneline --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit  -- packages/@kws3/ui/*
+git log $latest_tag..$_head  --oneline  --stat --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit  -- packages/@kws3/ui/*
