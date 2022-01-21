@@ -68,7 +68,7 @@
           {styleTransformers}
           {visibilityMap} />
       {:else}
-        <div class="data-table-wrapper" style="max-width:100%;overflow:auto">
+        <div class="data-table-wrapper">
           <GridView
             {iteration_key}
             {data}
