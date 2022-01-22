@@ -1,0 +1,89 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { Accordion, AccordionItem } from "@kws3/ui";
+import AccordionDecorator from "./Accordion.svelte";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  title : "Title",
+  color : "primary",
+  class : "",
+  style : "",
+  expanded : true,
+  title_click: true
+};
+
+<Meta
+  title="Helpers/Accordion"
+  component={AccordionItem}
+  args={args}
+  argTypes={{
+    color:{
+      control: {type: "select"},
+    }
+  }}
+  parameters = {{
+    docs: {
+      source: {
+        code: `
+        <Accordion><AccordionItem class="" style="" color="${args.color}" expanded={true} title="${args.title}" title_click={true}></AccordionItem></Accordion>`,
+      },
+    },
+  }}
+/>
+
+<Description markdown={dedent`
+# Accordion
+`}/>
+
+<Canvas>
+  <Story
+  name="Accordion"
+  args={args}
+  >
+  {(args) => ({
+    Component: AccordionDecorator,
+    props: args,        
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Accordion" />
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`import { Accordion, AccordionItem } from '@kws3/ui';`}
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import '@kws3/ui/styles/Accordion.scss';`
+  }
+/>
+
+### Example
+<Source
+  language='html'
+  code={ dedent`
+    <Accordion>
+      <AccordionItem expanded={true} title={"Title 1"} class="" {color} {style} {title_click}>
+        Section 1
+        <button class="button is-primary" on:click={() => (is_active_item_2 = true)}>Trigger Section 2</button>
+      </AccordionItem>
+      <AccordionItem bind:expanded={is_active_item_2} title={"Title 2"} class="" {color} {style} {title_click}>Section 2</AccordionItem>
+      <AccordionItem title={"Title 3"} class="" {color} {style} {title_click}>Section 3</AccordionItem>
+    </Accordion>
+    <script>
+      import { Accordion, AccordionItem } from "@kws3/ui";
+      export let title = "Title",
+        color = "primary",
+        style = "",
+        expanded = true,
+        title_click = true;      
+      let is_active_item_2 = false;
+    </script>
+  `}
+/>

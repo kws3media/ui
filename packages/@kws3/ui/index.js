@@ -59,6 +59,8 @@ export { default as DataSearch } from "./datagrid/DataSearch/DataSearch.svelte";
 export { default as Pagination } from "./datagrid/Pagination/Pagination.svelte";
 export { default as DataSort } from "./datagrid/DataSort/DataSort.svelte";
 
+export { default as Accordion } from "./accordion/Accordion.svelte";
+export { default as AccordionItem } from "./accordion/AccordionItem.svelte";
 export { default as Chart } from "./charts/Chart.svelte";
 export { default as DonutChart } from "./charts/DonutChart.svelte";
 export { default as PieChart } from "./charts/PieChart.svelte";
