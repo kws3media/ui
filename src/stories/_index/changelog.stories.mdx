@@ -1,5 +1,7 @@
 
 import { Meta  } from '@storybook/addon-docs';
+import Version from '~/version.mdx';
+import Changelog from '../../../packages/@kws3/ui/CHANGELOG.mdx';
 
 
 <Version />
@@ -9,87 +11,4 @@ import { Meta  } from '@storybook/addon-docs';
 />
 
 ## Changelog
-
-## 1.6.8
-- Icon vertically align in `Grid`
-
-## 1.6.7
-- Added granular events for `Popover`
-- Added `is-checked` class on `Grid`
-- New colors for `is-checked` class on `Grid`
-
-## 1.6.6
-- Enhance `Popover` with native `show` `hide` `enable` `disable` methods
-
-## 1.6.5
-- Filter fix on `DataSearch`
-
-## 1.6.4
-- Add support for `dropdown_portal` in `SearchableSelect`
-
-## 1.6.3
-- Prevent submit call on `MultiSelect`
-- Fixes on `DataSearch`
-
-## 1.6.2
-- Dynamic `dropdown_portal` support on `MultiSelect`
-
-## 1.6.1
-- Added new package `svelte-portal`
-- Use portal for `MultiSelect` and `SearchableSelect` s
-
-## 1.6.0
-- Fix `DataSearch` responsiveness for mobile
-- Fix `Pagination` CSS for mobile
-- Fix `DataSort`  responsiveness for mobile
-- Fix functionality of `DataSearch`
-
-## 1.5.9
-- Fix `z-index` issue with `SearchableSelect`
-
-## 1.5.8
-- Showing `undefined` on total in `Pagination`
-
-## 1.5.7
-- Width calculation on `DataSearch`
-- More `text` validation `Nl2br`
-
-## 1.5.6
-- Fix attribute of `MultiSelect`
-- Fix `text` checking on `Nl2br`
-
-## 1.5.5
-- Added `BarChart`
-- Added `LineChart`
-- Added `AreaChart`
-- Added `RadialChart`
-- Support `sparklines` in `Charts`
-- Add `yAxisOptions` and `horizontal` bar for `Charts`
-- Fix attribute of `ConfirmButton`
-- Fix error Handling in `MixedChart`
-
-## 1.5.1
-- Fix style of `ApexCharts`
-- Fix import of `ApexCharts`
-- Fix attribute of `NumberInput` for UI testing
-
-## 1.5.0
-- Added new package `apexcharts`
-- Added `DonutChart`
-- Added `MixedChart`
-- Added `PieChart`
-
-## 1.4.7
-- Fix value mismatch on `NumberInput`
-
-## 1.4.6
-- Fix Typing bug on `NumberInput`
-
-## 1.4.5
-- Fix **on:change** event on `NumberInput`
-
-## 1.4.4
-- import  `Floatie`, `FloatingUIOutput`, `FloatiesStore` from `@kws3/ui` for `FloatingUIOutput` 
-
-## 1.4.3
-- Rename `completion_timeout` to `error_timeout` in `Buttons`
+<Changelog />
