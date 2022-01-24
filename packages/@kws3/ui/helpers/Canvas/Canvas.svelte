@@ -7,6 +7,7 @@
   @param {number} [eraserWidth=6] - Eraser width, Default: `6`
   @param {string} [lineColor="#ff0000"] - Pen input color, Default: `"#ff0000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
+  @param {string} [circlefillStyle=""] - Fill color for circle shape, rgb, rgba or hex, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
@@ -15,7 +16,7 @@
   @param {number} [expandedScale=2] - Transform scale of the canvas on expansion, Default: `2`
   @param {'Pen'|'Eraser'|'Circle'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
   @param {'Pen'|'Eraser'|'Circle'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
-  @param {string} [drawing_label=""] - Label for the canvas drawing box
+  @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {boolean} [hide_colorpicker=false] - Determines whether to make the colorpicker available or not, Default: `false`
@@ -169,6 +170,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     lineColor = "#ff0000",
     /**
      * Background image for the canvas
+     */
+    circlefillStyle = "",
+    /**
+     * ill color for circle shape, rgb, rgba or hex
      */
     backgroundImage = "",
     /**
