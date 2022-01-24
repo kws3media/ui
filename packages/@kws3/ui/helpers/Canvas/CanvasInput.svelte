@@ -25,6 +25,7 @@
     expanded = false,
     initialScale = 1,
     expandedScale = 2,
+    fillStyle = "", // for circle
     readonly = false,
     disabled = false,
     CANVAS_IMAGE;
@@ -87,6 +88,7 @@
         expanded,
         initialScale,
         expandedScale,
+        fillStyle,
       }
     );
 
