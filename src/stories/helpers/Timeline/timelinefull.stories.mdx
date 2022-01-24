@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { Timeline } from "@kws3/ui";
 import FullDecorator from './Timeline.svelte';
 import { action } from '@storybook/addon-actions';
@@ -8,6 +9,8 @@ export let args={
   align : 'left',
   class: ""
 }
+
+<Version />
 
 <Meta
   title="Helpers/Timeline/Timeline Full Example"

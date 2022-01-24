@@ -1,5 +1,6 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
 import { TimelineItem } from "@kws3/ui";
 import ItemDecorator from './TimelineItem.svelte';
 import { action } from '@storybook/addon-actions';
@@ -9,6 +10,8 @@ export let args={
   marker_image: null,
   color : ""
 }
+
+<Version />
 
 <Meta
   title="Helpers/Timeline/TimelineItem"
