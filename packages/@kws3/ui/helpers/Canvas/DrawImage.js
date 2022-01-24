@@ -69,7 +69,7 @@ export default function DrawImage(app, opts) {
       } else if (drawingType == "circle") {
         let _x = lastPos.x,
           _y = lastPos.y,
-          _r = 60,
+          _r = context.radius,
           lw = context.lineWidth;
         context.clearRect(
           _x - _r - lw,
@@ -264,6 +264,7 @@ export default function DrawImage(app, opts) {
       drawingType = "circle";
       context.strokeStyle = opts.strokeStyle || "#000000";
       context.lineWidth = opts.lineWidth || 1;
+      context.radius = opts.radius || 60;
       context.circlefillStyle = opts.circlefillStyle || "";
     }
   };
