@@ -169,11 +169,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     lineColor = "#ff0000",
     /**
-     * Background image for the canvas
+     * Fill color for circle shape, rgb, rgba or hex
      */
     circlefillStyle = "",
     /**
-     * ill color for circle shape, rgb, rgba or hex
+     * Background image for the canvas
      */
     backgroundImage = "",
     /**
