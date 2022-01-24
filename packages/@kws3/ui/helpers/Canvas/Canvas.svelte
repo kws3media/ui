@@ -52,7 +52,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               id="tools-dropdown"
               role="menu"
               style="min-width:auto;">
-              <div class="dropdown-content">
+              <div class="dropdown-content has-text-left">
                 {#each tools as tool}
                   <a
                     href="/#"
