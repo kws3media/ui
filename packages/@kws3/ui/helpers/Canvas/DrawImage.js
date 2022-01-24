@@ -79,7 +79,6 @@ export default function DrawImage(app, opts) {
         );
         context.beginPath();
         context.arc(_x, _y, _r, 0, Math.PI * 2);
-        context.fillStyle = "rgba(0, 0, 0, 0.1)";
         context.stroke();
         context.fill();
         lastPos = currentPos;
@@ -264,6 +263,7 @@ export default function DrawImage(app, opts) {
       drawingType = "circle";
       context.strokeStyle = opts.strokeStyle || "#000000";
       context.lineWidth = opts.lineWidth || 1;
+      context.fillStyle = opts.fillStyle || "rgba(0, 0, 0, 0)";
     }
   };
 
