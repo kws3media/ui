@@ -80,7 +80,9 @@ export default function DrawImage(app, opts) {
         context.beginPath();
         context.arc(_x, _y, _r, 0, Math.PI * 2);
         context.stroke();
-        context.fill();
+        if (context.circlefillStyle) {
+          context.fill();
+        }
         lastPos = currentPos;
       }
     }
