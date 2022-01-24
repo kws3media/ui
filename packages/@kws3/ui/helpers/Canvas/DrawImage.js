@@ -263,7 +263,7 @@ export default function DrawImage(app, opts) {
       drawingType = "circle";
       context.strokeStyle = opts.strokeStyle || "#000000";
       context.lineWidth = opts.lineWidth || 1;
-      context.fillStyle = opts.fillStyle || "rgba(0, 0, 0, 0)";
+      context.circlefillStyle = opts.circlefillStyle || "";
     }
   };
 
