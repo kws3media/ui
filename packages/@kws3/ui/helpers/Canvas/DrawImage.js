@@ -63,6 +63,7 @@ export default function DrawImage(app, opts) {
       if (drawingType == "line") {
         context.beginPath();
         context.moveTo(lastPos.x, lastPos.y);
+        context.lineCap = "round";
         context.lineTo(currentPos.x, currentPos.y);
         context.stroke();
         lastPos = currentPos;
