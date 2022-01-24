@@ -83,7 +83,6 @@ export default function DrawImage(app, opts) {
         if (context.circlefillStyle) {
           context.fill();
         }
-        lastPos = currentPos;
       }
     }
   };
