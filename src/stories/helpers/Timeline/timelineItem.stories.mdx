@@ -1,0 +1,64 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import { TimelineItem } from "@kws3/ui";
+import ItemDecorator from './TimelineItem.svelte';
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  marker_icon: null,
+  marker_image: null,
+  color : ""
+}
+
+<Meta
+  title="Helpers/Timeline/TimelineItem"
+  component={TimelineItem}
+  args={args}
+  argTypes={{
+    color: {
+      control: 'select'
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# TimelineItem
+## A TimelineItem component.
+`}/>
+
+<Canvas>
+  <Story
+  name="TimelineItem"
+  args={args}
+  >
+  {(args) => ({
+    Component: ItemDecorator,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="TimelineItem" />
+
+
+### Usage
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { TimelineItem } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/Timeline.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws-timeline-default-color: $grey;
+    $kws-timeline-default-color-invert: $light;
+  `}
+/>
