@@ -1,13 +1,13 @@
 
 ## 1.6.9
-- new Timeline, TimelineItem and TimelineHeader components.
+- New `Timeline`, `TimelineItem` and `TimelineHeader` components.
 
 ## 1.6.8
-- Icon vertically align in `Grid`
+- Vertically align `is-icon` cells in `Grid`
 
 ## 1.6.7
-- Added granular events for `Popover`
-- Added `is-checked` class on `Grid`
+- Added granular events `showing`, `shown`, `hiding` and `hidden` for `Popover`.
+- Added `is-checked` class on `Grid` when a row is checked using the multiselect checkboxes.
 - New colors for `is-checked` class on `Grid`
 
 ## 1.6.6
@@ -17,18 +17,18 @@
 - Filter fix on `DataSearch`
 
 ## 1.6.4
-- Add support for `dropdown_portal` in `SearchableSelect`
+- Add support for `dropdown_portal` prop in `SearchableSelect`
 
 ## 1.6.3
-- Prevent submit call on `MultiSelect`
-- Fixes on `DataSearch`
+- Prevent submit call on `MultiSelect` when `Enter` key is pressed while searching
+- Fix filter items going blank after search is initiated in `DataSearch`
 
 ## 1.6.2
-- Dynamic `dropdown_portal` support on `MultiSelect`
+- Add `dropdown_portal` prop on `MultiSelect` to allow rendering dropdown in alternative locations
 
 ## 1.6.1
-- Added new package `svelte-portal`
-- Use portal for `MultiSelect` and `SearchableSelect` s
+- New `Portal` component
+- Use `Portal` for `MultiSelect` and `SearchableSelect` components
 
 ## 1.6.0
 - Fix `DataSearch` responsiveness for mobile
@@ -61,12 +61,10 @@
 - Fix error Handling in `MixedChart`
 
 ## 1.5.1
-- Fix style of `ApexCharts`
-- Fix import of `ApexCharts`
+- Chart bugfixes
 - Fix attribute of `NumberInput` for UI testing
 
 ## 1.5.0
-- Added new package `apexcharts`
 - Added `DonutChart`
 - Added `MixedChart`
 - Added `PieChart`
