@@ -23,11 +23,11 @@ When set to `null`, it will use the content of the `popover` slot, Default: `nul
 It can be any CSS value associated with `max-width` property, including `"none"`, Default: `"none"`
   @param {string} [style=""] - Inline CSS for Popover trigger, Default: `""`
   @param {string} [class=""] - CSS classes for Popover trigger, Default: `""`
-  @param {function} [open()] - Open function
-  @param {function} [close()] - Close function
-  @param {function} [enable()] - Enable function
-  @param {function} [disable()] - Disable function
-  @param {function} [setProps(props)] - SetProps function
+  @method `open()` - Open method
+  @method `close()` - Close method
+  @method `enable()` - Enable method
+  @method `disable()` - Disable method
+  @method `setProps(props)` - SetProps method
 
   ### Events
   - `opening` - Triggered when popover is opening
