@@ -183,7 +183,7 @@ function fillData(doc, is_static) {
 
 function makeFunctionDoc(e, is_method = false) {
   let props = [];
-  let description = getDescription(e, "function");
+  let description = getDescription(e, is_method ? "method" : "function");
 
   if (typeof e.params != "undefined" && e.params.length) {
     e.params.forEach((i) => {
