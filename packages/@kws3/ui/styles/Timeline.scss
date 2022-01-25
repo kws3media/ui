@@ -1,0 +1,164 @@
+$kws-timeline-default-color: $grey !default;
+$kws-timeline-default-color-invert: $light !default;
+
+@mixin right-aligned-timeline-item {
+  flex-direction: row-reverse;
+  .kws-timeline-marker {
+    right: 0;
+    left: auto;
+    transform: translateX(50%);
+  }
+  .kws-timeline-content {
+    text-align: right;
+    padding-left: 0;
+    padding-right: 1.75rem;
+  }
+  &:before {
+    right: -0.5px;
+    left: auto;
+  }
+}
+
+.kws-timeline-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem 0;
+  &:first-child {
+    padding-top: 0;
+  }
+  &:last-child {
+    padding-bottom: 0;
+  }
+  .kws-timeline-marker {
+    position: absolute;
+    left: 0;
+    background: $kws-timeline-default-color;
+    border: 1px solid $kws-timeline-default-color;
+    border-radius: 100%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    overflow: hidden;
+    &:empty {
+      min-height: 1rem;
+      min-width: 1rem;
+      padding: 0;
+      border-width: 4px;
+      background: $kws-timeline-default-color-invert;
+    }
+    .icon {
+      color: $kws-timeline-default-color-invert;
+      width: 16px;
+      height: 16px;
+      font-size: 0.75rem !important;
+    }
+    .image {
+      margin: -0.25rem;
+      img {
+        border-radius: 100%;
+      }
+    }
+  }
+  .kws-timeline-content {
+    padding-left: 1.75rem;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  .kws-timeline-image {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 32px;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: $radius;
+      box-shadow: 0 0.125rem 0.1875rem rgba(10, 10, 10, 0.1),
+        0 0 0 0.0625rem rgba(10, 10, 10, 0.1);
+    }
+  }
+
+  &:before {
+    content: "";
+    background-color: $kws-timeline-default-color;
+    display: block;
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    left: -0.5px;
+    top: 0;
+  }
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+    &.is-#{$name} {
+      .kws-timeline-marker {
+        border-color: $color;
+        background-color: $color;
+        &:empty {
+          background-color: $color-invert;
+        }
+        .icon {
+          color: $color-invert;
+        }
+      }
+      &:before {
+        background-color: $color;
+      }
+    }
+  }
+}
+
+.kws-timeline-header {
+  width: 4em;
+  min-width: 4em;
+  word-wrap: normal;
+  text-align: center;
+  transform: translateX(-25px);
+  + .kws-timeline-header {
+    padding-top: 0.5rem;
+  }
+}
+
+.kws-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  &.is-center {
+    .kws-timeline-item {
+      width: 50%;
+      align-self: flex-end;
+      flex-direction: row;
+      &:nth-of-type(2n) {
+        align-self: flex-start;
+        @include right-aligned-timeline-item;
+      }
+    }
+    .kws-timeline-header {
+      width: 100%;
+      transform: none;
+    }
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+    align-items: flex-end;
+    .kws-timeline-item {
+      width: 100%;
+      align-self: flex-end;
+      @include right-aligned-timeline-item;
+    }
+    .kws-timeline-header {
+      transform: translateX(25px);
+      width: 100%;
+      text-align: right;
+    }
+  }
+}
