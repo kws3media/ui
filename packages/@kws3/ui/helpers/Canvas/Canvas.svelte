@@ -13,7 +13,7 @@
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'} [expandFrom="center center"] - The direction from which the canvas should expand, Default: `"center center"`
   @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
-  @param {number} [expandedScale=2] - Transform scale of the canvas on expansion, Default: `2`
+  @param {number} [expand=2] - Transform scale of the canvas on expansion, Default: `2`
   @param {'Pen'|'Eraser'|'Circle'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
   @param {'Pen'|'Eraser'|'Circle'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
@@ -27,7 +27,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 <div
   class="canvas-wrapper {expanded ? 'expanded' : ''}"
   style="width:{styles.width || '250px'}; transform: scale({expanded
-    ? expandedScale
+    ? 1 + expand * 0.01
     : initialScale});transform-origin:{expandFrom || 'center center'}"
   data-cy={cy}>
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
@@ -201,7 +201,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Transform scale of the canvas on expansion
      */
-    expandedScale = 2,
+    expand = 50,
     /**
      * List of tools available for user to select from
      * @type {'Pen'|'Eraser'|'Circle'}
@@ -278,7 +278,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   function setScaleFactor() {
     CANVAS_IMAGE &&
-      CANVAS_IMAGE.setScaleFactor(expanded ? expandedScale : initialScale);
+      CANVAS_IMAGE.setScaleFactor(expanded ? 1 + expand * 0.01 : initialScale);
   }
 
   function setLineColor() {

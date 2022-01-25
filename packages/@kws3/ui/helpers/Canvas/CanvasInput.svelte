@@ -24,7 +24,7 @@
     backgroundImage = "",
     expanded = false,
     initialScale = 1,
-    expandedScale = 2,
+    expand = 2,
     circlefillStyle = "", // for circle
     readonly = false,
     disabled = false,
@@ -87,7 +87,7 @@
         readonly,
         expanded,
         initialScale,
-        expandedScale,
+        expand,
         circlefillStyle,
       }
     );

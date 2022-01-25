@@ -21,7 +21,7 @@ export default function DrawImage(app, opts) {
   let drawingType = "line";
 
   if (opts.expanded) {
-    scaleFactor = opts.expandedScale;
+    scaleFactor = opts.expand;
   }
 
   this.undoManager = new UndoManager();
