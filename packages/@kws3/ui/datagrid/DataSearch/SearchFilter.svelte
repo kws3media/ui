@@ -11,7 +11,10 @@
 -->
 
 {#if filter.type == "multiselect"}
-  <div class="control search-control" style={filterWidthStyle}>
+  <div
+    class="control search-control"
+    class:is-expanded={shouldExpandToFill}
+    style={filterWidthStyle}>
     <MultiSelect
       options={sanitizedOptions}
       placeholder={`Any ${name}`}
@@ -23,14 +26,20 @@
       class={hilightClass} />
   </div>
 {:else if filter.type == "date"}
-  <div class="control search-control" style={filterWidthStyle}>
+  <div
+    class="control search-control"
+    class:is-expanded={shouldExpandToFill}
+    style={filterWidthStyle}>
     <Datepicker
       class={hilightClass}
       bind:value={filterVals[filter.name]}
       placeholder="{capitaliseFirstLetter(name)} Date" />
   </div>
 {:else if filter.type == "daterange"}
-  <div class="control search-control" style={filterWidthStyle}>
+  <div
+    class="control search-control"
+    class:is-expanded={shouldExpandToFill}
+    style={filterWidthStyle}>
     <Datepicker
       class={hilightClass}
       bind:value={filterVals[filter.name]}
@@ -38,7 +47,10 @@
       placeholder="{capitaliseFirstLetter(name)} Date Range" />
   </div>
 {:else if filter.options.length > 10}
-  <div class="control search-control" style={filterWidthStyle}>
+  <div
+    class="control search-control"
+    class:is-expanded={shouldExpandToFill}
+    style={filterWidthStyle}>
     <SearchableSelect
       options={sanitizedOptions}
       placeholder={`Any ${name}`}
@@ -50,12 +62,13 @@
 {:else}
   <div
     class="select control search-control {hilightClass}"
+    class:is-expanded={shouldExpandToFill}
     style={filterWidthStyle}
     data-cy="select-container">
     <select
       bind:value={filterVals[filter.name]}
       class="is-radiusless {hilightClass}"
-      style="max-width:100%"
+      style="max-width:100%;width:100%;"
       data-cy={cy}>
       {#each sanitizedOptions as option}
         {#if option}
@@ -102,6 +115,8 @@
   $: cy = name ? name.replace(/\s+/g, "-").toLowerCase() : "";
 
   $: filterVals, filter, convertToValuesArray();
+
+  $: shouldExpandToFill = !filterWidthStyle || filterWidthStyle.trim() == "";
 
   function convertValuesToString() {
     tick().then(() => {
