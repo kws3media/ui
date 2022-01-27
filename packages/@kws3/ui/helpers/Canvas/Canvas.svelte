@@ -3,6 +3,8 @@
 
 
   @param {object} [styles={}] - Inline CSS for the canvas, Default: `{}`
+  @param {string} [width="250px"] - Width of the canvas, Default: `250px`
+  @param {string} [height="250px"] - Height of the canvas, Default: `250px`
   @param {number} [lineWidth=2] - Pen input width, Default: `2`
   @param {number} [eraserWidth=6] - Eraser width, Default: `6`
   @param {string} [lineColor="#ff0000"] - Pen input color, Default: `"#ff0000"`
@@ -25,13 +27,13 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
 <div
   class="canvas-wrapper {expanded ? 'expanded' : ''}"
-  style="width:{styles.width || '250px'}; transform: scale({expanded
+  style="width:{width || '250px'}; transform: scale({expanded
     ? 1 + expand * 0.01
     : initialScale});transform-origin:{expandFrom || 'center center'}"
   data-cy={cy}>
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
 
-  <div class="canvas-controls" style="width:{styles.width || '250px'};">
+  <div class="canvas-controls" style="width:{width || '250px'};">
     {#if !readonly && !disabled}
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
@@ -151,10 +153,16 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
    * Inline CSS for the canvas
    */
   export let styles = {
-      width: "250px",
-      height: "250px",
       border: "1px solid #b5b5b5",
     },
+    /**
+     * Canvas width
+     */
+    width = "250px",
+    /**
+     * Canvas height
+     */
+    height = "250px",
     /**
      * Pen input width
      */

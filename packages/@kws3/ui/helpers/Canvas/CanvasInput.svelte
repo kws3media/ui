@@ -1,6 +1,6 @@
 <div
   class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
-  style="width:{styles.width || '340px'};height:{styles.height || '100px'}">
+  style="width:{width || '340px'};height:{height || '100px'}">
   {#if disabled || readonly}
     <img alt="canvasimage" src={image || emptyImage} style={_image_syles} />
   {/if}
@@ -13,10 +13,9 @@
 
   const fire = createEventDispatcher();
 
-  export let styles = {
-      width: "250px",
-      height: "250px",
-    },
+  export let styles = {},
+    width = "250px",
+    height = "250px",
     lineColor = "#ff0000",
     lineWidth = 2,
     eraserWidth = 6,
@@ -35,13 +34,15 @@
     emptyImage =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 
-  $: _image_syles = `width:${styles.width || "250px"}; height:${
-    styles.height || "250px"
-  }; border:${
-    styles.border || "1px solid #000000"
-  }; pointer-events: none; background-image:url(${
-    backgroundImage || ""
-  }); background-repeat: no-repeat; background-size: contain; background-position: center center;`;
+  $: _image_syles = `
+    width:${width || "250px"};
+    height:${height || "250px"};
+    border:${styles.border || "1px solid #000000"};
+    pointer-events: none; background-image:url(${backgroundImage || ""});
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+  `;
 
   $: {
     let default_styles = {
@@ -73,8 +74,8 @@
   $: readonly, setEvents();
 
   onMount(() => {
-    CANVAS && CANVAS.setAttribute("width", styles.width.replace("px", ""));
-    CANVAS && CANVAS.setAttribute("height", styles.height.replace("px", ""));
+    CANVAS && CANVAS.setAttribute("width", width.replace("px", ""));
+    CANVAS && CANVAS.setAttribute("height", height.replace("px", ""));
 
     CANVAS_IMAGE = new DrawImage(
       { CANVAS, fire },
