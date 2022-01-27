@@ -15,12 +15,6 @@
   {#if is_searching}Searching...{/if}
 </div>
 
-<style global>
-  .select {
-    margin-top: 8px;
-  }
-</style>
-
 <script>
   import { DataSearch as KwsDataSearch } from "@kws3/ui";
 
