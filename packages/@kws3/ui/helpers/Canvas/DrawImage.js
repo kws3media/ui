@@ -67,23 +67,6 @@ export default function DrawImage(app, opts) {
         context.lineTo(currentPos.x, currentPos.y);
         context.stroke();
         lastPos = currentPos;
-      } else if (drawingType == "circle") {
-        let _x = lastPos.x,
-          _y = lastPos.y,
-          _r = context.radius,
-          lw = context.lineWidth;
-        context.clearRect(
-          _x - _r - lw,
-          _y - _r - lw,
-          _r * 2 + lw * 2,
-          _r * 2 + lw * 2
-        );
-        context.beginPath();
-        context.arc(_x, _y, _r, 0, Math.PI * 2);
-        context.stroke();
-        if (context.circlefillStyle) {
-          context.fill();
-        }
       }
     }
   };
@@ -261,12 +244,6 @@ export default function DrawImage(app, opts) {
     } else if (toolType == "Eraser") {
       context.globalCompositeOperation = "destination-out";
       context.lineWidth = opts.eraserWidth || 4;
-    } else if (toolType == "Circle") {
-      drawingType = "circle";
-      context.strokeStyle = opts.strokeStyle || "#000000";
-      context.lineWidth = opts.lineWidth || 1;
-      context.radius = opts.radius || 60;
-      context.circlefillStyle = opts.circlefillStyle || "";
     }
   };
 

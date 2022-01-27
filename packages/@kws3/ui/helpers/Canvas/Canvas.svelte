@@ -7,15 +7,14 @@
   @param {number} [eraserWidth=6] - Eraser width, Default: `6`
   @param {string} [lineColor="#ff0000"] - Pen input color, Default: `"#ff0000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
-  @param {string} [circlefillStyle=""] - Fill color for circle shape, rgb, rgba or hex, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'} [expandFrom="center center"] - The direction from which the canvas should expand, Default: `"center center"`
   @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {number} [expand=2] - Transform scale of the canvas on expansion, Default: `2`
-  @param {'Pen'|'Eraser'|'Circle'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
-  @param {'Pen'|'Eraser'|'Circle'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
+  @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
+  @param {'Pen'|'Eraser'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
@@ -169,10 +168,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     lineColor = "#ff0000",
     /**
-     * Fill color for circle shape, rgb, rgba or hex
-     */
-    circlefillStyle = "",
-    /**
      * Background image for the canvas
      */
     backgroundImage = "",
@@ -204,12 +199,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     expand = 50,
     /**
      * List of tools available for user to select from
-     * @type {'Pen'|'Eraser'|'Circle'}
+     * @type {'Pen'|'Eraser'}
      */
-    tools = ["Pen", "Eraser", "Circle"],
+    tools = ["Pen", "Eraser"],
     /**
      * Default active tool
-     * @type {'Pen'|'Eraser'|'Circle'}
+     * @type {'Pen'|'Eraser'}
      */
     activeTool = "Pen",
     /**
@@ -243,10 +238,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     Eraser: {
       name: "Eraser",
       icon: "eraser",
-    },
-    Circle: {
-      name: "Circle",
-      icon: "circle",
     },
   };
 
