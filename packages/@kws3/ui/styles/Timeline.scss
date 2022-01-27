@@ -1,3 +1,4 @@
+$kws-theme-colors: $colors !default;
 $kws-timeline-default-color: $grey !default;
 $kws-timeline-default-color-invert: $light !default;
 
@@ -92,7 +93,7 @@ $kws-timeline-default-color-invert: $light !default;
     top: 0;
   }
 
-  @each $name, $pair in $colors {
+  @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
     $color-invert: nth($pair, 2);
     &.is-#{$name} {
