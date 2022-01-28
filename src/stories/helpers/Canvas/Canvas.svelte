@@ -18,6 +18,7 @@
       {tools}
       {activeTool}
       {actions}
+      {actionToolbarPosition}
       {drawing_label}
       {hide_colorpicker}
       {cy} />
@@ -55,6 +56,7 @@
     expandedScale = 2,
     tools = ["Pen", "Eraser"],
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
+    actionToolbarPosition = "bottom",
     activeTool = "Pen",
     drawing_label = "",
     hide_colorpicker = false,

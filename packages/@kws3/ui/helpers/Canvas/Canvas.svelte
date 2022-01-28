@@ -16,6 +16,7 @@
   @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {number} [expand=2] - Transform scale of the canvas on expansion, Default: `2`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
+  @param {bottom'|'top'} [actionToolbarPosition="bottom"] - Position of the action toolbar, Default: `"bottom"`
   @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
   @param {'Pen'|'Eraser'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
@@ -28,10 +29,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
 <div
   class="canvas-wrapper {expanded ? 'expanded' : ''}"
-  style="width:{width || '250px'}; transform: scale({expanded
-    ? 1 + expand * 0.01
-    : initialScale});transform-origin:{expandFrom || 'center center'}"
+  style={wrapperStyles}
   data-cy={cy}>
+  <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
+
   <CanvasControls
     {...$$props}
     {setTool}
@@ -44,8 +45,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     bind:canRedo
     bind:lineColor
     bind:showTools />
-
-  <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
 </div>
 
 <script>
@@ -116,6 +115,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     /**
+     * Default position of the action toolbar
+     * @type {'bottom'|'top'}
+     */
+    actionToolbarPosition = "bottom",
+    /**
      * List of tools available for user to select from
      * @type {'Pen'|'Eraser'}
      */
@@ -160,6 +164,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   };
 
   let _colorpicker,
+    wrapperStyles = {},
     penColor = "000000";
 
   $: {
@@ -169,6 +174,25 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
         : lineColor.length == 6
         ? lineColor
         : "000000";
+  }
+  $: {
+    let default_styles = {
+      display: "flex",
+      width: width || "250px",
+      transform: `scale(${expanded ? 1 + expand * 0.01 : initialScale})`,
+      "transform-origin": expandFrom || "center center",
+      "flex-direction": "column",
+    };
+
+    if (actionToolbarPosition == "bottom") {
+      default_styles["flex-direction"] = "column";
+    } else if (actionToolbarPosition == "top") {
+      default_styles["flex-direction"] = "column-reverse";
+    }
+
+    wrapperStyles = Object.entries(default_styles)
+      .map(([key, val]) => `${key}:${val}`)
+      .join(";");
   }
 
   $: expanded, setScaleFactor();
