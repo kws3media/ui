@@ -39,6 +39,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     {expanded}
     {expandContract}
     bind:CANVAS_IMAGE
+    bind:penColor
     bind:canUndo
     bind:canRedo
     bind:lineColor
