@@ -1,6 +1,6 @@
 <div
   class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
-  style="width:{width || '340px'};height:{height || '100px'}">
+  style="width:{width || '250px'};height:{height || '250px'}">
   {#if disabled || readonly}
     <img alt="canvasimage" src={image || emptyImage} style={_image_syles} />
   {/if}
@@ -57,8 +57,8 @@
       "background-image": `url(${backgroundImage})`,
     };
 
-    default_styles["width"] = "340px";
-    default_styles["height"] = "100px";
+    default_styles["width"] = width;
+    default_styles["height"] = height;
 
     let __styles = { ...default_styles, ...styles };
 
