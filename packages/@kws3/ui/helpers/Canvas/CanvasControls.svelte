@@ -49,6 +49,33 @@
           </button>
         </div>
       {/if}
+
+      <div class="control">
+        <div class="field has-addons">
+          <div class="control">
+            <button
+              use:tooltip
+              type="button"
+              class="button is-small is-warning "
+              data-tooltip="Undo"
+              on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.undo()}
+              disabled={!canUndo}>
+              <Icon icon="undo" size="small" />
+            </button>
+          </div>
+          <div class="control">
+            <button
+              use:tooltip
+              type="button"
+              class="button is-small is-warning "
+              data-tooltip="Redo"
+              on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.redo()}
+              disabled={!canRedo}>
+              <Icon icon="repeat" size="small" />
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   {:else if drawing_label}
     <p class="title is-5 has-text-centered">
@@ -61,7 +88,8 @@
   import { Icon, tooltip } from "@kws3/ui";
   import ColorPicker from "../../forms/colorpicker/Colorpicker";
 
-  export let width,
+  export let CANVAS_IMAGE,
+    width,
     disabled,
     drawing_label,
     readonly,
@@ -71,6 +99,8 @@
     lineColor,
     penColor,
     setTool,
+    canUndo,
+    canRedo,
     setLineColor,
     activeTool;
 
@@ -98,9 +128,7 @@
         : "000000";
   }
 
-  let canUndo = false,
-    canRedo = false,
-    expanded = false,
+  let expanded = false,
     settingFlag = false;
 
   function colorpicker(node) {

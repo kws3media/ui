@@ -35,7 +35,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     {...$$props}
     {setTool}
     {setLineColor}
-    bind:penColor
+    bind:CANVAS_IMAGE
+    bind:canUndo
+    bind:canRedo
+    bind:lineColor
     bind:showTools />
 
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
