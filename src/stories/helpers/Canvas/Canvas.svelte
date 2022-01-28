@@ -4,6 +4,8 @@
     <KwsCanvas
       bind:image
       {styles}
+      {width}
+      {height}
       {lineWidth}
       {eraserWidth}
       {lineColor}
@@ -25,8 +27,8 @@
       <img
         alt="canvasoutput"
         src={image}
-        width={styles.width}
-        height={styles.height}
+        {width}
+        {height}
         style="border: 1px solid #b5b5b5;" />
     {/if}
   </div>
@@ -36,10 +38,10 @@
   import { Canvas as KwsCanvas } from "@kws3/ui";
 
   export let styles = {
-      width: "250px",
-      height: "250px",
       border: "1px solid #b5b5b5",
     },
+    width = "250px",
+    height = "250px",
     lineWidth = 2,
     eraserWidth = 6,
     lineColor = "#ff0000",
