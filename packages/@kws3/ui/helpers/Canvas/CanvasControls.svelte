@@ -76,6 +76,29 @@
           </div>
         </div>
       </div>
+
+      <div class="control">
+        <button
+          use:tooltip
+          type="button"
+          class="button is-small is-danger"
+          data-tooltip="Reset"
+          on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.reset()}>
+          <Icon icon="refresh" size="small" />
+        </button>
+      </div>
+
+      <div class="control">
+        <button
+          use:tooltip
+          bind:this={EXPANDED_BUTTON}
+          type="button"
+          class="button is-small is-dark"
+          data-tooltip={expanded ? "Contract" : "Expand"}
+          on:click={expandContract}>
+          <Icon icon={expanded ? "compress" : "expand"} size="small" />
+        </button>
+      </div>
     </div>
   {:else if drawing_label}
     <p class="title is-5 has-text-centered">
@@ -89,6 +112,7 @@
   import ColorPicker from "../../forms/colorpicker/Colorpicker";
 
   export let CANVAS_IMAGE,
+    EXPANDED_BUTTON,
     width,
     disabled,
     drawing_label,
@@ -101,6 +125,8 @@
     setTool,
     canUndo,
     canRedo,
+    expanded,
+    expandContract,
     setLineColor,
     activeTool;
 
@@ -128,8 +154,7 @@
         : "000000";
   }
 
-  let expanded = false,
-    settingFlag = false;
+  let settingFlag = false;
 
   function colorpicker(node) {
     _colorpicker = new ColorPicker(node);

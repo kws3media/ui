@@ -35,6 +35,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     {...$$props}
     {setTool}
     {setLineColor}
+    {expanded}
+    {expandContract}
     bind:CANVAS_IMAGE
     bind:canUndo
     bind:canRedo
@@ -43,7 +45,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
 
-  <div class="canvas-controls" style="width:{width || '250px'};">
+  <!-- <div class="canvas-controls" style="width:{width || '250px'};">
     {#if !readonly && !disabled}
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
@@ -150,7 +152,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
         {drawing_label}
       </p>
     {/if}
-  </div>
+  </div> -->
 </div>
 
 <script>
