@@ -31,6 +31,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     ? 1 + expand * 0.01
     : initialScale});transform-origin:{expandFrom || 'center center'}"
   data-cy={cy}>
+  <CanvasControls {...$$props} {width} bind:showTools />
+
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
 
   <div class="canvas-controls" style="width:{width || '250px'};">
@@ -145,6 +147,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
 <script>
   import CanvasInput from "./CanvasInput.svelte";
+  import CanvasControls from "./CanvasControls.svelte";
   import ColorPicker from "../../forms/colorpicker/Colorpicker";
   import { Icon, tooltip } from "@kws3/ui";
   import { onMount } from "svelte";
