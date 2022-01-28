@@ -31,7 +31,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     ? 1 + expand * 0.01
     : initialScale});transform-origin:{expandFrom || 'center center'}"
   data-cy={cy}>
-  <CanvasControls {...$$props} {width} bind:showTools />
+  <CanvasControls
+    {...$$props}
+    {setTool}
+    {setLineColor}
+    bind:penColor
+    bind:showTools />
 
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
 

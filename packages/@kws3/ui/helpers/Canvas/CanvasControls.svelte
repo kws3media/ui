@@ -14,7 +14,7 @@
             </button>
           </div>
 
-          <!-- <div
+          <div
             class="dropdown-menu"
             id="tools-dropdown"
             role="menu"
@@ -31,9 +31,24 @@
                 </a>
               {/each}
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
+
+      {#if tools.indexOf("Pen") != -1 && !hide_colorpicker}
+        <div class="control" use:tooltip data-tooltip="Pen Color">
+          <button
+            use:colorpicker={penColor}
+            use:tooltip
+            type="button"
+            class="button is-small"
+            data-tooltip="Pen Color"
+            style="background-color:#{penColor};"
+            disabled={activeTool != "Pen"}>
+            <Icon icon="crosshairs" size="small" />
+          </button>
+        </div>
+      {/if}
     </div>
   {:else if drawing_label}
     <p class="title is-5 has-text-centered">
@@ -44,8 +59,20 @@
 
 <script>
   import { Icon, tooltip } from "@kws3/ui";
+  import ColorPicker from "../../forms/colorpicker/Colorpicker";
 
-  export let width, disabled, drawing_label, readonly, showTools, activeTool;
+  export let width,
+    disabled,
+    drawing_label,
+    readonly,
+    showTools,
+    tools,
+    hide_colorpicker,
+    lineColor,
+    penColor,
+    setTool,
+    setLineColor,
+    activeTool;
 
   let toolMap = {
     Pen: {
@@ -58,8 +85,37 @@
     },
   };
 
+  let _colorpicker;
+
+  $: penColor, setLineColor();
+
+  $: {
+    penColor =
+      lineColor.substr(0, 1) == "#"
+        ? lineColor.substr(1)
+        : lineColor.length == 6
+        ? lineColor
+        : "000000";
+  }
+
   let canUndo = false,
     canRedo = false,
     expanded = false,
     settingFlag = false;
+
+  function colorpicker(node) {
+    _colorpicker = new ColorPicker(node);
+
+    _colorpicker.on("change", (_color) => (penColor = _color));
+    _colorpicker.set("#" + penColor);
+
+    return {
+      update(newColor) {
+        _colorpicker.set("#" + newColor);
+      },
+      destroy() {
+        _colorpicker.destroy();
+      },
+    };
+  }
 </script>
