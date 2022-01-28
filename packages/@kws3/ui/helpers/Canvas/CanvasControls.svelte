@@ -1,57 +1,57 @@
 <div class="canvas-controls" style="width:{width || '250px'};">
   {#if !readonly && !disabled}
     <div class="field is-grouped is-grouped-centered">
-      <div class="control">
-        <div class="dropdown is-{showTools ? 'active' : ''} is-up">
-          <div class="dropdown-trigger">
-            <button
-              use:tooltip
-              class="button is-info is-small "
-              data-tooltip="Tools"
-              aria-controls="tools-dropdown"
-              on:click={() => (showTools = !showTools)}>
-              <Icon icon={toolMap[activeTool].icon} size="small" />
-            </button>
-          </div>
+      {#each actions as action}
+        {#if action == "controls"}
+          <div class="control">
+            <div class="dropdown is-{showTools ? 'active' : ''} is-up">
+              <div class="dropdown-trigger">
+                <button
+                  use:tooltip
+                  class="button is-info is-small "
+                  data-tooltip="Tools"
+                  aria-controls="tools-dropdown"
+                  on:click={() => (showTools = !showTools)}>
+                  <Icon icon={toolMap[activeTool].icon} size="small" />
+                </button>
+              </div>
 
-          <div
-            class="dropdown-menu"
-            id="tools-dropdown"
-            role="menu"
-            style="min-width:auto;">
-            <div class="dropdown-content has-text-left">
-              {#each tools as tool}
-                <a
-                  href="/#"
-                  class="dropdown-item"
-                  on:click|preventDefault={() => setTool(tool)}
-                  style="padding-right:1rem;">
-                  <Icon icon={toolMap[tool].icon} size="small" />
-                  <span>{toolMap[tool].name}</span>
-                </a>
-              {/each}
+              <div
+                class="dropdown-menu"
+                id="tools-dropdown"
+                role="menu"
+                style="min-width:auto;">
+                <div class="dropdown-content has-text-left">
+                  {#each tools as tool}
+                    <a
+                      href="/#"
+                      class="dropdown-item"
+                      on:click|preventDefault={() => setTool(tool)}
+                      style="padding-right:1rem;">
+                      <Icon icon={toolMap[tool].icon} size="small" />
+                      <span>{toolMap[tool].name}</span>
+                    </a>
+                  {/each}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {#if tools.indexOf("Pen") != -1 && !hide_colorpicker}
-        <div class="control" use:tooltip data-tooltip="Pen Color">
-          <button
-            use:colorpicker={penColor}
-            use:tooltip
-            type="button"
-            class="button is-small"
-            data-tooltip="Pen Color"
-            style="background-color:#{penColor};"
-            disabled={activeTool != "Pen"}>
-            <Icon icon="crosshairs" size="small" />
-          </button>
-        </div>
-      {/if}
-
-      <div class="control">
-        <div class="field has-addons">
+        {:else if action == "colorpicker"}
+          {#if tools.indexOf("Pen") != -1 && !hide_colorpicker}
+            <div class="control" use:tooltip data-tooltip="Pen Color">
+              <button
+                use:colorpicker={penColor}
+                use:tooltip
+                type="button"
+                class="button is-small"
+                data-tooltip="Pen Color"
+                style="background-color:#{penColor};"
+                disabled={activeTool != "Pen"}>
+                <Icon icon="crosshairs" size="small" />
+              </button>
+            </div>
+          {/if}
+        {:else if action == "undo"}
           <div class="control">
             <button
               use:tooltip
@@ -63,6 +63,7 @@
               <Icon icon="undo" size="small" />
             </button>
           </div>
+        {:else if action == "redo"}
           <div class="control">
             <button
               use:tooltip
@@ -74,31 +75,31 @@
               <Icon icon="repeat" size="small" />
             </button>
           </div>
-        </div>
-      </div>
-
-      <div class="control">
-        <button
-          use:tooltip
-          type="button"
-          class="button is-small is-danger"
-          data-tooltip="Reset"
-          on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.reset()}>
-          <Icon icon="refresh" size="small" />
-        </button>
-      </div>
-
-      <div class="control">
-        <button
-          use:tooltip
-          bind:this={EXPANDED_BUTTON}
-          type="button"
-          class="button is-small is-dark"
-          data-tooltip={expanded ? "Contract" : "Expand"}
-          on:click={expandContract}>
-          <Icon icon={expanded ? "compress" : "expand"} size="small" />
-        </button>
-      </div>
+        {:else if action == "reset"}
+          <div class="control">
+            <button
+              use:tooltip
+              type="button"
+              class="button is-small is-danger"
+              data-tooltip="Reset"
+              on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.reset()}>
+              <Icon icon="refresh" size="small" />
+            </button>
+          </div>
+        {:else if action == "expand"}
+          <div class="control">
+            <button
+              use:tooltip
+              bind:this={EXPANDED_BUTTON}
+              type="button"
+              class="button is-small is-dark"
+              data-tooltip={expanded ? "Contract" : "Expand"}
+              on:click={expandContract}>
+              <Icon icon={expanded ? "compress" : "expand"} size="small" />
+            </button>
+          </div>
+        {/if}
+      {/each}
     </div>
   {:else if drawing_label}
     <p class="title is-5 has-text-centered">
@@ -126,6 +127,7 @@
     canUndo,
     canRedo,
     expanded,
+    actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     expandContract,
     setLineColor,
     activeTool;
@@ -140,6 +142,8 @@
       icon: "eraser",
     },
   };
+
+  console.log($$props);
 
   let _colorpicker;
 

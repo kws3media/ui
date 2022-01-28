@@ -15,6 +15,7 @@
   @param {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'} [expandFrom="center center"] - The direction from which the canvas should expand, Default: `"center center"`
   @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {number} [expand=2] - Transform scale of the canvas on expansion, Default: `2`
+  @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
   @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
   @param {'Pen'|'Eraser'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
@@ -44,115 +45,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     bind:showTools />
 
   <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
-
-  <!-- <div class="canvas-controls" style="width:{width || '250px'};">
-    {#if !readonly && !disabled}
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <div class="dropdown is-{showTools ? 'active' : ''} is-up">
-            <div class="dropdown-trigger">
-              <button
-                use:tooltip
-                class="button is-info is-small "
-                data-tooltip="Tools"
-                aria-controls="tools-dropdown"
-                on:click={() => (showTools = !showTools)}>
-                <Icon icon={toolMap[activeTool].icon} size="small" />
-              </button>
-            </div>
-
-            <div
-              class="dropdown-menu"
-              id="tools-dropdown"
-              role="menu"
-              style="min-width:auto;">
-              <div class="dropdown-content has-text-left">
-                {#each tools as tool}
-                  <a
-                    href="/#"
-                    class="dropdown-item"
-                    on:click|preventDefault={() => setTool(tool)}
-                    style="padding-right:1rem;">
-                    <Icon icon={toolMap[tool].icon} size="small" />
-                    <span>{toolMap[tool].name}</span>
-                  </a>
-                {/each}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {#if tools.indexOf("Pen") != -1 && !hide_colorpicker}
-          <div class="control" use:tooltip data-tooltip="Pen Color">
-            <button
-              use:colorpicker={penColor}
-              use:tooltip
-              type="button"
-              class="button is-small"
-              data-tooltip="Pen Color"
-              style="background-color:#{penColor};"
-              disabled={activeTool != "Pen"}>
-              <Icon icon="crosshairs" size="small" />
-            </button>
-          </div>
-        {/if}
-
-        <div class="control">
-          <div class="field has-addons">
-            <div class="control">
-              <button
-                use:tooltip
-                type="button"
-                class="button is-small is-warning "
-                data-tooltip="Undo"
-                on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.undo()}
-                disabled={!canUndo}>
-                <Icon icon="undo" size="small" />
-              </button>
-            </div>
-            <div class="control">
-              <button
-                use:tooltip
-                type="button"
-                class="button is-small is-warning "
-                data-tooltip="Redo"
-                on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.redo()}
-                disabled={!canRedo}>
-                <Icon icon="repeat" size="small" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="control">
-          <button
-            use:tooltip
-            type="button"
-            class="button is-small is-danger"
-            data-tooltip="Reset"
-            on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.reset()}>
-            <Icon icon="refresh" size="small" />
-          </button>
-        </div>
-
-        <div class="control">
-          <button
-            use:tooltip
-            bind:this={EXPANDED_BUTTON}
-            type="button"
-            class="button is-small is-dark"
-            data-tooltip={expanded ? "Contract" : "Expand"}
-            on:click={expandContract}>
-            <Icon icon={expanded ? "compress" : "expand"} size="small" />
-          </button>
-        </div>
-      </div>
-    {:else if drawing_label}
-      <p class="title is-5 has-text-centered">
-        {drawing_label}
-      </p>
-    {/if}
-  </div> -->
 </div>
 
 <script>
@@ -218,6 +110,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * Transform scale of the canvas on expansion
      */
     expand = 50,
+    /**
+     * List of actions toolbar
+     */
+    actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     /**
      * List of tools available for user to select from
      * @type {'Pen'|'Eraser'}
