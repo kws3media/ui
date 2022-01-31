@@ -247,20 +247,4 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     canRedo = detail.canRedo;
     settingFlag = false;
   }
-
-  function colorpicker(node) {
-    _colorpicker = new ColorPicker(node);
-
-    _colorpicker.on("change", (_color) => (penColor = _color));
-    _colorpicker.set("#" + penColor);
-
-    return {
-      update(newColor) {
-        _colorpicker.set("#" + newColor);
-      },
-      destroy() {
-        _colorpicker.destroy();
-      },
-    };
-  }
 </script>
