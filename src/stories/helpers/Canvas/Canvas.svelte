@@ -14,7 +14,7 @@
       {disabled}
       {expandFrom}
       {initialScale}
-      {expandedScale}
+      {expand}
       {tools}
       {activeTool}
       {actions}
@@ -53,7 +53,7 @@
     image = "",
     expandFrom = "center center",
     initialScale = 1,
-    expandedScale = 2,
+    expand = 50,
     tools = ["Pen", "Eraser"],
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     actionToolbarPosition = "bottom",

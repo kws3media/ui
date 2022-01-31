@@ -14,7 +14,7 @@
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'} [expandFrom="center center"] - The direction from which the canvas should expand, Default: `"center center"`
   @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
-  @param {number} [expand=2] - Transform scale of the canvas on expansion, Default: `2`
+  @param {number} [expand=50] - Transform scale of the canvas on expansion, Default: `50`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
   @param {bottom'|'top'} [actionToolbarPosition="bottom"] - Position of the action toolbar, Default: `"bottom"`
   @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
@@ -50,7 +50,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 <script>
   import CanvasInput from "./CanvasInput.svelte";
   import CanvasControls from "./CanvasControls.svelte";
-  import ColorPicker from "../../forms/colorpicker/Colorpicker";
   import { onMount } from "svelte";
 
   /**
