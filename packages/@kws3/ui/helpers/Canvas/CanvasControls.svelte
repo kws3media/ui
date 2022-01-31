@@ -1,6 +1,8 @@
-<div class="canvas-controls" style="width:{width || '250px'};">
+<div class="canvas-controls" style={canvasControlsStyles}>
   {#if !readonly && !disabled}
-    <div class="field is-grouped is-grouped-centered">
+    <div
+      class="columns m-0 is-justify-content-center {controlClasses}"
+      style="gap: 0.5rem;">
       {#each actions as action}
         {#if action == "controls"}
           <div class="control">
@@ -130,6 +132,7 @@
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     expandContract,
     setLineColor,
+    actionToolbarPosition,
     activeTool;
 
   let toolMap = {
@@ -143,12 +146,11 @@
     },
   };
 
-  console.log($$props);
-
+  let canvasControlsStyles = {};
   let _colorpicker;
+  let controlClasses = "is-flex-direction-row";
 
   $: penColor, setLineColor();
-
   $: {
     penColor =
       lineColor.substr(0, 1) == "#"
@@ -158,7 +160,24 @@
         : "000000";
   }
 
-  let settingFlag = false;
+  $: {
+    if (actionToolbarPosition == "left" || actionToolbarPosition == "right") {
+      controlClasses = "is-flex-direction-column";
+    }
+  }
+
+  $: {
+    let control_default_styles = {
+      width:
+        actionToolbarPosition == "left" || actionToolbarPosition == "right"
+          ? "auto"
+          : width || "250px",
+    };
+
+    canvasControlsStyles = Object.entries(control_default_styles)
+      .map(([key, val]) => `${key}:${val}`)
+      .join(";");
+  }
 
   function colorpicker(node) {
     _colorpicker = new ColorPicker(node);

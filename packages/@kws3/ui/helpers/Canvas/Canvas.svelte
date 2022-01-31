@@ -51,7 +51,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   import CanvasInput from "./CanvasInput.svelte";
   import CanvasControls from "./CanvasControls.svelte";
   import ColorPicker from "../../forms/colorpicker/Colorpicker";
-  import { Icon, tooltip } from "@kws3/ui";
   import { onMount } from "svelte";
 
   /**
@@ -116,7 +115,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     /**
      * Default position of the action toolbar
-     * @type {'bottom'|'top'}
+     * @type {'bottom'|'top'|'left'|'right'}
      */
     actionToolbarPosition = "bottom",
     /**
@@ -188,6 +187,14 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       default_styles["flex-direction"] = "column";
     } else if (actionToolbarPosition == "top") {
       default_styles["flex-direction"] = "column-reverse";
+    } else if (actionToolbarPosition == "right") {
+      let _width = +width.replace("px", "") + 30;
+      default_styles["width"] = _width + "px";
+      default_styles["flex-direction"] = "row";
+    } else if (actionToolbarPosition == "left") {
+      let _width = +width.replace("px", "") + 40;
+      default_styles["width"] = _width + "px";
+      default_styles["flex-direction"] = "row-reverse";
     }
 
     wrapperStyles = Object.entries(default_styles)
