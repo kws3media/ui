@@ -2,6 +2,7 @@
   <div class="column has-text-centered">
     <label for="" class="label">Input</label>
     <KwsCanvas
+      bind:this={canvasWrapper}
       bind:image
       {styles}
       {width}
@@ -38,6 +39,8 @@
 
 <script>
   import { Canvas as KwsCanvas } from "@kws3/ui";
+
+  let canvasWrapper;
 
   export let styles = {
       border: "1px solid #b5b5b5",
