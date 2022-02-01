@@ -209,6 +209,13 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     setTool(activeTool);
   });
 
+  export function getActions() {
+    if (CANVAS_IMAGE) {
+      return CANVAS_IMAGE;
+    }
+    return null;
+  }
+
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
