@@ -13,7 +13,6 @@
       {backgroundImage}
       {readonly}
       {disabled}
-      {expandFrom}
       {initialScale}
       {expand}
       {tools}
@@ -54,9 +53,12 @@
     readonly = false,
     disabled = false,
     image = "",
-    expandFrom = "center center",
     initialScale = 1,
-    expand = 50,
+    expand = {
+      from: "center",
+      to: "center",
+      scale: 50,
+    },
     tools = ["Pen", "Eraser"],
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     actionToolbarPosition = "bottom",

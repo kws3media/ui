@@ -12,9 +12,8 @@
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
-  @param {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'} [expandFrom="center center"] - The direction from which the canvas should expand, Default: `"center center"`
   @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
-  @param {number} [expand=50] - Transform scale of the canvas on expansion, Default: `50`
+  @param {object} [expand={}] - Transform scale and the direction from which the canvas should expand on expansion, Default: `{from: "center", to: "center", scale: 50}`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
   @param {bottom'|'top'} [actionToolbarPosition="bottom"] - Position of the action toolbar, Default: `"bottom"`
   @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
@@ -95,19 +94,14 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     image = "",
     /**
-     * The direction from which the canvas should expand
-     * @type {'center center'|'center right'|'center left'|'right bottom'|'bottom right'|'top right'|'right top'}
-     * @link https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
-     */
-    expandFrom = "center center",
-    /**
      * Initial transform scale for the canvas before expansion
      */
     initialScale = 1,
     /**
      * Transform scale of the canvas on expansion
+     * The direction from which the canvas should expand
      */
-    expand = 50,
+    expand = { from: "center", to: "center", scale: 50 },
     /**
      * List of actions toolbar
      */
@@ -177,8 +171,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     let default_styles = {
       display: "flex",
       width: width || "250px",
-      transform: `scale(${expanded ? 1 + expand * 0.01 : initialScale})`,
-      "transform-origin": expandFrom || "center center",
+      transform: `scale(${expanded ? 1 + expand.scale * 0.01 : initialScale})`,
+      "transform-origin": `${expand.from || "center"} ${expand.to || "center"}`,
       "flex-direction": "column",
     };
 
@@ -224,7 +218,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   function setScaleFactor() {
     CANVAS_IMAGE &&
-      CANVAS_IMAGE.setScaleFactor(expanded ? 1 + expand * 0.01 : initialScale);
+      CANVAS_IMAGE.setScaleFactor(
+        expanded ? 1 + expand.scale * 0.01 : initialScale
+      );
   }
 
   function setLineColor() {

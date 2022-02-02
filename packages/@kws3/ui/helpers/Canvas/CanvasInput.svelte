@@ -87,7 +87,7 @@
         readonly,
         expanded,
         initialScale,
-        expand,
+        expand: expand.scale,
       }
     );
 
