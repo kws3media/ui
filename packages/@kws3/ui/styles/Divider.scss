@@ -1,0 +1,102 @@
+$kws-theme-colors: $colors !default;
+$kws-divider-color: $border !default;
+$kws-divider-font-size: $size-7 !default;
+$kws-divider-gap: 0.25rem !default;
+$kws-divider-margin: 1rem !default;
+
+.kws-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  color: $grey;
+  font-size: $kws-divider-font-size;
+  font-weight: $weight-semibold;
+  letter-spacing: 0.5px;
+  margin: $kws-divider-margin 0;
+  width: 100%;
+
+  &::after,
+  &::before {
+    content: "";
+    display: block;
+    flex: 1;
+    height: 1px;
+    background-color: $kws-divider-color;
+  }
+
+  &:not(.is-right),
+  &:not(.is-bottom) {
+    &::after {
+      margin-left: $kws-divider-gap;
+    }
+  }
+
+  &:not(.is-left),
+  &:not(.is-top) {
+    &::before {
+      margin-right: $kws-divider-gap;
+    }
+  }
+
+  &.is-left,
+  &.is-top {
+    &::before {
+      display: none;
+    }
+  }
+
+  &.is-right,
+  &.is-bottom {
+    &::after {
+      display: none;
+    }
+  }
+
+  &.is-vertical {
+    flex-direction: column;
+    margin: 0 $kws-divider-margin;
+    height: 100%;
+    width: auto;
+
+    &::after,
+    &::before {
+      height: auto;
+      width: 1px;
+    }
+
+    &::after {
+      margin-left: 0;
+      margin-top: $kws-divider-gap;
+    }
+
+    &::before {
+      margin-right: 0;
+      margin-bottom: $kws-divider-gap;
+    }
+  }
+
+  &:empty {
+    &::after,
+    &::before {
+      margin: 0;
+    }
+  }
+
+  @each $name, $pair in $kws-theme-colors {
+    $color: nth($pair, 1);
+    $color-light: findLightColor($color);
+    &.is-#{$name} {
+      &::after,
+      &::before {
+        background-color: $color;
+      }
+      &.is-light {
+        &::after,
+        &::before {
+          background-color: $color-light;
+        }
+      }
+    }
+  }
+}

@@ -11,6 +11,7 @@ export { default as Notification } from "./helpers/Notification.svelte";
 export { default as Loader } from "./helpers/Loader.svelte";
 export { default as ActionSheet } from "./helpers/ActionSheet.svelte";
 export { default as Skeleton } from "./helpers/Skeleton.svelte";
+export { default as Divider } from "./helpers/Divider.svelte";
 export { default as Timeline } from "./helpers/Timeline/Timeline.svelte";
 export { default as TimelineItem } from "./helpers/Timeline/TimelineItem.svelte";
 export { default as TimelineHeader } from "./helpers/Timeline/TimelineHeader.svelte";
