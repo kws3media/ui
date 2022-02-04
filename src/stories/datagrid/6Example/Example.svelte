@@ -95,7 +95,7 @@
   {#if has_pagination}
     <div class="columns">
       <div class="column">
-        <Pagination {meta} {perPageOptions} on:paginate={paginate} />
+        <Pagination {...meta} {perPageOptions} on:paginate={paginate} />
       </div>
     </div>
   {/if}
