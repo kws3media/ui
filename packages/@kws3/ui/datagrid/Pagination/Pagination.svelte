@@ -21,8 +21,12 @@
   @param {array} [perPageOptions=[]] - Determines the number of rows displayed in a page., Default: `[]`
 
   ### Events
-  - `setLimit` - Event used to set limit of pagination
-  - `paginate` - Event triggered on paginate
+  - `setLimit` - Event used to set a new `limit`.
+
+*Event Data:* `{currentPage, newLimit}`
+  - `paginate` - Event triggered on pagination change with new `offset` and current `limit` values.
+
+*Event Data:* `{offset, limit}`
 
 -->
 <div
@@ -281,7 +285,9 @@
 
   function setLimit(limit) {
     /**
-     * Event used to set limit of pagination
+     * Event used to set a new `limit`.
+     *
+     * *Event Data:* `{currentPage, newLimit}`
      */
     fire("setLimit", { currentPage, newLimit: limit });
   }
@@ -291,7 +297,9 @@
       __offset = limit * i;
     if (__offset >= 0 && __offset != _offset && __offset < _total) {
       /**
-       * Event triggered on paginate
+       * Event triggered on pagination change with new `offset` and current `limit` values.
+       *
+       * *Event Data:* `{offset, limit}`
        */
       fire("paginate", { offset: __offset, limit });
     }
