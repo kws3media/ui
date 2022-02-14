@@ -12,7 +12,9 @@
     "bootstrap": "lerna bootstrap --hoist",
     "publish": "lerna publish",
     "list": "lerna list",
-    "what_changed": "sh ./what_changed.sh"
+    "what_changed": "sh ./what_changed.sh",
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix src/"
   },
   "dependencies": {
     "bulma": "^0.9.3",
