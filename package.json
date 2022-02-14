@@ -13,8 +13,8 @@
     "publish": "lerna publish",
     "list": "lerna list",
     "what_changed": "sh ./what_changed.sh",
-    "lint": "eslint src/ packages/",
-    "lint:fix": "eslint --fix src/ packages/"
+    "lint": "eslint packages/ src/",
+    "lint:fix": "eslint --fix packages/ src/"
   },
   "dependencies": {
     "bulma": "^0.9.3",
