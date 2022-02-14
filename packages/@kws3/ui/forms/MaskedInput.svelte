@@ -32,7 +32,7 @@ Requires `guide` to be `true`, Default: `false`
   bind:this={inputElement} />
 
 <script>
-  import { onMount, tick } from "svelte";
+  import { onMount } from "svelte";
   import {
     createTextMaskInputElement,
     conformToMask,

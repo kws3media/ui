@@ -66,7 +66,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         </li>
         <li
           class="tag is-{size} summary-text  is-{color || 'primary'} is-light">
-          Item{selectedOptions.length == 1 ? "" : "s"} selected
+          Item{selectedOptions.length === 1 ? "" : "s"} selected
         </li>
       {:else}
         {#each selectedOptions as tag}
@@ -298,9 +298,10 @@ Default value: `<span>{option[search_key] || option}</span>`
   $: _placeholder = hasValue ? "" : placeholder;
 
   //ensure search_key and value_key are no empty strings
-  $: used_search_key = search_key && search_key != "" ? search_key : "name";
-  $: used_value_key = value_key && value_key != "" ? value_key : "id";
+  $: used_search_key = search_key && search_key !== "" ? search_key : "name";
+  $: used_value_key = value_key && value_key !== "" ? value_key : "id";
 
+  // eslint-disable-next-line no-redeclare
   $: shouldShowClearAll = hasValue;
 
   $: options, normaliseOptions();
@@ -322,7 +323,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   //TODO: optimise isSelected function
   $: isSelected = (option) => {
     if (single) return matchesValue(value, option);
-    if (!(value && value.length > 0) || value == "") return false;
+    if (!(value && value.length > 0) || value === "") return false;
     // nothing is selected if `value` is the empty array or string
     else return value.some((v) => matchesValue(v, option));
   };
@@ -384,13 +385,13 @@ Default value: `<span>{option[search_key] || option}</span>`
   function fillSelectedOptions() {
     if (single) {
       selectedOptions = normalisedOptions.filter(
-        (v) => `${v[used_value_key]}` == `${value}`
+        (v) => `${v[used_value_key]}` === `${value}`
       );
       setSingleVisibleValue();
     } else {
       selectedOptions = normalisedOptions
         .filter(
-          (v) => value && value.some((vl) => `${v[used_value_key]}` == `${vl}`)
+          (v) => value && value.some((vl) => `${v[used_value_key]}` === `${vl}`)
         )
         .sort(
           (a, b) =>
@@ -440,7 +441,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (!isAlreadySelected && !single && (max === null || value.length < max)) {
       //attach to value array while filtering out invalid values
       value = [...value, token[used_value_key]].filter((v) => {
-        return normalisedOptions.filter((nv) => nv[used_value_key] == v).length;
+        return normalisedOptions.filter((nv) => nv[used_value_key] === v)
+          .length;
       });
       searchText = ""; // reset search string on selection
 
