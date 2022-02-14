@@ -15,6 +15,7 @@ If this is set to `true`, the `radius` property will be ignored., Default: `fals
   @param {string} [class=""] - CSS class for Skeleton, Default: `""`
 
 -->
+<!-- eslint-disable-next-line no-unused-vars -->
 {#each { length: lines } as _, i}
   <span
     class="kws-skeleton is-{color} {klass}"

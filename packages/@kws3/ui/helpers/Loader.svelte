@@ -5,7 +5,7 @@
   @param {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [spinner_color="grey"] - Color of the Spinner, Default: `"grey"`
   @param {'small'|'medium'|'large'} [spinner_size="medium"] - Size of the Spinner, Default: `"medium"`
   @param {'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'} [background_color="transparent"] - Backgound color of the Spinner container, Default: `"transparent"`
-  @param {string} [background_size="medium"] - Size of the Spinner container.  It can also accept css units
+  @param {string} [background_size="medium"] - Size of the Spinner container. It can also accept css units
 
 **Examples:** `small` | `medium` | `large` | `halfheight` | `fullheight` | `10px` | `5rem` | `100vh`, Default: `"medium"`
   @param {boolean} [is_inline=false] - Determines if the Loader is inline or not, Default: `false`
@@ -48,7 +48,7 @@ The overlay is absolutely positioned. Ensure that the parent container is relati
      */
     background_color = "transparent",
     /**
-     * Size of the Spinner container.  It can also accept css units
+     * Size of the Spinner container. It can also accept css units
      *
      * **Examples:** `small` | `medium` | `large` | `halfheight` | `fullheight` | `10px` | `5rem` | `100vh`
      */
@@ -86,14 +86,14 @@ The overlay is absolutely positioned. Ensure that the parent container is relati
 
   function determineHeightStyles() {
     if (
-      bg_sizes.indexOf(background_size) == -1 &&
+      bg_sizes.indexOf(background_size) === -1 &&
       typeof background_size == "string" &&
       background_size.length
     ) {
       _height = "height: " + background_size + ";";
 
       _style =
-        (style.length && style.charAt(style.length - 1) != ";"
+        (style.length && style.charAt(style.length - 1) !== ";"
           ? style + ";"
           : style) + _height;
       _background_size = "";
