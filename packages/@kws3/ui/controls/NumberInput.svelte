@@ -183,7 +183,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   const count = (i) => () => {
     if (typeof value == "undefined" || value === null) value = min;
     value = Number(value) + i * step;
-    if (step % 1 != 0) value = value.toFixed(1);
+    if (step % 1 !== 0) value = value.toFixed(1);
   };
 
   function validateInput() {
@@ -194,7 +194,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     if (value < min) value = min;
     if (value > max) value = max;
 
-    if (_old_value != value) {
+    if (_old_value !== value) {
       _old_value = value;
       /**
        * Triggered when value changes

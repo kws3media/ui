@@ -170,7 +170,7 @@ The following functions are returned in `event.detail`:
 
   $: {
     fileTypes =
-      allowed != "*" && Array.isArray(allowed) && allowed.length
+      allowed !== "*" && Array.isArray(allowed) && allowed.length
         ? allowed.join(", ")
         : "";
     _progress = Math.floor((_uploaded / _total) * 100);
@@ -256,18 +256,18 @@ The following functions are returned in `event.detail`:
       } else {
         size = 0;
       }
-      val = val.split(/[\/\\]+/);
+      val = val.split(/[/\\]+/);
       val = val[val.length - 1];
       ext = val.split(/\./);
       ext = ext[ext.length - 1];
       ext = ext.toLowerCase();
-      if (size == 0) {
+      if (size === 0) {
         valid = false;
         val = "No file selected";
       }
 
       //check if file extension is allowed
-      if (allowed != "*") {
+      if (allowed !== "*") {
         if (typeof allowed.length != "undefined") {
           if (allowed.indexOf(ext) === -1) {
             valid = false;
