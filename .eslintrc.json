@@ -4,7 +4,6 @@
     "es6": true,
     "node": true
   },
-  "parser": "svelte-eslint-parser",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2021,
