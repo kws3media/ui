@@ -22,7 +22,7 @@ async function collectAndRun(cmd, name) {
     description = cmd.description || null;
   }
 
-  _cmd = _cmd.replace(/[\\/]/g, path.sep);
+  _cmd = _cmd.replace(/[/\\]/g, path.sep);
 
   if (cmd.Questions) {
     var _result = {};
