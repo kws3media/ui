@@ -1,4 +1,4 @@
-const { Select, Confirm, Input, Form, Snippet } = require("enquirer");
+const { Select, Confirm, Input, Form } = require("enquirer");
 const chalk = require("chalk");
 const path = require("path");
 const {
@@ -11,7 +11,6 @@ const {
 
 async function collectAndRun(cmd, name) {
   var _cmd = null,
-    name = name || null,
     description = null;
 
   if (typeof cmd == "string") {
@@ -23,7 +22,7 @@ async function collectAndRun(cmd, name) {
     description = cmd.description || null;
   }
 
-  _cmd = _cmd.replace(/[\\\/]/g, path.sep);
+  _cmd = _cmd.replace(/[\\/]/g, path.sep);
 
   if (cmd.Questions) {
     var _result = {};
@@ -53,8 +52,7 @@ async function collectAndRun(cmd, name) {
 
 async function runSingle(cmd, name) {
   var _cmd = null,
-    name = name || null;
-  description = null;
+    description = null;
   if (typeof cmd == "string") {
     _cmd = cmd;
     name = cmd;
@@ -99,10 +97,10 @@ async function prompt(obj, answers) {
     if (typeof answers[field] != "undefined") {
       switch (condition) {
         case "eq":
-          if (answers[field] == value) flag = true;
+          if (answers[field] === value) flag = true;
           break;
         case "xeq":
-          if (answers[field] != value) flag = true;
+          if (answers[field] !== value) flag = true;
           break;
         case "gt":
           if (answers[field] > value) flag = true;
@@ -186,14 +184,14 @@ function injectValidation(obj) {
       let ret = true;
       if (isObject(value)) {
         Object.entries(old_validate).forEach(([k, v]) => {
-          if (v == "required" && (!value[k] || value[k].trim() == "")) {
+          if (v === "required" && (!value[k] || value[k].trim() === "")) {
             ret = chalk.red(`${k} is required`);
           }
         });
       } else {
         if (
           Object.values(old_validate).includes("required") &&
-          (!value || value.trim() == "")
+          (!value || value.trim() === "")
         ) {
           ret = chalk.red(`${Object.keys(old_validate)[0]} is required`);
         }
