@@ -4,9 +4,9 @@ const {readdirSync, existsSync} = require('sander');
 
 const asyncForEach = async (array, callback) => {
   for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array)
+    await callback(array[index], index, array);
   }
-}
+};
 
 function loadLocalConfig(filename, withHidden){
   var filename = filename || 'kws-cli.json',
@@ -19,20 +19,20 @@ function loadLocalConfig(filename, withHidden){
       processed.generate = {
         description: 'Generate various project components',
         tasks: _temp
-      }
+      };
     }
     if(localConfig.scripts){
       var _temp = Object.assign({}, localConfig.scripts);
       processed['exec'] = {
         description: 'Execute various project related commands',
         tasks: _temp
-      }
+      };
     }
     if(localConfig['post-scaffold'] && withHidden){
       var _temp = Object.assign({}, localConfig['post-scaffold']);
       processed['post-scaffold'] = {
         tasks: _temp
-      }
+      };
     }
     return processed;
   }

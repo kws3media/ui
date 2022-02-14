@@ -95,7 +95,7 @@ function prepare(repo){
 
 function validate(repo, protocol){
   if(repo){
-    download(repo, protocol)
+    download(repo, protocol);
   }else{
     const input = new Input({
       message: 'What is the repo short url?',

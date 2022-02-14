@@ -38,7 +38,7 @@ async function main(){
   }else{
 
     if(task_type_keys.length == 0){
-      console.log(chalk.red.bold("Destination directory is not empty, so cannot scaffold"))
+      console.log(chalk.red.bold("Destination directory is not empty, so cannot scaffold"));
       throw new Error(`Also, no kws-cli.json file present in folder`);
     }
 
