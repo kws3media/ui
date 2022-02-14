@@ -29,7 +29,6 @@
     "@ota-meshi/svelte/no-dynamic-slot-name": "error",
     "@ota-meshi/svelte/no-not-function-handler": "error",
     "@ota-meshi/svelte/no-object-in-text-mustaches": "error",
-    "@ota-meshi/svelte/valid-compile": "error",
     "@ota-meshi/svelte/no-at-html-tags": "error",
     "@ota-meshi/svelte/no-at-debug-tags": "error",
     "@ota-meshi/svelte/no-unused-svelte-ignore": "error",
