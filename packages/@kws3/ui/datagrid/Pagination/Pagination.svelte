@@ -18,7 +18,7 @@
   @param {boolean} [frame=false] - Determines whether to show pagination frame or not, Default: `false`
   @param {string} [iconRight="chevron-right"] - Right navigation icon, Default: `"chevron-right"`
   @param {string} [iconLeft="chevron-left"] - Left navigation icon, Default: `"chevron-left"`
-  @param {array} [perPageOptions=[]] - Determines the number of rows displayed in a page., Default: `[]`
+  @param {array} [perPageOptions=[]] - Displays the options for how many items to show per page, Default: `[]`
   @method `goto(targetPage)` - Go to an arbitrary page number
   @method `prev()` - Go to the previous page
   @method `next()` - Go to the next page
@@ -205,7 +205,7 @@
      */
     iconLeft = "chevron-left",
     /**
-     * Determines the number of rows displayed in a page.
+     * Displays the options for how many items to show per page
      */
     perPageOptions = [20, 50, 100, 150, 200, 250];
 
