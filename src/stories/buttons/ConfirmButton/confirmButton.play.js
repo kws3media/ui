@@ -1,6 +1,7 @@
 import { expect } from "@storybook/jest";
 import { within, userEvent, waitFor } from "@storybook/testing-library";
 
+// eslint-disable-next-line no-unused-vars
 export default async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 

@@ -2,13 +2,16 @@ import { expect } from "@storybook/jest";
 import {
   within,
   userEvent,
+  // eslint-disable-next-line no-unused-vars
   waitFor,
   getNodeText,
   fireEvent,
 } from "@storybook/testing-library";
 import { sleep } from "../../../utils";
 
+// eslint-disable-next-line no-unused-vars
 export default async ({ args, canvasElement }) => {
+  // eslint-disable-next-line no-unused-vars
   const canvas = within(canvasElement);
   const inputs = canvasElement.querySelectorAll("input.input");
 

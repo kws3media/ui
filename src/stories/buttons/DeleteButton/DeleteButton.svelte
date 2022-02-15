@@ -59,6 +59,7 @@
   export { klass as class };
 
   function success(e) {
+    // eslint-disable-next-line no-unused-vars
     let { doing, done, context } = e.detail;
     doing();
     setTimeout(() => {
@@ -67,6 +68,7 @@
   }
 
   function failed(e) {
+    // eslint-disable-next-line no-unused-vars
     let { doing, error, context } = e.detail;
     doing();
     setTimeout(() => {
