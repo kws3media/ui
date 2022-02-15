@@ -11,6 +11,7 @@
 -->
 
 <td class={classNames(column, row)} style={styles(column, row)}>
+  <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
   {@html transforms(column, row)}
 </td>
 
