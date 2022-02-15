@@ -31,6 +31,7 @@
           Make <code>interactive: true</code> and you can click the button below
           <br /><br />
           <button
+            type="button"
             bind:this={x}
             class="button is-small"
             on:click={() => Dialog.alert("Clicked!!!")}
@@ -56,6 +57,7 @@
           Make <code>interactive: true</code> and you can click the button below
           <br /><br />
           <button
+            type="button"
             class="button is-small"
             on:click={() => Dialog.alert("Clicked!!!")}
             >Try to click me!</button>
@@ -80,6 +82,7 @@
             below
             <br /><br />
             <button
+              type="button"
               class="button is-small"
               on:click={() => Dialog.alert("Clicked!!!")}
               >Try to click me!</button>
@@ -112,6 +115,7 @@
             below
             <br /><br />
             <button
+              type="button"
               class="button is-small"
               on:click={() => Dialog.alert("Clicked!!!")}
               >Try to click me!</button>
@@ -124,6 +128,7 @@
         <div class="field is-grouped is-grouped-right">
           <div class="control">
             <button
+              type="button"
               class="button is-small"
               on:click={() => {
                 manual_popover.open();
@@ -133,6 +138,7 @@
           </div>
           <div class="control">
             <button
+              type="button"
               class="button is-small"
               on:click={() => {
                 manual_popover.close();

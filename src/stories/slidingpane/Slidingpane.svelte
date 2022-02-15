@@ -6,9 +6,10 @@
       style="margin: -1rem -1.3rem -0.8rem;">
       <div id="stepsHolder">
         <ul class="steps has-content-centered is-horizontal">
+          <!-- eslint-disable-next-line no-unused-vars -->
           {#each steps as step, idx}
             <li
-              class="steps-segment {active_index == idx ? 'is-active' : ''}"
+              class="steps-segment {active_index === idx ? 'is-active' : ''}"
               on:click={() => activateStep(idx)}
               style="cursor:pointer;">
               <span class="steps-marker">{idx + 1}</span>
@@ -27,7 +28,7 @@
   <div class="column">
     <SlidingPaneSet style="height:{pane_height}px">
       <SlidingPane
-        active={steps[active_index].key == "step_one"}
+        active={steps[active_index].key === "step_one"}
         {v_center}
         {h_center}
         {track_height}
@@ -53,7 +54,7 @@
       </SlidingPane>
 
       <SlidingPane
-        active={steps[active_index].key == "step_two"}
+        active={steps[active_index].key === "step_two"}
         {v_center}
         {h_center}
         {track_height}
@@ -76,7 +77,7 @@
       </SlidingPane>
 
       <SlidingPane
-        active={steps[active_index].key == "step_three"}
+        active={steps[active_index].key === "step_three"}
         {v_center}
         {h_center}
         {track_height}
@@ -103,10 +104,14 @@
 <div class="columns">
   <div class="column">
     <div class="buttons is-centered">
-      <button class="button is-info is-small" on:click={() => changeStep(-1)}>
+      <button
+        type="button"
+        class="button is-info is-small"
+        on:click={() => changeStep(-1)}>
         <Icon icon="arrow-left" />
       </button>
       <button
+        type="button"
         class="button is-success is-small"
         on:click={() => changeStep(+1)}>
         <Icon icon="arrow-right" />
@@ -119,12 +124,15 @@
   <div class="column">
     <div class="buttons is-centered">
       <button
+        type="button"
         class="button is-warning is-small is-rounded"
         on:click={() => activateStep(0)}>1</button>
       <button
+        type="button"
         class="button is-warning is-small is-rounded"
         on:click={() => activateStep(1)}>2</button>
       <button
+        type="button"
         class="button is-warning is-small is-rounded"
         on:click={() => activateStep(2)}>3</button>
     </div>
@@ -144,7 +152,6 @@
 </style>
 
 <script>
-  import { onMount } from "svelte";
   import { SlidingPane, SlidingPaneSet, Icon, Message } from "@kws3/ui";
   export let pane_height = 150,
     style = "",

@@ -63,6 +63,7 @@
   let count = 1;
 
   const push = () => {
+    // eslint-disable-next-line no-unused-vars
     let { props, destroy } = KWSNotif.create({
       title,
       duration,
@@ -79,6 +80,7 @@
   };
 
   const pushCustom = () => {
+    // eslint-disable-next-line no-unused-vars
     let { props, destroy } = KWSNotif.create({
       component: CustomNotification,
       title,
@@ -88,10 +90,12 @@
       position,
       color,
       light,
+      // eslint-disable-next-line no-unused-vars
       beforeClose: (props) => {
         //do something here before close
         console.log("before close");
       },
+      // eslint-disable-next-line no-unused-vars
       afterClose: (props) => {
         //do something here after close
         console.log("after close");
