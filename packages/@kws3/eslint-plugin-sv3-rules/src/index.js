@@ -1,5 +1,5 @@
-import noDateStringArg from "./rules/no-date-string-arg";
-import noDatalistScaffold from "./rules/no-datalist-scaffold";
+const noDateStringArg = require("./rules/no-date-string-arg");
+const noDatalistScaffold = require("./rules/no-datalist-scaffold");
 
 const allRules = [noDateStringArg, noDatalistScaffold];
 
@@ -24,4 +24,4 @@ const rules = allRules.reduce((obj, r) => {
   return obj;
 }, {});
 
-export default { configs, rules };
+module.exports = { configs, rules };

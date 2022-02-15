@@ -1,23 +1,23 @@
-import { createRule } from "../utils";
+const createRule = require("../utils");
 
-export default createRule("no-datalist-scaffold", {
+module.exports = createRule("no-datalist-scaffold", {
   meta: {
     docs: {
       description: "Disallow wrapping DataList with ViewScaffold",
     },
     recommended: true,
     schema: [],
-    create: function (context) {
-      return {
-        SvelteElement(node) {
-          if (node.kind === "component" && node.name.name === "ViewScaffold") {
-            if (checkChildComponent(node.children, "DataList")) {
-              context.report(node, "Do not use Viewscaffold to wrap DataList");
-            }
+  },
+  create: function (context) {
+    return {
+      SvelteElement(node) {
+        if (node.kind === "component" && node.name.name === "ViewScaffold") {
+          if (checkChildComponent(node.children, "DataList")) {
+            context.report(node, "Do not use Viewscaffold to wrap DataList");
           }
-        },
-      };
-    },
+        }
+      },
+    };
   },
 });
 

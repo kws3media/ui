@@ -1,4 +1,4 @@
-export function createRule(ruleName, rule) {
+module.exports = function createRule(ruleName, rule) {
   return {
     meta: {
       ...rule.meta,
@@ -10,4 +10,4 @@ export function createRule(ruleName, rule) {
     },
     create: rule.create,
   };
-}
+};
