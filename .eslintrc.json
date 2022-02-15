@@ -13,7 +13,6 @@
       "jsx": false
     }
   },
-  "ecmaFeatures": { "jsx": true },
   "plugins": ["kws-eslint-rules"],
   "extends": ["eslint:recommended", "plugin:@ota-meshi/svelte/recommended"],
   "overrides": [
