@@ -169,24 +169,28 @@
       <div class="columns is-multiline is-centered">
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="primary"
             data-tippy-theme="primary"
             class="button is-small is-primary">Hover me</button>
         </div>
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="primary-light"
             data-tippy-theme="primary-light"
             class="button is-small is-primary is-light">Hover me</button>
         </div>
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="info"
             data-tippy-theme="info"
             class="button is-small is-info">Hover me</button>
         </div>
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="info-light"
             data-tippy-theme="info-light"
             class="button is-small is-info is-light">Hover me</button>
@@ -194,12 +198,14 @@
 
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="success"
             data-tippy-theme="success"
             class="button is-small is-success">Hover me</button>
         </div>
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="success-light"
             data-tippy-theme="success-light"
             class="button is-small is-success is-light">Hover me</button>
@@ -207,12 +213,14 @@
 
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="danger"
             data-tippy-theme="danger"
             class="button is-small is-danger">Hover me</button>
         </div>
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="danger-light"
             data-tippy-theme="danger-light"
             class="button is-small is-danger is-light">Hover me</button>
@@ -220,12 +228,14 @@
 
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="dark"
             data-tippy-theme="dark"
             class="button is-small is-dark">Hover me</button>
         </div>
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="dark-light"
             data-tippy-theme="dark-light"
             class="button is-small is-dark is-light">Hover me</button>
@@ -233,12 +243,13 @@
 
         <div class="column is-narrow">
           <button
+            type="button"
             data-tooltip="light"
             data-tippy-theme="light"
             class="button is-small is-light">Hover me</button>
         </div>
         <div class="column is-narrow">
-          <button data-tooltip="default" class="button is-small"
+          <button type="button" data-tooltip="default" class="button is-small"
             >Hover me</button>
         </div>
       </div>

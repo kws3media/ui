@@ -9,7 +9,7 @@ let events = [
   {name: 'uparrow', code: 38},
   {name: 'backspace', code: 8},
   {name: 'del', code: 46},
-]
+];
 
 export function keyboardEvents(node) {
   function keydownHandler(event) {
@@ -20,7 +20,7 @@ export function keyboardEvents(node) {
           new CustomEvent(name)
         );
       }
-    })
+    });
   }
   node.addEventListener('keydown', keydownHandler, false);
 
@@ -29,4 +29,4 @@ export function keyboardEvents(node) {
       node.removeEventListener('keydown', keydownHandler, false);
     }
   };
-};
+}

@@ -18,12 +18,13 @@
 
 -->
 
-{#if variant == "snackbar"}
+{#if variant === "snackbar"}
   <div class="snackbar is-{color} {light ? 'is-light' : ''}">
     <div class="text">{message}</div>
     <div class="action">
       {#each buttonsToRender as { text, color: text_color, click }}
         <button
+          type="button"
           class="button is-{color} has-text-{text_color}"
           on:click={click}
           on:click={destroy}>{text}</button>
@@ -33,7 +34,7 @@
       <div class="floatie-progress" style="animation-duration:{duration}ms" />
     {/if}
   </div>
-{:else if variant == "toast"}
+{:else if variant === "toast"}
   <div class="toast is-{color} {light ? 'is-light' : ''}">
     {message}
   </div>
@@ -43,12 +44,13 @@
       <svelte:component this={component} {...$$props} on:destroy={destroy} />
     {:else}
       {#if dismissable}
-        <button class="delete" on:click={destroy} />
+        <button type="button" class="delete" on:click={destroy} />
       {/if}
       {#if title}
         <h4 class="title is-5 is-marginless">{title}</h4>
       {/if}
 
+      <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
       <p>{@html message}</p>
 
       {#if !persistent}
@@ -109,11 +111,15 @@
     /**
      * Callback function call before close event
      */
-    beforeClose = (props) => {},
+    beforeClose = (props) => {
+      props;
+    },
     /**
      * Callback function call after close event
      */
-    afterClose = (props) => {},
+    afterClose = (props) => {
+      props;
+    },
     /**
      * List of buttons to show in snackbar
      */

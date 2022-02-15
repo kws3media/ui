@@ -18,7 +18,12 @@
   @param {boolean} [frame=false] - Determines whether to show pagination frame or not, Default: `false`
   @param {string} [iconRight="chevron-right"] - Right navigation icon, Default: `"chevron-right"`
   @param {string} [iconLeft="chevron-left"] - Left navigation icon, Default: `"chevron-left"`
-  @param {array} [perPageOptions=[]] - Determines the number of rows displayed in a page., Default: `[]`
+  @param {array} [perPageOptions=[]] - Displays the options for how many items to show per page, Default: `[]`
+  @method `goto(targetPage)` - Go to an arbitrary page number
+  @method `prev()` - Go to the previous page
+  @method `next()` - Go to the next page
+  @method `first()` - Go to the first page
+  @method `last()` - Go to the last page
 
   ### Events
   - `setLimit` - Event used to set a new `limit`.
@@ -44,7 +49,7 @@
                 <li>
                   <button
                     type="button"
-                    class="pagination-link {_limit == v ? 'is-current' : ''}"
+                    class="pagination-link {_limit === v ? 'is-current' : ''}"
                     on:click={() => setLimit(v)}>{k}</button>
                 </li>
               {/each}
@@ -94,20 +99,20 @@
           <button
             type="button"
             on:click={prev}
-            class="pagination-previous {_offset == 0 ? 'is-disabled' : ''}">
+            class="pagination-previous {_offset === 0 ? 'is-disabled' : ''}">
             <Icon icon={iconLeft} />
           </button>
           <button
             type="button"
             on:click={next}
-            class="pagination-next {currentPage + 1 == totalPages
+            class="pagination-next {currentPage + 1 === totalPages
               ? 'is-disabled'
               : ''}">
             <Icon icon={iconRight} />
           </button>
           <ul class="pagination-list" data-cy="pagination-list">
             {#each pages as page}
-              {#if page.p == "sep"}
+              {#if page.p === "sep"}
                 <li>
                   <span class="pagination-ellipsis">&hellip;</span>
                 </li>
@@ -115,7 +120,7 @@
                 <li>
                   <button
                     type="button"
-                    class="pagination-link {page.p == currentPage
+                    class="pagination-link {page.p === currentPage
                       ? 'is-current'
                       : ''}"
                     on:click={() => goto(page.p + 1)}>{page.p + 1}</button>
@@ -200,7 +205,7 @@
      */
     iconLeft = "chevron-left",
     /**
-     * Determines the number of rows displayed in a page.
+     * Displays the options for how many items to show per page
      */
     perPageOptions = [20, 50, 100, 150, 200, 250];
 
@@ -251,12 +256,12 @@
           ret.push({ p: i });
         } else if (i > total - 4) {
           ret.push({ p: i });
-        } else if (i == Math.floor(total / 2)) {
+        } else if (i === Math.floor(total / 2)) {
           ret.push({ p: i });
         } else if (
-          i == currentPage ||
-          i == currentPage - 1 ||
-          i == currentPage + 1
+          i === currentPage ||
+          i === currentPage - 1 ||
+          i === currentPage + 1
         ) {
           ret.push({ p: i });
         }
@@ -270,7 +275,7 @@
     if (total > breakThreshold) {
       for (var j = 0; j < ret.length; j++) {
         var page = ret[j].p;
-        if (page != _prev + 1 && page != 0) {
+        if (page !== _prev + 1 && page !== 0) {
           items.push({ p: "sep" });
         }
         items.push(ret[j]);
@@ -291,11 +296,16 @@
      */
     fire("setLimit", { currentPage, newLimit: limit });
   }
-  function goto(pagenum) {
+
+  /**
+   * Go to an arbitrary page number
+   * @param {int} targetPage
+   */
+  export function goto(targetPage) {
     let limit = _limit,
-      i = pagenum - 1,
+      i = targetPage - 1,
       __offset = limit * i;
-    if (__offset >= 0 && __offset != _offset && __offset < _total) {
+    if (__offset >= 0 && __offset !== _offset && __offset < _total) {
       /**
        * Event triggered on pagination change with new `offset` and current `limit` values.
        *
@@ -304,16 +314,32 @@
       fire("paginate", { offset: __offset, limit });
     }
   }
-  function prev() {
+
+  /**
+   * Go to the previous page
+   */
+  export function prev() {
     goto(currentPage);
   }
-  function next() {
+
+  /**
+   * Go to the next page
+   */
+  export function next() {
     goto(currentPage + 2);
   }
-  function first() {
+
+  /**
+   * Go to the first page
+   */
+  export function first() {
     goto(1);
   }
-  function last() {
+
+  /**
+   * Go to the last page
+   */
+  export function last() {
     goto(totalPages);
   }
 </script>

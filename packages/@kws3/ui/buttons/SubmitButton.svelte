@@ -173,6 +173,6 @@
     }, timeout);
   }
 
-  $: err_text = error_text == "" ? text : error_text;
-  $: icon_size = size == "large" ? "" : "small";
+  $: err_text = error_text === "" ? text : error_text;
+  $: icon_size = size === "large" ? "" : "small";
 </script>

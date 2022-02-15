@@ -4,6 +4,12 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
+  "eslint.validate": ["javascript", "svelte"],
+  "eslint.probe": [
+    "javascript",
+    "typescript",
+    "svelte"
+  ],
   "[javascript]": {
     "editor.defaultFormatter":"esbenp.prettier-vscode",
     "editor.formatOnSave": true,

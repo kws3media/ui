@@ -255,7 +255,9 @@ export default (function (win, doc) {
 
       // get mouse/finger coordinate
       function point(el, e) {
+        // eslint-disable-next-line no-extra-boolean-cast
         var x = !!e.touches ? e.touches[0].pageX : e.pageX,
+          // eslint-disable-next-line no-extra-boolean-cast
           y = !!e.touches ? e.touches[0].pageY : e.pageY,
           left = offset(el).l,
           top = offset(el).t;
@@ -396,18 +398,21 @@ export default (function (win, doc) {
           H_point_H = size(H_point).h,
           SV_point_W = SV_point_size.w,
           SV_point_H = SV_point_size.h;
+
+        function click(e) {
+          var t = e.target,
+            is_target = t === target || closest(t, target) === target;
+          if (is_target) {
+            create();
+          } else {
+            $.exit();
+          }
+          trigger(is_target ? "enter" : "exit", [$]);
+        }
+
         if (first) {
           picker.style.left = picker.style.top = "-9999px";
-          function click(e) {
-            var t = e.target,
-              is_target = t === target || closest(t, target) === target;
-            if (is_target) {
-              create();
-            } else {
-              $.exit();
-            }
-            trigger(is_target ? "enter" : "exit", [$]);
-          }
+
           if (events !== false) {
             on(events, target, click);
           }
@@ -430,7 +435,7 @@ export default (function (win, doc) {
           SV_point.style.right = SV_W - SV_point_W / 2 - SV_W * +HSV[1] + "px";
           SV_point.style.top = SV_H - SV_point_H / 2 - SV_H * +HSV[2] + "px";
         };
-        $.exit = function (e) {
+        $.exit = function () {
           if (visible()) {
             visible().removeChild(picker);
             $.visible = false;
@@ -443,8 +448,8 @@ export default (function (win, doc) {
           return $;
         };
         function color(e) {
-          var a = HSV2RGB(HSV),
-            b = HSV2RGB([HSV[0], 1, 1]);
+          //var a = HSV2RGB(HSV),
+          var b = HSV2RGB([HSV[0], 1, 1]);
           SV.style.backgroundColor = "rgb(" + b.join(",") + ")";
           set_data(HSV);
           prevent(e);

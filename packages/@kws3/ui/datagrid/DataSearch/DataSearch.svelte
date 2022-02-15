@@ -23,7 +23,7 @@
     {#if hasSearch}
       <div class="control is-expanded main-search">
         <input
-          class="input {query != '' && query != undefined
+          class="input {query !== '' && query !== undefined
             ? filter_in_use_class
             : filter_not_in_use_class}"
           type="text"
@@ -32,14 +32,14 @@
       </div>
     {/if}
     {#if hasFilters}
-      {#each _filters as filter, i}
+      {#each _filters as filter}
         <svelte:component
           this={usedFilterComponent}
           {filterVals}
           {filter}
           {filterWidthStyle}
-          hilightClass={filterVals[filter.name] != "" &&
-          filterVals[filter.name] != undefined
+          hilightClass={filterVals[filter.name] !== "" &&
+          filterVals[filter.name] !== undefined
             ? filter_in_use_class
             : filter_not_in_use_class}
           {filter_label_map} />
@@ -117,7 +117,7 @@
     filterWidthStyle = "";
 
   $: usedFilterComponent = filterComponent ? filterComponent : SearchFilter;
-  $: changed = q && q.trim() != "";
+  $: changed = q && q.trim() !== "";
   $: q, qHasChanged();
   $: filters, filtersHaveChanged();
 
@@ -152,7 +152,7 @@
   }
 
   function qHasChanged() {
-    if (q == "") {
+    if (q === "") {
       //bail out early and reset all filters
       //this happens when using back/forward browser buttons
       return doresetSearch();
@@ -183,6 +183,7 @@
       filterVals[i] = "";
     }
     query = "";
+    // eslint-disable-next-line no-self-assign
     filterVals = filterVals;
 
     /**

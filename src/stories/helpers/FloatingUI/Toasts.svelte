@@ -39,6 +39,7 @@
   let count = 1;
 
   const push = () => {
+    // eslint-disable-next-line no-unused-vars
     let { props, destroy } = KWSToast.create({
       duration,
       color,

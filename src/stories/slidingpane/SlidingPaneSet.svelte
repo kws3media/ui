@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column">
     <KwsSlidingPaneSet {style} class={klass} {vertical}>
-      <SlidingPane active={steps[active_index].key == "step_one"}>
+      <SlidingPane active={steps[active_index].key === "step_one"}>
         <Message color="primary">
           <p class="title is-3">One</p>
           <p>
@@ -15,7 +15,7 @@
           </p>
         </Message>
       </SlidingPane>
-      <SlidingPane active={steps[active_index].key == "step_two"}>
+      <SlidingPane active={steps[active_index].key === "step_two"}>
         <Message color="danger">
           <p class="title is-3">Two</p>
           <p>
@@ -36,10 +36,14 @@
 <div class="columns">
   <div class="column">
     <div class="buttons is-centered">
-      <button class="button is-info is-small" on:click={() => changeStep(-1)}>
+      <button
+        type="button"
+        class="button is-info is-small"
+        on:click={() => changeStep(-1)}>
         <Icon icon="arrow-left" />
       </button>
       <button
+        type="button"
         class="button is-success is-small"
         on:click={() => changeStep(+1)}>
         <Icon icon="arrow-right" />

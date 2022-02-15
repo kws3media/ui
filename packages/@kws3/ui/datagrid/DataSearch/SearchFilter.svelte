@@ -10,7 +10,7 @@
 
 -->
 
-{#if filter.type == "multiselect"}
+{#if filter.type === "multiselect"}
   <div
     class="control search-control"
     class:is-expanded={shouldExpandToFill}
@@ -25,7 +25,7 @@
       summary_mode
       class={hilightClass} />
   </div>
-{:else if filter.type == "date"}
+{:else if filter.type === "date"}
   <div
     class="control search-control"
     class:is-expanded={shouldExpandToFill}
@@ -35,7 +35,7 @@
       bind:value={filterVals[filter.name]}
       placeholder="{capitaliseFirstLetter(name)} Date" />
   </div>
-{:else if filter.type == "daterange"}
+{:else if filter.type === "daterange"}
   <div
     class="control search-control"
     class:is-expanded={shouldExpandToFill}
@@ -116,7 +116,7 @@
 
   $: filterVals, filter, convertToValuesArray();
 
-  $: shouldExpandToFill = !filterWidthStyle || filterWidthStyle.trim() == "";
+  $: shouldExpandToFill = !filterWidthStyle || filterWidthStyle.trim() === "";
 
   function convertValuesToString() {
     tick().then(() => {
@@ -126,7 +126,7 @@
     });
   }
   function convertToValuesArray() {
-    if (filter && filter.type == "multiselect") {
+    if (filter && filter.type === "multiselect") {
       multiSelectValue = filterVals[filter.name]
         ? filterVals[filter.name].split("|")
         : [];
@@ -137,7 +137,7 @@
     let options = filter.options || [];
     if (options.length) {
       options =
-        filter.type == "multiselect"
+        filter.type === "multiselect"
           ? options
           : [{ id: "", name: `Any ${name}` }, ...options];
       options = options.map((el) => {

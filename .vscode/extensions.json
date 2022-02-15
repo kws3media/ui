@@ -1,7 +1,9 @@
 {
   "recommendations": [
+    "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "svelte.svelte-vscode",
+    "usernamehw.errorlens",
     "silvenon.mdx"
   ]
 }

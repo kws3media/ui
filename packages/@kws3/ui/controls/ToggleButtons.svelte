@@ -34,7 +34,7 @@ This property can be bound to, to fetch the current value, Default: `null`
         type="button"
         {disabled}
         on:click={setValue(option.value)}
-        class="button is-{size}  {fullwidth ? 'is-fullwidth' : ''} {value ==
+        class="button is-{size}  {fullwidth ? 'is-fullwidth' : ''} {value ===
         option.value
           ? 'is-active ' +
             (option.active_class ? option.active_class : active_class)
