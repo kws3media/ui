@@ -398,18 +398,21 @@ export default (function (win, doc) {
           H_point_H = size(H_point).h,
           SV_point_W = SV_point_size.w,
           SV_point_H = SV_point_size.h;
+
+        function click(e) {
+          var t = e.target,
+            is_target = t === target || closest(t, target) === target;
+          if (is_target) {
+            create();
+          } else {
+            $.exit();
+          }
+          trigger(is_target ? "enter" : "exit", [$]);
+        }
+
         if (first) {
           picker.style.left = picker.style.top = "-9999px";
-          function click(e) {
-            var t = e.target,
-              is_target = t === target || closest(t, target) === target;
-            if (is_target) {
-              create();
-            } else {
-              $.exit();
-            }
-            trigger(is_target ? "enter" : "exit", [$]);
-          }
+
           if (events !== false) {
             on(events, target, click);
           }
