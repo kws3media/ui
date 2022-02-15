@@ -4,7 +4,7 @@ module.exports = function createRule(ruleName, rule) {
       ...rule.meta,
       docs: {
         ...rule.meta.docs,
-        ruleId: `@kws3/rules/${ruleName}`,
+        ruleId: `@kws3/svelte3/${ruleName}`,
         ruleName,
       },
     },

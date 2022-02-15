@@ -5,7 +5,7 @@ const allRules = [noDateStringArg, noDatalistScaffold];
 
 const configs = {
   base: {
-    plugins: ["@kws3/eslint-plugin-sv3-rules"],
+    plugins: ["@kws3/svelte3"],
     overrides: [
       {
         files: ["*.svelte"],
