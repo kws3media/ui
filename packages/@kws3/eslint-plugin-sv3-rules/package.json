@@ -1,6 +1,6 @@
 {
   "name": "@kws3/eslint-plugin-sv3-rules",
-  "version": "0.9.0",
+  "version": "0.0.1",
   "description": "Kws3 specific svelte3 eslint rules",
   "main": "src/index.js",
   "author": "Khaled Ahmed <me.khaled@gmail.com>",
