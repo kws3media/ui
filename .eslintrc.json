@@ -13,8 +13,11 @@
       "jsx": false
     }
   },
-  "plugins": ["kws-eslint-rules"],
-  "extends": ["eslint:recommended", "plugin:@ota-meshi/svelte/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@ota-meshi/svelte/recommended",
+    "plugin:@kws3/svelte3/base"
+  ],
   "overrides": [
     {
       "files": ["*.svelte"],
@@ -36,7 +39,7 @@
     "@ota-meshi/svelte/comment-directive": "error",
     "@ota-meshi/svelte/system": "error",
     "@ota-meshi/svelte/button-has-type": "error",
-    "kws-eslint-rules/no-date": "error",
-    "kws-eslint-rules/no-scaffold": "error"
+    "@kws3/svelte3/no-date-string-arg": "error",
+    "@kws3/svelte3/no-datalist-scaffold": "error"
   }
 }

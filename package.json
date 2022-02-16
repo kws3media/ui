@@ -21,6 +21,7 @@
     "global": "^4.3.2"
   },
   "devDependencies": {
+    "@kws3/eslint-plugin-svelte3": "^1.0.1",
     "@ota-meshi/eslint-plugin-svelte": "^0.28.0",
     "@storybook/addon-actions": "6.4.9",
     "@storybook/addon-backgrounds": "6.4.9",
@@ -41,7 +42,6 @@
     "css-loader": "^0.28.7",
     "ejs": "^2.6.1",
     "eslint": "^8.9.0",
-    "eslint-plugin-kws-eslint-rules": "file:eslint-plugin-kws-eslint-rules",
     "glob": "^7.1.7",
     "grunt": "^0.4.5",
     "grunt-gitinfo": "^0.1.9",
