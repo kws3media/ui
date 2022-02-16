@@ -11,7 +11,7 @@ const configs = {
         files: ["*.svelte"],
         parser: require.resolve("svelte-eslint-parser"),
         rules: allRules.reduce((obj, r) => {
-          obj[r.meta.docs.ruleName] = "error";
+          obj[r.meta.docs.ruleId] = "error";
           return obj;
         }, {}),
       },
