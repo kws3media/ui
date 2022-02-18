@@ -7,7 +7,7 @@
 -->
 {#if text && text_parts}
   {#each text_parts as part, index}
-    {part}{#if text_parts.length != index + 1}<br />{/if}
+    {part}{#if text_parts.length !== index + 1}<br />{/if}
   {/each}
 {/if}
 

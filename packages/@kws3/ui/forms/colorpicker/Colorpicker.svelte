@@ -116,7 +116,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
     e && e.target && e.target.select();
   }
 
-  function onDragOver(e) {
+  function onDragOver() {
     if (!readonly && !disabled) {
       dragover = true;
     }
@@ -131,7 +131,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
     return false;
   }
 
-  function onDragLeave(e) {
+  function onDragLeave() {
     if (!readonly && !disabled) {
       dragover = false;
     }

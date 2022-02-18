@@ -22,9 +22,7 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
-  @param {boolean} [summary_mode=false] - When activated, it will show the number of selected items.
-
-Instead of listing all the selected items inside the input., Default: `false`
+  @param {boolean} [summary_mode=false] - Shows only the number of items selected, instead of listing all the selected items in the input., Default: `false`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
   @param {string} [remove_btn_tip="Remove"] - Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip., Default: `"Remove"`
   @param {string} [remove_all_tip="Remove all"] - Tooltip text for the Clear All button, Default: `"Remove all"`
@@ -66,7 +64,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         </li>
         <li
           class="tag is-{size} summary-text  is-{color || 'primary'} is-light">
-          Item{selectedOptions.length == 1 ? "" : "s"} selected
+          Item{selectedOptions.length === 1 ? "" : "s"} selected
         </li>
       {:else}
         {#each selectedOptions as tag}
@@ -225,9 +223,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let selected_icon = "check";
   /**
-   * When activated, it will show the number of selected items.
-   *
-   * Instead of listing all the selected items inside the input.
+   * Shows only the number of items selected, instead of listing all the selected items in the input.
    */
   export let summary_mode = false;
   /**
@@ -298,9 +294,10 @@ Default value: `<span>{option[search_key] || option}</span>`
   $: _placeholder = hasValue ? "" : placeholder;
 
   //ensure search_key and value_key are no empty strings
-  $: used_search_key = search_key && search_key != "" ? search_key : "name";
-  $: used_value_key = value_key && value_key != "" ? value_key : "id";
+  $: used_search_key = search_key && search_key !== "" ? search_key : "name";
+  $: used_value_key = value_key && value_key !== "" ? value_key : "id";
 
+  // eslint-disable-next-line no-redeclare
   $: shouldShowClearAll = hasValue;
 
   $: options, normaliseOptions();
@@ -322,7 +319,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   //TODO: optimise isSelected function
   $: isSelected = (option) => {
     if (single) return matchesValue(value, option);
-    if (!(value && value.length > 0) || value == "") return false;
+    if (!(value && value.length > 0) || value === "") return false;
     // nothing is selected if `value` is the empty array or string
     else return value.some((v) => matchesValue(v, option));
   };
@@ -384,13 +381,13 @@ Default value: `<span>{option[search_key] || option}</span>`
   function fillSelectedOptions() {
     if (single) {
       selectedOptions = normalisedOptions.filter(
-        (v) => `${v[used_value_key]}` == `${value}`
+        (v) => `${v[used_value_key]}` === `${value}`
       );
       setSingleVisibleValue();
     } else {
       selectedOptions = normalisedOptions
         .filter(
-          (v) => value && value.some((vl) => `${v[used_value_key]}` == `${vl}`)
+          (v) => value && value.some((vl) => `${v[used_value_key]}` === `${vl}`)
         )
         .sort(
           (a, b) =>
@@ -440,7 +437,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (!isAlreadySelected && !single && (max === null || value.length < max)) {
       //attach to value array while filtering out invalid values
       value = [...value, token[used_value_key]].filter((v) => {
-        return normalisedOptions.filter((nv) => nv[used_value_key] == v).length;
+        return normalisedOptions.filter((nv) => nv[used_value_key] === v)
+          .length;
       });
       searchText = ""; // reset search string on selection
 

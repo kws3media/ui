@@ -1,3 +1,4 @@
+$kws-theme-colors: $colors !default;
 $kws-loader-width: 2rem !default;
 $kws-loader-height: 2rem !default;
 $kws-loader-width-medium: ($kws-loader-width * 1.5) !default;
@@ -5,45 +6,45 @@ $kws-loader-height-medium: ($kws-loader-height * 1.5) !default;
 $kws-loader-width-large: ($kws-loader-width * 3) !default;
 $kws-loader-height-large: ($kws-loader-height * 3) !default;
 $kws-loader-color: #ccc !default;
-$kws-loader-overlay-background: rgba(0,0,0,0.15) !default;
+$kws-loader-overlay-background: rgba(0, 0, 0, 0.15) !default;
 
-.kws-loader{
-  .hero-body{
-    position:relative;
-    &:after{
+.kws-loader {
+  .hero-body {
+    position: relative;
+    &:after {
       @include loader();
-      border-left-color:$kws-loader-color;
-      border-bottom-color:$kws-loader-color;
+      border-left-color: $kws-loader-color;
+      border-bottom-color: $kws-loader-color;
       position: absolute !important;
-      width:$kws-loader-width;
-      height:$kws-loader-height;
+      width: $kws-loader-width;
+      height: $kws-loader-height;
       left: calc(50% - (#{$kws-loader-width} / 2));
       top: calc(50% - (#{$kws-loader-height} / 2));
     }
 
-    @each $name, $pair in $colors{
+    @each $name, $pair in $kws-theme-colors {
       $color: nth($pair, 1);
-      &.is-#{$name}{
-        &:after{
-          border-left-color:$color !important;
-          border-bottom-color:$color !important;
+      &.is-#{$name} {
+        &:after {
+          border-left-color: $color !important;
+          border-bottom-color: $color !important;
         }
       }
     }
 
-    &.is-medium{
-      &:after{
-        width:$kws-loader-width-medium;
-        height:$kws-loader-height-medium;
+    &.is-medium {
+      &:after {
+        width: $kws-loader-width-medium;
+        height: $kws-loader-height-medium;
         left: calc(50% - (#{$kws-loader-width-medium} / 2));
         top: calc(50% - (#{$kws-loader-height-medium} / 2));
       }
     }
 
-    &.is-large{
-      &:after{
-        width:$kws-loader-width-large;
-        height:$kws-loader-height-large;
+    &.is-large {
+      &:after {
+        width: $kws-loader-width-large;
+        height: $kws-loader-height-large;
         left: calc(50% - (#{$kws-loader-width-large} / 2));
         top: calc(50% - (#{$kws-loader-height-large} / 2));
       }
@@ -51,17 +52,17 @@ $kws-loader-overlay-background: rgba(0,0,0,0.15) !default;
   }
 }
 
-.is-overlay{
-  z-index:4;
-  .kws-loader{
-    padding:0;
-    height:100%;
-    width:100%;
-    position:relative;
-    background:$kws-loader-overlay-background;
-    z-index:3;
-    .hero-body{
-      padding:0;
+.is-overlay {
+  z-index: 4;
+  .kws-loader {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background: $kws-loader-overlay-background;
+    z-index: 3;
+    .hero-body {
+      padding: 0;
     }
   }
 }

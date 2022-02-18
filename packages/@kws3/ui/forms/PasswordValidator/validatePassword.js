@@ -7,7 +7,7 @@ export default function (password, options) {
   result.items = (options || []).slice().map((_opt) => {
     const opt = Object.assign({}, _opt);
     if (opt && opt.active) {
-      if (opt.name == "kws_pv_min_length") {
+      if (opt.name === "kws_pv_min_length") {
         if (password && password.length >= opt.value) {
           opt.passed = true;
         }
@@ -24,7 +24,7 @@ export default function (password, options) {
   });
 
   result.overall =
-    result.items.filter((el) => el.passed).length == result.items.length;
+    result.items.filter((el) => el.passed).length === result.items.length;
 
   return result;
 }

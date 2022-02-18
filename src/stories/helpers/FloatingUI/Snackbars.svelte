@@ -54,6 +54,7 @@
   let count = 1;
 
   const push = () => {
+    // eslint-disable-next-line no-unused-vars
     let { props, destroy } = KWSSnack.create({
       duration,
       color,
@@ -68,6 +69,7 @@
   };
 
   const pushCB = () => {
+    // eslint-disable-next-line no-unused-vars
     let { props, destroy } = KWSSnack.create({
       duration,
       color,

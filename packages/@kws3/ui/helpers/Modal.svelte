@@ -13,6 +13,8 @@ Only programmatic closing is possible, Default: `true`
   @param {string} [inner_class=""] - CSS classes for modal content, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [class=""] - CSS class for modal container, Default: `""`
+  @method `close()` - Call this method to close modal programmatically
+  @method `open()` - Call this method to open modal programmatically
 
   ### Slots
   - `<slot name="default"  />` - Used for the Modal content
@@ -114,11 +116,17 @@ Only programmatic closing is possible, Default: `true`
     }
   }
 
-  function close() {
+  /**
+   * Call this method to close modal programmatically
+   */
+  export function close() {
     is_active = false;
   }
 
-  function open() {
+  /**
+   * Call this method to open modal programmatically
+   */
+  export function open() {
     is_active = true;
   }
 </script>

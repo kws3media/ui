@@ -15,9 +15,9 @@ Checked\Not Checked, Default: `false`
   @param {string} [label_style=""] - Inline CSS for the Checkbox label, Default: `""`
   @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [icon_family="null"] - Icon family to be used
 
-Defaults to global family set via `Icon.setDefaultIconType()`
+Defaults to global family set via `Icon.setDefaultIconType()`
 
-Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
+Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
   @param {string} [class=""] - CSS classes of the Checkbox, Default: `""`
 
   ### Events
@@ -96,9 +96,9 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
     /**
      * Icon family to be used
      *
-     * Defaults to global family set via `Icon.setDefaultIconType()`
+     * Defaults to global family set via `Icon.setDefaultIconType()`
      *
-     * Ultimately defaults to `fa`, if family is not set anywhere
+     * Ultimately defaults to `fa`, if family is not set anywhere
      *
      * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}
      */
@@ -111,5 +111,5 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
   let klass = "";
   export { klass as class };
 
-  $: has_icon = icon && icon != "";
+  $: has_icon = icon && icon !== "";
 </script>

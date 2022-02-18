@@ -1,0 +1,25 @@
+{
+  "name": "@kws3/eslint-plugin-svelte3",
+  "version": "1.0.1",
+  "description": "Kws3 specific svelte3 eslint rules",
+  "main": "src/index.js",
+  "author": "Khaled Ahmed <me.khaled@gmail.com>",
+  "contributors": [
+    "Sabir Mohammed <sabirveli@gmail.com>",
+    "Suneesh S K <suneeshsk3@gmail.com>"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "eslint",
+    "rules",
+    "svelte",
+    "svelte3"
+  ],
+  "peerDependencies": {
+    "eslint": "^7.0.0 || ^8.0.0-0",
+    "svelte": "^3.46.4",
+    "svelte-eslint-parser": "^0.14.0"
+  }
+}

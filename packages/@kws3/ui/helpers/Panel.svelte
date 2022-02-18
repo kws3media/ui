@@ -43,11 +43,12 @@ This will not work if there is no title area
   class="panel {klass}"
   {style}
   data-cy={cy}>
-  {#if title != "" || has_title}
+  {#if title !== "" || has_title}
     <div class="panel-heading" on:click={toggle}>
       <div class="level is-mobile">
         <div class="level-left">
           <div class="level-item">
+            <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
             <h2 class="subtitle">{@html title}</h2>
           </div>
         </div>
@@ -73,6 +74,7 @@ This will not work if there is no title area
             </div>
           {/if}
           <div class="level-item">
+            <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
             <h2 class="subtitle is-6">{@html subtitle}</h2>
           </div>
           <span class="collapsor level-item">

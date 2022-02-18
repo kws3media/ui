@@ -1,5 +1,9 @@
 <KwsPagination
   {meta}
+  {limit}
+  {total}
+  {count}
+  {offset}
   {showTotal}
   {showCurrent}
   {showPerPage}
@@ -21,6 +25,10 @@
       offset: 0,
       status: "",
     },
+    limit = 0,
+    total = 0,
+    count = 0,
+    offset = 0,
     showTotal = true,
     showCurrent = true,
     showPerPage = true,

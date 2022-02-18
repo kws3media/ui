@@ -15,9 +15,9 @@
   @param {number} [completion_timeout=600] - How long to wait before `saved` event is fired, and the UI state reverts back to normal, Default: `600`
   @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for Button container, Default: `""`
-  @param {function} [saving()] - call this function on form saving state
-  @param {function} [saved(callback, timeout)] - call this function after form saved
-  @param {function} [error(callback, timeout)] - call this function on form error state
+  @method `saving()` - call this method on form saving state
+  @method `saved(callback, timeout)` - call this method after form saved
+  @method `error(callback, timeout)` - call this method on form error state
 
   ### Events
   - `saved` - Fired on successful submission
@@ -115,7 +115,7 @@
   export { klass as class };
 
   /**
-   * call this function on form saving state
+   * call this method on form saving state
    */
   export function saving() {
     tracker = {
@@ -126,7 +126,7 @@
   }
 
   /**
-   * call this function after form saved
+   * call this method after form saved
    */
   export function saved(callback, timeout = completion_timeout) {
     tracker = {
@@ -150,7 +150,7 @@
   }
 
   /**
-   * call this function on form error state
+   * call this method on form error state
    */
   export function error(callback, timeout = error_timeout) {
     tracker = {
@@ -173,6 +173,6 @@
     }, timeout);
   }
 
-  $: err_text = error_text == "" ? text : error_text;
-  $: icon_size = size == "large" ? "" : "small";
+  $: err_text = error_text === "" ? text : error_text;
+  $: icon_size = size === "large" ? "" : "small";
 </script>

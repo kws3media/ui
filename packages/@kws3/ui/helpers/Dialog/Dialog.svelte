@@ -30,15 +30,16 @@ For internal use only - not part of config object, Default: `""`
 <CardModal title={titleToUse} {size} {is_active} closable={false}>
   <div slot="default">
     <div class="columns is-vcentered is-mobile">
-      {#if icon && icon != ""}
+      {#if icon && icon !== ""}
         <div class="column is-narrow">
           <Icon {icon} size={icon_size} color={icon_color} />
         </div>
       {/if}
       <div class="column">
         <div>
+          <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
           <span class="is-block">{@html _text}</span>
-          {#if _type == "prompt"}
+          {#if _type === "prompt"}
             <div class="field" style="margin-top:0.5rem;">
               <div class="control">
                 <input
@@ -50,7 +51,7 @@ For internal use only - not part of config object, Default: `""`
               </div>
             </div>
           {/if}
-          {#if help_text && help_text != ""}
+          {#if help_text && help_text !== ""}
             <span class="help">{help_text}</span>
           {/if}
         </div>
@@ -59,20 +60,24 @@ For internal use only - not part of config object, Default: `""`
   </div>
   <div slot="footer" style="width:100%">
     <div class="field is-grouped is-grouped-right">
-      {#if _type != "alert"}
+      {#if _type !== "alert"}
         <div class="control">
-          <button on:click={cancel} class="button is-{cancel_button_color}"
-            >{#if cancel_button_icon != ""}<Icon
+          <button
+            type="button"
+            on:click={cancel}
+            class="button is-{cancel_button_color}"
+            >{#if cancel_button_icon !== ""}<Icon
                 icon={cancel_button_icon}
                 size="small" />{/if}<span>{cancel_button_text}</span></button>
         </div>
       {/if}
       <div class="control">
         <button
+          type="button"
           bind:this={ok_button}
           on:click={ok}
           class="button is-{ok_button_color}"
-          >{#if ok_button_icon != ""}<Icon
+          >{#if ok_button_icon !== ""}<Icon
               icon={ok_button_icon}
               size="small" />{/if}<span>{ok_button_text}</span></button>
       </div>
@@ -170,7 +175,7 @@ For internal use only - not part of config object, Default: `""`
     input_box,
     ok_button;
 
-  $: titleToUse = title != "" ? title : capitaliseFirstLetter(_type);
+  $: titleToUse = title !== "" ? title : capitaliseFirstLetter(_type);
 
   /**
    * Determines the type of Dialog.
@@ -204,13 +209,10 @@ For internal use only - not part of config object, Default: `""`
     switch (_type) {
       case "alert":
         return;
-        break;
       case "confirm":
         return true;
-        break;
       case "prompt":
         return input_value;
-        break;
     }
   }
 
@@ -218,13 +220,10 @@ For internal use only - not part of config object, Default: `""`
     switch (_type) {
       case "alert":
         return;
-        break;
       case "confirm":
         return false;
-        break;
       case "prompt":
         return null;
-        break;
     }
   }
 

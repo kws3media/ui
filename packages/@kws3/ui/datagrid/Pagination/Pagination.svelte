@@ -2,21 +2,36 @@
   @component
 
 
-  @param {object} [meta={}] - Contains the total, count, limit, offset values, Default: `{}`
+  @param {object} [meta={}] - Object containing `total`, `count`, `limit` and `offset` values
+
+**DEPRECATED**: Use `total`, `count`, `limit` and `offset`  props instead, Default: `{}`
+  @param {number} [limit=0] - How many items are meant to be per page, Default: `0`
+  @param {number} [count=0] - How many items are actually in this page, Default: `0`
+  @param {number} [total=0] - Total number of items available, Default: `0`
+  @param {number} [offset=0] - Offset of the first item in this page, Default: `0`
   @param {boolean} [showTotal=true] - Determines whether to show total or not, Default: `true`
   @param {boolean} [showCurrent=true] - Determines whether to show current page details, Default: `true`
   @param {boolean} [showPerPage=true] - Determines whether to show per page options, Default: `true`
   @param {number} [breakThreshold=10] - Limit the number of visible pages in pagination, Default: `10`
   @param {string} [entityName="entries"] - String to display total entries, Default: `"entries"`
-  @param {string} [size="small"] - Size of the pagination, Default: `"small"`
+  @param {''|'small'|'medium'|'large'} [size="small"] - Size of the pagination elements, Default: `"small"`
   @param {boolean} [frame=false] - Determines whether to show pagination frame or not, Default: `false`
   @param {string} [iconRight="chevron-right"] - Right navigation icon, Default: `"chevron-right"`
   @param {string} [iconLeft="chevron-left"] - Left navigation icon, Default: `"chevron-left"`
-  @param {array} [perPageOptions=[]] - Determines the number of rows displayed in a page., Default: `[]`
+  @param {array} [perPageOptions=[]] - Displays the options for how many items to show per page, Default: `[]`
+  @method `goto(targetPage)` - Go to an arbitrary page number
+  @method `prev()` - Go to the previous page
+  @method `next()` - Go to the next page
+  @method `first()` - Go to the first page
+  @method `last()` - Go to the last page
 
   ### Events
-  - `setLimit` - Event used to set limit of pagination
-  - `paginate` - Event triggered on paginate
+  - `setLimit` - Event used to set a new `limit`.
+
+*Event Data:* `{currentPage, newLimit}`
+  - `paginate` - Event triggered on pagination change with new `offset` and current `limit` values.
+
+*Event Data:* `{offset, limit}`
 
 -->
 <div
@@ -34,9 +49,7 @@
                 <li>
                   <button
                     type="button"
-                    class="pagination-link {meta.limit == v
-                      ? 'is-current'
-                      : ''}"
+                    class="pagination-link {_limit === v ? 'is-current' : ''}"
                     on:click={() => setLimit(v)}>{k}</button>
                 </li>
               {/each}
@@ -49,9 +62,8 @@
           {#if showTotal}
             <strong>Total {totalItems} {entityName}</strong>
           {:else if showCurrent}
-            {#if meta.total > 0}Showing {meta.offset * 1 + 1} to {meta.offset *
-                1 +
-                meta.count * 1}{/if}
+            {#if _total > 0}Showing {_offset * 1 + 1} to {_offset * 1 +
+                _count * 1}{/if}
           {/if}
         </div>
       {/if}
@@ -59,14 +71,14 @@
 
     {#if showCurrent && showTotal && !showPerPage}
       <div class="level-item pagination-showing">
-        {#if meta.total > 0}
-          Showing {meta.offset * 1 + 1} to {meta.offset * 1 + meta.count * 1}
+        {#if _total > 0}
+          Showing {_offset * 1 + 1} to {_offset * 1 + _count * 1}
         {/if}
       </div>
     {:else if showPerPage && showCurrent}
       <div class="level-item pagination-showing">
-        {#if meta.total > 0}
-          Showing {meta.offset * 1 + 1} to {meta.offset * 1 + meta.count * 1}
+        {#if _total > 0}
+          Showing {_offset * 1 + 1} to {_offset * 1 + _count * 1}
           {#if showTotal}
             |&nbsp;
           {/if}
@@ -82,25 +94,25 @@
     {/if}
 
     <div class="level-right">
-      {#if meta.total > 0}
+      {#if _total > 0}
         <nav class="pagination is-centered {size ? 'is-' + size : ''}">
           <button
             type="button"
             on:click={prev}
-            class="pagination-previous {meta.offset == 0 ? 'is-disabled' : ''}">
-            <Icon {size} icon={iconLeft} />
+            class="pagination-previous {_offset === 0 ? 'is-disabled' : ''}">
+            <Icon icon={iconLeft} />
           </button>
           <button
             type="button"
             on:click={next}
-            class="pagination-next {currentPage + 1 == totalPages
+            class="pagination-next {currentPage + 1 === totalPages
               ? 'is-disabled'
               : ''}">
-            <Icon {size} icon={iconRight} />
+            <Icon icon={iconRight} />
           </button>
           <ul class="pagination-list" data-cy="pagination-list">
             {#each pages as page}
-              {#if page.p == "sep"}
+              {#if page.p === "sep"}
                 <li>
                   <span class="pagination-ellipsis">&hellip;</span>
                 </li>
@@ -108,7 +120,7 @@
                 <li>
                   <button
                     type="button"
-                    class="pagination-link {page.p == currentPage
+                    class="pagination-link {page.p === currentPage
                       ? 'is-current'
                       : ''}"
                     on:click={() => goto(page.p + 1)}>{page.p + 1}</button>
@@ -129,15 +141,32 @@
   const fire = createEventDispatcher();
 
   /**
-   * Contains the total, count, limit, offset values
+   * Object containing `total`, `count`, `limit` and `offset` values
+   *
+   * **DEPRECATED**: Use `total`, `count`, `limit` and `offset`  props instead
    */
   export let meta = {
       limit: 0,
       total: 0,
       count: 0,
       offset: 0,
-      status: "",
     },
+    /**
+     * How many items are meant to be per page
+     */
+    limit = 0,
+    /**
+     * How many items are actually in this page
+     */
+    count = 0,
+    /**
+     * Total number of items available
+     */
+    total = 0,
+    /**
+     * Offset of the first item in this page
+     */
+    offset = 0,
     /**
      * Determines whether to show total or not
      */
@@ -159,7 +188,8 @@
      */
     entityName = "entries",
     /**
-     * Size of the pagination
+     * Size of the pagination elements
+     * @type {''|'small'|'medium'|'large'}
      */
     size = "small",
     /**
@@ -175,15 +205,20 @@
      */
     iconLeft = "chevron-left",
     /**
-     * Determines the number of rows displayed in a page.
+     * Displays the options for how many items to show per page
      */
     perPageOptions = [20, 50, 100, 150, 200, 250];
 
   let pages = [],
     _perPageOptions = 0;
 
+  $: _total = total || meta.total || 0;
+  $: _count = count || meta.count || 0;
+  $: _offset = offset || meta.offset || 0;
+  $: _limit = limit || meta.limit || 0;
+
   $: {
-    let max = meta.total,
+    let max = _total,
       ppo = perPageOptions || [],
       ppmax = Math.max(...ppo),
       ret = {};
@@ -204,9 +239,9 @@
     _perPageOptions = ret;
   }
 
-  $: totalItems = meta && meta.total ? meta.total : 0;
-  $: currentPage = Math.floor(meta.offset / meta.limit);
-  $: totalPages = Math.ceil(meta.total / (meta.limit || 1));
+  $: totalItems = meta && _total ? _total : 0;
+  $: currentPage = Math.floor(_offset / _limit);
+  $: totalPages = Math.ceil(_total / (_limit || 1));
   $: totalPages, currentPage, breakThreshold, calculatePages();
 
   function calculatePages() {
@@ -221,12 +256,12 @@
           ret.push({ p: i });
         } else if (i > total - 4) {
           ret.push({ p: i });
-        } else if (i == Math.floor(total / 2)) {
+        } else if (i === Math.floor(total / 2)) {
           ret.push({ p: i });
         } else if (
-          i == currentPage ||
-          i == currentPage - 1 ||
-          i == currentPage + 1
+          i === currentPage ||
+          i === currentPage - 1 ||
+          i === currentPage + 1
         ) {
           ret.push({ p: i });
         }
@@ -240,7 +275,7 @@
     if (total > breakThreshold) {
       for (var j = 0; j < ret.length; j++) {
         var page = ret[j].p;
-        if (page != _prev + 1 && page != 0) {
+        if (page !== _prev + 1 && page !== 0) {
           items.push({ p: "sep" });
         }
         items.push(ret[j]);
@@ -255,31 +290,56 @@
 
   function setLimit(limit) {
     /**
-     * Event used to set limit of pagination
+     * Event used to set a new `limit`.
+     *
+     * *Event Data:* `{currentPage, newLimit}`
      */
     fire("setLimit", { currentPage, newLimit: limit });
   }
-  function goto(pagenum) {
-    let limit = meta.limit,
-      i = pagenum - 1,
-      offset = limit * i;
-    if (offset >= 0 && offset != meta.offset && offset < meta.total) {
+
+  /**
+   * Go to an arbitrary page number
+   * @param {int} targetPage
+   */
+  export function goto(targetPage) {
+    let limit = _limit,
+      i = targetPage - 1,
+      __offset = limit * i;
+    if (__offset >= 0 && __offset !== _offset && __offset < _total) {
       /**
-       * Event triggered on paginate
+       * Event triggered on pagination change with new `offset` and current `limit` values.
+       *
+       * *Event Data:* `{offset, limit}`
        */
-      fire("paginate", { offset, limit });
+      fire("paginate", { offset: __offset, limit });
     }
   }
-  function prev() {
+
+  /**
+   * Go to the previous page
+   */
+  export function prev() {
     goto(currentPage);
   }
-  function next() {
+
+  /**
+   * Go to the next page
+   */
+  export function next() {
     goto(currentPage + 2);
   }
-  function first() {
+
+  /**
+   * Go to the first page
+   */
+  export function first() {
     goto(1);
   }
-  function last() {
+
+  /**
+   * Go to the last page
+   */
+  export function last() {
     goto(totalPages);
   }
 </script>

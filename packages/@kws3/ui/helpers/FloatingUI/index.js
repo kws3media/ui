@@ -62,7 +62,7 @@ export const FloatiesStore = (() => {
         newItem.variant = "notification";
       }
 
-      if (!newItem.position || newItem.position == "") {
+      if (!newItem.position || newItem.position === "") {
         newItem.position = DEFAULT_POSITIONS[newItem.variant];
       }
 
@@ -88,7 +88,7 @@ export const FloatiesStore = (() => {
       let _items = items[_position][_variant];
 
       items[_position][_variant] = _items.slice().filter((el) => {
-        return el && el.id && el.id != props.id;
+        return el && el.id && el.id !== props.id;
       });
 
       return items;

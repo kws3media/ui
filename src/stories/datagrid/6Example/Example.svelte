@@ -95,7 +95,7 @@
   {#if has_pagination}
     <div class="columns">
       <div class="column">
-        <Pagination {meta} {perPageOptions} on:paginate={paginate} />
+        <Pagination {...meta} {perPageOptions} on:paginate={paginate} />
       </div>
     </div>
   {/if}
@@ -167,14 +167,12 @@
       switch (row.role) {
         case "A":
           return "Administrator";
-          break;
         case "U":
           return "User";
-          break;
       }
     },
-    status(v, row) {
-      return v == 1 ? "Active" : "Inactive";
+    status(v) {
+      return v === 1 ? "Active" : "Inactive";
     },
   };
 
@@ -203,7 +201,7 @@
         var filter_data = filtered.length > 0 ? filtered : data_from_json;
         filtered = filter_data.filter(function (item) {
           console.log(item[key], dd_field[1]);
-          return item[key] == dd_field[1];
+          return item[key] === dd_field[1];
         });
       }
     }
@@ -232,7 +230,7 @@
     var sort_val = detail.split(" ");
     var key = sort_val[0];
     var val = sort_val[1];
-    if (val == "DESC") {
+    if (val === "DESC") {
       original_data = original_data.sort(
         (a, b) => Number(b[key]) - Number(a[key])
       );

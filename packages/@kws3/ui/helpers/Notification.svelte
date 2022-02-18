@@ -23,7 +23,7 @@ The parent can then decide what to do with the component
     class="notification is-{color} {light ? 'is-light' : ''} {klass}"
     {style}>
     {#if dismissable}
-      <button class="delete" on:click={dismiss} />
+      <button type="button" class="delete" on:click={dismiss} />
     {/if}
     <!--Used for notification content--><slot />
   </div>

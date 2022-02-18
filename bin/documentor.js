@@ -174,16 +174,16 @@ function fillData(doc, is_static) {
   if (doc.methods.length) {
     let methods = doc.methods.filter((i) => i.static === is_static);
     methods.forEach((d) => {
-      params.push(makeFunctionDoc(d));
+      params.push(makeFunctionDoc(d, true));
     });
   }
 
   return params;
 }
 
-function makeFunctionDoc(e) {
+function makeFunctionDoc(e, is_method = false) {
   let props = [];
-  let description = getDescription(e, "function");
+  let description = getDescription(e, is_method ? "method" : "function");
 
   if (typeof e.params != "undefined" && e.params.length) {
     e.params.forEach((i) => {
@@ -199,11 +199,19 @@ function makeFunctionDoc(e) {
     }
   }
 
-  return (
-    "@param {function} " +
-    ("[" + (e.name + "(" + props.join(", ") + ")") + "]") +
-    (description ? " - " + description : "")
-  );
+  if (is_method) {
+    return (
+      "@method `" +
+      (e.name + "(" + props.join(", ") + ")`") +
+      (description ? " - " + description : "")
+    );
+  } else {
+    return (
+      "@param {function} " +
+      ("[" + (e.name + "(" + props.join(", ") + ")") + "]") +
+      (description ? " - " + description : "")
+    );
+  }
 }
 
 function getDefaultValue(e) {

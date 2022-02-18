@@ -22,6 +22,7 @@
   {#each column_keys as column}
     {#if isVisible(column)}
       <div class={classNames(column, row)} style={styles(column, row)}>
+        <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
         {@html transforms(column, row)}
       </div>
     {/if}

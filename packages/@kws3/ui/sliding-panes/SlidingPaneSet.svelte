@@ -2,9 +2,9 @@
   @component
 
 
-  @param {string} [classes=""] - Additional classes, Default: `""`
   @param {string} [style=""] - Inline style of component, Default: `""`
-  @param {boolean} [vertical=false] - Vertical Aligned - true/false, Default: `false`
+  @param {boolean} [vertical=false] - Vertical transform of SlidingPane., Default: `false`
+  @param {string} [class=""] - CSS classes for the SlidingPaneSet, Default: `""`
 
   ### Slots
   - `<slot name="default"  />`

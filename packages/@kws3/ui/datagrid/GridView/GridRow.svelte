@@ -164,7 +164,7 @@
 
   function setCheckedValue() {
     checked = false;
-    if (selectedIds.indexOf(row.id) != -1) {
+    if (selectedIds.indexOf(row.id) !== -1) {
       checked = true;
     }
   }

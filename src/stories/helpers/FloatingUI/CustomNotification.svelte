@@ -6,6 +6,7 @@
     {#if title}
       <h4 class="title is-5 is-marginless">{title}</h4>
     {/if}
+    <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
     <p>{@html message}</p>
   </div>
   <div class="control">

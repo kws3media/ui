@@ -3,6 +3,7 @@ import flatpickr from "flatpickr";
 function createFlatpickrAction(defaultOpts, hooks) {
   return function (
     node,
+    // eslint-disable-next-line no-unused-vars
     { opts, value, placeholder, klass, style, disabled, color }
   ) {
     const _opts = {};
@@ -49,17 +50,19 @@ function createFlatpickrAction(defaultOpts, hooks) {
 
     function applyColorClass(instance, color) {
       let contains = false;
-      instance.calendarContainer.classList.forEach((c) => {
-        if (c.charAt(3).toLowerCase() == "is-") {
-          contains = c;
+      if (instance && instance.calendarContainer) {
+        instance.calendarContainer.classList.forEach((c) => {
+          if (c.charAt(3).toLowerCase() === "is-") {
+            contains = c;
+          }
+        });
+
+        if (contains) {
+          instance.calendarContainer.classList.remove(contains);
         }
-      });
 
-      if (contains) {
-        instance.calendarContainer.classList.remove(contains);
+        instance.calendarContainer.classList.add("is-" + color);
       }
-
-      instance.calendarContainer.classList.add("is-" + color);
     }
 
     function applyInitialInputAttributes(instance, { style }) {

@@ -23,6 +23,10 @@ module.exports = function (grunt) {
             to: '<title>UI | KWS3 Media</title>'
           },
           {
+            from: '<title>Webpack App</title>',
+            to: '<title>UI | KWS3 Media</title>'
+          },
+          {
             from: '<link rel="shortcut icon" href="favicon.ico?v=1" />',
             to: '<link rel="shortcut icon" href="favicon.png?v=' + '<%= gitinfo.local.branch.current.shortSHA %>' + '" />'
           },

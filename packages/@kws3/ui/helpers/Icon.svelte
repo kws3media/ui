@@ -99,7 +99,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 
   $: {
     usedFamily =
-      family && family != "" ? family : globalFamily ? globalFamily : "fa";
+      family && family !== "" ? family : globalFamily ? globalFamily : "fa";
 
     switch (usedFamily) {
       case "lar":

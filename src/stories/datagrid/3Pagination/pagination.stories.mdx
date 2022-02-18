@@ -6,13 +6,11 @@ import { action } from '@storybook/addon-actions';
 import PaginationDecorator from "./Pagination.svelte";
 
 export let args={
-  meta : {
-    limit: 10,
-    total: 50,
-    count: 20,
-    offset: 0,
-    status: "",
-  },
+  meta : {},
+  limit: 20,
+  total: 120,
+  count: 20,
+  offset: 20,
   showTotal : true,
   showCurrent : true,
   showPerPage : true,
@@ -32,7 +30,13 @@ export let args={
   title="Datagrid/Pagination"
   component={Pagination}
   args={args}
-  argTypes={{}}
+  argTypes={{
+    size: {
+      control: {
+        type: 'select'
+      }
+    }
+  }}
 />
 
 <Description markdown={dedent`
