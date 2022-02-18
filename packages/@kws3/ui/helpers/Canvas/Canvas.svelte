@@ -7,7 +7,7 @@
   @param {string} [height="250px"] - Height of the canvas, Default: `250px`
   @param {number} [line=2] - line width width, Default: `2`
   @param {number} [eraser=6] - Eraser width, Default: `6`
-  @param {string} [lineColor="#ff0000"] - Pen input color, Default: `"#ff0000"`
+  @param {string} [color="#ff0000"] - Line color, Default: `"#ff0000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
@@ -35,14 +35,14 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   <CanvasControls
     {...$$props}
     {setTool}
-    {setLineColor}
+    {setColor}
     {expanded}
     {expandContract}
     bind:CANVAS_IMAGE
     bind:penColor
     bind:canUndo
     bind:canRedo
-    bind:lineColor
+    bind:color
     bind:showTools />
 </div>
 
@@ -76,7 +76,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Pen input color
      */
-    lineColor = "#ff0000",
+    color = "#ff0000",
     /**
      * Background image for the canvas
      */
@@ -161,10 +161,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   $: {
     penColor =
-      lineColor.substr(0, 1) == "#"
-        ? lineColor.substr(1)
-        : lineColor.length == 6
-        ? lineColor
+      color.substr(0, 1) == "#"
+        ? color.substr(1)
+        : color.length == 6
+        ? color
         : "000000";
   }
   $: {
@@ -197,7 +197,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   $: expanded, setScaleFactor();
   $: image, syncImage();
-  $: penColor, setLineColor();
+  $: penColor, setColor();
 
   onMount(() => {
     setTool(activeTool);
@@ -223,8 +223,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       );
   }
 
-  function setLineColor() {
-    CANVAS_IMAGE && CANVAS_IMAGE.setLineColor(`#${penColor}`);
+  function setColor() {
+    CANVAS_IMAGE && CANVAS_IMAGE.setcolor(`#${penColor}`);
   }
 
   function syncImage() {
