@@ -66,7 +66,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     height = "250px",
     /**
-     * Pen input width
+     *line width
      */
     line = 2,
     /**
@@ -74,7 +74,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     eraser = 6,
     /**
-     * Pen input color
+     * line color
      */
     color = "#ff0000",
     /**

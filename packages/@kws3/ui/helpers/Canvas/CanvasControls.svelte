@@ -123,7 +123,7 @@
     showTools,
     tools,
     hide_colorpicker,
-    lineColor,
+    color,
     penColor,
     setTool,
     canUndo,
@@ -131,7 +131,7 @@
     expanded,
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     expandContract,
-    setLineColor,
+    setColor,
     actionToolbarPosition,
     activeTool;
 
@@ -150,13 +150,13 @@
   let _colorpicker;
   let controlClasses = "is-flex-direction-row";
 
-  $: penColor, setLineColor();
+  $: penColor, setColor();
   $: {
     penColor =
-      lineColor.substr(0, 1) == "#"
-        ? lineColor.substr(1)
-        : lineColor.length == 6
-        ? lineColor
+      color.substr(0, 1) == "#"
+        ? color.substr(1)
+        : color.length == 6
+        ? color
         : "000000";
   }
 

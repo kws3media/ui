@@ -247,7 +247,7 @@ export default function DrawImage(app, opts) {
     }
   };
 
-  this.setLineColor = (color) => {
+  this.setColor = (color) => {
     context.strokeStyle = color;
   };
 }
