@@ -1,12 +1,12 @@
 :root {
-  --peninput-height: 250px;
-  --peninput-width: 250px;
-  --peninput-controls-height: 2.4rem;
+  --kws-peninput-height: 250px;
+  --kws-peninput-width: 250px;
+  --kws-peninput-controls-height: 2.4rem;
 }
 .canvas-wrapper {
   margin: 0 auto;
-  height: var(--peninput-height);
-  width: var(--peninput-width);
+  height: var(--kws-peninput-height);
+  width: var(--kws-peninput-width);
   transform: translate3d(0, 0, 0);
   transition: transform 0.3s $easeOutCustom;
   transform-origin: center center;
@@ -16,7 +16,7 @@
   .canvas-controls {
     position: absolute;
     width: 100%;
-    min-height: var(--peninput-controls-height);
+    min-height: var(--kws-peninput-controls-height);
     background: transparentize($grey-light, 0.5);
     padding: 0.25rem;
     margin: 0 auto;
@@ -30,10 +30,10 @@
       }
     }
     &.is-placement-bottom {
-      top: var(--peninput-height);
+      top: var(--kws-peninput-height);
     }
     &.is-placement-top {
-      top: calc(-1 * var(--peninput-controls-height));
+      top: calc(-1 * var(--kws-peninput-controls-height));
     }
   }
   &.expanded {

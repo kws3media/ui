@@ -167,8 +167,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       transform: `scale(${expanded ? 1 + expand.scale * 0.01 : initialScale})`,
       "transform-origin": `${expand.from || "center"} ${expand.to || "center"}`,
       "flex-direction": "column",
-      "--peninput-height": height,
-      "--peninput-width": width,
+      "--kws-peninput-height": height,
+      "--kws-peninput-width": width,
     };
 
     // if (toolbarPlacement == "bottom") {
