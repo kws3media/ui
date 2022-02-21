@@ -4,7 +4,7 @@
       class="columns m-0 is-justify-content-center {controlClasses}"
       style="gap: 0.5rem;">
       {#each actions as action}
-        {#if action == "controls"}
+        {#if action === "controls"}
           <div class="control">
             <div class="dropdown is-{showTools ? 'active' : ''} is-up">
               <div class="dropdown-trigger">
@@ -38,7 +38,7 @@
               </div>
             </div>
           </div>
-        {:else if action == "colorpicker"}
+          <!-- {:else if action === "colorpicker"}
           {#if tools.indexOf("Pen") != -1}
             <div class="control" use:tooltip data-tooltip="Pen Color">
               <button
@@ -52,8 +52,8 @@
                 <Icon icon="crosshairs" size="small" />
               </button>
             </div>
-          {/if}
-        {:else if action == "undo"}
+          {/if} -->
+        {:else if action === "undo"}
           <div class="control">
             <button
               use:tooltip
@@ -65,7 +65,7 @@
               <Icon icon="undo" size="small" />
             </button>
           </div>
-        {:else if action == "redo"}
+        {:else if action === "redo"}
           <div class="control">
             <button
               use:tooltip
@@ -77,7 +77,7 @@
               <Icon icon="repeat" size="small" />
             </button>
           </div>
-        {:else if action == "reset"}
+        {:else if action === "reset"}
           <div class="control">
             <button
               use:tooltip
@@ -88,7 +88,7 @@
               <Icon icon="refresh" size="small" />
             </button>
           </div>
-        {:else if action == "expand"}
+        {:else if action === "expand"}
           <div class="control">
             <button
               use:tooltip
@@ -152,15 +152,15 @@
   $: penColor, setColor();
   $: {
     penColor =
-      color.substr(0, 1) == "#"
+      color.substr(0, 1) === "#"
         ? color.substr(1)
-        : color.length == 6
+        : color.length === 6
         ? color
         : "000000";
   }
 
   $: {
-    if (actionToolbarPosition == "left" || actionToolbarPosition == "right") {
+    if (actionToolbarPosition === "left" || actionToolbarPosition === "right") {
       controlClasses = "is-flex-direction-column";
     }
   }
@@ -168,7 +168,7 @@
   $: {
     let control_default_styles = {
       width:
-        actionToolbarPosition == "left" || actionToolbarPosition == "right"
+        actionToolbarPosition === "left" || actionToolbarPosition === "right"
           ? "auto"
           : width || "250px",
     };
@@ -178,19 +178,19 @@
       .join(";");
   }
 
-  function colorpicker(node) {
-    _colorpicker = new ColorPicker(node);
+  // function colorpicker(node) {
+  //   _colorpicker = new ColorPicker(node);
 
-    _colorpicker.on("change", (_color) => (penColor = _color));
-    _colorpicker.set("#" + penColor);
+  //   _colorpicker.on("change", (_color) => (penColor = _color));
+  //   _colorpicker.set("#" + penColor);
 
-    return {
-      update(newColor) {
-        _colorpicker.set("#" + newColor);
-      },
-      destroy() {
-        _colorpicker.destroy();
-      },
-    };
-  }
+  //   return {
+  //     update(newColor) {
+  //       _colorpicker.set("#" + newColor);
+  //     },
+  //     destroy() {
+  //       _colorpicker.destroy();
+  //     },
+  //   };
+  // }
 </script>
