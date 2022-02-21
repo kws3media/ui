@@ -1,5 +1,11 @@
+:root {
+  --peninput-height: 250px;
+  --peninput-width: 250px;
+}
 .canvas-wrapper {
   margin: 0 auto;
+  height: var(--peninput-height);
+  width: var(--peninput-width);
   transform: translate3d(0, 0, 0);
   transition: transform 0.3s $easeOutCustom;
   transform-origin: center center;
@@ -7,6 +13,7 @@
   backface-visibility: hidden;
   transform-style: preserve-3d;
   .canvas-controls {
+    position: absolute;
     width: 100%;
     min-height: 2.4rem;
     background: transparentize($grey-light, 0.5);

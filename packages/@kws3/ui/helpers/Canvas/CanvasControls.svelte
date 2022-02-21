@@ -131,7 +131,7 @@
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     expandContract,
     setColor,
-    actionToolbarPosition,
+    toolbarPlacement,
     activeTool;
 
   let toolMap = {
@@ -160,23 +160,23 @@
   }
 
   $: {
-    if (actionToolbarPosition === "left" || actionToolbarPosition === "right") {
+    if (toolbarPlacement === "left" || toolbarPlacement === "right") {
       controlClasses = "is-flex-direction-column";
     }
   }
 
-  $: {
-    let control_default_styles = {
-      width:
-        actionToolbarPosition === "left" || actionToolbarPosition === "right"
-          ? "auto"
-          : width || "250px",
-    };
+  // $: {
+  //   let control_default_styles = {
+  //     width:
+  //       toolbarPlacement === "left" || toolbarPlacement === "right"
+  //         ? "auto"
+  //         : width || "250px",
+  //   };
 
-    canvasControlsStyles = Object.entries(control_default_styles)
-      .map(([key, val]) => `${key}:${val}`)
-      .join(";");
-  }
+  //   canvasControlsStyles = Object.entries(control_default_styles)
+  //     .map(([key, val]) => `${key}:${val}`)
+  //     .join(";");
+  // }
 
   // function colorpicker(node) {
   //   _colorpicker = new ColorPicker(node);

@@ -18,7 +18,7 @@
       {tools}
       {activeTool}
       {actions}
-      {actionToolbarPosition}
+      {toolbarPlacement}
       {drawing_label}
       {cy} />
   </div>
@@ -60,7 +60,7 @@
     },
     tools = ["Pen", "Eraser"],
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-    actionToolbarPosition = "bottom",
+    toolbarPlacement = "bottom",
     activeTool = "Pen",
     drawing_label = "",
     cy = "";
