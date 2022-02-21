@@ -224,7 +224,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   }
 
   function setColor() {
-    CANVAS_IMAGE && CANVAS_IMAGE.setcolor(`#${penColor}`);
+    CANVAS_IMAGE && CANVAS_IMAGE.setColor(`#${penColor}`);
   }
 
   function syncImage() {
