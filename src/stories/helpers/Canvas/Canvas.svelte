@@ -20,7 +20,6 @@
       {actions}
       {actionToolbarPosition}
       {drawing_label}
-      {hide_colorpicker}
       {cy} />
   </div>
   <div class="column has-text-centered">
@@ -64,6 +63,5 @@
     actionToolbarPosition = "bottom",
     activeTool = "Pen",
     drawing_label = "",
-    hide_colorpicker = false,
     cy = "";
 </script>
