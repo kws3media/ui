@@ -39,7 +39,7 @@
             </div>
           </div>
         {:else if action == "colorpicker"}
-          {#if tools.indexOf("Pen") != -1 && !hide_colorpicker}
+          {#if tools.indexOf("Pen") != -1}
             <div class="control" use:tooltip data-tooltip="Pen Color">
               <button
                 use:colorpicker={penColor}
@@ -122,7 +122,6 @@
     readonly,
     showTools,
     tools,
-    hide_colorpicker,
     color,
     penColor,
     setTool,

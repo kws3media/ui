@@ -21,7 +21,6 @@
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
-  @param {boolean} [hide_colorpicker=false] - Determines whether to make the colorpicker available or not, Default: `false`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 
 -->
@@ -54,9 +53,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   /**
    * Inline CSS for the canvas
    */
-  export let styles = {
-      border: "1px solid #b5b5b5",
-    },
+  export let styles = {},
     /**
      * Canvas width
      */
@@ -128,10 +125,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     drawing_label = "",
     /**
-     * Determines whether to make the colorpicker available or not
-     */
-    hide_colorpicker = false,
-    /**
      * data-cy attribute for cypress
      */
     cy = "";
@@ -161,9 +154,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   $: {
     penColor =
-      color.substr(0, 1) == "#"
+      color.substr(0, 1) === +"#"
         ? color.substr(1)
-        : color.length == 6
+        : color.length === 6
         ? color
         : "000000";
   }
