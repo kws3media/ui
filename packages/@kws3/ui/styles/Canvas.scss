@@ -1,6 +1,7 @@
 :root {
   --peninput-height: 250px;
   --peninput-width: 250px;
+  --peninput-controls-height: 2.4rem;
 }
 .canvas-wrapper {
   margin: 0 auto;
@@ -15,7 +16,7 @@
   .canvas-controls {
     position: absolute;
     width: 100%;
-    min-height: 2.4rem;
+    min-height: var(--peninput-controls-height);
     background: transparentize($grey-light, 0.5);
     padding: 0.25rem;
     margin: 0 auto;
@@ -27,6 +28,12 @@
           padding-right: 1em;
         }
       }
+    }
+    &.is-placement-bottom {
+      top: var(--peninput-height);
+    }
+    &.is-placement-top {
+      top: calc(-1 * var(--peninput-controls-height));
     }
   }
   &.expanded {

@@ -1,4 +1,6 @@
-<div class="canvas-controls" style={canvasControlsStyles}>
+<div
+  class="canvas-controls is-placement-{toolbarPlacement}"
+  style={canvasControlsStyles}>
   {#if !readonly && !disabled}
     <div
       class="columns m-0 is-justify-content-center {controlClasses}"
