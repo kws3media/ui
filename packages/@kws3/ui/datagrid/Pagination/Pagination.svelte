@@ -252,9 +252,13 @@
 
     for (var i = 0; i < total; i++) {
       if (total > maxVisiblePages) {
-        if (i < Math.floor(maxVisiblePages / 3)) {
+        let threshold = Math.max(
+          Math.floor(maxVisiblePages / 3),
+          Math.min(3, maxVisiblePages - 3)
+        );
+        if (i < threshold) {
           ret.push({ p: i });
-        } else if (i >= total - Math.floor(maxVisiblePages / 3)) {
+        } else if (i >= total - threshold) {
           ret.push({ p: i });
         } else if (i === Math.floor(total / 2)) {
           ret.push({ p: i });
