@@ -254,7 +254,7 @@
       if (total > maxVisiblePages) {
         if (i < Math.floor(maxVisiblePages / 3)) {
           ret.push({ p: i });
-        } else if (i > total - Math.floor(maxVisiblePages / 3)) {
+        } else if (i >= total - Math.floor(maxVisiblePages / 3)) {
           ret.push({ p: i });
         } else if (i === Math.floor(total / 2)) {
           ret.push({ p: i });
