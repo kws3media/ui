@@ -1,7 +1,7 @@
 name: Build and Deploy
 on:
   deployment:
-  create:
+  push:
     tags:
       - '@kws3/ui@*'
 jobs:
