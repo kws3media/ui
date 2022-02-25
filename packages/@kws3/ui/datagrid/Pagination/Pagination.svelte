@@ -12,7 +12,7 @@
   @param {boolean} [showTotal=true] - Determines whether to show total or not, Default: `true`
   @param {boolean} [showCurrent=true] - Determines whether to show current page details, Default: `true`
   @param {boolean} [showPerPage=true] - Determines whether to show per page options, Default: `true`
-  @param {number} [breakThreshold=10] - Limit the number of visible pages in pagination, Default: `10`
+  @param {number} [maxVisiblePages=10] - Maximum number of consecutive pages to show in pagination after which a break is introduced in between them, Default: `10`
   @param {string} [entityName="entries"] - String to display total entries, Default: `"entries"`
   @param {''|'small'|'medium'|'large'} [size="small"] - Size of the pagination elements, Default: `"small"`
   @param {boolean} [frame=false] - Determines whether to show pagination frame or not, Default: `false`
@@ -180,9 +180,9 @@
      */
     showPerPage = true,
     /**
-     * Limit the number of visible pages in pagination
+     * Maximum number of consecutive pages to show in pagination after which a break is introduced in between them
      */
-    breakThreshold = 10,
+    maxVisiblePages = 10,
     /**
      * String to display total entries
      */
@@ -242,7 +242,7 @@
   $: totalItems = meta && _total ? _total : 0;
   $: currentPage = Math.floor(_offset / _limit);
   $: totalPages = Math.ceil(_total / (_limit || 1));
-  $: totalPages, currentPage, breakThreshold, calculatePages();
+  $: totalPages, currentPage, maxVisiblePages, calculatePages();
 
   function calculatePages() {
     pages = new Array(totalPages || 0);
@@ -251,10 +251,14 @@
       ret = [];
 
     for (var i = 0; i < total; i++) {
-      if (total > breakThreshold) {
-        if (i < 3) {
+      if (total > maxVisiblePages) {
+        let threshold = Math.max(
+          Math.floor(maxVisiblePages / 3),
+          Math.min(3, maxVisiblePages - 3)
+        );
+        if (i < threshold) {
           ret.push({ p: i });
-        } else if (i > total - 4) {
+        } else if (i >= total - threshold) {
           ret.push({ p: i });
         } else if (i === Math.floor(total / 2)) {
           ret.push({ p: i });
@@ -272,7 +276,7 @@
 
     let _prev = 0,
       items = []; // _prev was prev
-    if (total > breakThreshold) {
+    if (total > maxVisiblePages) {
       for (var j = 0; j < ret.length; j++) {
         var page = ret[j].p;
         if (page !== _prev + 1 && page !== 0) {
