@@ -12,7 +12,7 @@
   @param {boolean} [showTotal=true] - Determines whether to show total or not, Default: `true`
   @param {boolean} [showCurrent=true] - Determines whether to show current page details, Default: `true`
   @param {boolean} [showPerPage=true] - Determines whether to show per page options, Default: `true`
-  @param {number} [maxVisiblePages=10] - Limit the number of visible pages in pagination, Default: `10`
+    @param  {number} [maxVisiblePages=10] - Displays the number of visible pages in pagination, Default: `10`
   @param {string} [entityName="entries"] - String to display total entries, Default: `"entries"`
   @param {''|'small'|'medium'|'large'} [size="small"] - Size of the pagination elements, Default: `"small"`
   @param {boolean} [frame=false] - Determines whether to show pagination frame or not, Default: `false`
