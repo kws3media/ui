@@ -7,7 +7,7 @@
   {showTotal}
   {showCurrent}
   {showPerPage}
-  {breakThreshold}
+  {maxVisiblePages}
   {entityName}
   {size}
   {frame}
@@ -32,7 +32,7 @@
     showTotal = true,
     showCurrent = true,
     showPerPage = true,
-    breakThreshold = 10,
+    maxVisiblePages = 10,
     entityName = "entries",
     size = "small",
     frame = false,

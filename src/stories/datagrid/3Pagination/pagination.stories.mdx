@@ -1,28 +1,35 @@
-import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
-import dedent from 'ts-dedent';
-import Version from '~/version.mdx';
-import { Pagination } from '@kws3/ui';
-import { action } from '@storybook/addon-actions';
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import { Pagination } from "@kws3/ui";
+import { action } from "@storybook/addon-actions";
 import PaginationDecorator from "./Pagination.svelte";
 
-export let args={
-  meta : {},
+export let args = {
+  meta: {},
   limit: 20,
   total: 120,
   count: 20,
   offset: 20,
-  showTotal : true,
-  showCurrent : true,
-  showPerPage : true,
-  breakThreshold : 10,
-  entityName : "entries",
-  size : "small",
-  frame : false,
-  iconRight : "chevron-right",
-  iconLeft : "chevron-left",
-  perPageOptions : [20, 50, 100, 150, 200, 250]
+  showTotal: true,
+  showCurrent: true,
+  showPerPage: true,
+  maxVisiblePages: 10,
+  entityName: "entries",
+  size: "small",
+  frame: false,
+  iconRight: "chevron-right",
+  iconLeft: "chevron-left",
+  perPageOptions: [20, 50, 100, 150, 200, 250],
 };
-
 
 <Version />
 
@@ -33,53 +40,51 @@ export let args={
   argTypes={{
     size: {
       control: {
-        type: 'select'
-      }
-    }
+        type: "select",
+      },
+    },
   }}
 />
 
-<Description markdown={dedent`
+<Description
+  markdown={dedent`
 # Pagination
 ## Pagination component in datagrid.
-`}/>
+`}
+/>
 
 <Canvas>
-  <Story
-  name="Pagination"
-  args={args}
-  >
-  {(args) => ({
-    Component: PaginationDecorator,
-    props: args
-  })}
+  <Story name="Pagination" args={args}>
+    {(args) => ({
+      Component: PaginationDecorator,
+      props: args,
+    })}
   </Story>
 </Canvas>
 
 <ArgsTable story="Pagination" />
 
-
 ### Usage
+
 #### Import the component:
+
 <Source
   language="javascript"
-  code={
-    dedent`import { Pagination } from '@kws3/ui';`
-  }
+  code={dedent`import { Pagination } from '@kws3/ui';`}
 />
 
 #### Import the SCSS:
+
 <Source
   language="javascript"
-  code={
-    dedent`@import '@kws3/ui/styles/Pagination.scss';`
-  }
+  code={dedent`@import '@kws3/ui/styles/Pagination.scss';`}
 />
 
 ##### SCSS customization variables with default values:
+
 <Source
-  language='css'
-  code={ dedent`
+  language="css"
+  code={dedent`
     $kws-pagination-item-color: $text;
     $kws-pagination-item-background: #fff;
     $kws-pagination-item-border: 1px solid $border;
