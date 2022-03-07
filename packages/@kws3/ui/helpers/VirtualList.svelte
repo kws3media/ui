@@ -7,7 +7,11 @@
   <div
     bind:this={container}
     style="padding-top: {top}px; padding-bottom: {bottom}px;">
-    <div class="row" bind:this={rows} />
+    {#each visibleItems as item (item.index)}
+      <div class="row">
+        {item.name}
+      </div>
+    {/each}
   </div>
 </div>
 
@@ -23,13 +27,20 @@
   let element, //whole wrapping element
     viewportHeight, //height of the viewport
     container, //container element
-    rows, //rows element
+    itemRows, //array of rows
     top,
     bottom,
     props = {},
     heightMap = [];
 
-  let itemRows = rows;
+  onMount(() => {
+    if (items.length > 0) {
+      itemRows = container.querySelectorAll(".row");
+      console.log(items);
+      initialise();
+      refresh();
+    }
+  });
 
   function initialise() {
     if (itemHeight) {
@@ -99,13 +110,6 @@
     start = newStart;
     end = newEnd;
   }
-
-  onMount(() => {
-    if (items.length > 0) {
-      initialise();
-      refresh();
-    }
-  });
 
   $: visibleItems = () => {
     return items.slice(start, end).map((data, i) => {
