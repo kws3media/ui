@@ -17,7 +17,8 @@
   export let end = 0;
 
   let element, //whole wrapping element
-    viewportHeight,
+    viewportHeight, //height of the viewport
+    container, //container element
     top,
     bottom,
     props = {}; //height of the viewport
