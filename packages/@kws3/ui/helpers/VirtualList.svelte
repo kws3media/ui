@@ -6,7 +6,9 @@
   bind:offsetHeight={viewportHeight}>
   <div
     bind:this={container}
-    style="padding-top: {top}px; padding-bottom: {bottom}px;" />
+    style="padding-top: {top}px; padding-bottom: {bottom}px;">
+    <div class="row" />
+  </div>
 </div>
 
 <script>
@@ -23,9 +25,46 @@
     container, //container element
     top,
     bottom,
-    props = {}; //height of the viewport
+    props = {},
+    heightMap = [];
+
+  let itemRows = container.getElementsByClassName("row");
+
+  function initialise() {
+    if (itemHeight) {
+      heightMap = items.map((_) => itemHeight);
+      end = Math.min(items.length, Math.ceil(viewportHeight / itemHeight));
+      bottom = items.length * itemHeight;
+    } else {
+      let height = 0;
+      let i = 0;
+
+      while (height < viewportHeight && i < items.length) {
+        end = i + 1;
+
+        const rowHeight = (heightMap[i] = itemRows[i].offsetHeight);
+        height += rowHeight;
+
+        i += 1;
+      }
+
+      const _end = i;
+      const avg = Math.round(height / i);
+
+      for (; i < items.length; i += 1) heightMap[i] = avg;
+
+      bottom = (items.length - _end) * avg;
+    }
+  }
 
   function refresh() {}
+
+  onMount(() => {
+    if (items.length > 0) {
+      initialise();
+      refresh();
+    }
+  });
 
   $: visibleItems = () => {
     return items.slice(start, end).map((data, i) => {
