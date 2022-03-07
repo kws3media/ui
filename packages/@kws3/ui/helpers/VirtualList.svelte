@@ -7,7 +7,7 @@
   <div
     bind:this={container}
     style="padding-top: {top}px; padding-bottom: {bottom}px;">
-    <div class="row" />
+    <div class="row" bind:this={rows} />
   </div>
 </div>
 
@@ -23,12 +23,13 @@
   let element, //whole wrapping element
     viewportHeight, //height of the viewport
     container, //container element
+    rows, //rows element
     top,
     bottom,
     props = {},
     heightMap = [];
 
-  let itemRows = container.getElementsByClassName("row");
+  let itemRows = rows;
 
   function initialise() {
     if (itemHeight) {
@@ -57,7 +58,47 @@
     }
   }
 
-  function refresh() {}
+  function refresh() {
+    const { scrollTop } = element;
+
+    let paddingTop = 0;
+    let offset = 0;
+    let i = 0;
+
+    if (!itemHeight) {
+      for (let i = 0; i < rows.length; i += 1) {
+        heightMap[start + i] = rows[i].offsetHeight;
+      }
+    }
+
+    for (; i < items.length; i += 1) {
+      if (!(i in heightMap)) break;
+
+      offset += heightMap[i];
+      if (offset > scrollTop) break;
+
+      paddingTop = offset;
+    }
+
+    const newStart = i++;
+
+    for (; i < items.length; i += 1) {
+      if (offset > scrollTop + viewportHeight) break;
+      offset += heightMap[i];
+    }
+
+    const newEnd = i;
+
+    if (newStart === start && newEnd === end) return;
+
+    let paddingBottom = 0;
+    for (; i < items.length; i += 1) paddingBottom += heightMap[i];
+
+    top = paddingTop;
+    bottom = paddingBottom;
+    start = newStart;
+    end = newEnd;
+  }
 
   onMount(() => {
     if (items.length > 0) {
