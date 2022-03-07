@@ -1,0 +1,65 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { VirtualList } from "@kws3/ui";
+import { action } from '@storybook/addon-actions';
+
+export let args={
+  align : 'left',
+  class: ""
+}
+
+<Version />
+
+<Meta
+  title="Helpers/VirtualList"
+  component={VirtualList}
+  args={args}
+  argTypes={{
+    align: {
+      control: 'select'
+    }
+  }}
+/>
+
+<Description markdown={dedent`
+# Timeline
+## A Timeline component.
+This component acts as a holder for the <a href="/docs/helpers-timeline-timelineitem--timeline-item">TimelineItem</a> and <a href="/docs/helpers-timeline-timelineheader--timeline-header">TimelineHeader</a> components.
+`}/>
+
+<Canvas>
+  <Story
+  name="VirtualList"
+  args={args}
+  >
+  {(args) => ({
+    Component: VirtualList,
+    props: args
+  })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="VirtualList" />
+
+
+### Usage
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { VirtualList } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/VirtualList.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws-virtuallist-colors: $colors;
+  `}
+/>
