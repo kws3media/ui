@@ -6,7 +6,7 @@
   const response = require("./users.json");
   import { VirtualList as KwsVirtualList } from "@kws3/ui";
 
-  let users = response.records;
-  let start = 0;
-  let end = users.length;
+  export let users = response.records;
+  export let start = 0;
+  export let end = users.length;
 </script>
