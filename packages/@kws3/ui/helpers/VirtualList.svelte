@@ -6,10 +6,16 @@
   bind:offsetHeight={viewportHeight} />
 
 <script>
-  export let height;
+  export let height = "100%";
+  export let itemHeight = 0;
+  export let start = 0;
+  export let end = 0;
 
   let element, //whole wrapping element
-    viewportHeight; //height of the viewport
+    viewportHeight,
+    top,
+    bottom,
+    props = {}; //height of the viewport
 
   function refresh() {}
 </script>
