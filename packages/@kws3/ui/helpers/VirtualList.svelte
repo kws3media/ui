@@ -3,7 +3,11 @@
   class="kws-virtual-list"
   on:scroll={() => refresh()}
   style:height
-  bind:offsetHeight={viewportHeight} />
+  bind:offsetHeight={viewportHeight}>
+  <div
+    bind:this={container}
+    style="padding-top: {top}px; padding-bottom: {bottom}px;" />
+</div>
 
 <script>
   export let items = [];
