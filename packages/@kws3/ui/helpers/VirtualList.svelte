@@ -10,6 +10,8 @@
 </div>
 
 <script>
+  import { createEventDispatcher, onMount } from "svelte";
+
   export let items = [];
   export let height = "100%";
   export let itemHeight = 0;
