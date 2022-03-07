@@ -17,6 +17,7 @@ export { default as TimelineItem } from "./helpers/Timeline/TimelineItem.svelte"
 export { default as TimelineHeader } from "./helpers/Timeline/TimelineHeader.svelte";
 export { default as Nl2br } from "./helpers/Nl2br.svelte";
 export { default as ClipboardCopier } from "./helpers/ClipboardCopier.svelte";
+export { default as VirtualList } from "./helpers/VirtualList.svelte";
 export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
 export {
   Notifications,
