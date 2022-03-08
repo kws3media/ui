@@ -4,14 +4,17 @@
   on:scroll={() => refresh()}
   style:height
   bind:offsetHeight={viewportHeight}>
+  hello
   <div
     bind:this={container}
     style="padding-top: {top}px; padding-bottom: {bottom}px;">
-    {#each visibleItems as item (item.index)}
-      <div class="row">
-        {item.name}
-      </div>
-    {/each}
+    {#if hasItems}
+      {#each visibleItems as item (item.index)}
+        <div class="row">
+          {item.index}
+        </div>
+      {/each}
+    {/if}
   </div>
 </div>
 
@@ -31,13 +34,17 @@
     top,
     bottom,
     props = {},
-    heightMap = [];
+    heightMap = [],
+    hasItems = false,
+    visibleItems = [];
 
   onMount(() => {
+    console.log(items);
     if (items.length > 0) {
+      hasItems = true;
       itemRows = container.querySelectorAll(".row");
       console.log(items);
-      initialise();
+      // initialise();
       refresh();
     }
   });
@@ -77,8 +84,8 @@
     let i = 0;
 
     if (!itemHeight) {
-      for (let i = 0; i < rows.length; i += 1) {
-        heightMap[start + i] = rows[i].offsetHeight;
+      for (let i = 0; i < itemRows.length; i += 1) {
+        heightMap[start + i] = itemRows[i].offsetHeight;
       }
     }
 
@@ -111,9 +118,10 @@
     end = newEnd;
   }
 
-  $: visibleItems = () => {
-    return items.slice(start, end).map((data, i) => {
+  $: {
+    visibleItems = items.slice(start, end).map((data, i) => {
       return { index: i + start, data };
     });
-  };
+  }
+  console.log(visibleItems);
 </script>
