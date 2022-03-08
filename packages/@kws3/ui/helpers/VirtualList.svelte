@@ -11,7 +11,12 @@
     {#if hasItems}
       {#each visibleItems as item (item.index)}
         <div class="row">
-          {item.index}
+          <svelte:component
+            this={Component}
+            on:rowClick
+            on:_forwardEvent
+            {...item.data}
+            {...props} />
         </div>
       {/each}
     {/if}
@@ -27,7 +32,8 @@
   export let start = 0;
   export let end = 0;
 
-  let element, //whole wrapping element
+  let Component = null,
+    element, //whole wrapping element
     viewportHeight, //height of the viewport
     container, //container element
     itemRows, //array of rows
