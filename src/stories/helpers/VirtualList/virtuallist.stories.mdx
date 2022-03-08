@@ -4,10 +4,7 @@ import Version from '~/version.mdx';
 import { VirtualList } from "@kws3/ui";
 import { action } from '@storybook/addon-actions';
 
-export let args={
-  align : 'left',
-  class: ""
-}
+export let args={}
 
 <Version />
 
@@ -15,11 +12,7 @@ export let args={
   title="Helpers/VirtualList"
   component={VirtualList}
   args={args}
-  argTypes={{
-    align: {
-      control: 'select'
-    }
-  }}
+  argTypes={{}}
 />
 
 <Description markdown={dedent`

@@ -3,10 +3,11 @@
 </div>
 
 <script>
-  const response = require("./users.json");
   import { VirtualList as KwsVirtualList } from "@kws3/ui";
+  const response = require("./users.json");
 
   console.log(response);
+  console.log("hello");
 
   export let users = response.records;
   export let start = 0;
