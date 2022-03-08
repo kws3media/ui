@@ -2,9 +2,15 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import { VirtualList } from "@kws3/ui";
+import VirtualListDecorator from "./VirtualList.svelte";
 import { action } from '@storybook/addon-actions';
+const response = require("./users.json");
 
-export let args={}
+export let args={
+  items : response.records,
+  start: 0,
+  end: 10
+}
 
 <Version />
 
@@ -27,7 +33,7 @@ This component acts as a holder for the <a href="/docs/helpers-timeline-timeline
   args={args}
   >
   {(args) => ({
-    Component: VirtualList,
+    Component: VirtualListDecorator,
     props: args
   })}
   </Story>
