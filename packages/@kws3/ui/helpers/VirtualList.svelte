@@ -4,7 +4,6 @@
   on:scroll={() => refresh()}
   style:height
   bind:offsetHeight={viewportHeight}>
-  hello
   <div
     bind:this={container}
     style="padding-top: {top}px; padding-bottom: {bottom}px;">
@@ -26,14 +25,14 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
 
+  export let Component = null;
   export let items = [];
   export let height = "100%";
   export let itemHeight = 0;
   export let start = 0;
   export let end = 0;
 
-  let Component = null,
-    element, //whole wrapping element
+  let element, //whole wrapping element
     viewportHeight, //height of the viewport
     container, //container element
     itemRows, //array of rows
