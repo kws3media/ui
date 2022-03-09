@@ -1,9 +1,15 @@
 <div class="p-4" style="width:500px;margin:0 auto;">
-  <KwsVirtualList {items} itemHeight={54} bind:start bind:end />
+  <KwsVirtualList
+    Component={TargetComponent}
+    {items}
+    itemHeight={54}
+    bind:start
+    bind:end />
 </div>
 
 <script>
   import { VirtualList as KwsVirtualList } from "@kws3/ui";
+  import TargetComponent from "./TargetComponent.svelte";
 
   export let items = [];
   export let start = 0;
