@@ -1,24 +1,26 @@
 <div class="item">
-  <div class="level is-mobile">
+  <div class="level is-mobile is-marginless ">
     <div class="level-left">
       <span class="name">
-        {name}
+        Name: {name}
         {surname}
       </span>
     </div>
     <div class="level-right">
       <span>
-        {username}
+        ID: <b>{id}</b>
       </span>
     </div>
   </div>
   <div class="level is-mobile">
     <div class="level-left">
-      <span class="desc">{role}</span>
+      <span>
+        Username: <b>{username}</b>
+      </span>
     </div>
     <div class="level-right">
       <span>
-        {id}
+        Role: <b>{role}</b>
       </span>
     </div>
   </div>
@@ -30,4 +32,5 @@
   export let username = "";
   export let role = "";
   export let id = "";
+  console.log(name);
 </script>
