@@ -10,9 +10,9 @@
 <script>
   import { VirtualList as KwsVirtualList } from "@kws3/ui";
   import TargetComponent from "./TargetComponent.svelte";
-  console.log(TargetComponent);
 
   export let items = [];
   export let start = 0;
   export let end = 10;
+  console.log(items);
 </script>
