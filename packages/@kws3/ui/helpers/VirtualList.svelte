@@ -7,23 +7,21 @@
   <div
     bind:this={container}
     style="padding-top: {top}px; padding-bottom: {bottom}px;">
-    {#if hasItems}
-      {#each visibleItems as item (item.index)}
-        <div class="row">
-          <svelte:component
-            this={Component}
-            on:rowClick
-            on:_forwardEvent
-            {...item.data}
-            {...props} />
-        </div>
-      {/each}
-    {/if}
+    {#each visibleItems as item (item.index)}
+      <div class="row">
+        <svelte:component
+          this={Component}
+          on:rowClick
+          on:_forwardEvent
+          {...item.data}
+          {...props} />
+      </div>
+    {/each}
   </div>
 </div>
 
 <script>
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher, onMount, tick } from "svelte";
 
   export let Component = null;
   export let items = [];
@@ -40,20 +38,27 @@
     bottom,
     props = {},
     heightMap = [],
-    hasItems = false,
-    visibleItems = [];
+    visibleItems = [],
+    averageHeight;
 
   onMount(() => {
     console.log(items);
     if (items.length > 0) {
-      hasItems = true;
-      itemRows = container.querySelectorAll(".row");
+      console.log(container);
+      tick();
+      itemRows = container.querySelectorAll("div.row");
+      console.log("52|itemRows:", itemRows);
       console.log(items);
       // initialise();
+      // tick();
       refresh();
     }
   });
 
+  $: visibleItems = items.slice(start, end).map((data, i) => {
+    return { index: i + start, data };
+  });
+  console.log("60|visibleItems:", visibleItems);
   function initialise() {
     if (itemHeight) {
       heightMap = items.map((_) => itemHeight);
@@ -81,18 +86,26 @@
     }
   }
 
-  function refresh() {
+  async function refresh() {
     const { scrollTop } = element;
+    console.log("90|scrolltop:", scrollTop);
+
+    await tick();
 
     let paddingTop = 0;
     let offset = 0;
     let i = 0;
-
+    console.log("95|itemHeight:", itemHeight);
     if (!itemHeight) {
+      console.log("97|itemRows:", itemRows);
       for (let i = 0; i < itemRows.length; i += 1) {
-        heightMap[start + i] = itemRows[i].offsetHeight;
+        await tick();
+        heightMap[start + i] = itemRows[i].offsetHeight || 48;
       }
+      console.log("101|heightMap:", heightMap);
     }
+
+    console.log("call refresh");
 
     for (; i < items.length; i += 1) {
       if (!(i in heightMap)) break;
@@ -123,10 +136,18 @@
     end = newEnd;
   }
 
-  $: {
-    visibleItems = items.slice(start, end).map((data, i) => {
-      return { index: i + start, data };
-    });
-  }
-  console.log(visibleItems);
+  $: items,
+    height,
+    itemHeight,
+    viewportHeight,
+    console.log(
+      "133|items:",
+      items,
+      "height:",
+      height,
+      "itemHeight:",
+      itemHeight,
+      "viewportHeight:",
+      viewportHeight
+    );
 </script>
