@@ -1,10 +1,5 @@
-<div class="p-4" style="width:500px;margin:0 auto;">
-  <KwsVirtualList
-    Component={TargetComponent}
-    {items}
-    itemHeight={54}
-    bind:start
-    bind:end />
+<div style="height:400px;width:500px;margin:0 auto;">
+  <KwsVirtualList Component={TargetComponent} {items} bind:start bind:end />
 </div>
 
 <script>
@@ -13,6 +8,6 @@
 
   export let items = [];
   export let start = 0;
-  export let end = 10;
+  export let end = 20;
   console.log(items);
 </script>
