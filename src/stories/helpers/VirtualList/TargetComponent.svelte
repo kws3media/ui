@@ -1,4 +1,4 @@
-<div class="item">
+<div class="item" style="padding:15px 20px">
   <div class="level is-mobile is-marginless ">
     <div class="level-left">
       <span class="name">
