@@ -31,11 +31,11 @@
   export let end = 0;
 
   let element, //whole wrapping element
-    viewportHeight, //height of the viewport
+    viewportHeight = 0, //height of the viewport
     container, //container element
     itemRows, //array of rows
-    top,
-    bottom,
+    top = 0,
+    bottom = 0,
     props = {},
     heightMap = [],
     visibleItems = [],
@@ -86,11 +86,13 @@
     }
   }
 
-  async function refresh() {
+  function refresh() {
     const { scrollTop } = element;
     console.log("90|scrolltop:", scrollTop);
 
-    await tick();
+    let contentHeight = top - scrollTop;
+
+    // await tick();
 
     let paddingTop = 0;
     let offset = 0;
@@ -99,12 +101,17 @@
     if (!itemHeight) {
       console.log("97|itemRows:", itemRows);
       for (let i = 0; i < itemRows.length; i += 1) {
-        await tick();
-        heightMap[start + i] = itemRows[i].offsetHeight || 48;
+        // await tick();
+        heightMap[start + i] = itemRows[i].offsetHeight || averageHeight;
+        console.log("101|heightMap[start + i]:", heightMap[start + i]);
+        contentHeight += heightMap[start + i];
       }
-      console.log("101|heightMap:", heightMap);
     }
+    console.log("101|contentHeight:", contentHeight);
 
+    averageHeight = (top + contentHeight) / end;
+
+    console.log("101|averageHeight:", averageHeight);
     console.log("call refresh");
 
     for (; i < items.length; i += 1) {

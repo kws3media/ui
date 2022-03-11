@@ -32,5 +32,5 @@
   export let username = "";
   export let role = "";
   export let id = "";
-  console.log(name);
+  // console.log(name);
 </script>
