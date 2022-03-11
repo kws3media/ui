@@ -39,7 +39,8 @@
     props = {},
     heightMap = [],
     visibleItems = [],
-    averageHeight;
+    averageHeight,
+    initialised = false;
 
   onMount(() => {
     console.log(items);
@@ -89,7 +90,6 @@
   function refresh() {
     const { scrollTop } = element;
     console.log("90|scrolltop:", scrollTop);
-
     let contentHeight = top - scrollTop;
 
     // await tick();
@@ -104,12 +104,12 @@
         // await tick();
         heightMap[start + i] = itemRows[i].offsetHeight || averageHeight;
         console.log("101|heightMap[start + i]:", heightMap[start + i]);
-        contentHeight += heightMap[start + i];
+        if (!initialised) {
+          contentHeight += heightMap[start + i];
+          averageHeight = (top + contentHeight) / end;
+        }
       }
     }
-    console.log("101|contentHeight:", contentHeight);
-
-    averageHeight = (top + contentHeight) / end;
 
     console.log("101|averageHeight:", averageHeight);
     console.log("call refresh");
@@ -141,6 +141,7 @@
     bottom = paddingBottom;
     start = newStart;
     end = newEnd;
+    initialised = true;
   }
 
   $: items,
