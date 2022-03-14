@@ -1,8 +1,12 @@
 <div style="height:400px;width:500px;margin:0 auto;">
-  <KwsVirtualList Component={TargetComponent} {items} bind:start bind:end />
+  <KwsVirtualList
+    Component={TargetComponent}
+    items={_items}
+    bind:start
+    bind:end />
 </div>
 <div>
-  <p>showing items {start}-{end}</p>
+  <p>showing items {start}-{end} of {_items.length}</p>
 </div>
 
 <script>
@@ -10,8 +14,9 @@
   import TargetComponent from "./TargetComponent.svelte";
 
   export let items = [];
+  export let _items = [];
   export let start = 0;
-  export let end = 20;
+  export let end = 0;
 
   function randSentance(length) {
     var result = "";
@@ -24,10 +29,16 @@
     return result;
   }
 
-  items.forEach((item, index) => {
+  Array.from({ length: 10000 }).forEach((_, index) => {
+    let item = {};
+    item.name = randSentance(10);
+    item.username = randSentance(10);
+    item.id = index;
+
     if (index % 2 === 0) {
       item.password = randSentance(Math.floor(Math.random() * 20));
     }
+    _items.push(item);
   });
-  console.log(items);
+  console.log(_items);
 </script>
