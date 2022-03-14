@@ -21,7 +21,7 @@
 </div>
 
 <script>
-  import { createEventDispatcher, onMount, tick } from "svelte";
+  import { onMount, tick } from "svelte";
 
   export let Component = null;
   export let items = [];
