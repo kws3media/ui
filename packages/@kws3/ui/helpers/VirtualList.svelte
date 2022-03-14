@@ -49,6 +49,7 @@
   });
 
   async function initialise() {
+    console.log("initialise");
     if (itemHeight) {
       heightMap = new Array(items.length).fill(itemHeight);
       end = Math.min(items.length, Math.ceil(viewportHeight / itemHeight));
@@ -57,7 +58,7 @@
       let height = 0;
       let i = 0;
       while (height < viewportHeight && i < items.length) {
-        end = i + 1;
+        end = start + i + 1;
         await tick();
         height += heightMap[i] = itemRows[i].offsetHeight;
         i += 1;
@@ -73,6 +74,7 @@
   }
 
   async function refresh() {
+    console.log("refresh");
     const { scrollTop } = ELEMENT;
 
     if (!itemHeight) {
