@@ -48,7 +48,6 @@
     initialise();
   });
 
-  console.log("60|visibleItems:", visibleItems);
   async function initialise() {
     if (itemHeight) {
       heightMap = new Array(items.length).fill(itemHeight);
@@ -57,15 +56,12 @@
     } else {
       let height = 0;
       let i = 0;
-      console.log(i);
       while (height < viewportHeight && i < items.length) {
         end = i + 1;
         await tick();
         height += heightMap[i] = itemRows[i].offsetHeight;
         i += 1;
       }
-      console.log(i);
-      console.log(heightMap);
 
       const _end = i;
       const avg = Math.round(height / i);
