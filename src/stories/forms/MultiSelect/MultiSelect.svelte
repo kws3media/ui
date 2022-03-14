@@ -7,6 +7,8 @@
     </div>
     <div class="column is-6">
       <KwsMultiSelect
+        {asyncSelect}
+        {isLoading}
         {size}
         {color}
         {max}
@@ -14,6 +16,7 @@
         bind:value={selected_brand}
         search_key="name"
         value_key="id"
+        on:change={fetchItems}
         {placeholder}
         {style}
         class={klass}
@@ -69,7 +72,38 @@
   } from "@kws3/ui";
   import { onMount } from "svelte";
 
-  onMount(() => activateTooltips("#ms_container"));
+  onMount(() => {
+    fetchItems();
+    activateTooltips("#ms_container");
+  });
+
+  let asyncSelect = true,
+    isLoading = true;
+
+  const sleep = (ms) => new Promise((f) => setTimeout(f, ms));
+
+  const fetchItems = async () => {
+    isLoading = true;
+    //Fetch your data here.
+    await sleep(3000);
+    brands = [
+      { id: 1, name: "LG" },
+      { id: 2, name: "Samsung" },
+      { id: 3, name: "Xiaomi" },
+      { id: 4, name: "Nokia" },
+      { id: 5, name: "Oppo" },
+      { id: 6, name: "Vivo" },
+      { id: 7, name: "Huawei" },
+      { id: 8, name: "Sony" },
+      { id: 9, name: "HTC" },
+      { id: 0, name: "Zero" },
+      { id: "", name: "Empty String" },
+      { id: 10, name: "Blackberry" },
+      { id: 11, name: "Apple" },
+    ];
+
+    isLoading = false;
+  };
 
   export let size = "",
     color = "",
@@ -90,19 +124,19 @@
     selected_brand_string = ["Blackberry"];
 
   let brands = [
-    { id: 1, name: "LG" },
-    { id: 2, name: "Samsung" },
-    { id: 3, name: "Xiaomi" },
-    { id: 4, name: "Nokia" },
-    { id: 5, name: "Oppo" },
-    { id: 6, name: "Vivo" },
-    { id: 7, name: "Huawei" },
-    { id: 8, name: "Sony" },
-    { id: 9, name: "HTC" },
-    { id: 0, name: "Zero" },
-    { id: "", name: "Empty String" },
-    { id: 10, name: "Blackberry" },
-    { id: 11, name: "Apple" },
+    // { id: 1, name: "LG" },
+    // { id: 2, name: "Samsung" },
+    // { id: 3, name: "Xiaomi" },
+    // { id: 4, name: "Nokia" },
+    // { id: 5, name: "Oppo" },
+    // { id: 6, name: "Vivo" },
+    // { id: 7, name: "Huawei" },
+    // { id: 8, name: "Sony" },
+    // { id: 9, name: "HTC" },
+    // { id: 0, name: "Zero" },
+    // { id: "", name: "Empty String" },
+    // { id: 10, name: "Blackberry" },
+    // { id: 11, name: "Apple" },
   ];
 
   let brands_string_only = [

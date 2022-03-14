@@ -98,7 +98,14 @@ Default value: `<span>{option[search_key] || option}</span>`
       on:blur={() => setOptionsVisible(false)}
       placeholder={_placeholder} />
   </ul>
-  {#if !readonly && !disabled}
+
+  {#if asyncSelect && isLoading}
+    <button
+      role="button"
+      type="button"
+      style="border: none;"
+      class="button is-small is-loading" />
+  {:else if !readonly && !disabled}
     <button
       role="button"
       type="button"
@@ -133,7 +140,17 @@ Default value: `<span>{option[search_key] || option}</span>`
               {option}>{option[used_search_key] || option}</slot>
           </li>
         {:else}
-          <li class="no-options">{no_options_msg}</li>
+          <li class="no-options">
+            {#if asyncSelect && isLoading}
+              <button
+                role="button"
+                type="button"
+                style="border: none;"
+                class="button is-small is-loading" />
+            {:else}
+              {no_options_msg}
+            {/if}
+          </li>
         {/each}
       </ul>
     </div>
@@ -141,6 +158,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
+  import AsyncSelect from "./AsyncSelect.svelte";
   import { Icon, portal } from "@kws3/ui";
   import { createEventDispatcher, onMount } from "svelte";
   import { createPopper } from "@popperjs/core";
@@ -238,6 +256,11 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Tooltip text for the Clear All button
    */
   export let remove_all_tip = "Remove all";
+  /**
+   * Tooltip text for the Clear All button
+   */
+  export let asyncSelect = false;
+  export let isLoading = false;
   /**
    * Where to render the dropdown list.
    * Can be a DOM element or a `string` with the CSS selector of the element.
@@ -551,6 +574,8 @@ Default value: `<span>{option[search_key] || option}</span>`
       }
     }
   }
+
+  $: console.log("sss");
 
   function handleOptionMouseDown(option) {
     if (single) {
