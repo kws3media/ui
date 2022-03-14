@@ -30,10 +30,11 @@
   export let start = 0;
   export let end = 0;
 
-  let element, //whole wrapping element
+  let ELEMENT, //whole wrapping ELEMENT
     viewportHeight = 0, //height of the viewport
-    container, //container element
-    itemRows, //array of rows
+    CONTAINER,
+    ROWS = [], //CONTAINER ELEMENT
+    itemRows = [], //array of rows
     top = 0,
     bottom = 0,
     props = {},
