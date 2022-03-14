@@ -12,24 +12,35 @@
       </span>
     </div>
   </div>
-  <div class="level is-mobile">
+  <div class="level is-mobile is-marginless">
     <div class="level-left">
       <span>
         Username: <b>{username}</b>
       </span>
     </div>
+
     <div class="level-right">
       <span>
         Role: <b>{role}</b>
       </span>
     </div>
   </div>
+  {#if password}
+    <div class="level is-mobile">
+      <div class="level-left">
+        <span>
+          Password: <b>{password}</b>
+        </span>
+      </div>
+    </div>
+  {/if}
 </div>
 
 <script>
   export let name = "";
   export let surname = "";
   export let username = "";
+  export let password = "";
   export let role = "";
   export let id = "";
   // console.log(name);
