@@ -51,30 +51,26 @@
 
   onMount(() => {
     initialise();
-    refresh();
+    // refresh();
   });
 
-  $: visibleItems = items.slice(start, end).map((data, i) => {
-    return { index: i + start, data };
-  });
   console.log("60|visibleItems:", visibleItems);
-  function initialise() {
+  async function initialise() {
     if (itemHeight) {
-      heightMap = items.map((_) => itemHeight);
+      heightMap = new Array(items.length).fill(itemHeight);
       end = Math.min(items.length, Math.ceil(viewportHeight / itemHeight));
       bottom = items.length * itemHeight;
     } else {
       let height = 0;
       let i = 0;
-
+      console.log(i);
       while (height < viewportHeight && i < items.length) {
         end = i + 1;
-
-        const rowHeight = (heightMap[i] = itemRows[i].offsetHeight);
-        height += rowHeight;
-
+        await tick();
+        height += heightMap[i] = itemRows[i].offsetHeight;
         i += 1;
       }
+      console.log(i);
 
       const _end = i;
       const avg = Math.round(height / i);
@@ -85,13 +81,12 @@
     }
   }
 
-  function refresh() {
-    const { scrollTop } = element;
+  async function refresh() {
+    const { scrollTop } = ELEMENT;
     console.log("90|scrolltop:", scrollTop);
     let contentHeight = top - scrollTop;
 
-    // await tick();
-
+    await tick();
     let paddingTop = 0;
     let offset = 0;
     let i = 0;
@@ -99,7 +94,8 @@
     if (!itemHeight) {
       console.log("97|itemRows:", itemRows);
       for (let i = 0; i < itemRows.length; i += 1) {
-        // await tick();
+        await tick();
+        console.log("97|itemRow:", itemRows[i].offsetHeight);
         heightMap[start + i] = itemRows[i].offsetHeight || averageHeight;
         console.log("101|heightMap[start + i]:", heightMap[start + i]);
         if (!initialised) {
@@ -141,19 +137,4 @@
     end = newEnd;
     initialised = true;
   }
-
-  $: items,
-    height,
-    itemHeight,
-    viewportHeight,
-    console.log(
-      "133|items:",
-      items,
-      "height:",
-      height,
-      "itemHeight:",
-      itemHeight,
-      "viewportHeight:",
-      viewportHeight
-    );
 </script>
