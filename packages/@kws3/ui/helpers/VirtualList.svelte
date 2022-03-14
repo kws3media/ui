@@ -39,9 +39,7 @@
     bottom = 0,
     props = {},
     heightMap = [],
-    visibleItems = [],
-    averageHeight,
-    initialised = false;
+    visibleItems = [];
 
   $: visibleItems = items.slice(start, end).map((data, i) => {
     return { index: i + start, data };
@@ -71,11 +69,13 @@
         i += 1;
       }
       console.log(i);
+      console.log(heightMap);
 
       const _end = i;
       const avg = Math.round(height / i);
 
-      for (; i < items.length; i += 1) heightMap[i] = avg;
+      for (; i < items.length; i += 1) heightMap[i] = avg; // can be removed
+      console.log(heightMap);
 
       bottom = (items.length - _end) * avg;
     }
@@ -84,7 +84,6 @@
   async function refresh() {
     const { scrollTop } = ELEMENT;
     console.log("90|scrolltop:", scrollTop);
-    let contentHeight = top - scrollTop;
 
     await tick();
     let paddingTop = 0;
@@ -96,17 +95,9 @@
       for (let i = 0; i < itemRows.length; i += 1) {
         await tick();
         console.log("97|itemRow:", itemRows[i].offsetHeight);
-        heightMap[start + i] = itemRows[i].offsetHeight || averageHeight;
-        console.log("101|heightMap[start + i]:", heightMap[start + i]);
-        if (!initialised) {
-          contentHeight += heightMap[start + i];
-          averageHeight = (top + contentHeight) / end;
-        }
+        heightMap[start + i] = itemRows[i].offsetHeight;
       }
     }
-
-    console.log("101|averageHeight:", averageHeight);
-    console.log("call refresh");
 
     for (; i < items.length; i += 1) {
       if (!(i in heightMap)) break;
@@ -135,6 +126,5 @@
     bottom = paddingBottom;
     start = newStart;
     end = newEnd;
-    initialised = true;
   }
 </script>
