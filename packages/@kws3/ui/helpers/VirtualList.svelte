@@ -4,9 +4,7 @@
   on:scroll={() => refresh()}
   style:height
   bind:offsetHeight={viewportHeight}>
-  <div
-    bind:this={CONTAINER}
-    style="padding-top: {top}px; padding-bottom: {bottom}px;">
+  <div style="padding-top: {top}px; padding-bottom: {bottom}px;">
     {#each visibleItems as item, i (item.index)}
       <div class="row" bind:this={ROWS[i]}>
         <svelte:component
@@ -32,8 +30,7 @@
 
   let ELEMENT, //whole wrapping ELEMENT
     viewportHeight = 0, //height of the viewport
-    CONTAINER,
-    ROWS = [], //CONTAINER ELEMENT
+    ROWS = [], //per row DOM elemnent
     itemRows = [], //array of rows
     top = 0,
     bottom = 0,
@@ -49,7 +46,6 @@
 
   onMount(() => {
     initialise();
-    // refresh();
   });
 
   console.log("60|visibleItems:", visibleItems);
@@ -74,8 +70,7 @@
       const _end = i;
       const avg = Math.round(height / i);
 
-      for (; i < items.length; i += 1) heightMap[i] = avg; // can be removed
-      console.log(heightMap);
+      for (; i < items.length; i += 1) heightMap[i] = avg; // rethink this
 
       bottom = (items.length - _end) * avg;
     }
@@ -83,21 +78,17 @@
 
   async function refresh() {
     const { scrollTop } = ELEMENT;
-    console.log("90|scrolltop:", scrollTop);
 
-    await tick();
-    let paddingTop = 0;
-    let offset = 0;
-    let i = 0;
-    console.log("95|itemHeight:", itemHeight);
     if (!itemHeight) {
-      console.log("97|itemRows:", itemRows);
       for (let i = 0; i < itemRows.length; i += 1) {
         await tick();
-        console.log("97|itemRow:", itemRows[i].offsetHeight);
         heightMap[start + i] = itemRows[i].offsetHeight;
       }
     }
+
+    let paddingTop = 0;
+    let offset = 0;
+    let i = 0;
 
     for (; i < items.length; i += 1) {
       if (!(i in heightMap)) break;
