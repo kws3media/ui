@@ -1,14 +1,14 @@
 <div
-  bind:this={element}
+  bind:this={ELEMENT}
   class="kws-virtual-list"
   on:scroll={() => refresh()}
   style:height
   bind:offsetHeight={viewportHeight}>
   <div
-    bind:this={container}
+    bind:this={CONTAINER}
     style="padding-top: {top}px; padding-bottom: {bottom}px;">
-    {#each visibleItems as item (item.index)}
-      <div class="row">
+    {#each visibleItems as item, i (item.index)}
+      <div class="row" bind:this={ROWS[i]}>
         <svelte:component
           this={Component}
           on:rowClick
