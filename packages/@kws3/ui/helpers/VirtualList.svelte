@@ -43,18 +43,15 @@
     averageHeight,
     initialised = false;
 
+  $: visibleItems = items.slice(start, end).map((data, i) => {
+    return { index: i + start, data };
+  });
+
+  $: visibleItems, (itemRows = ROWS.filter(Boolean));
+
   onMount(() => {
-    console.log(items);
-    if (items.length > 0) {
-      console.log(container);
-      tick();
-      itemRows = container.querySelectorAll("div.row");
-      console.log("52|itemRows:", itemRows);
-      console.log(items);
-      // initialise();
-      // tick();
-      refresh();
-    }
+    initialise();
+    refresh();
   });
 
   $: visibleItems = items.slice(start, end).map((data, i) => {
