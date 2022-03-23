@@ -1,4 +1,7 @@
-<div class="item" style="padding:15px 20px">
+<div
+  class="item"
+  style="padding:15px 20px"
+  on:click|stopPropagation={() => rowClick()}>
   <div class="level is-mobile is-marginless ">
     <div class="level-left">
       <span class="name">
@@ -37,11 +40,25 @@
 </div>
 
 <script>
+  import { createEventDispatcher } from "svelte";
+
+  const fire = createEventDispatcher();
   export let name = "";
   export let surname = "";
   export let username = "";
   export let password = "";
   export let role = "";
   export let id = "";
-  // console.log(name);
+
+  export let clickableRows;
+
+  console.log($$props);
+
+  function rowClick() {
+    if (clickableRows) {
+      fire("rowClick", {
+        data: { id, name, surname, username, password, role },
+      });
+    }
+  }
 </script>
