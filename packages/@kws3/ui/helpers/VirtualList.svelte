@@ -24,7 +24,6 @@
   export let Component = null;
   export let items = [];
   export let height = "100%";
-  export let itemHeight = 0;
   export let start = 0;
   export let end = 0;
 
@@ -49,39 +48,30 @@
   });
 
   async function initialise() {
-    console.log("initialise");
-    if (itemHeight) {
-      heightMap = new Array(items.length).fill(itemHeight);
-      end = Math.min(items.length, Math.ceil(viewportHeight / itemHeight));
-      bottom = items.length * itemHeight;
-    } else {
-      let height = 0;
-      let i = 0;
-      while (height < viewportHeight && i < items.length) {
-        end = start + i + 1;
-        await tick();
-        height += heightMap[i] = itemRows[i].offsetHeight;
-        i += 1;
-      }
-
-      const _end = i;
-      const avg = Math.round(height / i);
-
-      for (; i < items.length; i += 1) heightMap[i] = avg; // rethink this
-
-      bottom = (items.length - _end) * avg;
+    let height = 0;
+    let i = 0;
+    while (height < viewportHeight && i < items.length) {
+      end = start + i + 1;
+      await tick();
+      height += heightMap[i] = itemRows[i].offsetHeight;
+      i += 1;
     }
+
+    const _end = i;
+    const avg = Math.round(height / i);
+
+    for (; i < items.length; i += 1) heightMap[i] = avg; // rethink this
+
+    bottom = (items.length - _end) * avg;
   }
 
   async function refresh() {
     console.log("refresh");
     const { scrollTop } = ELEMENT;
 
-    if (!itemHeight) {
-      for (let i = 0; i < itemRows.length; i += 1) {
-        await tick();
-        heightMap[start + i] = itemRows[i].offsetHeight;
-      }
+    for (let i = 0; i < itemRows.length; i += 1) {
+      await tick();
+      heightMap[start + i] = itemRows[i].offsetHeight;
     }
 
     let paddingTop = 0;
@@ -106,7 +96,7 @@
 
     const newEnd = i;
 
-    if (newStart === start && newEnd === end) return;
+    // if (newStart === start && newEnd === end) return;
 
     let paddingBottom = 0;
     for (; i < items.length; i += 1) paddingBottom += heightMap[i];
