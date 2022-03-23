@@ -51,6 +51,35 @@
       Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
     </div>
   </div>
+  <hr />
+  <div class="columns">
+    <div class="column is-6">
+      <Panel title="Input data" collapsible collapsed>
+        <pre>{JSON.stringify(brands_string_only, null, 1)}</pre>
+      </Panel>
+    </div>
+    <div class="column is-6">
+      <KwsSearchableSelect
+        {size}
+        {color}
+        options={asyncBrands}
+        bind:value={async_selected_brand}
+        {search_key}
+        {value_key}
+        {placeholder}
+        {style}
+        class={klass}
+        {disabled}
+        {readonly}
+        {selected_icon}
+        {asyncSelect}
+        {isLoading}
+        {no_options_msg}
+        {remove_all_tip} />
+      Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
+      <div>Async Select</div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -62,13 +91,18 @@
 
   import { onMount } from "svelte";
 
-  onMount(() => activateTooltips("#ss_container"));
+  onMount(() => {
+    fetchItems();
+    activateTooltips("#ss_container");
+  });
 
   export let size = "",
     color = "",
     style = "",
     disabled = false,
     readonly = false,
+    asyncSelect = true,
+    isLoading = true,
     search_key = "name",
     value_key = "id",
     selected_icon = "check",
@@ -77,7 +111,8 @@
     placeholder = "Choose a Brand...",
     selected_brand = "", // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = "Blackberry";
+    selected_brand_string = "Blackberry",
+    async_selected_brand = "";
 
   let brands = [
     { id: 1, name: "LG" },
@@ -95,6 +130,31 @@
     { id: 11, name: "Apple" },
   ];
 
+  const sleep = (ms) => new Promise((f) => setTimeout(f, ms));
+
+  const fetchItems = async () => {
+    isLoading = true;
+    //Fetch your data here.
+    await sleep(3000);
+    asyncBrands = [
+      { id: 1, name: "LG" },
+      { id: 2, name: "Samsung" },
+      { id: 3, name: "Xiaomi" },
+      { id: 4, name: "Nokia" },
+      { id: 5, name: "Oppo" },
+      { id: 6, name: "Vivo" },
+      { id: 7, name: "Huawei" },
+      { id: 8, name: "Sony" },
+      { id: 9, name: "HTC" },
+      { id: 0, name: "Zero" },
+      { id: "", name: "Empty String" },
+      { id: 10, name: "Blackberry" },
+      { id: 11, name: "Apple" },
+    ];
+
+    isLoading = false;
+  };
+
   let brands_string_only = [
     "LG",
     "Samsung",
@@ -108,6 +168,8 @@
     "Blackberry",
     "Apple",
   ];
+
+  let asyncBrands = [];
 
   let klass = "";
   export { klass as class };

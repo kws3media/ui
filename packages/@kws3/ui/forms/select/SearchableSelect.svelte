@@ -49,6 +49,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   {style}
   {readonly}
   {disabled}
+  {asyncSelect}
+  {isLoading}
   {selected_icon}
   {remove_all_tip}
   {no_options_msg}
@@ -80,6 +82,8 @@ Default value: `<span>{option[search_key] || option}</span>`
    * This property can be bound to, to fetch the current value
    */
   export let value = null;
+  export let asyncSelect = false;
+  export let isLoading = false;
   /**
    * Placeholder text for the input
    */
