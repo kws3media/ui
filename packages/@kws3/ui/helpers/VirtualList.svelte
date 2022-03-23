@@ -1,8 +1,8 @@
 <div
   bind:this={ELEMENT}
   class="kws-virtual-list"
-  on:scroll={() => refresh()}
-  style:height
+  on:scroll={() => window.requestAnimationFrame(() => refresh())}
+  style="height:{height}"
   bind:offsetHeight={viewportHeight}>
   <div style="padding-top: {top}px; padding-bottom: {bottom}px;">
     {#each visibleItems as item, i (item.index)}
