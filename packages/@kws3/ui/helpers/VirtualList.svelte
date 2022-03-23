@@ -10,7 +10,6 @@
         <svelte:component
           this={Component}
           on:rowClick
-          on:_forwardEvent
           {...item.data}
           {...props} />
       </div>
@@ -33,7 +32,6 @@
     itemRows = [], //array of rows
     top = 0,
     bottom = 0,
-    props = {},
     heightMap = [],
     visibleItems = [];
 
@@ -42,6 +40,14 @@
   });
 
   $: visibleItems, (itemRows = ROWS.filter(Boolean));
+
+  $: props = ["Component", "items", "start", "end"].reduce(
+    (result, key) => {
+      delete result[key];
+      return result;
+    },
+    { ...$$props }
+  );
 
   onMount(() => {
     initialise();
