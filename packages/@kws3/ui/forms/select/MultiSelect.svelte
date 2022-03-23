@@ -235,6 +235,14 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let disabled = false;
   /**
+   * For Allow Async Select Option
+   */
+  export let asyncSelect = false;
+  /**
+   * API call loading status for async select
+   */
+  export let isLoading = false;
+  /**
    * Icon used to mark selected items in dropdown list
    */
   export let selected_icon = "check";
@@ -254,11 +262,6 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Tooltip text for the Clear All button
    */
   export let remove_all_tip = "Remove all";
-  /**
-   * Tooltip text for the Clear All button
-   */
-  export let asyncSelect = false;
-  export let isLoading = false;
   /**
    * Where to render the dropdown list.
    * Can be a DOM element or a `string` with the CSS selector of the element.
