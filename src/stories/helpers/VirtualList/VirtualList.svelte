@@ -1,7 +1,5 @@
 <div style="height:400px;width:500px;margin:0 auto;">
-  {#if items.length}
-    <KwsVirtualList Component={TargetComponent} {items} bind:start bind:end />
-  {/if}
+  <KwsVirtualList Component={TargetComponent} {items} bind:start bind:end />
 </div>
 <div>
   <p>showing items {start}-{end} of 200</p>
@@ -13,6 +11,12 @@
   import data from "./data.json";
 
   let items = data.records;
-  let start = 10;
+  let start = 0;
   let end = 0;
+  $: {
+    if (end === items.length) {
+      let itemsToAdd = items.sort(() => 0.5 - Math.random()).slice(0, 5); // get random 5 items
+      items = [...items, ...itemsToAdd];
+    }
+  }
 </script>
