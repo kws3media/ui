@@ -3,6 +3,7 @@
   <KwsVirtualList
     Component={TargetComponent}
     {items}
+    {height}
     bind:start
     bind:end
     clickableRows={true}
@@ -14,9 +15,11 @@
   import TargetComponent from "./TargetComponent.svelte";
   import data from "./data.json";
 
-  let items = data.records;
-  let start = 0;
-  let end = 0;
+  export let items = data.records,
+    start = 0,
+    end = 0,
+    height = "100%";
+
   $: {
     if (end === items.length) {
       let itemsToAdd = items.sort(() => 0.5 - Math.random()).slice(0, 5); // get random 5 items

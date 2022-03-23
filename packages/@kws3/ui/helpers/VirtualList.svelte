@@ -20,11 +20,26 @@
 <script>
   import { onMount, tick } from "svelte";
 
-  export let Component = null;
-  export let items = [];
-  export let height = "100%";
-  export let start = 0;
-  export let end = 0;
+  /**
+   * Contains all items
+   */
+  export let items = [],
+    /**
+     * Height of the element
+     */
+    height = "100%",
+    /**
+     * Start positions of item
+     */
+    start = 0,
+    /**
+     * end positions of item
+     */
+    end = 0,
+    /**
+     * Contains a custom row component
+     */
+    Component = null;
 
   let ELEMENT, //whole wrapping ELEMENT
     viewportHeight = 0, //height of the viewport

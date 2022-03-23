@@ -1,13 +1,28 @@
-import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
-import dedent from 'ts-dedent';
-import Version from '~/version.mdx';
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
 import { VirtualList } from "@kws3/ui";
 import VirtualListDecorator from "./VirtualList.svelte";
-import { action } from '@storybook/addon-actions';
+import { action } from "@storybook/addon-actions";
 const response = require("./data.json");
 
-export let args={
-}
+console.log(response)
+
+export let args = {
+  items: [response],
+  start: 0,
+  end: 0,
+  height: "100%",
+  Component: {},
+};
 
 <Version />
 
@@ -18,44 +33,46 @@ export let args={
   argTypes={{}}
 />
 
-<Description markdown={dedent`
+<Description
+  markdown={dedent`
 # Timeline
 ## A Timeline component.
 This component acts as a holder for the <a href="/docs/helpers-timeline-timelineitem--timeline-item">TimelineItem</a> and <a href="/docs/helpers-timeline-timelineheader--timeline-header">TimelineHeader</a> components.
-`}/>
+`}
+/>
 
 <Canvas>
-  <Story
-  name="VirtualList"
-  args={args}
-  >
-  {(args) => ({
-    Component: VirtualListDecorator,
-    props: args
-  })}
+  <Story name="VirtualList" args={args}>
+    {(args) => ({
+      Component: VirtualListDecorator,
+      props: args,
+    })}
   </Story>
 </Canvas>
 
 <ArgsTable story="VirtualList" />
 
-
 ### Usage
+
 ##### Import the component:
+
 <Source
-  language='javascript'
-  code={ dedent`import { VirtualList } from '@kws3/ui';`}
+  language="javascript"
+  code={dedent`import { VirtualList } from '@kws3/ui';`}
 />
 
 ##### Import the CSS:
+
 <Source
-  language='javascript'
-  code={ dedent`@import '@kws3/ui/styles/VirtualList.scss';`}
+  language="javascript"
+  code={dedent`@import '@kws3/ui/styles/VirtualList.scss';`}
 />
 
 ##### SCSS customization variables with default values:
+
 <Source
-  language='css'
-  code={ dedent`
+  language="css"
+  code={dedent`
     $kws-virtuallist-colors: $colors;
   `}
 />
