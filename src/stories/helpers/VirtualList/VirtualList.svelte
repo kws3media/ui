@@ -1,4 +1,5 @@
-<div style="height:400px;width:500px;margin:0 auto;">
+<div style="height:800px;width:500px;margin:0 auto;">
+  <p class="has-text-centered">showing items {start}-{end} of 200</p>
   <KwsVirtualList
     Component={TargetComponent}
     {items}
@@ -6,9 +7,6 @@
     bind:end
     clickableRows={true}
     on:rowClick={(event) => rowClicked(event)} />
-</div>
-<div>
-  <p>showing items {start}-{end} of 200</p>
 </div>
 
 <script>
