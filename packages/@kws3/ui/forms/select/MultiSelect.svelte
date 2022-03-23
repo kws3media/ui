@@ -93,6 +93,11 @@ Default value: `<span>{option[search_key] || option}</span>`
       bind:value={searchText}
       on:click|self|stopPropagation={() => setOptionsVisible(true)}
       on:keydown={handleKeydown}
+      on:keyup={({ target: { value } }) => {
+        if (asyncSelect) {
+          debounce(value);
+        }
+      }}
       on:focus={() => setOptionsVisible(true)}
       on:blur={blurEvent}
       on:blur={() => setOptionsVisible(false)}
@@ -413,6 +418,14 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     POPPER && POPPER.update();
   }
+  let timer;
+
+  function debounce(value) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fire("change", { token: value, type: `remove` });
+    }, 500);
+  }
 
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
@@ -567,8 +580,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       }
     }
   }
-
-  $: console.log("sss");
 
   function handleOptionMouseDown(option) {
     if (single) {

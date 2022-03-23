@@ -75,6 +75,9 @@
         {asyncSelect}
         {isLoading}
         {no_options_msg}
+        on:change={() => {
+          fetchItems();
+        }}
         {remove_all_tip} />
       Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
       <div>Async Select</div>
