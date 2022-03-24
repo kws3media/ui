@@ -21,23 +21,23 @@
   import { onMount, tick } from "svelte";
 
   /**
-   * Contains all items
+   * Array of items
    */
   export let items = [],
     /**
-     * Height of the element
+     * Height of the wrapper
      */
     height = "100%",
     /**
-     * Start positions of item
+     * first item index rendered inside viewport - readonly
      */
     start = 0,
     /**
-     * end positions of item
+     *  last item index rendered inside viewport - readonly
      */
     end = 0,
     /**
-     * Contains a custom row component
+     * Target component
      */
     Component = null;
 
