@@ -69,8 +69,8 @@
       throw new Error("Component is not defined");
     }
 
-    if (items.length === 0) {
-      throw new Error("items is empty");
+    if (!Array.isArray(items)) {
+      throw new Error("items must be an array");
     }
 
     initialise();
