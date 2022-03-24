@@ -1,9 +1,8 @@
-<div style="height:800px;width:500px;margin:0 auto;">
+<div style="height:600px;min-width:300px;margin:0 auto;">
   <p class="has-text-centered">showing items {start}-{end} of {items.length}</p>
   <KwsVirtualList
     Component={TargetComponent}
     {items}
-    {height}
     bind:start
     bind:end
     clickableRows={true}
@@ -15,10 +14,10 @@
   import TargetComponent from "./TargetComponent.svelte";
   import data from "./data.json";
 
-  export let items = data.records,
-    start = 0,
-    end = 0,
-    height = "100%";
+  export let items = data.records;
+
+  let start = 0,
+    end = 0;
 
   $: {
     if (end === items.length) {
