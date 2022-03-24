@@ -1,5 +1,5 @@
-<div style="height:600px;min-width:300px;margin:0 auto;">
-  <p class="has-text-centered">showing items {start}-{end} of {items.length}</p>
+<p class="has-text-centered">showing items {start}-{end} of {items.length}</p>
+<div style="height:700px;width:90vw; border:1px solid rgba(0,0,0,0.1)">
   <KwsVirtualList
     Component={TargetComponent}
     {items}
