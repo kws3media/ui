@@ -1,3 +1,17 @@
+<!--
+  @component
+
+
+  @param {array} [items=[]] - Array of items, Default: `[]`
+  @param {string} [height="100%"] - Height of the wrapper, Default: `"100%"`
+  @param {number} [start=0] - first item index rendered inside viewport - readonly, Default: `0`
+  @param {number} [end=0] - last item index rendered inside viewport - readonly, Default: `0`
+  @param {object} [Component=null] - Target component, Default: `null`
+
+  ### Events
+  - `rowClick`
+
+-->
 <div
   bind:this={ELEMENT}
   class="kws-virtual-list"
