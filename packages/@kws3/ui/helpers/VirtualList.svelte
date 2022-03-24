@@ -65,6 +65,14 @@
   );
 
   onMount(() => {
+    if (Component === null || Component === undefined) {
+      throw new Error("Component is not defined");
+    }
+
+    if (items.length === 0) {
+      throw new Error("items is empty");
+    }
+
     initialise();
   });
 
