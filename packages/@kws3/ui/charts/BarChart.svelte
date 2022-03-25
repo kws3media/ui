@@ -21,9 +21,47 @@ Send an array of colors to override the default colors, or do not send anything 
   @param {string} [class=""] - CSS classes for container, Default: `""`
   @method `getInstance()` - Returns the ApexCharts instance
 
+  ### Events
+  - `animationEnd`
+  - `beforeMount`
+  - `mounted`
+  - `updated`
+  - `mouseMove`
+  - `mouseLeave`
+  - `click`
+  - `legendClick`
+  - `markerClick`
+  - `selection`
+  - `dataPointSelection`
+  - `dataPointMouseEnter`
+  - `dataPointMouseLeave`
+  - `beforeZoom`
+  - `beforeResetZoom`
+  - `zoomed`
+  - `scrolled`
+  - `brushScrolled`
+
 -->
 <Chart
   bind:this={chart}
+  on:animationEnd
+  on:beforeMount
+  on:mounted
+  on:updated
+  on:mouseMove
+  on:mouseLeave
+  on:click
+  on:legendClick
+  on:markerClick
+  on:selection
+  on:dataPointSelection
+  on:dataPointMouseEnter
+  on:dataPointMouseLeave
+  on:beforeZoom
+  on:beforeResetZoom
+  on:zoomed
+  on:scrolled
+  on:brushScrolled
   class={__class}
   options={_options}
   series={_data}
