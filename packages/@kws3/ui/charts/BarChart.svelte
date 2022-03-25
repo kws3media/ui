@@ -22,7 +22,7 @@ Send an array of colors to override the default colors, or do not send anything 
   @method `getInstance()` - Returns the ApexCharts instance
 
   ### Events
-  - `animationEnd`
+  - `animationEnd` - For all chart events, see ApexChart Events https://apexcharts.com/docs/options/chart/events/
   - `beforeMount`
   - `mounted`
   - `updated`
@@ -42,6 +42,7 @@ Send an array of colors to override the default colors, or do not send anything 
   - `brushScrolled`
 
 -->
+<!-- For all chart events, see ApexChart Events https://apexcharts.com/docs/options/chart/events/ -->
 <Chart
   bind:this={chart}
   on:animationEnd
