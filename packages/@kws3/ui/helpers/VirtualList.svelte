@@ -20,7 +20,10 @@
   bind:offsetHeight={viewportHeight}>
   <div style="padding-top: {top}px; padding-bottom: {bottom}px;">
     {#each visibleItems as item, i (item.index)}
-      <div class="row" bind:this={ROWS[i]}>
+      <div
+        class="row"
+        bind:this={ROWS[i]}
+        style="height: {itemHeight}; overflow: hidden;">
         <svelte:component
           this={Component}
           on:rowClick
@@ -50,6 +53,10 @@
      *  last item index rendered inside viewport - readonly
      */
     end = 0,
+    /**
+     *  item element height
+     */
+    itemHeight = "auto",
     /**
      * Target component
      */

@@ -6,6 +6,7 @@
     bind:start
     bind:end
     clickableRows={true}
+    {itemHeight}
     on:rowClick={(event) => rowClicked(event)} />
 </div>
 
@@ -20,7 +21,8 @@
 
   export let Component = null,
     start = 0,
-    end = 0;
+    end = 0,
+    itemHeight = "auto";
 
   $: {
     if (end === _items.length) {
