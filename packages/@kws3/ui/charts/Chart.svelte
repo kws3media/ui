@@ -66,17 +66,38 @@
   $: series, seriesChanged();
   $: options, optionsChanged();
 
-  const patchEvents = (evs) => {
+  const supportedEvents = [
+    "animationEnd",
+    "beforeMount",
+    "mounted",
+    "updated",
+    "mouseMove",
+    "mouseLeave",
+    "click",
+    "legendClick",
+    "markerClick",
+    "selection",
+    "dataPointSelection",
+    "dataPointMouseEnter",
+    "dataPointMouseLeave",
+    "beforeZoom",
+    "beforeResetZoom",
+    "zoomed",
+    "scrolled",
+    "brushScrolled",
+  ];
+
+  const patchEvents = () => {
     const events = {};
-    if (typeof evs != "undefined") {
-      for (var type in evs) {
-        events[type] = (a, b, c) => {
-          fire(type, [a, b, c]);
-        };
-      }
-    }
+    supportedEvents.forEach((type) => {
+      events[type] = (a, b, c) => {
+        fire(type, [a, b, c]);
+      };
+    });
     return events;
   };
+
+  const Events = patchEvents();
 
   const init = () => {
     chart && chart.destroy();
@@ -86,22 +107,20 @@
         type,
         height,
         width,
+        events: Events,
       },
       type,
       series,
     };
 
-    var events = {};
-
+    //replace any user sent events with patched events
     if (typeof options.chart.events != "undefined") {
-      events = patchEvents(options.chart.events);
       options.chart.events = {};
     }
 
     const config = merge(options, newOptions);
 
     if (canvas) {
-      config.chart.events = events;
       chart = new ApexCharts(canvas, config);
       chart.render();
     }
@@ -119,12 +138,11 @@
   const optionsChanged = () => {
     if (chart) {
       if (typeof options.chart.events != "undefined") {
-        options.chart.events = patchEvents(options.chart.events);
+        options.chart.events = Events;
       }
       chart.updateOptions(options, true);
     } else {
       init();
     }
-    chart ? chart.updateOptions(options, true) : init();
   };
 </script>
