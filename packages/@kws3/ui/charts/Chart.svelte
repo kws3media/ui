@@ -8,6 +8,7 @@
   @param {string} [width="100%"] - Chart width, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, Default: `"auto"`
   @param {string} [class=""] - CSS classes for container, Default: `""`
+  @method `getInstance()` - Returns the ApexCharts instance
 
 -->
 <div class="kws-chart {klass}" bind:this={canvas} />
@@ -46,6 +47,13 @@
    */
   let klass = "";
   export { klass as class };
+
+  /**
+   * Returns the ApexCharts instance
+   */
+  export function getInstance() {
+    return chart;
+  }
 
   onMount(() => {
     init();

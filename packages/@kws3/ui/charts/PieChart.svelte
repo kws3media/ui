@@ -14,9 +14,11 @@ squeezed into small spaces, Default: `false`
 
 Send an array of colors to override the default colors, or do not send anything to use the default colors, Default: `null`
   @param {string} [class=""] - CSS classes for container, Default: `""`
+  @method `getInstance()` - Returns the ApexCharts instance
 
 -->
 <Chart
+  bind:this={chart}
   class={__class}
   options={_options}
   series={_data}
@@ -68,6 +70,14 @@ Send an array of colors to override the default colors, or do not send anything 
    */
   let klass = "";
   export { klass as class };
+
+  let chart;
+  /**
+   * Returns the ApexCharts instance
+   */
+  export function getInstance() {
+    return chart.getInstance();
+  }
 
   $: __class =
     "kws-pie-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
