@@ -77,7 +77,7 @@
         {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
-      Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
+      Output data: <code>{JSON.stringify(async_selected_brand, null, 1)}</code>
     </div>
   </div>
 </div>
