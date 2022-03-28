@@ -281,7 +281,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
-    selectedOptions = []; //list of options that are selected
+    selectedOptions = [], //list of options that are selected
+    asyncSearch = null; //list of options that are selected
 
   $: single = max === 1;
   $: hasValue = single
@@ -341,9 +342,10 @@ Default value: `<span>{option[search_key] || option}</span>`
       __obj[used_value_key] = item;
       return __obj;
     });
+    console.log("normalizeOptions", normalisedOptions);
   }
 
-  function updateFilteredOptions() {
+  async function updateFilteredOptions() {
     let filter;
 
     //when in single mode, searchText contains the selected value
@@ -354,28 +356,33 @@ Default value: `<span>{option[search_key] || option}</span>`
       filter = searchText.toLowerCase();
     }
 
-    filteredOptions = normalisedOptions.slice().filter((item) => {
-      // filter out items that don't match `filter`
-      if (typeof item === "object") {
-        if (used_search_key) {
-          if (
-            typeof item[used_search_key] === "string" &&
-            item[used_search_key].toLowerCase().indexOf(filter) > -1
-          )
-            return true;
-        } else {
-          for (var key in item) {
-            if (
-              typeof item[key] === "string" &&
-              item[key].toLowerCase().indexOf(filter) > -1
-            )
-              return true;
-          }
-        }
-      } else {
-        return item.toLowerCase().indexOf(filter) > -1;
-      }
-    });
+    filteredOptions =
+      typeof asyncSearch === "function"
+        ? await asyncSearch(filter)
+        : normalisedOptions.slice().filter((item) => {
+            // filter out items that don't match `filter`
+            if (typeof item === "object") {
+              if (used_search_key) {
+                if (
+                  typeof item[used_search_key] === "string" &&
+                  item[used_search_key].toLowerCase().indexOf(filter) > -1
+                )
+                  return true;
+              } else {
+                for (var key in item) {
+                  if (
+                    typeof item[key] === "string" &&
+                    item[key].toLowerCase().indexOf(filter) > -1
+                  )
+                    return true;
+                }
+              }
+            } else {
+              return item.toLowerCase().indexOf(filter) > -1;
+            }
+          });
+
+    console.log("filteredOptions", filteredOptions);
   }
 
   function fillSelectedOptions() {
