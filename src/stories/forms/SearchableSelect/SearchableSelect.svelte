@@ -65,15 +65,16 @@
       <KwsSearchableSelect
         {size}
         {color}
-        hotFilter={getBrands}
+        hotFilter={getBooks}
         bind:value={async_selected_brand}
-        {search_key}
+        search_key={async_search_key}
         {value_key}
         {placeholder}
         {style}
         class={klass}
         {disabled}
         {readonly}
+        {options_loading}
         {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
@@ -93,6 +94,7 @@
 
   onMount(() => {
     activateTooltips("#ss_container");
+    filterBooks();
   });
 
   export let size = "",
@@ -100,6 +102,8 @@
     style = "",
     disabled = false,
     readonly = false,
+    options_loading = false,
+    async_search_key = "author",
     search_key = "name",
     value_key = "id",
     selected_icon = "check",
@@ -127,15 +131,23 @@
     { id: 11, name: "Apple" },
   ];
 
-  function getBrands(filter) {
-    return filter ? filterBrands(filter) : [];
+  function getBooks(filter) {
+    return filter ? filterBooks(filter) : [];
   }
 
-  function filterBrands(filter) {
-    let items = brands || [];
+  async function filterBooks(filter) {
+    options_loading = true;
+    const response = await fetch(`https://fakerapi.it/api/v1/books`, {
+      "Access-Control-Allow-Headers":
+        "Content-Type, Authorization, X-Requested-With",
+    });
+    let json = await response.json();
+    options_loading = false;
 
-    return items.filter((item) => {
-      return item[search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1;
+    return json.data.filter((item) => {
+      return (
+        item[async_search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1
+      );
     });
   }
 

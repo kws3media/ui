@@ -98,7 +98,13 @@ Default value: `<span>{option[search_key] || option}</span>`
       on:blur={() => setOptionsVisible(false)}
       placeholder={_placeholder} />
   </ul>
-  {#if !readonly && !disabled}
+  {#if hotFilter && options_loading}
+    <button
+      role="button"
+      type="button"
+      style="border: none;"
+      class="button is-small is-loading" />
+  {:else if !readonly && !disabled}
     <button
       role="button"
       type="button"
@@ -133,7 +139,11 @@ Default value: `<span>{option[search_key] || option}</span>`
               {option}>{option[used_search_key] || option}</slot>
           </li>
         {:else}
-          <li class="no-options">{no_options_msg}</li>
+          {#if !options_loading}
+            <li class="no-options">
+              {no_options_msg}
+            </li>
+          {/if}
         {/each}
       </ul>
     </div>
@@ -202,6 +212,10 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Used to filter the options list from external source
    */
   export let hotFilter = null;
+  /**
+   * For detecting the loading state of Async Select
+   */
+  export let options_loading = false;
 
   /**
    * Size of the input
