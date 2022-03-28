@@ -122,7 +122,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let readonly = false;
   /**
-   * For Allow Async Select Options functionality
+   * Function to filter the options from external source
    */
   export let hotFilter = undefined;
   /**
