@@ -131,8 +131,6 @@
     return filter ? filterBrands(filter) : [];
   }
 
-  filterBrands("pp");
-
   function filterBrands(filter) {
     let items = brands || [];
 
