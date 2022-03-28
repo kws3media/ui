@@ -51,7 +51,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {style}
   {readonly}
   {disabled}
-  {search}
+  {hotFilter}
   {selected_icon}
   {remove_all_tip}
   {no_options_msg}
@@ -124,7 +124,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * For Allow Async Select Options functionality
    */
-  export let search = undefined;
+  export let hotFilter = undefined;
   /**
    * Disables the component
    */
