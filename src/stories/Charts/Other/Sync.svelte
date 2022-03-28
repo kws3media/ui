@@ -1,5 +1,8 @@
 <div class="columns">
   <div class="column">
+    <p class="subtitle is-5 has-text-centered">
+      Group of three Line and Area charts
+    </p>
     <LineChart
       options={options1}
       {colors}
@@ -28,6 +31,7 @@
       {height} />
   </div>
   <div class="column">
+    <p class="subtitle is-5 has-text-centered">Group of three Bar charts</p>
     <BarChart
       options={options1}
       {colors}
@@ -68,7 +72,9 @@
     </p>
     <ul>
       <li>Line and Area charts can be linked to each other.</li>
-      <li>A bar chart can be linked to another bar chart only</li>
+      <li>
+        A bar chart can be linked to another bar chart, or a mixed chart only
+      </li>
     </ul>
   </div>
   <div class="column content">
@@ -83,7 +89,7 @@
           >options.chart</code>
       </li>
     </ol>
-    <p>Example:</p>
+    <p>Code Example:</p>
     <pre>
 &lt;LineChart options=&#123;&#123;
   chart:&#123;
