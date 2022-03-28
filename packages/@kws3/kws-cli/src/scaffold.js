@@ -32,7 +32,8 @@ const manifest = Object.assign(_manifest, {
   }),
   argv = process.argv.slice(3),
   repo = argv[0],
-  protocol = argv[1],
+  branch = argv[1],
+  protocol = argv[2],
   repo_keys = Object.keys(manifest),
   protocol_keys = Object.keys(supported_protocols),
   destination = "./";
@@ -71,7 +72,7 @@ async function main() {
   }
 
   if (repo && repo_keys.indexOf(repo) !== -1) {
-    prepare(getValueFromNiceOption(repo, "repo", manifest));
+    getBranch(getValueFromNiceOption(repo, "repo", manifest));
   } else {
     const prompt = new Select({
       name: "repo",
@@ -82,15 +83,47 @@ async function main() {
     prompt
       .run()
       .then((answer) =>
-        prepare(getValueFromNiceOption(answer, "repo", manifest))
+        getBranch(getValueFromNiceOption(answer, "repo", manifest))
       )
       .catch(console.error);
   }
 }
 
-function prepare(repo) {
+async function getRepo() {
+  const input = new Input({
+    message: "What is the repo short url?",
+    initial: "example: nodejs/node",
+  });
+
+  input
+    .run()
+    .then((answer) => getBranch(answer))
+    .catch(console.error);
+}
+
+async function getBranch(repo) {
+  if (!repo) {
+    getRepo();
+  } else {
+    if (branch) {
+      prepare(repo, branch);
+    } else {
+      const input = new Input({
+        message: "Which branch or tag would you like to use?",
+        initial: "default branch for repo",
+      });
+
+      input
+        .run()
+        .then((answer) => prepare(repo, answer))
+        .catch(console.error);
+    }
+  }
+}
+
+function prepare(repo, branch) {
   if (protocol && protocol_keys.indexOf(protocol) !== -1) {
-    validate(repo, protocol);
+    download(repo, branch, protocol);
   } else {
     const prompt = new Select({
       name: "repo",
@@ -101,34 +134,30 @@ function prepare(repo) {
     prompt
       .run()
       .then((answer) =>
-        validate(repo, getKeyFromNiceOption(answer, null, supported_protocols))
+        download(
+          repo,
+          branch,
+          getKeyFromNiceOption(answer, null, supported_protocols)
+        )
       )
       .catch(console.error);
   }
 }
 
-function validate(repo, protocol) {
-  if (repo) {
-    download(repo, protocol);
-  } else {
-    const input = new Input({
-      message: "What is the repo short url?",
-      initial: "example: nodejs/node",
-    });
-
-    input
-      .run()
-      .then((answer) => download(answer, protocol))
-      .catch(console.error);
-  }
-}
-
-async function download(repo, protocol) {
+async function download(repo, branch, protocol) {
+  const has_branch =
+    branch && branch.toLowerCase() !== "default branch for repo";
   console.log(
-    chalk.bold.underline(`Cloning ${supported_protocols[protocol]}${repo}`)
+    chalk.bold.underline(
+      `Cloning ${supported_protocols[protocol]}${repo} ${
+        has_branch ? `Branch: ${branch}` : ""
+      }`
+    )
   );
   await exec(
-    `git clone ${supported_protocols[protocol]}${repo} --progress --verbose --depth 1 ${destination}`
+    `git clone ${has_branch ? `-b ${branch}` : ""} ${
+      supported_protocols[protocol]
+    }${repo} --progress --verbose --depth 1 ${destination}`
   );
 
   console.log(chalk.bold.underline("\nClearing .git folder"));
