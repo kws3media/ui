@@ -65,7 +65,6 @@
       <KwsSearchableSelect
         {size}
         {color}
-        options={asyncBrands}
         bind:value={async_selected_brand}
         {search_key}
         {value_key}
@@ -75,11 +74,8 @@
         {disabled}
         {readonly}
         {selected_icon}
-        search={fetchItems}
+        search={getBrands}
         {no_options_msg}
-        on:change={() => {
-          fetchItems();
-        }}
         {remove_all_tip} />
       Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
     </div>
@@ -96,7 +92,6 @@
   import { onMount } from "svelte";
 
   onMount(() => {
-    fetchItems();
     activateTooltips("#ss_container");
   });
 
@@ -132,29 +127,9 @@
     { id: 11, name: "Apple" },
   ];
 
-  const sleep = (ms) => new Promise((f) => setTimeout(f, ms));
-
-  const fetchItems = async () => {
-    //Fetch your data here.
-    await sleep(3000);
-    let _data = [
-      { id: 1, name: "LG" },
-      { id: 2, name: "Samsung" },
-      { id: 3, name: "Xiaomi" },
-      { id: 4, name: "Nokia" },
-      { id: 5, name: "Oppo" },
-      { id: 6, name: "Vivo" },
-      { id: 7, name: "Huawei" },
-      { id: 8, name: "Sony" },
-      { id: 9, name: "HTC" },
-      { id: 0, name: "Zero" },
-      { id: "", name: "Empty String" },
-      { id: 10, name: "Blackberry" },
-      { id: 11, name: "Apple" },
-    ];
-
-    return _data;
-  };
+  function getBrands(filter) {
+    console.log(filter);
+  }
 
   let brands_string_only = [
     "LG",
@@ -169,8 +144,6 @@
     "Blackberry",
     "Apple",
   ];
-
-  let asyncBrands = [];
 
   let klass = "";
   export { klass as class };
