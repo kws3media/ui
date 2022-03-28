@@ -196,6 +196,13 @@ Default value: `<span>{option[search_key] || option}</span>`
    * this property of each object will be returned as the value
    */
   export let value_key = "id";
+
+  /**
+   * search function
+   * Used to filter the options list from external source
+   */
+  export let hotSearch = null;
+
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
@@ -281,8 +288,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
-    selectedOptions = [], //list of options that are selected
-    asyncSearch = null; //list of options that are selected
+    selectedOptions = []; //list of options that are selected
 
   $: single = max === 1;
   $: hasValue = single
@@ -357,8 +363,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     }
 
     filteredOptions =
-      typeof asyncSearch === "function"
-        ? await asyncSearch(filter)
+      typeof hotSearch === "function"
+        ? await hotSearch(filter)
         : normalisedOptions.slice().filter((item) => {
             // filter out items that don't match `filter`
             if (typeof item === "object") {
