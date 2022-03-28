@@ -128,7 +128,7 @@
   ];
 
   function getBrands(filter) {
-    console.log(filter);
+    return filter ? filterBrands(filter) : [];
   }
 
   filterBrands("pp");
@@ -136,11 +136,9 @@
   function filterBrands(filter) {
     let items = brands || [];
 
-    items = items.filter((item) => {
+    return items.filter((item) => {
       return item[search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1;
     });
-
-    console.log(items);
   }
 
   let brands_string_only = [
