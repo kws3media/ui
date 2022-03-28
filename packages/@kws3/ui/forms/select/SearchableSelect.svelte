@@ -51,8 +51,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {style}
   {readonly}
   {disabled}
-  {asyncSelect}
-  {isLoading}
+  {search}
   {selected_icon}
   {remove_all_tip}
   {no_options_msg}
@@ -123,13 +122,9 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let readonly = false;
   /**
-   * For Allow Async Select Option
+   * For Allow Async Select Options functionality
    */
-  export let asyncSelect = false;
-  /**
-   * API call loading status for async select
-   */
-  export let isLoading = false;
+  export let search = undefined;
   /**
    * Disables the component
    */

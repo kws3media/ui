@@ -52,7 +52,10 @@
     </div>
   </div>
   <hr />
-  <div class="columns">
+  <div class="columns is-multiline">
+    <div class="column is-12">
+      <h2 class="has-text-centered has-text-weight-bold">Async Select</h2>
+    </div>
     <div class="column is-6">
       <Panel title="Input data" collapsible collapsed>
         <pre>{JSON.stringify(brands_string_only, null, 1)}</pre>
@@ -72,15 +75,13 @@
         {disabled}
         {readonly}
         {selected_icon}
-        {asyncSelect}
-        {isLoading}
+        search={fetchItems}
         {no_options_msg}
         on:change={() => {
           fetchItems();
         }}
         {remove_all_tip} />
       Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
-      <div>Async Select</div>
     </div>
   </div>
 </div>
@@ -104,8 +105,6 @@
     style = "",
     disabled = false,
     readonly = false,
-    asyncSelect = true,
-    isLoading = true,
     search_key = "name",
     value_key = "id",
     selected_icon = "check",
@@ -136,10 +135,9 @@
   const sleep = (ms) => new Promise((f) => setTimeout(f, ms));
 
   const fetchItems = async () => {
-    isLoading = true;
     //Fetch your data here.
     await sleep(3000);
-    asyncBrands = [
+    let _data = [
       { id: 1, name: "LG" },
       { id: 2, name: "Samsung" },
       { id: 3, name: "Xiaomi" },
@@ -155,7 +153,7 @@
       { id: 11, name: "Apple" },
     ];
 
-    isLoading = false;
+    return _data;
   };
 
   let brands_string_only = [
