@@ -103,7 +103,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       role="button"
       type="button"
       style="border: none;"
-      class="button is-small is-loading" />
+      class="button is-paddingless delete is-small is-loading" />
   {:else if !readonly && !disabled}
     <button
       role="button"
