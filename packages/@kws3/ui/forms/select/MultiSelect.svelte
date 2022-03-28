@@ -201,7 +201,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    * search function
    * Used to filter the options list from external source
    */
-  export let hotSearch = null;
+  export let hotFilter = null;
 
   /**
    * Size of the input
@@ -261,7 +261,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   let klass = "";
   export { klass as class };
 
-  if (!options || !options.length) console.error(`Missing options`);
+  // if (!options || !options.length) console.error(`Missing options`);
 
   if (max !== null && max < 0) {
     throw new TypeError(`max must be null or positive integer, got ${max}`);
@@ -348,10 +348,9 @@ Default value: `<span>{option[search_key] || option}</span>`
       __obj[used_value_key] = item;
       return __obj;
     });
-    console.log("normalizeOptions", normalisedOptions);
   }
 
-  async function updateFilteredOptions() {
+  function updateFilteredOptions() {
     let filter;
 
     //when in single mode, searchText contains the selected value
@@ -363,8 +362,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     }
 
     filteredOptions =
-      typeof hotSearch === "function"
-        ? await hotSearch(filter)
+      typeof hotFilter === "function"
+        ? hotFilter(filter)
         : normalisedOptions.slice().filter((item) => {
             // filter out items that don't match `filter`
             if (typeof item === "object") {
@@ -387,8 +386,7 @@ Default value: `<span>{option[search_key] || option}</span>`
               return item.toLowerCase().indexOf(filter) > -1;
             }
           });
-
-    console.log("filteredOptions", filteredOptions);
+    console.log(filteredOptions);
   }
 
   function fillSelectedOptions() {

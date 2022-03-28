@@ -65,6 +65,7 @@
       <KwsSearchableSelect
         {size}
         {color}
+        hotFilter={getBrands}
         bind:value={async_selected_brand}
         {search_key}
         {value_key}
@@ -74,7 +75,6 @@
         {disabled}
         {readonly}
         {selected_icon}
-        search={getBrands}
         {no_options_msg}
         {remove_all_tip} />
       Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
