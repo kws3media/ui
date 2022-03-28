@@ -99,6 +99,9 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
       sparkline: {
         enabled: is_sparkline ? true : false,
       },
+      zoom: {
+        enabled: false,
+      },
     },
     colors: themeColors,
     fill: {
