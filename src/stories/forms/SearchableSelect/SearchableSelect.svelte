@@ -131,6 +131,18 @@
     console.log(filter);
   }
 
+  filterBrands("pp");
+
+  function filterBrands(filter) {
+    let items = brands || [];
+
+    items = items.filter((item) => {
+      return item[search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1;
+    });
+
+    console.log(items);
+  }
+
   let brands_string_only = [
     "LG",
     "Samsung",
