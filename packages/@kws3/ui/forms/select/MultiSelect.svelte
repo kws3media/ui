@@ -350,7 +350,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
   }
 
-  function updateFilteredOptions() {
+  async function updateFilteredOptions() {
     let filter;
 
     //when in single mode, searchText contains the selected value
@@ -363,7 +363,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     filteredOptions =
       typeof hotFilter === "function"
-        ? hotFilter(filter)
+        ? await hotFilter(filter)
         : normalisedOptions.slice().filter((item) => {
             // filter out items that don't match `filter`
             if (typeof item === "object") {
