@@ -129,6 +129,7 @@
 
   function getBrands(filter) {
     console.log(filter);
+    return [];
   }
 
   filterBrands("pp");
