@@ -93,24 +93,12 @@ Default value: `<span>{option[search_key] || option}</span>`
       bind:value={searchText}
       on:click|self|stopPropagation={() => setOptionsVisible(true)}
       on:keydown={handleKeydown}
-      on:keyup={({ target: { value } }) => {
-        if (search) {
-          debounce(value);
-        }
-      }}
       on:focus={() => setOptionsVisible(true)}
       on:blur={blurEvent}
       on:blur={() => setOptionsVisible(false)}
       placeholder={_placeholder} />
   </ul>
-
-  {#if search && isLoading}
-    <button
-      role="button"
-      type="button"
-      style="border: none;"
-      class="button is-small is-loading" />
-  {:else if !readonly && !disabled}
+  {#if !readonly && !disabled}
     <button
       role="button"
       type="button"
@@ -145,11 +133,7 @@ Default value: `<span>{option[search_key] || option}</span>`
               {option}>{option[used_search_key] || option}</slot>
           </li>
         {:else}
-          {#if !isLoading}
-            <li class="no-options">
-              {no_options_msg}
-            </li>
-          {/if}
+          <li class="no-options">{no_options_msg}</li>
         {/each}
       </ul>
     </div>
@@ -235,10 +219,6 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let disabled = false;
   /**
-   * For Allow Async Select Options functionality
-   */
-  export let search = undefined;
-  /**
    * Icon used to mark selected items in dropdown list
    */
   export let selected_icon = "check";
@@ -301,7 +281,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
-    isLoading = false,
     selectedOptions = []; //list of options that are selected
 
   $: single = max === 1;
@@ -419,29 +398,12 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER && POPPER.update();
   }
 
-  let timer;
-
-  function debounce(value) {
-    clearTimeout(timer);
-    timer = setTimeout(async () => {
-      isLoading = true;
-      options = await search(value);
-      isLoading = false;
-    }, 500);
-  }
-
-  onMount(async () => {
+  onMount(() => {
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
       placement: "bottom-start",
       modifiers: [sameWidthPopperModifier],
     });
-
-    if (search) {
-      isLoading = true;
-      options = await search();
-      isLoading = false;
-    }
 
     //normalize value for single versus multiselect
     if (value === null || typeof value == "undefined")
