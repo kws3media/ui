@@ -65,9 +65,9 @@
       <KwsSearchableSelect
         {size}
         {color}
-        hotFilter={getBooks}
+        hotFilter={fetchBrands}
         bind:value={async_selected_brand}
-        search_key={async_search_key}
+        {search_key}
         {value_key}
         {placeholder}
         {style}
@@ -102,7 +102,6 @@
     disabled = false,
     readonly = false,
     options_loading = false,
-    async_search_key = "author",
     search_key = "name",
     value_key = "id",
     selected_icon = "check",
@@ -130,26 +129,38 @@
     { id: 11, name: "Apple" },
   ];
 
-  function getBooks(filter) {
-    return !filter ? [] : filterBooks(filter);
-  }
+  const sleep = (ms) => new Promise((f) => setTimeout(f, ms));
 
-  async function filterBooks(filter) {
-    console.log("filterBooks", filter);
+  const fetchBrands = async (filter) => {
     options_loading = true;
-    const response = await fetch(`https://fakerapi.it/api/v1/books`, {
-      "Access-Control-Allow-Headers":
-        "Content-Type, Authorization, X-Requested-With",
-    });
-    let json = await response.json();
+    await sleep(Math.random() * 3000);
+    let _brands = [
+      { id: 1, name: "LG" },
+      { id: 2, name: "Samsung" },
+      { id: 3, name: "Xiaomi" },
+      { id: 4, name: "Nokia" },
+      { id: 5, name: "Oppo" },
+      { id: 6, name: "Vivo" },
+      { id: 7, name: "Huawei" },
+      { id: 8, name: "Sony" },
+      { id: 9, name: "HTC" },
+      { id: 0, name: "Zero" },
+      { id: "", name: "Empty String" },
+      { id: 10, name: "Blackberry" },
+      { id: 11, name: "Apple" },
+      { id: 12, name: "Apple Macbook" },
+    ];
     options_loading = false;
-
-    return json.data.filter((item) => {
-      return (
-        item[async_search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1
-      );
-    });
-  }
+    if (filter) {
+      return _brands.filter((brand) => {
+        return (
+          brand[search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1
+        );
+      });
+    } else {
+      return _brands;
+    }
+  };
 
   let brands_string_only = [
     "LG",
