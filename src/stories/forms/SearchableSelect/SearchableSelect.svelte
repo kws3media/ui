@@ -134,31 +134,15 @@
   const fetchBrands = async (filter) => {
     options_loading = true;
     await sleep(Math.random() * 3000);
-    let _brands = [
-      { id: 1, name: "LG" },
-      { id: 2, name: "Samsung" },
-      { id: 3, name: "Xiaomi" },
-      { id: 4, name: "Nokia" },
-      { id: 5, name: "Oppo" },
-      { id: 6, name: "Vivo" },
-      { id: 7, name: "Huawei" },
-      { id: 8, name: "Sony" },
-      { id: 9, name: "HTC" },
-      { id: 0, name: "Zero" },
-      { id: "", name: "Empty String" },
-      { id: 10, name: "Blackberry" },
-      { id: 11, name: "Apple" },
-      { id: 12, name: "Apple Macbook" },
-    ];
     options_loading = false;
     if (filter) {
-      return _brands.filter((brand) => {
+      return brands.filter((brand) => {
         return (
           brand[search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1
         );
       });
     } else {
-      return _brands;
+      return brands;
     }
   };
 
