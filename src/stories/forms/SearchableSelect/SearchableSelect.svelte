@@ -94,7 +94,6 @@
 
   onMount(() => {
     activateTooltips("#ss_container");
-    filterBooks();
   });
 
   export let size = "",
@@ -132,10 +131,11 @@
   ];
 
   function getBooks(filter) {
-    return filter ? filterBooks(filter) : [];
+    return !filter ? [] : filterBooks(filter);
   }
 
   async function filterBooks(filter) {
+    console.log("filterBooks", filter);
     options_loading = true;
     const response = await fetch(`https://fakerapi.it/api/v1/books`, {
       "Access-Control-Allow-Headers":
