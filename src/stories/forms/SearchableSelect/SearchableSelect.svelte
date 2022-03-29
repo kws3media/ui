@@ -133,7 +133,7 @@
 
   const fetchBrands = async (filter) => {
     options_loading = true;
-    await sleep(Math.random() * 3000);
+    await sleep(Math.random() * 1000);
     options_loading = false;
     if (filter) {
       return brands.filter((brand) => {
