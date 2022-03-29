@@ -425,10 +425,9 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     POPPER && POPPER.update();
   }
+  let typingTimeout;
 
   function triggerHotFilter(filter) {
-    console.log("TRIGGER FILTER");
-    let typingTimeout;
     typing = true;
     clearTimeout(typingTimeout);
     typingTimeout = setTimeout(async () => {
