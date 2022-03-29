@@ -299,6 +299,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     activeOption = "",
     searchText = "",
     searching = false,
+    typing = false,
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
@@ -364,8 +365,10 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
   }
 
-  async function updateFilteredOptions() {
+  function updateFilteredOptions() {
     let filter;
+
+    console.log(searching);
 
     //when in single mode, searchText contains the selected value
     //so we need to check if we are actually searching
@@ -377,7 +380,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     filteredOptions =
       typeof hotFilter === "function"
-        ? await hotFilter(filter)
+        ? triggerHotFilter(filter)
         : normalisedOptions.slice().filter((item) => {
             // filter out items that don't match `filter`
             if (typeof item === "object") {
@@ -421,6 +424,19 @@ Default value: `<span>{option[search_key] || option}</span>`
     }
 
     POPPER && POPPER.update();
+  }
+
+  function triggerHotFilter(filter) {
+    console.log("TRIGGER FILTER");
+    let typingTimeout;
+    typing = true;
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(async () => {
+      typing = false;
+      console.log("typing done");
+      await hotFilter(filter);
+    }, 800);
+    return [];
   }
 
   onMount(() => {
