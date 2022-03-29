@@ -377,32 +377,33 @@ Default value: `<span>{option[search_key] || option}</span>`
     } else {
       filter = searchText.toLowerCase();
     }
-
-    filteredOptions =
-      typeof hotFilter === "function"
-        ? (triggerHotFilter(filter), filteredOptions)
-        : normalisedOptions.slice().filter((item) => {
-            // filter out items that don't match `filter`
-            if (typeof item === "object") {
-              if (used_search_key) {
-                if (
-                  typeof item[used_search_key] === "string" &&
-                  item[used_search_key].toLowerCase().indexOf(filter) > -1
-                )
-                  return true;
-              } else {
-                for (var key in item) {
-                  if (
-                    typeof item[key] === "string" &&
-                    item[key].toLowerCase().indexOf(filter) > -1
-                  )
-                    return true;
-                }
-              }
-            } else {
-              return item.toLowerCase().indexOf(filter) > -1;
+    if (typeof hotFilter === "function") {
+      triggerHotFilter(filter);
+    } else {
+      filteredOptions = normalisedOptions.slice().filter((item) => {
+        // filter out items that don't match `filter`
+        if (typeof item === "object") {
+          if (used_search_key) {
+            if (
+              typeof item[used_search_key] === "string" &&
+              item[used_search_key].toLowerCase().indexOf(filter) > -1
+            )
+              return true;
+          } else {
+            for (var key in item) {
+              if (
+                typeof item[key] === "string" &&
+                item[key].toLowerCase().indexOf(filter) > -1
+              )
+                return true;
             }
-          });
+          }
+        } else {
+          return item.toLowerCase().indexOf(filter) > -1;
+        }
+      });
+    }
+
     console.log(filteredOptions);
   }
 
@@ -433,9 +434,10 @@ Default value: `<span>{option[search_key] || option}</span>`
     typingTimeout = setTimeout(async () => {
       typing = false;
       console.log("typing done");
-      await hotFilter(filter);
-    }, 800);
-    // return [];
+      let options = await hotFilter(filter);
+      console.log(options);
+      filteredOptions = options;
+    }, 500);
   }
 
   onMount(() => {
