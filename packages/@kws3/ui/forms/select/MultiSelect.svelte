@@ -380,7 +380,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     filteredOptions =
       typeof hotFilter === "function"
-        ? triggerHotFilter(filter)
+        ? (triggerHotFilter(filter), filteredOptions)
         : normalisedOptions.slice().filter((item) => {
             // filter out items that don't match `filter`
             if (typeof item === "object") {
@@ -436,7 +436,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       console.log("typing done");
       await hotFilter(filter);
     }, 800);
-    return [];
+    // return [];
   }
 
   onMount(() => {
