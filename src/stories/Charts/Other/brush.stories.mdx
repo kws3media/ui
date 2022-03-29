@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import Brush from './Brush.svelte';
+
+
+<Version />
+
+<Meta
+  title="Charts/Other/Brush Charts"
+/>
+
+### Brush Charts
+It's possible to link 2 charts so that one chart will act as a brush for the other.
+
+
+<Canvas>
+  <Story
+  name="Brush Charts"
+  args={{}}
+  >
+  {(args) => ({
+    Component: Brush,
+  })}
+  </Story>
+</Canvas>
