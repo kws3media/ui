@@ -16,9 +16,9 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
+  @param {object} [hotFilter=null] - Async function to filter the options from external source, Default: `null`
+  @param {boolean} [options_loading=false] - Options loading state, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
-  @param {boolean} [asyncSelect=false] - For support AsyncSelection, Default: `false`
-  @param {boolean} [isLoading=false] - For Check AsyncSelection loading status, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
   @param {string} [remove_all_tip="Clear Selection"] - Tooltip text for the Clear selection button, Default: `"Clear Selection"`
@@ -123,11 +123,11 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let readonly = false;
   /**
-   * Function to filter the options from external source
+   * Async function to filter the options from external source
    */
-  export let hotFilter = undefined;
+  export let hotFilter = null;
   /**
-   * For detecting the loading state of Async Select
+   * Options loading state
    */
   export let options_loading = false;
   /**
