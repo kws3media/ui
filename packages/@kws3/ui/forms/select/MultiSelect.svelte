@@ -275,7 +275,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   let klass = "";
   export { klass as class };
 
-  if (!options || !options.length) console.error(`Missing options`);
+  if (!hotFilter && (!options || !options.length))
+    console.error(`Missing options`);
 
   if (max !== null && max < 0) {
     throw new TypeError(`max must be null or positive integer, got ${max}`);
@@ -375,7 +376,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     } else {
       filter = searchText.toLowerCase();
     }
-    if (typeof hotFilter === "function") {
+    if (hotFilter && typeof hotFilter === "function") {
       triggerHotFilter(filter);
     } else {
       filteredOptions = normalisedOptions.slice().filter((item) => {
