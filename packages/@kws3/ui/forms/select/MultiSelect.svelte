@@ -275,7 +275,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   let klass = "";
   export { klass as class };
 
-  // if (!options || !options.length) console.error(`Missing options`);
+  if (!options || !options.length) console.error(`Missing options`);
 
   if (max !== null && max < 0) {
     throw new TypeError(`max must be null or positive integer, got ${max}`);
@@ -302,7 +302,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
-    selectedOptions = []; //list of options that are selected
+    selectedOptions = [], //list of options that are selected
+    typingTimeout;
 
   $: single = max === 1;
   $: hasValue = single
@@ -367,8 +368,6 @@ Default value: `<span>{option[search_key] || option}</span>`
   function updateFilteredOptions() {
     let filter;
 
-    console.log(searching);
-
     //when in single mode, searchText contains the selected value
     //so we need to check if we are actually searching
     if (single && !searching) {
@@ -402,8 +401,6 @@ Default value: `<span>{option[search_key] || option}</span>`
         }
       });
     }
-
-    console.log(filteredOptions);
   }
 
   function fillSelectedOptions() {
@@ -425,16 +422,11 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     POPPER && POPPER.update();
   }
-  let typingTimeout;
 
   function triggerHotFilter(filter) {
-    typing = true;
     clearTimeout(typingTimeout);
     typingTimeout = setTimeout(async () => {
-      typing = false;
-      console.log("typing done");
       let options = await hotFilter(filter);
-      console.log(options);
       filteredOptions = options;
     }, 500);
   }
