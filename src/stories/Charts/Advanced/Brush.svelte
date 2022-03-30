@@ -65,5 +65,5 @@
     },
     data = [...Array(200)].map(() => (Math.random() * 200) | 0),
     labels = [...Array(200).keys()],
-    sets = ["Set1"];
+    sets = ["Value"];
 </script>

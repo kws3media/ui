@@ -1,5 +1,5 @@
-<div class="columns">
-  <div class="column">
+<div class="columns" class:double={showPie}>
+  <div class="column first">
     <BarChart
       distributed
       on:dataPointSelection={dataPointSelectionToggle}
@@ -11,15 +11,41 @@
       {width}
       {height}
       captured_events={["dataPointSelection"]} />
-    <p class="has-text-centered">Click on a bar to activate it</p>
+    <p class="has-text-centered">Click on a bar to activate / deactivate it</p>
   </div>
-  <div class="column">
+  <div class="column second">
     {#if showPie}
       <h2 class="title is-5 has-text-centered is-marginless">{activeKey}</h2>
       <PieChart {height} options={options2} data={pieData} labels={pieLabels} />
     {/if}
   </div>
 </div>
+
+<style lang="scss">
+  .columns {
+    .first,
+    .second {
+      position: relative;
+      z-index: 1;
+      transition: transform 0.5s ease;
+    }
+    .first {
+      transform: translateX(50%);
+    }
+    .second {
+      z-index: -1;
+      transform: translateX(-50%);
+    }
+
+    &.double {
+      .first,
+      .second {
+        z-index: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+</style>
 
 <script>
   import { PieChart, BarChart } from "@kws3/ui";
