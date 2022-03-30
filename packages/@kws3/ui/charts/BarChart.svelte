@@ -10,6 +10,7 @@
 These are charts with minimal UI and can be
 squeezed into small spaces, Default: `false`
   @param {boolean} [horizontal=false] - Whether the chart displays horizontal bars, Default: `false`
+  @param {boolean} [distributed=false] - Make bars discrete. Each value indicates one bar per series., Default: `false`
   @param {boolean} [stacked=false] - Whether the bars are stacked on top of each other, Default: `false`
   @param {boolean} [stacked_full_width=false] - When bars are stacked, should they span the full width/height of the chart, Default: `false`
   @param {object} [y_axis_options={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
@@ -105,6 +106,10 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
      */
     horizontal = false,
     /**
+     * Make bars discrete. Each value indicates one bar per series.
+     */
+    distributed = false,
+    /**
      * Whether the bars are stacked on top of each other
      */
     stacked = false,
@@ -170,6 +175,7 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
       yAxis,
       sparklines,
       horizontal,
+      distributed,
       stacked,
       stacked_full_width
     ),
@@ -177,7 +183,7 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
   );
 
   const normaliseAll = () => {
-    if (data.length !== sets.length) {
+    if (data.length !== sets.length && !distributed) {
       console.warn("Data and sets lengths do not match");
     }
     normaliseSets();
