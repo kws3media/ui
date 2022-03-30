@@ -21,7 +21,7 @@
 
   export let colors = null,
     width = "100%",
-    height1 = "300",
+    height1 = "250",
     height2 = "100",
     options1 = {
       chart: {
