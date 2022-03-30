@@ -16,6 +16,8 @@ Used to populate the list of options in the dropdown, Default: `[]`
 this property of each object will be searched, Default: `"name"`
   @param {string} [value_key="id"] - If `options` is an array of objects,
 this property of each object will be returned as the value, Default: `"id"`
+  @param {object} [hotFilter=null] - Async function to filter the options from external source, Default: `null`
+  @param {boolean} [options_loading=false] - Options loading state, Default: `false`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -206,14 +208,12 @@ Default value: `<span>{option[search_key] || option}</span>`
    * this property of each object will be returned as the value
    */
   export let value_key = "id";
-
   /**
-   * search function
-   * Used to filter the options list from external source
+   * Async function to filter the options from external source
    */
   export let hotFilter = null;
   /**
-   * For detecting the loading state of Async Select
+   * Options loading state
    */
   export let options_loading = false;
 
@@ -299,7 +299,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     activeOption = "",
     searchText = "",
     searching = false,
-    typing = false,
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
