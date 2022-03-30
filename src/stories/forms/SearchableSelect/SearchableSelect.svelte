@@ -142,7 +142,7 @@
         );
       });
     } else {
-      return brands;
+      return [];
     }
   };
 
