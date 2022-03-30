@@ -7,6 +7,8 @@
   @param {array} [series=[]] - Series data, Default: `[]`
   @param {string} [width="100%"] - Chart width, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, Default: `"auto"`
+  @param {array} [captured_events=[]] - String array of event names that will be captured and fired as svelte events.
+This is to prevent unnecessary event subscriptions., Default: `[]`
   @param {string} [class=""] - CSS classes for container, Default: `""`
   @method `getInstance()` - Returns the ApexCharts instance
 
@@ -17,6 +19,14 @@
   import { onMount, createEventDispatcher } from "svelte";
   import ApexCharts from "apexcharts/dist/apexcharts.esm";
   import { merge } from "./utils";
+
+  //some functions such as brush charts
+  //require ApexCharts to be globally available
+  if (window) {
+    if (!window.ApexCharts) {
+      window.ApexCharts = ApexCharts;
+    }
+  }
 
   const fire = createEventDispatcher();
   let canvas, chart;
@@ -40,7 +50,12 @@
     /**
      * Chart height
      */
-    height = "auto";
+    height = "auto",
+    /**
+     * String array of event names that will be captured and fired as svelte events.
+     * This is to prevent unnecessary event subscriptions.
+     */
+    captured_events = [];
 
   /**
    * CSS classes for container
@@ -55,18 +70,7 @@
     return chart;
   }
 
-  onMount(() => {
-    init();
-    return () => {
-      chart && chart.destroy();
-    };
-  });
-
-  $: width, height, type, refresh();
-  $: series, seriesChanged();
-  $: options, optionsChanged();
-
-  const supportedEvents = [
+  const supported_events = [
     "animationEnd",
     "beforeMount",
     "mounted",
@@ -87,17 +91,31 @@
     "brushScrolled",
   ];
 
+  onMount(() => {
+    init();
+    return () => {
+      chart && chart.destroy();
+    };
+  });
+
+  let Events;
+
+  $: width, height, type, refresh();
+  $: series, seriesChanged();
+  $: options, Events, optionsChanged();
+  $: captured_events, patchEvents();
+
   const patchEvents = () => {
     const events = {};
-    supportedEvents.forEach((type) => {
-      events[type] = (a, b, c) => {
-        fire(type, [a, b, c]);
-      };
+    supported_events.forEach((type) => {
+      if (captured_events && captured_events.indexOf(type) > -1) {
+        events[type] = (a, b, c) => {
+          fire(type, [a, b, c]);
+        };
+      }
     });
-    return events;
+    Events = events;
   };
-
-  const Events = patchEvents();
 
   const init = () => {
     chart && chart.destroy();
