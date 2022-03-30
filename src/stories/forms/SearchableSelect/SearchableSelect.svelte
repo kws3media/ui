@@ -78,7 +78,7 @@
         {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
-      Output data: <code>{JSON.stringify(async_selected_brand, null, 1)}</code>
+      Output data: <code>{JSON.stringify(async_selected_brand, null, 2)}</code>
     </div>
   </div>
 </div>
@@ -142,7 +142,7 @@
         );
       });
     } else {
-      return [];
+      return brands;
     }
   };
 
