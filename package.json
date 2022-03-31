@@ -62,6 +62,6 @@
     "svelte-eslint-parser": "^0.14.0",
     "svelte-loader": "^3.1.2",
     "svelte-preprocess": "^4.8.0",
-    "sveltedoc-parser": "github:ekhaled/sveltedoc-parser#integration"
+    "sveltedoc-parser": "https://github.com/ekhaled/sveltedoc-parser#integration"
   }
 }
