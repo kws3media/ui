@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import Drill from './Drill.svelte';
@@ -14,16 +14,14 @@ import Drill from './Drill.svelte';
 It is possible to construct drilldown charts by leveraging chart events to trigger other charts.
 
 
-<Canvas>
-  <Story
-  name="Drilldown or Linked Charts"
-  args={{}}
-  >
-  {(args) => ({
-    Component: Drill,
-  })}
-  </Story>
-</Canvas>
+<Story
+name="Drilldown or Linked Charts"
+args={{}}
+>
+{(args) => ({
+  Component: Drill,
+})}
+</Story>
 
 <div class="content">
   <p>
