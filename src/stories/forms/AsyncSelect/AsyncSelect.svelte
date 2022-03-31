@@ -81,9 +81,9 @@
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
     placeholder = "Choose a Brand...",
-    selected_brand = null, // single , also work with { id: 10, name: "Blackberry" }
+    selected_brand = { id: 10, name: "Blackberry" },
     //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = null;
+    selected_brand_string = "Blackberry";
 
   let brands = [
     { id: 1, name: "LG" },

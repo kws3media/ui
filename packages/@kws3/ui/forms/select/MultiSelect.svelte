@@ -444,7 +444,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (value === null || typeof value == "undefined")
       value = single ? null : [];
 
-    setSingleVisibleValue();
+    if (hotFilter && typeof hotFilter === "function") {
+      setInitialAsynclabel();
+    } else {
+      setSingleVisibleValue();
+    }
 
     return () => {
       POPPER.destroy();
@@ -528,6 +532,13 @@ Default value: `<span>{option[search_key] || option}</span>`
         selectedOptions && selectedOptions[0]
           ? selectedOptions[0][used_search_key]
           : "";
+      searching = false;
+    }
+  }
+
+  function setInitialAsynclabel() {
+    if (single && hasValue) {
+      searchText = typeof value === "object" ? value[used_search_key] : value;
       searching = false;
     }
   }
