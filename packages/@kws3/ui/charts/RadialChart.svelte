@@ -15,16 +15,60 @@ squeezed into small spaces, Default: `false`
   @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
 
 Send an array of colors to override the default colors, or do not send anything to use the default colors, Default: `null`
+  @param {array} [captured_events=[]] - String array of event names that will be captured and fired as svelte events.
+This is to prevent unnecessary event subscriptions., Default: `[]`
   @param {string} [class=""] - CSS classes for container, Default: `""`
+  @method `getInstance()` - Returns the ApexCharts instance
+
+  ### Events
+  - `animationEnd` - All chart events only fire when they are mentioned in `captured_events` list. See ApexChart Events https://apexcharts.com/docs/options/chart/events/ for full list of supported events.
+  - `beforeMount`
+  - `mounted`
+  - `updated`
+  - `mouseMove`
+  - `mouseLeave`
+  - `click`
+  - `legendClick`
+  - `markerClick`
+  - `selection`
+  - `dataPointSelection`
+  - `dataPointMouseEnter`
+  - `dataPointMouseLeave`
+  - `beforeZoom`
+  - `beforeResetZoom`
+  - `zoomed`
+  - `scrolled`
+  - `brushScrolled`
 
 -->
+<!-- All chart events only fire when they are mentioned in `captured_events` list. See ApexChart Events https://apexcharts.com/docs/options/chart/events/ for full list of supported events. -->
 <Chart
+  bind:this={chart}
+  on:animationEnd
+  on:beforeMount
+  on:mounted
+  on:updated
+  on:mouseMove
+  on:mouseLeave
+  on:click
+  on:legendClick
+  on:markerClick
+  on:selection
+  on:dataPointSelection
+  on:dataPointMouseEnter
+  on:dataPointMouseLeave
+  on:beforeZoom
+  on:beforeResetZoom
+  on:zoomed
+  on:scrolled
+  on:brushScrolled
   class={__class}
   options={_options}
   series={_data}
   type="radialBar"
   {height}
-  {width} />
+  {width}
+  {captured_events} />
 
 <script>
   import { Chart } from "@kws3/ui";
@@ -71,13 +115,26 @@ Send an array of colors to override the default colors, or do not send anything 
      * Send an array of colors to override the default colors, or do not send anything to use the default colors
      * @type {array}
      */
-    colors = null;
+    colors = null,
+    /**
+     * String array of event names that will be captured and fired as svelte events.
+     * This is to prevent unnecessary event subscriptions.
+     */
+    captured_events = [];
 
   /**
    * CSS classes for container
    */
   let klass = "";
   export { klass as class };
+
+  let chart;
+  /**
+   * Returns the ApexCharts instance
+   */
+  export function getInstance() {
+    return chart.getInstance();
+  }
 
   let _data = [],
     _labels = [];

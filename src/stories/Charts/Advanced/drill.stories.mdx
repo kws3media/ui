@@ -1,0 +1,88 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import Drill from './Drill.svelte';
+
+
+<Version />
+
+<Meta
+  title="Charts/Advanced Examples/Drilldown or Linked Charts"
+/>
+
+### Drilldown or Linked Charts
+It is possible to construct drilldown charts by leveraging chart events to trigger other charts.
+
+
+<Canvas>
+  <Story
+  name="Drilldown or Linked Charts"
+  args={{}}
+  >
+  {(args) => ({
+    Component: Drill,
+  })}
+  </Story>
+</Canvas>
+
+<div class="content">
+  <p>
+    In this example, we leverage the <code>dataPointSelection</code> event on the first chart, to trigger a new chart.
+  <br />
+  The fancy sliding animation is not a feature of the chart library. It's a custom effect added simply using CSS classes, all leveraging the <code>dataPointSelection</code> event.
+  <br />
+  See annotated and simplified example code below.</p>
+</div>
+
+<div class="columns">
+<div class="column">
+
+```jsx
+//Main bar chart
+
+<BarChart 
+  captured_events={["dataPointSelection"]}
+  on:dataPointSelection={() => {
+    //Trigger Pie Chart
+  }}
+  options={{
+    states: {
+      active: {
+        //apply a color filter on active state
+        //for easy visual identification
+        filter: {
+          type: "darken",
+          value: 0.35,
+        },
+      },
+    },
+  }}
+  {data}
+  ...
+/>
+```
+
+</div>
+<div class="column">
+
+```jsx
+//Drilled down pie chart
+
+<PieChart options={{
+    theme: {
+      monochrome: {
+        enabled: true,
+        //change this in event listener
+        //of main chart, to match 
+        //color of selected data
+        color: "#ff0000",
+      },
+    }
+  }}
+  {data}
+  ...
+/>
+```
+
+</div>
+</div>
