@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm-run-all dev:hmr",
     "dev:hmr": "start-storybook -p 9009 -s public",
-    "build": "build-storybook -s public -o build",
+    "build": "build-storybook --docs -s public -o build",
     "populate": "grunt dist",
     "build:dist": "npm-run-all -s build -s populate",
     "deploy:dist": "grunt deploy:dist",
