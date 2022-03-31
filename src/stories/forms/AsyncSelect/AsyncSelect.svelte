@@ -9,7 +9,8 @@
       <KwsSearchableSelect
         {size}
         {color}
-        options={brands}
+        options_loading={obj_brands_loading}
+        hotFilter={fetchObjBrands}
         bind:value={selected_brand}
         search_key="name"
         value_key="id"
@@ -36,7 +37,8 @@
       <KwsSearchableSelect
         {size}
         {color}
-        options={brands_string_only}
+        options_loading={brands_loading}
+        hotFilter={fetchBrands}
         bind:value={selected_brand_string}
         {search_key}
         {value_key}
@@ -49,36 +51,6 @@
         {no_options_msg}
         {remove_all_tip} />
       Output data: <code>{JSON.stringify(selected_brand_string, null, 2)}</code>
-    </div>
-  </div>
-  <hr />
-  <div class="columns is-multiline">
-    <div class="column is-12">
-      <h2 class="has-text-centered has-text-weight-bold">Async Select</h2>
-    </div>
-    <div class="column is-6">
-      <Panel title="Input data" collapsible collapsed>
-        <pre>{JSON.stringify(brands_string_only, null, 1)}</pre>
-      </Panel>
-    </div>
-    <div class="column is-6">
-      <KwsSearchableSelect
-        {size}
-        {color}
-        hotFilter={fetchBrands}
-        bind:value={async_selected_brand}
-        {search_key}
-        {value_key}
-        {placeholder}
-        {style}
-        class={klass}
-        {disabled}
-        {readonly}
-        {options_loading}
-        {selected_icon}
-        {no_options_msg}
-        {remove_all_tip} />
-      Output data: <code>{JSON.stringify(async_selected_brand, null, 2)}</code>
     </div>
   </div>
 </div>
@@ -101,7 +73,8 @@
     style = "",
     disabled = false,
     readonly = false,
-    options_loading = false,
+    brands_loading = false,
+    obj_brands_loading = false,
     search_key = "name",
     value_key = "id",
     selected_icon = "check",
@@ -110,8 +83,7 @@
     placeholder = "Choose a Brand...",
     selected_brand = "", // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = "Blackberry",
-    async_selected_brand = "";
+    selected_brand_string = "Blackberry";
 
   let brands = [
     { id: 1, name: "LG" },
@@ -129,23 +101,6 @@
     { id: 11, name: "Apple" },
   ];
 
-  const sleep = (ms) => new Promise((f) => setTimeout(f, ms));
-
-  const fetchBrands = async (filter) => {
-    options_loading = true;
-    await sleep(Math.random() * 1000);
-    options_loading = false;
-    if (filter) {
-      return brands.filter((brand) => {
-        return (
-          brand[search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1
-        );
-      });
-    } else {
-      return brands;
-    }
-  };
-
   let brands_string_only = [
     "LG",
     "Samsung",
@@ -159,6 +114,36 @@
     "Blackberry",
     "Apple",
   ];
+
+  const sleep = (ms) => new Promise((f) => setTimeout(f, ms));
+
+  const fetchBrands = async (filter) => {
+    brands_loading = true;
+    await sleep(Math.random() * 1000);
+    brands_loading = false;
+    if (filter) {
+      return brands_string_only.filter((brand) => {
+        return brand.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+      });
+    } else {
+      return [];
+    }
+  };
+
+  const fetchObjBrands = async (filter) => {
+    obj_brands_loading = true;
+    await sleep(Math.random() * 1000);
+    obj_brands_loading = false;
+    if (filter) {
+      return brands.filter((brand) => {
+        return (
+          brand[search_key].toLowerCase().indexOf(filter.toLowerCase()) > -1
+        );
+      });
+    } else {
+      return [];
+    }
+  };
 
   let klass = "";
   export { klass as class };
