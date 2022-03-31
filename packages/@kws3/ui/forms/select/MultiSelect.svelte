@@ -376,7 +376,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     } else {
       filter = searchText.toLowerCase();
     }
-    if (hotFilter && typeof hotFilter === "function") {
+    if (hotFilter && typeof hotFilter === "function" && searching) {
       triggerHotFilter(filter);
     } else {
       filteredOptions = normalisedOptions.slice().filter((item) => {
@@ -427,8 +427,9 @@ Default value: `<span>{option[search_key] || option}</span>`
   function triggerHotFilter(filter) {
     clearTimeout(typingTimeout);
     typingTimeout = setTimeout(async () => {
-      let options = await hotFilter(filter);
-      filteredOptions = options;
+      let _options = await hotFilter(filter);
+      options = _options;
+      searching = false;
     }, 500);
   }
 
