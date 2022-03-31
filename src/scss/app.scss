@@ -233,10 +233,29 @@ pre.prismjs > code {
 .sbdocs-content {
   position: relative;
 }
-.main-version-tag {
+.page-top-right-artifacts {
   position: absolute;
-  top: 0;
+  margin: 0 !important;
+  padding: 0.75rem;
+  border-radius: 0 0 $radius $radius;
+  background: linear-gradient(180deg, #f4f4f4 0%, #f6f9fc 4%, #fcfdfd 35%);
+  top: -4rem;
   right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  .artifact-item-block {
+    display: flex;
+    flex-direction: row;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+  .artifact-item:not(:last-child) {
+    margin-right: 0.5rem;
+    padding-right: 0.5rem;
+    border-right: 1px solid #ebebeb;
+  }
 }
 
 .datagrid-example {
