@@ -12,7 +12,7 @@ import Version from "~/version.mdx";
 import { SearchableSelect } from "@kws3/ui";
 import SearchableSelectDecorator from "./AsyncSelect.svelte";
 import { action } from "@storybook/addon-actions";
-import playInteractions from "./searchableselect.play.js";
+import playInteractions from "./asyncselect.play.js";
 
 export let args = {
   value: "",
@@ -36,7 +36,7 @@ export let args = {
 
 <Meta
   title="Forms/AsyncSelect"
-  component={AsyncSelect}
+  component={SearchableSelectDecorator}
   args={args}
   argTypes={{
     color: {
