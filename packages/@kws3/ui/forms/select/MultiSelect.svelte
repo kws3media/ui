@@ -307,6 +307,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     typingTimeout;
 
   $: single = max === 1;
+  $: asyncMode = hotFilter && typeof hotFilter === "function";
   $: hasValue = single
     ? value !== null && typeof value != "undefined"
       ? true
@@ -376,7 +377,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     } else {
       filter = searchText.toLowerCase();
     }
-    if (hotFilter && typeof hotFilter === "function" && searching) {
+    if (asyncMode && searching) {
       triggerHotFilter(filter);
     } else {
       filteredOptions = normalisedOptions.slice().filter((item) => {
