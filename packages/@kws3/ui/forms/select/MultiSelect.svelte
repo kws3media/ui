@@ -529,11 +529,13 @@ Default value: `<span>{option[search_key] || option}</span>`
       if (selectedOptions && selectedOptions[0]) {
         searchText = selectedOptions[0][used_search_key] || "";
       } else {
-        options = [value];
-        await tick();
-        let nop = normalisedOptions;
-        value = nop && nop[0] ? nop[0][used_value_key] : "";
-        searchText = nop && nop[0] ? nop[0][used_search_key] : "";
+        if (value) {
+          options = [value];
+          await tick();
+          let nop = normalisedOptions;
+          value = nop && nop[0] ? nop[0][used_value_key] : "";
+          searchText = nop && nop[0] ? nop[0][used_search_key] : "";
+        }
       }
       searching = false;
     }
