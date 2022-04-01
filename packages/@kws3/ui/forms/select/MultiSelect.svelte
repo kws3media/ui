@@ -444,11 +444,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (value === null || typeof value == "undefined")
       value = single ? null : [];
 
-    if (hotFilter && typeof hotFilter === "function") {
-      setInitialAsynclabel();
-    } else {
-      setSingleVisibleValue();
-    }
+    setSingleVisibleValue();
 
     return () => {
       POPPER.destroy();
