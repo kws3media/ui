@@ -331,7 +331,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     used_value_key,
     updateFilteredOptions();
 
-  $: value, single, fillSelectedOptions();
+  $: value, single, options, fillSelectedOptions();
 
   $: if (
     (activeOption && !filteredOptions.includes(activeOption)) ||
@@ -448,6 +448,19 @@ Default value: `<span>{option[search_key] || option}</span>`
       setInitialAsynclabel();
     } else {
       setSingleVisibleValue();
+    }
+
+    if (value && hotFilter && typeof hotFilter === "function") {
+      if (
+        typeof value === "object" &&
+        !Array.isArray(value) &&
+        value !== null
+      ) {
+        searchText = value[used_search_key];
+      } else {
+        searchText = value;
+      }
+      searching = true;
     }
 
     return () => {
