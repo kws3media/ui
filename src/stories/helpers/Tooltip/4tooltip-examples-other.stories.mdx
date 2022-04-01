@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import Other from './Other.svelte';
@@ -14,13 +14,12 @@ import Other from './Other.svelte';
 A list of other things that can be done with tooltips that are not listed in the previous examples
 
 
-<Canvas>
-  <Story
-  name="3. Other Examples"
-  args={{}}
-  >
-  {(args) => ({
-    Component: Other,
-  })}
-  </Story>
-</Canvas>
+
+<Story
+name="3. Other Examples"
+args={{}}
+>
+{(args) => ({
+  Component: Other,
+})}
+</Story>

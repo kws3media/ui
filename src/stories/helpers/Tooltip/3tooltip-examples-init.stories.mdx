@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import InitVariations from './InitVariations.svelte';
@@ -17,13 +17,12 @@ Each variation either needs a common parent, or a different target selector.
 Each variation's initialisation options will determine how the tooltips look and behave.  
 **Examples:**
 
-<Canvas>
-  <Story
-  name="2. Variations"
-  args={{}}
-  >
-  {(args) => ({
-    Component: InitVariations,
-  })}
-  </Story>
-</Canvas>
+
+<Story
+name="2. Variations"
+args={{}}
+>
+{(args) => ({
+  Component: InitVariations,
+})}
+</Story>

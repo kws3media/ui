@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import DataAttributes from './DataAttributes.svelte';
@@ -16,13 +16,12 @@ Comprehensive list of supported attributes can be found here: https://atomiks.gi
 **Examples:**
 
 
-<Canvas>
-  <Story
-  name="1. Data Attributes"
-  args={{}}
-  >
-  {(args) => ({
-    Component: DataAttributes,
-  })}
-  </Story>
-</Canvas>
+
+<Story
+name="1. Data Attributes"
+args={{}}
+>
+{(args) => ({
+  Component: DataAttributes,
+})}
+</Story>

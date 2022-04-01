@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import Sync from './Sync.svelte';
@@ -14,16 +14,15 @@ import Sync from './Sync.svelte';
 When you have multiple charts with a common x-axis and significant difference in y values, it’s a prevalent way to visualize it through synched charts.
 
 
-<Canvas>
-  <Story
-  name="Synchronized Charts"
-  args={{}}
-  >
-  {(args) => ({
-    Component: Sync,
-  })}
-  </Story>
-</Canvas>
+
+<Story
+name="Synchronized Charts"
+args={{}}
+>
+{(args) => ({
+  Component: Sync,
+})}
+</Story>
 
 <div class="columns">
   <div class="column content">
