@@ -154,7 +154,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
 <script>
   import { Icon, portal } from "@kws3/ui";
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
 
   const sameWidthPopperModifier = {
@@ -350,6 +350,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   //convert arrays of strings into normalised arrays of objects
   function normaliseOptions() {
+    console.log("normalisedOptions", options);
     let _items = options || [];
     if (!_items || !(_items instanceof Array)) {
       normalisedOptions = [];
@@ -523,19 +524,17 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER && POPPER.update();
   }
 
-  function setSingleVisibleValue() {
+  async function setSingleVisibleValue() {
     if (single && hasValue) {
-      searchText =
-        selectedOptions && selectedOptions[0]
-          ? selectedOptions[0][used_search_key]
-          : "";
-      searching = false;
-    }
-  }
-
-  function setInitialAsynclabel() {
-    if (single && hasValue) {
-      searchText = typeof value === "object" ? value[used_search_key] : value;
+      if (selectedOptions && selectedOptions[0]) {
+        searchText = selectedOptions[0][used_search_key] || "";
+      } else {
+        options = [value];
+        await tick();
+        let nop = normalisedOptions;
+        value = nop && nop[0] ? nop[0][used_value_key] : "";
+        searchText = nop && nop[0] ? nop[0][used_search_key] : "";
+      }
       searching = false;
     }
   }
