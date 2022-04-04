@@ -61,6 +61,7 @@
     SearchableSelect as KwsSearchableSelect,
     activateTooltips,
   } from "@kws3/ui";
+  import { sleep } from "../../../utils";
 
   import { onMount } from "svelte";
 
@@ -114,8 +115,6 @@
     "Blackberry",
     "Apple",
   ];
-
-  const sleep = (ms) => new Promise((f) => setTimeout(f, ms));
 
   const fetchBrands = async (filter) => {
     brands_loading = true;
