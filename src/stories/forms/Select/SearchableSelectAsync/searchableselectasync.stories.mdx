@@ -10,9 +10,9 @@ import {
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
 import { SearchableSelect } from "@kws3/ui";
-import SearchableSelectDecorator from "./AsyncSelect.svelte";
+import SearchableSelectDecorator from "./SearchableSelectAsync.svelte";
 import { action } from "@storybook/addon-actions";
-import playInteractions from "./asyncselect.play.js";
+import playInteractions from "./searchableselectasync.play.js";
 
 export let args = {
   value: "",
@@ -26,16 +26,13 @@ export let args = {
   disabled: false,
   readonly: false,
   options_loading: false,
-  placeholder: "Choose a brand...",
-  selected_icon: "check",
-  no_options_msg: "No matching options",
-  remove_all_tip: "Clear Selection",
+  hotFilter: async () => await fetchFromApi(),
 };
 
 <Version />
 
 <Meta
-  title="Forms/Select/AsyncSelect"
+  title="Forms/Select/SearchableSelectAsync"
   component={SearchableSelectDecorator}
   args={args}
   argTypes={{
@@ -50,13 +47,13 @@ export let args = {
 
 <Description
   markdown={dedent`
-# AsyncSelect
-## A select component that allows you to search by typing into it.
+# SearchableSelect (Async)
+## Load options by searching in realtime.
 `}
 />
 
 <Canvas>
-  <Story name="AsyncSelect" args={args} play={playInteractions}>
+  <Story name="SearchableSelectAsync" args={args} play={playInteractions}>
     {(args) => ({
       Component: SearchableSelectDecorator,
       props: args,
@@ -64,7 +61,7 @@ export let args = {
   </Story>
 </Canvas>
 
-<ArgsTable story="AsyncSelect" />
+<ArgsTable story="SearchableSelectAsync" />
 
 <div class="notification is-primary is-light">
   <div class="columns">
