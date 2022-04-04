@@ -350,7 +350,6 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   //convert arrays of strings into normalised arrays of objects
   function normaliseOptions() {
-    console.log("normalisedOptions", options);
     let _items = options || [];
     if (!_items || !(_items instanceof Array)) {
       normalisedOptions = [];
