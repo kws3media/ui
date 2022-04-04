@@ -61,7 +61,7 @@
     SearchableSelect as KwsSearchableSelect,
     activateTooltips,
   } from "@kws3/ui";
-  import { sleep } from "../../../utils";
+  import { sleep } from "../../../../utils";
 
   import { onMount } from "svelte";
 
