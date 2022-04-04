@@ -32,7 +32,7 @@ export let args = {
 <Version />
 
 <Meta
-  title="Forms/Select/SearchableSelectAsync"
+  title="Forms/Select/SearchableSelect (Async)"
   component={SearchableSelectDecorator}
   args={args}
   argTypes={{
@@ -53,7 +53,7 @@ export let args = {
 />
 
 <Canvas>
-  <Story name="SearchableSelectAsync" args={args} play={playInteractions}>
+  <Story name="SearchableSelect (Async)" args={args} play={playInteractions}>
     {(args) => ({
       Component: SearchableSelectDecorator,
       props: args,
@@ -61,7 +61,7 @@ export let args = {
   </Story>
 </Canvas>
 
-<ArgsTable story="SearchableSelectAsync" />
+<ArgsTable story="SearchableSelect (Async)" />
 
 <div class="notification is-primary is-light">
   <div class="columns">
