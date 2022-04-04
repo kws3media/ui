@@ -69,22 +69,22 @@
     activateTooltips("#ss_container");
   });
 
+  let brands_loading = false,
+    obj_brands_loading = false,
+    selected_brand = { id: 10, name: "Blackberry" },
+    selected_brand_string = "Blackberry";
+
   export let size = "",
     color = "",
     style = "",
     disabled = false,
     readonly = false,
-    brands_loading = false,
-    obj_brands_loading = false,
     search_key = "name",
     value_key = "id",
     selected_icon = "check",
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
-    placeholder = "Choose a Brand...",
-    selected_brand = { id: 10, name: "Blackberry" },
-    //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = "Blackberry";
+    placeholder = "Choose a Brand...";
 
   let brands = [
     { id: 1, name: "LG" },
