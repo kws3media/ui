@@ -81,6 +81,14 @@ export let args = {
       <p>
         Note: To improve rendering performance, slice down the options if items array contain a large dataset on a single match.
       </p>
+      <Source
+        language="jsx"
+        code={dedent`<SearchableSelect
+      ...other_options
+      hotFilter={async ()...... items.map(...).slice(0, 20);}
+    
+    </SearchableSelect>`}
+      />
     </div>
     <div class="column">
       <h3>Example:</h3>
