@@ -37,7 +37,6 @@
       <KwsSearchableSelect
         {size}
         {color}
-        options_loading={brands_loading}
         search={fetchBrands}
         bind:value={selected_brand_string}
         {search_key}
@@ -69,8 +68,7 @@
     activateTooltips("#ss_container");
   });
 
-  let brands_loading = false,
-    obj_brands_loading = false,
+  let obj_brands_loading = false,
     selected_brand = { id: 10, name: "Blackberry" },
     selected_brand_string = "Blackberry";
 
@@ -117,9 +115,7 @@
   ];
 
   const fetchBrands = async (filter) => {
-    brands_loading = true;
     await sleep(Math.random() * 1000);
-    brands_loading = false;
     if (filter) {
       return brands_string_only.filter((brand) => {
         return brand.toLowerCase().indexOf(filter.toLowerCase()) > -1;
