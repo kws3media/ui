@@ -16,8 +16,7 @@ Used to populate the list of options in the dropdown, Default: `[]`
 this property of each object will be searched, Default: `"name"`
   @param {string} [value_key="id"] - If `options` is an array of objects,
 this property of each object will be returned as the value, Default: `"id"`
-  @param {object} [search=null] - Async function to filter the options from external source, Default: `null`
-  @param {boolean} [options_loading=false] - Options loading state, Default: `false`
+  @param {object} [search=null] - Async function to fetch options, Default: `null`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -209,13 +208,9 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let value_key = "id";
   /**
-   * Async function to filter the options from external source
+   * Async function to fetch options
    */
   export let search = null;
-  /**
-   * Options loading state
-   */
-  export let options_loading = false;
 
   /**
    * Size of the input
@@ -304,6 +299,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
     selectedOptions = [], //list of options that are selected
+    options_loading = false,
     typingTimeout;
 
   $: single = max === 1;
@@ -378,6 +374,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       filter = searchText.toLowerCase();
     }
     if (asyncMode && searching) {
+      options_loading = true;
       triggersearch(filter);
     } else {
       filteredOptions = normalisedOptions.slice().filter((item) => {
@@ -431,6 +428,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       let _options = await search(filter);
       options = _options;
       searching = false;
+      options_loading = false;
     }, 500);
   }
 
