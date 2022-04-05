@@ -16,8 +16,7 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
-  @param {object} [search=null] - Async function to filter the options from external source, Default: `null`
-  @param {boolean} [options_loading=false] - Options loading state, Default: `false`
+  @param {object} [search=null] - Async function to fetch options, Default: `null`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
@@ -123,13 +122,9 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let readonly = false;
   /**
-   * Async function to filter the options from external source
+   * Async function to fetch options
    */
   export let search = null;
-  /**
-   * Options loading state
-   */
-  export let options_loading = false;
   /**
    * Disables the component
    */
