@@ -375,7 +375,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       filter = searchText.toLowerCase();
     }
     if (asyncMode && searching) {
-      options_loading = true;
       debouncedTriggerSearch(filter);
     } else {
       filteredOptions = normalisedOptions.slice().filter((item) => {
@@ -424,6 +423,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
 
   function triggerSearch(filter) {
+    options_loading = true;
     search(filter).then((_options) => {
       options = _options;
       searching = false;
