@@ -521,17 +521,18 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER && POPPER.update();
   }
 
-  async function setSingleVisibleValue() {
+  function setSingleVisibleValue() {
     if (single && hasValue) {
       if (selectedOptions && selectedOptions[0]) {
         searchText = selectedOptions[0][used_search_key] || "";
       } else {
         if (value) {
           options = [value];
-          await tick();
-          let nop = normalisedOptions;
-          value = nop && nop[0] ? nop[0][used_value_key] : "";
-          searchText = nop && nop[0] ? nop[0][used_search_key] : "";
+          tick().then(() => {
+            let nop = normalisedOptions;
+            value = nop && nop[0] ? nop[0][used_value_key] : "";
+            searchText = nop && nop[0] ? nop[0][used_search_key] : "";
+          });
         }
       }
       searching = false;
