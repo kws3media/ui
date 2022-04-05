@@ -26,7 +26,7 @@ export let args = {
   disabled: false,
   readonly: false,
   options_loading: false,
-  hotFilter: async () => await fetchFromApi(filter),
+  search: async () => await fetchFromApi(filter),
 };
 
 <Version />
@@ -67,7 +67,7 @@ export let args = {
   <div class="columns">
     <div class="column">
       <h3>
-        Async filter function <code>hotFilter</code>
+        Async filter function <code>search</code>
       </h3>
       <p>
         This function is called when the user types in the search field.
@@ -85,7 +85,7 @@ export let args = {
         language="jsx"
         code={dedent`<SearchableSelect
       ...other_options
-      hotFilter={async ()...... items.map(...).slice(0, 20);}
+      search={async ()...... items.map(...).slice(0, 20);}
     
     </SearchableSelect>`}
       />
@@ -96,7 +96,7 @@ export let args = {
         language="jsx"
         code={dedent`<SearchableSelect
       ...other_options
-      hotFilter={async (filter) => {
+      search={async (filter) => {
         const response = await fetch(
           "https://api.github.com/search/users?q=" + filter
         );

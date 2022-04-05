@@ -10,7 +10,7 @@
         {size}
         {color}
         options_loading={obj_brands_loading}
-        hotFilter={fetchObjBrands}
+        search={fetchObjBrands}
         bind:value={selected_brand}
         search_key="name"
         value_key="id"
@@ -38,7 +38,7 @@
         {size}
         {color}
         options_loading={brands_loading}
-        hotFilter={fetchBrands}
+        search={fetchBrands}
         bind:value={selected_brand_string}
         {search_key}
         {value_key}

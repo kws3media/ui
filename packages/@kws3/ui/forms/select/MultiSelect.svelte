@@ -16,7 +16,7 @@ Used to populate the list of options in the dropdown, Default: `[]`
 this property of each object will be searched, Default: `"name"`
   @param {string} [value_key="id"] - If `options` is an array of objects,
 this property of each object will be returned as the value, Default: `"id"`
-  @param {object} [hotFilter=null] - Async function to filter the options from external source, Default: `null`
+  @param {object} [search=null] - Async function to filter the options from external source, Default: `null`
   @param {boolean} [options_loading=false] - Options loading state, Default: `false`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
@@ -100,7 +100,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       on:blur={() => setOptionsVisible(false)}
       placeholder={_placeholder} />
   </ul>
-  {#if hotFilter && options_loading}
+  {#if search && options_loading}
     <button
       role="button"
       type="button"
@@ -211,7 +211,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * Async function to filter the options from external source
    */
-  export let hotFilter = null;
+  export let search = null;
   /**
    * Options loading state
    */
@@ -275,7 +275,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   let klass = "";
   export { klass as class };
 
-  if (!hotFilter && (!options || !options.length))
+  if (!search && (!options || !options.length))
     console.error(`Missing options`);
 
   if (max !== null && max < 0) {
@@ -307,7 +307,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     typingTimeout;
 
   $: single = max === 1;
-  $: asyncMode = hotFilter && typeof hotFilter === "function";
+  $: asyncMode = search && typeof search === "function";
   $: hasValue = single
     ? value !== null && typeof value != "undefined"
       ? true
@@ -378,7 +378,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       filter = searchText.toLowerCase();
     }
     if (asyncMode && searching) {
-      triggerHotFilter(filter);
+      triggersearch(filter);
     } else {
       filteredOptions = normalisedOptions.slice().filter((item) => {
         // filter out items that don't match `filter`
@@ -425,10 +425,10 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER && POPPER.update();
   }
 
-  function triggerHotFilter(filter) {
+  function triggersearch(filter) {
     clearTimeout(typingTimeout);
     typingTimeout = setTimeout(async () => {
-      let _options = await hotFilter(filter);
+      let _options = await search(filter);
       options = _options;
       searching = false;
     }, 500);

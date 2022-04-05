@@ -16,7 +16,7 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
-  @param {object} [hotFilter=null] - Async function to filter the options from external source, Default: `null`
+  @param {object} [search=null] - Async function to filter the options from external source, Default: `null`
   @param {boolean} [options_loading=false] - Options loading state, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
@@ -51,7 +51,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {style}
   {readonly}
   {disabled}
-  {hotFilter}
+  {search}
   {selected_icon}
   {remove_all_tip}
   {no_options_msg}
@@ -125,7 +125,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * Async function to filter the options from external source
    */
-  export let hotFilter = null;
+  export let search = null;
   /**
    * Options loading state
    */
