@@ -55,7 +55,6 @@ Default value: `<span>{option[search_key] || option}</span>`
   {remove_all_tip}
   {no_options_msg}
   {dropdown_portal}
-  {options_loading}
   on:change={change}
   on:blur={blur}
   let:option

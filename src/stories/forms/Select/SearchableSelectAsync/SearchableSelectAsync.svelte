@@ -9,7 +9,6 @@
       <KwsSearchableSelect
         {size}
         {color}
-        options_loading={obj_brands_loading}
         search={fetchObjBrands}
         bind:value={selected_brand}
         search_key="name"
