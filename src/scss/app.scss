@@ -247,8 +247,8 @@ pre.prismjs > code {
   .artifact-item-block {
     display: flex;
     flex-direction: row;
-    &:not(:last-child) {
-      margin-bottom: 1rem;
+    &:not(:first-child) {
+      margin-top: 1rem;
     }
   }
   .artifact-item:not(:last-child) {
