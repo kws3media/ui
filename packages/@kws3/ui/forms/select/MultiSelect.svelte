@@ -389,7 +389,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       selectedOptions = normalisedOptions.filter(
         (v) => `${v[used_value_key]}` === `${value}`
       );
-      setSingleVisibleValue();
     } else {
       selectedOptions = normalisedOptions
         .filter(
@@ -415,8 +414,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (value === null || typeof value == "undefined")
       value = single ? null : [];
 
-    setSingleVisibleValue();
-
     return () => {
       POPPER.destroy();
     };
@@ -430,13 +427,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     let isAlreadySelected = isSelected(token);
 
     if (single) {
-      setOptionsVisible(false);
-      if (isAlreadySelected) {
-        setSingleVisibleValue();
-      } else {
+      if (!isAlreadySelected) {
         value = token[used_value_key];
         fire("change", { token, type: `add` });
       }
+      setOptionsVisible(false);
     }
 
     if (!isAlreadySelected && !single && (max === null || value.length < max)) {
@@ -490,18 +485,9 @@ Default value: `<span>{option[search_key] || option}</span>`
       input && input.focus();
     } else {
       searchText = "";
-    }
-    POPPER && POPPER.update();
-  }
-
-  function setSingleVisibleValue() {
-    if (single && hasValue) {
-      // searchText =
-      //   selectedOptions && selectedOptions[0]
-      //     ? selectedOptions[0][used_search_key]
-      //     : "";
       searching = false;
     }
+    POPPER && POPPER.update();
   }
 
   function handleKeydown(event) {
@@ -515,7 +501,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       event.preventDefault();
       if (activeOption) {
         handleOptionMouseDown(activeOption);
-        searchText = "";
       } else {
         // no active option means the options are closed in which case enter means open
         setOptionsVisible(true);
