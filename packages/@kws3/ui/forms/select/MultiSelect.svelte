@@ -153,6 +153,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
 <script>
   import { Icon, portal } from "@kws3/ui";
+  import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
 
@@ -375,7 +376,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     }
     if (asyncMode && searching) {
       options_loading = true;
-      triggersearch(filter);
+      debouncedTriggerSearch(filter);
     } else {
       filteredOptions = normalisedOptions.slice().filter((item) => {
         // filter out items that don't match `filter`
@@ -422,15 +423,15 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER && POPPER.update();
   }
 
-  function triggersearch(filter) {
-    clearTimeout(typingTimeout);
-    typingTimeout = setTimeout(async () => {
-      let _options = await search(filter);
+  function triggerSearch(filter) {
+    search(filter).then((_options) => {
       options = _options;
       searching = false;
       options_loading = false;
-    }, 500);
+    });
   }
+
+  const debouncedTriggerSearch = debounce(triggerSearch, 150, false);
 
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
