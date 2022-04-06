@@ -16,7 +16,10 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
-  @param {object} [search=null] - Async function to fetch options, Default: `null`
+  @param {function|null} [search=null] - Async function to fetch options
+
+Only send this prop if you want to fetch `options` asynchronously.
+`options` prop will be ignored if this prop is set., Default: `null`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
@@ -122,6 +125,11 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let readonly = false;
   /**
    * Async function to fetch options
+   *
+   * Only send this prop if you want to fetch `options` asynchronously.
+   * `options` prop will be ignored if this prop is set.
+   *
+   * @type {function|null}
    */
   export let search = null;
   /**

@@ -16,7 +16,10 @@ Used to populate the list of options in the dropdown, Default: `[]`
 this property of each object will be searched, Default: `"name"`
   @param {string} [value_key="id"] - If `options` is an array of objects,
 this property of each object will be returned as the value, Default: `"id"`
-  @param {object} [search=null] - Async function to fetch options, Default: `null`
+  @param {function|null} [search=null] - Async function to fetch options
+
+Only send this prop if you want to fetch `options` asynchronously.
+`options` prop will be ignored if this prop is set., Default: `null`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -211,9 +214,13 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let value_key = "id";
   /**
    * Async function to fetch options
+   *
+   * Only send this prop if you want to fetch `options` asynchronously.
+   * `options` prop will be ignored if this prop is set.
+   *
+   * @type {function|null}
    */
   export let search = null;
-
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
@@ -301,7 +308,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
     selectedOptions = [], //list of options that are selected
-    options_loading = false;
+    options_loading = false; //indictaes whether async search function is running
 
   $: single = max === 1;
   $: asyncMode = search && typeof search === "function";
