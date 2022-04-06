@@ -434,6 +434,12 @@ Default value: `<span>{option[search_key] || option}</span>`
   }
 
   function triggerSearch(filter) {
+    if (filter === "") {
+      //do not trigger async search if filter is empty
+      options = [];
+      searching = false;
+      return;
+    }
     options_loading = true;
     search(filter).then((_options) => {
       options = _options;
