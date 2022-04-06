@@ -420,7 +420,14 @@ Default value: `<span>{option[search_key] || option}</span>`
         (v) => `${v[used_value_key]}` === `${value}`
       );
     } else {
-      selectedOptions = normalisedOptions
+      let _normalisedOptions = asyncMode
+        ? [
+            ...selectedOptions,
+            ...normalisedOptions.filter((op) => !~selectedOptions.indexOf(op)),
+          ]
+        : normalisedOptions;
+
+      selectedOptions = _normalisedOptions
         .filter(
           (v) => value && value.some((vl) => `${v[used_value_key]}` === `${vl}`)
         )
@@ -428,6 +435,9 @@ Default value: `<span>{option[search_key] || option}</span>`
           (a, b) =>
             value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
         );
+
+      console.log("normalisedOptions", normalisedOptions);
+      console.log("selectedOptions", selectedOptions);
     }
 
     POPPER && POPPER.update();
