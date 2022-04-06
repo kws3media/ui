@@ -452,21 +452,18 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
 
     //normalize value for single versus multiselect
-    if (value === null || typeof value == "undefined")
+    if (value === null || typeof value == "undefined") {
       value = single ? null : [];
+    }
 
     if (single && asyncMode) {
       // initillay on async mode options are empty
       options = value ? [value] : [];
-      if (value) {
-        tick().then(() => {
-          let nop = normalisedOptions ? normalisedOptions[0] : null;
-          if (nop) {
-            value = nop[used_value_key];
-            singleVisibleValue = nop[used_search_key];
-          }
-        });
-      }
+      searching = false;
+      tick().then(() => {
+        normaliseOptions();
+        selectedOptions = normalisedOptions;
+      });
     }
 
     return () => {
