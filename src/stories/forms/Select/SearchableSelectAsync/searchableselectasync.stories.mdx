@@ -78,8 +78,13 @@ export let args = {
         It is called only when user finishes typing.
       </p>
       <p>
-        Note: To improve rendering performance, slice down the options if items array contain a large dataset on a single match.
+        Note: 
       </p>
+      <ul>
+        <li>Only send this prop if you want to fetch `options` asynchronously.</li>
+        <li>`options` prop will be ignored if this prop is set.</li>
+        <li>To improve rendering performance, slice down the options if items array contain a large dataset on a single match.</li>
+      </ul>
       <Source
         language="jsx"
         code={dedent`<SearchableSelect
