@@ -599,6 +599,8 @@ Default value: `<span>{option[search_key] || option}</span>`
         } else {
           searching = true;
         }
+      } else {
+        searching = true;
       }
     }
   }
