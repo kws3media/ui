@@ -32,7 +32,7 @@ export let args = {
 
 <Meta
   title="Forms/Select/SearchableSelect (Async)"
-  component={SearchableSelectDecorator}
+  component={SearchableSelect}
   args={args}
   argTypes={{
     color: {
@@ -81,9 +81,9 @@ export let args = {
         Note: 
       </p>
       <ul>
-        <li>Only send this prop if you want to fetch `options` asynchronously.</li>
-        <li>`options` prop will be ignored if this prop is set.</li>
-        <li>To improve rendering performance, slice down the options if items array contain a large dataset on a single match.</li>
+        <li>Only send this prop if you want to fetch <code>options</code> asynchronously.</li>
+        <li><code>options</code> prop will be ignored if this prop is set.</li>
+        <li>To improve rendering performance, slice down the options if items array contains a large dataset on a single match.</li>
       </ul>
       <Source
         language="jsx"
