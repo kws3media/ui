@@ -301,8 +301,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
     selectedOptions = [], //list of options that are selected
-    options_loading = false,
-    typingTimeout;
+    options_loading = false;
 
   $: single = max === 1;
   $: asyncMode = search && typeof search === "function";
