@@ -569,18 +569,19 @@ Default value: `<span>{option[search_key] || option}</span>`
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else if (event.key === `Backspace`) {
-      //for a single select
-      //if a value is already selected, backspace will clear the value
       if (single && hasValue) {
+        //for a single select
+        //if a value is already selected, backspace will clear the value
         value = null;
         searchText = "";
-      }
-      //for a multi select
-      // only remove selected tags on backspace if there are any and no searchText characters remain
-      if (!single && searchText.length === 0) {
+      } else if (!single && searchText.length === 0) {
+        //for a multi select
+        // only remove selected tags on backspace if there are any and no searchText characters remain
         if (value && value.length > 0) {
           value = value.slice(0, value.length - 1);
         }
+      } else {
+        searching = true;
       }
     } else {
       //for a single select
