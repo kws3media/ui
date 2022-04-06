@@ -67,8 +67,7 @@
     activateTooltips("#ss_container");
   });
 
-  let obj_brands_loading = false,
-    selected_brand = { id: 10, name: "Blackberry" },
+  let selected_brand = { id: 10, name: "Blackberry" },
     selected_brand_string = "Blackberry";
 
   export let size = "",
@@ -125,9 +124,7 @@
   };
 
   const fetchObjBrands = async (filter) => {
-    obj_brands_loading = true;
     await sleep(Math.random() * 1000);
-    obj_brands_loading = false;
     if (filter) {
       return brands.filter((brand) => {
         return (
