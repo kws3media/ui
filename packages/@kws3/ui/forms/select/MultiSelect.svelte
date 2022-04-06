@@ -448,6 +448,16 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (value === null || typeof value == "undefined")
       value = single ? null : [];
 
+    if (single && asyncMode) {
+      // initillay on async mode options are empty
+      options = [value];
+      tick().then(() => {
+        let nop = normalisedOptions;
+        value = nop && nop[0] ? nop[0][used_value_key] : "";
+        singleVisibleValue = nop && nop[0] ? nop[0][used_search_key] : "";
+      });
+    }
+
     return () => {
       POPPER.destroy();
     };
