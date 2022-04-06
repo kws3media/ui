@@ -457,12 +457,16 @@ Default value: `<span>{option[search_key] || option}</span>`
 
     if (single && asyncMode) {
       // initillay on async mode options are empty
-      options = [value];
-      tick().then(() => {
-        let nop = normalisedOptions;
-        value = nop && nop[0] ? nop[0][used_value_key] : "";
-        singleVisibleValue = nop && nop[0] ? nop[0][used_search_key] : "";
-      });
+      options = value ? [value] : [];
+      if (value) {
+        tick().then(() => {
+          let nop = normalisedOptions ? normalisedOptions[0] : null;
+          if (nop) {
+            value = nop[used_value_key];
+            singleVisibleValue = nop[used_search_key];
+          }
+        });
+      }
     }
 
     return () => {
