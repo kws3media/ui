@@ -463,7 +463,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     }
 
     if (single && asyncMode) {
-      // initillay on async mode options are empty
+      // initally on async mode options are empty
+      // so we need to fill selectedOptions with value if value is avaliable
       options = value ? [value] : [];
       searching = false;
       tick().then(() => {
@@ -493,11 +494,17 @@ Default value: `<span>{option[search_key] || option}</span>`
     }
 
     if (!isAlreadySelected && !single && (max === null || value.length < max)) {
-      //attach to value array while filtering out invalid values
-      value = [...value, token[used_value_key]].filter((v) => {
-        return normalisedOptions.filter((nv) => nv[used_value_key] === v)
-          .length;
-      });
+      if (asyncMode) {
+        //Do not filter invalid options, as they are async and might not be invalid
+        value = [...value, token[used_value_key]];
+      } else {
+        //attach to value array while filtering out invalid values
+        value = [...value, token[used_value_key]].filter((v) => {
+          return normalisedOptions.filter((nv) => nv[used_value_key] === v)
+            .length;
+        });
+      }
+
       searchText = ""; // reset search string on selection
 
       if (value && value.length && value.length === max) {
