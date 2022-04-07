@@ -484,6 +484,7 @@ Default value: `<span>{option[search_key] || option}</span>`
           value = value[0];
         }
         fillSelectedOptions();
+        clearDropDownResults();
       });
     }
 
@@ -503,6 +504,10 @@ Default value: `<span>{option[search_key] || option}</span>`
       if (!isAlreadySelected) {
         value = token[used_value_key];
         fire("change", { token, type: `add` });
+        //clear dropdown results in asyncMode
+        if (asyncMode) {
+          clearDropDownResults();
+        }
       }
       setOptionsVisible(false);
     }
@@ -524,6 +529,11 @@ Default value: `<span>{option[search_key] || option}</span>`
 
       searchText = ""; // reset search string on selection
 
+      //clear dropdown results in asyncMode
+      if (asyncMode) {
+        clearDropDownResults();
+      }
+
       if (value && value.length && value.length === max) {
         input && input.blur();
         setOptionsVisible(false);
@@ -542,6 +552,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     value = value.filter
       ? value.filter((item) => !matchesValue(item, token))
       : value;
+
+    //clear dropdown results in asyncMode
+    if (asyncMode) {
+      clearDropDownResults();
+    }
     /**
      * Triggered when an item is removed from selected Items
      */
@@ -663,7 +678,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       : _hayStack.indexOf(needle) > -1;
   };
 
-  function normaliseArraysToObjects(arr) {
+  const normaliseArraysToObjects = (arr) => {
     return arr.slice().map((item) => {
       if (typeof item === "object") {
         return item;
@@ -673,5 +688,12 @@ Default value: `<span>{option[search_key] || option}</span>`
       __obj[used_value_key] = item;
       return __obj;
     });
-  }
+  };
+
+  const clearDropDownResults = () => {
+    tick().then(() => {
+      options = [];
+      searching = false;
+    });
+  };
 </script>
