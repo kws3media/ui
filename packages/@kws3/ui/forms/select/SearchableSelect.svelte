@@ -25,6 +25,7 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
+  @param {string} [async_search_prompt="Start typing to search..."] - Message to display in dropdown when async search can be performed, Default: `"Start typing to search..."`
   @param {string} [remove_all_tip="Clear Selection"] - Tooltip text for the Clear selection button, Default: `"Clear Selection"`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
 Can be a DOM element or a `string` with the CSS selector of the element.
@@ -59,6 +60,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {search}
   {selected_icon}
   {remove_all_tip}
+  {async_search_prompt}
   {no_options_msg}
   {dropdown_portal}
   on:change={change}
@@ -153,6 +155,10 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Message to display when no matching options are found
    */
   export let no_options_msg = "No matching options";
+  /**
+   * Message to display in dropdown when async search can be performed
+   */
+  export let async_search_prompt = "Start typing to search...";
   /**
    * Tooltip text for the Clear selection button
    */

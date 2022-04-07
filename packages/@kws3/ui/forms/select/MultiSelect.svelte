@@ -30,6 +30,7 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {boolean} [summary_mode=false] - Shows only the number of items selected, instead of listing all the selected items in the input., Default: `false`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
+  @param {string} [async_search_prompt="Start typing to search..."] - Message to display in dropdown when async search can be performed, Default: `"Start typing to search..."`
   @param {string} [remove_btn_tip="Remove"] - Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip., Default: `"Remove"`
   @param {string} [remove_all_tip="Remove all"] - Tooltip text for the Clear All button, Default: `"Remove all"`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
@@ -145,7 +146,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         {:else}
           {#if !options_loading}
             <li class="no-options">
-              {searchText ? no_options_msg : "Start typing for search"}
+              {searchText ? no_options_msg : async_search_prompt}
             </li>
           {/if}
         {/each}
@@ -262,6 +263,10 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Message to display when no matching options are found
    */
   export let no_options_msg = "No matching options";
+  /**
+   * Message to display in dropdown when async search can be performed
+   */
+  export let async_search_prompt = "Start typing to search...";
   /**
    * Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip.
    * */
