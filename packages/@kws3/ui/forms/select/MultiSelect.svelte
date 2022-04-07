@@ -405,18 +405,16 @@ Default value: `<span>{option[search_key] || option}</span>`
         // filter out items that don't match `filter`
         if (typeof item === "object") {
           if (used_search_key) {
-            if (
+            return (
               typeof item[used_search_key] === "string" &&
               filterOptions(filter, item[used_search_key])
-            )
-              return true;
+            );
           } else {
             for (var key in item) {
-              if (
+              return (
                 typeof item[key] === "string" &&
                 filterOptions(filter, item[key])
-              )
-                return true;
+              );
             }
           }
         } else {
