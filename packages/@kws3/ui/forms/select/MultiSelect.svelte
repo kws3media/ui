@@ -221,6 +221,13 @@ Default value: `<span>{option[search_key] || option}</span>`
    * @type {function|null}
    */
   export let search = null;
+
+  /**
+   * Determining options to return strictly based on search text or perform a fuzzy match
+   * Fuzzy match will not work if `search` function is set.
+   * @type {'strict'|'fuzzy'}
+   */
+  export let search_strategy = "strict";
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
