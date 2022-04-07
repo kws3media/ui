@@ -162,6 +162,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
+  import fuzzysearch from "fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -365,6 +366,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     !searching && single && hasValue && selectedOptions && selectedOptions[0]
       ? selectedOptions[0][used_search_key]
       : "";
+
+  $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
   //convert arrays of strings into normalised arrays of objects
   function normaliseOptions() {
