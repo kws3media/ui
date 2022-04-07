@@ -1,65 +1,67 @@
-import {
-  Story,
-  Preview,
-  Meta,
-  ArgsTable,
-  Source,
-  Description,
-  Canvas,
-} from "@storybook/addon-docs";
-import dedent from "ts-dedent";
-import Version from "~/version.mdx";
-import { SearchableSelect } from "@kws3/ui";
-import SearchableSelectDecorator from "./SearchableSelectAsync.svelte";
-import { action } from "@storybook/addon-actions";
-import playInteractions from "./searchableselectasync.play.js";
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { MultiSelect } from '@kws3/ui';
+import MultiSelectDecorator from './MultiSelect.svelte';
+import { action } from '@storybook/addon-actions';
+import playInteractions from "./multiselect.play.js";
 
-export let args = {
-  value: "",
-  style: "",
-  class: "",
-  size: "",
-  color: "",
-  options: [],
-  search_key: "name",
-  value_key: "id",
-  disabled: false,
-  readonly: false
+export let args={
+  value : [],
+  style : "",
+  class : "",
+  size:"",
+  color:"",
+  options : [],
+  search_key : "name",
+  value_key : "id",
+  disabled : false,
+  readonly: false,
+  summary_mode: false,
+  max: null,
+  placeholder : "Choose a brand...",
+  selected_icon:'check',
+  no_options_msg: "No matching options",
+  remove_all_tip: "Remove all",
+  remove_btn_tip: "Remove"
 };
+
 
 <Version />
 
 <Meta
-  title="Forms/Select/SearchableSelect (Async)"
-  component={SearchableSelect}
+  title="Forms/Select/MultiSelect (Async)"
+  component={MultiSelect}
   args={args}
   argTypes={{
     color: {
-      control: { type: "select" },
+      control: { type: 'select' }
     },
-    size: {
-      control: { type: "select" },
+    size:{
+      control: {type:"select"},
     },
   }}
 />
 
-<Description
-  markdown={dedent`
-# SearchableSelect (Async)
+<Description markdown={dedent`
+# MultiSelect (Async)
 ## Example of Async loading options.
-`}
-/>
+`}/>
 
 <Canvas>
-  <Story name="SearchableSelect (Async)" args={args} play={playInteractions}>
-    {(args) => ({
-      Component: SearchableSelectDecorator,
-      props: args,
-    })}
+  <Story
+  name="MultiSelect (Async)"
+  args={args}
+  play={playInteractions}
+  >
+  {(args) => ({
+    Component: MultiSelectDecorator,
+    props: args,
+  })}
   </Story>
 </Canvas>
 
-<ArgsTable story="SearchableSelect (Async)" />
+<ArgsTable story="MultiSelect (Async)" />
 
 <div class="notification is-primary is-light">
   <div class="columns">
@@ -86,18 +88,18 @@ export let args = {
       </ul>
       <Source
         language="jsx"
-        code={dedent`<SearchableSelect
+        code={dedent`<MultiSelect
       ...other_options
       search={async ()...... items.map(...).slice(0, 20);}
     
-    </SearchableSelect>`}
+    </MultiSelect>`}
       />
     </div>
     <div class="column">
       <h3>Example:</h3>
       <Source
         language="jsx"
-        code={dedent`<SearchableSelect
+        code={dedent`<MultiSelect
       ...other_options
       search={async (filter) => {
         const response = await fetch(
@@ -110,33 +112,34 @@ export let args = {
         }));
       }}
     
-    </SearchableSelect>`}
+    </MultiSelect>`}
       />
     </div>
   </div>
 </div>
 
 ### Usage
-
 #### Import the component:
-
 <Source
   language="javascript"
-  code={dedent`import { SearchableSelect } from '@kws3/ui';`}
+  code={
+    dedent`import { MultiSelect } from '@kws3/ui';`
+  }
 />
 
 #### Import the SCSS:
-
 <Source
   language="javascript"
-  code={dedent`@import '@kws3/ui/styles/Select.scss';`}
+  code={
+    dedent`@import '@kws3/ui/styles/Select.scss';`
+  }
 />
 
 #### SCSS customization variables with default values:
-
 <Source
   language="css"
-  code={dedent`
+  code={
+    dedent`
       $kws-theme-colors: $colors;
       $kws-select-radius: $radius;
       $kws-select-focus-border-color: $input-focus-border-color;
@@ -150,5 +153,6 @@ export let args = {
       $kws-select-selected-color: $primary-dark;
       $kws-select-selected-background: $primary-light;
       $kws-select-options-z-index: $modal-z + 1;
-    `}
+    `
+  }
 />
