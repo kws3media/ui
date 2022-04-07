@@ -20,6 +20,8 @@ this property of each object will be returned as the value, Default: `"id"`
 
 Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
+  @param {'strict'|'fuzzy'} [search_strategy="strict"] - Determining options to return strictly based on search text or perform a fuzzy match
+Fuzzy match will not work if `search` function is set., Default: `"strict"`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
@@ -132,6 +134,12 @@ Default value: `<span>{option[search_key] || option}</span>`
    * @type {function|null}
    */
   export let search = null;
+  /**
+   * Determining options to return strictly based on search text or perform a fuzzy match
+   * Fuzzy match will not work if `search` function is set.
+   * @type {'strict'|'fuzzy'}
+   */
+  export let search_strategy = "strict";
   /**
    * Disables the component
    */
