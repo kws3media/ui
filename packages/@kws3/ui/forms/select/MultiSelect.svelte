@@ -404,20 +404,20 @@ Default value: `<span>{option[search_key] || option}</span>`
           if (used_search_key) {
             if (
               typeof item[used_search_key] === "string" &&
-              item[used_search_key].toLowerCase().indexOf(filter) > -1
+              filterOptions(filter, item[used_search_key])
             )
               return true;
           } else {
             for (var key in item) {
               if (
                 typeof item[key] === "string" &&
-                item[key].toLowerCase().indexOf(filter) > -1
+                filterOptions(filter, item[key])
               )
                 return true;
             }
           }
         } else {
-          return item.toLowerCase().indexOf(filter) > -1;
+          return filterOptions(filter, item);
         }
       });
     }
@@ -653,5 +653,9 @@ Default value: `<span>{option[search_key] || option}</span>`
     return (
       `${_value[used_value_key] || _value}` === `${_option[used_value_key]}`
     );
+  };
+
+  const filterOptions = (needle, haystack) => {
+    return haystack.toLowerCase().indexOf(needle) > -1;
   };
 </script>
