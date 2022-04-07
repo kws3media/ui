@@ -20,6 +20,8 @@ this property of each object will be returned as the value, Default: `"id"`
 
 Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
+  @param {'strict'|'fuzzy'} [search_strategy="strict"] - Determining options to return strictly based on search text or perform a fuzzy match
+Fuzzy match will not work if `search` function is set., Default: `"strict"`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
