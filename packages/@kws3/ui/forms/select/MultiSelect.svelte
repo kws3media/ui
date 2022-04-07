@@ -640,6 +640,9 @@ Default value: `<span>{option[search_key] || option}</span>`
     fire("change", { token: value, type: `remove` });
     value = single ? null : [];
     searchText = "";
+    if (asyncMode) {
+      options = [];
+    }
   };
 
   const matchesValue = (_value, _option) => {
