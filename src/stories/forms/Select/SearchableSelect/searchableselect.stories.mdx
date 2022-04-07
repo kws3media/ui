@@ -23,6 +23,7 @@ export let args = {
   options: [],
   search_key: "name",
   value_key: "id",
+  search_strategy:"strict",
   disabled: false,
   readonly: false,
   options_loading: false,
@@ -45,6 +46,9 @@ export let args = {
     size: {
       control: { type: "select" },
     },
+    search_strategy: {
+      control: { type: "select" },
+    }
   }}
 />
 
