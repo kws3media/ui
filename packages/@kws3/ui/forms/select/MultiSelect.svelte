@@ -417,10 +417,12 @@ Default value: `<span>{option[search_key] || option}</span>`
       );
     } else {
       let _normalisedOptions = asyncMode
-        ? [
-            ...selectedOptions,
-            ...normalisedOptions.filter((op) => !~selectedOptions.indexOf(op)),
-          ]
+        ? [...selectedOptions, ...normalisedOptions].filter(
+            //de-dupe by `used_value_key` when in asyncMode
+            (value, idx, self) =>
+              idx ===
+              self.findIndex((v) => v[used_value_key] === value[used_value_key])
+          )
         : normalisedOptions;
 
       selectedOptions = _normalisedOptions
