@@ -658,7 +658,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     value = single ? null : [];
     searchText = "";
     if (asyncMode) {
-      options = [];
+      clearDropDownResults();
     }
   };
 
