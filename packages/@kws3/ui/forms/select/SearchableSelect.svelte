@@ -60,7 +60,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {search}
   {selected_icon}
   {remove_all_tip}
-  {async_search_prompt}
+  async_search_prompt={value ? "Backspace to clear" : async_search_prompt}
   {no_options_msg}
   {dropdown_portal}
   on:change={change}
