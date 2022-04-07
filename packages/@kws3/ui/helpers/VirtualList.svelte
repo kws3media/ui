@@ -7,10 +7,6 @@
   @param {number} [start=0] - first item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end=0] - last item index rendered inside viewport - readonly, Default: `0`
   @param {string} [itemHeight="auto"] - item element height, Default: `"auto"`
-  @param {object} [Component=null] - Target component, Default: `null`
-
-  ### Events
-  - `rowClick`
 
 -->
 <div
@@ -25,11 +21,7 @@
         class="row"
         bind:this={ROWS[i]}
         style="height: {itemHeight}; overflow: hidden;">
-        <svelte:component
-          this={Component}
-          on:rowClick
-          {...item.data}
-          {...props} />
+        <slot item={item.data} index={item.index} />
       </div>
     {/each}
   </div>
@@ -57,11 +49,7 @@
     /**
      *  item element height
      */
-    itemHeight = "auto",
-    /**
-     * Target component
-     */
-    Component = null;
+    itemHeight = "auto";
 
   let ELEMENT, //whole wrapping ELEMENT
     viewportHeight = 0, //height of the viewport
@@ -78,19 +66,7 @@
 
   $: visibleItems, (itemRows = ROWS.filter(Boolean));
 
-  $: props = ["Component", "items", "start", "end"].reduce(
-    (result, key) => {
-      delete result[key];
-      return result;
-    },
-    { ...$$props }
-  );
-
   onMount(() => {
-    if (Component === null || Component === undefined) {
-      throw new Error("Component is not defined");
-    }
-
     if (!Array.isArray(items)) {
       throw new Error("items must be an array");
     }

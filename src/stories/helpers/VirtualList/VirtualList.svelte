@@ -1,17 +1,20 @@
 <p class="has-text-centered">showing items {start}-{end} of {_items.length}</p>
 <div style="height:700px;width:90vw; border:1px solid rgba(0,0,0,0.1)">
   <KwsVirtualList
-    {Component}
     items={_items}
     bind:start
     bind:end
     clickableRows={true}
     {itemHeight}
-    on:rowClick={(event) => rowClicked(event)} />
+    let:item
+    let:index>
+    <TargetComponent {item} {index} />
+  </KwsVirtualList>
 </div>
 
 <script>
   import { VirtualList as KwsVirtualList } from "@kws3/ui";
+  import TargetComponent from "./TargetComponent.svelte";
   import data from "./data.json";
 
   let records = data.records;
@@ -29,9 +32,5 @@
       let itemsToAdd = _items.sort(() => 0.5 - Math.random()).slice(0, 20); // get random 20 items
       _items = [..._items, ...itemsToAdd];
     }
-  }
-
-  function rowClicked({ detail: data }) {
-    console.log("row clicked", data);
   }
 </script>

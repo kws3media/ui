@@ -1,38 +1,35 @@
-<div
-  class="item"
-  style="padding:15px 20px"
-  on:click|stopPropagation={() => rowClick()}>
+<div class="item" style="padding:15px 20px">
   <div class="level is-mobile is-marginless ">
     <div class="level-left">
       <span class="name">
-        Name: {name}
-        {surname}
+        Name: {item.name}
+        {item.surname}
       </span>
     </div>
     <div class="level-right">
       <span>
-        ID: <b>{id}</b>
+        ID: <b>{index}</b>
       </span>
     </div>
   </div>
   <div class="level is-mobile is-marginless">
     <div class="level-left">
       <span>
-        Username: <b>{username}</b>
+        Username: <b>{item.username}</b>
       </span>
     </div>
 
     <div class="level-right">
       <span>
-        Role: <b>{role}</b>
+        Role: <b>{item.role}</b>
       </span>
     </div>
   </div>
-  {#if password}
+  {#if item.password}
     <div class="level is-mobile">
       <div class="level-left">
         <span>
-          Password: <b>{password}</b>
+          Password: <b>{item.password}</b>
         </span>
       </div>
     </div>
@@ -40,25 +37,9 @@
 </div>
 
 <script>
-  import { createEventDispatcher } from "svelte";
+  export let item, index;
 
-  const fire = createEventDispatcher();
-  export let name = "";
-  export let surname = "";
-  export let username = "";
-  export let password = "";
-  export let role = "";
-  export let id = "";
-
-  export let clickableRows;
-
-  console.log($$props);
-
-  function rowClick() {
-    if (clickableRows) {
-      fire("rowClick", {
-        data: { id, name, surname, username, password, role },
-      });
-    }
+  $: {
+    console.log(item);
   }
 </script>
