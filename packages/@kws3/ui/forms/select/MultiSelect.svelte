@@ -148,7 +148,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         {:else}
           {#if !options_loading}
             <li class="no-options">
-              {no_options_msg}
+              {searchText ? no_options_msg : "Start typing for search"}
             </li>
           {/if}
         {/each}
