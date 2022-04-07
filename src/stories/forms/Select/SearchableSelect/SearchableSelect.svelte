@@ -77,7 +77,7 @@
     readonly = false,
     search_key = "name",
     value_key = "id",
-    search_strategy = "strict",
+    search_strategy = "fuzzy",
     selected_icon = "check",
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
