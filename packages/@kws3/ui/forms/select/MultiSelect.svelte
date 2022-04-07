@@ -445,9 +445,6 @@ Default value: `<span>{option[search_key] || option}</span>`
           (a, b) =>
             value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
         );
-
-      console.log("normalisedOptions", normalisedOptions);
-      console.log("selectedOptions", selectedOptions);
     }
 
     POPPER && POPPER.update();
