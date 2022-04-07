@@ -19,7 +19,9 @@ If `false` , the component won't have a close button, and will not close on clic
 
 -->
 
-<div class="modal {klass} {is_active ? 'is-active' : ''}" {style}>
+<div
+  class="modal kws-action-sheet-outer {klass} {is_active ? 'is-active' : ''}"
+  {style}>
   {#if is_active}<div
       transition:fade={{ duration: transitionDuration }}
       class="modal-background"

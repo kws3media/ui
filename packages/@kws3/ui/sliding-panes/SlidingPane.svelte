@@ -18,24 +18,40 @@ This will work only when `track_height` is set to `true`
   - `<slot name="default"  />` - Used to display content
 
 -->
-<div
-  bind:clientHeight={_height}
-  class="sliding-pane {v_center ? 'v-centered' : ''} {h_center
-    ? 'h-centered'
-    : ''} {active ? 'is-active' : ''} {klass}"
-  {style}>
+{#if hasResizeObserver}
   <div
-    bind:this={slideInner}
-    class="sliding-pane-inner {v_center ? 'v-centered' : ''} {h_center
-      ? 'h-centered'
-      : ''}">
-    <!--Used to display content--><slot />
+    class="sliding-pane with-resize-observer {v_center
+      ? 'v-centered'
+      : ''} {h_center ? 'h-centered' : ''} {active ? 'is-active' : ''} {klass}"
+    {style}>
+    <div
+      bind:this={slideInner}
+      class="sliding-pane-inner {v_center ? 'v-centered' : ''} {h_center
+        ? 'h-centered'
+        : ''}">
+      <!--Used to display content--><slot />
+    </div>
   </div>
-</div>
+{:else}
+  <div
+    bind:clientHeight={_height}
+    class="sliding-pane with-legacy-observer {v_center
+      ? 'v-centered'
+      : ''} {h_center ? 'h-centered' : ''} {active ? 'is-active' : ''} {klass}"
+    {style}>
+    <div
+      bind:this={slideInner}
+      class="sliding-pane-inner {v_center ? 'v-centered' : ''} {h_center
+        ? 'h-centered'
+        : ''}">
+      <!--Used to display content--><slot />
+    </div>
+  </div>
+{/if}
 
 <script>
   import { onMount, createEventDispatcher } from "svelte";
-  import { rAF } from "../utils";
+  import { debounce } from "@kws3/ui/utils";
 
   const fire = createEventDispatcher();
 
@@ -60,7 +76,8 @@ This will work only when `track_height` is set to `true`
      */
     track_height = true;
 
-  let _height, slideInner;
+  const hasResizeObserver = typeof window.ResizeObserver != "undefined";
+  let _height, slideInner, Observer;
 
   /**
    * CSS classes for the panel
@@ -68,15 +85,9 @@ This will work only when `track_height` is set to `true`
   let klass = "";
   export { klass as class };
 
-  onMount(() => {
-    pollForRender();
-  });
-
   $: {
     if (active && track_height && (active || _height)) {
-      rAF(() => {
-        fireSizeChange();
-      });
+      fireSizeChange();
     }
   }
 
@@ -86,11 +97,12 @@ This will work only when `track_height` is set to `true`
     } else {
       setTimeout(() => {
         pollForRender();
-      }, 200);
+      }, 50);
     }
   }
 
   function init() {
+    setupResizeObserver();
     fireSizeChange();
   }
 
@@ -99,21 +111,41 @@ This will work only when `track_height` is set to `true`
       if (!slideInner || typeof slideInner == "undefined") {
         pollForRender();
       } else {
-        rAF(() => {
-          if (!slideInner || typeof slideInner == "undefined") {
-            return;
-          }
-          var h1 = slideInner.scrollHeight,
-            h2 = slideInner.clientHeight;
-          var new_height = Math.max(h1, h2);
-          /**
-           * Event fired when the height of the pane changes
-           *
-           * This will work only when `track_height` is set to `true`
-           */
-          fire("heightChange", { height: new_height });
-        });
+        if (!slideInner || typeof slideInner == "undefined") {
+          return;
+        }
+        var h1 = slideInner.scrollHeight,
+          h2 = slideInner.clientHeight;
+        var new_height = Math.max(h1, h2);
+        /**
+         * Event fired when the height of the pane changes
+         *
+         * This will work only when `track_height` is set to `true`
+         */
+        fire("heightChange", { height: new_height });
       }
     }
   }
+
+  const debouncedFireSizeChange = debounce(fireSizeChange, 150, false);
+
+  const setupResizeObserver = () => {
+    if (hasResizeObserver) {
+      if (!slideInner || typeof slideInner == "undefined") {
+        pollForRender();
+      } else {
+        Observer = new ResizeObserver(() => {
+          debouncedFireSizeChange();
+        });
+        Observer.observe(slideInner);
+      }
+    }
+  };
+
+  onMount(() => {
+    pollForRender();
+    return () => {
+      Observer && Observer.disconnect();
+    };
+  });
 </script>

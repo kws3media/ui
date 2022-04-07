@@ -7,7 +7,10 @@
   @param {array} [series=[]] - Series data, Default: `[]`
   @param {string} [width="100%"] - Chart width, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, Default: `"auto"`
+  @param {array} [captured_events=[]] - String array of event names that will be captured and fired as svelte events.
+This is to prevent unnecessary event subscriptions., Default: `[]`
   @param {string} [class=""] - CSS classes for container, Default: `""`
+  @method `getInstance()` - Returns the ApexCharts instance
 
 -->
 <div class="kws-chart {klass}" bind:this={canvas} />
@@ -16,6 +19,14 @@
   import { onMount, createEventDispatcher } from "svelte";
   import ApexCharts from "apexcharts/dist/apexcharts.esm";
   import { merge } from "./utils";
+
+  //some functions such as brush charts
+  //require ApexCharts to be globally available
+  if (window) {
+    if (!window.ApexCharts) {
+      window.ApexCharts = ApexCharts;
+    }
+  }
 
   const fire = createEventDispatcher();
   let canvas, chart;
@@ -39,13 +50,46 @@
     /**
      * Chart height
      */
-    height = "auto";
+    height = "auto",
+    /**
+     * String array of event names that will be captured and fired as svelte events.
+     * This is to prevent unnecessary event subscriptions.
+     */
+    captured_events = [];
 
   /**
    * CSS classes for container
    */
   let klass = "";
   export { klass as class };
+
+  /**
+   * Returns the ApexCharts instance
+   */
+  export function getInstance() {
+    return chart;
+  }
+
+  const supported_events = [
+    "animationEnd",
+    "beforeMount",
+    "mounted",
+    "updated",
+    "mouseMove",
+    "mouseLeave",
+    "click",
+    "legendClick",
+    "markerClick",
+    "selection",
+    "dataPointSelection",
+    "dataPointMouseEnter",
+    "dataPointMouseLeave",
+    "beforeZoom",
+    "beforeResetZoom",
+    "zoomed",
+    "scrolled",
+    "brushScrolled",
+  ];
 
   onMount(() => {
     init();
@@ -54,20 +98,23 @@
     };
   });
 
+  let Events;
+
   $: width, height, type, refresh();
   $: series, seriesChanged();
-  $: options, optionsChanged();
+  $: options, Events, optionsChanged();
+  $: captured_events, patchEvents();
 
-  const patchEvents = (evs) => {
+  const patchEvents = () => {
     const events = {};
-    if (typeof evs != "undefined") {
-      for (var type in evs) {
+    supported_events.forEach((type) => {
+      if (captured_events && captured_events.indexOf(type) > -1) {
         events[type] = (a, b, c) => {
           fire(type, [a, b, c]);
         };
       }
-    }
-    return events;
+    });
+    Events = events;
   };
 
   const init = () => {
@@ -78,22 +125,20 @@
         type,
         height,
         width,
+        events: Events,
       },
       type,
       series,
     };
 
-    var events = {};
-
+    //replace any user sent events with patched events
     if (typeof options.chart.events != "undefined") {
-      events = patchEvents(options.chart.events);
       options.chart.events = {};
     }
 
     const config = merge(options, newOptions);
 
     if (canvas) {
-      config.chart.events = events;
       chart = new ApexCharts(canvas, config);
       chart.render();
     }
@@ -111,12 +156,11 @@
   const optionsChanged = () => {
     if (chart) {
       if (typeof options.chart.events != "undefined") {
-        options.chart.events = patchEvents(options.chart.events);
+        options.chart.events = Events;
       }
       chart.updateOptions(options, true);
     } else {
       init();
     }
-    chart ? chart.updateOptions(options, true) : init();
   };
 </script>

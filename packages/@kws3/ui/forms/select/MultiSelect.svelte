@@ -84,6 +84,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         {/each}
       {/if}
     {/if}
+    {#if single}<span>{singleVisibleValue}</span>{/if}
     <input
       class="input is-{size}"
       bind:this={input}
@@ -324,6 +325,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     else return value.some((v) => matchesValue(v, option));
   };
 
+  $: singleVisibleValue =
+    !searching && single && hasValue && selectedOptions && selectedOptions[0]
+      ? selectedOptions[0][used_search_key]
+      : "";
+
   //convert arrays of strings into normalised arrays of objects
   function normaliseOptions() {
     let _items = options || [];
@@ -383,7 +389,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       selectedOptions = normalisedOptions.filter(
         (v) => `${v[used_value_key]}` === `${value}`
       );
-      setSingleVisibleValue();
     } else {
       selectedOptions = normalisedOptions
         .filter(
@@ -409,8 +414,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (value === null || typeof value == "undefined")
       value = single ? null : [];
 
-    setSingleVisibleValue();
-
     return () => {
       POPPER.destroy();
     };
@@ -424,14 +427,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     let isAlreadySelected = isSelected(token);
 
     if (single) {
-      if (isAlreadySelected) {
-        setSingleVisibleValue();
-      } else {
+      if (!isAlreadySelected) {
         value = token[used_value_key];
-        input && input.blur();
-        setOptionsVisible(false);
         fire("change", { token, type: `add` });
       }
+      setOptionsVisible(false);
     }
 
     if (!isAlreadySelected && !single && (max === null || value.length < max)) {
@@ -483,25 +483,16 @@ Default value: `<span>{option[search_key] || option}</span>`
     showOptions = show;
     if (show) {
       input && input.focus();
+    } else {
+      searchText = "";
+      searching = false;
     }
     POPPER && POPPER.update();
   }
 
-  function setSingleVisibleValue() {
-    if (single && hasValue) {
-      searchText =
-        selectedOptions && selectedOptions[0]
-          ? selectedOptions[0][used_search_key]
-          : "";
-      searching = false;
-    }
-  }
-
   function handleKeydown(event) {
     if (event.key === `Escape`) {
-      if (!single) {
-        searchText = "";
-      }
+      searchText = "";
     } else {
       setOptionsVisible(true);
     }
@@ -510,9 +501,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       event.preventDefault();
       if (activeOption) {
         handleOptionMouseDown(activeOption);
-        if (!single) {
-          searchText = "";
-        }
       } else {
         // no active option means the options are closed in which case enter means open
         setOptionsVisible(true);
@@ -529,25 +517,29 @@ Default value: `<span>{option[search_key] || option}</span>`
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else if (event.key === `Backspace`) {
+      //for a single select
+      //if a value is already selected, backspace will clear the value
+      if (single && hasValue) {
+        value = null;
+        searchText = "";
+      }
+      //for a multi select
       // only remove selected tags on backspace if there are any and no searchText characters remain
-      if (searchText.length === 0) {
-        if (single) {
-          if (value) {
-            value = null;
-          }
-        } else {
-          if (value && value.length > 0) {
-            value = value.slice(0, value.length - 1);
-          }
-        }
-      } else {
-        if (single) {
-          searching = true;
+      if (!single && searchText.length === 0) {
+        if (value && value.length > 0) {
+          value = value.slice(0, value.length - 1);
         }
       }
     } else {
+      //for a single select
+      //if a value is already selected,
+      //ignore keys other than navigation, enter and backspace
       if (single) {
-        searching = true;
+        if (hasValue) {
+          event.preventDefault();
+        } else {
+          searching = true;
+        }
       }
     }
   }

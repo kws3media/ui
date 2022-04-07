@@ -99,6 +99,9 @@ export function mixedChartOptions(xAxis, yAxis, is_sparkline) {
       sparkline: {
         enabled: is_sparkline ? true : false,
       },
+      zoom: {
+        enabled: false,
+      },
     },
     colors: themeColors,
     fill: {
@@ -189,6 +192,7 @@ export function barChartOptions(
   yAxis,
   is_sparkline,
   is_horizontal,
+  is_distributed,
   is_stacked,
   is_stacked_full
 ) {
@@ -197,6 +201,7 @@ export function barChartOptions(
   opts.chart.stacked = is_stacked ? true : false;
   opts.chart.stackType = is_stacked_full ? "100%" : false;
   opts.plotOptions.bar.horizontal = is_horizontal ? true : false;
+  opts.plotOptions.bar.distributed = is_distributed ? true : false;
   return opts;
 }
 

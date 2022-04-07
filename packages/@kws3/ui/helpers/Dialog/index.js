@@ -12,6 +12,8 @@ function createDialog(msg, props) {
 
     dialog.$on("_done", ({ detail }) => {
       fulfil(detail);
+      //Does not outro out because of
+      //https://github.com/sveltejs/svelte/issues/4056
       dialog.$destroy();
     });
   });

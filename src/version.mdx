@@ -1,5 +1,47 @@
 import pkg from '../packages/@kws3/ui/package.json';
 
-<span class="tags has-addons main-version-tag">
-  <span class="tag">Version</span><span class="tag is-primary">{pkg.version}</span>
-</span>
+export const cmd = "npm i -D @kws3/ui";
+export let copied = false;
+export function ctc(e){
+  e && e.currentTarget && e.currentTarget.blur();
+  if (!copied && navigator && navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(cmd);
+    copied = true;
+    const target = document.querySelector('#npm-command-copier');
+    const classes = ("is-success").split(" ");
+    target.value = "✅ Copied!";
+    classes.forEach((c) => target.classList.add(c));
+    setTimeout(() => {
+      target.value = cmd;
+      copied = false;
+      classes.forEach((c) => target.classList.remove(c));
+    }, 1000);
+  }
+}
+
+<div className="page-top-right-artifacts box">
+  <div className="artifact-item-block">
+    <a className="artifact-item" href="https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui" target="_blank">
+      <span class="icon-text">
+        <span className="icon">
+          <i className="fa fa-github"></i>
+        </span>
+        <span>Github</span>
+      </span>
+    </a>
+    <span className="artifact-item tags has-addons"><span className="tag">Version</span><span className="tag is-primary">{pkg.version}</span></span>
+  </div>
+  
+  <div className="artifact-item-block is-hidden-mobile">
+    <div className="field has-addons">
+      <span className="control"><input id="npm-command-copier" className="input is-small has-background-light is-family-monospace" readOnly value={cmd} /></span>
+      <span className="control">
+        <button className="button is-small" title="Copy to clipboard" onClick={ctc}>
+          <span className="icon">
+            <i className="fa fa-copy"></i>
+          </span>
+        </button>
+      </span>
+    </div>
+  </div>
+</div>

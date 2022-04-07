@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm-run-all dev:hmr",
     "dev:hmr": "start-storybook -p 9009 -s public",
-    "build": "build-storybook -s public -o build",
+    "build": "build-storybook --docs -s public -o build",
     "populate": "grunt dist",
     "build:dist": "npm-run-all -s build -s populate",
     "deploy:dist": "grunt deploy:dist",
@@ -58,10 +58,10 @@
     "sass": "^1.38.1",
     "sass-loader": "^10",
     "style-loader": "^0.19.1",
-    "svelte": "^3.43.0",
+    "svelte": "^3.46.1",
     "svelte-eslint-parser": "^0.14.0",
     "svelte-loader": "^3.1.2",
     "svelte-preprocess": "^4.8.0",
-    "sveltedoc-parser": "github:ekhaled/sveltedoc-parser#integration"
+    "sveltedoc-parser": "https://github.com/ekhaled/sveltedoc-parser#integration"
   }
 }
