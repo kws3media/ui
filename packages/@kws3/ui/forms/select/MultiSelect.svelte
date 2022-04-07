@@ -407,18 +407,15 @@ Default value: `<span>{option[search_key] || option}</span>`
           if (used_search_key) {
             return (
               typeof item[used_search_key] === "string" &&
-              filterOptions(filter, item[used_search_key])
+              match(filter, item[used_search_key])
             );
           } else {
             for (var key in item) {
-              return (
-                typeof item[key] === "string" &&
-                filterOptions(filter, item[key])
-              );
+              return typeof item[key] === "string" && match(filter, item[key]);
             }
           }
         } else {
-          return filterOptions(filter, item);
+          return match(filter, item);
         }
       });
     }
@@ -653,7 +650,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     );
   };
 
-  const filterOptions = (needle, haystack) => {
+  const match = (needle, haystack) => {
     let _hayStack = haystack.toLowerCase();
     return allow_fuzzy_match
       ? fuzzysearch(needle, _hayStack)
