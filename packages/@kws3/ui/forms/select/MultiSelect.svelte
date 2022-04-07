@@ -377,15 +377,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       return;
     }
 
-    normalisedOptions = _items.slice().map((item) => {
-      if (typeof item === "object") {
-        return item;
-      }
-      let __obj = {};
-      __obj[used_search_key] = item;
-      __obj[used_value_key] = item;
-      return __obj;
-    });
+    normalisedOptions = normaliseArraysToObjects(_items);
   }
 
   function updateFilteredOptions() {
@@ -483,8 +475,11 @@ Default value: `<span>{option[search_key] || option}</span>`
       searching = false;
       tick().then(() => {
         normaliseOptions();
-        console.log(normalisedOptions);
-        selectedOptions = normalisedOptions;
+        value = normaliseArraysToObjects(options).map((v) => v[used_value_key]);
+        if (single && Array.isArray(value)) {
+          value = value[0];
+        }
+        fillSelectedOptions();
       });
     }
 
@@ -511,7 +506,10 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (!isAlreadySelected && !single && (max === null || value.length < max)) {
       if (asyncMode) {
         //Do not filter invalid options, as they are async and might not be invalid
-        value = [...value, token[used_value_key]];
+        //but ensure they are unique
+        value = [...value, token[used_value_key]].filter(
+          (v, i, a) => a.indexOf(v) === i
+        );
       } else {
         //attach to value array while filtering out invalid values
         value = [...value, token[used_value_key]].filter((v) => {
@@ -660,4 +658,16 @@ Default value: `<span>{option[search_key] || option}</span>`
       ? fuzzysearch(needle, _hayStack)
       : _hayStack.indexOf(needle) > -1;
   };
+
+  function normaliseArraysToObjects(arr) {
+    return arr.slice().map((item) => {
+      if (typeof item === "object") {
+        return item;
+      }
+      let __obj = {};
+      __obj[used_search_key] = item;
+      __obj[used_value_key] = item;
+      return __obj;
+    });
+  }
 </script>
