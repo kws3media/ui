@@ -476,10 +476,10 @@ Default value: `<span>{option[search_key] || option}</span>`
       value = single ? null : [];
     }
 
-    if (single && asyncMode) {
+    if (asyncMode) {
       // initally on async mode options are empty
       // so we need to fill selectedOptions with value if value is avaliable
-      options = value ? [value] : [];
+      options = value ? [...(single ? [value] : [...value])] : [];
       searching = false;
       tick().then(() => {
         normaliseOptions();
