@@ -659,6 +659,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   };
 
   const filterOptions = (needle, haystack) => {
-    return haystack.toLowerCase().indexOf(needle) > -1;
+    return allow_fuzzy_match
+      ? fuzzysearch(needle, haystack)
+      : haystack.toLowerCase().indexOf(needle) > -1;
   };
 </script>
