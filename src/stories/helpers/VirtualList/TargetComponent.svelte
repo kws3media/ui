@@ -1,4 +1,9 @@
-<div class="item" style="padding:15px 20px">
+<div
+  class="item"
+  style="padding:15px 20px"
+  on:click={() => {
+    console.log("clicked item", item);
+  }}>
   <div class="level is-mobile is-marginless ">
     <div class="level-left">
       <span class="name">
