@@ -80,8 +80,11 @@ export default async ({ args, canvasElement }) => {
 
   //Deselect item by mouse click on item
   await sleep(300);
-  await userEvent.click(items[4]);
-  await expect(Number(tags.length)).toEqual(0);
+
+  userEvent.type(inputs[0], "hu", { delay: 100 });
+  await sleep(2000);
+  await userEvent.click(items[0]);
+  await expect(Number(tags.length)).toEqual(2);
 
   //Search for an item
   await sleep(300);
