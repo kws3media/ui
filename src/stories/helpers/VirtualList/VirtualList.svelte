@@ -22,8 +22,7 @@
     .fill()
     .map(() => records[Math.floor(Math.random() * records.length)]);
 
-  export let Component = null,
-    start = 0,
+  export let start = 0,
     end = 0,
     itemHeight = "auto";
 
