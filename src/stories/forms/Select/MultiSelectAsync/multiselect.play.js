@@ -112,7 +112,7 @@ export default async ({ args, canvasElement }) => {
   // //Select item using ArrowUp and Enter key
   await sleep(300);
 
-  userEvent.type(inputs[0], "o", { delay: 100 });
+  await userEvent.type(inputs[0], "o", { delay: 100 });
   await sleep(1000);
   await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
@@ -136,4 +136,5 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
   await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
   await expect(Number(tags.length)).toEqual(0);
+  await expect(getNodeText(items[0]).trim()).toEqual(emptyOptionsPlaceholder);
 };
