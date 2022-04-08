@@ -43,7 +43,7 @@ export default async ({ args, canvasElement }) => {
   //Select items by using Enter key
   await sleep(300);
 
-  userEvent.type(inputs[0], "ap", { delay: 100 });
+  await userEvent.type(inputs[0], "ap", { delay: 100 });
   await sleep(1000);
 
   await fireEvent.mouseEnter(items[0]);
@@ -64,7 +64,7 @@ export default async ({ args, canvasElement }) => {
   //Select item by mouse click on item
   await sleep(300);
 
-  userEvent.type(inputs[0], "hu", { delay: 100 });
+  await userEvent.type(inputs[0], "hu", { delay: 100 });
   await sleep(1000);
 
   await userEvent.click(items[0]);
@@ -75,7 +75,7 @@ export default async ({ args, canvasElement }) => {
   //Deselect item by mouse click on item
   await sleep(300);
 
-  userEvent.type(inputs[0], "hu", { delay: 100 });
+  await userEvent.type(inputs[0], "hu", { delay: 100 });
   await sleep(1000);
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toEqual(2);
@@ -83,9 +83,8 @@ export default async ({ args, canvasElement }) => {
   //show 'No matching options' message when no matching items found
   await sleep(300);
   inputs[0].value = "";
-  userEvent.type(inputs[0], "ex", { delay: 100 });
+  await userEvent.type(inputs[0], "ex", { delay: 100 });
   await sleep(1000);
-  console.log(items);
   await expect(getNodeText(items[0]).trim()).toEqual("No matching options");
 
   //Clear search input
@@ -111,26 +110,30 @@ export default async ({ args, canvasElement }) => {
   await expect(Number(tags.length)).toEqual(0);
 
   // //Select item using ArrowUp and Enter key
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
-  // await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
 
-  // //Select item using ArrowDown key & Mouse click
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
-  // await userEvent.click(options[0].querySelector("li.active"));
-  // await expect(Number(tags.length)).toBe(3);
-  // await expect(getNodeText(tags[0]).trim()).toBe("Blackberry");
-  // await expect(getNodeText(tags[1]).trim()).toBe("LG");
-  // await expect(getNodeText(tags[2]).trim()).toBe("Oppo");
+  userEvent.type(inputs[0], "o", { delay: 100 });
+  await sleep(1000);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
 
-  // //Removing all selected items
-  // await sleep(300);
-  // await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
-  // await expect(Number(tags.length)).toEqual(0);
+  //Select item using ArrowDown key & Mouse click
+  await sleep(300);
+  await userEvent.type(inputs[0], "o", { delay: 100 });
+  await sleep(1000);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await userEvent.click(options[0].querySelector("li.active"));
+  await expect(Number(tags.length)).toBe(2);
+  await expect(getNodeText(tags[0]).trim()).toBe("Vivo");
+  await expect(getNodeText(tags[1]).trim()).toBe("Sony");
+
+  //Removing all selected items
+  await sleep(300);
+  await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
+  await expect(Number(tags.length)).toEqual(0);
 };
