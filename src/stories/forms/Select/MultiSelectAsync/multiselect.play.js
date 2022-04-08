@@ -14,6 +14,7 @@ export default async ({ args, canvasElement }) => {
   // eslint-disable-next-line no-unused-vars
   const canvas = within(canvasElement);
   const inputs = canvasElement.querySelectorAll("input.input");
+  const emptyOptionsPlaceholder = "Start typing to search...";
 
   //Delay play
   await sleep(1000);
@@ -38,9 +39,7 @@ export default async ({ args, canvasElement }) => {
   await expect(Number(selected_options.length)).toEqual(2); //2 items already selected by deafult value
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toEqual(3); // now tags contain 3 items
-  await expect(getNodeText(items[0]).trim()).toEqual(
-    "Start typing to search..."
-  );
+  await expect(getNodeText(items[0]).trim()).toEqual(emptyOptionsPlaceholder);
 
   //Select items by using Enter key
   await sleep(300);
@@ -51,9 +50,7 @@ export default async ({ args, canvasElement }) => {
   await fireEvent.mouseEnter(items[0]);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await expect(Number(tags.length)).toEqual(4);
-  await expect(getNodeText(items[0]).trim()).toEqual(
-    "Start typing to search..."
-  );
+  await expect(getNodeText(items[0]).trim()).toEqual(emptyOptionsPlaceholder);
 
   //Deselct item by Backspace key
   await sleep(300);
@@ -74,9 +71,7 @@ export default async ({ args, canvasElement }) => {
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toEqual(3);
   await expect(getNodeText(tags[2]).trim()).toEqual("Huawei");
-  await expect(getNodeText(items[0]).trim()).toEqual(
-    "Start typing to search..."
-  );
+  await expect(getNodeText(items[0]).trim()).toEqual(emptyOptionsPlaceholder);
 
   //Deselect item by mouse click on item
   await sleep(300);
