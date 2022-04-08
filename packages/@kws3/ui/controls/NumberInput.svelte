@@ -28,7 +28,6 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 <div class="field has-addons">
   <div class="control">
     <button
-      role="button"
       type="button"
       class="button is-{size} is-{minus_button_color}"
       style="box-shadow:none;"
@@ -58,7 +57,6 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   </div>
   <div class="control">
     <button
-      role="button"
       type="button"
       class="button is-{size} is-{plus_button_color}"
       style="box-shadow:none;"
