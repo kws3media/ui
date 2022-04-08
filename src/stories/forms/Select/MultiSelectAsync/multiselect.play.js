@@ -22,7 +22,7 @@ export default async ({ args, canvasElement }) => {
   await userEvent.click(inputs[0]);
 
   userEvent.type(inputs[0], "l", { delay: 100 });
-  await sleep(2000);
+  await sleep(1000);
 
   const options = document.querySelectorAll("ul.options"),
     selected_options = canvasElement.querySelectorAll(".tags"),
@@ -46,7 +46,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
 
   userEvent.type(inputs[0], "ap", { delay: 100 });
-  await sleep(2000);
+  await sleep(1000);
 
   await fireEvent.mouseEnter(items[0]);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
@@ -69,7 +69,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
 
   userEvent.type(inputs[0], "hu", { delay: 100 });
-  await sleep(2000);
+  await sleep(1000);
 
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toEqual(3);
@@ -82,15 +82,16 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
 
   userEvent.type(inputs[0], "hu", { delay: 100 });
-  await sleep(2000);
+  await sleep(1000);
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toEqual(2);
 
-  //Search for an item
+  //show 'No matching options' message when no matching items found
   await sleep(300);
-  await userEvent.type(inputs[0], "no", { delay: 100 });
-  await expect(Number(items.length)).toBe(1);
-  await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("no");
+  inputs[0].value = "";
+  userEvent.type(inputs[0], "ex", { delay: 100 });
+  await sleep(1000);
+  await expect(getNodeText(items[0]).trim()).toEqual("No matching options");
 
   //Clear search input
   await sleep(300);

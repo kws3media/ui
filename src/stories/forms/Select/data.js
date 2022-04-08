@@ -31,7 +31,7 @@ export let brands_string_only = [
 ];
 
 export const fetchBrands = async (filter) => {
-  await sleep(2000);
+  await sleep(1000);
   if (filter) {
     return brands_string_only.filter((brand) => {
       return brand.toLowerCase().indexOf(filter.toLowerCase()) > -1;
