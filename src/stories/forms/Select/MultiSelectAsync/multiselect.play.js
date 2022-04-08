@@ -21,47 +21,61 @@ export default async ({ args, canvasElement }) => {
   //Focus on Multi-select
   await userEvent.click(inputs[0]);
 
+  userEvent.type(inputs[0], "l", { delay: 100 });
+  await sleep(2000);
+
   const options = document.querySelectorAll("ul.options"),
     selected_options = canvasElement.querySelectorAll(".tags"),
     items = options[0].getElementsByTagName("li"),
     tags = selected_options[0].getElementsByTagName("li");
 
-  //A dropdown showing all selectable items should appear
+  console.dir({ options, selected_options, items, tags });
+  //A dropdown showing only matched items should appear, here its 3
   await expect(!options[0].classList.contains("hidden")).toEqual(true);
 
   //Select items by mouse click
   await sleep(300);
+  await expect(Number(selected_options.length)).toEqual(2); //2 items already selected by deafult value
   await userEvent.click(items[0]);
-  await expect(Number(tags.length)).toEqual(1);
+  await expect(Number(tags.length)).toEqual(3); // now tags contain 3 items
   await expect(getNodeText(items[0]).trim()).toEqual(
-    getNodeText(tags[0]).trim()
+    "Start typing to search..."
   );
 
   //Select items by using Enter key
   await sleep(300);
-  await fireEvent.mouseEnter(items[3]);
+
+  userEvent.type(inputs[0], "ap", { delay: 100 });
+  await sleep(2000);
+
+  await fireEvent.mouseEnter(items[0]);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
-  await expect(Number(tags.length)).toEqual(2);
-  await expect(getNodeText(items[3]).trim()).toEqual(
-    getNodeText(tags[1]).trim()
+  await expect(Number(tags.length)).toEqual(4);
+  await expect(getNodeText(items[0]).trim()).toEqual(
+    "Start typing to search..."
   );
 
   //Deselct item by Backspace key
   await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Backspace" });
-  await expect(Number(tags.length)).toEqual(1);
+  await expect(Number(tags.length)).toEqual(3);
 
   //Deselct item by mouse click on remove button
   await sleep(300);
   await userEvent.click(within(tags[0]).getByRole("button"));
-  await expect(Number(tags.length)).toEqual(0);
+  await expect(Number(tags.length)).toEqual(2);
 
   //Select item by mouse click on item
   await sleep(300);
-  await userEvent.click(items[4]);
-  await expect(Number(tags.length)).toEqual(1);
-  await expect(getNodeText(items[4]).trim()).toEqual(
-    getNodeText(tags[0]).trim()
+
+  userEvent.type(inputs[0], "hu", { delay: 100 });
+  await sleep(2000);
+
+  await userEvent.click(items[0]);
+  await expect(Number(tags.length)).toEqual(3);
+  await expect(getNodeText(tags[2]).trim()).toEqual("Huawei");
+  await expect(getNodeText(items[0]).trim()).toEqual(
+    "Start typing to search..."
   );
 
   //Deselect item by mouse click on item
