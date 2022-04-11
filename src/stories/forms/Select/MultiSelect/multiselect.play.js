@@ -7,7 +7,7 @@ import {
   getNodeText,
   fireEvent,
 } from "@storybook/testing-library";
-import { sleep } from "../../../utils";
+import { sleep } from "../../../../utils";
 
 // eslint-disable-next-line no-unused-vars
 export default async ({ args, canvasElement }) => {
@@ -124,6 +124,23 @@ export default async ({ args, canvasElement }) => {
   await expect(getNodeText(tags[0]).trim()).toBe("Blackberry");
   await expect(getNodeText(tags[1]).trim()).toBe("LG");
   await expect(getNodeText(tags[2]).trim()).toBe("Oppo");
+
+  //By default search strategy  should be 'fuzzy'
+  await sleep(300);
+  await userEvent.type(inputs[0], "hw", { delay: 100 });
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("huawei");
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
+  await userEvent.type(inputs[0], "bery", { delay: 100 });
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("blackberry");
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+
+  //Clear input if input loses focus on it
+  await sleep(300);
+  await userEvent.type(inputs[0], "s", { delay: 100 });
+  await userEvent.click(document.body);
+  await expect(inputs[0].value).toBe("");
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("lg");
 
   //Removing all selected items
   await sleep(300);

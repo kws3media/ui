@@ -10,7 +10,7 @@
         {size}
         {color}
         {max}
-        options={brands}
+        search={fetchObjBrandsHelper}
         bind:value={selected_brand}
         search_key="name"
         value_key="id"
@@ -41,7 +41,7 @@
         {size}
         {color}
         {max}
-        options={brands_string_only}
+        search={fetchBrands}
         bind:value={selected_brand_string}
         {search_key}
         {value_key}
@@ -69,6 +69,13 @@
   } from "@kws3/ui";
   import { onMount } from "svelte";
 
+  import {
+    brands,
+    brands_string_only,
+    fetchBrands,
+    fetchObjBrands,
+  } from "../data.js";
+
   onMount(() => activateTooltips("#ms_container"));
 
   export let size = "",
@@ -85,39 +92,16 @@
     remove_btn_tip = "Remove",
     placeholder = "Choose a Brand...",
     summary_mode = false,
-    selected_brand = [], // single , also work with { id: 10, name: "Blackberry" }
+    selected_brand = [
+      { id: 3, name: "Xiaomi" },
+      { id: 5, name: "Oppo" },
+    ], // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
     selected_brand_string = ["Blackberry"];
 
-  let brands = [
-    { id: 1, name: "LG" },
-    { id: 2, name: "Samsung" },
-    { id: 3, name: "Xiaomi" },
-    { id: 4, name: "Nokia" },
-    { id: 5, name: "Oppo" },
-    { id: 6, name: "Vivo" },
-    { id: 7, name: "Huawei" },
-    { id: 8, name: "Sony" },
-    { id: 9, name: "HTC" },
-    { id: 0, name: "Zero" },
-    { id: "", name: "Empty String" },
-    { id: 10, name: "Blackberry" },
-    { id: 11, name: "Apple" },
-  ];
-
-  let brands_string_only = [
-    "LG",
-    "Samsung",
-    "Xiaomi",
-    "Nokia",
-    "Oppo",
-    "Vivo",
-    "Huawei",
-    "Sony",
-    "HTC",
-    "Blackberry",
-    "Apple",
-  ];
+  const fetchObjBrandsHelper = async function (filter) {
+    return await fetchObjBrands(filter, search_key);
+  };
 
   let klass = "";
   export { klass as class };
