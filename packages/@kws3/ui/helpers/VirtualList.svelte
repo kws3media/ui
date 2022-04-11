@@ -55,9 +55,9 @@
     heightMap = [],
     visibleItems = [];
 
-  $: visibleItems = items.slice(start, end).map((data, i) => {
-    return { index: i + start, data };
-  });
+  $: visibleItems = items
+    .slice(start, end)
+    .map((data, i) => ({ index: i + start, data }));
 
   $: visibleItems, (itemRows = ROWS.filter(Boolean));
 
