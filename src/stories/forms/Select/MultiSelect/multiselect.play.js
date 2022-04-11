@@ -125,6 +125,16 @@ export default async ({ args, canvasElement }) => {
   await expect(getNodeText(tags[1]).trim()).toBe("LG");
   await expect(getNodeText(tags[2]).trim()).toBe("Oppo");
 
+  //Make sure  fuzzy search selected as search strategy by default
+  await sleep(300);
+  await userEvent.type(inputs[0], "hw", { delay: 100 });
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("huawei");
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
+  await userEvent.type(inputs[0], "bery", { delay: 100 });
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("blackberry");
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+
   //Removing all selected items
   await sleep(300);
   await userEvent.click(canvasElement.querySelectorAll(".remove-all")[0]);
