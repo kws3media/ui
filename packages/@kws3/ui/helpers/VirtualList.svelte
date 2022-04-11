@@ -6,7 +6,9 @@
   @param {string} [height="100%"] - Height of the wrapper, Default: `"100%"`
   @param {number} [start=0] - first item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end=0] - last item index rendered inside viewport - readonly, Default: `0`
-  @param {string} [itemHeight="auto"] - item element height, Default: `"auto"`
+
+  ### Slots
+  - `<slot name="default" {item} {index} />`
 
 -->
 <div
@@ -17,10 +19,7 @@
   bind:offsetHeight={viewportHeight}>
   <div style="padding-top: {top}px; padding-bottom: {bottom}px;">
     {#each visibleItems as item, i (item.index)}
-      <div
-        class="row"
-        bind:this={ROWS[i]}
-        style="height: {itemHeight}; overflow: hidden;">
+      <div class="row" bind:this={ROWS[i]}>
         <slot item={item.data} index={item.index} />
       </div>
     {/each}
@@ -45,11 +44,7 @@
     /**
      *  last item index rendered inside viewport - readonly
      */
-    end = 0,
-    /**
-     *  item element height
-     */
-    itemHeight = "auto";
+    end = 0;
 
   let ELEMENT, //whole wrapping ELEMENT
     viewportHeight = 0, //height of the viewport

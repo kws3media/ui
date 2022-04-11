@@ -2,7 +2,7 @@
   class="item"
   style="padding:15px 20px"
   on:click={() => {
-    console.log("clicked item", item);
+    fire("rowClick", item);
   }}>
   <div class="level is-mobile is-marginless ">
     <div class="level-left">
@@ -44,7 +44,7 @@
 <script>
   export let item, index;
 
-  $: {
-    console.log(item);
-  }
+  import { createEventDispatcher } from "svelte";
+
+  const fire = createEventDispatcher();
 </script>
