@@ -16,6 +16,12 @@ Used to populate the list of options in the dropdown, Default: `[]`
 this property of each object will be searched, Default: `"name"`
   @param {string} [value_key="id"] - If `options` is an array of objects,
 this property of each object will be returned as the value, Default: `"id"`
+  @param {function|null} [search=null] - Async function to fetch options
+
+Only send this prop if you want to fetch `options` asynchronously.
+`options` prop will be ignored if this prop is set., Default: `null`
+  @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -24,6 +30,7 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {boolean} [summary_mode=false] - Shows only the number of items selected, instead of listing all the selected items in the input., Default: `false`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
+  @param {string} [async_search_prompt="Start typing to search..."] - Message to display in dropdown when async search can be performed, Default: `"Start typing to search..."`
   @param {string} [remove_btn_tip="Remove"] - Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip., Default: `"Remove"`
   @param {string} [remove_all_tip="Remove all"] - Tooltip text for the Clear All button, Default: `"Remove all"`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
@@ -75,7 +82,6 @@ Default value: `<span>{option[search_key] || option}</span>`
             {#if !readonly && !disabled}
               <button
                 on:click|self|stopPropagation={() => remove(tag)}
-                role="button"
                 type="button"
                 class="delete is-small"
                 data-tooltip="{remove_btn_tip} {tag[used_search_key]}" />
@@ -99,9 +105,13 @@ Default value: `<span>{option[search_key] || option}</span>`
       on:blur={() => setOptionsVisible(false)}
       placeholder={_placeholder} />
   </ul>
-  {#if !readonly && !disabled}
+  {#if search && options_loading}
     <button
-      role="button"
+      type="button"
+      style="border: none;"
+      class="button is-paddingless delete is-medium is-loading" />
+  {:else if !readonly && !disabled}
+    <button
       type="button"
       class="remove-all delete is-small"
       data-tooltip={remove_all_tip}
@@ -134,7 +144,11 @@ Default value: `<span>{option[search_key] || option}</span>`
               {option}>{option[used_search_key] || option}</slot>
           </li>
         {:else}
-          <li class="no-options">{no_options_msg}</li>
+          {#if !options_loading}
+            <li class="no-options">
+              {searchText ? no_options_msg : async_search_prompt}
+            </li>
+          {/if}
         {/each}
       </ul>
     </div>
@@ -143,8 +157,10 @@ Default value: `<span>{option[search_key] || option}</span>`
 
 <script>
   import { Icon, portal } from "@kws3/ui";
-  import { createEventDispatcher, onMount } from "svelte";
+  import { debounce } from "@kws3/ui/utils";
+  import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
+  import fuzzysearch from "fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -198,6 +214,22 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let value_key = "id";
   /**
+   * Async function to fetch options
+   *
+   * Only send this prop if you want to fetch `options` asynchronously.
+   * `options` prop will be ignored if this prop is set.
+   *
+   * @type {function|null}
+   */
+  export let search = null;
+
+  /**
+   * Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+   * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching.
+   * @type {'fuzzy'|'strict'}
+   */
+  export let search_strategy = "fuzzy";
+  /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
    */
@@ -232,6 +264,10 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let no_options_msg = "No matching options";
   /**
+   * Message to display in dropdown when async search can be performed
+   */
+  export let async_search_prompt = "Start typing to search...";
+  /**
    * Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip.
    * */
   export let remove_btn_tip = "Remove";
@@ -255,7 +291,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   let klass = "";
   export { klass as class };
 
-  if (!options || !options.length) console.error(`Missing options`);
+  if (!search && (!options || !options.length))
+    console.error(`Missing options`);
 
   if (max !== null && max < 0) {
     throw new TypeError(`max must be null or positive integer, got ${max}`);
@@ -282,9 +319,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
-    selectedOptions = []; //list of options that are selected
+    selectedOptions = [], //list of options that are selected
+    options_loading = false; //indictaes whether async search function is running
 
   $: single = max === 1;
+  $: asyncMode = search && typeof search === "function";
   $: hasValue = single
     ? value !== null && typeof value != "undefined"
       ? true
@@ -330,6 +369,8 @@ Default value: `<span>{option[search_key] || option}</span>`
       ? selectedOptions[0][used_search_key]
       : "";
 
+  $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
+
   //convert arrays of strings into normalised arrays of objects
   function normaliseOptions() {
     let _items = options || [];
@@ -338,15 +379,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       return;
     }
 
-    normalisedOptions = _items.slice().map((item) => {
-      if (typeof item === "object") {
-        return item;
-      }
-      let __obj = {};
-      __obj[used_search_key] = item;
-      __obj[used_value_key] = item;
-      return __obj;
-    });
+    normalisedOptions = normaliseArraysToObjects(_items);
   }
 
   function updateFilteredOptions() {
@@ -359,29 +392,27 @@ Default value: `<span>{option[search_key] || option}</span>`
     } else {
       filter = searchText.toLowerCase();
     }
-
-    filteredOptions = normalisedOptions.slice().filter((item) => {
-      // filter out items that don't match `filter`
-      if (typeof item === "object") {
-        if (used_search_key) {
-          if (
-            typeof item[used_search_key] === "string" &&
-            item[used_search_key].toLowerCase().indexOf(filter) > -1
-          )
-            return true;
-        } else {
-          for (var key in item) {
-            if (
-              typeof item[key] === "string" &&
-              item[key].toLowerCase().indexOf(filter) > -1
-            )
-              return true;
+    if (asyncMode && searching) {
+      debouncedTriggerSearch(filter);
+    } else {
+      filteredOptions = normalisedOptions.slice().filter((item) => {
+        // filter out items that don't match `filter`
+        if (typeof item === "object") {
+          if (used_search_key) {
+            return (
+              typeof item[used_search_key] === "string" &&
+              match(filter, item[used_search_key])
+            );
+          } else {
+            for (var key in item) {
+              return typeof item[key] === "string" && match(filter, item[key]);
+            }
           }
+        } else {
+          return match(filter, item);
         }
-      } else {
-        return item.toLowerCase().indexOf(filter) > -1;
-      }
-    });
+      });
+    }
   }
 
   function fillSelectedOptions() {
@@ -390,7 +421,16 @@ Default value: `<span>{option[search_key] || option}</span>`
         (v) => `${v[used_value_key]}` === `${value}`
       );
     } else {
-      selectedOptions = normalisedOptions
+      let _normalisedOptions = asyncMode
+        ? [...selectedOptions, ...normalisedOptions].filter(
+            //de-dupe by `used_value_key` when in asyncMode
+            (value, idx, self) =>
+              idx ===
+              self.findIndex((v) => v[used_value_key] === value[used_value_key])
+          )
+        : normalisedOptions;
+
+      selectedOptions = _normalisedOptions
         .filter(
           (v) => value && value.some((vl) => `${v[used_value_key]}` === `${vl}`)
         )
@@ -403,6 +443,23 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER && POPPER.update();
   }
 
+  function triggerSearch(filter) {
+    if (filter === "") {
+      //do not trigger async search if filter is empty
+      options = [];
+      searching = false;
+      return;
+    }
+    options_loading = true;
+    search(filter).then((_options) => {
+      options = _options;
+      searching = false;
+      options_loading = false;
+    });
+  }
+
+  const debouncedTriggerSearch = debounce(triggerSearch, 150, false);
+
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
@@ -411,8 +468,25 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
 
     //normalize value for single versus multiselect
-    if (value === null || typeof value == "undefined")
+    if (value === null || typeof value == "undefined") {
       value = single ? null : [];
+    }
+
+    if (asyncMode) {
+      // initally on async mode options are empty
+      // so we need to fill selectedOptions with value if value is avaliable
+      options = value ? [...(single ? [value] : [...value])] : [];
+      searching = false;
+      tick().then(() => {
+        normaliseOptions();
+        value = normaliseArraysToObjects(options).map((v) => v[used_value_key]);
+        if (single && Array.isArray(value)) {
+          value = value[0];
+        }
+        fillSelectedOptions();
+        clearDropDownResults();
+      });
+    }
 
     return () => {
       POPPER.destroy();
@@ -430,17 +504,35 @@ Default value: `<span>{option[search_key] || option}</span>`
       if (!isAlreadySelected) {
         value = token[used_value_key];
         fire("change", { token, type: `add` });
+        //clear dropdown results in asyncMode
+        if (asyncMode) {
+          clearDropDownResults();
+        }
       }
       setOptionsVisible(false);
     }
 
     if (!isAlreadySelected && !single && (max === null || value.length < max)) {
-      //attach to value array while filtering out invalid values
-      value = [...value, token[used_value_key]].filter((v) => {
-        return normalisedOptions.filter((nv) => nv[used_value_key] === v)
-          .length;
-      });
+      if (asyncMode) {
+        //Do not filter invalid options, as they are async and might not be invalid
+        //but ensure they are unique
+        value = [...value, token[used_value_key]].filter(
+          (v, i, a) => a.indexOf(v) === i
+        );
+      } else {
+        //attach to value array while filtering out invalid values
+        value = [...value, token[used_value_key]].filter((v) => {
+          return normalisedOptions.filter((nv) => nv[used_value_key] === v)
+            .length;
+        });
+      }
+
       searchText = ""; // reset search string on selection
+
+      //clear dropdown results in asyncMode
+      if (asyncMode) {
+        clearDropDownResults();
+      }
 
       if (value && value.length && value.length === max) {
         input && input.blur();
@@ -460,6 +552,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     value = value.filter
       ? value.filter((item) => !matchesValue(item, token))
       : value;
+
+    //clear dropdown results in asyncMode
+    if (asyncMode) {
+      clearDropDownResults();
+    }
     /**
      * Triggered when an item is removed from selected Items
      */
@@ -517,18 +614,19 @@ Default value: `<span>{option[search_key] || option}</span>`
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else if (event.key === `Backspace`) {
-      //for a single select
-      //if a value is already selected, backspace will clear the value
       if (single && hasValue) {
+        //for a single select
+        //if a value is already selected, backspace will clear the value
         value = null;
         searchText = "";
-      }
-      //for a multi select
-      // only remove selected tags on backspace if there are any and no searchText characters remain
-      if (!single && searchText.length === 0) {
+      } else if (!single && searchText.length === 0) {
+        //for a multi select
+        // only remove selected tags on backspace if there are any and no searchText characters remain
         if (value && value.length > 0) {
           value = value.slice(0, value.length - 1);
         }
+      } else {
+        searching = true;
       }
     } else {
       //for a single select
@@ -540,6 +638,8 @@ Default value: `<span>{option[search_key] || option}</span>`
         } else {
           searching = true;
         }
+      } else {
+        searching = true;
       }
     }
   }
@@ -557,6 +657,9 @@ Default value: `<span>{option[search_key] || option}</span>`
     fire("change", { token: value, type: `remove` });
     value = single ? null : [];
     searchText = "";
+    if (asyncMode) {
+      clearDropDownResults();
+    }
   };
 
   const matchesValue = (_value, _option) => {
@@ -566,5 +669,31 @@ Default value: `<span>{option[search_key] || option}</span>`
     return (
       `${_value[used_value_key] || _value}` === `${_option[used_value_key]}`
     );
+  };
+
+  const match = (needle, haystack) => {
+    let _hayStack = haystack.toLowerCase();
+    return allow_fuzzy_match
+      ? fuzzysearch(needle, _hayStack)
+      : _hayStack.indexOf(needle) > -1;
+  };
+
+  const normaliseArraysToObjects = (arr) => {
+    return arr.slice().map((item) => {
+      if (typeof item === "object") {
+        return item;
+      }
+      let __obj = {};
+      __obj[used_search_key] = item;
+      __obj[used_value_key] = item;
+      return __obj;
+    });
+  };
+
+  const clearDropDownResults = () => {
+    tick().then(() => {
+      options = [];
+      searching = false;
+    });
   };
 </script>

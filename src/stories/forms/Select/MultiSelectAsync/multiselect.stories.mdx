@@ -1,13 +1,13 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
-import { SearchableSelect } from '@kws3/ui';
-import SearchableSelectDecorator from './SearchableSelect.svelte';
+import { MultiSelect } from '@kws3/ui';
+import MultiSelectDecorator from './MultiSelect.svelte';
 import { action } from '@storybook/addon-actions';
-import playInteractions from "./searchableselect.play.js";
+import playInteractions from "./multiselect.play.js";
 
 export let args={
-  value : "",
+  value : [],
   style : "",
   class : "",
   size:"",
@@ -17,18 +17,21 @@ export let args={
   value_key : "id",
   disabled : false,
   readonly: false,
+  summary_mode: false,
+  max: null,
   placeholder : "Choose a brand...",
   selected_icon:'check',
   no_options_msg: "No matching options",
-  remove_all_tip: "Clear Selection",
+  remove_all_tip: "Remove all",
+  remove_btn_tip: "Remove"
 };
 
 
 <Version />
 
 <Meta
-  title="Forms/SearchableSelect"
-  component={SearchableSelect}
+  title="Forms/Select/MultiSelect (Async)"
+  component={MultiSelect}
   args={args}
   argTypes={{
     color: {
@@ -41,55 +44,76 @@ export let args={
 />
 
 <Description markdown={dedent`
-# SearchableSelect
-## A select component that allows you to search by typing into it.
+# MultiSelect (Async)
+## Example of Async loading options.
 `}/>
 
 <Canvas>
   <Story
-  name="SearchableSelect"
+  name="MultiSelect (Async)"
   args={args}
   play={playInteractions}
   >
   {(args) => ({
-    Component: SearchableSelectDecorator,
+    Component: MultiSelectDecorator,
     props: args,
   })}
   </Story>
 </Canvas>
 
-<ArgsTable story="SearchableSelect" />
+<ArgsTable story="MultiSelect (Async)" />
 
 <div class="notification is-primary is-light">
   <div class="columns">
     <div class="column">
-      <h3>Input format <code>options</code></h3>
-      <p>Can send either an array of strings, or an array of objects.<br>
-      </br>Always ensure the shape of the array items are consistent.</p>
-      <p>When an array of objects is sent, <br>
-      </br>
-      <code>array_item[search_key]</code> is used for search-as-you-type, <br>
-      </br>
-      and <code>array_item[value_key]</code> is returned as the value once an item is selected.</p>
-      <p>See supported data formats in example story above.</p>
+      <h3>
+        Async filter function <code>search</code>
+      </h3>
+      <p>
+        This function is called when the user types in the search field.
+        It is passed the search string and should return a promise that
+        resolves to an array of options.
+      </p>
+      <p>
+        This function is not called every keydown while the user is typing.
+        It is called only when user finishes typing.
+      </p>
+      <p>
+        Note: 
+      </p>
+      <ul>
+        <li>Only send this prop if you want to fetch <code>options</code> asynchronously.</li>
+        <li><code>options</code> prop will be ignored if this prop is set.</li>
+        <li>To improve rendering performance, slice down the options if items array contains a large dataset on a single match.</li>
+      </ul>
+      <Source
+        language="jsx"
+        code={dedent`<MultiSelect
+      ...other_options
+      search={async ()...... items.map(...).slice(0, 20);}
+    
+    </MultiSelect>`}
+      />
     </div>
     <div class="column">
-    <h3>Customising dropdown text items</h3>
-    <p>See documentation for default slot.</p>
-    <h4>Example:</h4>
-    <Source
-  language="jsx"
-  code={
-    dedent`<SearchableSelect
+      <h3>Example:</h3>
+      <Source
+        language="jsx"
+        code={dedent`<MultiSelect
       ...other_options
-      let:search_key 
-      let:option>
-      <span class="has-text-danger">
-        {option[search_key]}
-      </span>
-    </SearchableSelect>`
-  }
-/>
+      search={async (filter) => {
+        const response = await fetch(
+          "https://api.github.com/search/users?q=" + filter
+        );
+        const json = await response.json();
+        return json.items.map((item) => ({
+          id: item.id,
+          name: item.name,
+        }));
+      }}
+    
+    </MultiSelect>`}
+      />
     </div>
   </div>
 </div>
@@ -99,10 +123,9 @@ export let args={
 <Source
   language="javascript"
   code={
-    dedent`import { SearchableSelect } from '@kws3/ui';`
+    dedent`import { MultiSelect } from '@kws3/ui';`
   }
 />
-
 
 #### Import the SCSS:
 <Source

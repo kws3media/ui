@@ -16,9 +16,16 @@ this property of each object will be returned as the value, Default: `"id"`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
+  @param {function|null} [search=null] - Async function to fetch options
+
+Only send this prop if you want to fetch `options` asynchronously.
+`options` prop will be ignored if this prop is set., Default: `null`
+  @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
+  @param {string} [async_search_prompt="Start typing to search..."] - Message to display in dropdown when async search can be performed, Default: `"Start typing to search..."`
   @param {string} [remove_all_tip="Clear Selection"] - Tooltip text for the Clear selection button, Default: `"Clear Selection"`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
 Can be a DOM element or a `string` with the CSS selector of the element.
@@ -44,13 +51,16 @@ Default value: `<span>{option[search_key] || option}</span>`
   {options}
   {search_key}
   {value_key}
+  {search_strategy}
   {size}
   {color}
   {style}
   {readonly}
   {disabled}
+  {search}
   {selected_icon}
   {remove_all_tip}
+  async_search_prompt={value ? "Backspace to clear" : async_search_prompt}
   {no_options_msg}
   {dropdown_portal}
   on:change={change}
@@ -119,6 +129,21 @@ Default value: `<span>{option[search_key] || option}</span>`
    */
   export let readonly = false;
   /**
+   * Async function to fetch options
+   *
+   * Only send this prop if you want to fetch `options` asynchronously.
+   * `options` prop will be ignored if this prop is set.
+   *
+   * @type {function|null}
+   */
+  export let search = null;
+  /**
+   * Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+   * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching.
+   * @type {'fuzzy'|'strict'}
+   */
+  export let search_strategy = "fuzzy";
+  /**
    * Disables the component
    */
   export let disabled = false;
@@ -130,6 +155,10 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Message to display when no matching options are found
    */
   export let no_options_msg = "No matching options";
+  /**
+   * Message to display in dropdown when async search can be performed
+   */
+  export let async_search_prompt = "Start typing to search...";
   /**
    * Tooltip text for the Clear selection button
    */
