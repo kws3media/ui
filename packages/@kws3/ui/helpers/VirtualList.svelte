@@ -123,7 +123,7 @@
 
     const newEnd = i;
 
-    // if (newStart === start && newEnd === end) return;
+    if (newStart === start && newEnd === end) return;
 
     let paddingBottom = 0;
     for (; i < items.length; i += 1) paddingBottom += heightMap[i];

@@ -4,7 +4,6 @@
     items={_items}
     bind:start
     bind:end
-    clickableRows={true}
     {itemHeight}
     let:item
     let:index>
