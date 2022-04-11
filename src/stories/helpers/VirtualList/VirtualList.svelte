@@ -18,12 +18,12 @@
   export let start = 0,
     end = 0;
 
-  $: {
-    if (end === _items.length) {
-      let itemsToAdd = _items.sort(() => 0.5 - Math.random()).slice(0, 20); // get random 20 items
-      _items = [..._items, ...itemsToAdd];
-    }
-  }
+  // $: {
+  //   if (end === _items.length) {
+  //     let itemsToAdd = _items.sort(() => 0.5 - Math.random()).slice(0, 20); // get random 20 items
+  //     _items = [..._items, ...itemsToAdd];
+  //   }
+  // }
 
   function rowClicked(e) {
     console.log(e.detail);
