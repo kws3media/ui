@@ -80,7 +80,8 @@
         await tick(); // render the newly visible row
         row = rows[i - start];
       }
-      const row_height = (height_map[i] = itemHeight || row.offsetHeight);
+      const row_height = (height_map[i] =
+        itemHeight || (row ? row.offsetHeight : 0));
       content_height += row_height;
       i += 1;
     }
