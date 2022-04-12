@@ -93,11 +93,6 @@
     console.log("refresh");
     const { scrollTop } = ELEMENT;
 
-    for (let i = 0; i < itemRows.length; i += 1) {
-      await tick();
-      heightMap[start + i] = itemRows[i].offsetHeight;
-    }
-
     let paddingTop = 0;
     let offset = 0;
     let i = 0;
