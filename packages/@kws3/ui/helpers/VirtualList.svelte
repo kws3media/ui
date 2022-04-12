@@ -60,16 +60,18 @@
     .map((data, i) => ({ index: i + start, data }));
 
   $: visibleItems, (itemRows = ROWS.filter(Boolean));
+  $: items, render();
 
   onMount(() => {
     if (!Array.isArray(items)) {
       throw new Error("items must be an array");
     }
 
-    initialise();
+    render();
   });
 
-  async function initialise() {
+  async function render() {
+    console.log("render");
     let height = 0;
     let i = 0;
     while (height < viewportHeight && i < items.length) {
@@ -82,7 +84,7 @@
     const _end = i;
     const avg = Math.round(height / i);
 
-    for (; i < items.length; i += 1) heightMap[i] = avg; // rethink this
+    for (; i < items.length; i += 1) heightMap[i] = avg;
 
     bottom = (items.length - _end) * avg;
   }
