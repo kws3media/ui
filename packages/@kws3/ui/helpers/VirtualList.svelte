@@ -78,7 +78,7 @@
     while (height < viewportHeight && i < items.length) {
       end = start + i + 1;
       await tick();
-      height += heightMap[i] = itemRows[i].offsetHeight;
+      height += heightMap[i] = itemRows[i] ? itemRows[i].offsetHeight : 0;
       i += 1;
     }
 
