@@ -19,7 +19,7 @@
     end = 0;
 
   $: {
-    if (end === _items.length - 10) {
+    if (end === _items.length) {
       let itemsToAdd = _items.sort(() => 0.5 - Math.random()).slice(0, 20); // get random 20 items
       _items = [..._items, ...itemsToAdd];
     }
