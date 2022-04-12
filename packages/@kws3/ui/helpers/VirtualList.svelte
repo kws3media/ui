@@ -61,7 +61,6 @@
     .slice(start, end)
     .map((data, i) => ({ index: i + start, data }));
 
-  console.log("visibleItems", visibleItems);
   $: items, render();
 
   onMount(() => {
