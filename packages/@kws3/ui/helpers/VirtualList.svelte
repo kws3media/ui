@@ -17,9 +17,11 @@
   on:scroll={() => window.requestAnimationFrame(() => refresh())}
   style="height:{height}"
   bind:offsetHeight={viewportHeight}>
-  <div style="padding-top: {top}px; padding-bottom: {bottom}px;">
+  <div
+    bind:this={ROWS_CONTAINER}
+    style="padding-top: {top}px; padding-bottom: {bottom}px;">
     {#each visibleItems as item, i (item.index)}
-      <div class="row" bind:this={ROWS[i]}>
+      <div class="row">
         <slot item={item.data} index={item.index} />
       </div>
     {/each}
@@ -48,7 +50,7 @@
 
   let ELEMENT, //whole wrapping ELEMENT
     viewportHeight = 0, //height of the viewport
-    ROWS = [], //per row DOM elemnent
+    ROWS_CONTAINER, //container for rows
     itemRows = [], //array of rows
     top = 0,
     bottom = 0,
@@ -59,14 +61,14 @@
     .slice(start, end)
     .map((data, i) => ({ index: i + start, data }));
 
-  $: visibleItems, (itemRows = ROWS.filter(Boolean));
+  console.log("visibleItems", visibleItems);
   $: items, render();
 
   onMount(() => {
     if (!Array.isArray(items)) {
       throw new Error("items must be an array");
     }
-
+    itemRows = ROWS_CONTAINER.children;
     render();
   });
 
