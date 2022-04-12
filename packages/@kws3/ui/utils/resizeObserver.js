@@ -1,5 +1,10 @@
 export const hasResizeObserver = typeof window.ResizeObserver != "undefined";
 
+/**
+ * Usage: `<div use:resizeObserver on:resize={resizeHandler}>`
+ * @param {HTMLElement} node
+ * @returns {Object}
+ */
 export function resizeObserver(node) {
   let ro;
   if (hasResizeObserver) {
