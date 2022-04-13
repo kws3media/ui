@@ -12,25 +12,49 @@
   - `<slot name="default" {item} {index} />`
 
 -->
-<div
-  bind:this={viewport}
-  class="kws-virtual-list"
-  on:scroll={handle_scroll}
-  style="height:{height}"
-  bind:offsetHeight={viewport_height}>
+{#if hasResizeObserver}
   <div
-    bind:this={contents}
-    style="padding-top: {top}px; padding-bottom: {bottom}px;">
-    {#each visible as item (item.index)}
-      <div class="row">
-        <slot item={item.data} index={item.index} />
-      </div>
-    {/each}
+    bind:this={viewport}
+    class="kws-virtual-list with-resize-observer"
+    on:scroll={handle_scroll}
+    style="height:{height}"
+    bind:offsetHeight={viewport_height}>
+    <div
+      bind:this={contents}
+      style="padding-top: {top}px; padding-bottom: {bottom}px;">
+      {#each visible as item (item.index)}
+        <div class="row">
+          <slot item={item.data} index={item.index} />
+        </div>
+      {/each}
+    </div>
   </div>
-</div>
+{:else}
+  <div
+    bind:this={viewport}
+    class="kws-virtual-list"
+    on:scroll={handle_scroll}
+    style="height:{height}"
+    use:resizeObserver
+    on:resize={resize}>
+    <div
+      bind:this={contents}
+      style="padding-top: {top}px; padding-bottom: {bottom}px;">
+      {#each visible as item (item.index)}
+        <div class="row">
+          <slot item={item.data} index={item.index} />
+        </div>
+      {/each}
+    </div>
+  </div>
+{/if}
 
 <script>
   import { onMount, tick } from "svelte";
+  import {
+    resizeObserver,
+    hasResizeObserver,
+  } from "@kws3/ui/utils/resizeObserver";
 
   /**
    * Array of items
@@ -138,6 +162,10 @@
     // rows would occupy we may need to add some
     // more. maybe we can just call handle_scroll again?
   }
+
+  const resize = () => {
+    viewport_height = viewport.offsetHeight;
+  };
 
   // trigger initial refresh
   onMount(() => {
