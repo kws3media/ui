@@ -47,7 +47,7 @@
     end = 0;
 
   $: {
-    if (end === _items.length) {
+    if (end === _items.length - 10) {
       loadMore();
     }
   }
