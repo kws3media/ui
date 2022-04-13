@@ -96,12 +96,17 @@ This will work only when `track_height` is set to `true`
     }
   }
 
+  const max_retries_for_render = 10;
+  let try_count = 0;
   function pollForRender() {
     if (slideInner && typeof slideInner != "undefined") {
       init();
     } else {
       setTimeout(() => {
-        pollForRender();
+        try_count++;
+        if (try_count < max_retries_for_render) {
+          pollForRender();
+        }
       }, 50);
     }
   }
