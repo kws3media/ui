@@ -18,7 +18,8 @@
     class="kws-virtual-list with-resize-observer"
     on:scroll={handle_scroll}
     style="height:{height}"
-    bind:offsetHeight={viewport_height}>
+    use:resizeObserver
+    on:resize={resize}>
     <div
       bind:this={contents}
       style="padding-top: {top}px; padding-bottom: {bottom}px;">
@@ -35,8 +36,7 @@
     class="kws-virtual-list"
     on:scroll={handle_scroll}
     style="height:{height}"
-    use:resizeObserver
-    on:resize={resize}>
+    bind:offsetHeight={viewport_height}>
     <div
       bind:this={contents}
       style="padding-top: {top}px; padding-bottom: {bottom}px;">
