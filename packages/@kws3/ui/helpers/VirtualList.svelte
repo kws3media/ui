@@ -11,25 +11,50 @@
   - `<slot name="default" {item} {index} />`
 
 -->
-<div
-  bind:this={ELEMENT}
-  class="kws-virtual-list"
-  on:scroll={() => window.requestAnimationFrame(() => refresh())}
-  style="height:{height}"
-  bind:offsetHeight={viewportHeight}>
+
+{#if hasResizeObserver}
   <div
-    bind:this={ROWS_CONTAINER}
-    style="padding-top: {top}px; padding-bottom: {bottom}px;">
-    {#each visibleItems as item, i (item.index)}
-      <div class="row">
-        <slot item={item.data} index={item.index} />
-      </div>
-    {/each}
+    bind:this={ELEMENT}
+    class="kws-virtual-list"
+    on:scroll={() => window.requestAnimationFrame(() => refresh())}
+    style="height:{height}"
+    use:resizeObserver
+    bind:offsetHeight={viewportHeight}>
+    <div
+      bind:this={ROWS_CONTAINER}
+      style="padding-top: {top}px; padding-bottom: {bottom}px;">
+      {#each visibleItems as item, i (item.index)}
+        <div class="row">
+          <slot item={item.data} index={item.index} />
+        </div>
+      {/each}
+    </div>
   </div>
-</div>
+{:else}
+  <div
+    bind:this={ELEMENT}
+    class="kws-virtual-list"
+    on:scroll={() => window.requestAnimationFrame(() => refresh())}
+    style="height:{height}"
+    bind:offsetHeight={viewportHeight}>
+    <div
+      bind:this={ROWS_CONTAINER}
+      style="padding-top: {top}px; padding-bottom: {bottom}px;">
+      {#each visibleItems as item, i (item.index)}
+        <div class="row">
+          <slot item={item.data} index={item.index} />
+        </div>
+      {/each}
+    </div>
+  </div>
+{/if}
 
 <script>
   import { onMount, tick } from "svelte";
+  import {
+    resizeObserver,
+    hasResizeObserver,
+  } from "@kws3/ui/utils/resizeObserver";
 
   /**
    * Array of items
