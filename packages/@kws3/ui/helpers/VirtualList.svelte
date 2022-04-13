@@ -89,10 +89,12 @@
   $: visible = items.slice(start, end).map((data, i) => {
     return { index: i + start, data };
   });
-  // whenever `items` changes, invalidate the current heightmap
-  $: if (mounted) refresh(items, viewport_height, itemHeight);
 
-  async function refresh(items, viewport_height, itemHeight) {
+  // whenever `items` changes, invalidate the current heightmap
+  $: items, viewport_height, itemHeight, mounted, refresh();
+
+  async function refresh() {
+    if (!mounted) return;
     const scrollTop = viewport.scrollTop;
     await tick(); // wait until the DOM is up to date
     let content_height = top - scrollTop;
@@ -158,9 +160,6 @@
       const d = actual_height - expected_height;
       viewport.scrollTo(0, scrollTop + d);
     }
-    // TODO if we overestimated the space these
-    // rows would occupy we may need to add some
-    // more. maybe we can just call handle_scroll again?
   }
 
   const resize = () => {
