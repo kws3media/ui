@@ -19,11 +19,11 @@
     on:scroll={() => window.requestAnimationFrame(() => refresh())}
     style="height:{height}"
     use:resizeObserver
-    bind:offsetHeight={viewportHeight}>
+    on:resize={resize}>
     <div
       bind:this={ROWS_CONTAINER}
       style="padding-top: {top}px; padding-bottom: {bottom}px;">
-      {#each visibleItems as item, i (item.index)}
+      {#each visibleItems as item (item.index)}
         <div class="row">
           <slot item={item.data} index={item.index} />
         </div>
@@ -40,7 +40,7 @@
     <div
       bind:this={ROWS_CONTAINER}
       style="padding-top: {top}px; padding-bottom: {bottom}px;">
-      {#each visibleItems as item, i (item.index)}
+      {#each visibleItems as item (item.index)}
         <div class="row">
           <slot item={item.data} index={item.index} />
         </div>
@@ -88,10 +88,18 @@
 
   $: items, render();
 
+  const resize = () => {
+    console.log("resize");
+    viewportHeight = ELEMENT.offsetHeight;
+    itemRows = ROWS_CONTAINER.children;
+    render();
+  };
+
   onMount(() => {
     if (!Array.isArray(items)) {
       throw new Error("items must be an array");
     }
+    console.log(viewportHeight);
     itemRows = ROWS_CONTAINER.children;
     render();
   });
