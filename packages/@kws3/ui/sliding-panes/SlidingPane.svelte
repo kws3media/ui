@@ -25,6 +25,8 @@ This will work only when `track_height` is set to `true`
       : ''} {h_center ? 'h-centered' : ''} {active ? 'is-active' : ''} {klass}"
     {style}>
     <div
+      use:resizeObserver
+      on:resize={debouncedFireSizeChange}
       bind:this={slideInner}
       class="sliding-pane-inner {v_center ? 'v-centered' : ''} {h_center
         ? 'h-centered'
@@ -52,6 +54,10 @@ This will work only when `track_height` is set to `true`
 <script>
   import { onMount, createEventDispatcher } from "svelte";
   import { debounce } from "@kws3/ui/utils";
+  import {
+    resizeObserver,
+    hasResizeObserver,
+  } from "@kws3/ui/utils/resizeObserver";
 
   const fire = createEventDispatcher();
 
@@ -76,8 +82,7 @@ This will work only when `track_height` is set to `true`
      */
     track_height = true;
 
-  const hasResizeObserver = typeof window.ResizeObserver != "undefined";
-  let _height, slideInner, Observer;
+  let _height, slideInner;
 
   /**
    * CSS classes for the panel
@@ -91,18 +96,22 @@ This will work only when `track_height` is set to `true`
     }
   }
 
+  const max_retries_for_render = 10;
+  let try_count = 0;
   function pollForRender() {
     if (slideInner && typeof slideInner != "undefined") {
       init();
     } else {
       setTimeout(() => {
-        pollForRender();
+        try_count++;
+        if (try_count < max_retries_for_render) {
+          pollForRender();
+        }
       }, 50);
     }
   }
 
   function init() {
-    setupResizeObserver();
     fireSizeChange();
   }
 
@@ -129,23 +138,7 @@ This will work only when `track_height` is set to `true`
 
   const debouncedFireSizeChange = debounce(fireSizeChange, 150, false);
 
-  const setupResizeObserver = () => {
-    if (hasResizeObserver) {
-      if (!slideInner || typeof slideInner == "undefined") {
-        pollForRender();
-      } else {
-        Observer = new ResizeObserver(() => {
-          debouncedFireSizeChange();
-        });
-        Observer.observe(slideInner);
-      }
-    }
-  };
-
   onMount(() => {
     pollForRender();
-    return () => {
-      Observer && Observer.disconnect();
-    };
   });
 </script>
