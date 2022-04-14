@@ -80,7 +80,8 @@
     top = 0,
     bottom = 0,
     heightMap = [],
-    visibleItems = [];
+    visibleItems = [],
+    initialized = false;
 
   $: visibleItems = items
     .slice(start, end)
@@ -97,11 +98,12 @@
     if (!Array.isArray(items)) {
       throw new Error("items must be an array");
     }
-    console.log(viewportHeight);
     itemRows = ROWS_CONTAINER.children;
+    initialized = true;
   });
 
   async function render() {
+    if (!initialized) return;
     console.log("render");
     let height = 0;
     let i = 0;
@@ -111,13 +113,11 @@
       height += heightMap[i] = itemRows[i] ? itemRows[i].offsetHeight : 0;
       i += 1;
     }
-
-    const _end = i;
     const avg = Math.round(height / i);
 
     for (; i < items.length; i += 1) heightMap[i] = avg;
 
-    bottom = (items.length - _end) * avg;
+    refresh();
   }
 
   async function refresh() {
@@ -146,7 +146,7 @@
 
     const newEnd = i;
 
-    if (newStart === start && newEnd === end) return;
+    // if (newStart === start && newEnd === end) return;
 
     let paddingBottom = 0;
     for (; i < items.length; i += 1) paddingBottom += heightMap[i];
