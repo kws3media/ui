@@ -86,13 +86,11 @@
     .slice(start, end)
     .map((data, i) => ({ index: i + start, data }));
 
-  $: items, render();
+  $: items, viewportHeight, render();
 
   const resize = () => {
     console.log("resize");
     viewportHeight = ELEMENT.offsetHeight;
-    itemRows = ROWS_CONTAINER.children;
-    render();
   };
 
   onMount(() => {
@@ -101,7 +99,6 @@
     }
     console.log(viewportHeight);
     itemRows = ROWS_CONTAINER.children;
-    render();
   });
 
   async function render() {
