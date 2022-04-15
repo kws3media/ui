@@ -14,7 +14,9 @@
   - `end` - Fired when the list reaches `end_threshold` items before the end of the list.
 
   ### Slots
-  - `<slot name="default" {item} {index} />`
+  - `<slot name="default" {item} {index} />` - Default slot for list view items
+  - `<slot name="loader"  />` - Optional slot to display a loading graphic at the bottom of the list
+while more items are loading
 
 -->
 {#if hasResizeObserver}
@@ -30,9 +32,13 @@
       style="padding-top: {top}px; padding-bottom: {bottom}px;">
       {#each visible as item (item.index)}
         <div class="row">
+          <!--Default slot for list view items-->
           <slot item={item.data} index={item.index} />
         </div>
       {/each}
+      <!--Optional slot to display a loading graphic at the bottom of the list
+        while more items are loading-->
+      <slot name="loader" />
     </div>
   </div>
 {:else}
@@ -47,9 +53,13 @@
       style="padding-top: {top}px; padding-bottom: {bottom}px;">
       {#each visible as item (item.index)}
         <div class="row">
+          <!--Default slot for list view items-->
           <slot item={item.data} index={item.index} />
         </div>
       {/each}
+      <!--Optional slot to display a loading graphic at the bottom of the list
+        while more items are loading-->
+      <slot name="loader" />
     </div>
   </div>
 {/if}

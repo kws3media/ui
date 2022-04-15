@@ -4,7 +4,7 @@
       Showing items {start}-{end} of {_items.length}
     </p>
     <div
-      style="height:{height}px;width:500px; border:1px solid rgba(0,0,0,0.1); position:relative;">
+      style="height:{height}px;width:500px; border:1px solid rgba(0,0,0,0.1);">
       <KwsScrollableList
         class={klass}
         items={_items}
@@ -13,16 +13,15 @@
         {end_threshold}
         bind:start
         bind:end
-        let:item
-        let:index
         on:end={(e) => lastItemsRendered(e)}>
-        <TargetComponent {item} {index} on:rowClick={rowClicked} />
+        <span slot="default" let:item let:index
+          ><TargetComponent {item} {index} on:rowClick={rowClicked} /></span>
+        <div slot="loader" class="has-text-centered">
+          {#if loading}
+            <span class="button is-text is-large is-loading" style="" />
+          {/if}
+        </div>
       </KwsScrollableList>
-      {#if loading}
-        <span
-          class="button is-text is-large is-loading"
-          style="position:absolute; bottom:0;left:245px;" />
-      {/if}
     </div>
   </div>
 </div>
