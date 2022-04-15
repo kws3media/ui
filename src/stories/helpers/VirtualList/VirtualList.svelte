@@ -5,7 +5,13 @@
     </p>
     <div
       style="height:{height}px;width:500px; border:1px solid rgba(0,0,0,0.1); position:relative;">
-      <KwsVirtualList items={_items} bind:start bind:end let:item let:index>
+      <KwsVirtualList
+        items={_items}
+        bind:start
+        bind:end
+        let:item
+        let:index
+        on:end={(e) => lastItemsRendered(e)}>
         <TargetComponent {item} {index} on:rowClick={rowClicked} />
       </KwsVirtualList>
       {#if loading}
@@ -46,18 +52,17 @@
   export let start = 0,
     end = 0;
 
-  $: {
-    if (end === _items.length - 10) {
-      loadMore();
-    }
-  }
-
   const loadMore = async () => {
     loading = true;
     await sleep(1000);
     let itemsToAdd = _items.sort(() => 0.5 - Math.random()).slice(0, 20); // get random 20 items
     _items = [..._items, ...itemsToAdd];
     loading = false;
+  };
+
+  const lastItemsRendered = ({ detail }) => {
+    console.log("last items rendered", detail);
+    loadMore();
   };
 
   function rowClicked(e) {
