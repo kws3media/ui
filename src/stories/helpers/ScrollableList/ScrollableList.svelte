@@ -8,6 +8,7 @@
       <KwsScrollableList
         class={klass}
         items={_items}
+        {style}
         {height}
         {item_height}
         {end_threshold}
@@ -39,7 +40,8 @@
     end = 0,
     height = "600",
     item_height = null,
-    end_threshold = 10;
+    end_threshold = 10,
+    style = "";
 
   let klass = "";
   export { klass as class };

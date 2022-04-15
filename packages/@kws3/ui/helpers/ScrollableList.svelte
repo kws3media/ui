@@ -8,6 +8,7 @@
   @param {number} [start=0] - First item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end=0] - Last item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end_threshold=10] - `end` event will be fired when the list reaches this many items before the end of the list., Default: `10`
+  @param {string} [style=""] - Inline CSS for scroller container, Default: `""`
   @param {string} [class=""] - CSS classes for scroller container, Default: `""`
 
   ### Events
@@ -24,7 +25,7 @@ while more items are loading
     bind:this={viewport}
     class="kws-scrollable-list with-resize-observer {klass}"
     on:scroll={handle_scroll}
-    style="height:{height}"
+    style="height:{height};{style}"
     use:resizeObserver
     on:resize={resize}>
     <div
@@ -46,7 +47,7 @@ while more items are loading
     bind:this={viewport}
     class="kws-scrollable-list {klass}"
     on:scroll={handle_scroll}
-    style="height:{height}"
+    style="height:{height};{style}"
     bind:offsetHeight={viewport_height}>
     <div
       bind:this={contents}
@@ -106,7 +107,11 @@ while more items are loading
     /**
      *  `end` event will be fired when the list reaches this many items before the end of the list.
      */
-    end_threshold = 10;
+    end_threshold = 10,
+    /**
+     * Inline CSS for scroller container
+     */
+    style = "";
 
   /**
    * CSS classes for scroller container
