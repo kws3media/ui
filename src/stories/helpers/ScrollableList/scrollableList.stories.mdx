@@ -9,8 +9,8 @@ import {
 } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import { VirtualList } from "@kws3/ui";
-import VirtualListDecorator from "./VirtualList.svelte";
+import { ScrollableList } from "@kws3/ui";
+import ScrollableListDecorator from "./ScrollableList.svelte";
 import { action } from "@storybook/addon-actions";
 
 
@@ -27,23 +27,23 @@ export let args = {
 <Version />
 
 <Meta
-  title="Helpers/VirtualList"
-  component={VirtualList}
+  title="Helpers/ScrollableList"
+  component={ScrollableList}
   args={args}
   argTypes={{}}
 />
 
 <Description
   markdown={dedent`
-# VirtualList
-## A VirtualList component allow big amount data render with high performance and efficient. .
+# ScrollableList
+## ScrollableList component that efficiently displays large amounts of data
 `}
 />
 
 <Canvas>
-  <Story name="VirtualList" args={args}>
+  <Story name="ScrollableList" args={args}>
     {(args) => ({
-      Component: VirtualListDecorator,
+      Component: ScrollableListDecorator,
       props: args,
       on: {
         end : action("End Readched")
@@ -52,7 +52,7 @@ export let args = {
   </Story>
 </Canvas>
 
-<ArgsTable story="VirtualList" />
+<ArgsTable story="ScrollableList" />
 
 ### Usage
 
@@ -60,5 +60,5 @@ export let args = {
 
 <Source
   language="javascript"
-  code={dedent`import { VirtualList } from '@kws3/ui';`}
+  code={dedent`import { ScrollableList } from '@kws3/ui';`}
 />

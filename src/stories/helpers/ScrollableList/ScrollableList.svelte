@@ -5,7 +5,7 @@
     </p>
     <div
       style="height:{height}px;width:500px; border:1px solid rgba(0,0,0,0.1); position:relative;">
-      <KwsVirtualList
+      <KwsScrollableList
         class={klass}
         items={_items}
         {height}
@@ -17,7 +17,7 @@
         let:index
         on:end={(e) => lastItemsRendered(e)}>
         <TargetComponent {item} {index} on:rowClick={rowClicked} />
-      </KwsVirtualList>
+      </KwsScrollableList>
       {#if loading}
         <span
           class="button is-text is-large is-loading"
@@ -29,7 +29,7 @@
 
 <script>
   import { createEventDispatcher } from "svelte";
-  import { VirtualList as KwsVirtualList } from "@kws3/ui";
+  import { ScrollableList as KwsScrollableList } from "@kws3/ui";
   import TargetComponent from "./TargetComponent.svelte";
   import { sleep } from "../../../utils";
   import data from "./data.json";
