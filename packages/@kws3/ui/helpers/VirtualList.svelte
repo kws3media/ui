@@ -51,11 +51,13 @@
 
 <script>
   import { onMount, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import {
     resizeObserver,
     hasResizeObserver,
   } from "@kws3/ui/utils/resizeObserver";
 
+  const fire = createEventDispatcher();
   /**
    * Array of items
    */
