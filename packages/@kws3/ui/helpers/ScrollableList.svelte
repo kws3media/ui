@@ -22,7 +22,7 @@ while more items are loading
 {#if hasResizeObserver}
   <div
     bind:this={viewport}
-    class="kws-virtual-list with-resize-observer {klass}"
+    class="kws-scrollable-list with-resize-observer {klass}"
     on:scroll={handle_scroll}
     style="height:{height}"
     use:resizeObserver
@@ -44,7 +44,7 @@ while more items are loading
 {:else}
   <div
     bind:this={viewport}
-    class="kws-virtual-list {klass}"
+    class="kws-scrollable-list {klass}"
     on:scroll={handle_scroll}
     style="height:{height}"
     bind:offsetHeight={viewport_height}>
@@ -65,7 +65,7 @@ while more items are loading
 {/if}
 
 <style>
-  .kws-virtual-list {
+  .kws-scrollable-list {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: relative;
