@@ -94,7 +94,8 @@
     mounted,
     top = 0,
     bottom = 0,
-    average_height;
+    average_height,
+    items_count = 0;
 
   $: visible = items.slice(start, end).map((data, i) => {
     return { index: i + start, data };
