@@ -54,6 +54,15 @@
   </div>
 {/if}
 
+<style>
+  .kws-virtual-list {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    height: 100%;
+  }
+</style>
+
 <script>
   import { onMount, tick } from "svelte";
   import { createEventDispatcher } from "svelte";

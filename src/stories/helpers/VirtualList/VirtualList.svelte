@@ -1,4 +1,4 @@
-<div class="columns">
+<div class="columns is-centered">
   <div class="column is-narrow">
     <p class="has-text-centered">
       Showing items {start}-{end} of {_items.length}
@@ -24,18 +24,6 @@
       {/if}
     </div>
   </div>
-  <div class="column">
-    <div class="control">
-      <label class="label" for="">Parent container height</label>
-      <div class="select is-fullwidth">
-        <select bind:value={height}>
-          {#each heights as option}
-            <option value={option}>{option}px</option>
-          {/each}
-        </select>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -49,15 +37,14 @@
 
   export let start = 0,
     end = 0,
-    height = 600,
+    height = "600",
     item_height = null;
 
   let klass = "";
   export { klass as class };
 
   let records = data.records;
-  let heights = [800, 600, 500, 300, 100],
-    loading = false;
+  let loading = false;
   let _items = new Array(100)
     .fill()
     .map(() => records[Math.floor(Math.random() * records.length)]);
