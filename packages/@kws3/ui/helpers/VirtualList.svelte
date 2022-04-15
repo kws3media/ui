@@ -7,6 +7,10 @@
   @param {object} [itemHeight=null] - ItemHeight property, Default: `null`
   @param {number} [start=0] - first item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end=0] - last item index rendered inside viewport - readonly, Default: `0`
+  @param {number} [ending_threshold=10] - threshold from last index for firing on:end event, Default: `10`
+
+  ### Events
+  - `end`
 
   ### Slots
   - `<slot name="default" {item} {index} />`
@@ -74,7 +78,11 @@
     /**
      *  last item index rendered inside viewport - readonly
      */
-    end = 0;
+    end = 0,
+    /**
+     *  threshold from last index for firing on:end event
+     */
+    ending_threshold = 10;
 
   // local state
   let height_map = [],
