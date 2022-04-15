@@ -1,0 +1,115 @@
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import { ScrollableList } from "@kws3/ui";
+import ScrollableListDecorator from "./ScrollableList.svelte";
+import { action } from "@storybook/addon-actions";
+
+
+export let args = {
+  items: [],
+  start: 0,
+  end: 0,
+  height: "400px",
+  item_height: null,
+  class:"",
+  end_threshold: 10,
+  style:""
+};
+
+<Version />
+
+<Meta
+  title="Helpers/ScrollableList"
+  component={ScrollableList}
+  args={args}
+  argTypes={{}}
+/>
+
+<Description
+  markdown={dedent`
+# ScrollableList
+## ScrollableList component that efficiently displays large amounts of data
+`}
+/>
+
+<Canvas>
+  <Story name="ScrollableList" args={args}>
+    {(args) => ({
+      Component: ScrollableListDecorator,
+      props: args,
+      on: {
+        end : action("End Readched")
+      }
+    })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ScrollableList" />
+
+### Usage
+
+##### Import the component:
+
+<Source
+  language="javascript"
+  code={dedent`import { ScrollableList } from '@kws3/ui';`}
+/>
+
+<div class="columns">
+<div class="column">
+<p>Normal Usage Example:
+<br/>You can define the <code>let</code> variables on main component</p>
+
+```jsx
+<ScrollableList 
+  {items}
+  {height}
+  {item_height}
+  {end_threshold}
+  bind:start
+  bind:end
+  on:end={endReached}
+  let:item
+  let:index
+>
+  <ListItem {item} {index} />
+</ScrollableList>
+```
+
+</div>
+<div class="column">
+<p>Usage with loader slot Example:
+<br/>You have to define the <code>let</code> variables in a slot wrapper</p>
+
+```jsx
+<ScrollableList 
+  {items}
+  {height}
+  {item_height}
+  {end_threshold}
+  bind:start
+  bind:end
+  on:end={endReached}
+>
+  <span 
+    slot="default"
+    let:item
+    let:index
+  >
+    <ListItem {item} {index} />
+  </span>
+  <span slot="loader">Loading...</span>
+</ScrollableList>
+```
+
+</div>
+</div>
