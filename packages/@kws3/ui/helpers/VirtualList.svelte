@@ -3,14 +3,15 @@
 
 
   @param {array} [items=[]] - Array of items, Default: `[]`
-  @param {string} [height="100%"] - Height of the wrapper, Default: `"100%"`
-  @param {object} [itemHeight=null] - ItemHeight property, Default: `null`
-  @param {number} [start=0] - first item index rendered inside viewport - readonly, Default: `0`
-  @param {number} [end=0] - last item index rendered inside viewport - readonly, Default: `0`
-  @param {number} [ending_threshold=10] - threshold from last index for firing on:end event, Default: `10`
+  @param {string} [height="100%"] - Height of the wrapper, CSS String, Default: `"100%"`
+  @param {number | null} [item_height=null] - Height of each list item. If not set, height will be calculated automatically based on each item's offsetHeight, Default: `null`
+  @param {number} [start=0] - First item index rendered inside viewport - readonly, Default: `0`
+  @param {number} [end=0] - Last item index rendered inside viewport - readonly, Default: `0`
+  @param {number} [ending_threshold=10] - Threshold from last item index for firing `end` event, Default: `10`
+  @param {string} [class=""] - CSS classes for scroller container, Default: `""`
 
   ### Events
-  - `end`
+  - `end` - Fired when the list reaches `ending_threshold` items before the end of the list.
 
   ### Slots
   - `<slot name="default" {item} {index} />`
@@ -19,7 +20,7 @@
 {#if hasResizeObserver}
   <div
     bind:this={viewport}
-    class="kws-virtual-list with-resize-observer"
+    class="kws-virtual-list with-resize-observer {klass}"
     on:scroll={handle_scroll}
     style="height:{height}"
     use:resizeObserver
@@ -37,7 +38,7 @@
 {:else}
   <div
     bind:this={viewport}
-    class="kws-virtual-list"
+    class="kws-virtual-list {klass}"
     on:scroll={handle_scroll}
     style="height:{height}"
     bind:offsetHeight={viewport_height}>
@@ -67,22 +68,32 @@
    */
   export let items = [],
     /**
-     * Height of the wrapper
+     * Height of the wrapper, CSS String
      */
     height = "100%",
-    itemHeight = null,
     /**
-     * first item index rendered inside viewport - readonly
+     * Height of each list item. If not set, height will be calculated automatically based on each item's offsetHeight
+     * @type {number | null}
+     */
+    item_height = null,
+    /**
+     * First item index rendered inside viewport - readonly
      */
     start = 0,
     /**
-     *  last item index rendered inside viewport - readonly
+     * Last item index rendered inside viewport - readonly
      */
     end = 0,
     /**
-     *  threshold from last index for firing on:end event
+     *  Threshold from last item index for firing `end` event
      */
     ending_threshold = 10;
+
+  /**
+   * CSS classes for scroller container
+   */
+  let klass = "";
+  export { klass as class };
 
   // local state
   let height_map = [],
@@ -102,7 +113,7 @@
   });
 
   // whenever `items` changes, invalidate the current heightmap
-  $: items, viewport_height, itemHeight, mounted, refresh();
+  $: items, viewport_height, item_height, mounted, refresh();
 
   async function refresh() {
     if (!mounted) return;
@@ -118,7 +129,7 @@
         row = rows[i - start];
       }
       const row_height = (height_map[i] =
-        itemHeight || (row ? row.offsetHeight : 0));
+        item_height || (row ? row.offsetHeight : 0));
       content_height += row_height;
       i += 1;
     }
@@ -133,7 +144,7 @@
     const scrollTop = viewport.scrollTop;
     const old_start = start;
     for (let v = 0; v < rows.length; v += 1) {
-      height_map[start + v] = itemHeight || rows[v].offsetHeight;
+      height_map[start + v] = item_height || rows[v].offsetHeight;
     }
     let i = 0;
     let y = 0;
@@ -165,7 +176,7 @@
       for (let i = start; i < old_start; i += 1) {
         if (rows[i - start]) {
           expected_height += height_map[i];
-          actual_height += itemHeight || rows[i - start].offsetHeight;
+          actual_height += item_height || rows[i - start].offsetHeight;
         }
       }
       const d = actual_height - expected_height;
@@ -176,6 +187,9 @@
       if (items_count !== items.length) {
         items_count = items.length;
         await tick();
+        /**
+         * Fired when the list reaches `ending_threshold` items before the end of the list.
+         */
         fire("end", { start, end });
       }
     }

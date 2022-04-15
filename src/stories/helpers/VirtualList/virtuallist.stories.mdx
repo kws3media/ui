@@ -12,14 +12,15 @@ import Version from "~/version.mdx";
 import { VirtualList } from "@kws3/ui";
 import VirtualListDecorator from "./VirtualList.svelte";
 import { action } from "@storybook/addon-actions";
-const response = require("./data.json");
+
 
 export let args = {
-  items: response.records,
+  items: [],
   start: 0,
   end: 0,
-  height: "100%",
-  itemHeight: "auto",
+  height: "600",
+  item_height: null,
+  class:""
 };
 
 <Version />
@@ -43,6 +44,9 @@ export let args = {
     {(args) => ({
       Component: VirtualListDecorator,
       props: args,
+      on: {
+        end : action("End Readched")
+      }
     })}
   </Story>
 </Canvas>
