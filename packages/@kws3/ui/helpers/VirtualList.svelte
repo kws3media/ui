@@ -171,6 +171,14 @@
       const d = actual_height - expected_height;
       viewport.scrollTo(0, scrollTop + d);
     }
+    // fire on:end event if we scrolled past the end of the list
+    if (end > items.length - ending_threshold) {
+      if (items_count !== items.length) {
+        items_count = items.length;
+        await tick();
+        fire("end", { start, end });
+      }
+    }
   }
 
   const resize = () => {
