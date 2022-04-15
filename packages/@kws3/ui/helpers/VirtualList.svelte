@@ -7,11 +7,11 @@
   @param {number | null} [item_height=null] - Height of each list item. If not set, height will be calculated automatically based on each item's offsetHeight, Default: `null`
   @param {number} [start=0] - First item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end=0] - Last item index rendered inside viewport - readonly, Default: `0`
-  @param {number} [ending_threshold=10] - Threshold from last item index for firing `end` event, Default: `10`
+  @param {number} [end_threshold=10] - `end` event will be fired when the list reaches this many items before the end of the list., Default: `10`
   @param {string} [class=""] - CSS classes for scroller container, Default: `""`
 
   ### Events
-  - `end` - Fired when the list reaches `ending_threshold` items before the end of the list.
+  - `end` - Fired when the list reaches `end_threshold` items before the end of the list.
 
   ### Slots
   - `<slot name="default" {item} {index} />`
@@ -94,9 +94,9 @@
      */
     end = 0,
     /**
-     *  Threshold from last item index for firing `end` event
+     *  `end` event will be fired when the list reaches this many items before the end of the list.
      */
-    ending_threshold = 10;
+    end_threshold = 10;
 
   /**
    * CSS classes for scroller container
@@ -192,12 +192,12 @@
       viewport.scrollTo(0, scrollTop + d);
     }
     // fire on:end event if we scrolled past the end of the list
-    if (end > items.length - ending_threshold) {
+    if (end > items.length - end_threshold) {
       if (items_count !== items.length) {
         items_count = items.length;
         await tick();
         /**
-         * Fired when the list reaches `ending_threshold` items before the end of the list.
+         * Fired when the list reaches `end_threshold` items before the end of the list.
          */
         fire("end", { start, end });
       }

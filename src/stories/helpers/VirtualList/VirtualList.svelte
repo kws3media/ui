@@ -10,6 +10,7 @@
         items={_items}
         {height}
         {item_height}
+        {end_threshold}
         bind:start
         bind:end
         let:item
@@ -38,7 +39,8 @@
   export let start = 0,
     end = 0,
     height = "600",
-    item_height = null;
+    item_height = null,
+    end_threshold = 10;
 
   let klass = "";
   export { klass as class };
