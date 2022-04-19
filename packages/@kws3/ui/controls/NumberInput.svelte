@@ -21,10 +21,9 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon, Default: `"success"`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
   @param {boolean} [input_only=false] - Show input without controls, Default: `false`
+  @param {boolean} [force_integer=false] - Prevent decimal numbers such as `1.5`, Default: `false`
 
   ### Events
-  - `focus` - Triggered when the input is focused and input_only = true
-  - `blur` - Triggered when the input is blurred and input_only = true
   - `change` - Triggered when value changes
 
 -->
@@ -172,7 +171,11 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     /**
      * Show input without controls
      */
-    input_only = false;
+    input_only = false,
+    /**
+     * Prevent decimal numbers such as `1.5`
+     */
+    force_integer = false;
 
   let _has_focus = false,
     _old_value = null;
@@ -210,6 +213,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     if (_old_value == null) _old_value = value;
 
     if (typeof value == "undefined" || value === null) value = min;
+
+    if (force_integer) value = Math.floor(Number(value));
 
     if (value < min) value = min;
     if (value > max) value = max;
