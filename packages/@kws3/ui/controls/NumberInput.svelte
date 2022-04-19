@@ -20,25 +20,28 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {string} [plus_icon="plus"] - Name of the icon that is to be displayed in the plus button, Default: `"plus"`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon, Default: `"success"`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
+  @param {boolean} [input_only=false] - Show input without controls, Default: `false`
 
   ### Events
   - `change` - Triggered when value changes
 
 -->
 <div class="field has-addons">
-  <div class="control">
-    <button
-      type="button"
-      class="button is-{size} is-{minus_button_color}"
-      style="box-shadow:none;"
-      on:click={count(-1)}
-      disabled={disabled || value <= min}>
-      <Icon
-        icon={minus_icon}
-        size="small"
-        class="has-text-{minus_icon_color}" />
-    </button>
-  </div>
+  {#if !input_only}
+    <div class="control">
+      <button
+        type="button"
+        class="button is-{size} is-{minus_button_color}"
+        style="box-shadow:none;"
+        on:click={count(-1)}
+        disabled={disabled || value <= min}>
+        <Icon
+          icon={minus_icon}
+          size="small"
+          class="has-text-{minus_icon_color}" />
+      </button>
+    </div>
+  {/if}
   <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
     <input
       data-testid="input"
@@ -55,16 +58,21 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
       on:blur={isBlurred()}
       on:focus={isFocused()} />
   </div>
-  <div class="control">
-    <button
-      type="button"
-      class="button is-{size} is-{plus_button_color}"
-      style="box-shadow:none;"
-      on:click|preventDefault={count(+1)}
-      disabled={disabled || value >= max}>
-      <Icon icon={plus_icon} size="small" class="has-text-{plus_icon_color}" />
-    </button>
-  </div>
+  {#if !input_only}
+    <div class="control">
+      <button
+        type="button"
+        class="button is-{size} is-{plus_button_color}"
+        style="box-shadow:none;"
+        on:click|preventDefault={count(+1)}
+        disabled={disabled || value >= max}>
+        <Icon
+          icon={plus_icon}
+          size="small"
+          class="has-text-{plus_icon_color}" />
+      </button>
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -158,7 +166,11 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      * Color of the Plus Button
      * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
-    plus_button_color = "";
+    plus_button_color = "",
+    /**
+     * Show input without controls
+     */
+    input_only = false;
 
   let _has_focus = false,
     _old_value = null;
