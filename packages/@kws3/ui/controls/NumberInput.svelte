@@ -51,7 +51,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
       type="number"
       min
       max
-      step
+      {step}
       {disabled}
       readonly={!typeable}
       bind:value
