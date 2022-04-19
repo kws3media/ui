@@ -24,6 +24,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {boolean} [force_integer=false] - Prevent decimal numbers such as `1.5`, Default: `false`
 
   ### Events
+  - `focus` - Triggered when the input is focused
+  - `blur` - Triggered when the input is blurred
   - `change` - Triggered when value changes
 
 -->
@@ -189,18 +191,18 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   function isFocused(e) {
     _has_focus = true;
     /**
-     * Triggered when the input is focused and input_only = true
+     * Triggered when the input is focused
      */
-    input_only && fire("focus", e);
+    fire("focus", e);
   }
 
   function isBlurred(e) {
     validateInput();
     _has_focus = false;
     /**
-     * Triggered when the input is blurred and input_only = true
+     * Triggered when the input is blurred
      */
-    input_only && fire("blur", e);
+    fire("blur", e);
   }
 
   const count = (i) => () => {
