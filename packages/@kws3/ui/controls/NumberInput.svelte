@@ -56,7 +56,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
       readonly={!typeable}
       bind:value
       on:blur={isBlurred()}
-      on:focus={isFocused()} />
+      on:focus={(event) => isFocused(event)} />
   </div>
   {#if !input_only}
     <div class="control">
@@ -181,7 +181,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     validateInput();
   });
 
-  function isFocused() {
+  function isFocused(e) {
+    input_only && e && e.target && e.target.select();
     _has_focus = true;
   }
 
