@@ -23,6 +23,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {boolean} [input_only=false] - Show input without controls, Default: `false`
 
   ### Events
+  - `focus` - Triggered when the input is focused and input_only = true
+  - `blur` - Triggered when the input is blurred and input_only = true
   - `change` - Triggered when value changes
 
 -->
@@ -55,7 +57,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
       {disabled}
       readonly={!typeable}
       bind:value
-      on:blur={isBlurred()}
+      on:blur={(event) => isBlurred(event)}
       on:focus={(event) => isFocused(event)} />
   </div>
   {#if !input_only}
@@ -182,13 +184,20 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   });
 
   function isFocused(e) {
-    input_only && e && e.target && e.target.select();
     _has_focus = true;
+    /**
+     * Triggered when the input is focused and input_only = true
+     */
+    input_only && fire("focus", e);
   }
 
-  function isBlurred() {
+  function isBlurred(e) {
     validateInput();
     _has_focus = false;
+    /**
+     * Triggered when the input is blurred and input_only = true
+     */
+    input_only && fire("blur", e);
   }
 
   const count = (i) => () => {
