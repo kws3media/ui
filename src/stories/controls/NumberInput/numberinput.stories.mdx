@@ -6,6 +6,8 @@ import { action } from '@storybook/addon-actions';
 import playInteractions from './numberinput.play.js';
 
 export let args={
+  class:"",
+  style:"",
   input : null,
   value : 0,
   step : 1,
@@ -67,7 +69,9 @@ export let args={
     Component: NumberInput,
     props: args,
     on: {
-      change : action("Changed")
+      change : action("Changed"),
+      focus : action("Focused"),
+      blur : action("Blurred")
     },
   })}
   </Story>

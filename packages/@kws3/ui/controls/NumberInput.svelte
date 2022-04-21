@@ -22,6 +22,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
   @param {boolean} [input_only=false] - Show input without controls, Default: `false`
   @param {boolean} [force_integer=false] - Prevent decimal numbers such as `1.5`, Default: `false`
+  @param {string} [style=""] - Inline CSS for component, Default: `""`
+  @param {string} [class=""] - CSS classes for component, Default: `""`
 
   ### Events
   - `change` - Triggered when value changes
@@ -29,8 +31,27 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   - `focus`
 
 -->
-<div class="field has-addons">
-  {#if !input_only}
+{#if input_only}
+  <input
+    {style}
+    data-testid="input"
+    class="input has-text-centered {klass} is-{size} is-{value < min ||
+    value > max
+      ? 'danger'
+      : ''}"
+    type="number"
+    min
+    max
+    {step}
+    {disabled}
+    readonly={!typeable}
+    bind:value
+    on:blur={isBlurred}
+    on:blur
+    on:focus={isFocused}
+    on:focus />
+{:else}
+  <div class="field has-addons {klass}" {style}>
     <div class="control">
       <button
         type="button"
@@ -44,26 +65,24 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
           class="has-text-{minus_icon_color}" />
       </button>
     </div>
-  {/if}
-  <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
-    <input
-      data-testid="input"
-      class="input has-text-centered is-{size} is-{value < min || value > max
-        ? 'danger'
-        : ''}"
-      type="number"
-      min
-      max
-      {step}
-      {disabled}
-      readonly={!typeable}
-      bind:value
-      on:blur={isBlurred}
-      on:blur
-      on:focus={isFocused}
-      on:focus />
-  </div>
-  {#if !input_only}
+    <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
+      <input
+        data-testid="input"
+        class="input has-text-centered is-{size} is-{value < min || value > max
+          ? 'danger'
+          : ''}"
+        type="number"
+        min
+        max
+        {step}
+        {disabled}
+        readonly={!typeable}
+        bind:value
+        on:blur={isBlurred}
+        on:blur
+        on:focus={isFocused}
+        on:focus />
+    </div>
     <div class="control">
       <button
         type="button"
@@ -77,8 +96,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
           class="has-text-{plus_icon_color}" />
       </button>
     </div>
-  {/if}
-</div>
+  </div>
+{/if}
 
 <style>
   input[type="number"]::-webkit-inner-spin-button,
@@ -179,7 +198,17 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     /**
      * Prevent decimal numbers such as `1.5`
      */
-    force_integer = false;
+    force_integer = false,
+    /**
+     * Inline CSS for component
+     */
+    style = "";
+
+  /**
+   * CSS classes for component
+   */
+  let klass = "";
+  export { klass as class };
 
   let _has_focus = false,
     _old_value = null;
