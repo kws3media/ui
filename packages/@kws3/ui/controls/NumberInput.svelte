@@ -24,9 +24,9 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {boolean} [force_integer=false] - Prevent decimal numbers such as `1.5`, Default: `false`
 
   ### Events
-  - `focus` - Triggered when the input is focused
-  - `blur` - Triggered when the input is blurred
   - `change` - Triggered when value changes
+  - `blur`
+  - `focus`
 
 -->
 <div class="field has-addons">
