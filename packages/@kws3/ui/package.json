@@ -25,7 +25,6 @@
   "dependencies": {
     "apexcharts": "3.33.2",
     "flatpickr": "^4.5.2",
-    "fuzzysearch": "^1.0.3",
     "svelte-portal": "^2.1.2",
     "text-mask-core": "^5.1.2",
     "tippy.js": "^6.3.1"

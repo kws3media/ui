@@ -160,7 +160,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzysearch from "fuzzysearch";
+  import fuzzysearch from "@kws3/ui/utils/fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
