@@ -105,6 +105,10 @@ while more items are loading
      */
     end = 0,
     /**
+     * Render more items inside elements - readonly
+     */
+    padding_items_count = 0,
+    /**
      *  `end` event will be fired when the list reaches this many items before the end of the list.
      */
     end_threshold = 10,
@@ -157,7 +161,7 @@ while more items are loading
       content_height += row_height;
       i += 1;
     }
-    end = i;
+    end = i + padding_items_count;
     const remaining = items.length - end;
     average_height = (top + content_height) / end;
     bottom = remaining * average_height;
@@ -187,7 +191,7 @@ while more items are loading
       i += 1;
       if (y > scrollTop + viewport_height) break;
     }
-    end = i;
+    end = i + padding_items_count;
     const remaining = items.length - end;
     average_height = y / end;
     while (i < items.length) height_map[i++] = average_height;
