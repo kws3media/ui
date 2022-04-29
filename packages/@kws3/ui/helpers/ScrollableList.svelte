@@ -105,13 +105,13 @@ while more items are loading
      */
     end = 0,
     /**
-     * Render more items inside elements - readonly
-     */
-    padding_items_count = 0,
-    /**
      *  `end` event will be fired when the list reaches this many items before the end of the list.
      */
     end_threshold = 10,
+    /**
+     *  items to render on top and bottom of rendered items as padding
+     */
+    padding_threshold = 5,
     /**
      * Inline CSS for scroller container
      */
@@ -130,13 +130,16 @@ while more items are loading
     contents,
     viewport_height = 0,
     visible,
+    padStart,
     mounted,
     top = 0,
     bottom = 0,
     average_height,
     items_count = 0;
 
-  $: visible = items.slice(start, end).map((data, i) => {
+  $: padStart = start > padding_threshold ? start - padding_threshold : start;
+  $: padEnd = end + padding_threshold;
+  $: visible = items.slice(padStart, padEnd).map((data, i) => {
     return { index: i + start, data };
   });
 
@@ -161,7 +164,7 @@ while more items are loading
       content_height += row_height;
       i += 1;
     }
-    end = i + padding_items_count;
+    end = i;
     const remaining = items.length - end;
     average_height = (top + content_height) / end;
     bottom = remaining * average_height;
@@ -191,7 +194,7 @@ while more items are loading
       i += 1;
       if (y > scrollTop + viewport_height) break;
     }
-    end = i + padding_items_count;
+    end = i;
     const remaining = items.length - end;
     average_height = y / end;
     while (i < items.length) height_map[i++] = average_height;
