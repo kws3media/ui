@@ -17,7 +17,7 @@
   {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
   <ul class="tokens tags {summary_mode ? 'has-addons' : ''}">
-    {#if single}<span>{singleVisibleValue}</span>{/if}
+    <span>{singleVisibleValue}</span>
     <input
       class="input is-{size}"
       bind:this={input}
