@@ -561,11 +561,7 @@
   }
 
   function handleOptionMouseDown(option) {
-    if (single) {
-      add(option);
-    } else {
-      isSelected(option) ? remove(option) : add(option);
-    }
+    add(option);
   }
 
   const removeAll = () => {
