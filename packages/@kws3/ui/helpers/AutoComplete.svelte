@@ -419,51 +419,48 @@
 
     let isAlreadySelected = isSelected(token);
 
-    if (single) {
-      if (!isAlreadySelected) {
-        value = token[used_value_key];
-        fire("change", { token, type: `add` });
-        //clear dropdown results in asyncMode
-        if (asyncMode) {
-          clearDropDownResults();
-        }
-      }
-      setOptionsVisible(false);
-    }
-
-    if (!isAlreadySelected && !single && (max === null || value.length < max)) {
-      if (asyncMode) {
-        //Do not filter invalid options, as they are async and might not be invalid
-        //but ensure they are unique
-        value = [...value, token[used_value_key]].filter(
-          (v, i, a) => a.indexOf(v) === i
-        );
-      } else {
-        //attach to value array while filtering out invalid values
-        value = [...value, token[used_value_key]].filter((v) => {
-          return normalisedOptions.filter((nv) => nv[used_value_key] === v)
-            .length;
-        });
-      }
-
-      searchText = ""; // reset search string on selection
-
+    if (!isAlreadySelected) {
+      value = token[used_value_key];
+      fire("change", { token, type: `add` });
       //clear dropdown results in asyncMode
       if (asyncMode) {
         clearDropDownResults();
       }
-
-      if (value && value.length && value.length === max) {
-        input && input.blur();
-        setOptionsVisible(false);
-      }
-      /**
-       * Triggered when an item is added from dropdown list
-       */
-      fire("add", { token });
-
-      fire("change", { token, type: `add` });
     }
+
+    // if (!isAlreadySelected && !single && (max === null || value.length < max)) {
+    //   if (asyncMode) {
+    //     //Do not filter invalid options, as they are async and might not be invalid
+    //     //but ensure they are unique
+    //     value = [...value, token[used_value_key]].filter(
+    //       (v, i, a) => a.indexOf(v) === i
+    //     );
+    //   } else {
+    //     //attach to value array while filtering out invalid values
+    //     value = [...value, token[used_value_key]].filter((v) => {
+    //       return normalisedOptions.filter((nv) => nv[used_value_key] === v)
+    //         .length;
+    //     });
+    //   }
+
+    //   searchText = ""; // reset search string on selection
+
+    //   //clear dropdown results in asyncMode
+    //   if (asyncMode) {
+    //     clearDropDownResults();
+    //   }
+
+    //   if (value && value.length && value.length === max) {
+    //     input && input.blur();
+    //     setOptionsVisible(false);
+    //   }
+    //   /**
+    //    * Triggered when an item is added from dropdown list
+    //    */
+    //   fire("add", { token });
+
+    //   fire("change", { token, type: `add` });
+    // }
   }
 
   function remove(token) {
