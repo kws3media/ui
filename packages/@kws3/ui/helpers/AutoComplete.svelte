@@ -17,14 +17,6 @@
   {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
   <ul class="tokens tags {summary_mode ? 'has-addons' : ''}">
-    {#if !single && selectedOptions && selectedOptions.length > 0}
-      <li class="tag summary-count is-{size} is-{color || 'primary'}">
-        {selectedOptions.length}
-      </li>
-      <li class="tag is-{size} summary-text  is-{color || 'primary'} is-light">
-        Item{selectedOptions.length === 1 ? "" : "s"} selected
-      </li>
-    {/if}
     {#if single}<span>{singleVisibleValue}</span>{/if}
     <input
       class="input is-{size}"
