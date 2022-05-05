@@ -574,7 +574,7 @@
   const removeAll = () => {
     fire("remove", { token: value });
     fire("change", { token: value, type: `remove` });
-    value = single ? null : [];
+    value = null;
     searchText = "";
     if (asyncMode) {
       clearDropDownResults();
