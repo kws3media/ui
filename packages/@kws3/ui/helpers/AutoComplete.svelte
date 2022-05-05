@@ -386,11 +386,11 @@
       modifiers: [sameWidthPopperModifier],
     });
 
-    //normalize value for single versus multiselect
+    //normalize value for single
     if (value === null || typeof value == "undefined") {
-      value = single ? null : [];
+      value = null;
     }
-
+    //TODO  fix async mode
     if (asyncMode) {
       // initally on async mode options are empty
       // so we need to fill selectedOptions with value if value is avaliable
