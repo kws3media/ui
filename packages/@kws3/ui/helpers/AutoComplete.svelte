@@ -47,10 +47,7 @@
   {/if}
   {#if rootContainer}
     <div class="kws-searchableselect" use:portal={dropdown_portal}>
-      <ul
-        bind:this={dropdown}
-        class="options {single ? 'is-single' : 'is-multi'}"
-        class:hidden={!showOptions}>
+      <ul bind:this={dropdown} class="options" class:hidden={!showOptions}>
         {#each filteredOptions as option}
           <li
             on:mousedown|preventDefault|stopPropagation={() =>
@@ -284,12 +281,7 @@
     activeOption = filteredOptions[0];
 
   //TODO: optimise isSelected function
-  $: isSelected = (option) => {
-    if (single) return matchesValue(value, option);
-    if (!(value && value.length > 0) || value === "") return false;
-    // nothing is selected if `value` is the empty array or string
-    else return value.some((v) => matchesValue(v, option));
-  };
+  $: isSelected = (option) => matchesValue(value, option);
 
   $: singleVisibleValue =
     !searching && single && hasValue && selectedOptions && selectedOptions[0]
@@ -590,7 +582,7 @@
   };
 
   const matchesValue = (_value, _option) => {
-    if (_value === null || typeof _value == "undefined") {
+    if (_value === null || _value === "" || typeof _value == "undefined") {
       return false;
     }
     return (
