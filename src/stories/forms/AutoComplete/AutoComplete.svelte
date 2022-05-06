@@ -34,7 +34,7 @@
 
   import { onMount } from "svelte";
 
-  import { brands_string_only } from "../data.js";
+  import { brands_string_only } from "../Select/data.js";
 
   onMount(() => {
     activateTooltips("#ss_container");
