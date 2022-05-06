@@ -335,29 +335,9 @@
   }
 
   function fillSelectedOptions() {
-    if (single) {
-      selectedOptions = normalisedOptions.filter(
-        (v) => `${v[used_value_key]}` === `${value}`
-      );
-    } else {
-      let _normalisedOptions = asyncMode
-        ? [...selectedOptions, ...normalisedOptions].filter(
-            //de-dupe by `used_value_key` when in asyncMode
-            (value, idx, self) =>
-              idx ===
-              self.findIndex((v) => v[used_value_key] === value[used_value_key])
-          )
-        : normalisedOptions;
-
-      selectedOptions = _normalisedOptions
-        .filter(
-          (v) => value && value.some((vl) => `${v[used_value_key]}` === `${vl}`)
-        )
-        .sort(
-          (a, b) =>
-            value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
-        );
-    }
+    selectedOptions = normalisedOptions.filter(
+      (v) => `${v[used_value_key]}` === `${value}`
+    );
 
     POPPER && POPPER.update();
   }
