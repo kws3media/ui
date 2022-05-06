@@ -49,6 +49,7 @@ export { default as Transition } from "./transitions/Transition.svelte";
 export { default as SlidingPane } from "./sliding-panes/SlidingPane.svelte";
 export { default as SlidingPaneSet } from "./sliding-panes/SlidingPaneSet.svelte";
 
+export { default as AutoComplete } from "./forms/AutoComplete.svelte";
 export { default as SearchableSelect } from "./forms/select/SearchableSelect.svelte";
 export { default as MultiSelect } from "./forms/select/MultiSelect.svelte";
 export { default as MaskedInput } from "./forms/MaskedInput.svelte";
