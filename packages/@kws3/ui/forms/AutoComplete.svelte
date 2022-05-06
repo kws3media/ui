@@ -236,13 +236,7 @@
 
   $: single = max === 1;
   $: asyncMode = search && typeof search === "function";
-  $: hasValue = single
-    ? value !== null && typeof value != "undefined"
-      ? true
-      : false
-    : value && value.length
-    ? true
-    : false;
+  $: hasValue = value !== null && typeof value != "undefined";
   $: _placeholder = hasValue ? "" : placeholder;
 
   // eslint-disable-next-line no-redeclare
