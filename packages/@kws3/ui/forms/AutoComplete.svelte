@@ -443,26 +443,6 @@
     // }
   }
 
-  function remove(token) {
-    if (readonly || disabled || single) return;
-    value = value.filter
-      ? value.filter((item) => !matchesValue(item, token))
-      : value;
-
-    //clear dropdown results in asyncMode
-    if (asyncMode) {
-      clearDropDownResults();
-    }
-    /**
-     * Triggered when an item is removed from selected Items
-     */
-    fire("remove", { token });
-    /**
-     * Triggered when the value changes
-     */
-    fire("change", { token, type: `remove` });
-  }
-
   function blurEvent() {
     /**
      * Triggered when the input loses focus
@@ -485,7 +465,7 @@
 
   function handleKeydown(event) {
     if (event.key === `Escape`) {
-      searchText = "";
+      // searchText = "";
     } else {
       setOptionsVisible(true);
     }
