@@ -64,8 +64,7 @@
 
               Default value: `<span>{option[search_key] || option}</span>`
             --><slot
-              search_key={used_search_key}
-              {option}>{option[used_search_key] || option}</slot>
+              {option}>{option.label || option}</slot>
           </li>
         {:else}
           {#if !options_loading}
@@ -126,17 +125,6 @@
    * Used to populate the list of options in the dropdown
    */
   export let options = [];
-
-  /**
-   * If `options` is an array of objects,
-   * this property of each object will be searched
-   */
-  export let search_key = "name";
-  /**
-   * If `options` is an array of objects,
-   * this property of each object will be returned as the value
-   */
-  export let value_key = "id";
   /**
    * Async function to fetch options
    *
@@ -257,22 +245,13 @@
     : false;
   $: _placeholder = hasValue ? "" : placeholder;
 
-  //ensure search_key and value_key are no empty strings
-  $: used_search_key = search_key && search_key !== "" ? search_key : "name";
-  $: used_value_key = value_key && value_key !== "" ? value_key : "id";
-
   // eslint-disable-next-line no-redeclare
   $: shouldShowClearAll = hasValue;
 
   $: options, normaliseOptions();
-  $: normalisedOptions,
-    searchText,
-    searching,
-    used_search_key,
-    used_value_key,
-    updateFilteredOptions();
+  $: normalisedOptions, searchText, searching, updateFilteredOptions();
 
-  $: value, single, fillSelectedOptions();
+  $: value, fillSelectedOptions();
 
   $: if (
     (activeOption && !filteredOptions.includes(activeOption)) ||
@@ -284,8 +263,8 @@
   $: isSelected = (option) => matchesValue(value, option);
 
   $: singleVisibleValue =
-    !searching && single && hasValue && selectedOptions && selectedOptions[0]
-      ? selectedOptions[0][used_search_key]
+    !searching && hasValue && selectedOptions && selectedOptions[0]
+      ? selectedOptions[0].value
       : "";
 
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
@@ -317,11 +296,8 @@
       filteredOptions = normalisedOptions.slice().filter((item) => {
         // filter out items that don't match `filter`
         if (typeof item === "object") {
-          if (used_search_key) {
-            return (
-              typeof item[used_search_key] === "string" &&
-              match(filter, item[used_search_key])
-            );
+          if (item.value) {
+            return typeof item.value === "string" && match(filter, item.value);
           } else {
             for (var key in item) {
               return typeof item[key] === "string" && match(filter, item[key]);
@@ -336,7 +312,7 @@
 
   function fillSelectedOptions() {
     selectedOptions = normalisedOptions.filter(
-      (v) => `${v[used_value_key]}` === `${value}`
+      (v) => `${v.value}` === `${value}`
     );
 
     POPPER && POPPER.update();
@@ -374,11 +350,11 @@
     if (asyncMode) {
       // initally on async mode options are empty
       // so we need to fill selectedOptions with value if value is avaliable
-      options = value ? [...(single ? [value] : [...value])] : [];
+      options = value && [value];
       searching = false;
       tick().then(() => {
         normaliseOptions();
-        value = normaliseArraysToObjects(options).map((v) => v[used_value_key]);
+        value = normaliseArraysToObjects(options).map((v) => v.value);
         if (single && Array.isArray(value)) {
           value = value[0];
         }
@@ -400,7 +376,7 @@
     let isAlreadySelected = isSelected(token);
 
     if (!isAlreadySelected) {
-      value = token[used_value_key];
+      value = token.value;
       fire("change", { token, type: `add` });
       //clear dropdown results in asyncMode
       if (asyncMode) {
@@ -490,17 +466,9 @@
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else if (event.key === `Backspace`) {
-      if (single && hasValue) {
-        //for a single select
-        //if a value is already selected, backspace will clear the value
+      if (hasValue) {
         value = null;
         searchText = "";
-      } else if (!single && searchText.length === 0) {
-        //for a multi select
-        // only remove selected tags on backspace if there are any and no searchText characters remain
-        if (value && value.length > 0) {
-          value = value.slice(0, value.length - 1);
-        }
       } else {
         searching = true;
       }
@@ -538,9 +506,7 @@
     if (_value === null || _value === "" || typeof _value == "undefined") {
       return false;
     }
-    return (
-      `${_value[used_value_key] || _value}` === `${_option[used_value_key]}`
-    );
+    return `${_value.value || _value}` === `${_option.value}`;
   };
 
   const match = (needle, haystack) => {
@@ -556,8 +522,8 @@
         return item;
       }
       let __obj = {};
-      __obj[used_search_key] = item;
-      __obj[used_value_key] = item;
+      __obj.label = item;
+      __obj.value = item;
       return __obj;
     });
   };
