@@ -105,14 +105,8 @@
    *
    * This property can be bound to, to fetch the current value
    */
-  export let value = [];
-  /**
-   * Maximum number of selectable items from dropdown list.
-   *
-   * Accepts a `null` value for unlimited selected items.
-   * Or a number value
-   */
-  export let max = null;
+  export let value = "";
+
   /**
    * Placeholder text for the input
    */
@@ -160,14 +154,7 @@
    * Disables the component
    */
   export let disabled = false;
-  /**
-   * Icon used to mark selected items in dropdown list
-   */
-  export let selected_icon = "check";
-  /**
-   * Shows only the number of items selected, instead of listing all the selected items in the input.
-   */
-  export let summary_mode = false;
+
   /**
    * Message to display when no matching options are found
    */
@@ -179,10 +166,7 @@
   /**
    * Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip.
    * */
-  export let remove_btn_tip = "Remove";
-  /**
-   * Tooltip text for the Clear All button
-   */
+
   export let remove_all_tip = "Remove all";
   /**
    * Where to render the dropdown list.
@@ -202,10 +186,6 @@
 
   if (!search && (!options || !options.length))
     console.error(`Missing options`);
-
-  if (max !== null && max < 0) {
-    throw new TypeError(`max must be null or positive integer, got ${max}`);
-  }
 
   //ensure we have a root container for all our hoisitng related stuff
 
@@ -241,7 +221,6 @@
   $: options, normaliseOptions();
   $: normalisedOptions, value, searching, updateFilteredOptions();
 
-  $: value, fillSelectedOptions();
   // TODO - verufy that this is not needed anymore
   $: if (
     (activeOption && !filteredOptions.includes(activeOption)) ||
@@ -294,14 +273,6 @@
     }
   }
 
-  function fillSelectedOptions() {
-    selectedOptions = normalisedOptions.filter(
-      (v) => `${v.value}` === `${value}`
-    );
-
-    POPPER && POPPER.update();
-  }
-
   function triggerSearch(filter) {
     if (filter === "") {
       //do not trigger async search if filter is empty
@@ -342,7 +313,6 @@
         if (single && Array.isArray(value)) {
           value = value[0];
         }
-        fillSelectedOptions();
         clearDropDownResults();
       });
     }
