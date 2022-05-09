@@ -418,10 +418,9 @@
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else if (event.key === `Backspace`) {
-      if (hasValue) {
-        value = null;
-        searchText = "";
-      } else {
+      //TODO - implement default backspace
+      if (value && value.length > 0) {
+        value = value.slice(0, -1);
         searching = true;
       }
     } else {
