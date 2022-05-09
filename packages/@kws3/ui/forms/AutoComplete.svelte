@@ -13,10 +13,9 @@
     is-{size} is-{color} {klass}
   "
   class:readonly
-  class:single
   {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
-  <ul class="tokens tags {summary_mode ? 'has-addons' : ''}">
+  <ul class="tokens tags">
     <input
       class="input is-{size}"
       bind:this={input}
@@ -76,7 +75,7 @@
 </div>
 
 <script>
-  import { Icon, portal } from "@kws3/ui";
+  import { portal } from "@kws3/ui";
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
@@ -207,10 +206,8 @@
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
-    selectedOptions = [], //list of options that are selected
     options_loading = false; //indictaes whether async search function is running
 
-  $: single = max === 1;
   $: asyncMode = search && typeof search === "function";
   $: hasValue = value !== null && typeof value != "undefined";
   $: _placeholder = hasValue ? "" : placeholder;
@@ -248,7 +245,7 @@
     let filter;
 
     //so we need to check if we are actually searching
-    if (single && !searching && value) {
+    if (!searching && value) {
       filter = "";
     } else {
       filter = value.toLowerCase();
@@ -307,14 +304,14 @@
       // so we need to fill selectedOptions with value if value is avaliable
       options = value && [value];
       searching = false;
-      tick().then(() => {
-        normaliseOptions();
-        value = normaliseArraysToObjects(options).map((v) => v.value);
-        if (single && Array.isArray(value)) {
-          value = value[0];
-        }
-        clearDropDownResults();
-      });
+      // tick().then(() => {
+      //   normaliseOptions();
+      //   value = normaliseArraysToObjects(options).map((v) => v.value);
+      //   if (single && Array.isArray(value)) {
+      //     value = value[0];
+      //   }
+      //   clearDropDownResults();
+      // });
     }
 
     return () => {
@@ -385,15 +382,7 @@
       //for a single select
       //if a value is already selected,
       //ignore keys other than navigation, enter and backspace
-      if (single) {
-        if (hasValue) {
-          event.preventDefault();
-        } else {
-          searching = true;
-        }
-      } else {
-        searching = true;
-      }
+      searching = true;
     }
   }
 
