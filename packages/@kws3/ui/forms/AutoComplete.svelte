@@ -57,12 +57,10 @@
             }}
             class:selected={isSelected(option)}
             class:active={activeOption === option}>
-            <span class="kws-selected-icon"
-              ><Icon icon={selected_icon} size="small" /></span
-            ><!--
+            <!--
               Slot containing text for each selectable item
 
-              Default value: `<span>{option[search_key] || option}</span>`
+              Default value: `<span>{option.label|| option}</span>`
             --><slot
               {option}>{option.label || option}</slot>
           </li>
