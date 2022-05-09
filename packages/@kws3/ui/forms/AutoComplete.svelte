@@ -7,7 +7,7 @@
 <div
   bind:this={el}
   class="
-    kws-searchableselect input
+     kws-autocomplete input
     {disabled ? 'is-disabled' : ''}
     {readonly ? 'is-readonly' : ''}
     is-{size} is-{color} {klass}
