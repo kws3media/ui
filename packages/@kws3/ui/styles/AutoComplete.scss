@@ -111,34 +111,34 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
     li {
       padding: 0.3em 0.5em;
       position: relative;
-      padding-left: 2em;
+      // padding-left: 2em;
       word-break: break-all;
-      &:before,
-      .kws-autocompleteed-icon {
-        position: absolute;
-        width: 1em;
-        height: 1em;
-        top: calc(50% - 0.5em);
-        left: 0.5em;
-        content: "";
-        display: inline-block;
-      }
-      &:before {
-        border: 0.05em solid currentColor;
-        border-radius: 0.14em;
-      }
-      .kws-autocompleteed-icon {
-        display: none;
-        .icon {
-          align-items: center;
-          width: 1em !important;
-          height: 1em !important;
-          .icon-i {
-            font-size: 0.7em;
-            line-height: 1.5;
-          }
-        }
-      }
+      // &:before,
+      // .kws-autocompleteed-icon {
+      //   position: absolute;
+      //   width: 1em;
+      //   height: 1em;
+      //   top: calc(50% - 0.5em);
+      //   left: 0.5em;
+      //   content: "";
+      //   display: inline-block;
+      // }
+      // &:before {
+      //   border: 0.05em solid currentColor;
+      //   border-radius: 0.14em;
+      // }
+      // .kws-autocompleteed-icon {
+      //   display: none;
+      //   .icon {
+      //     align-items: center;
+      //     width: 1em !important;
+      //     height: 1em !important;
+      //     .icon-i {
+      //       font-size: 0.7em;
+      //       line-height: 1.5;
+      //     }
+      //   }
+      // }
       &.selected {
         color: $kws-autocomplete-selected-color;
         background: $kws-autocomplete-selected-background;

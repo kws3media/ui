@@ -46,7 +46,7 @@
       style={shouldShowClearAll ? "" : "display: none;"} />
   {/if}
   {#if rootContainer}
-    <div class="kws-searchableselect" use:portal={dropdown_portal}>
+    <div class="kws-autocomplete" use:portal={dropdown_portal}>
       <ul bind:this={dropdown} class="options" class:hidden={!showOptions}>
         {#each filteredOptions as option}
           <li
