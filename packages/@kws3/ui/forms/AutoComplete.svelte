@@ -254,10 +254,7 @@
   //TODO: optimise isSelected function
   $: isSelected = (option) => matchesValue(value, option);
 
-  $: singleVisibleValue =
-    !searching && hasValue && selectedOptions && selectedOptions[0]
-      ? selectedOptions[0].value
-      : "";
+  $: visibleValue = value ? value : "";
 
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
