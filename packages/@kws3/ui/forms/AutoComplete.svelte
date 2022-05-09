@@ -252,8 +252,6 @@
   //TODO: optimise isSelected function
   $: isSelected = (option) => matchesValue(value, option);
 
-  $: visibleValue = value ? value : "";
-
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
   //convert arrays of strings into normalised arrays of objects
@@ -436,7 +434,7 @@
   const removeAll = () => {
     fire("remove", { token: value });
     fire("change", { token: value, type: `remove` });
-    value = null;
+    value = "";
     if (asyncMode) {
       clearDropDownResults();
     }
