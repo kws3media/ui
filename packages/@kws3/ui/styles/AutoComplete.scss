@@ -8,8 +8,6 @@ $kws-autocomplete-disabled-border-color: $input-disabled-border-color !default;
 $kws-autocomplete-disabled-color: $input-disabled-color !default;
 $kws-autocomplete-selecting-color: $primary-invert !default;
 $kws-autocomplete-selecting-background: $primary !default;
-$kws-autocomplete-selected-color: $primary-dark !default;
-$kws-autocomplete-selected-background: $primary-light !default;
 
 $__modal-z: 41 !default;
 @if $modal-z {
@@ -46,34 +44,6 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
     flex-wrap: wrap;
     flex: 1;
     overflow: hidden;
-    &.tags {
-      margin: 0;
-      margin-top: -0.25rem;
-      margin-bottom: -0.25rem;
-      margin-left: -0.25rem;
-      margin-right: 0.25rem;
-      .tag.is-small {
-        font-size: 0.6rem;
-        .delete.is-small {
-          height: 14px;
-          max-height: 14px;
-          max-width: 14px;
-          min-height: 14px;
-          min-width: 14px;
-          width: 14px;
-        }
-      }
-    }
-    & > li.tag {
-      margin: 0.25rem !important;
-    }
-    li.tag.summary-count {
-      font-weight: bold;
-      margin-right: 0 !important;
-    }
-    li.tag.summary-text {
-      margin-left: 0 !important;
-    }
   }
 
   input {
@@ -111,41 +81,7 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
     li {
       padding: 0.3em 0.5em;
       position: relative;
-      // padding-left: 2em;
       word-break: break-all;
-      // &:before,
-      // .kws-autocompleteed-icon {
-      //   position: absolute;
-      //   width: 1em;
-      //   height: 1em;
-      //   top: calc(50% - 0.5em);
-      //   left: 0.5em;
-      //   content: "";
-      //   display: inline-block;
-      // }
-      // &:before {
-      //   border: 0.05em solid currentColor;
-      //   border-radius: 0.14em;
-      // }
-      // .kws-autocompleteed-icon {
-      //   display: none;
-      //   .icon {
-      //     align-items: center;
-      //     width: 1em !important;
-      //     height: 1em !important;
-      //     .icon-i {
-      //       font-size: 0.7em;
-      //       line-height: 1.5;
-      //     }
-      //   }
-      // }
-      &.selected {
-        color: $kws-autocomplete-selected-color;
-        background: $kws-autocomplete-selected-background;
-        .kws-autocompleteed-icon {
-          display: inline-flex;
-        }
-      }
       &.active {
         // keyboard focused item
         color: $kws-autocomplete-selecting-color;

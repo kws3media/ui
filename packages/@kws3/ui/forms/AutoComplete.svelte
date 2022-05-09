@@ -15,7 +15,7 @@
   class:readonly
   {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
-  <ul class="tokens tags">
+  <ul class="tokens">
     <input
       class="input is-{size}"
       bind:this={input}
@@ -53,7 +53,6 @@
             on:mouseenter|preventDefault|stopPropagation={() => {
               activeOption = option;
             }}
-            class:selected={isSelected(option)}
             class:active={activeOption === option}>
             <!--
               Slot containing text for each selectable item
