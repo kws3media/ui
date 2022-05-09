@@ -17,14 +17,13 @@
   {style}
   on:click|stopPropagation={() => setOptionsVisible(true)}>
   <ul class="tokens tags {summary_mode ? 'has-addons' : ''}">
-    <span>{visibleValue}</span>
     <input
       class="input is-{size}"
       bind:this={input}
       autocomplete="off"
       {disabled}
       {readonly}
-      bind:value={searchText}
+      bind:value
       on:click|self|stopPropagation={() => setOptionsVisible(true)}
       on:keydown={handleKeydown}
       on:focus={() => setOptionsVisible(true)}
@@ -67,7 +66,7 @@
         {:else}
           {#if !options_loading}
             <li class="no-options">
-              {searchText ? no_options_msg : async_search_prompt}
+              {value ? no_options_msg : async_search_prompt}
             </li>
           {/if}
         {/each}
@@ -224,7 +223,6 @@
     input, //the textbox to type in
     POPPER,
     activeOption = "",
-    searchText = "",
     searching = false,
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
@@ -241,13 +239,13 @@
   $: shouldShowClearAll = hasValue;
 
   $: options, normaliseOptions();
-  $: normalisedOptions, searchText, searching, updateFilteredOptions();
+  $: normalisedOptions, value, searching, updateFilteredOptions();
 
   $: value, fillSelectedOptions();
-
+  // TODO - verufy that this is not needed anymore
   $: if (
     (activeOption && !filteredOptions.includes(activeOption)) ||
-    (!activeOption && searchText)
+    (!activeOption && value)
   )
     activeOption = filteredOptions[0];
 
@@ -272,12 +270,11 @@
   function updateFilteredOptions() {
     let filter;
 
-    //when in single mode, searchText contains the selected value
     //so we need to check if we are actually searching
-    if (single && !searching) {
+    if (single && !searching && value) {
       filter = "";
     } else {
-      filter = searchText.toLowerCase();
+      filter = value.toLowerCase();
     }
     if (asyncMode && searching) {
       debouncedTriggerSearch(filter);
@@ -385,19 +382,12 @@
     if (show) {
       input && input.focus();
     } else {
-      searchText = "";
       searching = false;
     }
     POPPER && POPPER.update();
   }
 
   function handleKeydown(event) {
-    if (event.key === `Escape`) {
-      searchText = "";
-    } else {
-      setOptionsVisible(true);
-    }
-
     if (event.key === `Enter`) {
       event.preventDefault();
       if (activeOption) {
@@ -447,7 +437,6 @@
     fire("remove", { token: value });
     fire("change", { token: value, type: `remove` });
     value = null;
-    searchText = "";
     if (asyncMode) {
       clearDropDownResults();
     }
