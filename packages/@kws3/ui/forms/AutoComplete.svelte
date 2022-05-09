@@ -331,6 +331,7 @@
     if (asyncMode) {
       clearDropDownResults();
     }
+    // setOptionsVisible(false);
   }
 
   function blurEvent() {
@@ -355,6 +356,7 @@
   function handleKeydown(event) {
     if (event.key === `Enter`) {
       event.preventDefault();
+
       if (activeOption) {
         handleOptionMouseDown(activeOption);
       } else {
@@ -372,16 +374,7 @@
           activeOption = filteredOptions[0];
         else activeOption = filteredOptions[newActiveIdx];
       }
-    } else if (event.key === `Backspace`) {
-      //TODO - implement default backspace
-      if (value && value.length > 0) {
-        value = value.slice(0, -1);
-        searching = true;
-      }
     } else {
-      //for a single select
-      //if a value is already selected,
-      //ignore keys other than navigation, enter and backspace
       searching = true;
     }
   }
