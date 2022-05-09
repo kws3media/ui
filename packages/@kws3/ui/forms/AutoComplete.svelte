@@ -253,20 +253,28 @@
     if (asyncMode && searching) {
       debouncedTriggerSearch(filter);
     } else {
-      filteredOptions = normalisedOptions.slice().filter((item) => {
-        // filter out items that don't match `filter`
-        if (typeof item === "object") {
-          if (item.value) {
-            return typeof item.value === "string" && match(filter, item.value);
-          } else {
-            for (var key in item) {
-              return typeof item[key] === "string" && match(filter, item[key]);
+      let cache = {};
+      filter.split(" ").forEach((word, idx) => {
+        let Opts = normalisedOptions.slice().filter((item) => {
+          // filter out items that don't match `filter`
+          if (typeof item === "object") {
+            if (item.value) {
+              return typeof item.value === "string" && match(word, item.value);
+            } else {
+              for (var key in item) {
+                return typeof item[key] === "string" && match(word, item[key]);
+              }
             }
+          } else {
+            return match(word, item);
           }
-        } else {
-          return match(filter, item);
-        }
+        });
+
+        delete cache[idx + 1];
+        cache[idx] = Opts;
       });
+      //TODO CAUTION: used modern js api to flatten array
+      filteredOptions = Object.values(cache).flat();
     }
   }
 
