@@ -140,7 +140,7 @@ while more items are loading
   $: padStart = start > padding_threshold ? start - padding_threshold : start;
   $: padEnd = end + padding_threshold;
   $: visible = items.slice(padStart, padEnd).map((data, i) => {
-    return { index: i + start, data };
+    return { index: i + padStart, data };
   });
 
   // whenever `items` changes, invalidate the current heightmap
@@ -183,7 +183,7 @@ while more items are loading
       const row_height = height_map[i] || average_height;
       if (y + row_height > scrollTop) {
         start = i;
-        top = y;
+        top = y - row_height * padding_threshold;
         break;
       }
       y += row_height;
