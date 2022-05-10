@@ -12,7 +12,7 @@
         {height}
         {item_height}
         {end_threshold}
-        {padding_items_count}
+        {padding_threshold}
         bind:start
         bind:end
         on:end={(e) => lastItemsRendered(e)}>
@@ -42,7 +42,7 @@
     height = "600",
     item_height = null,
     end_threshold = 10,
-    padding_items_count = 5,
+    padding_threshold = 5,
     style = "";
 
   let klass = "";
