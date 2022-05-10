@@ -48,8 +48,7 @@ Default value: `<span>{option.label|| option}</span>`
     is-{size} is-{color} {klass}
   "
   class:readonly
-  {style}
-  on:click|stopPropagation={() => setOptionsVisible(true)}>
+  {style}>
   <ul class="tokens">
     <input
       class="input is-{size}"
@@ -283,6 +282,7 @@ Default value: `<span>{option.label|| option}</span>`
       filter = "";
     } else {
       filter = value.toLowerCase();
+      setOptionsVisible(true);
     }
     if (asyncMode && searching) {
       debouncedTriggerSearch(filter);
@@ -373,7 +373,7 @@ Default value: `<span>{option.label|| option}</span>`
     if (asyncMode) {
       clearDropDownResults();
     }
-    // setOptionsVisible(false);
+    setOptionsVisible(false);
   }
 
   function blurEvent() {
@@ -385,6 +385,7 @@ Default value: `<span>{option.label|| option}</span>`
 
   function setOptionsVisible(show) {
     // nothing to do if visibility is already as intended
+    console.log(show);
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
     if (show) {
