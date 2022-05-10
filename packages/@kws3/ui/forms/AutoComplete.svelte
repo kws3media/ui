@@ -2,6 +2,41 @@
   @component
 
 
+  @param {string} [value=""] - Value of the Input
+
+This property can be bound to, to fetch the current value, Default: `""`
+  @param {string} [placeholder="Please select..."] - Placeholder text for the input, Default: `"Please select..."`
+  @param {array} [options=[]] - Array of strings, or objects.
+Used to populate the list of options in the dropdown, Default: `[]`
+  @param {function|null} [search=null] - Async function to fetch options
+
+Only send this prop if you want to fetch `options` asynchronously.
+`options` prop will be ignored if this prop is set., Default: `null`
+  @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string} [style=""] - Inline CSS for input container, Default: `""`
+  @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
+  @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
+  @param {string} [async_search_prompt="Start typing to search..."] - Message to display in dropdown when async search can be performed, Default: `"Start typing to search..."`
+  @param {string} [remove_all_tip="Remove all"] - Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip., Default: `"Remove all"`
+  @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
+Can be a DOM element or a `string` with the CSS selector of the element.
+
+By default it renders in a custom container appended to `document.body`., Default: `undefined`
+  @param {string} [class=""] - CSS classes for input container, Default: `""`
+
+  ### Events
+  - `change`
+  - `blur` - Triggered when the input loses focus
+  - `remove`
+
+  ### Slots
+  - `<slot name="default" {option} />` - Slot containing text for each selectable item
+
+Default value: `<span>{option.label|| option}</span>`
 
 -->
 <div
@@ -217,15 +252,15 @@
   $: options, normaliseOptions();
   $: normalisedOptions, value, searching, updateFilteredOptions();
 
-  // TODO - verufy that this is not needed anymore
-  $: if (
-    (activeOption && !filteredOptions.includes(activeOption)) ||
-    (!activeOption && value)
-  )
-    activeOption = filteredOptions[0];
+  // // TODO - verufy that this is not needed anymore
+  // $: if (
+  //   (activeOption && !filteredOptions.includes(activeOption)) ||
+  //   (!activeOption && value)
+  // )
+  //   activeOption = filteredOptions[0];
 
-  //TODO: optimise isSelected function
-  $: isSelected = (option) => matchesValue(value, option);
+  // //TODO: optimise isSelected function
+  // $: isSelected = (option) => matchesValue(value, option);
 
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
@@ -399,12 +434,12 @@
     }
   };
 
-  const matchesValue = (_value, _option) => {
-    if (_value === null || _value === "" || typeof _value == "undefined") {
-      return false;
-    }
-    return `${_value.value || _value}` === `${_option.value}`;
-  };
+  // const matchesValue = (_value, _option) => {
+  //   if (_value === null || _value === "" || typeof _value == "undefined") {
+  //     return false;
+  //   }
+  //   return `${_value.value || _value}` === `${_option.value}`;
+  // };
 
   const match = (needle, haystack) => {
     let _hayStack = haystack.toLowerCase();
