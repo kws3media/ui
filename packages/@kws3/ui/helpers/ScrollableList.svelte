@@ -130,7 +130,6 @@ while more items are loading
     contents,
     viewport_height = 0,
     visible,
-    padStart,
     mounted,
     top = 0,
     bottom = 0,
@@ -139,9 +138,9 @@ while more items are loading
 
   $: padStart = start > padding_threshold ? start - padding_threshold : start;
   $: padEnd = end + padding_threshold;
-  $: visible = items.slice(padStart, padEnd).map((data, i) => {
-    return { index: i + padStart, data };
-  });
+  $: visible = items
+    .slice(padStart, padEnd)
+    .map((data, i) => ({ index: i + padStart, data }));
 
   // whenever `items` changes, invalidate the current heightmap
   $: items, viewport_height, item_height, mounted, refresh();
