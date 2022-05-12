@@ -32,7 +32,11 @@
     class:is-selected={rowActive}
     class:is-checked={checked}>
     {#if bulk_actions}
-      <td style="vertical-align:middle;">
+      <td
+        style="vertical-align:middle;"
+        on:click={(e) => {
+          clickableRows && e.stopImmediatePropagation();
+        }}>
         <Checkbox
           size={selectCheckboxSize}
           color={selectCheckboxColor}
