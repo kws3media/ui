@@ -201,8 +201,7 @@ function create(context) {
 module.exports = createRule("no-raw-text", {
   meta: {
     docs: {
-      description: "Disallow to string literal in template",
-      recommended: true,
+      description: "Disallow string literals and enforce translatable strings",
     },
     schema: [
       {
