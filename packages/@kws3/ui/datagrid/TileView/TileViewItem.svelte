@@ -3,6 +3,7 @@
 
 
   @param {object} [row={}] - List of all values in a row, Default: `{}`
+  @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
   @param {boolean} [rowActive=false] - Determines whether the row is selected or not, Default: `false`
   @param {boolean} [clickableRows=false] - Determines whether the row is clickable or not, Default: `false`
   @param {function} [isVisible()] - Returns whether a column can be visible or not
@@ -16,7 +17,7 @@
 
 -->
 <div
-  class:is-selected={rowActive}
+  class:is-selected={rowActive && visualActivationOnClick}
   class="box {clickableRows ? 'is-hoverable' : ''}"
   on:click|stopPropagation={rowClick}>
   {#each column_keys as column}
@@ -38,6 +39,10 @@
    * List of all values in a row
    */
   export let row = {},
+    /**
+     * Determines whether clickable rows activate visually on click
+     */
+    visualActivationOnClick = true,
     /**
      * Determines whether the row is selected or not
      */

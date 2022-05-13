@@ -7,6 +7,7 @@
   @param {object} [columns={}] - Table column names. {db_field_name: column_name}, Default: `{}`
   @param {boolean} [transition=false] - Determines if a transision effect is used, Default: `false`
   @param {boolean} [is_striped=true] - Determines whether to use alternating row shading in the table view, Default: `true`
+  @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
   @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
   @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
@@ -64,6 +65,7 @@
           {transition}
           {column_keys}
           {clickableRows}
+          {visualActivationOnClick}
           {isVisible}
           {transforms}
           {classNames}
@@ -108,6 +110,10 @@
      * @link https://bulma.io/documentation/elements/table/#modifiers
      */
     is_striped = true,
+    /**
+     * Determines whether clickable rows activate visually on click
+     */
+    visualActivationOnClick = true,
     /**
      * Determines whether rows are clickable or not
      */

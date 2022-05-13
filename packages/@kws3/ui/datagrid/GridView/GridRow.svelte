@@ -4,6 +4,7 @@
 
   @param {number} [row_index=0] - Row index value, Default: `0`
   @param {object} [row={}] - Contains all the column values in a row, Default: `{}`
+  @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
   @param {boolean} [rowActive=false] - Determines whether the row is selected or not, Default: `false`
   @param {object} [isVisible={}] - Determines whether column is visible or not, Default: `{}`
   @param {boolean} [clickableRows=false] - Determines whether the row is clickable or not, Default: `false`
@@ -29,7 +30,7 @@
   <tr
     in:fly={{ x: 20, delay: 25 * row_index }}
     on:click|stopPropagation={rowClick}
-    class:is-selected={rowActive}
+    class:is-selected={rowActive && visualActivationOnClick}
     class:is-checked={checked}>
     {#if bulk_actions}
       <td
@@ -62,7 +63,7 @@
 {:else}
   <tr
     on:click|stopPropagation={rowClick}
-    class:is-selected={rowActive}
+    class:is-selected={rowActive && visualActivationOnClick}
     class:is-checked={checked}>
     {#if bulk_actions}
       <td style="vertical-align:middle;">
@@ -106,6 +107,10 @@
      * Contains all the column values in a row
      */
     row = {},
+    /**
+     * Determines whether clickable rows activate visually on click
+     */
+    visualActivationOnClick = true,
     /**
      * Determines whether the row is selected or not
      */
