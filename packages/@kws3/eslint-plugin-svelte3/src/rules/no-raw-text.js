@@ -66,7 +66,6 @@ function checkSvelteMustacheTagText(context, node, config) {
   }
 
   if (node.parent.type === "SvelteElement") {
-    // parent is element (e.g. <p>{ ... }</p>)
     checkExpressionText(context, node.expression, config);
   }
 }
