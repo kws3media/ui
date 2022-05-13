@@ -10,6 +10,7 @@
   @param {object} [columns={}] - Column names for the displayed table {db_field_name: column_name}, Default: `{}`
   @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
+  @param {object} [activatedId=null] - Unique id of row that is activated, Default: `null`
   @param {object} [valueTransformers={}] - Contains all custom values for each column, Default: `{}`
   @param {object} [classTransformers={}] - CSS class names for each column, Default: `{}`
   @param {object} [styleTransformers={}] - CSS styles for each column, Default: `{}`
@@ -40,6 +41,7 @@
           {styles}
           {row}
           {bulk_actions}
+          {activatedId}
           {selectedIds}
           {selectCheckboxColor}
           {selectCheckboxSize}
@@ -85,6 +87,10 @@
      * Determines whether rows are clickable or not
      */
     clickableRows = false,
+    /**
+     * Unique id of row that is activated
+     */
+    activatedId = null,
     /**
      * Contains all custom values for each column
      */

@@ -5,7 +5,7 @@
   @param {number} [row_index=0] - Row index value, Default: `0`
   @param {object} [row={}] - Contains all the column values in a row, Default: `{}`
   @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
-  @param {boolean} [rowActive=false] - Determines whether the row is selected or not, Default: `false`
+  @param {object} [activatedId=null] - Unique id of row that is activated, Default: `null`
   @param {object} [isVisible={}] - Determines whether column is visible or not, Default: `{}`
   @param {boolean} [clickableRows=false] - Determines whether the row is clickable or not, Default: `false`
   @param {object} [transforms={}] - Contains all custom values for each columns, Default: `{}`
@@ -30,7 +30,7 @@
   <tr
     in:fly={{ x: 20, delay: 25 * row_index }}
     on:click|stopPropagation={rowClick}
-    class:is-selected={rowActive && visualActivationOnClick}
+    class:is-selected={activated && visualActivationOnClick}
     class:is-checked={checked}>
     {#if bulk_actions}
       <td
@@ -63,7 +63,7 @@
 {:else}
   <tr
     on:click|stopPropagation={rowClick}
-    class:is-selected={rowActive && visualActivationOnClick}
+    class:is-selected={activated && visualActivationOnClick}
     class:is-checked={checked}>
     {#if bulk_actions}
       <td style="vertical-align:middle;">
@@ -112,9 +112,9 @@
      */
     visualActivationOnClick = true,
     /**
-     * Determines whether the row is selected or not
+     * Unique id of row that is activated
      */
-    rowActive = false,
+    activatedId = null,
     /**
      * Determines whether column is visible or not
      */
@@ -170,6 +170,7 @@
   };
 
   $: selectedIds, setCheckedValue();
+  $: activated = activatedId === row.id;
 
   function setCheckedValue() {
     checked = false;
@@ -184,7 +185,6 @@
 
   function rowClick() {
     if (clickableRows) {
-      rowActive = true;
       fire("rowClick", { row });
     }
   }
