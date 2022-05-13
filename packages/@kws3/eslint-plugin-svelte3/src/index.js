@@ -12,7 +12,7 @@ const configs = {
         files: ["*.svelte"],
         parser: require.resolve("svelte-eslint-parser"),
         rules: allRules.reduce((obj, r) => {
-          obj[r.meta.docs.ruleId] = "error";
+          obj[r.meta.docs.ruleId] = r.meta.recommended ? "error" : "off";
           return obj;
         }, {}),
       },

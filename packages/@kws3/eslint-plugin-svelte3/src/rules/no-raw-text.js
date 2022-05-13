@@ -203,6 +203,7 @@ module.exports = createRule("no-raw-text", {
     docs: {
       description: "Disallow string literals and enforce translatable strings",
     },
+    recommended: false,
     schema: [
       {
         type: "object",
