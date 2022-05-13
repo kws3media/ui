@@ -1,7 +1,8 @@
 const noDateStringArg = require("./rules/no-date-string-arg");
 const noDatalistScaffold = require("./rules/no-datalist-scaffold");
+const noRawtext = require("./rules/no-raw-text");
 
-const allRules = [noDateStringArg, noDatalistScaffold];
+const allRules = [noDateStringArg, noDatalistScaffold, noRawtext];
 
 const configs = {
   base: {
