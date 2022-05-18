@@ -33,7 +33,7 @@ export let args = {
 <Version />
 
 <Meta
-  title="Forms/AutoComplete"
+  title="Forms/AutoComplete/AutoComplete (Async)"
   component={AutoComplete}
   args={args}
   argTypes={{
@@ -51,12 +51,12 @@ export let args = {
 
 <Description
   markdown={dedent`
-# AutoComplete
+# AutoComplete (Async)
 ## An Input component that supports auto complete tips.
 `}/>
 
 <Canvas>
-  <Story name="AutoComplete" args={args} play={playInteractions}>
+  <Story name="AutoComplete (Async)" args={args} play={playInteractions}>
     {(args) => ({
       Component: AutoCompleteDecorator,
       props: args,
@@ -64,7 +64,7 @@ export let args = {
   </Story>
 </Canvas>
 
-<ArgsTable story="AutoComplete" />
+<ArgsTable story="AutoComplete (Async)" />
 
 <div class="notification is-primary is-light">
   <div class="columns">
@@ -116,7 +116,7 @@ export let args = {
 
 <Source
   language="javascript"
-  code={dedent`@import '@kws3/ui/styles/Select.scss';`}
+  code={dedent`@import '@kws3/ui/styles/AutoComplete.scss';`}
 />
 
 #### SCSS customization variables with default values:

@@ -60,7 +60,7 @@
 
   import { onMount } from "svelte";
 
-  import { characters, characters_string_only } from "./data.js";
+  import { characters, characters_string_only } from "../data.js";
 
   onMount(() => {
     activateTooltips("#ss_container");
