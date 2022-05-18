@@ -251,7 +251,7 @@ Default value: `<span>{option.label|| option}</span>`
   $: options, normaliseOptions();
   $: normalisedOptions, value, searching, updateFilteredOptions();
 
-  $: OPTIONS = value ? [getValueString(), ...filteredOptions] : filteredOptions;
+  $: OPTIONS = value ? [...filteredOptions] : filteredOptions;
 
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
@@ -275,7 +275,6 @@ Default value: `<span>{option.label|| option}</span>`
       filters = [getValueString()];
     } else {
       filters = value ? value.toLowerCase().split(" ") : [];
-      setOptionsVisible(true);
     }
     if (asyncMode && searching) {
       debouncedTriggerSearch(filters);
