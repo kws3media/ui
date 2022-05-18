@@ -69,13 +69,6 @@ Default value: `<span>{option.label|| option}</span>`
       type="button"
       style="border: none;"
       class="button is-paddingless delete is-medium is-loading" />
-  {:else if !readonly && !disabled}
-    <button
-      type="button"
-      class="remove-all delete is-small"
-      data-tooltip={remove_all_tip}
-      on:click|stopPropagation={removeAll}
-      style={shouldShowClearAll ? "" : "display: none;"} />
   {/if}
   {#if rootContainer}
     <div class="kws-autocomplete" use:portal={dropdown_portal}>
@@ -84,9 +77,6 @@ Default value: `<span>{option.label|| option}</span>`
           <li
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
-            on:mouseenter|preventDefault|stopPropagation={() => {
-              activeOption = option;
-            }}
             class:active={activeOption === option}>
             <!--
               Slot containing text for each selectable item
@@ -95,12 +85,6 @@ Default value: `<span>{option.label|| option}</span>`
             --><slot
               {option}>{option.label || option}</slot>
           </li>
-        {:else}
-          {#if !options_loading}
-            <li class="no-options">
-              {value ? no_options_msg : async_search_prompt}
-            </li>
-          {/if}
         {/each}
       </ul>
     </div>
@@ -251,7 +235,7 @@ Default value: `<span>{option.label|| option}</span>`
   $: options, normaliseOptions();
   $: normalisedOptions, value, searching, updateFilteredOptions();
 
-  $: OPTIONS = value ? [...filteredOptions] : filteredOptions;
+  $: OPTIONS = value ? filteredOptions : [];
 
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
@@ -420,15 +404,6 @@ Default value: `<span>{option.label|| option}</span>`
   function handleOptionMouseDown(option) {
     add(option);
   }
-
-  const removeAll = () => {
-    fire("remove", { token: value });
-    fire("change", { token: value, type: `remove` });
-    value = "";
-    if (asyncMode) {
-      clearDropDownResults();
-    }
-  };
 
   const match = (needle, haystack) => {
     let _hayStack = haystack.toLowerCase();
