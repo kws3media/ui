@@ -275,20 +275,20 @@ Default value: `<span>{option.label|| option}</span>`
   }
 
   function updateFilteredOptions() {
-    let filter;
+    let filters = [];
 
     //so we need to check if we are actually searching
     if (!searching && value) {
-      filter = "";
+      filters = [];
     } else {
-      filter = value.toLowerCase();
+      filters = value.toLowerCase().split(" ");
       setOptionsVisible(true);
     }
     if (asyncMode && searching) {
-      debouncedTriggerSearch(filter);
+      debouncedTriggerSearch(filters);
     } else {
       let cache = {};
-      filter.split(" ").forEach((word, idx) => {
+      filters.forEach((word, idx) => {
         let Opts = normalisedOptions.slice().filter((item) => {
           // filter out items that don't match `filter`
           if (typeof item === "object") {
@@ -312,6 +312,7 @@ Default value: `<span>{option.label|| option}</span>`
     }
   }
 
+  //TODO - Fix async search
   function triggerSearch(filter) {
     if (filter === "") {
       //do not trigger async search if filter is empty
