@@ -281,7 +281,7 @@ Default value: `<span>{option.label|| option}</span>`
     if (!searching && value) {
       filters = [];
     } else {
-      filters = value.toLowerCase().split(" ");
+      filters = value ? value.toLowerCase().split(" ") : [];
       setOptionsVisible(true);
     }
     if (asyncMode && searching) {
@@ -314,19 +314,20 @@ Default value: `<span>{option.label|| option}</span>`
     }
   }
 
-  //TODO - Fix async search
-  function triggerSearch(filter) {
-    if (filter === "") {
-      //do not trigger async search if filter is empty
-      options = [];
+  function triggerSearch(filters) {
+    if (!filters.length) {
+      //do not trigger async search if filters are empty
+      filteredOptions = [];
       searching = false;
       return;
     }
     options_loading = true;
-    search(filter).then((_options) => {
-      options = _options;
+    search(filters).then((_options) => {
       searching = false;
       options_loading = false;
+      tick().then(() => {
+        filteredOptions = normaliseArraysToObjects(_options);
+      });
     });
   }
 

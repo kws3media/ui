@@ -56,12 +56,22 @@ export let characters_string_only = [
   "Scarlet Witch",
 ];
 
-export const fetchCharacters = async (filter) => {
+export const fetchCharacters = async (filters) => {
   await sleep(1000);
-  if (filter) {
-    return characters_string_only.filter((character) => {
-      return character.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+  if (filters.length) {
+    let cache = {};
+
+    filters.forEach((word, idx) => {
+      let options = [...characters_string_only].filter((item) => {
+        return item.toLowerCase().indexOf(word.toLowerCase()) > -1;
+      });
+
+      delete cache[idx + 1];
+      cache[idx] = options;
     });
+    return Object.values(cache)
+      .flat()
+      .filter((v, i, self) => self.indexOf(v) === i);
   } else {
     return [];
   }

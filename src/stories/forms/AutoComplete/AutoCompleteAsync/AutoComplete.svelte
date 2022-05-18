@@ -1,5 +1,5 @@
 <div id="ss_container">
-  <div class="columns">
+  <!-- <div class="columns">
     <div class="column is-6">
       <Panel title="Input data" collapsible collapsed>
         <pre>{JSON.stringify(characters, null, 1)}</pre>
@@ -23,7 +23,7 @@
       Output data:
       <code>{JSON.stringify(selected_character, null, 2)}</code>
     </div>
-  </div>
+  </div> -->
   <div class="columns">
     <div class="column is-6">
       <Panel title="Input data" collapsible collapsed>
@@ -34,6 +34,7 @@
       <KwsAutoComplete
         {size}
         {color}
+        search={fetchCharacters}
         options={characters_string_only}
         bind:value={selected_character_string}
         {search_strategy}
@@ -60,7 +61,11 @@
 
   import { onMount } from "svelte";
 
-  import { characters, characters_string_only } from "../data.js";
+  import {
+    characters,
+    characters_string_only,
+    fetchCharacters,
+  } from "../data.js";
 
   onMount(() => {
     activateTooltips("#ss_container");
