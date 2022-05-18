@@ -80,7 +80,7 @@ Default value: `<span>{option.label|| option}</span>`
   {#if rootContainer}
     <div class="kws-autocomplete" use:portal={dropdown_portal}>
       <ul bind:this={dropdown} class="options" class:hidden={!showOptions}>
-        {#each filteredOptions as option}
+        {#each OPTIONS as option}
           <li
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
@@ -251,6 +251,8 @@ Default value: `<span>{option.label|| option}</span>`
   $: options, normaliseOptions();
   $: normalisedOptions, value, searching, updateFilteredOptions();
 
+  $: OPTIONS = value ? [getValueString(), ...filteredOptions] : filteredOptions;
+
   // // TODO - verufy that this is not needed anymore
   // $: if (
   //   (activeOption && !filteredOptions.includes(activeOption)) ||
@@ -276,10 +278,11 @@ Default value: `<span>{option.label|| option}</span>`
 
   function updateFilteredOptions() {
     let filters = [];
+    console.log("updateFilteredOptions", filteredOptions);
 
     //so we need to check if we are actually searching
     if (!searching && value) {
-      filters = [];
+      filters = [getValueString()];
     } else {
       filters = value ? value.toLowerCase().split(" ") : [];
       setOptionsVisible(true);
@@ -289,7 +292,8 @@ Default value: `<span>{option.label|| option}</span>`
     } else {
       let cache = {};
       filters.forEach((word, idx) => {
-        let Opts = normalisedOptions.slice().filter((item) => {
+        // iterate over each word in the search query
+        let Opts = [...normalisedOptions].filter((item) => {
           // filter out items that don't match `filter`
           if (typeof item === "object") {
             if (item.value) {
@@ -304,13 +308,13 @@ Default value: `<span>{option.label|| option}</span>`
           }
         });
 
-        delete cache[idx + 1];
-        cache[idx] = Opts;
+        delete cache[idx + 1]; // remove last cache entry which last whole word is just deleted
+        cache[idx] = Opts; // stroing options to current index on cahce
       });
 
-      filteredOptions = Object.values(cache)
-        .flat()
-        .filter((v, i, self) => self.indexOf(v) === i);
+      filteredOptions = Object.values(cache) // get values from cache
+        .flat() // flatten array
+        .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
     }
   }
 
@@ -344,12 +348,6 @@ Default value: `<span>{option.label|| option}</span>`
     //normalize value for single
     if (value === null || typeof value == "undefined") {
       value = null;
-    }
-    if (asyncMode) {
-      // initally on async mode filteredOptions are empty
-      if (value) {
-        filteredOptions = normaliseArraysToObjects([value]);
-      }
     }
 
     return () => {
@@ -443,7 +441,7 @@ Default value: `<span>{option.label|| option}</span>`
   };
 
   const normaliseArraysToObjects = (arr) => {
-    return arr.slice().map((item) => {
+    return [...arr].map((item) => {
       if (typeof item === "object") {
         return item;
       }
@@ -459,5 +457,14 @@ Default value: `<span>{option.label|| option}</span>`
       options = [];
       searching = false;
     });
+  };
+
+  const getValueString = () => {
+    if (value) {
+      return {
+        label: value,
+        value: value,
+      };
+    }
   };
 </script>
