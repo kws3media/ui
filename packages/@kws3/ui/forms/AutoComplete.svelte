@@ -314,7 +314,7 @@ Default value: `<span>{option.label|| option}</span>`
     }
   }
 
-  //TODO - fix fast deleting chars remains items on the list
+  //BUG - fast deleting chars by backspace remains items on the list
   function triggerSearch(filters) {
     if (!filters.length) {
       //do not trigger async search if filters are empty
@@ -378,7 +378,7 @@ Default value: `<span>{option.label|| option}</span>`
     // if (show === showOptions) {
     //   return;
     // }
-    //TODO - fix double call
+    //BUG - fix double call
     console.log(show);
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
@@ -391,6 +391,7 @@ Default value: `<span>{option.label|| option}</span>`
   }
 
   function handleKeydown(event) {
+    //BUG - arrow left/right triggering search call
     if (event.key === `Enter`) {
       event.preventDefault();
 
