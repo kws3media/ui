@@ -314,6 +314,7 @@ Default value: `<span>{option.label|| option}</span>`
     }
   }
 
+  //TODO - fix fast deleting chars remains items on the list
   function triggerSearch(filters) {
     if (!filters.length) {
       //do not trigger async search if filters are empty
@@ -344,20 +345,11 @@ Default value: `<span>{option.label|| option}</span>`
     if (value === null || typeof value == "undefined") {
       value = null;
     }
-    //TODO  fix async mode
     if (asyncMode) {
-      // initally on async mode options are empty
-      // so we need to fill selectedOptions with value if value is avaliable
-      options = value && [value];
-      searching = false;
-      // tick().then(() => {
-      //   normaliseOptions();
-      //   value = normaliseArraysToObjects(options).map((v) => v.value);
-      //   if (single && Array.isArray(value)) {
-      //     value = value[0];
-      //   }
-      //   clearDropDownResults();
-      // });
+      // initally on async mode filteredOptions are empty
+      if (value) {
+        filteredOptions = normaliseArraysToObjects([value]);
+      }
     }
 
     return () => {
@@ -389,6 +381,10 @@ Default value: `<span>{option.label|| option}</span>`
 
   function setOptionsVisible(show) {
     // nothing to do if visibility is already as intended
+    // if (show === showOptions) {
+    //   return;
+    // }
+    //TODO - fix double call
     console.log(show);
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
@@ -438,13 +434,6 @@ Default value: `<span>{option.label|| option}</span>`
       clearDropDownResults();
     }
   };
-
-  // const matchesValue = (_value, _option) => {
-  //   if (_value === null || _value === "" || typeof _value == "undefined") {
-  //     return false;
-  //   }
-  //   return `${_value.value || _value}` === `${_option.value}`;
-  // };
 
   const match = (needle, haystack) => {
     let _hayStack = haystack.toLowerCase();
