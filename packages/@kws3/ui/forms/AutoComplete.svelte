@@ -253,16 +253,6 @@ Default value: `<span>{option.label|| option}</span>`
 
   $: OPTIONS = value ? [getValueString(), ...filteredOptions] : filteredOptions;
 
-  // // TODO - verufy that this is not needed anymore
-  // $: if (
-  //   (activeOption && !filteredOptions.includes(activeOption)) ||
-  //   (!activeOption && value)
-  // )
-  //   activeOption = filteredOptions[0];
-
-  // //TODO: optimise isSelected function
-  // $: isSelected = (option) => matchesValue(value, option);
-
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
   //convert arrays of strings into normalised arrays of objects
@@ -293,23 +283,30 @@ Default value: `<span>{option.label|| option}</span>`
       let cache = {};
       filters.forEach((word, idx) => {
         // iterate over each word in the search query
-        let Opts = [...normalisedOptions].filter((item) => {
-          // filter out items that don't match `filter`
-          if (typeof item === "object") {
-            if (item.value) {
-              return typeof item.value === "string" && match(word, item.value);
-            } else {
-              for (var key in item) {
-                return typeof item[key] === "string" && match(word, item[key]);
+        let opts = [];
+        if (word) {
+          opts = [...normalisedOptions].filter((item) => {
+            // filter out items that don't match `filter`
+            if (typeof item === "object") {
+              if (item.value) {
+                return (
+                  typeof item.value === "string" && match(word, item.value)
+                );
+              } else {
+                for (var key in item) {
+                  return (
+                    typeof item[key] === "string" && match(word, item[key])
+                  );
+                }
               }
+            } else {
+              return match(word, item);
             }
-          } else {
-            return match(word, item);
-          }
-        });
+          });
+        }
 
         delete cache[idx + 1]; // remove last cache entry which last whole word is just deleted
-        cache[idx] = Opts; // stroing options to current index on cahce
+        cache[idx] = opts; // stroing options to current index on cahce
       });
 
       filteredOptions = Object.values(cache) // get values from cache
