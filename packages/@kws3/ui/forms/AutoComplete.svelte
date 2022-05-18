@@ -307,8 +307,10 @@ Default value: `<span>{option.label|| option}</span>`
         delete cache[idx + 1];
         cache[idx] = Opts;
       });
-      //TODO CAUTION: used modern js api to flatten array
-      filteredOptions = Object.values(cache).flat();
+
+      filteredOptions = Object.values(cache)
+        .flat()
+        .filter((v, i, self) => self.indexOf(v) === i);
     }
   }
 
