@@ -18,6 +18,7 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
+  @param {boolean} [allow_highlighted_options=true] - Whether to show highlighted matches or not, Default: `true`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
 Can be a DOM element or a `string` with the CSS selector of the element.
@@ -78,8 +79,15 @@ Default value: `<span>{option.label|| option}</span>`
               Slot containing text for each selectable item
 
               Default value: `<span>{option.label|| option}</span>`
-            --><slot
-              {option}>{option.label || option}</slot>
+            -->
+            <slot {option}>
+              {#if allow_highlighted_options}
+                <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+                {@html option.highlighted || option.label}
+              {:else}
+                {option.label}
+              {/if}
+            </slot>
           </li>
         {/each}
       </ul>
@@ -162,6 +170,10 @@ Default value: `<span>{option.label|| option}</span>`
    * Marks component as read-only
    */
   export let readonly = false;
+  /**
+   * Whether to show highlighted matches or not
+   */
+  export let allow_highlighted_options = true;
   /**
    * Disables the component
    */
