@@ -363,9 +363,11 @@ Default value: `<span>{option.label|| option}</span>`
     //   return;
     // }
     //BUG - fix double call
-    // if (!value) {
-    //   return;
-    // }
+    // console.log("value", value);
+    if (!value) {
+      showOptions = false;
+      return;
+    }
     console.log(show);
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
@@ -400,6 +402,7 @@ Default value: `<span>{option.label|| option}</span>`
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else {
+      setOptionsVisible(true);
       searching = true;
     }
   }
@@ -422,6 +425,7 @@ Default value: `<span>{option.label|| option}</span>`
 
   const highlightMatches = (options, filters) => {
     if (!filters.length) return options;
+    // join all filter parts and split into chars and filter out duplicates
     let common_chars = [...filters.join("")].filter(
       (v, i, self) => self.indexOf(v) === i
     );
