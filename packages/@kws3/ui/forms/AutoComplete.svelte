@@ -87,6 +87,12 @@ Default value: `<span>{option.label|| option}</span>`
               {/if}
             </slot>
           </li>
+        {:else}
+          {#if !options_loading && value}
+            <li class="no-options">
+              {no_options_msg}
+            </li>
+          {/if}
         {/each}
       </ul>
     </div>
@@ -176,6 +182,10 @@ Default value: `<span>{option.label|| option}</span>`
    * Disables the component
    */
   export let disabled = false;
+  /**
+   * Message to display when no matching options are found
+   */
+  export let no_options_msg = "No options";
 
   /**
    * Where to render the dropdown list.
@@ -353,6 +363,9 @@ Default value: `<span>{option.label|| option}</span>`
     //   return;
     // }
     //BUG - fix double call
+    // if (!value) {
+    //   return;
+    // }
     console.log(show);
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
