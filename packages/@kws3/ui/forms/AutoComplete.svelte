@@ -20,6 +20,7 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [show_highlighted_options=true] - Whether to show highlighted matches or not, Default: `true`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {string} [no_options_msg="No options"] - Message to display when no matching options are found, Default: `"No options"`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
 Can be a DOM element or a `string` with the CSS selector of the element.
 
