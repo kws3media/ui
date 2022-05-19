@@ -275,6 +275,10 @@ Default value: `<span>{option.label|| option}</span>`
       filteredOptions = Object.values(cache) // get values from cache
         .flat() // flatten array
         .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
+
+      filteredOptions = filters.length
+        ? highlightMatches(filteredOptions, filters)
+        : filteredOptions;
     }
   }
 
