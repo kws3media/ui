@@ -297,6 +297,7 @@ Default value: `<span>{option.label|| option}</span>`
       return;
     }
     options_loading = true;
+    //BUG - empty filters are leaking
     search(filters).then((_options) => {
       searching = false;
       options_loading = false;
