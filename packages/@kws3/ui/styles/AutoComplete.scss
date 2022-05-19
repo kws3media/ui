@@ -8,6 +8,9 @@ $kws-autocomplete-disabled-border-color: $input-disabled-border-color !default;
 $kws-autocomplete-disabled-color: $input-disabled-color !default;
 $kws-autocomplete-selecting-color: $primary-invert !default;
 $kws-autocomplete-selecting-background: $primary !default;
+$kws-autocomplete-text-matches-color: $text !default;
+$kws-autocomplete-text-matches-background: transparent !default;
+$kws-autocomplete-text-matches-font-weight: $weight-bold !default;
 
 $__modal-z: 41 !default;
 @if $modal-z {
@@ -86,6 +89,11 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
         // keyboard focused item
         color: $kws-autocomplete-selecting-color;
         background: $kws-autocomplete-selecting-background;
+      }
+      span {
+        font-weight: $kws-autocomplete-text-matches-font-weight;
+        color: $kws-autocomplete-text-matches-color;
+        background: $kws-autocomplete-text-matches-background;
       }
     }
 
