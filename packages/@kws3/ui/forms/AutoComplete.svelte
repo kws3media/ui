@@ -19,9 +19,6 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
-  @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
-  @param {string} [async_search_prompt="Start typing to search..."] - Message to display in dropdown when async search can be performed, Default: `"Start typing to search..."`
-  @param {string} [remove_all_tip="Remove all"] - Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip., Default: `"Remove all"`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
 Can be a DOM element or a `string` with the CSS selector of the element.
 
@@ -31,7 +28,6 @@ By default it renders in a custom container appended to `document.body`., Defaul
   ### Events
   - `change`
   - `blur` - Triggered when the input loses focus
-  - `remove`
 
   ### Slots
   - `<slot name="default" {option} />` - Slot containing text for each selectable item
@@ -172,19 +168,6 @@ Default value: `<span>{option.label|| option}</span>`
   export let disabled = false;
 
   /**
-   * Message to display when no matching options are found
-   */
-  export let no_options_msg = "No matching options";
-  /**
-   * Message to display in dropdown when async search can be performed
-   */
-  export let async_search_prompt = "Start typing to search...";
-  /**
-   * Tooltip text for Remove Item button. This `string` will precede the selected Item Name in the tooltip.
-   * */
-
-  export let remove_all_tip = "Remove all";
-  /**
    * Where to render the dropdown list.
    * Can be a DOM element or a `string` with the CSS selector of the element.
    *
@@ -228,9 +211,6 @@ Default value: `<span>{option.label|| option}</span>`
   $: asyncMode = search && typeof search === "function";
   $: hasValue = value !== null && typeof value != "undefined";
   $: _placeholder = hasValue ? "" : placeholder;
-
-  // eslint-disable-next-line no-redeclare
-  $: shouldShowClearAll = hasValue;
 
   $: options, normaliseOptions();
   $: normalisedOptions, value, searching, updateFilteredOptions();
