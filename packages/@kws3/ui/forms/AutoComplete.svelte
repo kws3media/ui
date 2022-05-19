@@ -46,21 +46,19 @@ Default value: `<span>{option.label|| option}</span>`
   "
   class:readonly
   {style}>
-  <ul class="tokens">
-    <input
-      class="input is-{size}"
-      bind:this={input}
-      autocomplete="off"
-      {disabled}
-      {readonly}
-      bind:value
-      on:click|self|stopPropagation={() => setOptionsVisible(true)}
-      on:keydown={handleKeydown}
-      on:focus={() => setOptionsVisible(true)}
-      on:blur={blurEvent}
-      on:blur={() => setOptionsVisible(false)}
-      {placeholder} />
-  </ul>
+  <input
+    class="input is-{size}"
+    bind:this={input}
+    autocomplete="off"
+    {disabled}
+    {readonly}
+    bind:value
+    on:click|self|stopPropagation={() => setOptionsVisible(true)}
+    on:keydown={handleKeydown}
+    on:focus={() => setOptionsVisible(true)}
+    on:blur={blurEvent}
+    on:blur={() => setOptionsVisible(false)}
+    {placeholder} />
   {#if search && options_loading}
     <button
       type="button"
