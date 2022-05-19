@@ -59,7 +59,7 @@ Default value: `<span>{option.label|| option}</span>`
       on:focus={() => setOptionsVisible(true)}
       on:blur={blurEvent}
       on:blur={() => setOptionsVisible(false)}
-      placeholder={_placeholder} />
+      {placeholder} />
   </ul>
   {#if search && options_loading}
     <button
@@ -70,7 +70,7 @@ Default value: `<span>{option.label|| option}</span>`
   {#if rootContainer}
     <div class="kws-autocomplete" use:portal={dropdown_portal}>
       <ul bind:this={dropdown} class="options" class:hidden={!showOptions}>
-        {#each OPTIONS as option}
+        {#each filteredOptions as option}
           <li
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
@@ -221,13 +221,9 @@ Default value: `<span>{option.label|| option}</span>`
     options_loading = false; //indictaes whether async search function is running
 
   $: asyncMode = search && typeof search === "function";
-  $: hasValue = value !== null && typeof value != "undefined";
-  $: _placeholder = hasValue ? "" : placeholder;
 
   $: options, normaliseOptions();
   $: normalisedOptions, value, searching, updateFilteredOptions();
-
-  $: OPTIONS = value ? filteredOptions : [];
 
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
