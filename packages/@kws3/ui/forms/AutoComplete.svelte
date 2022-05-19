@@ -256,7 +256,7 @@ Default value: `<span>{option.label|| option}</span>`
 
     //so we need to check if we are actually searching
     if (!searching && value) {
-      filters = [getValueString()];
+      filters = [];
     } else {
       filters = value ? value.toLowerCase().split(" ") : [];
     }
@@ -412,31 +412,15 @@ Default value: `<span>{option.label|| option}</span>`
       : _hayStack.indexOf(needle) > -1;
   };
 
-  const normaliseArraysToObjects = (arr) => {
-    return [...arr].map((item) => {
-      if (typeof item === "object") {
-        return item;
-      }
-      let __obj = {};
-      __obj.label = item;
-      __obj.value = item;
-      return __obj;
-    });
-  };
+  const normaliseArraysToObjects = (arr) =>
+    [...arr].map((item) =>
+      typeof item === "object" ? item : { label: item, value: item }
+    );
 
   const clearDropDownResults = () => {
     tick().then(() => {
       options = [];
       searching = false;
     });
-  };
-
-  const getValueString = () => {
-    if (value) {
-      return {
-        label: value,
-        value: value,
-      };
-    }
   };
 </script>
