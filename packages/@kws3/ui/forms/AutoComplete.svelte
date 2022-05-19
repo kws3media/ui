@@ -284,9 +284,7 @@ Default value: `<span>{option.label|| option}</span>`
         .flat() // flatten array
         .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
 
-      filteredOptions = filters.length
-        ? highlightMatches(filteredOptions, filters)
-        : filteredOptions;
+      filteredOptions = highlightMatches(filteredOptions, filters);
     }
   }
 
@@ -304,6 +302,7 @@ Default value: `<span>{option.label|| option}</span>`
       options_loading = false;
       tick().then(() => {
         filteredOptions = normaliseArraysToObjects(_options);
+        filteredOptions = highlightMatches(filteredOptions, filters);
       });
     });
   }
@@ -410,6 +409,7 @@ Default value: `<span>{option.label|| option}</span>`
     );
 
   const highlightMatches = (options, filters) => {
+    if (!filters.length) return options;
     let common_chars = [...filters.join("")].filter(
       (v, i, self) => self.indexOf(v) === i
     );
