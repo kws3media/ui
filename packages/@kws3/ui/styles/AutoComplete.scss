@@ -30,8 +30,6 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
   padding-bottom: calc(0.4em - 1px);
   &:focus-within {
     border-color: $kws-autocomplete-focus-border-color;
-    box-shadow: $kws-autocomplete-focus-box-shadow-size
-      $kws-autocomplete-focus-box-shadow-color;
   }
   &.is-disabled {
     background-color: $kws-autocomplete-disabled-background-color;
@@ -41,12 +39,6 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
   }
   &.is-readonly {
     box-shadow: none;
-  }
-
-  ul.tokens {
-    flex-wrap: wrap;
-    flex: 1;
-    overflow: hidden;
   }
 
   input {
@@ -67,9 +59,9 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
     max-height: 50vh;
     padding: 0;
     cursor: pointer;
-    border-radius: 0 0 $kws-autocomplete-radius $kws-autocomplete-radius;
     overflow: auto;
     background: #fff;
+    border: 1px solid grey;
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 4;
