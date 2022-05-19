@@ -397,6 +397,23 @@ Default value: `<span>{option.label|| option}</span>`
       typeof item === "object" ? item : { label: item, value: item }
     );
 
+  const highlightMatches = (options, filters) => {
+    let common_chars = [...filters.join("")].filter(
+      (v, i, self) => self.indexOf(v) === i
+    );
+    let common_chars_regex = common_chars.join("|");
+    let regex = new RegExp(common_chars_regex, "gi");
+    return options.map((item) => {
+      return {
+        ...item,
+        highlighted: item.value.replace(
+          regex,
+          (match) => `<span>${match}</span>`
+        ),
+      };
+    });
+  };
+
   const clearDropDownResults = () => {
     tick().then(() => {
       options = [];
