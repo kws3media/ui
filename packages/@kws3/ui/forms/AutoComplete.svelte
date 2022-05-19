@@ -254,7 +254,7 @@ Default value: `<span>{option.label|| option}</span>`
     if (!searching && value) {
       filters = [];
     } else {
-      filters = value ? value.toLowerCase().split(" ") : [];
+      filters = value ? value.toLowerCase().split(/\s+/) : [];
     }
     if (asyncMode && searching) {
       debouncedTriggerSearch(filters);
