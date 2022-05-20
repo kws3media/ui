@@ -259,20 +259,8 @@ Default value: `<span>{option.label|| option}</span>`
         if (word) {
           opts = [...normalisedOptions].filter((item) => {
             // filter out items that don't match `filter`
-            if (typeof item === "object") {
-              if (item.value) {
-                return (
-                  typeof item.value === "string" && match(word, item.value)
-                );
-              } else {
-                for (var key in item) {
-                  return (
-                    typeof item[key] === "string" && match(word, item[key])
-                  );
-                }
-              }
-            } else {
-              return match(word, item);
+            if (typeof item === "object" && item.value) {
+              return typeof item.value === "string" && match(word, item.value);
             }
           });
         }
