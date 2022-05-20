@@ -30,6 +30,8 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
   padding-bottom: calc(0.4em - 1px);
   &:focus-within {
     border-color: $kws-autocomplete-focus-border-color;
+    box-shadow: $kws-autocomplete-focus-box-shadow-size
+      $kws-autocomplete-focus-box-shadow-color;
   }
   &.is-disabled {
     background-color: $kws-autocomplete-disabled-background-color;

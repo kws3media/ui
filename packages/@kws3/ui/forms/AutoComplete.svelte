@@ -252,7 +252,7 @@ Default value: `<span>{option.label}</span>`
       debouncedTriggerSearch(filters);
     } else {
       let cache = {};
-      //TODO - can optimize more for long lists
+      //TODO - can optimize more for very long lists
       filters.forEach((word, idx) => {
         // iterate over each word in the search query
         let opts = [];
@@ -276,7 +276,6 @@ Default value: `<span>{option.label}</span>`
     }
   }
 
-  //BUG - fast deleting chars by backspace remains items on the list
   function triggerSearch(filters) {
     if (!filters.length) {
       //do not trigger async search if filters are empty
@@ -285,9 +284,7 @@ Default value: `<span>{option.label}</span>`
       return;
     }
     options_loading = true;
-    //BUG - empty filters are leaking
     search(filters).then((_options) => {
-      console.log("trigger search", filters);
       searching = false;
       options_loading = false;
       tick().then(() => {
@@ -349,6 +346,7 @@ Default value: `<span>{option.label}</span>`
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
     if (show) {
+      console.log("focused");
       input && input.focus();
     } else {
       searching = false;
