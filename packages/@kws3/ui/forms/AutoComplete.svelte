@@ -77,15 +77,11 @@ Default value: `<span>{option.label|| option}</span>`
             <!--
               Slot containing text for each selectable item
 
-              Default value: `<span>{option.label|| option}</span>`
+              Default value: `<span>{option.label}</span>`
             -->
             <slot {option}>
-              {#if show_highlighted_options}
-                <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
-                {@html option.highlighted || option.label}
-              {:else}
-                {option.label}
-              {/if}
+              <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+              {@html option.label}
             </slot>
           </li>
         {:else}
@@ -175,10 +171,6 @@ Default value: `<span>{option.label|| option}</span>`
    * Marks component as read-only
    */
   export let readonly = false;
-  /**
-   * Whether to show highlighted matches or not
-   */
-  export let show_highlighted_options = true;
   /**
    * Disables the component
    */
@@ -435,10 +427,7 @@ Default value: `<span>{option.label|| option}</span>`
     return options.map((item) => {
       return {
         ...item,
-        highlighted: item.value.replace(
-          regex,
-          (match) => `<span>${match}</span>`
-        ),
+        label: item.value.replace(regex, (match) => `<span>${match}</span>`),
       };
     });
   };

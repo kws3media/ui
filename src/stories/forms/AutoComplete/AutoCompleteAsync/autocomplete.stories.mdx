@@ -26,8 +26,7 @@ export let args = {
   readonly: false,
   options_loading: false,
   no_options_msg: "No options",
-  placeholder: "Write some Marvel character names...",
-  show_highlighted_options: true
+  placeholder: "Marvel characters..."
 };
 
 <Version />
@@ -77,7 +76,7 @@ export let args = {
         ensure the shape of the array items are consistent.
       </p>
       <p>See supported data formats in example story above.</p>
-      <p>Note: <code>option.highlighted</code> contains matches characters wrapped inside <code>span</code> along with text </p>
+      <p>Note: <code>option.label</code> contains matches characters wrapped inside <code>span</code> along with text </p>
     </div>
     <div class="column">
       <h3>Customising dropdown text items</h3>
@@ -89,7 +88,7 @@ export let args = {
       ...other_options
       let:option>
       <span class="has-text-danger">
-        {@html option.highlighted}
+        {@html option.label}
       </span>
     </AutoComplete>`}
       />
