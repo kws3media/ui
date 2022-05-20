@@ -244,7 +244,7 @@ Default value: `<span>{option.label}</span>`
     if (!searching && value) {
       filters = [];
     } else {
-      filters = value ? value.toLowerCase().split(/\s+/) : [];
+      filters = sanitizeFilters(value);
       setOptionsVisible(true);
     }
     console.log("updateFilteredOptions", { filters, value });
@@ -287,6 +287,7 @@ Default value: `<span>{option.label}</span>`
     options_loading = true;
     //BUG - empty filters are leaking
     search(filters).then((_options) => {
+      console.log("trigger search", filters);
       searching = false;
       options_loading = false;
       tick().then(() => {
@@ -420,4 +421,7 @@ Default value: `<span>{option.label}</span>`
       searching = false;
     });
   };
+  function sanitizeFilters() {
+    return value && value.trim() ? value.toLowerCase().trim().split(/\s+/) : [];
+  }
 </script>
