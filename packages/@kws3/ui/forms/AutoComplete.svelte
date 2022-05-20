@@ -53,7 +53,6 @@ Default value: `<span>{option.label}</span>`
     {disabled}
     {readonly}
     bind:value
-    on:click|self|stopPropagation={() => setOptionsVisible(true)}
     on:keydown={handleKeydown}
     on:focus={() => setOptionsVisible(true)}
     on:blur={blurEvent}
@@ -240,14 +239,15 @@ Default value: `<span>{option.label}</span>`
 
   function updateFilteredOptions() {
     let filters = [];
-    console.log("updateFilteredOptions");
 
     //so we need to check if we are actually searching
     if (!searching && value) {
       filters = [];
     } else {
       filters = value ? value.toLowerCase().split(/\s+/) : [];
+      setOptionsVisible(true);
     }
+    console.log("updateFilteredOptions", { filters, value });
     if (asyncMode && searching) {
       debouncedTriggerSearch(filters);
     } else {
@@ -267,8 +267,6 @@ Default value: `<span>{option.label}</span>`
 
         cache[idx] = opts; // storing options to current index on cache
       });
-
-      console.log("cache", cache);
 
       filteredOptions = Object.values(cache) // get values from cache
         .flat() // flatten array
@@ -341,16 +339,12 @@ Default value: `<span>{option.label}</span>`
 
   function setOptionsVisible(show) {
     // nothing to do if visibility is already as intended
-    // if (show === showOptions) {
-    //   return;
-    // }
-    //BUG - fix double call
-    // console.log("value", value);
-    if (!value) {
-      showOptions = false;
-      return;
-    }
+
     console.log("options visible", show);
+
+    if (!value) {
+      show = false;
+    }
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
     if (show) {
@@ -384,7 +378,6 @@ Default value: `<span>{option.label}</span>`
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else {
-      setOptionsVisible(true);
       searching = true;
     }
   }
