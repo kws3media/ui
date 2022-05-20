@@ -340,7 +340,7 @@ Default value: `<span>{option.label}</span>`
 
     console.log("options visible", show);
 
-    if (!value) {
+    if (!value || !filteredOptions.length) {
       show = false;
     }
     if (readonly || disabled || show === showOptions) return;
