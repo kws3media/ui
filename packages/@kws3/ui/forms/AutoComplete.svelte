@@ -18,7 +18,6 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
-  @param {boolean} [show_highlighted_options=true] - Whether to show highlighted matches or not, Default: `true`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [no_options_msg="No options"] - Message to display when no matching options are found, Default: `"No options"`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
@@ -34,7 +33,7 @@ By default it renders in a custom container appended to `document.body`., Defaul
   ### Slots
   - `<slot name="default" {option} />` - Slot containing text for each selectable item
 
-Default value: `<span>{option.label|| option}</span>`
+Default value: `<span>{option.label}</span>`
 
 -->
 <div
@@ -241,7 +240,7 @@ Default value: `<span>{option.label|| option}</span>`
 
   function updateFilteredOptions() {
     let filters = [];
-    console.log("updateFilteredOptions", filteredOptions);
+    console.log("updateFilteredOptions");
 
     //so we need to check if we are actually searching
     if (!searching && value) {
@@ -253,6 +252,7 @@ Default value: `<span>{option.label|| option}</span>`
       debouncedTriggerSearch(filters);
     } else {
       let cache = {};
+      //TODO - can optimize more for long lists
       filters.forEach((word, idx) => {
         // iterate over each word in the search query
         let opts = [];
@@ -265,9 +265,10 @@ Default value: `<span>{option.label|| option}</span>`
           });
         }
 
-        delete cache[idx + 1]; // remove last cache entry which last whole word is just deleted
-        cache[idx] = opts; // stroing options to current index on cahce
+        cache[idx] = opts; // storing options to current index on cache
       });
+
+      console.log("cache", cache);
 
       filteredOptions = Object.values(cache) // get values from cache
         .flat() // flatten array
@@ -349,7 +350,7 @@ Default value: `<span>{option.label|| option}</span>`
       showOptions = false;
       return;
     }
-    console.log(show);
+    console.log("options visible", show);
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
     if (show) {
