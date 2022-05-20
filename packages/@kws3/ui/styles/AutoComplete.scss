@@ -8,7 +8,7 @@ $kws-autocomplete-disabled-border-color: $input-disabled-border-color !default;
 $kws-autocomplete-disabled-color: $input-disabled-color !default;
 $kws-autocomplete-selecting-color: $primary-invert !default;
 $kws-autocomplete-selecting-background: $primary !default;
-$kws-autocomplete-text-matches-color: $text !default;
+$kws-autocomplete-text-matches-color: currentColor !default;
 $kws-autocomplete-text-matches-background: transparent !default;
 $kws-autocomplete-text-matches-font-weight: $weight-bold !default;
 
@@ -83,27 +83,10 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
         background: $kws-autocomplete-selecting-background;
       }
       span {
+        // highlight text matches
         font-weight: $kws-autocomplete-text-matches-font-weight;
         color: $kws-autocomplete-text-matches-color;
         background: $kws-autocomplete-text-matches-background;
-      }
-    }
-
-    &.is-single {
-      li {
-        &:before,
-        .kws-autocompleteed-icon {
-          display: none;
-        }
-        &.selected {
-          .kws-autocompleteed-icon {
-            display: inline-flex;
-          }
-          .icon-i {
-            font-size: 1em;
-            line-height: 1.5;
-          }
-        }
       }
     }
 
@@ -123,7 +106,7 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
   $color-invert: nth($pair, 2);
   $color-light: findLightColor($color);
   $color-dark: findDarkColor($color);
-  .searchableselect {
+  .kws-autocomplete {
     &.is-#{$name} {
       border-color: $color;
       &:focus-within {
