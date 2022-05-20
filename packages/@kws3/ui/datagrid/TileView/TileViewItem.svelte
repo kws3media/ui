@@ -3,7 +3,8 @@
 
 
   @param {object} [row={}] - List of all values in a row, Default: `{}`
-  @param {boolean} [rowActive=false] - Determines whether the row is selected or not, Default: `false`
+  @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
+  @param {object} [activatedId=null] - Unique id of row that is activated, Default: `null`
   @param {boolean} [clickableRows=false] - Determines whether the row is clickable or not, Default: `false`
   @param {function} [isVisible()] - Returns whether a column can be visible or not
   @param {function} [transforms()] - Returns column custom value
@@ -16,7 +17,7 @@
 
 -->
 <div
-  class:is-selected={rowActive}
+  class:is-selected={activated && visualActivationOnClick}
   class="box {clickableRows ? 'is-hoverable' : ''}"
   on:click|stopPropagation={rowClick}>
   {#each column_keys as column}
@@ -39,9 +40,13 @@
    */
   export let row = {},
     /**
-     * Determines whether the row is selected or not
+     * Determines whether clickable rows activate visually on click
      */
-    rowActive = false,
+    visualActivationOnClick = true,
+    /**
+     * Unique id of row that is activated
+     */
+    activatedId = null,
     /**
      * Determines whether the row is clickable or not
      */
@@ -67,9 +72,10 @@
      */
     column_keys = [];
 
+  $: activated = activatedId === row.id;
+
   function rowClick() {
     if (clickableRows) {
-      rowActive = true;
       /**
        * Fires an event when a row is clicked
        */
