@@ -377,6 +377,7 @@ Default value: `<span>{option.label}</span>`
         else activeOption = filteredOptions[newActiveIdx];
       }
     } else {
+      activeOption = "";
       searching = true;
     }
   }
