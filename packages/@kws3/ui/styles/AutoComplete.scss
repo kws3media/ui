@@ -1,5 +1,8 @@
 $kws-theme-colors: $colors !default;
 $kws-autocomplete-radius: $radius !default;
+$kws-autocomplete-border-color: $input-border-color !default;
+$kws-autocomplete-box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+  0 0px 0 1px rgb(10 10 10 / 2%) !default;
 $kws-autocomplete-focus-border-color: $input-focus-border-color !default;
 $kws-autocomplete-focus-box-shadow-size: $input-focus-box-shadow-size !default;
 $kws-autocomplete-focus-box-shadow-color: $input-focus-box-shadow-color !default;
@@ -63,8 +66,8 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
     cursor: pointer;
     overflow: auto;
     background: #fff;
-    border: 1px solid grey;
-    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.4);
+    border: 1px solid $kws-autocomplete-border-color;
+    box-shadow: $kws-autocomplete-box-shadow;
     position: relative;
     z-index: 4;
     &[data-popper-placement="top"] {
@@ -86,9 +89,9 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
       }
       span {
         // highlight text matches
-        font-weight: $kws-autocomplete-text-matches-font-weight;
-        color: $kws-autocomplete-text-matches-color;
-        background: $kws-autocomplete-text-matches-background;
+        font-weight: $kws-autocomplete-text-matches-font-weight !important;
+        color: $kws-autocomplete-text-matches-color !important;
+        background: $kws-autocomplete-text-matches-background !important;
       }
     }
 

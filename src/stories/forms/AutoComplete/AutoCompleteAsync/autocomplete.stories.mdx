@@ -119,6 +119,9 @@ export let args = {
   code={dedent`
       $kws-theme-colors: $colors !default;
       $kws-autocomplete-radius: $radius !default;
+      $kws-autocomplete-border-color: $input-border-color !default;
+      $kws-autocomplete-box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+        0 0px 0 1px rgb(10 10 10 / 2%) !default;
       $kws-autocomplete-focus-border-color: $input-focus-border-color !default;
       $kws-autocomplete-focus-box-shadow-size: $input-focus-box-shadow-size !default;
       $kws-autocomplete-focus-box-shadow-color: $input-focus-box-shadow-color !default;
@@ -130,6 +133,5 @@ export let args = {
       $kws-autocomplete-text-matches-color: currentColor !default;
       $kws-autocomplete-text-matches-background: transparent !default;
       $kws-autocomplete-text-matches-font-weight: $weight-bold !default;
-      $kws-autocomplete-options-z-index: $modal-z + 1;
     `}
 />

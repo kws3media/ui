@@ -51,6 +51,7 @@ $kws-gridview-checked-row-background: $primary-light !default;
     background-color: $kws-gridview-checked-row-background !important;
     td {
       background-color: $kws-gridview-checked-row-background !important;
+      color: findColorInvert($kws-gridview-checked-row-background) !important;
     }
   }
 }

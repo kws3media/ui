@@ -5,9 +5,11 @@
   @param {string} [iteration_key="id"] - Iteration key, Default: `"id"`
   @param {array} [data=[]] - Contains all the results that needs to be displayed, Default: `[]`
   @param {object} [columns={}] - Table column names. {db_field_name: column_name}, Default: `{}`
-  @param {boolean} [transition=false] - Determines if a transision effect is used, Default: `false`
+  @param {boolean} [transition=false] - Determines if a transition effect is used, Default: `false`
   @param {boolean} [is_striped=true] - Determines whether to use alternating row shading in the table view, Default: `true`
+  @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
+  @param {object} [activatedId=null] - Unique id of row that is activated, Default: `null`
   @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
   @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
   @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
@@ -64,6 +66,7 @@
           {transition}
           {column_keys}
           {clickableRows}
+          {visualActivationOnClick}
           {isVisible}
           {transforms}
           {classNames}
@@ -71,6 +74,7 @@
           {cellComponent}
           {row}
           {bulk_actions}
+          {activatedId}
           {selectedIds}
           {selectCheckboxColor}
           {selectCheckboxSize}
@@ -100,7 +104,7 @@
      */
     columns = {},
     /**
-     * Determines if a transision effect is used
+     * Determines if a transition effect is used
      */
     transition = false,
     /**
@@ -109,9 +113,17 @@
      */
     is_striped = true,
     /**
+     * Determines whether clickable rows activate visually on click
+     */
+    visualActivationOnClick = true,
+    /**
      * Determines whether rows are clickable or not
      */
     clickableRows = false,
+    /**
+     * Unique id of row that is activated
+     */
+    activatedId = null,
     /**
      * Determines if selecting multiple rows and doing multiple actions is allowed
      */
