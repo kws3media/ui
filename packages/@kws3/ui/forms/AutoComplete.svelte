@@ -242,7 +242,6 @@ Default value: `<span>{option.label}</span>`
       filters = sanitizeFilters(value);
       setOptionsVisible(true);
     }
-    console.log("updateFilteredOptions", { filters, value });
     if (asyncMode && searching) {
       debouncedTriggerSearch(filters);
     } else {
@@ -281,6 +280,7 @@ Default value: `<span>{option.label}</span>`
       return;
     }
     options_loading = true;
+    // filteredOptions = [];
     search(filters).then((_options) => {
       searching = false;
       options_loading = false;
@@ -336,17 +336,12 @@ Default value: `<span>{option.label}</span>`
   }
 
   function setOptionsVisible(show) {
-    // nothing to do if visibility is already as intended
-
-    console.log("options visible", show);
-
     if (!value || !filteredOptions.length) {
       show = false;
     }
     if (readonly || disabled || show === showOptions) return;
     showOptions = show;
     if (show) {
-      console.log("focused");
       input && input.focus();
     } else {
       searching = false;
