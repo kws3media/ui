@@ -362,8 +362,8 @@ Default value: `<span>{option.label}</span>`
       if (activeOption) {
         handleOptionMouseDown(activeOption);
       } else {
-        // no active option means the options are closed in which case enter means open
-        setOptionsVisible(true);
+        // no active option means no option is selected and the actual value should be what typed in input.
+        setOptionsVisible(false);
       }
     } else if ([`ArrowDown`, `ArrowUp`].includes(event.key)) {
       const increment = event.key === `ArrowUp` ? -1 : 1;
