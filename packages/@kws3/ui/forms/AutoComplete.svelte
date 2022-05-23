@@ -14,6 +14,7 @@ Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
   @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
+  @param {boolean} [highlight_mathces=true] - Whether to show the highlighted option in the dropdown., Default: `true`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -144,6 +145,11 @@ Default value: `<span>{option.label}</span>`
    * @type {'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
+
+  /**
+   * Whether to show the highlighted option in the dropdown.
+   */
+  export let highlight_mathces = true;
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
@@ -261,7 +267,9 @@ Default value: `<span>{option.label}</span>`
         .flat() // flatten array
         .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
 
-      filteredOptions = highlightMatches(filteredOptions, filters);
+      if (highlight_mathces) {
+        filteredOptions = highlightMatches(filteredOptions, filters);
+      }
     }
   }
 
@@ -278,7 +286,10 @@ Default value: `<span>{option.label}</span>`
       options_loading = false;
       tick().then(() => {
         filteredOptions = normaliseArraysToObjects(_options);
-        filteredOptions = highlightMatches(filteredOptions, filters);
+
+        if (highlight_mathces) {
+          filteredOptions = highlightMatches(filteredOptions, filters);
+        }
       });
     });
   }

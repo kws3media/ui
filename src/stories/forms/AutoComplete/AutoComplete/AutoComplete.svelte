@@ -12,6 +12,7 @@
         options={characters}
         bind:value={selected_character}
         {search_strategy}
+        {highlight_mathces}
         {placeholder}
         {style}
         class={klass}
@@ -37,6 +38,7 @@
         options={characters_string_only}
         bind:value={selected_character_string}
         {search_strategy}
+        {highlight_mathces}
         {placeholder}
         {style}
         class={klass}
@@ -73,6 +75,7 @@
     readonly = false,
     search_strategy = "fuzzy",
     selected_icon = "check",
+    highlight_mathces = true,
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
     placeholder = "Choose a Brand...",
