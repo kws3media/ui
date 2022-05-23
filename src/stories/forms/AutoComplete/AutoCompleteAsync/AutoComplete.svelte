@@ -18,10 +18,7 @@
         {style}
         class={klass}
         {disabled}
-        {readonly}
-        {selected_icon}
-        {no_options_msg}
-        {remove_all_tip} />
+        {readonly} />
       Output data:
       <code>{JSON.stringify(selected_character_string, null, 2)}</code>
     </div>
@@ -50,10 +47,7 @@
     readonly = false,
     search_strategy = "fuzzy",
     highlight_mathces = true,
-    selected_icon = "check",
-    no_options_msg = "No matching options",
-    remove_all_tip = "Remove all",
-    placeholder = "Choose a Brand...", // single , also work with { label: "Tony Stark", value: "Tony Stark"}
+    placeholder = "Marvel characters...",
     selected_character_string = "Tony";
 
   let klass = "";

@@ -17,10 +17,7 @@
         {style}
         class={klass}
         {disabled}
-        {readonly}
-        {selected_icon}
-        {no_options_msg}
-        {remove_all_tip} />
+        {readonly} />
       Output data:
       <code>{JSON.stringify(selected_character, null, 2)}</code>
     </div>
@@ -43,10 +40,7 @@
         {style}
         class={klass}
         {disabled}
-        {readonly}
-        {selected_icon}
-        {no_options_msg}
-        {remove_all_tip} />
+        {readonly} />
       Output data:
       <code>{JSON.stringify(selected_character_string, null, 2)}</code>
     </div>
@@ -74,11 +68,8 @@
     disabled = false,
     readonly = false,
     search_strategy = "fuzzy",
-    selected_icon = "check",
     highlight_mathces = true,
-    no_options_msg = "No matching options",
-    remove_all_tip = "Remove all",
-    placeholder = "Choose a Brand...",
+    placeholder = "Marvel characters...",
     selected_character = "", // single , also work with { label: "Tony Stark", value: "Tony Stark"}
     selected_character_string = "Tony";
 
