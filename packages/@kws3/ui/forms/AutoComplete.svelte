@@ -19,7 +19,6 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
-  @param {string} [no_options_msg="No options"] - Message to display when no matching options are found, Default: `"No options"`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
 Can be a DOM element or a `string` with the CSS selector of the element.
 
@@ -82,12 +81,6 @@ Default value: `<span>{option.label}</span>`
               {@html option.label}
             </slot>
           </li>
-        {:else}
-          {#if !options_loading && value}
-            <li class="no-options">
-              {no_options_msg}
-            </li>
-          {/if}
         {/each}
       </ul>
     </div>
@@ -173,10 +166,6 @@ Default value: `<span>{option.label}</span>`
    * Disables the component
    */
   export let disabled = false;
-  /**
-   * Message to display when no matching options are found
-   */
-  export let no_options_msg = "No options";
 
   /**
    * Where to render the dropdown list.

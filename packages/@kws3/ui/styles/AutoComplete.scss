@@ -94,15 +94,6 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
         background: $kws-autocomplete-text-matches-background !important;
       }
     }
-
-    li.no-options {
-      pointer-events: none;
-      padding: 0.3em 0.5em !important;
-      &:before,
-      &:after {
-        display: none;
-      }
-    }
   }
 }
 
