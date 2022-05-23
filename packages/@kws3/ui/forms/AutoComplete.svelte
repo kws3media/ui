@@ -54,7 +54,6 @@ Default value: `<span>{option.label}</span>`
     {readonly}
     bind:value
     on:keydown={handleKeydown}
-    on:focus={() => setOptionsVisible(true)}
     on:blur={blurEvent}
     on:blur={() => setOptionsVisible(false)}
     {placeholder} />
@@ -240,7 +239,6 @@ Default value: `<span>{option.label}</span>`
       filters = [];
     } else {
       filters = sanitizeFilters(value);
-      setOptionsVisible(true);
     }
     if (asyncMode && searching) {
       debouncedTriggerSearch(filters);
@@ -269,6 +267,7 @@ Default value: `<span>{option.label}</span>`
       if (highlight_mathces) {
         filteredOptions = highlightMatches(filteredOptions, filters);
       }
+      setOptionsVisible(true);
     }
   }
 
@@ -303,7 +302,7 @@ Default value: `<span>{option.label}</span>`
       modifiers: [sameWidthPopperModifier],
     });
 
-    //normalize value for single
+    //normalize value
     if (value === null || typeof value == "undefined") {
       value = null;
     }
@@ -350,7 +349,6 @@ Default value: `<span>{option.label}</span>`
   }
 
   function handleKeydown(event) {
-    //BUG - arrow left/right triggering search call
     if (event.key === `Enter`) {
       event.preventDefault();
 
