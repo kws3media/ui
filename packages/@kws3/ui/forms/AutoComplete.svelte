@@ -45,7 +45,8 @@ Default value: `<span>{option.label}</span>`
     is-{size} is-{color} {klass}
   "
   class:readonly
-  {style}>
+  {style}
+  on:click|stopPropagation={() => input && input.focus()}>
   <input
     class="input is-{size}"
     bind:this={input}
