@@ -108,6 +108,9 @@ export default async ({ args, canvasElement }) => {
   await userEvent.click(document.body);
   await expect(inputs[0].value).toBe("s");
   await expect(Number(items.length)).toEqual(0);
+
+  await sleep(300);
+  inputs[0].value = "";
 };
 
 function HTMLtoString(html) {
