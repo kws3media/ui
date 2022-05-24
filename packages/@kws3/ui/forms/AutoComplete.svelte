@@ -410,7 +410,7 @@ Default value: `<span>{option.label}</span>`
 
   const clearDropDownResults = () => {
     tick().then(() => {
-      options = [];
+      filteredOptions = [];
       searching = false;
     });
   };
