@@ -413,7 +413,7 @@ Default value: `<span>{option.label}</span>`
     filtered_options = [];
     searching = false;
   };
-  function sanitizeFilters() {
-    return value && value.trim() ? value.toLowerCase().trim().split(/\s+/) : [];
+  function sanitizeFilters(v) {
+    return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
   }
 </script>
