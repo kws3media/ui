@@ -281,8 +281,7 @@ Default value: `<span>{option.label}</span>`
   function triggerSearch(filters) {
     if (!filters.length) {
       //do not trigger async search if filters are empty
-      filtered_options = [];
-      searching = false;
+      clearDropDownResults();
       return;
     }
     options_loading = true;
@@ -328,10 +327,6 @@ Default value: `<span>{option.label}</span>`
     value = token.value;
     fire("change", { token, type: `add` });
 
-    //clear dropdown results in asyncMode
-    if (asyncMode) {
-      clearDropDownResults();
-    }
     setOptionsVisible(false);
   }
 
@@ -351,7 +346,7 @@ Default value: `<span>{option.label}</span>`
     if (show) {
       input && input.focus();
     } else {
-      searching = false;
+      clearDropDownResults();
     }
     POPPER && POPPER.update();
   }
