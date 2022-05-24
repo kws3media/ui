@@ -19,7 +19,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(1000);
 
   //Focus on Multi-select
-  await userEvent.click(inputs[0]);
+  userEvent.click(inputs[0]);
 
   const options = document.querySelectorAll("ul.options"),
     items = options[0].getElementsByTagName("li");
@@ -30,7 +30,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
   inputs[0].value = "";
   await userEvent.type(inputs[0], "tony", { delay: 100 });
-  await sleep(1500);
+  await sleep(1200);
   await expect(Number(items.length)).toBe(1);
   await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe(
     "tony stark"
@@ -38,76 +38,69 @@ export default async ({ args, canvasElement }) => {
 
   // on enter options should be empty
   await sleep(300);
-  await fireEvent.keyDown(inputs[0], { key: "Enter" });
-  // await sleep(1000);
-  // await expect(Number(items.length)).toEqual(0);
+  fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
+  await expect(Number(items.length)).toEqual(0);
   await expect(inputs[0].value).toEqual("tony");
 
   await sleep(300);
   await userEvent.type(inputs[0], " roger", { delay: 100 });
-  await sleep(1500);
+  await sleep(1200);
   await expect(Number(items.length)).toBe(2);
   await expect(HTMLtoString(items[1].innerHTML).toLowerCase()).toBe(
     "steve rogers"
   );
 
-  // await sleep(300);
-  // inputs[0].value = "";
-  // await userEvent.type(inputs[0], "drax", { delay: 100 });
-  // await expect(Number(items.length)).toBe(1);
-  // await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe("drax");
-  // await fireEvent.keyDown(inputs[0], { key: "Enter" });
-  // await expect(Number(items.length)).toEqual(0);
+  await sleep(300);
+  inputs[0].value = "";
+  await userEvent.type(inputs[0], "drax", { delay: 100 });
+  await sleep(1200);
+  await expect(Number(items.length)).toBe(1);
+  await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe("drax");
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
+  await expect(Number(items.length)).toEqual(0);
 
-  // //By default search strategy  should be 'fuzzy'
-  // await sleep(300);
-  // inputs[0].value = "";
-  // await userEvent.type(inputs[0], "tn", { delay: 100 });
-  // await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe(
-  //   "tony stark"
-  // );
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "Enter" });
-  // await expect(inputs[0].value).toEqual("tn");
+  //Select item using ArrowUp and Enter key
+  await sleep(300);
+  inputs[0].value = "";
+  await userEvent.type(inputs[0], "t", { delay: 100 });
+  await sleep(1200);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await expect(Number(items.length)).toEqual(0);
+  await expect(inputs[0].value).toEqual("Groot");
 
-  // //Select item using ArrowUp and Enter key
-  // await sleep(300);
-  // inputs[0].value = "";
-  // await userEvent.type(inputs[0], "t", { delay: 100 });
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "Enter" });
-  // await expect(Number(items.length)).toEqual(0);
-  // await expect(inputs[0].value).toEqual("Groot");
+  //Select item using ArrowDown key & Mouse click
+  await sleep(300);
+  inputs[0].value = "";
+  await userEvent.type(inputs[0], "s", { delay: 100 });
+  await sleep(1200);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  await sleep(300);
+  await userEvent.click(options[0].querySelector("li.active"));
+  await expect(Number(items.length)).toBe(0);
+  await expect(inputs[0].value).toEqual("Stephen Strange");
 
-  // //Select item using ArrowDown key & Mouse click
-  // await sleep(300);
-  // inputs[0].value = "";
-  // await userEvent.type(inputs[0], "s", { delay: 100 });
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
-  // await sleep(300);
-  // await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
-  // await sleep(300);
-  // await userEvent.click(options[0].querySelector("li.active"));
-  // await expect(Number(items.length)).toBe(0);
-  // await expect(inputs[0].value).toEqual("Stephen Strange");
-
-  // //Dont clear input if input loses focus on it
-  // await sleep(300);
-  // inputs[0].value = "";
-  // await userEvent.type(inputs[0], "s", { delay: 100 });
-  // await userEvent.click(document.body);
-  // await expect(inputs[0].value).toBe("s");
-  // await expect(Number(items.length)).toEqual(0);
+  //Dont clear input if input loses focus on it
+  await sleep(300);
+  inputs[0].value = "";
+  await userEvent.type(inputs[0], "s", { delay: 100 });
+  await userEvent.click(document.body);
+  await expect(inputs[0].value).toBe("s");
+  await expect(Number(items.length)).toEqual(0);
+  inputs[0].value = "";
 };
 
 function HTMLtoString(html) {
