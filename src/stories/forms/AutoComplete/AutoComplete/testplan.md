@@ -24,3 +24,10 @@
 1. Type "s".
   - Press Arrow Down 4 imes
  - Result: "Stephen Strange" should be selected.
+
+### Testing By default search strategy should be 'fuzzy'
+1. Type "tn"
+  - Result: The dropdown should contain "tony stark" in options list.
+### Testing dont clear input when user loses focus on it
+1. Type "s" and click outside the input.
+  - Result: The input value should be "s"

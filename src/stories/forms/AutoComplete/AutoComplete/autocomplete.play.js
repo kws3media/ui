@@ -59,6 +59,17 @@ export default async ({ args, canvasElement }) => {
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await expect(Number(items.length)).toEqual(0);
 
+  //By default search strategy  should be 'fuzzy'
+  await sleep(300);
+  inputs[0].value = "";
+  await userEvent.type(inputs[0], "tn", { delay: 100 });
+  await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe(
+    "tony stark"
+  );
+  await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await expect(inputs[0].value).toEqual("tn");
+
   //Select item using ArrowUp and Enter key
   await sleep(300);
   inputs[0].value = "";
@@ -89,6 +100,14 @@ export default async ({ args, canvasElement }) => {
   await userEvent.click(options[0].querySelector("li.active"));
   await expect(Number(items.length)).toBe(0);
   await expect(inputs[0].value).toEqual("Stephen Strange");
+
+  //Dont clear input if input loses focus on it
+  await sleep(300);
+  inputs[0].value = "";
+  await userEvent.type(inputs[0], "s", { delay: 100 });
+  await userEvent.click(document.body);
+  await expect(inputs[0].value).toBe("s");
+  await expect(Number(items.length)).toEqual(0);
 };
 
 function HTMLtoString(html) {
