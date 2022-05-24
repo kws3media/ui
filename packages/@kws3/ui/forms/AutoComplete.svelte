@@ -339,14 +339,12 @@ Default value: `<span>{option.label}</span>`
   }
 
   function setOptionsVisible(show) {
+    if (readonly || disabled || show === show_options) return;
     if (!value || !filtered_options.length) {
       show = false;
     }
-    if (readonly || disabled || show === show_options) return;
     show_options = show;
-    if (show) {
-      input && input.focus();
-    } else {
+    if (!show) {
       clearDropDownResults();
     }
     POPPER && POPPER.update();
