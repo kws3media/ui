@@ -411,10 +411,8 @@ Default value: `<span>{option.label}</span>`
   };
 
   const clearDropDownResults = () => {
-    tick().then(() => {
-      filtered_options = [];
-      searching = false;
-    });
+    filtered_options = [];
+    searching = false;
   };
   function sanitizeFilters() {
     return value && value.trim() ? value.toLowerCase().trim().split(/\s+/) : [];
