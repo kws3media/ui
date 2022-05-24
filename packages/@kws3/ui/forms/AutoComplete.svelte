@@ -289,6 +289,7 @@ Default value: `<span>{option.label}</span>`
         if (highlight_mathces) {
           filteredOptions = highlightMatches(filteredOptions, filters);
         }
+        setOptionsVisible(true);
       });
     });
   }
