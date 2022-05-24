@@ -13,7 +13,7 @@
         options={characters_string_only}
         bind:value={selected_character_string}
         {search_strategy}
-        {highlight_mathces}
+        {highlighted_results}
         {placeholder}
         {style}
         class={klass}
@@ -46,7 +46,7 @@
     disabled = false,
     readonly = false,
     search_strategy = "fuzzy",
-    highlight_mathces = true,
+    highlighted_results = true,
     placeholder = "Marvel characters...",
     selected_character_string = "Tony";
 
