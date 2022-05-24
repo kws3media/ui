@@ -65,12 +65,13 @@ Default value: `<span>{option.label}</span>`
   {/if}
   {#if rootContainer}
     <div class="kws-autocomplete" use:portal={dropdown_portal}>
-      <ul bind:this={dropdown} class="options" class:hidden={!showOptions}>
-        {#each filteredOptions as option}
+      <ul bind:this={dropdown} class="options" class:hidden={!show_options}>
+        {#each filtered_options as option}
           <li
+            class="is-size-{list_text_size[size]}"
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
-            class:active={activeOption === option}>
+            class:active={active_option === option}>
             <!--
               Slot containing text for each selectable item
 
@@ -206,17 +207,23 @@ Default value: `<span>{option.label}</span>`
     dropdown, //dropdown ul
     input, //the textbox to type in
     POPPER,
-    activeOption = "",
+    active_option = "",
     searching = false,
-    showOptions = false,
-    filteredOptions = [], //list of options filtered by search query
-    normalisedOptions = [], //list of options normalised
+    show_options = false,
+    filtered_options = [], //list of options filtered by search query
+    normalised_options = [], //list of options normalised
     options_loading = false; //indictaes whether async search function is running
+
+  let list_text_size = {
+    small: "7",
+    medium: "5",
+    large: "4",
+  };
 
   $: asyncMode = search && typeof search === "function";
 
   $: options, normaliseOptions();
-  $: normalisedOptions, value, searching, updateFilteredOptions();
+  $: normalised_options, value, searching, updateFilteredOptions();
 
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
@@ -224,11 +231,11 @@ Default value: `<span>{option.label}</span>`
   function normaliseOptions() {
     let _items = options || [];
     if (!_items || !(_items instanceof Array)) {
-      normalisedOptions = [];
+      normalised_options = [];
       return;
     }
 
-    normalisedOptions = normaliseArraysToObjects(_items);
+    normalised_options = normaliseArraysToObjects(_items);
   }
 
   function updateFilteredOptions() {
@@ -249,7 +256,7 @@ Default value: `<span>{option.label}</span>`
         // iterate over each word in the search query
         let opts = [];
         if (word) {
-          opts = [...normalisedOptions].filter((item) => {
+          opts = [...normalised_options].filter((item) => {
             // filter out items that don't match `filter`
             if (typeof item === "object" && item.value) {
               return typeof item.value === "string" && match(word, item.value);
@@ -260,12 +267,12 @@ Default value: `<span>{option.label}</span>`
         cache[idx] = opts; // storing options to current index on cache
       });
 
-      filteredOptions = Object.values(cache) // get values from cache
+      filtered_options = Object.values(cache) // get values from cache
         .flat() // flatten array
         .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
 
       if (highlight_mathces) {
-        filteredOptions = highlightMatches(filteredOptions, filters);
+        filtered_options = highlightMatches(filtered_options, filters);
       }
       setOptionsVisible(true);
     }
@@ -274,20 +281,20 @@ Default value: `<span>{option.label}</span>`
   function triggerSearch(filters) {
     if (!filters.length) {
       //do not trigger async search if filters are empty
-      filteredOptions = [];
+      filtered_options = [];
       searching = false;
       return;
     }
     options_loading = true;
-    // filteredOptions = [];
+    // filtered_options = [];
     search(filters).then((_options) => {
       searching = false;
       options_loading = false;
       tick().then(() => {
-        filteredOptions = normaliseArraysToObjects(_options);
+        filtered_options = normaliseArraysToObjects(_options);
 
         if (highlight_mathces) {
-          filteredOptions = highlightMatches(filteredOptions, filters);
+          filtered_options = highlightMatches(filtered_options, filters);
         }
         setOptionsVisible(true);
       });
@@ -336,11 +343,11 @@ Default value: `<span>{option.label}</span>`
   }
 
   function setOptionsVisible(show) {
-    if (!value || !filteredOptions.length) {
+    if (!value || !filtered_options.length) {
       show = false;
     }
-    if (readonly || disabled || show === showOptions) return;
-    showOptions = show;
+    if (readonly || disabled || show === show_options) return;
+    show_options = show;
     if (show) {
       input && input.focus();
     } else {
@@ -353,25 +360,25 @@ Default value: `<span>{option.label}</span>`
     if (event.key === `Enter`) {
       event.preventDefault();
 
-      if (activeOption) {
-        handleOptionMouseDown(activeOption);
+      if (active_option) {
+        handleOptionMouseDown(active_option);
       } else {
         // no active option means no option is selected and the actual value should be what typed in input.
         setOptionsVisible(false);
       }
     } else if ([`ArrowDown`, `ArrowUp`].includes(event.key)) {
       const increment = event.key === `ArrowUp` ? -1 : 1;
-      const newActiveIdx = filteredOptions.indexOf(activeOption) + increment;
+      const newActiveIdx = filtered_options.indexOf(active_option) + increment;
 
       if (newActiveIdx < 0) {
-        activeOption = filteredOptions[filteredOptions.length - 1];
+        active_option = filtered_options[filtered_options.length - 1];
       } else {
-        if (newActiveIdx === filteredOptions.length)
-          activeOption = filteredOptions[0];
-        else activeOption = filteredOptions[newActiveIdx];
+        if (newActiveIdx === filtered_options.length)
+          active_option = filtered_options[0];
+        else active_option = filtered_options[newActiveIdx];
       }
     } else {
-      activeOption = "";
+      active_option = "";
       searching = true;
     }
   }
@@ -410,7 +417,7 @@ Default value: `<span>{option.label}</span>`
 
   const clearDropDownResults = () => {
     tick().then(() => {
-      filteredOptions = [];
+      filtered_options = [];
       searching = false;
     });
   };
