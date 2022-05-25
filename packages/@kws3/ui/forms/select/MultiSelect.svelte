@@ -131,6 +131,7 @@ Default value: `<span>{option[search_key] || option}</span>`
             on:mouseenter|preventDefault|stopPropagation={() => {
               activeOption = option;
             }}
+            class="is-size-{list_text_size[size]}"
             class:selected={isSelected(option)}
             class:active={activeOption === option}>
             <span class="kws-selected-icon"
@@ -321,6 +322,12 @@ Default value: `<span>{option[search_key] || option}</span>`
     normalisedOptions = [], //list of options normalised
     selectedOptions = [], //list of options that are selected
     options_loading = false; //indictaes whether async search function is running
+
+  let list_text_size = {
+    small: "7",
+    medium: "5",
+    large: "4",
+  };
 
   $: single = max === 1;
   $: asyncMode = search && typeof search === "function";
