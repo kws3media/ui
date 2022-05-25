@@ -87,7 +87,7 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
         color: $kws-autocomplete-selecting-color;
         background: $kws-autocomplete-selecting-background;
       }
-      span {
+      span.h {
         // highlight text matches
         font-weight: $kws-autocomplete-text-matches-font-weight !important;
         color: $kws-autocomplete-text-matches-color !important;
