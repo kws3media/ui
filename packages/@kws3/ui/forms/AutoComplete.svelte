@@ -408,7 +408,10 @@ Default value: `<span>{option.label}</span>`
     return options.map((item) => {
       return {
         ...item,
-        label: item.value.replace(pattern, (match) => `<span>${match}</span>`),
+        label: item.value.replace(
+          pattern,
+          (match) => `<span class="h">${match}</span>`
+        ),
       };
     });
   };
