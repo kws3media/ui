@@ -337,7 +337,7 @@ Default value: `<span>{option.label}</span>`
 
   function handleKeydown(event) {
     if (event.key === `Enter`) {
-      event.preventDefault();
+      show_options && event.preventDefault();
 
       if (active_option) {
         handleOptionMouseDown(active_option);
@@ -346,6 +346,8 @@ Default value: `<span>{option.label}</span>`
         setOptionsVisible(false);
       }
     } else if ([`ArrowDown`, `ArrowUp`].includes(event.key)) {
+      show_options && event.preventDefault();
+
       const increment = event.key === `ArrowUp` ? -1 : 1;
       const newActiveIdx = filtered_options.indexOf(active_option) + increment;
 
