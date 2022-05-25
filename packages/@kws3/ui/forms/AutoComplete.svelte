@@ -213,7 +213,8 @@ Default value: `<span>{option.label}</span>`
     show_options = false,
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
-    options_loading = false; //indictaes whether async search function is running
+    options_loading = false, //indictaes whether async search function is running
+    mounted = false; //indicates whether component is mounted
 
   let list_text_size = {
     small: "7",
@@ -240,6 +241,8 @@ Default value: `<span>{option.label}</span>`
   }
 
   function updateFilteredOptions() {
+    if (!mounted) return;
+
     let filters = [];
 
     //so we need to check if we are actually searching
@@ -314,6 +317,7 @@ Default value: `<span>{option.label}</span>`
     if (value === null || typeof value == "undefined") {
       value = null;
     }
+    mounted = true;
 
     return () => {
       POPPER.destroy();
