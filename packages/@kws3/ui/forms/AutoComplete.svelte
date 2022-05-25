@@ -209,7 +209,7 @@ Default value: `<span>{option.label}</span>`
     input, //the textbox to type in
     POPPER,
     active_option = "",
-    searching = false,
+    searching = true,
     show_options = false,
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
@@ -225,7 +225,7 @@ Default value: `<span>{option.label}</span>`
   $: asyncMode = search && typeof search === "function";
 
   $: options, normaliseOptions();
-  $: normalised_options, value, searching, updateFilteredOptions();
+  $: searching, updateFilteredOptions(value);
 
   $: allow_fuzzy_match = !search && search_strategy === "fuzzy";
 
@@ -240,20 +240,17 @@ Default value: `<span>{option.label}</span>`
     normalised_options = normaliseArraysToObjects(_items);
   }
 
-  function updateFilteredOptions() {
+  function updateFilteredOptions(value) {
     if (!mounted) return;
 
-    let filters = [];
-
-    //so we need to check if we are actually searching
-    if (!searching && value) {
-      filters = [];
+    if (asyncMode) {
+      searching && debouncedTriggerSearch(sanitizeFilters(value));
     } else {
-      filters = sanitizeFilters(value);
+      searching && triggerSearch(sanitizeFilters(value));
     }
-    if (asyncMode && searching) {
-      debouncedTriggerSearch(filters);
-    } else {
+  }
+
+  function triggerSearch(filters) {
     let cache = {};
     //TODO - can optimize more for very long lists
     filters.forEach((word, idx) => {
@@ -278,9 +275,7 @@ Default value: `<span>{option.label}</span>`
     if (highlighted_results) {
       filtered_options = highlightMatches(filtered_options, filters);
     }
-
     setOptionsVisible(true);
-    }
   }
 
   function triggerExternalSearch(filters) {
@@ -325,24 +320,6 @@ Default value: `<span>{option.label}</span>`
     };
   });
 
-  function add(token) {
-    if (readonly || disabled) {
-      return;
-    }
-
-    value = token.value;
-    fire("change", { token, type: `add` });
-
-    setOptionsVisible(false);
-  }
-
-  function blurEvent() {
-    /**
-     * Triggered when the input loses focus
-     */
-    fire("blur");
-  }
-
   function setOptionsVisible(show) {
     if (readonly || disabled || show === show_options) return;
     if (!value || !filtered_options.length) {
@@ -384,6 +361,24 @@ Default value: `<span>{option.label}</span>`
 
   function handleOptionMouseDown(option) {
     add(option);
+  }
+
+  function add(token) {
+    if (readonly || disabled) {
+      return;
+    }
+
+    value = token.value;
+    fire("change", { token, type: `add` });
+
+    setOptionsVisible(false);
+  }
+
+  function blurEvent() {
+    /**
+     * Triggered when the input loses focus
+     */
+    fire("blur");
   }
 
   const match = (needle, haystack) => {
