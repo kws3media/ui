@@ -28,7 +28,7 @@ export default async ({ args, canvasElement }) => {
   await expect(options[0].classList.contains("hidden")).toEqual(true);
 
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "tony", { delay: 100 });
   await sleep(1200);
   await expect(Number(items.length)).toBe(1);
@@ -52,7 +52,7 @@ export default async ({ args, canvasElement }) => {
   );
 
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "drax", { delay: 100 });
   await sleep(1200);
   await expect(Number(items.length)).toBe(1);
@@ -63,7 +63,7 @@ export default async ({ args, canvasElement }) => {
 
   //Select item using ArrowUp and Enter key
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "t", { delay: 100 });
   await sleep(1200);
   await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
@@ -78,7 +78,7 @@ export default async ({ args, canvasElement }) => {
 
   //Select item using ArrowDown key & Mouse click
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "s", { delay: 100 });
   await sleep(1200);
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
@@ -95,14 +95,22 @@ export default async ({ args, canvasElement }) => {
 
   //Dont clear input if input loses focus on it
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "s", { delay: 100 });
   await userEvent.click(document.body);
   await expect(inputs[0].value).toBe("s");
   await expect(Number(items.length)).toEqual(0);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
 };
 
 function HTMLtoString(html) {
   return html.replace(/<[^>]*>/g, "").trim();
+}
+// series of backspace call not working, lib bug
+function emptyInput(input) {
+  fireEvent.input(input, {
+    target: { value: "" },
+    bubbles: true,
+    cancelable: true,
+  });
 }

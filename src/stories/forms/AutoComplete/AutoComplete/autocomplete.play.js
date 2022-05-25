@@ -52,7 +52,7 @@ export default async ({ args, canvasElement }) => {
   );
 
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "drax", { delay: 100 });
   await expect(Number(items.length)).toBe(1);
   await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe("drax");
@@ -61,7 +61,7 @@ export default async ({ args, canvasElement }) => {
 
   //By default search strategy  should be 'fuzzy'
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "tn", { delay: 100 });
   await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe(
     "tony stark"
@@ -72,7 +72,7 @@ export default async ({ args, canvasElement }) => {
 
   //Select item using ArrowUp and Enter key
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "t", { delay: 100 });
   await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
@@ -87,7 +87,7 @@ export default async ({ args, canvasElement }) => {
 
   //Select item using ArrowDown key & Mouse click
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "s", { delay: 100 });
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await sleep(300);
@@ -103,16 +103,24 @@ export default async ({ args, canvasElement }) => {
 
   //Dont clear input if input loses focus on it
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
   await userEvent.type(inputs[0], "s", { delay: 100 });
   await userEvent.click(document.body);
   await expect(inputs[0].value).toBe("s");
   await expect(Number(items.length)).toEqual(0);
 
   await sleep(300);
-  inputs[0].value = "";
+  emptyInput(inputs[0]);
 };
 
 function HTMLtoString(html) {
   return html.replace(/<[^>]*>/g, "").trim();
+}
+
+function emptyInput(input) {
+  fireEvent.input(input, {
+    target: { value: "" },
+    bubbles: true,
+    cancelable: true,
+  });
 }
