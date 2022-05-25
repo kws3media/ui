@@ -254,35 +254,36 @@ Default value: `<span>{option.label}</span>`
     if (asyncMode && searching) {
       debouncedTriggerSearch(filters);
     } else {
-      let cache = {};
-      //TODO - can optimize more for very long lists
-      filters.forEach((word, idx) => {
-        // iterate over each word in the search query
-        let opts = [];
-        if (word) {
-          opts = [...normalised_options].filter((item) => {
-            // filter out items that don't match `filter`
-            if (typeof item === "object" && item.value) {
-              return typeof item.value === "string" && match(word, item.value);
-            }
-          });
-        }
-
-        cache[idx] = opts; // storing options to current index on cache
-      });
-
-      filtered_options = Object.values(cache) // get values from cache
-        .flat() // flatten array
-        .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
-
-      if (highlighted_results) {
-        filtered_options = highlightMatches(filtered_options, filters);
+    let cache = {};
+    //TODO - can optimize more for very long lists
+    filters.forEach((word, idx) => {
+      // iterate over each word in the search query
+      let opts = [];
+      if (word) {
+        opts = [...normalised_options].filter((item) => {
+          // filter out items that don't match `filter`
+          if (typeof item === "object" && item.value) {
+            return typeof item.value === "string" && match(word, item.value);
+          }
+        });
       }
-      setOptionsVisible(true);
+
+      cache[idx] = opts; // storing options to current index on cache
+    });
+
+    filtered_options = Object.values(cache) // get values from cache
+      .flat() // flatten array
+      .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
+
+    if (highlighted_results) {
+      filtered_options = highlightMatches(filtered_options, filters);
+    }
+
+    setOptionsVisible(true);
     }
   }
 
-  function triggerSearch(filters) {
+  function triggerExternalSearch(filters) {
     if (!filters.length) {
       //do not trigger async search if filters are empty
       clearDropDownResults();
@@ -304,7 +305,7 @@ Default value: `<span>{option.label}</span>`
     });
   }
 
-  const debouncedTriggerSearch = debounce(triggerSearch, 150, false);
+  const debouncedTriggerSearch = debounce(triggerExternalSearch, 150, false);
 
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
