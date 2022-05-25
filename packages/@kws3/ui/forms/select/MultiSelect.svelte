@@ -146,7 +146,7 @@ Default value: `<span>{option[search_key] || option}</span>`
           </li>
         {:else}
           {#if !options_loading}
-            <li class="no-options">
+            <li class="no-options is-size-{list_text_size[size]}">
               {searchText ? no_options_msg : async_search_prompt}
             </li>
           {/if}
