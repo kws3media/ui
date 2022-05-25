@@ -5,7 +5,7 @@
   @param {string} [value=""] - Value of the Input
 
 This property can be bound to, to fetch the current value, Default: `""`
-  @param {string} [placeholder="Please select..."] - Placeholder text for the input, Default: `"Please select..."`
+  @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
   @param {array} [options=[]] - Array of strings, or objects.
 Used to populate the list of options in the dropdown, Default: `[]`
   @param {function|null} [search=null] - Async function to fetch options
@@ -69,9 +69,12 @@ Default value: `<span>{option.label}</span>`
       <ul bind:this={dropdown} class="options" class:hidden={!show_options}>
         {#each filtered_options as option}
           <li
-            class="is-size-{list_text_size[size]}"
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
+            on:mouseenter|preventDefault|stopPropagation={() => {
+              active_option = option;
+            }}
+            class="is-size-{list_text_size[size]}"
             class:active={active_option === option}>
             <!--
               Slot containing text for each selectable item
@@ -124,7 +127,7 @@ Default value: `<span>{option.label}</span>`
   /**
    * Placeholder text for the input
    */
-  export let placeholder = "Please select...";
+  export let placeholder = "";
   /**
    * Array of strings, or objects.
    * Used to populate the list of options in the dropdown
