@@ -610,6 +610,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         setOptionsVisible(true);
       }
     } else if ([`ArrowDown`, `ArrowUp`].includes(event.key)) {
+      showOptions && event.preventDefault();
       const increment = event.key === `ArrowUp` ? -1 : 1;
       const newActiveIdx = filteredOptions.indexOf(activeOption) + increment;
 
