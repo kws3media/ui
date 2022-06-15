@@ -98,6 +98,7 @@ Default value: `<span>{option.label}</span>`
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
   import fuzzysearch from "@kws3/ui/utils/fuzzysearch";
+  import fuzzy from "fuzzy.js";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -206,6 +207,7 @@ Default value: `<span>{option.label}</span>`
   }
 
   const fire = createEventDispatcher();
+  let scoreThreshold = 3;
 
   let el, //whole wrapping element
     dropdown, //dropdown ul
@@ -260,24 +262,26 @@ Default value: `<span>{option.label}</span>`
       // iterate over each word in the search query
       let opts = [];
       if (word) {
-        opts = [...normalised_options].filter((item) => {
-          // filter out items that don't match `filter`
-          if (typeof item === "object" && item.value) {
-            return typeof item.value === "string" && match(word, item.value);
-          }
-        });
+        // opts = [...normalised_options].filter((item) => {
+        //   // filter out items that don't match `filter`
+        //   if (typeof item === "object" && item.value) {
+        //     return typeof item.value === "string" && match(word, item.value);
+        //   }
+        // });
+        opts = fuzzySearch(word, normalised_options);
       }
 
       cache[idx] = opts; // storing options to current index on cache
     });
 
+    console.log("cache", cache);
     filtered_options = Object.values(cache) // get values from cache
       .flat() // flatten array
       .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
 
-    if (highlighted_results) {
-      filtered_options = highlightMatches(filtered_options, filters);
-    }
+    // if (highlighted_results) {
+    //   filtered_options = highlightMatches(filtered_options, filters);
+    // }
     setOptionsVisible(true);
   }
 
@@ -311,6 +315,17 @@ Default value: `<span>{option.label}</span>`
       placement: "bottom-start",
       modifiers: [sameWidthPopperModifier],
     });
+
+    if (fuzzy) {
+      fuzzy.analyzeSubTerms = true;
+      fuzzy.analyzeSubTermDepth = 10;
+      fuzzy.highlighting.before = "";
+      fuzzy.highlighting.after = "";
+      if (highlighted_results) {
+        fuzzy.highlighting.before = `<span class="h">`;
+        fuzzy.highlighting.after = "</span>";
+      }
+    }
 
     //normalize value
     if (value === null || typeof value == "undefined") {
@@ -389,7 +404,7 @@ Default value: `<span>{option.label}</span>`
   const match = (needle, haystack) => {
     let _hayStack = haystack.toLowerCase();
     return allow_fuzzy_match
-      ? fuzzysearch(needle, _hayStack)
+      ? fuzzySearch(_haystack, needle)
       : _hayStack.indexOf(needle) > -1;
   };
 
@@ -422,5 +437,31 @@ Default value: `<span>{option.label}</span>`
   };
   function sanitizeFilters(v) {
     return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
+  }
+
+  function fuzzySearch(word, options) {
+    let _item = {};
+    let results = [];
+
+    options.forEach((item, i) => {
+      let output = fuzzy(item.label, word);
+      _item[i] = output;
+      _item[i].label = output.highlightedTerm;
+      _item[i]["score"] =
+        !_item[i].score || (_item[i].score && _item[i].score < output.score)
+          ? output.score
+          : _item[i].score || 0;
+    });
+
+    let OPTS = Object.values(_item);
+
+    let maxScore = Math.max(...OPTS.map((i) => i.score));
+    let calculatedLimit = maxScore - scoreThreshold;
+
+    OPTS = OPTS.filter(
+      (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
+    );
+
+    return OPTS;
   }
 </script>
