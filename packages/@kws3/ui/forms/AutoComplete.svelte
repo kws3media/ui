@@ -286,7 +286,7 @@ Default value: `<span>{option.label}</span>`
 
     filtered_options = Object.values(cache) // get values from cache
       .flat() // flatten array
-      .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
+      .filter((v, i, self) => i === self.findIndex((t) => t.value === v.value)); // remove duplicates
 
     if (highlighted_results && !allow_fuzzy_match) {
       filtered_options = highlightMatches(filtered_options, filters);
