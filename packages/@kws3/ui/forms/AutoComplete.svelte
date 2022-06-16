@@ -15,6 +15,7 @@ Only send this prop if you want to fetch `options` asynchronously.
   @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
+  @param {number} [scoreThreshold=5] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -97,7 +98,6 @@ Default value: `<span>{option.label}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzysearch from "@kws3/ui/utils/fuzzysearch";
   import fuzzy from "fuzzy.js";
 
   const sameWidthPopperModifier = {
@@ -155,6 +155,11 @@ Default value: `<span>{option.label}</span>`
    * Whether to show the highlighted or plain results in the dropdown.
    */
   export let highlighted_results = true;
+
+  /**
+   * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   */
+  export let scoreThreshold = 5;
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
@@ -207,7 +212,6 @@ Default value: `<span>{option.label}</span>`
   }
 
   const fire = createEventDispatcher();
-  let scoreThreshold = 3;
 
   let el, //whole wrapping element
     dropdown, //dropdown ul
