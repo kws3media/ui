@@ -284,14 +284,13 @@ Default value: `<span>{option.label}</span>`
       cache[idx] = opts; // storing options to current index on cache
     });
 
-    console.log("cache", cache);
     filtered_options = Object.values(cache) // get values from cache
       .flat() // flatten array
       .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
 
-    // if (highlighted_results) {
-    //   filtered_options = highlightMatches(filtered_options, filters);
-    // }
+    if (highlighted_results && !allow_fuzzy_match) {
+      filtered_options = highlightMatches(filtered_options, filters);
+    }
     setOptionsVisible(true);
   }
 
@@ -326,7 +325,7 @@ Default value: `<span>{option.label}</span>`
       modifiers: [sameWidthPopperModifier],
     });
 
-    if (fuzzy) {
+    if (allow_fuzzy_match && fuzzy) {
       fuzzy.analyzeSubTerms = true;
       fuzzy.analyzeSubTermDepth = 10;
       fuzzy.highlighting.before = "";
