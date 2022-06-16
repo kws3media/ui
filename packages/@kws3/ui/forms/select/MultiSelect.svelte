@@ -161,7 +161,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzysearch from "@kws3/ui/utils/fuzzysearch";
+  import fuzzy from "fuzzy.js";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -230,6 +230,15 @@ Default value: `<span>{option[search_key] || option}</span>`
    * @type {'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
+  /**
+   * Whether to show the highlighted or plain results in the dropdown.
+   */
+  export let highlighted_results = true;
+
+  /**
+   * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   */
+  export let scoreThreshold = 3;
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
@@ -402,23 +411,29 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (asyncMode && searching) {
       debouncedTriggerSearch(filter);
     } else {
-      filteredOptions = normalisedOptions.slice().filter((item) => {
-        // filter out items that don't match `filter`
-        if (typeof item === "object") {
-          if (used_search_key) {
-            return (
-              typeof item[used_search_key] === "string" &&
-              match(filter, item[used_search_key])
-            );
-          } else {
-            for (var key in item) {
-              return typeof item[key] === "string" && match(filter, item[key]);
+      if (allow_fuzzy_match) {
+        filteredOptions = fuzzySearch(filter, [...normalisedOptions]);
+      } else {
+        filteredOptions = [...normalisedOptions].filter((item) => {
+          // filter out items that don't match `filter`
+          if (typeof item === "object") {
+            if (used_search_key) {
+              return (
+                typeof item[used_search_key] === "string" &&
+                match(filter, item[used_search_key])
+              );
+            } else {
+              for (var key in item) {
+                return (
+                  typeof item[key] === "string" && match(filter, item[key])
+                );
+              }
             }
+          } else {
+            return match(filter, item);
           }
-        } else {
-          return match(filter, item);
-        }
-      });
+        });
+      }
     }
   }
 
@@ -473,6 +488,17 @@ Default value: `<span>{option[search_key] || option}</span>`
       placement: "bottom-start",
       modifiers: [sameWidthPopperModifier],
     });
+
+    if (allow_fuzzy_match && fuzzy) {
+      fuzzy.analyzeSubTerms = true;
+      fuzzy.analyzeSubTermDepth = 10;
+      fuzzy.highlighting.before = "";
+      fuzzy.highlighting.after = "";
+      if (highlighted_results) {
+        fuzzy.highlighting.before = `<span class="h">`;
+        fuzzy.highlighting.after = "</span>";
+      }
+    }
 
     //normalize value for single versus multiselect
     if (value === null || typeof value == "undefined") {
@@ -680,10 +706,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   };
 
   const match = (needle, haystack) => {
-    let _hayStack = haystack.toLowerCase();
-    return allow_fuzzy_match
-      ? fuzzysearch(needle, _hayStack)
-      : _hayStack.indexOf(needle) > -1;
+    return haystack.toLowerCase().indexOf(needle) > -1;
   };
 
   const normaliseArraysToObjects = (arr) => {
@@ -704,4 +727,29 @@ Default value: `<span>{option[search_key] || option}</span>`
       searching = false;
     });
   };
+
+  function fuzzySearch(word, options) {
+    if (!word) return options;
+    if (options.length) {
+      let OPTS = options.map((item) => {
+        let output = fuzzy(item[used_search_key], word);
+        item = { ...output, ...item };
+        item[used_search_key] = output.term;
+        item.score =
+          !item.score || (item.score && item.score < output.score)
+            ? output.score
+            : item.score || 0;
+        return item;
+      });
+
+      let maxScore = Math.max(...OPTS.map((i) => i.score));
+      let calculatedLimit = maxScore - scoreThreshold;
+
+      OPTS = OPTS.filter(
+        (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
+      );
+
+      return OPTS;
+    }
+  }
 </script>
