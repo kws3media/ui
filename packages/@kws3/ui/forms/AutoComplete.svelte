@@ -262,13 +262,19 @@ Default value: `<span>{option.label}</span>`
       // iterate over each word in the search query
       let opts = [];
       if (word) {
-        // opts = [...normalised_options].filter((item) => {
-        //   // filter out items that don't match `filter`
-        //   if (typeof item === "object" && item.value) {
-        //     return typeof item.value === "string" && match(word, item.value);
-        //   }
-        // });
-        opts = fuzzySearch(word, normalised_options);
+        if (allow_fuzzy_match) {
+          opts = fuzzySearch(word, normalised_options);
+        } else {
+          opts = [...normalised_options].filter((item) => {
+            // filter out items that don't match `filter`
+            if (typeof item === "object" && item.value) {
+              return (
+                typeof item.value === "string" &&
+                item.value.toLowerCase().indexOf(word) > -1
+              );
+            }
+          });
+        }
       }
 
       cache[idx] = opts; // storing options to current index on cache
@@ -401,13 +407,6 @@ Default value: `<span>{option.label}</span>`
     fire("blur");
   }
 
-  const match = (needle, haystack) => {
-    let _hayStack = haystack.toLowerCase();
-    return allow_fuzzy_match
-      ? fuzzySearch(_haystack, needle)
-      : _hayStack.indexOf(needle) > -1;
-  };
-
   const normaliseArraysToObjects = (arr) =>
     [...arr].map((item) =>
       typeof item === "object" ? item : { label: item, value: item }
@@ -440,20 +439,16 @@ Default value: `<span>{option.label}</span>`
   }
 
   function fuzzySearch(word, options) {
-    let _item = {};
-    let results = [];
-
-    options.forEach((item, i) => {
+    let OPTS = options.map((item) => {
       let output = fuzzy(item.label, word);
-      _item[i] = output;
-      _item[i].label = output.highlightedTerm;
-      _item[i]["score"] =
-        !_item[i].score || (_item[i].score && _item[i].score < output.score)
+      item = { ...output, ...item };
+      item.label = output.highlightedTerm;
+      item.score =
+        !item.score || (item.score && item.score < output.score)
           ? output.score
-          : _item[i].score || 0;
+          : item.score || 0;
+      return item;
     });
-
-    let OPTS = Object.values(_item);
 
     let maxScore = Math.max(...OPTS.map((i) => i.score));
     let calculatedLimit = maxScore - scoreThreshold;
