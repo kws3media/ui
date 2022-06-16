@@ -734,7 +734,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       let OPTS = options.map((item) => {
         let output = fuzzy(item[used_search_key], word);
         item = { ...output, ...item };
-        item[used_search_key] = output.term;
         item.score =
           !item.score || (item.score && item.score < output.score)
             ? output.score
