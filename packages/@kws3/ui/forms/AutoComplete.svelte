@@ -421,7 +421,10 @@ Default value: `<span>{option.label}</span>`
     let common_chars = [...filters.join("")].filter(
       (v, i, self) => self.indexOf(v) === i
     );
-    let pattern = new RegExp(`[${common_chars.join("")}]`, "gi");
+    let pattern = new RegExp(
+      `[${common_chars.join("").replace(/\\/g, "&#92;")}]`,
+      "gi"
+    );
     return options.map((item) => {
       return {
         ...item,
