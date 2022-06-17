@@ -414,25 +414,8 @@ Default value: `<span>{option[search_key] || option}</span>`
       if (allow_fuzzy_match) {
         filteredOptions = fuzzySearch(filter, [...normalisedOptions]);
       } else {
-        filteredOptions = [...normalisedOptions].filter((item) => {
-          // filter out items that don't match `filter`
-          if (typeof item === "object") {
-            if (used_search_key) {
-              return (
-                typeof item[used_search_key] === "string" &&
-                match(filter, item[used_search_key])
-              );
-            } else {
-              for (var key in item) {
-                return (
-                  typeof item[key] === "string" && match(filter, item[key])
-                );
-              }
-            }
-          } else {
-            return match(filter, item);
-          }
-        });
+        console.log("strictSearch", filter, options);
+        filteredOptions = strictSearch(filter, [...normalisedOptions]);
       }
     }
   }
@@ -728,11 +711,12 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
   };
 
-  function fuzzySearch(word, options) {
-    if (!word) return options;
+  function fuzzySearch(filter, options) {
+    console.log("fuzzySearch", filter, options);
+    if (!filter) return options;
     if (options.length) {
       let OPTS = options.map((item) => {
-        let output = fuzzy(item[used_search_key], word);
+        let output = fuzzy(item[used_search_key], filter);
         item = { ...output, ...item };
         item.score =
           !item.score || (item.score && item.score < output.score)
@@ -750,5 +734,25 @@ Default value: `<span>{option[search_key] || option}</span>`
 
       return OPTS;
     }
+  }
+
+  function strictSearch(filter, options) {
+    return options.filter((item) => {
+      // filter out items that don't match `filter`
+      if (typeof item === "object") {
+        if (used_search_key) {
+          return (
+            typeof item[used_search_key] === "string" &&
+            match(filter, item[used_search_key])
+          );
+        } else {
+          for (var key in item) {
+            return typeof item[key] === "string" && match(filter, item[key]);
+          }
+        }
+      } else {
+        return match(filter, item);
+      }
+    });
   }
 </script>
