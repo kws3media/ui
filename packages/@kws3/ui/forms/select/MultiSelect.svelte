@@ -732,7 +732,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (options.length) {
       let OPTS = options.map((item) => {
         let output = fuzzy(item[used_search_key], filter);
-        item = { ...output, ...item };
+        item = { ...output, original: item };
         item.score =
           !item.score || (item.score && item.score < output.score)
             ? output.score
@@ -745,7 +745,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
       OPTS = OPTS.filter(
         (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
-      );
+      ).map((o) => o.original);
 
       return OPTS;
     }
