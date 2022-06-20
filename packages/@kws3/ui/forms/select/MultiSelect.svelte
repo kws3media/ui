@@ -366,11 +366,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   $: value, single, fillSelectedOptions();
 
-  $: if (
-    (activeOption && !filteredOptions.includes(activeOption)) ||
-    (!activeOption && searchText)
-  )
-    activeOption = filteredOptions[0];
+  $: activeOption, searchText, filteredOptions, updateActiveOption();
 
   //TODO: optimise isSelected function
   $: isSelected = (option) => {
@@ -416,6 +412,23 @@ Default value: `<span>{option[search_key] || option}</span>`
       } else {
         console.log("strictSearch", filter, options);
         filteredOptions = strictSearch(filter, [...normalisedOptions]);
+      }
+    }
+  }
+
+  function updateActiveOption() {
+    if (
+      (activeOption && searching && !filteredOptions.includes(activeOption)) ||
+      (!activeOption && searchText)
+    ) {
+      activeOption = filteredOptions[0];
+    } else {
+      let idx = filteredOptions.findIndex((opts) =>
+        matchesValue(opts, activeOption)
+      );
+      console.log(idx);
+      if (idx !== -1) {
+        activeOption = filteredOptions[idx];
       }
     }
   }
