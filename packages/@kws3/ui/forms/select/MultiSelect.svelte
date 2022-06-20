@@ -326,6 +326,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     activeOption = "",
     searchText = "",
     searching = false,
+    lastActiveOption = "",
     showOptions = false,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
@@ -423,12 +424,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     ) {
       activeOption = filteredOptions[0];
     } else {
-      let idx = filteredOptions.findIndex((opts) =>
-        matchesValue(opts, activeOption)
-      );
-      console.log(idx);
-      if (idx !== -1) {
-        activeOption = filteredOptions[idx];
+      if (allow_fuzzy_match) {
+        console.log(lastActiveOption);
+        activeOption = filteredOptions.find((opts) =>
+          matchesValue(activeOption, opts)
+        );
       }
     }
   }
@@ -532,6 +532,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (single) {
       if (!isAlreadySelected) {
         value = token[used_value_key];
+        lastActiveOption = token;
         fire("change", { token, type: `add` });
         //clear dropdown results in asyncMode
         if (asyncMode) {
@@ -542,6 +543,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     }
 
     if (!isAlreadySelected && !single && (max === null || value.length < max)) {
+      lastActiveOption = token;
       if (asyncMode) {
         //Do not filter invalid options, as they are async and might not be invalid
         //but ensure they are unique
