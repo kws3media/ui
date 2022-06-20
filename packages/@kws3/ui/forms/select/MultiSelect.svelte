@@ -696,9 +696,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (_value === null || typeof _value == "undefined") {
       return false;
     }
-    return (
-      `${_value[used_value_key] || _value}` === `${_option[used_value_key]}`
-    );
+    let value =
+      typeof _value === "object" && `${used_value_key}` in _value
+        ? _value[used_value_key]
+        : _value;
+    return `${value}` === `${_option[used_value_key]}`;
   };
 
   const match = (needle, haystack) => {
