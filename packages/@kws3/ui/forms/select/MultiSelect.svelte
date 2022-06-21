@@ -22,6 +22,7 @@ Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
   @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
+  @param {number} [scoreThreshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -230,10 +231,6 @@ Default value: `<span>{option[search_key] || option}</span>`
    * @type {'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
-  /**
-   * Whether to show the highlighted or plain results in the dropdown.
-   */
-  export let highlighted_results = true;
 
   /**
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
@@ -485,12 +482,6 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (allow_fuzzy_match && fuzzy) {
       fuzzy.analyzeSubTerms = true;
       fuzzy.analyzeSubTermDepth = 10;
-      fuzzy.highlighting.before = "";
-      fuzzy.highlighting.after = "";
-      if (highlighted_results) {
-        fuzzy.highlighting.before = `<span class="h">`;
-        fuzzy.highlighting.after = "</span>";
-      }
     }
 
     //normalize value for single versus multiselect
