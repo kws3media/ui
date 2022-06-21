@@ -30,11 +30,14 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
   await userEvent.type(inputs[0], "tony ", { delay: 100 });
   await userEvent.type(inputs[0], "roger", { delay: 100 });
-  await expect(Number(items.length)).toBe(2);
+  await expect(Number(items.length)).toBe(3);
   await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe(
     "tony stark"
   );
   await expect(HTMLtoString(items[1].innerHTML).toLowerCase()).toBe(
+    "clint barton"
+  );
+  await expect(HTMLtoString(items[2].innerHTML).toLowerCase()).toBe(
     "steve rogers"
   );
 
@@ -46,8 +49,8 @@ export default async ({ args, canvasElement }) => {
 
   await sleep(300);
   await userEvent.type(inputs[0], " banner", { delay: 100 });
-  await expect(Number(items.length)).toBe(3);
-  await expect(HTMLtoString(items[2].innerHTML).toLowerCase()).toBe(
+  await expect(Number(items.length)).toBe(4);
+  await expect(HTMLtoString(items[3].innerHTML).toLowerCase()).toBe(
     "bruce banner"
   );
 

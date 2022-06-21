@@ -15,6 +15,7 @@ Only send this prop if you want to fetch `options` asynchronously.
   @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
+  @param {number} [scoreThreshold=5] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -97,7 +98,7 @@ Default value: `<span>{option.label}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzysearch from "@kws3/ui/utils/fuzzysearch";
+  import fuzzy from "fuzzy.js";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -154,6 +155,11 @@ Default value: `<span>{option.label}</span>`
    * Whether to show the highlighted or plain results in the dropdown.
    */
   export let highlighted_results = true;
+
+  /**
+   * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   */
+  export let scoreThreshold = 5;
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
@@ -260,12 +266,19 @@ Default value: `<span>{option.label}</span>`
       // iterate over each word in the search query
       let opts = [];
       if (word) {
-        opts = [...normalised_options].filter((item) => {
-          // filter out items that don't match `filter`
-          if (typeof item === "object" && item.value) {
-            return typeof item.value === "string" && match(word, item.value);
-          }
-        });
+        if (allow_fuzzy_match) {
+          opts = fuzzySearch(word, normalised_options);
+        } else {
+          opts = [...normalised_options].filter((item) => {
+            // filter out items that don't match `filter`
+            if (typeof item === "object" && item.value) {
+              return (
+                typeof item.value === "string" &&
+                item.value.toLowerCase().indexOf(word) > -1
+              );
+            }
+          });
+        }
       }
 
       cache[idx] = opts; // storing options to current index on cache
@@ -273,9 +286,9 @@ Default value: `<span>{option.label}</span>`
 
     filtered_options = Object.values(cache) // get values from cache
       .flat() // flatten array
-      .filter((v, i, self) => self.indexOf(v) === i); // remove duplicates
+      .filter((v, i, self) => i === self.findIndex((t) => t.value === v.value)); // remove duplicates
 
-    if (highlighted_results) {
+    if (highlighted_results && !allow_fuzzy_match) {
       filtered_options = highlightMatches(filtered_options, filters);
     }
     setOptionsVisible(true);
@@ -311,6 +324,17 @@ Default value: `<span>{option.label}</span>`
       placement: "bottom-start",
       modifiers: [sameWidthPopperModifier],
     });
+
+    if (allow_fuzzy_match && fuzzy) {
+      fuzzy.analyzeSubTerms = true;
+      fuzzy.analyzeSubTermDepth = 10;
+      fuzzy.highlighting.before = "";
+      fuzzy.highlighting.after = "";
+      if (highlighted_results) {
+        fuzzy.highlighting.before = `<span class="h">`;
+        fuzzy.highlighting.after = "</span>";
+      }
+    }
 
     //normalize value
     if (value === null || typeof value == "undefined") {
@@ -386,13 +410,6 @@ Default value: `<span>{option.label}</span>`
     fire("blur");
   }
 
-  const match = (needle, haystack) => {
-    let _hayStack = haystack.toLowerCase();
-    return allow_fuzzy_match
-      ? fuzzysearch(needle, _hayStack)
-      : _hayStack.indexOf(needle) > -1;
-  };
-
   const normaliseArraysToObjects = (arr) =>
     [...arr].map((item) =>
       typeof item === "object" ? item : { label: item, value: item }
@@ -404,7 +421,10 @@ Default value: `<span>{option.label}</span>`
     let common_chars = [...filters.join("")].filter(
       (v, i, self) => self.indexOf(v) === i
     );
-    let pattern = new RegExp(`[${common_chars.join("")}]`, "gi");
+    let pattern = new RegExp(
+      `[${common_chars.join("").replace(/\\/g, "&#92;")}]`,
+      "gi"
+    );
     return options.map((item) => {
       return {
         ...item,
@@ -422,5 +442,27 @@ Default value: `<span>{option.label}</span>`
   };
   function sanitizeFilters(v) {
     return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
+  }
+
+  function fuzzySearch(word, options) {
+    let OPTS = options.map((item) => {
+      let output = fuzzy(item.value, word);
+      item = { ...output, ...item };
+      item.label = output.highlightedTerm;
+      item.score =
+        !item.score || (item.score && item.score < output.score)
+          ? output.score
+          : item.score || 0;
+      return item;
+    });
+
+    let maxScore = Math.max(...OPTS.map((i) => i.score));
+    let calculatedLimit = maxScore - scoreThreshold;
+
+    OPTS = OPTS.filter(
+      (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
+    );
+
+    return OPTS;
   }
 </script>

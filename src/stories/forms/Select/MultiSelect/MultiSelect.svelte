@@ -15,6 +15,7 @@
         search_key="name"
         value_key="id"
         {search_strategy}
+        {scoreThreshold}
         {placeholder}
         {style}
         class={klass}
@@ -47,6 +48,7 @@
         {search_key}
         {value_key}
         {search_strategy}
+        {scoreThreshold}
         {placeholder}
         {style}
         class={klass}
@@ -84,6 +86,7 @@
     search_key = "name",
     value_key = "id",
     search_strategy = "fuzzy",
+    scoreThreshold = 5,
     selected_icon = "check",
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",

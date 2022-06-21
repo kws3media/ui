@@ -22,6 +22,7 @@ Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
   @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
+  @param {number} [scoreThreshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -161,7 +162,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzysearch from "@kws3/ui/utils/fuzzysearch";
+  import fuzzy from "fuzzy.js";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -230,6 +231,11 @@ Default value: `<span>{option[search_key] || option}</span>`
    * @type {'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
+
+  /**
+   * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   */
+  export let scoreThreshold = 3;
   /**
    * Size of the input
    *  @type {''|'small'|'medium'|'large'}
@@ -357,11 +363,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   $: value, single, fillSelectedOptions();
 
-  $: if (
-    (activeOption && !filteredOptions.includes(activeOption)) ||
-    (!activeOption && searchText)
-  )
-    activeOption = filteredOptions[0];
+  $: activeOption, searchText, filteredOptions, updateActiveOption();
 
   //TODO: optimise isSelected function
   $: isSelected = (option) => {
@@ -402,23 +404,26 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (asyncMode && searching) {
       debouncedTriggerSearch(filter);
     } else {
-      filteredOptions = normalisedOptions.slice().filter((item) => {
-        // filter out items that don't match `filter`
-        if (typeof item === "object") {
-          if (used_search_key) {
-            return (
-              typeof item[used_search_key] === "string" &&
-              match(filter, item[used_search_key])
-            );
-          } else {
-            for (var key in item) {
-              return typeof item[key] === "string" && match(filter, item[key]);
-            }
-          }
-        } else {
-          return match(filter, item);
-        }
-      });
+      if (allow_fuzzy_match) {
+        filteredOptions = fuzzySearch(filter, [...normalisedOptions]);
+      } else {
+        filteredOptions = strictSearch(filter, [...normalisedOptions]);
+      }
+    }
+  }
+
+  function updateActiveOption() {
+    if (
+      (activeOption && searching && !filteredOptions.includes(activeOption)) ||
+      (!activeOption && searchText)
+    ) {
+      activeOption = filteredOptions[0];
+    } else {
+      if (allow_fuzzy_match) {
+        activeOption = filteredOptions.find((opts) =>
+          matchesValue(activeOption, opts)
+        );
+      }
     }
   }
 
@@ -473,6 +478,11 @@ Default value: `<span>{option[search_key] || option}</span>`
       placement: "bottom-start",
       modifiers: [sameWidthPopperModifier],
     });
+
+    if (allow_fuzzy_match && fuzzy) {
+      fuzzy.analyzeSubTerms = true;
+      fuzzy.analyzeSubTermDepth = 10;
+    }
 
     //normalize value for single versus multiselect
     if (value === null || typeof value == "undefined") {
@@ -674,16 +684,15 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (_value === null || typeof _value == "undefined") {
       return false;
     }
-    return (
-      `${_value[used_value_key] || _value}` === `${_option[used_value_key]}`
-    );
+    let value =
+      typeof _value === "object" && `${used_value_key}` in _value
+        ? _value[used_value_key]
+        : _value;
+    return `${value}` === `${_option[used_value_key]}`;
   };
 
   const match = (needle, haystack) => {
-    let _hayStack = haystack.toLowerCase();
-    return allow_fuzzy_match
-      ? fuzzysearch(needle, _hayStack)
-      : _hayStack.indexOf(needle) > -1;
+    return haystack.toLowerCase().indexOf(needle) > -1;
   };
 
   const normaliseArraysToObjects = (arr) => {
@@ -704,4 +713,48 @@ Default value: `<span>{option[search_key] || option}</span>`
       searching = false;
     });
   };
+
+  function fuzzySearch(filter, options) {
+    if (!filter) return options;
+    if (options.length) {
+      let OPTS = options.map((item) => {
+        let output = fuzzy(item[used_search_key], filter);
+        item = { ...output, original: item };
+        item.score =
+          !item.score || (item.score && item.score < output.score)
+            ? output.score
+            : item.score || 0;
+        return item;
+      });
+
+      let maxScore = Math.max(...OPTS.map((i) => i.score));
+      let calculatedLimit = maxScore - scoreThreshold;
+
+      OPTS = OPTS.filter(
+        (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
+      ).map((o) => o.original);
+
+      return OPTS;
+    }
+  }
+
+  function strictSearch(filter, options) {
+    return options.filter((item) => {
+      // filter out items that don't match `filter`
+      if (typeof item === "object") {
+        if (used_search_key) {
+          return (
+            typeof item[used_search_key] === "string" &&
+            match(filter, item[used_search_key])
+          );
+        } else {
+          for (var key in item) {
+            return typeof item[key] === "string" && match(filter, item[key]);
+          }
+        }
+      } else {
+        return match(filter, item);
+      }
+    });
+  }
 </script>

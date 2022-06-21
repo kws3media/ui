@@ -27,6 +27,7 @@
     "flatpickr": "^4.5.2",
     "svelte-portal": "^2.1.2",
     "text-mask-core": "^5.1.2",
-    "tippy.js": "^6.3.1"
+    "tippy.js": "^6.3.1",
+    "fuzzy.js": "^0.1.0"
   }
 }
