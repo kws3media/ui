@@ -98,7 +98,7 @@ Default value: `<span>{option.label}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzy from "fuzzy.js";
+  import { fuzzy, fuzzysearch } from "../utils/fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -445,24 +445,13 @@ Default value: `<span>{option.label}</span>`
   }
 
   function fuzzySearch(word, options) {
-    let OPTS = options.map((item) => {
-      let output = fuzzy(item.value, word);
-      item = { ...output, ...item };
-      item.label = output.highlightedTerm;
-      item.score =
-        !item.score || (item.score && item.score < output.score)
-          ? output.score
-          : item.score || 0;
-      return item;
+    let result = fuzzysearch(word, options);
+    return result.map((options) => {
+      {
+        let opts = options.original;
+        opts.label = options.highlightedTerm;
+        return opts;
+      }
     });
-
-    let maxScore = Math.max(...OPTS.map((i) => i.score));
-    let calculatedLimit = maxScore - scoreThreshold;
-
-    OPTS = OPTS.filter(
-      (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
-    );
-
-    return OPTS;
   }
 </script>
