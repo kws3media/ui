@@ -52,5 +52,5 @@ export function fuzzySearch(needle, haystack, opts) {
 }
 
 function defaultValue(opts, key, value) {
-  return opts[key] ? opts[key] : value;
+  return opts && opts[key] ? opts[key] : value;
 }
