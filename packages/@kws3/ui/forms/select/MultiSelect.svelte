@@ -162,7 +162,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzy from "fuzzy.js";
+  import { fuzzy, fuzzysearch } from "../../utils/fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -717,24 +717,11 @@ Default value: `<span>{option[search_key] || option}</span>`
   function fuzzySearch(filter, options) {
     if (!filter) return options;
     if (options.length) {
-      let OPTS = options.map((item) => {
-        let output = fuzzy(item[used_search_key], filter);
-        item = { ...output, original: item };
-        item.score =
-          !item.score || (item.score && item.score < output.score)
-            ? output.score
-            : item.score || 0;
-        return item;
+      let result = fuzzysearch(filter, options, {
+        search_key: used_search_key,
+        scoreThreshold,
       });
-
-      let maxScore = Math.max(...OPTS.map((i) => i.score));
-      let calculatedLimit = maxScore - scoreThreshold;
-
-      OPTS = OPTS.filter(
-        (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
-      ).map((o) => o.original);
-
-      return OPTS;
+      return result.map((o) => o.original);
     }
   }
 
