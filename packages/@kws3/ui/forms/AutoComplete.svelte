@@ -445,7 +445,9 @@ Default value: `<span>{option.label}</span>`
   }
 
   function fuzzySearch(word, options) {
-    let result = fuzzysearch(word, options);
+    let result = fuzzysearch(word, options, {
+      scoreThreshold,
+    });
     return result.map((options) => {
       {
         let opts = options.original;
