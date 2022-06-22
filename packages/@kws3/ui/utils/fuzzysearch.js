@@ -1,29 +1,6 @@
 import fuzzy from "fuzzy.js";
 
-let INITIALIZED = false;
-
-export function initFuzzySearch(opts) {
-  if (fuzzy) {
-    fuzzy.analyzeSubTerms = defaultValue(opts, "analyzeSubTerms", true);
-    fuzzy.analyzeSubTermDepth = defaultValue(opts, "analyzeSubTermDepth", 10);
-    fuzzy.highlighting.before = "";
-    fuzzy.highlighting.after = "";
-    if (opts.highlighting) {
-      fuzzy.highlighting.before = defaultValue(
-        opts,
-        "before",
-        `<span class="h">`
-      );
-      fuzzy.highlighting.after = defaultValue(opts, "after", "</span>");
-    }
-    INITIALIZED = true;
-  }
-}
-
-export function fuzzySearch(needle, haystack, opts) {
-  if (!INITIALIZED) {
-    throw new Error("Fuzzy search not initialized");
-  }
+export function fuzzysearch(needle, haystack, opts) {
   let search_key = defaultValue(opts, "search_key", "value");
   let scoreThreshold = defaultValue(opts, "scoreThreshold", 5);
   let OPTS = haystack.map((item) => {
@@ -54,3 +31,5 @@ export function fuzzySearch(needle, haystack, opts) {
 function defaultValue(opts, key, value) {
   return opts && opts[key] ? opts[key] : value;
 }
+
+export { fuzzy };
