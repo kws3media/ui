@@ -1,11 +1,8 @@
 import fuzzy from "fuzzy.js";
 
-export default function fuzzysearch(
-  needle,
-  haystack,
-  search_key = "value",
-  scoreThreshold = 5
-) {
+export default function fuzzysearch(needle, haystack, opts) {
+  let search_key = opts.search_key ? opts.search_key : "value";
+  let scoreThreshold = opts.scoreThreshold ? opts.scoreThreshold : 5;
   let OPTS = haystack.map((item) => {
     let key =
       typeof item === "object" && `${search_key}` in item
