@@ -261,17 +261,9 @@ Default value: `<span>{option.label}</span>`
 
   function triggerSearch(filters) {
     if (allow_fuzzy_match) {
-      debouncedFuzzySearch(filters);
+      debouncedFuzzySearch(filters, [...normalised_options]);
     } else {
-      opts = [...normalised_options].filter((item) => {
-        // filter out items that don't match `filter`
-        if (typeof item === "object" && item.value) {
-          return (
-            typeof item.value === "string" &&
-            item.value.toLowerCase().indexOf(word) > -1
-          );
-        }
-      });
+      searchInStrictMode(filters, [...normalised_options]);
     }
   }
 
@@ -427,7 +419,7 @@ Default value: `<span>{option.label}</span>`
 
   const debouncedFuzzySearch = debounce(searchInFuzzyMode, 150, false);
 
-  function searchInFuzzyMode(filters) {
+  function searchInFuzzyMode(filters, options) {
     let cache = {};
     //TODO - can optimize more for very long lists
     filters.forEach((word, idx) => {
@@ -437,10 +429,10 @@ Default value: `<span>{option.label}</span>`
         let result = fuzzysearch(word, options, {
           scoreThreshold,
         });
-        opts = result.map((options) => {
+        opts = result.map((o) => {
           {
-            let _opts = options.original;
-            _opts.label = options.highlightedTerm;
+            let _opts = o.original;
+            _opts.label = o.highlightedTerm;
             return _opts;
           }
         });
@@ -451,7 +443,29 @@ Default value: `<span>{option.label}</span>`
     setFilteredOptions(cache);
   }
 
-  function setFilteredOptions(cache) {
+  function searchInStrictMode(filters, options) {
+    let cache = {};
+    filters.forEach((word, idx) => {
+      // iterate over each word in the search query
+      let opts = [];
+      if (word) {
+        opts = options.filter((item) => {
+          // filter out items that don't match `filter`
+          if (typeof item === "object" && item.value) {
+            return (
+              typeof item.value === "string" &&
+              item.value.toLowerCase().indexOf(word) > -1
+            );
+          }
+        });
+      }
+
+      cache[idx] = opts; // storing options to current index on cache
+    });
+    setFilteredOptions(cache, filters);
+  }
+
+  function setFilteredOptions(cache, filters) {
     filtered_options = Object.values(cache) // get values from cache
       .flat() // flatten array
       .filter((v, i, self) => i === self.findIndex((t) => t.value === v.value)); // remove duplicates
