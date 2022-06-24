@@ -260,38 +260,19 @@ Default value: `<span>{option.label}</span>`
   }
 
   function triggerSearch(filters) {
-    let cache = {};
-    //TODO - can optimize more for very long lists
-    filters.forEach((word, idx) => {
-      // iterate over each word in the search query
-      let opts = [];
-      if (word) {
-        if (allow_fuzzy_match) {
-          opts = fuzzySearch(word, normalised_options);
-        } else {
-          opts = [...normalised_options].filter((item) => {
-            // filter out items that don't match `filter`
-            if (typeof item === "object" && item.value) {
-              return (
-                typeof item.value === "string" &&
-                item.value.toLowerCase().indexOf(word) > -1
-              );
-            }
-          });
+    if (allow_fuzzy_match) {
+      debouncedFuzzySearch(filters);
+    } else {
+      opts = [...normalised_options].filter((item) => {
+        // filter out items that don't match `filter`
+        if (typeof item === "object" && item.value) {
+          return (
+            typeof item.value === "string" &&
+            item.value.toLowerCase().indexOf(word) > -1
+          );
         }
-      }
-
-      cache[idx] = opts; // storing options to current index on cache
-    });
-
-    filtered_options = Object.values(cache) // get values from cache
-      .flat() // flatten array
-      .filter((v, i, self) => i === self.findIndex((t) => t.value === v.value)); // remove duplicates
-
-    if (highlighted_results && !allow_fuzzy_match) {
-      filtered_options = highlightMatches(filtered_options, filters);
+      });
     }
-    setOptionsVisible(true);
   }
 
   function triggerExternalSearch(filters) {
@@ -444,16 +425,40 @@ Default value: `<span>{option.label}</span>`
     return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
   }
 
-  function fuzzySearch(word, options) {
-    let result = fuzzysearch(word, options, {
-      scoreThreshold,
-    });
-    return result.map((options) => {
-      {
-        let opts = options.original;
-        opts.label = options.highlightedTerm;
-        return opts;
+  const debouncedFuzzySearch = debounce(searchInFuzzyMode, 150, false);
+
+  function searchInFuzzyMode(filters) {
+    let cache = {};
+    //TODO - can optimize more for very long lists
+    filters.forEach((word, idx) => {
+      // iterate over each word in the search query
+      let opts = [];
+      if (word) {
+        let result = fuzzysearch(word, options, {
+          scoreThreshold,
+        });
+        opts = result.map((options) => {
+          {
+            let _opts = options.original;
+            _opts.label = options.highlightedTerm;
+            return _opts;
+          }
+        });
       }
+
+      cache[idx] = opts; // storing options to current index on cache
     });
+    setFilteredOptions(cache);
+  }
+
+  function setFilteredOptions(cache) {
+    filtered_options = Object.values(cache) // get values from cache
+      .flat() // flatten array
+      .filter((v, i, self) => i === self.findIndex((t) => t.value === v.value)); // remove duplicates
+
+    if (highlighted_results && !allow_fuzzy_match) {
+      filtered_options = highlightMatches(filtered_options, filters);
+    }
+    setOptionsVisible(true);
   }
 </script>
