@@ -1,35 +1,28 @@
 import fuzzy from "fuzzy.js";
 
 export function fuzzysearch(needle, haystack, opts) {
-  console.log("calling fuzzy", { needle, haystack, opts });
   let search_key = defaultValue(opts, "search_key", "value");
   let scoreThreshold = defaultValue(opts, "scoreThreshold", 5);
-  let result = {};
 
-  if (!Array.isArray(search_key)) {
-    search_key = [search_key];
-  }
+  let OPTS = haystack.map((option) => {
+    let item = { ...option };
+    if (typeof item === "object") {
+      if (!Array.isArray(search_key)) {
+        search_key = [search_key];
+      }
 
-  search_key.forEach((s_key) => {
-    result[s_key] = searchHandler(s_key, needle, haystack, scoreThreshold);
-  });
-
-  return result;
-}
-
-function searchHandler(search_key, needle, haystack, scoreThreshold) {
-  let OPTS = haystack.map((item) => {
-    let key =
-      typeof item === "object" && `${search_key}` in item
-        ? item[search_key]
-        : item;
-    let output = fuzzy(key, needle);
-
-    item = { ...output, original: item };
-    item.score =
-      !item.score || (item.score && item.score < output.score)
-        ? output.score
-        : item.score || 0;
+      search_key.forEach((s_key) => {
+        if (`${s_key}` in item) {
+          let output = fuzzy(option[s_key], needle);
+          item[s_key + "_original"] = output.term;
+          item[s_key] = output.highlightedTerm;
+          item.score =
+            !item.score || (item.score && item.score < output.score)
+              ? output.score
+              : item.score || 0;
+        }
+      });
+    }
     return item;
   });
 
