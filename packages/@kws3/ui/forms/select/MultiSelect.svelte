@@ -482,6 +482,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (allow_fuzzy_match && fuzzy) {
       fuzzy.analyzeSubTerms = true;
       fuzzy.analyzeSubTermDepth = 10;
+      fuzzy.highlighting.before = "";
+      fuzzy.highlighting.after = "";
     }
 
     //normalize value for single versus multiselect
@@ -726,7 +728,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         search_key: used_search_key,
         scoreThreshold,
       });
-      filteredOptions = result.map((o) => o.original);
+      filteredOptions = result.map((r) => r.raw);
     }
   }
 

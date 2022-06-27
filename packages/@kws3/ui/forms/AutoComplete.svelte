@@ -427,9 +427,10 @@ Default value: `<span>{option.label}</span>`
       let opts = [];
       if (word) {
         let result = fuzzysearch(word, options, {
+          search_key: "label",
           scoreThreshold,
         });
-        opts = result.map((o) => ({ ...o.original, label: o.highlightedTerm }));
+        opts = result.map(({ value, label }) => ({ value, label }));
       }
 
       cache[idx] = opts; // storing options to current index on cache
