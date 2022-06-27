@@ -405,7 +405,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       debouncedTriggerSearch(filter);
     } else {
       if (allow_fuzzy_match) {
-        filteredOptions = fuzzySearch(filter, [...normalisedOptions]);
+        fuzzySearch(filter, [...normalisedOptions]);
       } else {
         filteredOptions = strictSearch(filter, [...normalisedOptions]);
       }
@@ -714,14 +714,19 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
   };
 
-  function fuzzySearch(filter, options) {
-    if (!filter) return options;
+  const fuzzySearch = debounce(searchInFuzzyMode, 150, false);
+
+  function searchInFuzzyMode(filter, options) {
+    if (!filter) {
+      filteredOptions = options;
+      return;
+    }
     if (options.length) {
       let result = fuzzysearch(filter, options, {
         search_key: used_search_key,
         scoreThreshold,
       });
-      return result.map((o) => o.original);
+      filteredOptions = result.map((o) => o.original);
     }
   }
 
