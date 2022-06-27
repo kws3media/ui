@@ -417,7 +417,7 @@ Default value: `<span>{option.label}</span>`
     return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
   }
 
-  const debouncedFuzzySearch = debounce(searchInFuzzyMode, 300, false);
+  const debouncedFuzzySearch = debounce(searchInFuzzyMode, 200, false);
 
   function searchInFuzzyMode(filters, options) {
     let cache = {};

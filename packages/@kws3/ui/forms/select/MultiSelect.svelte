@@ -714,7 +714,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
   };
 
-  const fuzzySearch = debounce(searchInFuzzyMode, 150, false);
+  const fuzzySearch = debounce(searchInFuzzyMode, 200, false);
 
   function searchInFuzzyMode(filter, options) {
     if (!filter) {
