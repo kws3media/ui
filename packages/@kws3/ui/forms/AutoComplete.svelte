@@ -417,7 +417,7 @@ Default value: `<span>{option.label}</span>`
     return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
   }
 
-  const debouncedFuzzySearch = debounce(searchInFuzzyMode, 150, false);
+  const debouncedFuzzySearch = debounce(searchInFuzzyMode, 300, false);
 
   function searchInFuzzyMode(filters, options) {
     let cache = {};
@@ -429,13 +429,7 @@ Default value: `<span>{option.label}</span>`
         let result = fuzzysearch(word, options, {
           scoreThreshold,
         });
-        opts = result.map((o) => {
-          {
-            let _opts = o.original;
-            _opts.label = o.highlightedTerm;
-            return _opts;
-          }
-        });
+        opts = result.map((o) => ({ ...o.original, label: o.highlightedTerm }));
       }
 
       cache[idx] = opts; // storing options to current index on cache
