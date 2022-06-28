@@ -6,7 +6,7 @@ export function fuzzysearch(needle, haystack, opts) {
 
   let OPTS = haystack.map((option) => {
     let item = { ...option };
-    item.raw = option;
+    item.original = { ...option };
     if (typeof item === "object") {
       if (!Array.isArray(search_key)) {
         search_key = [search_key];
@@ -15,7 +15,7 @@ export function fuzzysearch(needle, haystack, opts) {
       search_key.forEach((s_key) => {
         if (`${s_key}` in item) {
           let output = fuzzy(option[s_key], needle);
-          item[s_key] = output.highlightedTerm;
+          item.original[s_key] = output.highlightedTerm;
           item.score =
             !item.score || (item.score && item.score < output.score)
               ? output.score
@@ -32,8 +32,7 @@ export function fuzzysearch(needle, haystack, opts) {
   OPTS = OPTS.filter(
     (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
   );
-
-  return OPTS;
+  return OPTS.map((i) => i.original);
 }
 
 function defaultValue(opts, key, value) {
