@@ -732,7 +732,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         search_key: used_search_key,
         scoreThreshold,
       });
-      filteredOptions = result.map((r) => r.raw);
+      filteredOptions = result;
     }
   }
 

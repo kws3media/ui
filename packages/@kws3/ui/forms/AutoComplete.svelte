@@ -430,7 +430,7 @@ Default value: `<span>{option.label}</span>`
           search_key: "label",
           scoreThreshold,
         });
-        opts = result.map(({ value, label }) => ({ value, label }));
+        opts = result;
       }
 
       cache[idx] = opts; // storing options to current index on cache
