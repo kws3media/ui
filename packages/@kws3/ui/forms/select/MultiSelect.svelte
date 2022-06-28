@@ -414,7 +414,11 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   function updateActiveOption() {
     if (
-      (activeOption && searching && !filteredOptions.includes(activeOption)) ||
+      (activeOption &&
+        searching &&
+        !filteredOptions.some(
+          (fo) => fo[used_value_key] === activeOption[used_value_key]
+        )) ||
       (!activeOption && searchText)
     ) {
       activeOption = filteredOptions[0];
