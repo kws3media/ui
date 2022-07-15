@@ -1,4 +1,4 @@
-import fuzzy from "fuzzy.js";
+import fuzzy from "./fuzzy.js";
 
 export function fuzzysearch(needle, haystack, opts) {
   let search_key = defaultValue(opts, "search_key", "value");

@@ -66,7 +66,9 @@ Default value: `<span>{option.label}</span>`
       class="button is-paddingless delete is-medium is-loading" />
   {/if}
   {#if rootContainer}
-    <div class="kws-autocomplete" use:portal={dropdown_portal}>
+    <div
+      class="kws-autocomplete is-{color || 'primary'}"
+      use:portal={dropdown_portal}>
       <ul bind:this={dropdown} class="options" class:hidden={!show_options}>
         {#each filtered_options as option}
           <li

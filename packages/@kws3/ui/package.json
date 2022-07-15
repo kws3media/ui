@@ -1,6 +1,6 @@
 {
   "name": "@kws3/ui",
-  "version": "1.8.4",
+  "version": "1.9.1",
   "description": "UI components for use with Svelte v3 applications.",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,6 @@
     "flatpickr": "^4.5.2",
     "svelte-portal": "^2.1.2",
     "text-mask-core": "^5.1.2",
-    "tippy.js": "^6.3.1",
-    "fuzzy.js": "^0.1.0"
+    "tippy.js": "^6.3.1"
   }
 }
