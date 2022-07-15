@@ -72,6 +72,7 @@ export default async ({ args, canvasElement }) => {
   //Search for an item
   await sleep(300);
   await userEvent.type(inputs[0], "no", { delay: 100 });
+  await sleep(300);
   await expect(Number(items.length)).toBe(1);
   await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("no");
 
@@ -83,9 +84,13 @@ export default async ({ args, canvasElement }) => {
   //Search and select for multiple items using Enter key
   await sleep(300);
   await userEvent.type(inputs[0], "son", { delay: 100 });
+  await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
   await userEvent.type(inputs[0], "hua", { delay: 100 });
+  await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
   await expect(Number(tags.length)).toBe(2);
   await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("son");
   await expect(getNodeText(tags[1]).substring(0, 3).toLowerCase()).toBe("hua");
@@ -100,8 +105,10 @@ export default async ({ args, canvasElement }) => {
   //Clear input using Escape key
   await sleep(300);
   await userEvent.type(inputs[0], "bl", { delay: 100 });
+  await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await userEvent.type(inputs[0], "nok", { delay: 100 });
+  await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Escape" });
   await expect(Number(tags.length)).toBe(1);
   await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("bla");
@@ -128,16 +135,19 @@ export default async ({ args, canvasElement }) => {
   //By default search strategy  should be 'fuzzy'
   await sleep(300);
   await userEvent.type(inputs[0], "hw", { delay: 100 });
+  await sleep(300);
   await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("huawei");
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await sleep(300);
   await userEvent.type(inputs[0], "bery", { delay: 100 });
+  await sleep(300);
   await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("blackberry");
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
 
   //Clear input if input loses focus on it
   await sleep(300);
   await userEvent.type(inputs[0], "s", { delay: 100 });
+  await sleep(300);
   await userEvent.click(document.body);
   await expect(inputs[0].value).toBe("");
   await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("lg");
