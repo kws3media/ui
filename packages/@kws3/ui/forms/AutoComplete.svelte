@@ -100,7 +100,7 @@ Default value: `<span>{option.label}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzy from "fuzzy.js";
+  import { fuzzy, fuzzysearch } from "../utils/fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -262,38 +262,11 @@ Default value: `<span>{option.label}</span>`
   }
 
   function triggerSearch(filters) {
-    let cache = {};
-    //TODO - can optimize more for very long lists
-    filters.forEach((word, idx) => {
-      // iterate over each word in the search query
-      let opts = [];
-      if (word) {
-        if (allow_fuzzy_match) {
-          opts = fuzzySearch(word, normalised_options);
-        } else {
-          opts = [...normalised_options].filter((item) => {
-            // filter out items that don't match `filter`
-            if (typeof item === "object" && item.value) {
-              return (
-                typeof item.value === "string" &&
-                item.value.toLowerCase().indexOf(word) > -1
-              );
-            }
-          });
-        }
-      }
-
-      cache[idx] = opts; // storing options to current index on cache
-    });
-
-    filtered_options = Object.values(cache) // get values from cache
-      .flat() // flatten array
-      .filter((v, i, self) => i === self.findIndex((t) => t.value === v.value)); // remove duplicates
-
-    if (highlighted_results && !allow_fuzzy_match) {
-      filtered_options = highlightMatches(filtered_options, filters);
+    if (allow_fuzzy_match) {
+      debouncedFuzzySearch(filters, [...normalised_options]);
+    } else {
+      searchInStrictMode(filters, [...normalised_options]);
     }
-    setOptionsVisible(true);
   }
 
   function triggerExternalSearch(filters) {
@@ -446,25 +419,57 @@ Default value: `<span>{option.label}</span>`
     return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
   }
 
-  function fuzzySearch(word, options) {
-    let OPTS = options.map((item) => {
-      let output = fuzzy(item.value, word);
-      item = { ...output, ...item };
-      item.label = output.highlightedTerm;
-      item.score =
-        !item.score || (item.score && item.score < output.score)
-          ? output.score
-          : item.score || 0;
-      return item;
+  const debouncedFuzzySearch = debounce(searchInFuzzyMode, 200, false);
+
+  function searchInFuzzyMode(filters, options) {
+    let cache = {};
+    //TODO - can optimize more for very long lists
+    filters.forEach((word, idx) => {
+      // iterate over each word in the search query
+      let opts = [];
+      if (word) {
+        let result = fuzzysearch(word, options, {
+          search_key: "label",
+          scoreThreshold,
+        });
+        opts = result;
+      }
+
+      cache[idx] = opts; // storing options to current index on cache
     });
+    setFilteredOptions(cache);
+  }
 
-    let maxScore = Math.max(...OPTS.map((i) => i.score));
-    let calculatedLimit = maxScore - scoreThreshold;
+  function searchInStrictMode(filters, options) {
+    let cache = {};
+    filters.forEach((word, idx) => {
+      // iterate over each word in the search query
+      let opts = [];
+      if (word) {
+        opts = options.filter((item) => {
+          // filter out items that don't match `filter`
+          if (typeof item === "object" && item.value) {
+            return (
+              typeof item.value === "string" &&
+              item.value.toLowerCase().indexOf(word) > -1
+            );
+          }
+        });
+      }
 
-    OPTS = OPTS.filter(
-      (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
-    );
+      cache[idx] = opts; // storing options to current index on cache
+    });
+    setFilteredOptions(cache, filters);
+  }
 
-    return OPTS;
+  function setFilteredOptions(cache, filters) {
+    filtered_options = Object.values(cache) // get values from cache
+      .flat() // flatten array
+      .filter((v, i, self) => i === self.findIndex((t) => t.value === v.value)); // remove duplicates
+
+    if (highlighted_results && !allow_fuzzy_match) {
+      filtered_options = highlightMatches(filtered_options, filters);
+    }
+    setOptionsVisible(true);
   }
 </script>

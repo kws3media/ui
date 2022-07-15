@@ -1,20 +1,42 @@
-export default function fuzzysearch(needle, haystack) {
-  var tlen = haystack.length;
-  var qlen = needle.length;
-  if (qlen > tlen) {
-    return false;
-  }
-  if (qlen === tlen) {
-    return needle === haystack;
-  }
-  outer: for (var i = 0, j = 0; i < qlen; i++) {
-    var nch = needle.charCodeAt(i);
-    while (j < tlen) {
-      if (haystack.charCodeAt(j++) === nch) {
-        continue outer;
+import fuzzy from "./fuzzy.js";
+
+export function fuzzysearch(needle, haystack, opts) {
+  let search_key = defaultValue(opts, "search_key", "value");
+  let scoreThreshold = defaultValue(opts, "scoreThreshold", 5);
+
+  let OPTS = haystack.map((option) => {
+    let item = { ...option };
+    item.original = { ...option };
+    if (typeof item === "object") {
+      if (!Array.isArray(search_key)) {
+        search_key = [search_key];
       }
+
+      search_key.forEach((s_key) => {
+        if (`${s_key}` in item) {
+          let output = fuzzy(option[s_key], needle);
+          item.original[s_key] = output.highlightedTerm;
+          item.score =
+            !item.score || (item.score && item.score < output.score)
+              ? output.score
+              : item.score || 0;
+        }
+      });
     }
-    return false;
-  }
-  return true;
+    return item;
+  });
+
+  let maxScore = Math.max(...OPTS.map((i) => i.score));
+  let calculatedLimit = maxScore - scoreThreshold;
+
+  OPTS = OPTS.filter(
+    (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
+  );
+  return OPTS.map((i) => i.original);
 }
+
+function defaultValue(opts, key, value) {
+  return opts && opts[key] ? opts[key] : value;
+}
+
+export { fuzzy };

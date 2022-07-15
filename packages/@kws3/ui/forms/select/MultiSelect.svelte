@@ -164,7 +164,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import fuzzy from "fuzzy.js";
+  import { fuzzy, fuzzysearch } from "../../utils/fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -407,7 +407,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       debouncedTriggerSearch(filter);
     } else {
       if (allow_fuzzy_match) {
-        filteredOptions = fuzzySearch(filter, [...normalisedOptions]);
+        fuzzySearch(filter, [...normalisedOptions]);
       } else {
         filteredOptions = strictSearch(filter, [...normalisedOptions]);
       }
@@ -416,7 +416,11 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   function updateActiveOption() {
     if (
-      (activeOption && searching && !filteredOptions.includes(activeOption)) ||
+      (activeOption &&
+        searching &&
+        !filteredOptions.some(
+          (fo) => fo[used_value_key] === activeOption[used_value_key]
+        )) ||
       (!activeOption && searchText)
     ) {
       activeOption = filteredOptions[0];
@@ -484,6 +488,8 @@ Default value: `<span>{option[search_key] || option}</span>`
     if (allow_fuzzy_match && fuzzy) {
       fuzzy.analyzeSubTerms = true;
       fuzzy.analyzeSubTermDepth = 10;
+      fuzzy.highlighting.before = "";
+      fuzzy.highlighting.after = "";
     }
 
     //normalize value for single versus multiselect
@@ -716,27 +722,19 @@ Default value: `<span>{option[search_key] || option}</span>`
     });
   };
 
-  function fuzzySearch(filter, options) {
-    if (!filter) return options;
+  const fuzzySearch = debounce(searchInFuzzyMode, 200, false);
+
+  function searchInFuzzyMode(filter, options) {
+    if (!filter) {
+      filteredOptions = options;
+      return;
+    }
     if (options.length) {
-      let OPTS = options.map((item) => {
-        let output = fuzzy(item[used_search_key], filter);
-        item = { ...output, original: item };
-        item.score =
-          !item.score || (item.score && item.score < output.score)
-            ? output.score
-            : item.score || 0;
-        return item;
+      let result = fuzzysearch(filter, options, {
+        search_key: used_search_key,
+        scoreThreshold,
       });
-
-      let maxScore = Math.max(...OPTS.map((i) => i.score));
-      let calculatedLimit = maxScore - scoreThreshold;
-
-      OPTS = OPTS.filter(
-        (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
-      ).map((o) => o.original);
-
-      return OPTS;
+      filteredOptions = result;
     }
   }
 
