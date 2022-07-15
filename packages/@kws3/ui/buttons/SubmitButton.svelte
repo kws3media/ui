@@ -33,7 +33,7 @@
     : tracker.saved
     ? 'is-success'
     : 'is-' + color}"
-  {disabled}
+  disabled={tracker.saved || tracker.saving || tracker.error || disabled}
   data-cy={cy}>
   {#if tracker.saved}
     <Icon icon="check" size={icon_size} />

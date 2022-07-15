@@ -120,7 +120,9 @@ Default value: `<span>{option[search_key] || option}</span>`
       style={shouldShowClearAll ? "" : "display: none;"} />
   {/if}
   {#if rootContainer}
-    <div class="kws-searchableselect" use:portal={dropdown_portal}>
+    <div
+      class="kws-searchableselect is-{color || 'primary'}"
+      use:portal={dropdown_portal}>
       <ul
         bind:this={dropdown}
         class="options {single ? 'is-single' : 'is-multi'}"
