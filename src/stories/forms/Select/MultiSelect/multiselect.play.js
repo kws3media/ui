@@ -139,16 +139,21 @@ export default async ({ args, canvasElement }) => {
   await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("huawei");
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await sleep(300);
-  await userEvent.type(inputs[0], "bery", { delay: 100 });
+  await userEvent.type(inputs[0], "xia", { delay: 100 });
   await sleep(300);
-  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("blackberry");
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("xiaomi");
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
 
-  //Clear input if input loses focus on it
+  // //Clear input if input loses focus on it
   await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
   await userEvent.type(inputs[0], "s", { delay: 100 });
-  await sleep(300);
   await userEvent.click(document.body);
+  await sleep(300);
   await expect(inputs[0].value).toBe("");
   await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("lg");
 
