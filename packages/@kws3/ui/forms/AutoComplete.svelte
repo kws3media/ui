@@ -226,7 +226,7 @@ Default value: `<span>{option.label}</span>`
     normalised_options = [], //list of options normalised
     options_loading = false, //indictaes whether async search function is running
     mounted = false, //indicates whether component is mounted
-    fuzzyOpts = {}; // fuzzy search options
+    fuzzyOpts = {}; // fuzzy.js lib options
 
   let list_text_size = {
     small: "7",

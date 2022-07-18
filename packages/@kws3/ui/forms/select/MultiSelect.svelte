@@ -326,7 +326,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     searchText = "",
     searching = false,
     showOptions = false,
-    fuzzyOpts = {},
+    fuzzyOpts = {}, // fuzzy.js lib options
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
     selectedOptions = [], //list of options that are selected
