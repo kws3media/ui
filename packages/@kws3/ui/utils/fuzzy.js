@@ -2,13 +2,41 @@
  * fuzzy.js v0.1.0
  * (c) 2016 Ben Ripkens
  * @license: MIT
+ * @params
+ *  term : haystack
+ *  query : needle
+ *  opts: {
+ *   analyzeSubTerms,
+ *   analyzeSubTermDepth
+ *   highlighting
+ *  }
  */
 /**
  *
  * Adapted from fuzzy.js for @kws3/ui to work with vite prebundling
  */
 
-export default function fuzzy(term, query, opts) {
+/*
+ * Whether or not fuzzy.js should analyze sub-terms, i.e. also
+ * check term starting positions != 0.
+ *
+ * Example:
+ * Given the term 'Halleluja' and query 'luja'
+ *
+ * Fuzzy.js scores this combination with an 8, when analyzeSubTerms is
+ * set to false, as the following matching string will be calculated:
+ * Ha[l]lel[uja]
+ *
+ * If you activate sub temr analysis though, the query will reach a score
+ * of 10, as the matching string looks as following:
+ * Halle[luja]
+ *
+ * Naturally, the second version is more expensive than the first one.
+ * You should therefore configure how many sub terms you which to analyse.
+ * This can be configured through opts.analyzeSubTermDepth = 10.
+ */
+
+export default function fuzzy(term, query, opts = {}) {
   let analyzeSubTerms = opts.analyzeSubTerms ? opts.analyzeSubTerms : false;
   let analyzeSubTermDepth = opts.analyzeSubTermDepth
     ? opts.analyzeSubTermDepth
@@ -86,40 +114,3 @@ function calcFuzzyScore(term, query, highlighting) {
     highlightedTerm: _highlighting,
   };
 }
-
-// fuzzy.matchComparator = function matchComparator(m1, m2) {
-//   return m2.score - m1.score !== 0
-//     ? m2.score - m1.score
-//     : m1.term.length - m2.term.length;
-// };
-
-/*
- * Whether or not fuzzy.js should analyze sub-terms, i.e. also
- * check term starting positions != 0.
- *
- * Example:
- * Given the term 'Halleluja' and query 'luja'
- *
- * Fuzzy.js scores this combination with an 8, when analyzeSubTerms is
- * set to false, as the following matching string will be calculated:
- * Ha[l]lel[uja]
- *
- * If you activate sub temr analysis though, the query will reach a score
- * of 10, as the matching string looks as following:
- * Halle[luja]
- *
- * Naturally, the second version is more expensive than the first one.
- * You should therefore configure how many sub terms you which to analyse.
- * This can be configured through fuzzy.analyzeSubTermDepth = 10.
- */
-// fuzzy.analyzeSubTerms = false;
-
-/*
- * How many sub terms should be analyzed.
- */
-// fuzzy.analyzeSubTermDepth = 10;
-
-// fuzzy.highlighting = {
-//   before: "<em>",
-//   after: "</em>",
-// };
