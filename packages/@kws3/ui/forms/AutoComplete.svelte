@@ -100,7 +100,7 @@ Default value: `<span>{option.label}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import { fuzzy, fuzzysearch } from "../utils/fuzzysearch";
+  import { fuzzysearch } from "../utils/fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -225,7 +225,8 @@ Default value: `<span>{option.label}</span>`
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
     options_loading = false, //indictaes whether async search function is running
-    mounted = false; //indicates whether component is mounted
+    mounted = false, //indicates whether component is mounted
+    fuzzyOpts = {}; // fuzzy search options
 
   let list_text_size = {
     small: "7",
@@ -300,14 +301,18 @@ Default value: `<span>{option.label}</span>`
       modifiers: [sameWidthPopperModifier],
     });
 
-    if (allow_fuzzy_match && fuzzy) {
-      fuzzy.analyzeSubTerms = true;
-      fuzzy.analyzeSubTermDepth = 10;
-      fuzzy.highlighting.before = "";
-      fuzzy.highlighting.after = "";
+    if (allow_fuzzy_match) {
+      fuzzyOpts = {
+        analyzeSubTerms: true,
+        analyzeSubTermDepth: 10,
+        highlighting: {
+          after: "",
+          before: "",
+        },
+      };
       if (highlighted_results) {
-        fuzzy.highlighting.before = `<span class="h">`;
-        fuzzy.highlighting.after = "</span>";
+        fuzzyOpts.highlighting.before = `<span class="h">`;
+        fuzzyOpts.highlighting.after = "</span>";
       }
     }
 
@@ -431,6 +436,7 @@ Default value: `<span>{option.label}</span>`
         let result = fuzzysearch(word, options, {
           search_key: "label",
           scoreThreshold,
+          fuzzyOpts,
         });
         opts = result;
       }

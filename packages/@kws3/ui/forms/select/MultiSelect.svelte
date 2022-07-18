@@ -164,7 +164,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import { fuzzy, fuzzysearch } from "../../utils/fuzzysearch";
+  import { fuzzysearch } from "../../utils/fuzzysearch";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -326,6 +326,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     searchText = "",
     searching = false,
     showOptions = false,
+    fuzzyOpts = {},
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
     selectedOptions = [], //list of options that are selected
@@ -485,11 +486,15 @@ Default value: `<span>{option[search_key] || option}</span>`
       modifiers: [sameWidthPopperModifier],
     });
 
-    if (allow_fuzzy_match && fuzzy) {
-      fuzzy.analyzeSubTerms = true;
-      fuzzy.analyzeSubTermDepth = 10;
-      fuzzy.highlighting.before = "";
-      fuzzy.highlighting.after = "";
+    if (allow_fuzzy_match) {
+      fuzzyOpts = {
+        analyzeSubTerms: true,
+        analyzeSubTermDepth: 10,
+        highlighting: {
+          after: "",
+          before: "",
+        },
+      };
     }
 
     //normalize value for single versus multiselect
@@ -733,6 +738,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       let result = fuzzysearch(filter, options, {
         search_key: used_search_key,
         scoreThreshold,
+        fuzzyOpts,
       });
       filteredOptions = result;
     }
