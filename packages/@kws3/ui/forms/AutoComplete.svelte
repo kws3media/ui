@@ -364,13 +364,8 @@ Default value: `<span>{option.label}</span>`
       }
 
       tick().then(() => {
-        let activeElem = dropdown.querySelector(".active");
-        if (activeElem) {
-          let elemHeight = activeElem.clientHeight;
-          activeElem.scrollIntoView(false);
-          if (dropdown.scrollTop > 0) {
-            dropdown.scrollTop += elemHeight * 2;
-          }
+        if (dropdown.querySelector(".active")) {
+          dropdown.querySelector(".active").scrollIntoView(false);
         }
       });
     } else {
