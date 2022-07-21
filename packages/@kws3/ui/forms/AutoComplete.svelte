@@ -363,18 +363,11 @@ Default value: `<span>{option.label}</span>`
         else active_option = filtered_options[newActiveIdx];
       }
 
-      setTimeout(() => {
+      tick().then(() => {
         if (dropdown.querySelector(".active")) {
-          let dropdownActiveElem = dropdown.querySelector(".active");
-          let activeElemOffsetTop = dropdownActiveElem.offsetTop;
-          let activeElemHeight = dropdownActiveElem.clientHeight;
-          if (dropdown.offsetHeight <= activeElemOffsetTop + activeElemHeight) {
-            dropdown.scrollTop = activeElemOffsetTop;
-          } else {
-            dropdown.scrollTop = 0;
-          }
+          dropdown.querySelector(".active").scrollIntoView(false);
         }
-      }, 0);
+      });
     } else {
       active_option = "";
       searching = true;
