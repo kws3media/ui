@@ -362,6 +362,12 @@ Default value: `<span>{option.label}</span>`
           active_option = filtered_options[0];
         else active_option = filtered_options[newActiveIdx];
       }
+
+      setTimeout(() => {
+        if (dropdown.querySelector(".active")) {
+          dropdown.querySelector(".active").scrollIntoView(false);
+        }
+      }, 0);
     } else {
       active_option = "";
       searching = true;
