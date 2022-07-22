@@ -2,6 +2,7 @@ import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import { Timepicker } from '@kws3/ui';
+import TimepickerDecorator from './Timepicker.svelte';
 import M from '../../helpers/Message/Message.svelte';
 import { action } from '@storybook/addon-actions';
 
@@ -46,7 +47,7 @@ export let args={
   args={args}
   >
   {(args) => ({
-    Component: Timepicker,
+    Component: TimepickerDecorator,
     props: args,
     on:{
       change: action('change'),
