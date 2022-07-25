@@ -365,13 +365,14 @@ Default value: `<span>{option.label}</span>`
 
       tick().then(() => {
         let activeElem = dropdown.querySelector(".active");
-        if (activeElem) {
-          let elemHeight = activeElem.clientHeight;
-          activeElem.scrollIntoView(false);
-          if (dropdown.scrollTop > 0) {
-            dropdown.scrollTop += elemHeight * 2;
-          }
-        }
+        let t = activeElem.getBoundingClientRect();
+        let d = dropdown.getBoundingClientRect();
+        let scroll = t.top + dropdown.scrollTop - d.top;
+        dropdown.scrollTo({
+          top: scroll,
+          left: 0,
+          behavior: "smooth",
+        });
       });
     } else {
       active_option = "";
