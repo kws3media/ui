@@ -27,20 +27,37 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
 -->
 <!--Native input change event-->
-<input
-  use:timepicker={{ opts, value, placeholder, klass, style, disabled, color }}
-  class="input is-{color} {klass}"
-  type="text"
-  {style}
-  {placeholder}
-  {disabled}
-  readonly
-  bind:value
-  on:change
-  on:timeChange={fireTimeChange}
-  on:ready={fireReady}
-  on:open={fireOpen}
-  on:close={fireClose} />
+{#if format === 24}
+  <input
+    use:timepicker={{ opts, value, placeholder, klass, style, disabled, color }}
+    class="input is-{color} {klass}"
+    type="text"
+    {style}
+    {placeholder}
+    {disabled}
+    readonly
+    bind:value
+    on:change
+    on:timeChange={fireTimeChange}
+    on:ready={fireReady}
+    on:open={fireOpen}
+    on:close={fireClose} />
+{:else}
+  <input
+    use:timepicker={{ opts, value, placeholder, klass, style, disabled, color }}
+    class="input is-{color} {klass}"
+    type="text"
+    {style}
+    {placeholder}
+    {disabled}
+    readonly
+    bind:value
+    on:change
+    on:timeChange={fireTimeChange}
+    on:ready={fireReady}
+    on:open={fireOpen}
+    on:close={fireClose} />
+{/if}
 
 <script>
   import { timepicker } from "./actions";
@@ -100,6 +117,8 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
   $: ui_color, options, time_24hr, fillOptions();
 
+  $: format = time_24hr ? 24 : 12;
+
   function fillOptions() {
     let _opts = Object.assign(
       {
@@ -108,6 +127,8 @@ See: https://flatpickr.js.org/options/, Default: `{}`
       },
       options
     );
+
+    console.log(_opts);
 
     opts = _opts;
   }
