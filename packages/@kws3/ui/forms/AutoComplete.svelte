@@ -365,11 +365,17 @@ Default value: `<span>{option.label}</span>`
 
       tick().then(() => {
         let activeElem = dropdown.querySelector(".active");
-        let t = activeElem.getBoundingClientRect();
-        let d = dropdown.getBoundingClientRect();
-        let scroll = t.top + dropdown.scrollTop - d.top;
+        let activeElemProps = activeElem.getBoundingClientRect();
+        let dropdownElemProps = dropdown.getBoundingClientRect();
+
+        let scrollY =
+          activeElemProps.top +
+          dropdown.scrollTop -
+          dropdownElemProps.top -
+          activeElemProps.height;
+
         dropdown.scrollTo({
-          top: scroll,
+          top: scrollY,
           left: 0,
           behavior: "smooth",
         });
