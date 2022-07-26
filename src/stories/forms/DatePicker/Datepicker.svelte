@@ -1,28 +1,26 @@
 <div id="ms_container">
   <div class="columns">
     <div class="column">
-      <Timepicker
+      <Datepicker
         {style}
         {placeholder}
         {disabled}
-        {options}
-        {ui_color}
         bind:value
-        {time_24hr}
-        color={ui_color} />
+        color={calendar_color}
+        {min_date}
+        {max_date}
+        {enable_dates}
+        {disable_dates}
+        {range_mode}
+        {options}
+        {calendar_color} />
     </div>
   </div>
   <div class="columns">
     <div class="column">
       <label class="checkbox">
-        <input type="time" bind:value />
+        <input type="date" bind:value />
         Value
-      </label>
-    </div>
-    <div class="column">
-      <label class="checkbox">
-        <input type="checkbox" bind:checked={time_24hr} />
-        Time Format 24
       </label>
     </div>
     <div class="column">
@@ -33,7 +31,8 @@
     </div>
     <div class="column">
       <label class="checkbox">
-        <select bind:value={ui_color}>
+        UI color
+        <select bind:value={calendar_color}>
           <option value="primary">Primary</option>
           <option value="danger">Danger</option>
           <option value="success">Success</option>
@@ -45,13 +44,17 @@
 </div>
 
 <script>
-  import { Timepicker } from "@kws3/ui";
+  import { Datepicker } from "@kws3/ui";
 
   export let value = "",
     style = "",
-    placeholder = "Select Time..",
+    placeholder = "Select Date..",
     disabled = false,
-    time_24hr = true,
+    min_date = null,
+    max_date = null,
+    enable_dates = [],
+    disable_dates = [],
+    range_mode = false,
     options = {},
-    ui_color = "primary";
+    calendar_color = "primary";
 </script>
