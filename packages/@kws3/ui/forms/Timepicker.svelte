@@ -28,7 +28,16 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 -->
 <!--Native input change event-->
 <input
-  use:timepicker={{ opts, value, placeholder, klass, style, disabled, color }}
+  use:timepicker={{
+    opts,
+    value,
+    placeholder,
+    klass,
+    style,
+    disabled,
+    color,
+    type,
+  }}
   class="input is-{color} {klass}"
   type="text"
   {style}
@@ -96,6 +105,8 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   let klass = "";
   export { klass as class };
 
+  let type = "time";
+
   let opts;
 
   $: ui_color, options, time_24hr, fillOptions();
@@ -108,8 +119,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
       },
       options
     );
-
-    console.log(_opts);
 
     opts = _opts;
   }

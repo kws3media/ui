@@ -4,7 +4,7 @@ function createFlatpickrAction(defaultOpts, hooks) {
   return function (
     node,
     // eslint-disable-next-line no-unused-vars
-    { opts, value, placeholder, klass, style, disabled, color }
+    { opts, value, placeholder, klass, style, disabled, color, type }
   ) {
     const _opts = {};
 
@@ -71,29 +71,17 @@ function createFlatpickrAction(defaultOpts, hooks) {
     }
 
     return {
-      update({ opts, value, placeholder, klass, style, disabled, color }) {
-        if (picker) {
-          //picker.setDate(value);
-          // if (opts) {
-          //   if (opts.color) {
-          //     applyColorClass(picker, opts.color);
-          //   }
-          //   if (opts.mode) {
-          //     picker.set("mode", opts.mode);
-          //   }
-          //   picker.set("minDate", opts.minDate ? opts.minDate : "");
-          //   picker.set("maxDate", opts.maxDate ? opts.maxDate : "");
-          //   picker.set("enable", opts.enable ? opts.enable : [() => true]);
-          //   picker.set("disable", opts.disable ? opts.disable : [() => false]);
-          //   picker.set("time_24hr", opts.time_24hr || false);
-          // }
-
-          // //respond reactively to props
-          // const visibleInput = picker.input.nextSibling;
-          // visibleInput.className = `input is-${color} ${klass}`;
-          // visibleInput.style = `${style}`;
-          // visibleInput.disabled = disabled;
-          // visibleInput.placeholder = placeholder;
+      update({
+        opts,
+        value,
+        placeholder,
+        klass,
+        style,
+        disabled,
+        color,
+        type,
+      }) {
+        if (type === "time") {
           timepicker(node, {
             opts,
             value,
@@ -102,8 +90,44 @@ function createFlatpickrAction(defaultOpts, hooks) {
             style,
             disabled,
             color,
+            type,
           });
         }
+        if (type === "date") {
+          datepicker(node, {
+            opts,
+            value,
+            placeholder,
+            klass,
+            style,
+            disabled,
+            color,
+            type,
+          });
+        }
+        // if (picker) {
+        //   picker.setDate(value);
+        //   if (opts) {
+        //     if (opts.color) {
+        //       applyColorClass(picker, opts.color);
+        //     }
+        //     if (opts.mode) {
+        //       picker.set("mode", opts.mode);
+        //     }
+        //     picker.set("minDate", opts.minDate ? opts.minDate : "");
+        //     picker.set("maxDate", opts.maxDate ? opts.maxDate : "");
+        //     picker.set("enable", opts.enable ? opts.enable : [() => true]);
+        //     picker.set("disable", opts.disable ? opts.disable : [() => false]);
+        //     picker.set("time_24hr", opts.time_24hr || false);
+        //   }
+
+        //   //respond reactively to props
+        //   const visibleInput = picker.input.nextSibling;
+        //   visibleInput.className = `input is-${color} ${klass}`;
+        //   visibleInput.style = `${style}`;
+        //   visibleInput.disabled = disabled;
+        //   visibleInput.placeholder = placeholder;
+        // }
       },
       destroy() {
         picker && picker.destroy();
