@@ -26,7 +26,7 @@ export let args = {
   disabled: false,
   readonly: false,
   placeholder: "Marvel characters...",
-  highlighted_results: true
+  highlighted_results: true,
 };
 
 <Version />
@@ -44,7 +44,7 @@ export let args = {
     },
     search_strategy: {
       control: { type: "select" },
-    }
+    },
   }}
 />
 
@@ -52,10 +52,11 @@ export let args = {
   markdown={dedent`
 # AutoComplete
 ## An Input component that supports auto complete tips.
-`}/>
+`}
+/>
 
 <Canvas>
-  <Story name="AutoComplete" args={args} play={playInteractions}>
+  <Story name="AutoComplete" args={args} play={false}>
     {(args) => ({
       Component: AutoCompleteDecorator,
       props: args,
@@ -76,8 +77,14 @@ export let args = {
         ensure the shape of the array items are consistent.
       </p>
       <p>See supported data formats in example story above.</p>
-      <p>Note: <code>option.label</code> contains matched characters wrapped inside <code>&lt;span class="h"&gt;</code> tags. </p>
-      <p>Note: Highlighted results can be turned off by setting <code>highlighted_results</code> property to <code>false</code></p>
+      <p>
+        Note: <code>option.label</code> contains matched characters wrapped
+        inside <code>&lt;span class="h"&gt;</code> tags.{" "}
+      </p>
+      <p>
+        Note: Highlighted results can be turned off by setting{" "}
+        <code>highlighted_results</code> property to <code>false</code>
+      </p>
     </div>
     <div class="column">
       <h3>Customising dropdown text items</h3>

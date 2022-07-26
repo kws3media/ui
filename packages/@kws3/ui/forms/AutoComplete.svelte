@@ -227,7 +227,7 @@ Default value: `<span>{option.label}</span>`
     POPPER,
     active_option = "",
     searching = true,
-    prevent_select_by_mouse = false,
+    prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
     show_options = false,
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised

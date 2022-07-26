@@ -132,7 +132,13 @@ Default value: `<span>{option[search_key] || option}</span>`
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
             on:mouseenter|preventDefault|stopPropagation={() => {
+              if (prevent_select_by_mouse) {
+                return;
+              }
               activeOption = option;
+            }}
+            on:mousemove|preventDefault|stopPropagation={() => {
+              prevent_select_by_mouse = false;
             }}
             class="is-size-{list_text_size[size]}"
             class:selected={isSelected(option)}
@@ -325,6 +331,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     activeOption = "",
     searchText = "",
     searching = false,
+    prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
     showOptions = false,
     fuzzyOpts = {}, // fuzzy.js lib options
     filteredOptions = [], //list of options filtered by search query
@@ -644,6 +651,27 @@ Default value: `<span>{option[search_key] || option}</span>`
           activeOption = filteredOptions[0];
         else activeOption = filteredOptions[newActiveIdx];
       }
+
+      tick().then(() => {
+        prevent_select_by_mouse = true;
+        let activeElem = dropdown.querySelector(".active");
+        activeElem && activeElem.scrollIntoView(false);
+        // if (activeElem && dropdown) {
+        //   let activeElemProps = activeElem.getBoundingClientRect();
+        //   let dropdownElemProps = dropdown.getBoundingClientRect();
+
+        //   let scrollY =
+        //     activeElemProps.top +
+        //     dropdown.scrollTop -
+        //     dropdownElemProps.top -
+        //     activeElemProps.height;
+        //   dropdown.scrollTo({
+        //     top: scrollY,
+        //     left: 0,
+        //     behavior: "smooth",
+        //   });
+        // }
+      });
     } else if (event.key === `Backspace`) {
       if (single && hasValue) {
         //for a single select
