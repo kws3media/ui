@@ -19,12 +19,6 @@
   <div class="columns">
     <div class="column">
       <label class="checkbox">
-        <input type="date" bind:value />
-        Value
-      </label>
-    </div>
-    <div class="column">
-      <label class="checkbox">
         <input type="checkbox" bind:checked={disabled} />
         Disable
       </label>
