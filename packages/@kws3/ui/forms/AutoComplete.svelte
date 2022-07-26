@@ -75,13 +75,7 @@ Default value: `<span>{option.label}</span>`
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
             on:mouseenter|preventDefault|stopPropagation={() => {
-              if (prevent_select_by_mouse) {
-                return;
-              }
               active_option = option;
-            }}
-            on:mousemove|preventDefault|stopPropagation={() => {
-              prevent_select_by_mouse = false;
             }}
             class="is-size-{list_text_size[size]}"
             class:active={active_option === option}>
@@ -227,7 +221,6 @@ Default value: `<span>{option.label}</span>`
     POPPER,
     active_option = "",
     searching = true,
-    prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
     show_options = false,
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
@@ -371,22 +364,28 @@ Default value: `<span>{option.label}</span>`
       }
 
       tick().then(() => {
-        prevent_select_by_mouse = true;
-        let activeElem = dropdown.querySelector(".active");
-        if (activeElem && dropdown) {
-          let activeElemProps = activeElem.getBoundingClientRect();
-          let dropdownElemProps = dropdown.getBoundingClientRect();
+        if (dropdown) {
+          let activeElem = dropdown.querySelector(".active");
+          if (activeElem) {
+            const dropdownRect = dropdown.getBoundingClientRect();
+            const activeElemRect = activeElem.getBoundingClientRect();
+            const overScroll = activeElem.offsetHeight / 3;
 
-          let scrollY =
-            activeElemProps.top +
-            dropdown.scrollTop -
-            dropdownElemProps.top -
-            activeElemProps.height;
-          dropdown.scrollTo({
-            top: scrollY,
-            left: 0,
-            behavior: "smooth",
-          });
+            if (activeElemRect.bottom + overScroll > dropdownRect.bottom) {
+              dropdown.scrollTop = Math.min(
+                activeElem.offsetTop +
+                  activeElem.clientHeight -
+                  dropdown.offsetHeight +
+                  overScroll,
+                dropdown.scrollHeight
+              );
+            } else if (activeElemRect.top - overScroll < dropdownRect.top) {
+              dropdown.scrollTop = Math.max(
+                activeElem.offsetTop - overScroll,
+                0
+              );
+            }
+          }
         }
       });
     } else {
