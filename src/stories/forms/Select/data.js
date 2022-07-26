@@ -18,6 +18,11 @@ export let brands = [
 
 export let brands_string_only = [
   "LG",
+  "LG1",
+  "LG2",
+  "LG3",
+  "LG4",
+  "LG5",
   "Samsung",
   "Xiaomi",
   "Nokia",

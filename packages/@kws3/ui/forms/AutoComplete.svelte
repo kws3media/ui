@@ -75,7 +75,13 @@ Default value: `<span>{option.label}</span>`
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
             on:mouseenter|preventDefault|stopPropagation={() => {
+              if (prevent_select_by_mouse) {
+                return;
+              }
               active_option = option;
+            }}
+            on:mousemove|preventDefault|stopPropagation={() => {
+              prevent_select_by_mouse = false;
             }}
             class="is-size-{list_text_size[size]}"
             class:active={active_option === option}>
@@ -221,6 +227,7 @@ Default value: `<span>{option.label}</span>`
     POPPER,
     active_option = "",
     searching = true,
+    prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
     show_options = false,
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
@@ -364,8 +371,22 @@ Default value: `<span>{option.label}</span>`
       }
 
       tick().then(() => {
-        if (dropdown.querySelector(".active")) {
-          dropdown.querySelector(".active").scrollIntoView(false);
+        prevent_select_by_mouse = true;
+        let activeElem = dropdown.querySelector(".active");
+        if (activeElem && dropdown) {
+          let activeElemProps = activeElem.getBoundingClientRect();
+          let dropdownElemProps = dropdown.getBoundingClientRect();
+
+          let scrollY =
+            activeElemProps.top +
+            dropdown.scrollTop -
+            dropdownElemProps.top -
+            activeElemProps.height;
+          dropdown.scrollTo({
+            top: scrollY,
+            left: 0,
+            behavior: "smooth",
+          });
         }
       });
     } else {
