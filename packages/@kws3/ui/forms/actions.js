@@ -81,29 +81,22 @@ function createFlatpickrAction(defaultOpts, hooks) {
         color,
         type,
       }) {
+        let _newOpts = {
+          opts,
+          value,
+          placeholder,
+          klass,
+          style,
+          disabled,
+          color,
+          type,
+        };
+
         if (type === "time") {
-          timepicker(node, {
-            opts,
-            value,
-            placeholder,
-            klass,
-            style,
-            disabled,
-            color,
-            type,
-          });
+          timepicker(node, { ..._newOpts });
         }
         if (type === "date") {
-          datepicker(node, {
-            opts,
-            value,
-            placeholder,
-            klass,
-            style,
-            disabled,
-            color,
-            type,
-          });
+          datepicker(node, { ..._newOpts });
         }
         // if (picker) {
         //   picker.setDate(value);
