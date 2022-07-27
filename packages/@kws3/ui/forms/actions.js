@@ -35,6 +35,7 @@ function createFlatpickrAction(defaultOpts, hooks) {
     }
 
     let OPTS = Object.assign(defaultOpts, _opts, opts);
+    let NODE = node;
 
     let picker = flatpickr(node, OPTS);
 
@@ -114,7 +115,11 @@ function createFlatpickrAction(defaultOpts, hooks) {
         //   visibleInput.placeholder = placeholder;
         // }
 
-        picker = flatpickr(node, Object.assign(OPTS, opts));
+        console.log(OPTS, opts, value, picker.isOpen);
+
+        if (!picker.isOpen) {
+          picker = flatpickr(NODE, Object.assign(OPTS, opts));
+        }
 
         if (picker) {
           picker.setDate(value);
