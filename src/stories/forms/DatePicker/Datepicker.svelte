@@ -25,6 +25,12 @@
     </div>
     <div class="column">
       <label class="checkbox">
+        <input type="checkbox" bind:checked={range_mode} />
+        Range Mode
+      </label>
+    </div>
+    <div class="column">
+      <label class="checkbox">
         UI color
         <select bind:value={calendar_color}>
           <option value="primary">Primary</option>
