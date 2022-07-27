@@ -28,15 +28,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 -->
 <!--Native input change event-->
 <input
-  use:timepicker={{
-    opts,
-    value,
-    placeholder,
-    klass,
-    style,
-    disabled,
-    color,
-  }}
+  use:timepicker={{ opts, value, placeholder, klass, style, disabled, color }}
   class="input is-{color} {klass}"
   type="text"
   {style}

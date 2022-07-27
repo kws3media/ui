@@ -38,15 +38,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 -->
 <!--Native input change event-->
 <input
-  use:datepicker={{
-    opts,
-    value,
-    placeholder,
-    klass,
-    style,
-    disabled,
-    color,
-  }}
+  use:datepicker={{ opts, value, placeholder, klass, style, disabled, color }}
   class="input is-{color} {klass}"
   type="text"
   {style}
