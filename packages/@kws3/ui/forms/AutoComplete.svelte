@@ -101,6 +101,7 @@ Default value: `<span>{option.label}</span>`
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
   import { fuzzysearch } from "../utils/fuzzysearch";
+  import { scrollIntoActiveElelement } from "../utils/scrollIntoActiveElelement";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -366,26 +367,7 @@ Default value: `<span>{option.label}</span>`
       tick().then(() => {
         if (dropdown) {
           let activeElem = dropdown.querySelector(".active");
-          if (activeElem) {
-            const dropdownRect = dropdown.getBoundingClientRect();
-            const activeElemRect = activeElem.getBoundingClientRect();
-            const overScroll = activeElem.offsetHeight / 3;
-
-            if (activeElemRect.bottom + overScroll > dropdownRect.bottom) {
-              dropdown.scrollTop = Math.min(
-                activeElem.offsetTop +
-                  activeElem.clientHeight -
-                  dropdown.offsetHeight +
-                  overScroll,
-                dropdown.scrollHeight
-              );
-            } else if (activeElemRect.top - overScroll < dropdownRect.top) {
-              dropdown.scrollTop = Math.max(
-                activeElem.offsetTop - overScroll,
-                0
-              );
-            }
-          }
+          scrollIntoActiveElelement(dropdown, activeElem);
         }
       });
     } else {
