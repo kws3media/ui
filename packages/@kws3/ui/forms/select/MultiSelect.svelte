@@ -137,6 +137,7 @@ Default value: `<span>{option[search_key] || option}</span>`
             }}
             on:mousemove|preventDefault|stopPropagation={() => {
               prevent_select_by_mouse = false;
+              activeOption = option;
             }}
             class="is-size-{list_text_size[size]}"
             class:selected={isSelected(option)}

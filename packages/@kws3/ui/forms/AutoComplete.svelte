@@ -80,6 +80,7 @@ Default value: `<span>{option.label}</span>`
             }}
             on:mousemove|preventDefault|stopPropagation={() => {
               prevent_select_by_mouse = false;
+              active_option = option;
             }}
             class="is-size-{list_text_size[size]}"
             class:active={active_option === option}>
