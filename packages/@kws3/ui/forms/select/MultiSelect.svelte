@@ -132,7 +132,11 @@ Default value: `<span>{option[search_key] || option}</span>`
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
             on:mouseenter|preventDefault|stopPropagation={() => {
+              if (prevent_select_by_mouse) return;
               activeOption = option;
+            }}
+            on:mousemove|preventDefault|stopPropagation={() => {
+              prevent_select_by_mouse = false;
             }}
             class="is-size-{list_text_size[size]}"
             class:selected={isSelected(option)}
@@ -327,6 +331,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     searchText = "",
     searching = false,
     showOptions = false,
+    prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
     fuzzyOpts = {}, // fuzzy.js lib options
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
@@ -648,6 +653,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
       tick().then(() => {
         if (dropdown) {
+          prevent_select_by_mouse = true;
           let activeElem = dropdown.querySelector(".active");
           scrollIntoActiveElelement(dropdown, activeElem);
         }
