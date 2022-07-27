@@ -13,6 +13,9 @@ $kws-gridview-checked-row-background: $primary-light !default;
     color: $kws-gridview-th-color;
     vertical-align: middle;
   }
+  td {
+    vertical-align: middle;
+  }
   &.is-bordered {
     tr {
       th:last-child,
