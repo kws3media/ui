@@ -11,7 +11,8 @@
       {valueTransformers}
       {classTransformers}
       {styleTransformers}
-      {visibilityMap} />
+      {visibilityMap}
+      class={klass} />
   </div>
 </div>
 
@@ -29,4 +30,7 @@
     classTransformers = {},
     styleTransformers = {},
     visibilityMap = {};
+
+  let klass = "";
+  export { klass as class };
 </script>

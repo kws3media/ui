@@ -15,6 +15,7 @@
   @param {object} [classTransformers={}] - CSS class names for each column, Default: `{}`
   @param {object} [styleTransformers={}] - CSS styles for each column, Default: `{}`
   @param {object} [visibilityMap={}] - Contains list of columns which can be visible or not, Default: `{}`
+  @param {string} [class=""] - CSS classes for tiles wrapper, Default: `""`
 
   ### Events
   - `rowClick`
@@ -22,7 +23,7 @@
   - `_forwardEvent`
 
 -->
-<div class="columns is-multiline">
+<div class="columns is-multiline {klass}">
   {#each data as row, row_index (row[iteration_key])}
     <div class="column is-{column_size}">
       <Transition {transition} y={20} delay={20 * row_index}>
@@ -128,6 +129,12 @@
      * Size of each checkbox
      */
     selectCheckboxSize = "medium";
+
+  /**
+   * CSS classes for tiles wrapper
+   */
+  let klass = "";
+  export { klass as class };
 
   $: mainTileComponent = tileItemComponent ? tileItemComponent : TileViewItem;
   $: column_size = per_row < 12 ? Math.floor(12 / per_row) : 12;
