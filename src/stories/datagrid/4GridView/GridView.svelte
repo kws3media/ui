@@ -4,6 +4,7 @@
   {columns}
   {transition}
   {is_striped}
+  {is_narrow}
   {clickableRows}
   {bulk_actions}
   {selectAll}
@@ -15,7 +16,8 @@
   {classTransformers}
   {styleTransformers}
   {visibilityMap}
-  {cellComponentMap} />
+  {cellComponentMap}
+  class={klass} />
 
 <script>
   import { GridView as KwsGridView } from "@kws3/ui";
@@ -25,6 +27,7 @@
     columns = {},
     transition = false,
     is_striped = true,
+    is_narrow = false,
     clickableRows = false,
     bulk_actions = false,
     selectAll = false,
@@ -37,4 +40,7 @@
     styleTransformers = {},
     visibilityMap = {},
     cellComponentMap = {};
+
+  let klass = "";
+  export { klass as class };
 </script>
