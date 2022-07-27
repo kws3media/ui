@@ -34,9 +34,9 @@ function createFlatpickrAction(defaultOpts, hooks) {
       _opts["onChange"] = createFirer("dateChange");
     }
 
-    opts = Object.assign(defaultOpts, _opts, opts);
+    let OPTS = Object.assign(defaultOpts, _opts, opts);
 
-    const picker = flatpickr(node, opts);
+    let picker = flatpickr(node, OPTS);
 
     function createFirer(name) {
       return (selectedDates, dateStr, instance) => {
@@ -81,23 +81,24 @@ function createFlatpickrAction(defaultOpts, hooks) {
         color,
         type,
       }) {
-        let _newOpts = {
-          opts,
-          value,
-          placeholder,
-          klass,
-          style,
-          disabled,
-          color,
-          type,
-        };
+        // let _newOpts = {
+        //   opts,
+        //   value,
+        //   placeholder,
+        //   klass,
+        //   style,
+        //   disabled,
+        //   color,
+        //   type,
+        // };
 
-        if (type === "time") {
-          timepicker(node, { ..._newOpts });
-        }
-        if (type === "date") {
-          datepicker(node, { ..._newOpts });
-        }
+        // if (type === "time") {
+        //   timepicker(node, { ..._newOpts });
+        // }
+        // if (type === "date") {
+        //   datepicker(node, { ..._newOpts });
+        // }
+
         // if (picker) {
         //   picker.setDate(value);
         //   if (opts) {
@@ -121,6 +122,32 @@ function createFlatpickrAction(defaultOpts, hooks) {
         //   visibleInput.disabled = disabled;
         //   visibleInput.placeholder = placeholder;
         // }
+
+        picker = flatpickr(node, Object.assign(OPTS, opts));
+
+        if (picker) {
+          picker.setDate(value);
+          if (opts) {
+            if (opts.color) {
+              applyColorClass(picker, opts.color);
+            }
+            // if (opts.mode) {
+            //   picker.set("mode", opts.mode);
+            // }
+            // picker.set("minDate", opts.minDate ? opts.minDate : "");
+            // picker.set("maxDate", opts.maxDate ? opts.maxDate : "");
+            // picker.set("enable", opts.enable ? opts.enable : [() => true]);
+            // picker.set("disable", opts.disable ? opts.disable : [() => false]);
+            // picker.set("time_24hr", opts.time_24hr || false);
+          }
+
+          //respond reactively to props
+          const visibleInput = picker.input.nextSibling;
+          visibleInput.className = `input is-${color} ${klass}`;
+          visibleInput.style = `${style}`;
+          visibleInput.disabled = disabled;
+          visibleInput.placeholder = placeholder;
+        }
       },
       destroy() {
         picker && picker.destroy();
