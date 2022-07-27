@@ -4,6 +4,7 @@
   {columns}
   {transition}
   {is_striped}
+  {is_narrow}
   {clickableRows}
   {bulk_actions}
   {selectAll}
@@ -26,6 +27,7 @@
     columns = {},
     transition = false,
     is_striped = true,
+    is_narrow = false,
     clickableRows = false,
     bulk_actions = false,
     selectAll = false,

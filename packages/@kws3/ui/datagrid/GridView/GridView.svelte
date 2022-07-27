@@ -7,6 +7,7 @@
   @param {object} [columns={}] - Table column names. {db_field_name: column_name}, Default: `{}`
   @param {boolean} [transition=false] - Determines if a transition effect is used, Default: `false`
   @param {boolean} [is_striped=true] - Determines whether to use alternating row shading in the table view, Default: `true`
+  @param {boolean} [is_narrow=false] - Determines whether to display rows in a more compact manner, Default: `false`
   @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
   @param {object} [activatedId=null] - Unique id of row that is activated, Default: `null`
@@ -33,9 +34,9 @@
 -->
 <div class="data-table" data-cy="data-table">
   <table
-    class="table is-fullwidth {is_striped ? 'is-striped' : ''} {clickableRows
-      ? 'is-hoverable'
-      : ''} is-bordered {klass}">
+    class="table is-fullwidth {is_striped ? 'is-striped' : ''} {is_narrow
+      ? 'is-narrow'
+      : ''} {clickableRows ? 'is-hoverable' : ''} is-bordered {klass}">
     <thead>
       <tr>
         {#if bulk_actions}
@@ -113,6 +114,11 @@
      * @link https://bulma.io/documentation/elements/table/#modifiers
      */
     is_striped = true,
+    /**
+     * Determines whether to display rows in a more compact manner
+     * @link https://bulma.io/documentation/elements/table/#modifiers
+     */
+    is_narrow = false,
     /**
      * Determines whether clickable rows activate visually on click
      */
