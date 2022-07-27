@@ -134,14 +134,14 @@ export default async ({ args, canvasElement }) => {
 
   //By default search strategy  should be 'fuzzy'
   await sleep(300);
-  await userEvent.type(inputs[0], "hw", { delay: 100 });
+  await userEvent.type(inputs[0], "hwe", { delay: 100 });
   await sleep(300);
-  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("archos");
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("huawei");
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await sleep(300);
   await userEvent.type(inputs[0], "xia", { delay: 100 });
   await sleep(300);
-  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("archos");
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("xiaomi");
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
 
   // //Clear input if input loses focus on it
