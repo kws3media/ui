@@ -9,7 +9,7 @@ import {
 } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import DatepickerDecorator from "./Datepicker.svelte";
+import { Datepicker } from "@kws3/ui";
 import M from "../../helpers/Message/Message.svelte";
 import { action } from "@storybook/addon-actions";
 
@@ -33,7 +33,7 @@ export let args = {
 
 <Meta
   title="Forms/Datepicker"
-  component={DatepickerDecorator}
+  component={Datepicker}
   args={args}
   argTypes={{
     calendar_color: {
@@ -56,7 +56,7 @@ export let args = {
 <Canvas>
   <Story name="Datepicker" args={args}>
     {(args) => ({
-      Component: DatepickerDecorator,
+      Component: Datepicker,
       props: args,
       on: {
         change: action("change"),
