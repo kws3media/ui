@@ -4,7 +4,7 @@ function createFlatpickrAction(defaultOpts, hooks) {
   return function (
     node,
     // eslint-disable-next-line no-unused-vars
-    { opts, value, placeholder, klass, style, disabled, color, type }
+    { opts, value, placeholder, klass, style, disabled, color }
   ) {
     const _opts = {};
 
@@ -71,16 +71,7 @@ function createFlatpickrAction(defaultOpts, hooks) {
     }
 
     return {
-      update({
-        opts,
-        value,
-        placeholder,
-        klass,
-        style,
-        disabled,
-        color,
-        type,
-      }) {
+      update({ opts, value, placeholder, klass, style, disabled, color }) {
         // let _newOpts = {
         //   opts,
         //   value,

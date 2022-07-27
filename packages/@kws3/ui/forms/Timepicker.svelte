@@ -36,7 +36,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
     style,
     disabled,
     color,
-    type,
   }}
   class="input is-{color} {klass}"
   type="text"
@@ -104,8 +103,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    */
   let klass = "";
   export { klass as class };
-
-  let type = "time";
 
   let opts;
 
