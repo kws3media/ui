@@ -22,6 +22,7 @@
   @param {object} [visibilityMap={}] - Contains list of columns which can be visible or not, Default: `{}`
   @param {object} [cellComponentMap={}] - Contains list of columns with its custom cell component, Default: `{}`
   @param {any} [rowComponent="GridRow"] - Contains a custom row component, Default: `"GridRow"`
+  @param {string} [class=""] - CSS classes for parent table, Default: `""`
 
   ### Events
   - `toggleSelectAll` - Fires an event every time the `select all` checkbox is toggled
@@ -34,7 +35,7 @@
   <table
     class="table is-fullwidth {is_striped ? 'is-striped' : ''} {clickableRows
       ? 'is-hoverable'
-      : ''} is-bordered">
+      : ''} is-bordered {klass}">
     <thead>
       <tr>
         {#if bulk_actions}
@@ -173,6 +174,12 @@
      * @default "GridRow"
      */
     rowComponent = GridRow;
+
+  /**
+   * CSS classes for parent table
+   */
+  let klass = "";
+  export { klass as class };
 
   $: mainRowComponent = rowComponent ? rowComponent : GridRow;
   $: column_keys = columns ? Object.keys(columns) : [];

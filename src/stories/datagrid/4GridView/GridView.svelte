@@ -15,7 +15,8 @@
   {classTransformers}
   {styleTransformers}
   {visibilityMap}
-  {cellComponentMap} />
+  {cellComponentMap}
+  class={klass} />
 
 <script>
   import { GridView as KwsGridView } from "@kws3/ui";
@@ -37,4 +38,7 @@
     styleTransformers = {},
     visibilityMap = {},
     cellComponentMap = {};
+
+  let klass = "";
+  export { klass as class };
 </script>
