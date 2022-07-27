@@ -1,6 +1,6 @@
 import flatpickr from "flatpickr";
 
-function createFlatpickrAction(defaultOpts, hooks) {
+function createFlatpickrAction(defaultOpts, hooks, type) {
   return function (
     node,
     // eslint-disable-next-line no-unused-vars
@@ -73,50 +73,6 @@ function createFlatpickrAction(defaultOpts, hooks) {
 
     return {
       update({ opts, value, placeholder, klass, style, disabled, color }) {
-        // let _newOpts = {
-        //   opts,
-        //   value,
-        //   placeholder,
-        //   klass,
-        //   style,
-        //   disabled,
-        //   color,
-        //   type,
-        // };
-
-        // if (type === "time") {
-        //   timepicker(node, { ..._newOpts });
-        // }
-        // if (type === "date") {
-        //   datepicker(node, { ..._newOpts });
-        // }
-
-        // if (picker) {
-        //   picker.setDate(value);
-        //   if (opts) {
-        //     if (opts.color) {
-        //       applyColorClass(picker, opts.color);
-        //     }
-        //     if (opts.mode) {
-        //       picker.set("mode", opts.mode);
-        //     }
-        //     picker.set("minDate", opts.minDate ? opts.minDate : "");
-        //     picker.set("maxDate", opts.maxDate ? opts.maxDate : "");
-        //     picker.set("enable", opts.enable ? opts.enable : [() => true]);
-        //     picker.set("disable", opts.disable ? opts.disable : [() => false]);
-        //     picker.set("time_24hr", opts.time_24hr || false);
-        //   }
-
-        //   //respond reactively to props
-        //   const visibleInput = picker.input.nextSibling;
-        //   visibleInput.className = `input is-${color} ${klass}`;
-        //   visibleInput.style = `${style}`;
-        //   visibleInput.disabled = disabled;
-        //   visibleInput.placeholder = placeholder;
-        // }
-
-        console.log(OPTS, opts, value, picker.isOpen);
-
         if (!picker.isOpen) {
           picker = flatpickr(NODE, Object.assign(OPTS, opts));
         }
@@ -127,16 +83,13 @@ function createFlatpickrAction(defaultOpts, hooks) {
             if (opts.color) {
               applyColorClass(picker, opts.color);
             }
-            // if (opts.mode) {
-            //   picker.set("mode", opts.mode);
-            // }
-            // picker.set("minDate", opts.minDate ? opts.minDate : "");
-            // picker.set("maxDate", opts.maxDate ? opts.maxDate : "");
-            // picker.set("enable", opts.enable ? opts.enable : [() => true]);
-            // picker.set("disable", opts.disable ? opts.disable : [() => false]);
-            // picker.set("time_24hr", opts.time_24hr || false);
+            if (opts.mode) {
+              picker.set("mode", opts.mode);
+            }
+            if (type === "time") {
+              picker.set("altFormat", opts.time_24hr ? "H:i" : "h:i K");
+            }
           }
-
           //respond reactively to props
           const visibleInput = picker.input.nextSibling;
           visibleInput.className = `input is-${color} ${klass}`;
@@ -158,7 +111,8 @@ export let datepicker = createFlatpickrAction(
     altFormat: "d/m/Y",
     dateFormat: "Y-m-d",
   },
-  ["onOpen", "onClose", "onMonthChange", "onYearChange", "onReady"]
+  ["onOpen", "onClose", "onMonthChange", "onYearChange", "onReady"],
+  "date"
 );
 
 export let timepicker = createFlatpickrAction(
@@ -169,5 +123,6 @@ export let timepicker = createFlatpickrAction(
     enableTime: true,
     noCalendar: true,
   },
-  ["onOpen", "onClose", "onReady"]
+  ["onOpen", "onClose", "onReady"],
+  "time"
 );
