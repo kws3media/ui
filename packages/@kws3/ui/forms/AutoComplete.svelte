@@ -236,9 +236,9 @@ Default value: `<span>{option.label}</span>`
     searching = true,
     show_options = false,
     last_position = {
-      x: 0,
-      y: 0,
-    },
+      X: 0,
+      Y: 0,
+    }, //  to check actual mouse is moving or not, for WebKit compatibility,
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
     options_loading = false, //indictaes whether async search function is running

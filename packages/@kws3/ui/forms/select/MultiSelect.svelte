@@ -340,9 +340,9 @@ Default value: `<span>{option[search_key] || option}</span>`
     searching = false,
     showOptions = false,
     last_position = {
-      x: 0,
-      y: 0,
-    },
+      X: 0,
+      Y: 0,
+    }, //  to check actual mouse is moving or not, for WebKit compatibility,
     prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
     fuzzyOpts = {}, // fuzzy.js lib options
     filteredOptions = [], //list of options filtered by search query
