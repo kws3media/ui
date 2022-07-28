@@ -144,6 +144,7 @@ Default value: `<span>{option[search_key] || option}</span>`
                 mouseTracker.preventSelect = false;
                 activeOption = option;
               }
+              // mouse x,y is not same position after the scrolling
               mouseTracker.lastX = e.clientX;
               mouseTracker.lastY = e.clientY;
             }}

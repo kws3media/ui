@@ -87,6 +87,7 @@ Default value: `<span>{option.label}</span>`
                 mouseTracker.preventSelect = false;
                 active_option = option;
               }
+              // mouse x,y is not same position after the scrolling
               mouseTracker.lastX = e.clientX;
               mouseTracker.lastY = e.clientY;
             }}
