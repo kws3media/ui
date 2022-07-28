@@ -136,9 +136,10 @@ Default value: `<span>{option[search_key] || option}</span>`
               activeOption = option;
             }}
             on:mousemove|preventDefault|stopPropagation={(e) => {
+              let { preventSelect, lastX, lastY } = mouseTracker;
               if (
-                mouseTracker.lastX !== e.clientX ||
-                mouseTracker.lastY !== e.clientY
+                preventSelect &&
+                (lastX !== e.clientX || lastY !== e.clientY)
               ) {
                 mouseTracker.preventSelect = false;
                 activeOption = option;
