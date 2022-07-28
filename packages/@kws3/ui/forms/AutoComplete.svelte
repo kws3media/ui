@@ -79,8 +79,10 @@ Default value: `<span>{option.label}</span>`
               active_option = option;
             }}
             on:mousemove|preventDefault|stopPropagation={() => {
-              prevent_select_by_mouse = false;
-              active_option = option;
+              if (prevent_select_by_mouse) {
+                prevent_select_by_mouse = false;
+                active_option = option;
+              }
             }}
             class="is-size-{list_text_size[size]}"
             class:active={active_option === option}>
