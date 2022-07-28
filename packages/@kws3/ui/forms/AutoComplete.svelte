@@ -75,7 +75,21 @@ Default value: `<span>{option.label}</span>`
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
             on:mouseenter|preventDefault|stopPropagation={() => {
+              if (mouseTracker.preventSelect) return;
               active_option = option;
+            }}
+            on:mousemove|preventDefault|stopPropagation={(e) => {
+              let { preventSelect, lastX, lastY } = mouseTracker;
+              if (
+                preventSelect &&
+                (lastX !== e.clientX || lastY !== e.clientY)
+              ) {
+                mouseTracker.preventSelect = false;
+                active_option = option;
+              }
+              // mouse x,y is not in same position after the scrolling
+              mouseTracker.lastX = e.clientX;
+              mouseTracker.lastY = e.clientY;
             }}
             class="is-size-{list_text_size[size]}"
             class:active={active_option === option}>
@@ -101,6 +115,7 @@ Default value: `<span>{option.label}</span>`
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
   import { fuzzysearch } from "../utils/fuzzysearch";
+  import { scrollIntoActiveElelement } from "../utils/scrollIntoActiveElelement";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -222,6 +237,11 @@ Default value: `<span>{option.label}</span>`
     active_option = "",
     searching = true,
     show_options = false,
+    mouseTracker = {
+      lastX: 0,
+      lastY: 0, //  to check actual mouse is moving or not, for WebKit compatibility,
+      preventSelect: false, //prevent select by mouse when up or down key is pressed
+    },
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
     options_loading = false, //indictaes whether async search function is running
@@ -362,6 +382,14 @@ Default value: `<span>{option.label}</span>`
           active_option = filtered_options[0];
         else active_option = filtered_options[newActiveIdx];
       }
+
+      tick().then(() => {
+        if (dropdown) {
+          mouseTracker.preventSelect = true;
+          let activeElem = dropdown.querySelector(".active");
+          scrollIntoActiveElelement(dropdown, activeElem);
+        }
+      });
     } else {
       active_option = "";
       searching = true;
