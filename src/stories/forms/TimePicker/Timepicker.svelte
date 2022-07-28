@@ -9,7 +9,9 @@
         {ui_color}
         bind:value
         {time_24hr}
-        color={ui_color} />
+        color={ui_color}
+        {min_time}
+        {max_time} />
     </div>
   </div>
   <div class="columns">
@@ -29,6 +31,16 @@
       <label class="checkbox">
         <input type="checkbox" bind:checked={disabled} />
         Disable
+      </label>
+    </div>
+    <div class="column">
+      <label class="checkbox">
+        Min Time
+        <input type="time" bind:value={min_time} />
+      </label>
+      <label class="checkbox">
+        Max Time
+        <input type="time" bind:value={max_time} />
       </label>
     </div>
     <div class="column">
@@ -53,5 +65,13 @@
     disabled = false,
     time_24hr = true,
     options = {},
-    ui_color = "primary";
+    ui_color = "primary",
+    min_time = null,
+    max_time = null;
+
+  var current = new Date();
+
+  $: {
+    min_time = current.toLocaleTimeString();
+  }
 </script>
