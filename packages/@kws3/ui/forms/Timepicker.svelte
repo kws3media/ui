@@ -14,6 +14,10 @@ This property can be bound to, to fetch the selected time. Output is in the same
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [ui_color="primary"] - Colour of popup time selection UI, Default: `"primary"`
   @param {boolean} [time_24hr=false] - Display time selection UI in 24hr format, Default: `false`
   @param {object} [options={}] - Extended set of options as supported by Flatpicker
+  @param {any} [min_time=null] - Set earliest selectable time as string
+  **Example:** `"12:00 PM"` Default: `null`
+  @param {any} [max_time=null] - Set latest selectable time as string
+  **Example:** `"12:00 AM"` Default: `null`
 
 See: https://flatpickr.js.org/options/, Default: `{}`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
@@ -85,6 +89,21 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let time_24hr = false;
 
   /**
+   * Set earliest selectable time as string
+   *
+   * **Example:** `"12:00 PM"`
+   * @type {any}
+   */
+  export let min_time = null;
+  /**
+   * Set latest selectable time as string
+   *
+   * **Example:** `"12:00 AM"`
+   * @type {any}
+   */
+  export let max_time = null;
+
+  /**
    * Extended set of options as supported by Flatpicker
    *
    * See: https://flatpickr.js.org/options/
@@ -98,7 +117,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
   let opts;
 
-  $: ui_color, options, time_24hr, fillOptions();
+  $: ui_color, options, time_24hr, min_time, max_time, fillOptions();
 
   function fillOptions() {
     let _opts = Object.assign(
@@ -109,6 +128,13 @@ See: https://flatpickr.js.org/options/, Default: `{}`
       options
     );
 
+    if (min_time) {
+      _opts.minTime = min_time;
+    }
+
+    if (max_time) {
+      _opts.maxTime = max_time;
+    }
     opts = _opts;
   }
 
