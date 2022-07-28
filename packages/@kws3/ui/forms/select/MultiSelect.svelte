@@ -132,19 +132,19 @@ Default value: `<span>{option[search_key] || option}</span>`
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
             on:mouseenter|preventDefault|stopPropagation={() => {
-              if (prevent_select_by_mouse) return;
+              if (mouseTracker.preventSelect) return;
               activeOption = option;
             }}
             on:mousemove|preventDefault|stopPropagation={(e) => {
               if (
-                last_position.X !== e.clientX ||
-                last_position.Y !== e.clientY
+                mouseTracker.lastX !== e.clientX ||
+                mouseTracker.lastY !== e.clientY
               ) {
-                prevent_select_by_mouse = false;
+                mouseTracker.preventSelect = false;
                 activeOption = option;
               }
-              last_position.X = e.clientX;
-              last_position.Y = e.clientY;
+              mouseTracker.lastX = e.clientX;
+              mouseTracker.lastY = e.clientY;
             }}
             class="is-size-{list_text_size[size]}"
             class:selected={isSelected(option)}
@@ -339,11 +339,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     searchText = "",
     searching = false,
     showOptions = false,
-    last_position = {
-      X: 0,
-      Y: 0,
-    }, //  to check actual mouse is moving or not, for WebKit compatibility,
-    prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
+    mouseTracker = {
+      lastX: 0,
+      lastY: 0, //  to check actual mouse is moving or not, for WebKit compatibility,
+      preventSelect: false, //prevent select by mouse when up or down key is pressed
+    },
     fuzzyOpts = {}, // fuzzy.js lib options
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
@@ -665,7 +665,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
       tick().then(() => {
         if (dropdown) {
-          prevent_select_by_mouse = true;
+          mouseTracker.preventSelect = true;
           let activeElem = dropdown.querySelector(".active");
           scrollIntoActiveElelement(dropdown, activeElem);
         }

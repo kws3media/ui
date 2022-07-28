@@ -75,19 +75,19 @@ Default value: `<span>{option.label}</span>`
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
             on:mouseenter|preventDefault|stopPropagation={() => {
-              if (prevent_select_by_mouse) return;
+              if (mouseTracker.preventSelect) return;
               active_option = option;
             }}
             on:mousemove|preventDefault|stopPropagation={(e) => {
               if (
-                last_position.X !== e.clientX ||
-                last_position.Y !== e.clientY
+                mouseTracker.lastX !== e.clientX ||
+                mouseTracker.lastY !== e.clientY
               ) {
-                prevent_select_by_mouse = false;
+                mouseTracker.preventSelect = false;
                 active_option = option;
               }
-              last_position.X = e.clientX;
-              last_position.Y = e.clientY;
+              mouseTracker.lastX = e.clientX;
+              mouseTracker.lastY = e.clientY;
             }}
             class="is-size-{list_text_size[size]}"
             class:active={active_option === option}>
@@ -235,15 +235,15 @@ Default value: `<span>{option.label}</span>`
     active_option = "",
     searching = true,
     show_options = false,
-    last_position = {
-      X: 0,
-      Y: 0,
-    }, //  to check actual mouse is moving or not, for WebKit compatibility,
+    mouseTracker = {
+      lastX: 0,
+      lastY: 0, //  to check actual mouse is moving or not, for WebKit compatibility,
+      preventSelect: false, //prevent select by mouse when up or down key is pressed
+    },
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
     options_loading = false, //indictaes whether async search function is running
     mounted = false, //indicates whether component is mounted
-    prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
     fuzzyOpts = {}; // fuzzy.js lib options
 
   let list_text_size = {
@@ -383,7 +383,7 @@ Default value: `<span>{option.label}</span>`
 
       tick().then(() => {
         if (dropdown) {
-          prevent_select_by_mouse = true;
+          mouseTracker.preventSelect = true;
           let activeElem = dropdown.querySelector(".active");
           scrollIntoActiveElelement(dropdown, activeElem);
         }
