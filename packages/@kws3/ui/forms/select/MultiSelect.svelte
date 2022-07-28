@@ -135,11 +135,16 @@ Default value: `<span>{option[search_key] || option}</span>`
               if (prevent_select_by_mouse) return;
               activeOption = option;
             }}
-            on:mousemove|preventDefault|stopPropagation={() => {
-              if (prevent_select_by_mouse) {
+            on:mousemove|preventDefault|stopPropagation={(e) => {
+              if (
+                last_position.X !== e.clientX ||
+                last_position.Y !== e.clientY
+              ) {
                 prevent_select_by_mouse = false;
                 activeOption = option;
               }
+              last_position.X = e.clientX;
+              last_position.Y = e.clientY;
             }}
             class="is-size-{list_text_size[size]}"
             class:selected={isSelected(option)}
@@ -334,6 +339,10 @@ Default value: `<span>{option[search_key] || option}</span>`
     searchText = "",
     searching = false,
     showOptions = false,
+    last_position = {
+      x: 0,
+      y: 0,
+    },
     prevent_select_by_mouse = false, //prevent select by mouse when up or down key is pressed
     fuzzyOpts = {}, // fuzzy.js lib options
     filteredOptions = [], //list of options filtered by search query

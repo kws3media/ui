@@ -78,11 +78,16 @@ Default value: `<span>{option.label}</span>`
               if (prevent_select_by_mouse) return;
               active_option = option;
             }}
-            on:mousemove|preventDefault|stopPropagation={() => {
-              if (prevent_select_by_mouse) {
+            on:mousemove|preventDefault|stopPropagation={(e) => {
+              if (
+                last_position.X !== e.clientX ||
+                last_position.Y !== e.clientY
+              ) {
                 prevent_select_by_mouse = false;
                 active_option = option;
               }
+              last_position.X = e.clientX;
+              last_position.Y = e.clientY;
             }}
             class="is-size-{list_text_size[size]}"
             class:active={active_option === option}>
@@ -230,6 +235,10 @@ Default value: `<span>{option.label}</span>`
     active_option = "",
     searching = true,
     show_options = false,
+    last_position = {
+      x: 0,
+      y: 0,
+    },
     filtered_options = [], //list of options filtered by search query
     normalised_options = [], //list of options normalised
     options_loading = false, //indictaes whether async search function is running
