@@ -74,7 +74,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await expect(Number(items.length)).toEqual(0);
-  await expect(inputs[0].value).toEqual("Groot");
+  await expect(inputs[0].value).toEqual("Thor");
 
   //Select item using ArrowDown key & Mouse click
   await sleep(300);
@@ -91,7 +91,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
   await userEvent.click(options[0].querySelector("li.active"));
   await expect(Number(items.length)).toBe(0);
-  await expect(inputs[0].value).toEqual("Stephen Strange");
+  await expect(inputs[0].value).toEqual("Captain Midlands");
 
   //Dont clear input if input loses focus on it
   await sleep(300);

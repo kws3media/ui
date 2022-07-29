@@ -132,7 +132,21 @@ Default value: `<span>{option[search_key] || option}</span>`
             on:mousedown|preventDefault|stopPropagation={() =>
               handleOptionMouseDown(option)}
             on:mouseenter|preventDefault|stopPropagation={() => {
+              if (mouseTracker.preventSelect) return;
               activeOption = option;
+            }}
+            on:mousemove|preventDefault|stopPropagation={(e) => {
+              let { preventSelect, lastX, lastY } = mouseTracker;
+              if (
+                preventSelect &&
+                (lastX !== e.clientX || lastY !== e.clientY)
+              ) {
+                mouseTracker.preventSelect = false;
+                activeOption = option;
+              }
+              // mouse x,y is not in same position after the scrolling
+              mouseTracker.lastX = e.clientX;
+              mouseTracker.lastY = e.clientY;
             }}
             class="is-size-{list_text_size[size]}"
             class:selected={isSelected(option)}
@@ -165,6 +179,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
   import { fuzzysearch } from "../../utils/fuzzysearch";
+  import { scrollIntoActiveElelement } from "../../utils/scrollIntoActiveElelement";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -326,6 +341,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     searchText = "",
     searching = false,
     showOptions = false,
+    mouseTracker = {
+      lastX: 0,
+      lastY: 0, //  to check actual mouse is moving or not, for WebKit compatibility,
+      preventSelect: false, //prevent select by mouse when up or down key is pressed
+    },
     fuzzyOpts = {}, // fuzzy.js lib options
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
@@ -644,6 +664,14 @@ Default value: `<span>{option[search_key] || option}</span>`
           activeOption = filteredOptions[0];
         else activeOption = filteredOptions[newActiveIdx];
       }
+
+      tick().then(() => {
+        if (dropdown) {
+          mouseTracker.preventSelect = true;
+          let activeElem = dropdown.querySelector(".active");
+          scrollIntoActiveElelement(dropdown, activeElem);
+        }
+      });
     } else if (event.key === `Backspace`) {
       if (single && hasValue) {
         //for a single select
