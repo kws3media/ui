@@ -38,7 +38,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   {style}
   {placeholder}
   {disabled}
-  readonly
+  {readonly}
   bind:value
   on:change
   on:timeChange={fireTimeChange}
@@ -112,12 +112,15 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   /**
    * CSS classes for the input
    */
+
+  export let readonly = true;
+
   let klass = "";
   export { klass as class };
 
   let opts;
 
-  $: ui_color, options, time_24hr, min_time, max_time, fillOptions();
+  $: ui_color, options, time_24hr, min_time, max_time, readonly, fillOptions();
 
   const convertTime12to24 = (time12h) => {
     const [time, modifier] = time12h.split(" ");
@@ -154,6 +157,11 @@ See: https://flatpickr.js.org/options/, Default: `{}`
     if (max_time) {
       let _maxTime24 = convertTime12to24(max_time);
       _opts.maxTime = _maxTime24.time;
+    }
+
+    _opts.allowInput = true;
+    if (readonly) {
+      _opts.allowInput = false;
     }
     opts = _opts;
   }
