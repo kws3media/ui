@@ -44,7 +44,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   {style}
   {placeholder}
   {disabled}
-  {readonly}
+  readonly
   bind:value
   on:change
   on:dateChange={fireDateChange}
