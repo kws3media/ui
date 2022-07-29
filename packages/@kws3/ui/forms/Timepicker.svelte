@@ -109,11 +109,15 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    * See: https://flatpickr.js.org/options/
    */
   export let options = {};
+
+  /**
+   * Allows the user to enter directly into the input field. By default, direct entry is disabled.
+   */
+  export let readonly = true;
+
   /**
    * CSS classes for the input
    */
-
-  export let readonly = true;
 
   let klass = "";
   export { klass as class };
