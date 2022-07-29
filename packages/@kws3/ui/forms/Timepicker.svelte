@@ -47,8 +47,8 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:close={fireClose} />
 
 <script>
-  import { timepicker } from "./actions";
   import { createEventDispatcher } from "svelte";
+  import { timepicker } from "./actions";
 
   const fire = createEventDispatcher();
 
@@ -164,7 +164,9 @@ See: https://flatpickr.js.org/options/, Default: `{}`
     }
 
     _opts.allowInput = true;
+    _opts.clickOpens = true;
     if (readonly) {
+      _opts.clickOpens = false;
       _opts.allowInput = false;
     }
     opts = _opts;
