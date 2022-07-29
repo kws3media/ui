@@ -91,14 +91,14 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   /**
    * Set earliest selectable time as string
    *
-   * **Example:** `"12:00 PM"`
+   * **Example:** `"01:00 PM"` or "13:00"`
    * @type {any}
    */
   export let min_time = null;
   /**
    * Set latest selectable time as string
    *
-   * **Example:** `"12:00 AM"`
+   * **Example:** `"03:00 PM"` or "15:00"`
    * @type {any}
    */
   export let max_time = null;
@@ -119,6 +119,22 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
   $: ui_color, options, time_24hr, min_time, max_time, fillOptions();
 
+  const convertTime12to24 = (time12h) => {
+    const [time, modifier] = time12h.split(" ");
+    let [hours, minutes] = time.split(":");
+    if (hours === "12") {
+      hours = "00";
+    }
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12;
+    }
+    return {
+      hour: String(hours),
+      minute: String(minutes),
+      time: `${hours}:${minutes}`,
+    };
+  };
+
   function fillOptions() {
     let _opts = Object.assign(
       {
@@ -129,11 +145,15 @@ See: https://flatpickr.js.org/options/, Default: `{}`
     );
 
     if (min_time) {
-      _opts.minTime = min_time;
+      let _minTime24 = convertTime12to24(min_time);
+      _opts.minTime = _minTime24.time;
+      _opts.defaultHour = _minTime24.hour;
+      _opts.defaultMinute = _minTime24.minute;
     }
 
     if (max_time) {
-      _opts.maxTime = max_time;
+      let _maxTime24 = convertTime12to24(max_time);
+      _opts.maxTime = _maxTime24.time;
     }
     opts = _opts;
   }
