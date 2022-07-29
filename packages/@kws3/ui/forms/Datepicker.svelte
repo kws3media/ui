@@ -10,6 +10,7 @@ This property can be bound to, to fetch the selected date or date range. Output 
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
   @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {boolean} [readonly=false] - Make input value read-only, Default: `false`
   @param {string} [placeholder="Select Date.."] - Placeholder text for the input, Default: `"Select Date.."`
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
   @param {any} [min_date=null] - Set earliest selectable date as an object or string
@@ -44,7 +45,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   {style}
   {placeholder}
   {disabled}
-  readonly
+  {readonly}
   bind:value
   on:change
   on:dateChange={fireDateChange}
@@ -55,8 +56,8 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:yearChange={fireYearChange} />
 
 <script>
-  import { datepicker } from "./actions";
   import { createEventDispatcher } from "svelte";
+  import { datepicker } from "./actions";
 
   const fire = createEventDispatcher();
 
@@ -81,6 +82,10 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    * Disables the component
    */
   export let disabled = false;
+  /**
+   * Make input value read-only
+   */
+  export let readonly = false;
   /**
    * Placeholder text for the input
    */
@@ -163,6 +168,13 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
     if (max_date) {
       _opts.maxDate = max_date;
+    }
+
+    _opts.allowInput = true;
+    _opts.clickOpens = true;
+    if (readonly) {
+      _opts.clickOpens = false;
+      _opts.allowInput = false;
     }
     opts = _opts;
   }
