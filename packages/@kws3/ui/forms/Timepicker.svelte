@@ -163,11 +163,9 @@ See: https://flatpickr.js.org/options/, Default: `{}`
       _opts.maxTime = _maxTime24.time;
     }
 
-    _opts.allowInput = true;
     _opts.clickOpens = true;
     if (readonly) {
       _opts.clickOpens = false;
-      _opts.allowInput = false;
     }
     opts = _opts;
   }

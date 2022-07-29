@@ -170,11 +170,9 @@ See: https://flatpickr.js.org/options/, Default: `{}`
       _opts.maxDate = max_date;
     }
 
-    _opts.allowInput = true;
     _opts.clickOpens = true;
     if (readonly) {
       _opts.clickOpens = false;
-      _opts.allowInput = false;
     }
     opts = _opts;
   }
