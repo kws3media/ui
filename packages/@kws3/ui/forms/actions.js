@@ -35,7 +35,6 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
     }
 
     let OPTS = Object.assign(defaultOpts, _opts, opts);
-    let NODE = node;
 
     let picker = flatpickr(node, OPTS);
 
@@ -74,7 +73,7 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
     return {
       update({ opts, value, placeholder, klass, style, disabled, color }) {
         if (!picker.isOpen) {
-          picker = flatpickr(NODE, Object.assign(OPTS, opts));
+          picker = flatpickr(node, Object.assign(OPTS, opts));
         }
 
         if (picker) {
