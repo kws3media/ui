@@ -1,0 +1,130 @@
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import { SearchTool } from "@kws3/ui";
+import SearchToolDecorator from "./SearchTool.svelte";
+import { action } from "@storybook/addon-actions";
+import playInteractions from "./autocomplete.play.js";
+
+export let args = {
+  style: "",
+  class: "",
+  size: "",
+  color: "",
+  search_strategy: "fuzzy",
+  scoreThreshold: 5,
+  disabled: false,
+  readonly: false,
+  placeholder: "Marvel characters...",
+  highlighted_results: true,
+};
+
+<Version />
+
+<Meta
+  title="Forms/SearchTool/SearchTool"
+  component={SearchTool}
+  args={args}
+  argTypes={{
+    color: {
+      control: { type: "select" },
+    },
+    size: {
+      control: { type: "select" },
+    },
+    search_strategy: {
+      control: { type: "select" },
+    },
+  }}
+/>
+
+<Description
+  markdown={dedent`
+# SearchTool
+## An Input component that supports search on multiple properties.
+`}
+/>
+
+<Canvas>
+  <Story name="SearchTool" args={args} play={playInteractions}>
+    {(args) => ({
+      Component: SearchToolDecorator,
+      props: args,
+    })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="SearchTool" />
+
+<div class="notification is-primary is-light">
+  <div class="columns">
+    <div class="column">
+      <h3>
+        Input format <code>options</code>
+      </h3>
+      {/* TODO fix doc*/}
+
+      <p>
+        Can send either an array of strings, or an array of objects.<br></br>Always
+        ensure the shape of the array items are consistent.
+      </p>
+      <p>See supported data formats in example story above.</p>
+      <p>
+        Note: <code>option.label</code> contains matched characters wrapped
+        inside <code>&lt;span class="h"&gt;</code> tags.{" "}
+      </p>
+      <p>
+        Note: Highlighted results can be turned off by setting{" "}
+        <code>highlighted_results</code> property to <code>false</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+### Usage
+
+#### Import the component:
+
+<Source
+  language="javascript"
+  code={dedent`import { SearchTool } from '@kws3/ui';`}
+/>
+
+#### Import the SCSS:
+
+<Source
+  language="javascript"
+  code={dedent`@import '@kws3/ui/styles/SearchTool.scss';`}
+/>
+
+#### SCSS customization variables with default values:
+
+<Source
+  language="css"
+  code={dedent`
+      $kws-theme-colors: $colors !default;
+      $kws-autocomplete-radius: $radius !default;
+      $kws-autocomplete-border-color: $input-border-color !default;
+      $kws-autocomplete-box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+        0 0px 0 1px rgb(10 10 10 / 2%) !default;
+      $kws-autocomplete-focus-border-color: $input-focus-border-color !default;
+      $kws-autocomplete-focus-box-shadow-size: $input-focus-box-shadow-size !default;
+      $kws-autocomplete-focus-box-shadow-color: $input-focus-box-shadow-color !default;
+      $kws-autocomplete-disabled-background-color: $input-disabled-background-color !default;
+      $kws-autocomplete-disabled-border-color: $input-disabled-border-color !default;
+      $kws-autocomplete-disabled-color: $input-disabled-color !default;
+      $kws-autocomplete-selecting-color: $primary-invert !default;
+      $kws-autocomplete-selecting-background: $primary !default;
+      $kws-autocomplete-text-matches-color: currentColor !default;
+      $kws-autocomplete-text-matches-background: transparent !default;
+      $kws-autocomplete-text-matches-font-weight: $weight-bold !default;
+    `}
+/>
