@@ -56,6 +56,7 @@ export { default as MaskedInput } from "./forms/MaskedInput.svelte";
 export { default as Colorpicker } from "./forms/colorpicker/Colorpicker.svelte";
 export { default as Datepicker } from "./forms/Datepicker.svelte";
 export { default as Timepicker } from "./forms/Timepicker.svelte";
+export { default as SearchTool } from "./forms/SearchTool.svelte";
 export { datepicker as DatepickerAction } from "./forms/actions.js";
 export { timepicker as TimepickerAction } from "./forms/actions.js";
 export { default as PasswordValidator } from "./forms/PasswordValidator/PasswordValidator.svelte";
