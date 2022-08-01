@@ -18,7 +18,7 @@
 
 <script>
   import { Icon } from "@kws3/ui";
-  import { debounce } from "@kws3/utils";
+  import { debounce } from "@kws3/ui/utils";
   import { onDestroy, onMount } from "svelte";
   import { fuzzysearch } from "../utils/fuzzysearch";
 
