@@ -16,7 +16,7 @@
     {/if}
   </div>
 </div>
-<div class="columns">
+<div class="columns searchtool-examples">
   <div class="column">
     <h3 class="title is-4">Reviews</h3>
     {#each options as { review }}
@@ -36,14 +36,6 @@
     {/each}
   </div>
 </div>
-
-<style>
-  span.h {
-    font-weight: 700;
-    color: currentColor;
-    background: transparent;
-  }
-</style>
 
 <script>
   import { products_reviews } from "./data.js";
