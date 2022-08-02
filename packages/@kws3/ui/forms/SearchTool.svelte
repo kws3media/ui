@@ -24,7 +24,7 @@
 
   export let size = "small";
   export let placeholder = "Search";
-  export let items = [];
+  export let options = {};
   export let searchableKeys = [];
   export let highlighted_results = true;
   export let highlightColor = "danger-light";
@@ -37,7 +37,7 @@
 
   const debouncedSearch = debounce(search, 300);
 
-  // $: items, setItems(items, 1);
+  // $: options, setItems(options, 1);
 
   onMount(() => {
     fuzzyOpts = {
@@ -52,7 +52,7 @@
       fuzzyOpts.highlighting.before = `<span class="h">`;
       fuzzyOpts.highlighting.after = "</span>";
     }
-    orginalItems = [...items];
+    orginalItems = [...options];
   });
 
   onDestroy(reset);
@@ -62,17 +62,18 @@
       reset();
       return;
     }
-
-    let result = fuzzysearch(keywords, items, {
+    let result = fuzzysearch(keywords, options, {
       search_key: searchableKeys,
       scoreThreshold,
+      fuzzyOpts,
     });
-    items = result;
+    console.log(keywords, options, result, searchableKeys);
+    options = result;
   }
 
   function reset() {
     keywords = "";
     console.log(orginalItems);
-    items = [...orginalItems];
+    options = [...orginalItems];
   }
 </script>
