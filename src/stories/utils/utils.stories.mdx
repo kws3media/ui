@@ -1,0 +1,107 @@
+import { Meta, LinkTo } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import {} from "@kws3/ui";
+
+<Version />
+
+<Meta title="Utils/1. Overview" />
+
+## 1. truncate
+
+The truncate() function shorten the given String to a specified length.
+
+#### Usage
+
+```js
+import { truncate } from "@kws3/ui";
+truncate(string, length);
+```
+
+## 2. nl2br
+
+The nl2br function inserts HTML line breaks (`<br>`) in front of each newline (`\n`) in a string.
+
+#### Usage
+
+```js
+import { nl2br } from "@kws3/ui";
+nl2br(input);
+```
+
+## 3. cloneObject
+
+The cloneObject function used to clone js object.
+
+#### Usage
+
+```js
+import { cloneObject } from "@kws3/ui";
+cloneObject(obj);
+```
+
+## 4. rAF
+
+The rAF xxxxx xxxxx xxx.
+
+#### Usage
+
+```js
+import { rAF } from "@kws3/ui";
+rAF;
+```
+
+## 5. debounce
+
+The debounce function is used to
+
+#### Usage
+
+```js
+import { debounce } from "@kws3/ui";
+debounce(callBackFunction, threshold);
+```
+
+## 6. capitaliseFirstLetter
+
+The capitaliseFirstLetter function is used to capitalize the first letter of given string
+
+#### Usage
+
+```js
+import { capitaliseFirstLetter } from "@kws3/ui";
+capitaliseFirstLetter(string);
+```
+
+## 7. isEnterKey
+
+The isEnterKey function checks the key stroke of `Enter`.
+
+#### Usage
+
+```js
+import { isEnterKey } from "@kws3/ui";
+isEnterKey(event);
+```
+
+## 8. isEscKey
+
+The isEscKey function checks the key stroke of `Escape`.
+
+#### Usage
+
+```js
+import { isEscKey } from "@kws3/ui";
+isEscKey(event);
+```
+
+## 9. createDate
+
+The createDate function makes mysql dates work in safari.
+
+#### Usage
+
+```js
+import { createDate } from "@kws3/ui";
+createDate(date);
+```
