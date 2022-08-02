@@ -105,3 +105,60 @@ The createDate function makes mysql dates work in safari.
 import { createDate } from "@kws3/ui";
 createDate(date);
 ```
+
+## 10. Smart Forms
+
+The `makeForm`, `makeForms` helpers used for tracking form data is dirty or not.
+
+#### Usage
+
+```js
+import { makeForm, makeForms } from "@kws3/ui";
+makeForm(data);
+```
+
+## 11. Resize Observer
+
+The `resizeObserver` used to handle window resizing.
+
+#### Usage
+
+```js
+import { hasResizeObserver, resizeObserver } from "@kws3/ui";
+if(hasResizeObserver){
+  <div use:resizeObserver on:resize={resizeHandler}>
+}
+```
+
+## 12. scrollIntoActiveElelement
+
+The `scrollIntoActiveElelement` used to scroll the list to active element.
+
+#### Usage
+
+```js
+import { scrollIntoActiveElelement } from "@kws3/ui";
+scrollIntoActiveElelement(listElement, activeElelement);
+```
+
+## 13. fuzzysearch
+
+The `fuzzysearch` used to filter the object.
+
+#### Usage
+
+```js
+import { fuzzysearch } from "@kws3/ui";
+fuzzysearch(needle, haystack, opts);
+```
+
+## 14. keyboardEvents
+
+The `keyboardEvents` used to trigger the events based on the key stroke.
+
+#### Usage
+
+```js
+import { keyboardEvents } from "@kws3/ui";
+keyboardEvents(node);
+```

@@ -86,3 +86,9 @@ export {
   isEscKey,
   createDate,
 } from "./utils/index";
+
+export { makeForm, makeForms } from "./utils/smartForm";
+export { hasResizeObserver, resizeObserver } from "./utils/resizeObserver";
+export { scrollIntoActiveElelement } from "./utils/scrollIntoActiveElelement";
+export { fuzzysearch } from "./utils/fuzzysearch";
+export { keyboardEvents } from "./utils/keyboard-events";
