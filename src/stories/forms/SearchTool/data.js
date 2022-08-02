@@ -1,5 +1,10 @@
 export let good_reviews = [
-  "I bought this phone in Aug It is still perfect",
+  {
+    id: 1,
+    review: "I bought this phone in Aug It is still perfect",
+    complain: "Night mode does not work in front Camera",
+  },
+
   "The phone is very good, I am satisfied with it",
   "Camera quality is great",
   "its camera is getting better day by day",
@@ -52,7 +57,6 @@ export let good_reviews = [
 ];
 
 export let bad_reviews = [
-  "Night mode does not work in front Camera",
   "WhatsApp video call quality is not so good",
   "I have this phone and I don't like it",
   "Camera quality is very bad, compared its camera pixels",
