@@ -59,3 +59,9 @@ export function isEnterKey(e) {
 export function isEscKey(e) {
   return e.keyCode && e.keyCode === 27;
 }
+
+//makes mysql dates work in safari
+export function createDate(strDate) {
+  // eslint-disable-next-line @kws3/svelte3/no-date-string-arg
+  return strDate ? new Date(strDate.replace(/-/g, "/")) : null;
+}
