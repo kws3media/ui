@@ -17,7 +17,8 @@ export function nl2br(input) {
   if (!input) {
     return "";
   }
-  return (input + "").replace(/\n/g, "<br>");
+  let html = (input + ``).replace(/\n/g, "<br/>");
+  return html;
 }
 
 /**

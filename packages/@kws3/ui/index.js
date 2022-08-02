@@ -77,7 +77,7 @@ export { default as RadialChart } from "./charts/RadialChart.svelte";
 
 export {
   truncate,
-  nl2br,
+  nl2br as nl2brFn,
   cloneObject,
   rAF,
   debounce,
