@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import Nl2br from "./examples/Nl2br.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/2. Nl2br" />
+
+### nl2brFn
+
+The nl2brFn function inserts HTML line breaks (`<br>`) in front of each newline (`\n`) in a string.
+
+```js
+import { nl2brFn } from "@kws3/ui";
+nl2brFn(text);
+```
+
+**Examples:**
+
+<Story name="2. Nl2br" args={{}}>
+  {(args) => ({
+    Component: Nl2br,
+  })}
+</Story>

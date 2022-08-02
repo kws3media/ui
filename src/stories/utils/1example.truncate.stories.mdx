@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import Truncate from "./examples/Truncate.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/1. Truncate" />
+
+### Truncate
+
+The truncate() function shorten the given String to a specified length.
+
+```js
+import { truncate } from "@kws3/ui";
+truncate(text, 10);
+```
+
+**Examples:**
+
+<Story name="1. Truncate" args={{}}>
+  {(args) => ({
+    Component: Truncate,
+  })}
+</Story>
