@@ -8,7 +8,6 @@ import {
   getNodeText,
   fireEvent,
 } from "@storybook/testing-library";
-import { sleep } from "../../../../utils";
 
 // eslint-disable-next-line no-unused-vars
 export default async ({ args, canvasElement }) => {
