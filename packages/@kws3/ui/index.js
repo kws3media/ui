@@ -74,3 +74,15 @@ export { default as BarChart } from "./charts/BarChart.svelte";
 export { default as LineChart } from "./charts/LineChart.svelte";
 export { default as AreaChart } from "./charts/AreaChart.svelte";
 export { default as RadialChart } from "./charts/RadialChart.svelte";
+
+export {
+  truncate,
+  nl2br,
+  cloneObject,
+  rAF,
+  debounce,
+  capitaliseFirstLetter,
+  isEnterKey,
+  isEscKey,
+  createDate,
+} from "./utils/index";
