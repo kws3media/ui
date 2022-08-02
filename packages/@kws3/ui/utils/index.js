@@ -1,7 +1,18 @@
+/**
+ * Truncate a string.
+ * @param
+ *  str - String to truncate.
+ *  len - The number of characters to extract..
+ */
 export function truncate(str, len) {
   return str && str.length >= len + 3 ? str.substr(0, len) + "..." : str;
 }
 
+/**
+ * Insert line breaks where newlines (\n) occur in the string.
+ * @param
+ *  input - String to be checked.
+ */
 export function nl2br(input) {
   if (!input) {
     return "";
@@ -9,10 +20,18 @@ export function nl2br(input) {
   return (input + "").replace(/\n/g, "<br>");
 }
 
+/**
+ * Clone an Object.
+ * @param
+ *  obj - Object to be cloned.
+ */
 export function cloneObject(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+/**
+ * Request an animation before the next repaint.
+ */
 export var rAF =
   window.requestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
@@ -23,6 +42,16 @@ export var rAF =
     window.setTimeout(callback, 1000 / 60);
   };
 
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * `threshold` milliseconds.
+ * @param
+ *  fn - The function that you want to execute after the debounce time.
+ *  threshold - The amount of time to wait.
+ *  isAsap - flag to debounce early
+ *
+ */
 export function debounce(fn, threshold, isAsap) {
   var timeout, result;
   function debounced() {
@@ -48,19 +77,40 @@ export function debounce(fn, threshold, isAsap) {
   return debounced;
 }
 
+/**
+ * Capitalise First letter of string.
+ * @param
+ *  string - A string whose first letter is to be capitalised.
+ */
 export function capitaliseFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
 }
 
+/**
+ * Detect whether a user has pressed Enter.
+ * @param
+ *  e - Event object.
+ */
 export function isEnterKey(e) {
   return e.keyCode && e.keyCode === 13;
 }
 
+/**
+ * Detect whether a user has pressed Escape key.
+ * @param
+ *  e - Event object.
+ */
 export function isEscKey(e) {
   return e.keyCode && e.keyCode === 27;
 }
 
-//makes mysql dates work in safari
+/**
+ * Returns Date Object.
+ * Makes mysql dates work in safari
+ * @param
+ *  strDate - Date String.
+ */
+
 export function createDate(strDate) {
   // eslint-disable-next-line @kws3/svelte3/no-date-string-arg
   return strDate ? new Date(strDate.replace(/-/g, "/")) : null;
