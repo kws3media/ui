@@ -10,11 +10,19 @@
   @param {number} [scoreThreshold=5] - ScoreThreshold property, Default: `5`
 
 -->
-<div class="field has-addons is-marginless">
+<div
+  class="
+  field has-addons is-marginless
+  {readonly ? 'is-readonly' : ''}
+  {disabled ? 'is-disabled' : ''}
+  ">
   <div class="control is-expanded has-icons-left">
     <input
-      class="input is-{size}"
+      class="input is-{size} is-{color || 'primary'} {klass}"
       {placeholder}
+      {disabled}
+      {readonly}
+      {style}
       bind:value={keywords}
       on:keyup={debouncedSearch} />
     <Icon icon="search" size="small" class="is-left" />
@@ -40,13 +48,26 @@
    */
   export let size = "small";
   /**
+   * Color of the input
+   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   */
+  export let color = "";
+  /**
    * Placeholder text for the input
    */
   export let placeholder = "Search";
   /**
+   * Marks component as read-only
+   */
+  export let readonly = false;
+  /**
+   * Disables the component
+   */
+  export let disabled = false;
+  /**
    * Array of objects.
    */
-  export let options = {};
+  export let options = [];
   /**
    * array of objet properties to search in.
    */
@@ -56,6 +77,15 @@
    */
   export let highlighted_results = true;
   export let scoreThreshold = 5; //less value will give more results and vice versa
+  /**
+   * Inline CSS for the input
+   */
+  export let style = "";
+  /**
+   * CSS classes for the input
+   */
+  let klass = "";
+  export { klass as class };
 
   let keywords = "",
     orginalItems = [],
