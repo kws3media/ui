@@ -36,11 +36,7 @@
 </div>
 
 <script>
-  import { makeForm } from "@kws3/ui";
-
-  const notEmpty = (v) => v && v.trim() !== "";
-  const withMsg = (msg, fn) => (v, otherFields) =>
-    fn(v, otherFields) ? "" : msg;
+  import { makeForm, notEmpty, withMsg } from "@kws3/ui";
 
   let form;
   let data;
