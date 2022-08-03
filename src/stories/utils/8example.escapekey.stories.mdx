@@ -5,11 +5,14 @@ import EscapeKey from "./examples/EscapeKey.svelte";
 
 <Version />
 
-<Meta title="Utils/2. Examples/8. isEscKey" />
+<Meta title="Utils/2. Examples/8. EscKey" />
 
 ### isEscKey
 
 The `isEscKey` function used to Detect whether a user has pressed Escape key.
+
+**Parameter:**
+`Event`
 
 **Example:**
 
@@ -18,7 +21,7 @@ import { isEscKey } from "@kws3/ui";
 isEscKey(event);
 ```
 
-<Story name="8. isEscKey" args={{}}>
+<Story name="8. EscKey" args={{}}>
   {(args) => ({
     Component: EscapeKey,
   })}

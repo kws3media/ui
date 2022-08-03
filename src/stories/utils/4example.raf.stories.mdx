@@ -5,11 +5,14 @@ import rAF from "./examples/rAF.svelte";
 
 <Version />
 
-<Meta title="Utils/2. Examples/4. raf" />
+<Meta title="Utils/2. Examples/4. RAF" />
 
 ### rAF
 
 The `rAF` method tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint. The method takes a callback as an argument to be invoked before the repaint.
+
+**Parameter:**
+`call back function`
 
 ```js
 <div id="animatedDiv" />;
@@ -34,7 +37,7 @@ function stop() {
 
 **Example:**
 
-<Story name="4. raf" args={{}}>
+<Story name="4. RAF" args={{}}>
   {(args) => ({
     Component: rAF,
   })}

@@ -5,11 +5,14 @@ import EnterKey from "./examples/EnterKey.svelte";
 
 <Version />
 
-<Meta title="Utils/2. Examples/7. isEnterKey" />
+<Meta title="Utils/2. Examples/7. EnterKey" />
 
 ### isEnterKey
 
 The `isEnterKey` function Detect whether a user has pressed Enter.
+
+**Parameter:**
+`Event`
 
 **Example:**
 
@@ -18,7 +21,7 @@ import { isEnterKey } from "@kws3/ui";
 isEnterKey(event);
 ```
 
-<Story name="7. isEnterKey" args={{}}>
+<Story name="7. EnterKey" args={{}}>
   {(args) => ({
     Component: EnterKey,
   })}
