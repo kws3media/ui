@@ -1,0 +1,28 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import Debounce from "./examples/Debounce.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/5. debounce" />
+
+### debounce
+
+The `Debounce` method Returns a function, that, as long as it continues to be invoked, will not be triggered. The function will be called after it stops being called for `threshold` milliseconds..
+
+**Example:**
+
+```js
+<input bind:value={keywords} on:keyup={debouncedSearch} />;
+import { debounce } from "@kws3/ui";
+const debouncedSearch = debounce(search, 300);
+
+function search() {}
+```
+
+<Story name="5. debounce" args={{}}>
+  {(args) => ({
+    Component: Debounce,
+  })}
+</Story>
