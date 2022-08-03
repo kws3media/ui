@@ -22,17 +22,31 @@
   import { onDestroy, onMount } from "svelte";
   import { fuzzysearch } from "../utils/fuzzysearch";
 
+  /**
+   * Size of the input
+   *  @type {''|'small'|'medium'|'large'}
+   */
   export let size = "small";
+  /**
+   * Placeholder text for the input
+   */
   export let placeholder = "Search";
+  /**
+   * Array of objects.
+   */
   export let options = {};
+  /**
+   * array of objet properties to search in.
+   */
   export let searchableKeys = [];
+  /**
+   * To highlight the keywords in the results.
+   */
   export let highlighted_results = true;
-  export let highlightColor = "danger-light";
   export let scoreThreshold = 5; //less value will give more results and vice versa
 
   let keywords = "",
     orginalItems = [],
-    isSearching = false,
     fuzzyOpts = {}; // fuzzy.js lib options
 
   const debouncedSearch = debounce(search, 300);
