@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import EnterKey from "./examples/EnterKey.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/7. isEnterKey" />
+
+### isEnterKey
+
+The `isEnterKey` function Detect whether a user has pressed Enter.
+
+**Example:**
+
+```js
+import { isEnterKey } from "@kws3/ui";
+isEnterKey(event);
+```
+
+<Story name="7. isEnterKey" args={{}}>
+  {(args) => ({
+    Component: EnterKey,
+  })}
+</Story>
