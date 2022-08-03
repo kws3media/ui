@@ -1,3 +1,15 @@
+<!--
+  @component
+
+
+  @param {''|'small'|'medium'|'large'} [size="small"] - Size of the input, Default: `"small"`
+  @param {string} [placeholder="Search"] - Placeholder text for the input, Default: `"Search"`
+  @param {object} [options={}] - Array of objects., Default: `{}`
+  @param {array} [searchableKeys=[]] - array of objet properties to search in., Default: `[]`
+  @param {boolean} [highlighted_results=true] - To highlight the keywords in the results., Default: `true`
+  @param {number} [scoreThreshold=5] - ScoreThreshold property, Default: `5`
+
+-->
 <div class="field has-addons is-marginless">
   <div class="control is-expanded has-icons-left">
     <input
