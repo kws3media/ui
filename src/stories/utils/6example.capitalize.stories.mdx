@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import Capitalize from "./examples/Capitalize.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/6. capitaliseFirstLetter" />
+
+### debounce
+
+The `capitaliseFirstLetter` used to Capitalise First letter of string.
+
+**Example:**
+
+```js
+import { capitaliseFirstLetter } from "@kws3/ui";
+capitaliseFirstLetter(string);
+```
+
+<Story name="6. capitaliseFirstLetter" args={{}}>
+  {(args) => ({
+    Component: Capitalize,
+  })}
+</Story>
