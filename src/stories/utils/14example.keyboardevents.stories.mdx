@@ -1,0 +1,28 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import KeyboardEvents from "./examples/KeyboardEvents.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/14. KeyboardEvents" />
+
+### keyboardEvents
+
+The `keyboardEvents` used to trigger the events based on the key stroke.
+
+**Parameters:**
+node : `type: Object`
+
+**Example:**
+
+```js
+import { keyboardEvents } from "@kws3/ui";
+keyboardEvents(node);
+```
+
+<Story name="14. KeyboardEvents" args={{}}>
+  {(args) => ({
+    Component: KeyboardEvents,
+  })}
+</Story>

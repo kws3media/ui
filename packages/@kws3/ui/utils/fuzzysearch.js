@@ -1,5 +1,13 @@
 import fuzzy from "./fuzzy.js";
 
+/**
+ * Used to filter the object
+ * @param
+ * needle -  String to Fuzzy Search on.
+ * haystack - Array of objects containing the search list.
+ * optsa - Object with options that will configure the search.
+ *
+ */
 export function fuzzysearch(needle, haystack, opts) {
   let search_key = defaultValue(opts, "search_key", "value");
   let scoreThreshold = defaultValue(opts, "scoreThreshold", 5);
