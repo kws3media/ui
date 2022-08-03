@@ -1,0 +1,30 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import ScrollIntoActiveElelement from "./examples/ScrollIntoActiveElelement.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/12. ListScroller" />
+
+### scrollIntoActiveElelement
+
+The `scrollIntoActiveElelement` used to scroll the list to active element.
+
+**Parameters:**
+
+1. listElement : `type: Object`
+2. activeElelement : `type: Object`
+
+**Example:**
+
+```js
+import { scrollIntoActiveElelement } from "@kws3/ui";
+scrollIntoActiveElelement(listElement, activeElelement);
+```
+
+<Story name="12. ListScroller" args={{}}>
+  {(args) => ({
+    Component: ScrollIntoActiveElelement,
+  })}
+</Story>
