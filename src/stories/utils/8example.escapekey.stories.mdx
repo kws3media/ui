@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import EscapeKey from "./examples/EscapeKey.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/8. isEscKey" />
+
+### isEscKey
+
+The `isEscKey` function used to Detect whether a user has pressed Escape key.
+
+**Example:**
+
+```js
+import { isEscKey } from "@kws3/ui";
+isEscKey(event);
+```
+
+<Story name="8. isEscKey" args={{}}>
+  {(args) => ({
+    Component: EscapeKey,
+  })}
+</Story>
