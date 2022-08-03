@@ -62,7 +62,7 @@
       reset();
       return;
     }
-    let result = fuzzysearch(keywords, options, {
+    let result = fuzzysearch(keywords, orginalItems, {
       search_key: searchableKeys,
       scoreThreshold,
       fuzzyOpts,
@@ -73,7 +73,6 @@
 
   function reset() {
     keywords = "";
-    console.log(orginalItems);
     options = [...orginalItems];
   }
 </script>

@@ -23,7 +23,10 @@
       <Message
         color="primary"
         class="is-marginless mb-2"
-        inner_class="is-paddingless px-2 py-1">{@html review}</Message>
+        inner_class="is-paddingless px-2 py-1">
+        <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+        {@html review}
+      </Message>
     {/each}
   </div>
   <div class="column">
@@ -32,7 +35,10 @@
       <Message
         color="warning"
         class="is-marginless mb-2"
-        inner_class="is-paddingless px-2 py-1">{@html complain}</Message>
+        inner_class="is-paddingless px-2 py-1">
+        <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+        {@html complain}
+      </Message>
     {/each}
   </div>
 </div>
@@ -60,7 +66,7 @@
     scoreThreshold = 5,
     placeholder = "Marvel characters...";
 
-  console.log(options);
+  $: console.log(options);
 
   let klass = "";
   export { klass as class };
