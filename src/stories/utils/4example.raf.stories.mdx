@@ -18,10 +18,7 @@ import { rAF } from "@kws3/ui";
 let globalID;
 function repeatOften() {
   var div = document.getElementById("animatedDiv");
-  div.innerHTML += `<div style=" width: 10px;
-    height: 10px;
-    background: orange;
-    float: left;"></div>`;
+  div.innerHTML += `<div class="orange"></div>`;
   globalID = rAF(repeatOften);
 }
 globalID = rAF(repeatOften);
