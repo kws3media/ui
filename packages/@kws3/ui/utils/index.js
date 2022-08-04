@@ -1,8 +1,7 @@
 /**
  * Truncate a string.
- * @param
- *  str - String to truncate.
- *  len - The number of characters to extract..
+ * @param {string} [str=""] - String to truncate, Default: `""`
+ * @param {number} [len=""] - The number of characters to extract, Default: `""`
  */
 export function truncate(str, len) {
   return str && str.length >= len + 3 ? str.substr(0, len) + "..." : str;
@@ -10,8 +9,7 @@ export function truncate(str, len) {
 
 /**
  * Insert line breaks where newlines (\n) occur in the string.
- * @param
- *  input - String to be checked.
+ * @param {string} [str=""] - String to be checked, Default: `""`
  */
 export function nl2br(input) {
   if (!input) {
@@ -23,8 +21,7 @@ export function nl2br(input) {
 
 /**
  * Clone an Object.
- * @param
- *  obj - Object to be cloned.
+ * @param {object} [obj={}] - Object to be cloned, Default: `{}`
  */
 export function cloneObject(obj) {
   return JSON.parse(JSON.stringify(obj));
@@ -32,6 +29,7 @@ export function cloneObject(obj) {
 
 /**
  * Request an animation before the next repaint.
+ * @param {function} [callback=()] - callback function
  */
 export var rAF =
   window.requestAnimationFrame ||
@@ -47,10 +45,9 @@ export var rAF =
  * Returns a function, that, as long as it continues to be invoked, will not
  * be triggered. The function will be called after it stops being called for
  * `threshold` milliseconds.
- * @param
- *  fn - The function that you want to execute after the debounce time.
- *  threshold - The amount of time to wait.
- *  isAsap - flag to debounce early
+ * @param {function} [fn=()] - The function that you want to execute after the debounce time
+ * @param {number} [threshold=100] - The amount of time to wait, Default: `100`
+ * @param {boolean} [isAsap=false] - flag to debounce early, Default: `false`
  *
  */
 export function debounce(fn, threshold, isAsap) {
@@ -80,8 +77,7 @@ export function debounce(fn, threshold, isAsap) {
 
 /**
  * Capitalise First letter of string.
- * @param
- *  string - A string whose first letter is to be capitalised.
+ * @param {string} [string=""] - A string whose first letter is to be capitalised, Default: `""`
  */
 export function capitaliseFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
@@ -89,8 +85,7 @@ export function capitaliseFirstLetter(string) {
 
 /**
  * Detect whether a user has pressed Enter.
- * @param
- *  e - Event object.
+ * @param {object} [e=[]] - Event object., Default: `[]`
  */
 export function isEnterKey(e) {
   return e.keyCode && e.keyCode === 13;
@@ -98,8 +93,7 @@ export function isEnterKey(e) {
 
 /**
  * Detect whether a user has pressed Escape key.
- * @param
- *  e - Event object.
+ * @param {object} [e=[]] - Event object., Default: `[]`
  */
 export function isEscKey(e) {
   return e.keyCode && e.keyCode === 27;
@@ -108,8 +102,7 @@ export function isEscKey(e) {
 /**
  * Returns Date Object.
  * Makes mysql dates work in safari
- * @param
- *  strDate - Date String.
+ * @param {string} [strDate=""] - Date String., Default: `""`
  */
 export function createDate(strDate) {
   // eslint-disable-next-line @kws3/svelte3/no-date-string-arg
@@ -118,8 +111,7 @@ export function createDate(strDate) {
 
 /**
  * Returns currency format.
- * @param
- *  n - number.
+ * @param {number} [n=''] - Number., Default: `""`
  */
 export function currency(n) {
   var nn = Number(n);
@@ -128,8 +120,7 @@ export function currency(n) {
 
 /**
  * Converts date to ordinal.
- * @param
- *  n - number.
+ * @param {number} [n=''] - Number., Default: `""`
  */
 export function DateToOrdinal(n) {
   return (
@@ -142,9 +133,8 @@ export function DateToOrdinal(n) {
 
 /**
  * Returns random integer.
- * @param
- * min - number.
- * max - number
+ * @param {number} [min=''] - Minimum Number., Default: `""`
+ * @param {number} [max=''] - Maximum Number., Default: `""`
  */
 export function randomIntegerFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -152,9 +142,8 @@ export function randomIntegerFromInterval(min, max) {
 
 /**
  * Returns random percentage.
- * @param
- * min - number.
- * max - number
+ * @param {number} [min=''] - Minimum Number., Default: `""`
+ * @param {number} [max=''] - Maximum Number., Default: `""`
  */
 export function randomPercent(min = 1, max = 100) {
   return randomIntegerFromInterval(min, max) + "%";
