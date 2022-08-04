@@ -14,7 +14,7 @@
 </div>
 
 <script>
-  import { fuzzysearch } from "@kws3/ui";
+  import { fuzzysearch } from "@kws3/ui/search";
   let filter = "";
   let data = [
     { id: 1, name: "AAA" },

@@ -88,4 +88,3 @@ export {
 } from "./utils/index";
 
 export { scrollIntoActiveElement } from "./utils/scrollIntoActiveElement";
-export { fuzzysearch } from "./utils/fuzzysearch";
