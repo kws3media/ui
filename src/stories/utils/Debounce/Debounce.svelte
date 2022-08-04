@@ -11,5 +11,5 @@
 </div>
 
 <script>
-  //import { debounce } from "@kws3/ui";
+  //import { debounce } from "@kws3/ui/utils";
 </script> -->

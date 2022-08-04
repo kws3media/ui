@@ -18,15 +18,15 @@ import { truncate } from "@kws3/ui";
 truncate(string, length);
 ```
 
-## 2. nl_2_br
+## 2. nl2br
 
-The nl_2_br function inserts HTML line breaks (`<br>`) in front of each newline (`\n`) in a string.
+The nl2br function replace each newline (`\n`) with HTML line breaks (`<br>`) in a string.
 
 #### Usage
 
 ```js
-import { nl_2_br } from "@kws3/ui";
-nl_2_br(input);
+import { nl2br } from "@kws3/ui/utils";
+nl2br(input);
 ```
 
 ## 3. cloneObject
@@ -69,7 +69,7 @@ The `capitaliseFirstLetter` function converts the first character of a string to
 #### Usage
 
 ```js
-import { capitaliseFirstLetter } from "@kws3/ui";
+import { capitaliseFirstLetter } from "@kws3/ui/utils";
 capitaliseFirstLetter(string);
 ```
 
@@ -115,7 +115,7 @@ The `fuzzysearch` used to filter the object.
 #### Usage
 
 ```js
-import { fuzzysearch } from "@kws3/ui";
+import { fuzzysearch } from "@kws3/ui/utils/fuzzysearch";
 fuzzysearch(needle, haystack, opts);
 ```
 

@@ -15,7 +15,7 @@ The `Debounce` method Returns a function, that, as long as it continues to be in
 
 ```js
 <input bind:value={keywords} on:keyup={debouncedSearch} />;
-import { debounce } from "@kws3/ui";
+import { debounce } from "@kws3/ui/utils";
 const debouncedSearch = debounce(search, 300);
 
 function search() {}

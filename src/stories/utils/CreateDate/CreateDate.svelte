@@ -12,7 +12,7 @@
 </div>
 
 <script>
-  import { createDate } from "@kws3/ui";
+  import { createDate } from "@kws3/ui/utils";
   // eslint-disable-next-line @kws3/svelte3/no-date-string-arg
   let date = new Date("2022-01-01");
   let cDate = createDate("2022-01-01");

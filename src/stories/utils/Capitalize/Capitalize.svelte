@@ -12,6 +12,6 @@
 </div>
 
 <script>
-  import { capitaliseFirstLetter } from "@kws3/ui";
+  import { capitaliseFirstLetter } from "@kws3/ui/utils";
   let text = "lorem ipsum dollar sit amet.";
 </script>
