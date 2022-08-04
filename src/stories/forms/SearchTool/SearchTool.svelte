@@ -50,14 +50,14 @@
     style = "",
     disabled = false,
     readonly = false,
-    word_match = false,
+    word_match = true,
     options = [],
     searchableKeys = [],
     highlighted_results = true,
-    scoreThreshold = 5,
+    scoreThreshold = 2,
     placeholder = "";
 
-  $: console.log(options);
+  // $: console.log(options);
 
   let klass = "";
   export { klass as class };
