@@ -3,11 +3,16 @@
 
 
   @param {''|'small'|'medium'|'large'} [size="small"] - Size of the input, Default: `"small"`
+  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [placeholder="Search"] - Placeholder text for the input, Default: `"Search"`
-  @param {object} [options={}] - Array of objects., Default: `{}`
+  @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
+  @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {array} [options=[]] - Array of objects., Default: `[]`
   @param {array} [searchableKeys=[]] - array of objet properties to search in., Default: `[]`
   @param {boolean} [highlighted_results=true] - To highlight the keywords in the results., Default: `true`
   @param {number} [scoreThreshold=5] - ScoreThreshold property, Default: `5`
+  @param {string} [style=""] - Inline CSS for the input, Default: `""`
+  @param {string} [class=""] - CSS classes for the input, Default: `""`
 
 -->
 <div
