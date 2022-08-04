@@ -15,7 +15,6 @@ import SearchToolDecorator from "./SearchTool.svelte";
 import { action } from "@storybook/addon-actions";
 import playInteractions from "./searchtool.play.js";
 
-
 export let args = {
   style: "",
   class: "",
@@ -28,7 +27,7 @@ export let args = {
   highlighted_results: true,
   options: products_reviews,
   searchableKeys: ["review", "complain"],
-  word_match: false
+  word_match: false,
 };
 
 <Version />
@@ -74,8 +73,9 @@ export let args = {
         Input format <code>options</code>
       </h3>
       <p>
-        Should be an array of objects with matched property as<code>searchableKeys[keyword]</code>.<br></br>Always
-        ensure the shape of the array items are consistent.
+        Should be an array of objects with matched property as
+        <code>searchableKeys[keyword]</code>.<br></br>Always ensure the shape of
+        the array items are consistent.
       </p>
       <p>See supported data formats in example story above.</p>
       <p>

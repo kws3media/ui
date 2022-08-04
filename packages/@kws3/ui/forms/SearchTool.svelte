@@ -44,7 +44,7 @@
 
 <script>
   import { Icon } from "@kws3/ui";
-  import { debounce } from "@kws3/ui/utils";
+  import { debounce, sanitizeValue } from "@kws3/ui/utils";
   import { onDestroy, onMount } from "svelte";
   import { fuzzysearch } from "../utils/fuzzysearch";
 
@@ -90,7 +90,7 @@
   /**
    * Whether to match against each word seperatly or whole sentence in flow.
    */
-  export let word_match = false;
+  export let word_match = true;
   /**
    * Inline CSS for the input
    */
@@ -118,26 +118,77 @@
         before: "",
       },
     };
-    if (highlighted_results) {
+    if (highlighted_results && !word_match) {
       fuzzyOpts.highlighting.before = `<span class="h">`;
       fuzzyOpts.highlighting.after = "</span>";
     }
-    orginalItems = [...options];
+
+    if (word_match) {
+      options.forEach((item, i) => {
+        item.uid = i;
+      });
+      orginalItems = [...options];
+    } else {
+      orginalItems = [...options];
+    }
   });
 
   onDestroy(reset);
+
+  const highlightMatches = (options, filters) => {
+    if (!filters.length) return options;
+    // join all filter parts and split into chars and filter out duplicates
+    let common_chars = [...filters.join("")].filter(
+      (v, i, self) => self.indexOf(v) === i
+    );
+    let pattern = new RegExp(
+      `[${common_chars.join("").replace(/\\/g, "&#92;")}]`,
+      "gi"
+    );
+    return options.map((item) => {
+      let _obj = {};
+      for (let [key, value] of Object.entries(item)) {
+        if (typeof value === "string") {
+          _obj[key] = value.replace(pattern, (match) => {
+            return `<span class="h">${match}</span>`;
+          });
+        } else {
+          _obj[key] = value;
+        }
+      }
+      return _obj;
+    });
+  };
 
   function search() {
     if (!keywords) {
       reset();
       return;
     }
-    let result = fuzzysearch(keywords, orginalItems, {
-      search_key: searchableKeys,
-      scoreThreshold,
-      fuzzyOpts,
-    });
-    console.log(keywords, options, result, searchableKeys);
+    let result = [],
+      fuzzy_opts = {
+        search_key: searchableKeys,
+        scoreThreshold,
+        fuzzyOpts,
+      };
+    if (word_match) {
+      let cache = {},
+        filters = sanitizeValue(keywords);
+      filters.forEach((word, idx) => {
+        // iterate over each word in the search query
+        let opts = [];
+        if (word) opts = fuzzysearch(word, orginalItems, fuzzy_opts);
+        cache[idx] = opts; // storing options to current index on cache
+      });
+
+      result = Object.values(cache) // get values from cache
+        .flat()
+        .filter((v, i, self) => i === self.findIndex((t) => t.uid === v.uid)); // flatten array
+
+      result = highlightMatches(result, filters);
+    } else {
+      result = fuzzysearch(keywords, orginalItems, fuzzy_opts);
+    }
     options = result;
   }
 
