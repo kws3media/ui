@@ -20,7 +20,7 @@ The `makeForm`, `makeForms` helpers used for tracking form data is dirty or not.
   <input class="{$errors.password ? 'is-danger' : ''}" bind:value={$data.password}/>;
   <button disabled={!$isValid}>Submit</button>;
 </form>;
-import { makeForm, notEmpty, withMsg } from "@kws3/ui";
+import { makeForm, notEmpty, withMsg } from "@kws3/ui/form";
 
 let form;
 let data;

@@ -1,4 +1,4 @@
-import { cloneObject } from "./index";
+import { cloneObject } from "../utils/index";
 import { derived, get, writable } from "svelte/store";
 
 const makeForm = (config) => {
@@ -137,4 +137,10 @@ const makeForms = (items) => {
   return ret;
 };
 
-export { makeForm, makeForms };
+const notEmpty = (v) => v && v.trim() !== "";
+
+const noDigits = (v) => !/\d/.test(v);
+
+const withMsg = (msg, fn) => (v, otherFields) => fn(v, otherFields) ? "" : msg;
+
+export { makeForm, makeForms, notEmpty, noDigits, withMsg };

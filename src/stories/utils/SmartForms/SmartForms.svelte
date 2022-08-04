@@ -36,7 +36,7 @@
 </div>
 
 <script>
-  import { makeForm, notEmpty, withMsg } from "@kws3/ui";
+  import { makeForm, notEmpty, withMsg } from "@kws3/ui/form";
 
   let form;
   let data;
