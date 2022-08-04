@@ -1,19 +1,17 @@
 <div class="columns">
   <div class="column">
-    {#if mounted}
-      <KwsSearchTool
-        {size}
-        {color}
-        {searchableKeys}
-        bind:options
-        {highlighted_results}
-        {scoreThreshold}
-        {placeholder}
-        {style}
-        class={klass}
-        {disabled}
-        {readonly} />
-    {/if}
+    <KwsSearchTool
+      {size}
+      {color}
+      {searchableKeys}
+      bind:options
+      {highlighted_results}
+      {scoreThreshold}
+      {placeholder}
+      {style}
+      class={klass}
+      {disabled}
+      {readonly} />
   </div>
 </div>
 <div class="columns searchtool-examples">
@@ -44,27 +42,18 @@
 </div>
 
 <script>
-  import { products_reviews } from "./data.js";
   import { SearchTool as KwsSearchTool, Message } from "@kws3/ui";
-
-  import { onMount } from "svelte";
-
-  onMount(() => {
-    options = products_reviews;
-    mounted = true;
-  });
 
   export let size = "",
     color = "",
     style = "",
     disabled = false,
     readonly = false,
-    mounted = false,
     options = [],
-    searchableKeys = ["review", "complain"],
+    searchableKeys = [],
     highlighted_results = true,
     scoreThreshold = 5,
-    placeholder = "Marvel characters...";
+    placeholder = "";
 
   $: console.log(options);
 

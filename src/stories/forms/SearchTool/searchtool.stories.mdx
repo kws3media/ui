@@ -10,9 +10,11 @@ import {
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
 import { SearchTool } from "@kws3/ui";
+import { products_reviews } from "./data.js";
 import SearchToolDecorator from "./SearchTool.svelte";
 import { action } from "@storybook/addon-actions";
 import playInteractions from "./searchtool.play.js";
+
 
 export let args = {
   style: "",
@@ -22,10 +24,10 @@ export let args = {
   scoreThreshold: 5,
   disabled: false,
   readonly: false,
-  placeholder: "Marvel characters...",
+  placeholder: "Search reviews",
   highlighted_results: true,
-  options: [],
-  searchableKeys: [],
+  options: products_reviews,
+  searchableKeys: ["review", "complain"],
 };
 
 <Version />
