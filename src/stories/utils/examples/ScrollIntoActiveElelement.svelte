@@ -1,10 +1,6 @@
 <div id="tooltip-example-container-1">
   <div class="columns is-multiline">
     <div class="column is-6">
-      <h2 class="subtitle is-5">Object</h2>
-      <pre>{JSON.stringify(data, null, 4)}</pre>
-    </div>
-    <div class="column is-6">
       <h2 class="subtitle is-5">
         <button
           class="button is-primary is-small"

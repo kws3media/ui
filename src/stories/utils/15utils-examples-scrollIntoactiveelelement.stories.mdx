@@ -19,8 +19,15 @@ The `scrollIntoActiveElelement` used to scroll the list to active element.
 **Example:**
 
 ```js
+<ul bind:this={dropdown}>
+  <li>Option 1</li>
+  <li>Option 2</li>
+  <li class="active">Active Option</li>
+</ul>;
 import { scrollIntoActiveElelement } from "@kws3/ui";
-scrollIntoActiveElelement(listElement, activeElelement);
+
+let activeElem = dropdown.querySelector(".active");
+scrollIntoActiveElelement(dropdown, activeElem);
 ```
 
 <Story name="12. ListScroller" args={{}}>
