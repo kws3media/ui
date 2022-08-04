@@ -118,7 +118,7 @@
         before: "",
       },
     };
-    if (highlighted_results && !word_match) {
+    if (highlighted_results) {
       fuzzyOpts.highlighting.before = `<span class="h">`;
       fuzzyOpts.highlighting.after = "</span>";
     }
@@ -134,31 +134,6 @@
   });
 
   onDestroy(reset);
-
-  const highlightMatches = (options, filters) => {
-    if (!filters.length) return options;
-    // join all filter parts and split into chars and filter out duplicates
-    let common_chars = [...filters.join("")].filter(
-      (v, i, self) => self.indexOf(v) === i
-    );
-    let pattern = new RegExp(
-      `[${common_chars.join("").replace(/\\/g, "&#92;")}]`,
-      "gi"
-    );
-    return options.map((item) => {
-      let _obj = {};
-      for (let [key, value] of Object.entries(item)) {
-        if (typeof value === "string") {
-          _obj[key] = value.replace(pattern, (match) => {
-            return `<span class="h">${match}</span>`;
-          });
-        } else {
-          _obj[key] = value;
-        }
-      }
-      return _obj;
-    });
-  };
 
   function search() {
     if (!keywords) {
@@ -184,8 +159,6 @@
       result = Object.values(cache) // get values from cache
         .flat()
         .filter((v, i, self) => i === self.findIndex((t) => t.uid === v.uid)); // flatten array
-
-      result = highlightMatches(result, filters);
     } else {
       result = fuzzysearch(keywords, orginalItems, fuzzy_opts);
     }
