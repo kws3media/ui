@@ -1,7 +1,6 @@
 import { Meta, LinkTo } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import {} from "@kws3/ui";
 
 <Version />
 
@@ -14,7 +13,7 @@ The truncate() function shorten the given String to a specified length.
 #### Usage
 
 ```js
-import { truncate } from "@kws3/ui";
+import { truncate } from "@kws3/ui/utils";
 truncate(string, length);
 ```
 
@@ -36,7 +35,7 @@ The cloneObject function used to clone js object.
 #### Usage
 
 ```js
-import { cloneObject } from "@kws3/ui";
+import { cloneObject } from "@kws3/ui/utils";
 cloneObject(obj);
 ```
 
@@ -47,7 +46,7 @@ The rAF function - Request an animation before the next repaint.
 #### Usage
 
 ```js
-import { rAF } from "@kws3/ui";
+import { rAF } from "@kws3/ui/utils";
 rAF(callBackFunction);
 ```
 
@@ -58,7 +57,7 @@ The function that you want to execute after the debounce time.
 #### Usage
 
 ```js
-import { debounce } from "@kws3/ui";
+import { debounce } from "@kws3/ui/utils";
 debounce(callBackFunction, threshold);
 ```
 
@@ -80,7 +79,7 @@ The createDate function makes mysql dates work in safari.
 #### Usage
 
 ```js
-import { createDate } from "@kws3/ui";
+import { createDate } from "@kws3/ui/utils";
 createDate(date);
 ```
 
