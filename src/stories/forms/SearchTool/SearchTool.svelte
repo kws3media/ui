@@ -7,6 +7,7 @@
       bind:options
       {highlighted_results}
       {scoreThreshold}
+      {word_match}
       {placeholder}
       {style}
       class={klass}
@@ -49,6 +50,7 @@
     style = "",
     disabled = false,
     readonly = false,
+    word_match = false,
     options = [],
     searchableKeys = [],
     highlighted_results = true,

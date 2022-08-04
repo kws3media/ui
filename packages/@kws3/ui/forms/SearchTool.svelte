@@ -11,6 +11,7 @@
   @param {array} [searchableKeys=[]] - array of object properties to search in., Default: `[]`
   @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
   @param {number} [scoreThreshold=5] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
+  @param {boolean} [word_match=false] - Whether to match against each word seperatly or whole sentence in flow., Default: `false`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
 
@@ -86,6 +87,10 @@
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
    */
   export let scoreThreshold = 5;
+  /**
+   * Whether to match against each word seperatly or whole sentence in flow.
+   */
+  export let word_match = false;
   /**
    * Inline CSS for the input
    */
