@@ -90,4 +90,3 @@ export {
 export { hasResizeObserver, resizeObserver } from "./utils/resizeObserver";
 export { scrollIntoActiveElement } from "./utils/scrollIntoActiveElement";
 export { fuzzysearch } from "./utils/fuzzysearch";
-export { keyboardEvents } from "./utils/keyboard-events";
