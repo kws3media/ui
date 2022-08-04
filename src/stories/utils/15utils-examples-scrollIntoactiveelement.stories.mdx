@@ -1,15 +1,15 @@
 import { Meta, Story } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import ScrollIntoActiveElelement from "./examples/ScrollIntoActiveElelement.svelte";
+import ScrollIntoActiveElement from "./examples/ScrollIntoActiveElement.svelte";
 
 <Version />
 
 <Meta title="Utils/2. Examples/12. ListScroller" />
 
-### scrollIntoActiveElelement
+### scrollIntoActiveElement
 
-The `scrollIntoActiveElelement` used to scroll the list to active element.
+The `scrollIntoActiveElement` used to scroll the list to active element.
 
 **Parameters:**
 
@@ -24,14 +24,14 @@ The `scrollIntoActiveElelement` used to scroll the list to active element.
   <li>Option 2</li>
   <li class="active">Active Option</li>
 </ul>;
-import { scrollIntoActiveElelement } from "@kws3/ui";
+import { scrollIntoActiveElement } from "@kws3/ui";
 
 let activeElem = dropdown.querySelector(".active");
-scrollIntoActiveElelement(dropdown, activeElem);
+scrollIntoActiveElement(dropdown, activeElem);
 ```
 
 <Story name="12. ListScroller" args={{}}>
   {(args) => ({
-    Component: ScrollIntoActiveElelement,
+    Component: ScrollIntoActiveElement,
   })}
 </Story>

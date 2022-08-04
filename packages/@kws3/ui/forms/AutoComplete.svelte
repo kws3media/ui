@@ -115,7 +115,7 @@ Default value: `<span>{option.label}</span>`
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
   import { fuzzysearch } from "../utils/fuzzysearch";
-  import { scrollIntoActiveElelement } from "../utils/scrollIntoActiveElelement";
+  import { scrollIntoActiveElement } from "../utils/scrollIntoActiveElement";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -387,7 +387,7 @@ Default value: `<span>{option.label}</span>`
         if (dropdown) {
           mouseTracker.preventSelect = true;
           let activeElem = dropdown.querySelector(".active");
-          scrollIntoActiveElelement(dropdown, activeElem);
+          scrollIntoActiveElement(dropdown, activeElem);
         }
       });
     } else {

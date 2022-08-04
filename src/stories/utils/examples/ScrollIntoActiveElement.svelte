@@ -33,7 +33,7 @@
 </style>
 
 <script>
-  import { scrollIntoActiveElelement } from "@kws3/ui";
+  import { scrollIntoActiveElement } from "@kws3/ui";
   let dropdown = "";
   let data = [
     { id: 1, name: "AAA" },
@@ -50,6 +50,6 @@
 
   function setActive() {
     let activeElem = dropdown.querySelector(".active");
-    scrollIntoActiveElelement(dropdown, activeElem);
+    scrollIntoActiveElement(dropdown, activeElem);
   }
 </script>

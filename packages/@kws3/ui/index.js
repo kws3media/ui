@@ -89,7 +89,7 @@ export {
 
 export { makeForm, makeForms } from "./utils/smartForm";
 export { hasResizeObserver, resizeObserver } from "./utils/resizeObserver";
-export { scrollIntoActiveElelement } from "./utils/scrollIntoActiveElelement";
+export { scrollIntoActiveElement } from "./utils/scrollIntoActiveElement";
 export { fuzzysearch } from "./utils/fuzzysearch";
 export { keyboardEvents } from "./utils/keyboard-events";
 export { notEmpty, noDigits, withMsg } from "./utils/validationHelpers";

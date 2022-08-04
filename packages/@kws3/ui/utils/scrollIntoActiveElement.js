@@ -1,4 +1,4 @@
-export function scrollIntoActiveElelement(listElement, activeElelement) {
+export function scrollIntoActiveElement(listElement, activeElelement) {
   if (listElement && activeElelement) {
     const dropdownRect = listElement.getBoundingClientRect();
     const activeElemRect = activeElelement.getBoundingClientRect();
