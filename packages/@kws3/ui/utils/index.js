@@ -111,8 +111,51 @@ export function isEscKey(e) {
  * @param
  *  strDate - Date String.
  */
-
 export function createDate(strDate) {
   // eslint-disable-next-line @kws3/svelte3/no-date-string-arg
   return strDate ? new Date(strDate.replace(/-/g, "/")) : null;
+}
+
+/**
+ * Returns currency format.
+ * @param
+ *  n - number.
+ */
+export function currency(n) {
+  var nn = Number(n);
+  return (isNaN(nn) ? 0 : nn).toFixed(2);
+}
+
+/**
+ * Converts date to ordinal.
+ * @param
+ *  n - number.
+ */
+export function DateToOrdinal(n) {
+  return (
+    n +
+    (n > 0
+      ? ["th", "st", "nd", "rd"][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10]
+      : "")
+  );
+}
+
+/**
+ * Returns random integer.
+ * @param
+ * min - number.
+ * max - number
+ */
+export function randomIntegerFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+/**
+ * Returns random percentage.
+ * @param
+ * min - number.
+ * max - number
+ */
+export function randomPercent(min = 1, max = 100) {
+  return randomIntegerFromInterval(min, max) + "%";
 }
