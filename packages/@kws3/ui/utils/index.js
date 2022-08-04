@@ -59,3 +59,7 @@ export function isEnterKey(e) {
 export function isEscKey(e) {
   return e.keyCode && e.keyCode === 27;
 }
+
+export function sanitizeValue(v) {
+  return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
+}
