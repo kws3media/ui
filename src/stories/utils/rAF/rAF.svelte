@@ -22,7 +22,7 @@
 </div>
 
 <script>
-  import { rAF } from "@kws3/ui";
+  import { rAF } from "@kws3/ui/utils";
 
   let globalID;
   function repeatOften() {

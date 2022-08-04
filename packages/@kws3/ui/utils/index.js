@@ -133,8 +133,8 @@ export function DateToOrdinal(n) {
 
 /**
  * Returns random integer.
- * @param {number} [min=''] - Minimum Number., Default: `""`
- * @param {number} [max=''] - Maximum Number., Default: `""`
+ * @param {number} [min] - Minimum Number.
+ * @param {number} [max] - Maximum Number.
  */
 export function randomIntegerFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -142,8 +142,8 @@ export function randomIntegerFromInterval(min, max) {
 
 /**
  * Returns random percentage.
- * @param {number} [min=''] - Minimum Number., Default: `""`
- * @param {number} [max=''] - Maximum Number., Default: `""`
+ * @param {number} [min=1] - Minimum Number, Default: `1`
+ * @param {number} [max=100] - Maximum Number, Default: `100`
  */
 export function randomPercent(min = 1, max = 100) {
   return randomIntegerFromInterval(min, max) + "%";

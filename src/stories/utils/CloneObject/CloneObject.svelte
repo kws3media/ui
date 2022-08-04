@@ -12,7 +12,7 @@
 </div>
 
 <script>
-  import { cloneObject } from "@kws3/ui";
+  import { cloneObject } from "@kws3/ui/utils";
   let obj = {
     title: "Mr",
     name: "User",
