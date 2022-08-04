@@ -73,12 +73,12 @@ export let args = {
         Input format <code>options</code>
       </h3>
       <p>
-        Can send either an array of strings, or an array of objects.<br></br>Always
+        Should be an array of objects with matched property as<code>searchableKeys[keyword]</code>.<br></br>Always
         ensure the shape of the array items are consistent.
       </p>
       <p>See supported data formats in example story above.</p>
       <p>
-        Note: <code>option.label</code> contains matched characters wrapped
+        Note: <code>option[keyword]</code> contains matched characters wrapped
         inside <code>&lt;span class="h"&gt;</code> tags.{" "}
       </p>
       <p>
@@ -96,35 +96,4 @@ export let args = {
 <Source
   language="javascript"
   code={dedent`import { SearchTool } from '@kws3/ui';`}
-/>
-
-#### Import the SCSS:
-
-<Source
-  language="javascript"
-  code={dedent`@import '@kws3/ui/styles/SearchTool.scss';`}
-/>
-
-#### SCSS customization variables with default values:
-
-<Source
-  language="css"
-  code={dedent`
-      $kws-theme-colors: $colors !default;
-      $kws-searchtool-radius: $radius !default;
-      $kws-searchtool-border-color: $input-border-color !default;
-      $kws-searchtool-box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
-        0 0px 0 1px rgb(10 10 10 / 2%) !default;
-      $kws-searchtool-focus-border-color: $input-focus-border-color !default;
-      $kws-searchtool-focus-box-shadow-size: $input-focus-box-shadow-size !default;
-      $kws-searchtool-focus-box-shadow-color: $input-focus-box-shadow-color !default;
-      $kws-searchtool-disabled-background-color: $input-disabled-background-color !default;
-      $kws-searchtool-disabled-border-color: $input-disabled-border-color !default;
-      $kws-searchtool-disabled-color: $input-disabled-color !default;
-      $kws-searchtool-selecting-color: $primary-invert !default;
-      $kws-searchtool-selecting-background: $primary !default;
-      $kws-searchtool-text-matches-color: currentColor !default;
-      $kws-searchtool-text-matches-background: transparent !default;
-      $kws-searchtool-text-matches-font-weight: $weight-bold !default;
-    `}
 />

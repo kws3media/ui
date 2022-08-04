@@ -8,9 +8,9 @@
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {array} [options=[]] - Array of objects., Default: `[]`
-  @param {array} [searchableKeys=[]] - array of objet properties to search in., Default: `[]`
-  @param {boolean} [highlighted_results=true] - To highlight the keywords in the results., Default: `true`
-  @param {number} [scoreThreshold=5] - ScoreThreshold property, Default: `5`
+  @param {array} [searchableKeys=[]] - array of object properties to search in., Default: `[]`
+  @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
+  @param {number} [scoreThreshold=5] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
 
@@ -74,14 +74,18 @@
    */
   export let options = [];
   /**
-   * array of objet properties to search in.
+   * array of object properties to search in.
    */
   export let searchableKeys = [];
   /**
-   * To highlight the keywords in the results.
+   * Whether to show the highlighted or plain results in the dropdown.
    */
   export let highlighted_results = true;
-  export let scoreThreshold = 5; //less value will give more results and vice versa
+
+  /**
+   * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   */
+  export let scoreThreshold = 5;
   /**
    * Inline CSS for the input
    */
