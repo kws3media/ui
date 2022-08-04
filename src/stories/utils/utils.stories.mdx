@@ -73,29 +73,7 @@ import { capitaliseFirstLetter } from "@kws3/ui";
 capitaliseFirstLetter(string);
 ```
 
-## 7. isEnterKey
-
-The `isEnterKey` function Detect whether a user has pressed Enter.
-
-#### Usage
-
-```js
-import { isEnterKey } from "@kws3/ui";
-isEnterKey(event);
-```
-
-## 8. isEscKey
-
-The isEscKey function checks the key stroke of `Escape`.
-
-#### Usage
-
-```js
-import { isEscKey } from "@kws3/ui";
-isEscKey(event);
-```
-
-## 9. createDate
+## 7. createDate
 
 The createDate function makes mysql dates work in safari.
 
@@ -106,7 +84,7 @@ import { createDate } from "@kws3/ui";
 createDate(date);
 ```
 
-## 10. Smart Forms
+## 8. Smart Forms
 
 The `makeForm`, `makeForms` helpers used for tracking form data is dirty or not.
 
@@ -117,31 +95,20 @@ import { makeForm, makeForms } from "@kws3/ui/form";
 makeForm(data);
 ```
 
-## 11. Resize Observer
+## 9. Resize Observer
 
 The `resizeObserver` used to handle window resizing.
 
 #### Usage
 
 ```js
-import { hasResizeObserver, resizeObserver } from "@kws3/ui";
+import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
 if(hasResizeObserver){
   <div use:resizeObserver on:resize={resizeHandler}>
 }
 ```
 
-## 12. scrollIntoActiveElement
-
-The `scrollIntoActiveElement` used to scroll the list to active element.
-
-#### Usage
-
-```js
-import { scrollIntoActiveElement } from "@kws3/ui";
-scrollIntoActiveElement(listElement, activeElelement);
-```
-
-## 13. fuzzysearch
+## 10. fuzzysearch
 
 The `fuzzysearch` used to filter the object.
 
@@ -152,7 +119,7 @@ import { fuzzysearch } from "@kws3/ui";
 fuzzysearch(needle, haystack, opts);
 ```
 
-## 14. keyboardEvents
+## 11. keyboardEvents
 
 The `keyboardEvents` used to trigger the events based on the key stroke.
 
