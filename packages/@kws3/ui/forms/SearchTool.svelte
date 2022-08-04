@@ -44,7 +44,7 @@
 
 <script>
   import { Icon } from "@kws3/ui";
-  import { debounce, sanitizeValue } from "@kws3/ui/utils";
+  import { debounce } from "@kws3/ui/utils";
   import { onDestroy, onMount } from "svelte";
   import { fuzzysearch } from "../utils/fuzzysearch";
 
@@ -107,7 +107,8 @@
 
   const debouncedSearch = debounce(search, 300);
 
-  // $: options, setItems(options, 1);
+  const sanitizeValue = (v) =>
+    v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
 
   onMount(() => {
     fuzzyOpts = {
