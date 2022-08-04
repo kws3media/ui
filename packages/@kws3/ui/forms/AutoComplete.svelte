@@ -111,7 +111,7 @@ Default value: `<span>{option.label}</span>`
 
 <script>
   import { portal } from "@kws3/ui";
-  import { debounce, sanitizeValue } from "@kws3/ui/utils";
+  import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
   import { fuzzysearch } from "../utils/fuzzysearch";
@@ -276,9 +276,9 @@ Default value: `<span>{option.label}</span>`
     if (!mounted) return;
 
     if (asyncMode) {
-      searching && debouncedTriggerSearch(sanitizeValue(value));
+      searching && debouncedTriggerSearch(sanitizeFilters(value));
     } else {
-      searching && triggerSearch(sanitizeValue(value));
+      searching && triggerSearch(sanitizeFilters(value));
     }
   }
 
@@ -448,11 +448,13 @@ Default value: `<span>{option.label}</span>`
     filtered_options = [];
     searching = false;
   };
+  function sanitizeFilters(v) {
+    return v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
+  }
 
   const debouncedFuzzySearch = debounce(searchInFuzzyMode, 200, false);
 
   function searchInFuzzyMode(filters, options) {
-    console.log(filters);
     let cache = {};
     //TODO - can optimize more for very long lists
     filters.forEach((word, idx) => {
