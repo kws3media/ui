@@ -19,15 +19,12 @@
 ### Testing selecting from results by 'Enter' key
 1. Type "t".
   - Press Arrow Up 3 times
- - Result: "Groot" should be selected.
+ - Result: "Thor" should be selected.
 ### Testing selecting from results by Mouse Click
 1. Type "s".
   - Press Arrow Down 4 imes
- - Result: "Stephen Strange" should be selected.
+ - Result: "Captain Midlands" should be selected.
 
-### Testing By default search strategy should be 'fuzzy'
-1. Type "tn"
-  - Result: The dropdown should contain "tony stark" in options list.
 ### Testing dont clear input when user loses focus on it
 1. Type "s" and click outside the input.
   - Result: The input value should be "s"
