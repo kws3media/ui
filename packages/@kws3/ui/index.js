@@ -87,6 +87,5 @@ export {
   createDate,
 } from "./utils/index";
 
-export { hasResizeObserver, resizeObserver } from "./utils/resizeObserver";
 export { scrollIntoActiveElement } from "./utils/scrollIntoActiveElement";
 export { fuzzysearch } from "./utils/fuzzysearch";

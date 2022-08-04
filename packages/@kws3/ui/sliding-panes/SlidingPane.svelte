@@ -54,10 +54,7 @@ This will work only when `track_height` is set to `true`
 <script>
   import { onMount, createEventDispatcher } from "svelte";
   import { debounce } from "@kws3/ui/utils";
-  import {
-    resizeObserver,
-    hasResizeObserver,
-  } from "@kws3/ui/utils/resizeObserver";
+  import { resizeObserver, hasResizeObserver } from "@kws3/ui/resizeObserver";
 
   const fire = createEventDispatcher();
 
