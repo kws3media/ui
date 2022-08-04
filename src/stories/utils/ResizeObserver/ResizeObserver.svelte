@@ -46,8 +46,8 @@
 <script>
   import { resizeObserver, hasResizeObserver } from "@kws3/ui/resizeObserver";
   import { cloneObject } from "@kws3/ui/utils";
-  let name = "",
-    surname = "";
+  let name = "User",
+    surname = "B";
   let _items = [{ name: "User", surname: "A" }];
 
   function addItem() {
