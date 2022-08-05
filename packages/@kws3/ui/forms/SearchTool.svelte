@@ -24,7 +24,7 @@
   ">
   <div class="control is-expanded has-icons-left">
     <input
-      class="input is-{size} is-{color || 'primary'} {klass}"
+      class="input is-{size} is-{color} {klass}"
       {placeholder}
       {disabled}
       {readonly}
