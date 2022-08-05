@@ -17,33 +17,33 @@
 </div>
 <div class="columns searchtool-examples">
   <div class="column">
-    <h3 class="title is-4">Reviews</h3>
+    <h3 class="title is-4">Reviews ({options.length})</h3>
     {#each options as { review }}
-      <Message
+      <Notification
         color="primary"
-        class="is-marginless mb-2"
-        inner_class="is-paddingless px-2 py-1">
+        light={true}
+        class="p-0 px-4 py-2 m-0 mb-2 is-italic">
         <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
         {@html review}
-      </Message>
+      </Notification>
     {/each}
   </div>
   <div class="column">
-    <h3 class="title is-4">Complains</h3>
+    <h3 class="title is-4">Complains ({options.length})</h3>
     {#each options as { complain }}
-      <Message
+      <Notification
         color="warning"
-        class="is-marginless mb-2"
-        inner_class="is-paddingless px-2 py-1">
+        light={true}
+        class="p-0 px-4 py-2 m-0 mb-2 is-italic">
         <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
         {@html complain}
-      </Message>
+      </Notification>
     {/each}
   </div>
 </div>
 
 <script>
-  import { SearchTool as KwsSearchTool, Message } from "@kws3/ui";
+  import { SearchTool as KwsSearchTool, Notification } from "@kws3/ui";
 
   export let size = "",
     color = "",
