@@ -132,3 +132,20 @@ export function randomIntegerFromInterval(min, max) {
 export function randomPercent(min = 1, max = 100) {
   return randomIntegerFromInterval(min, max) + "%";
 }
+
+/**
+ * Downloads file.
+ * @param {Object} [data={}] - File data.
+ * @param {string} [fileName=''] - File Name.
+ */
+export function fileDownloader(data, fileName) {
+  let a = document.createElement("a");
+  document.body.appendChild(a);
+  a.style = "display: none";
+  let blob = new Blob([data], { type: "octet/stream" }),
+    url = window.URL.createObjectURL(blob);
+  a.href = url;
+  a.download = fileName;
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
