@@ -10,7 +10,7 @@
             type="button"
             class="button is-primary is-pulled-right is-small"
             on:click={() => {
-              fileDownloader(JSON.stringify(obj), "users.xlsx");
+              fileDownloader(JSON.stringify(obj), "users.csv");
             }}>Export as CSV</button>
         </div>
       </div>
@@ -24,16 +24,16 @@
 
   let obj = [
     {
-      "Column 1": "1-1",
-      "Column 2": "1-2",
-      "Column 3": "1-3",
-      "Column 4": "1-4",
+      title: "Mr",
+      name: "User 1",
+      addr1: "Address 2",
+      city: "City",
     },
     {
-      "Column 1": "2-1",
-      "Column 2": "2-2",
-      "Column 3": "2-3",
-      "Column 4": "2-4",
+      title: "Mr",
+      name: "User 2",
+      addr1: "Address 2",
+      city: "City",
     },
   ];
 </script>
