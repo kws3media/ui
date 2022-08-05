@@ -1,20 +1,30 @@
-<div id="tooltip-example-container-1">
-  <div class="columns is-multiline">
+<div>
+  <div class="columns mb-0">
     <div class="column is-6">
-      <div class="columns mb-0">
-        <div class="column">
-          <h2 class="subtitle is-5">Data</h2>
+      <form enctype="multipart/form-data" on:submit={upload}>
+        <div class="field is-grouped">
+          <div class="control">
+            <input id="image-file" type="file" class="input" />
+          </div>
+          <div class="control">
+            <button type="submit" class="button is-info">Upload</button>
+          </div>
         </div>
-        <div class="column">
-          <button
-            type="button"
-            class="button is-primary is-pulled-right is-small"
-            on:click={() => {
-              fileDownloader(JSON.stringify(obj), "users.csv");
-            }}>Export as CSV</button>
+      </form>
+    </div>
+    <div class="column">
+      {#if file}
+        <div class="field is-grouped">
+          <div class="control">
+            <button
+              type="button"
+              class="button is-success is-pulled-right"
+              on:click={() => {
+                fileDownloader(file, file.name);
+              }}>Download using `downloader`</button>
+          </div>
         </div>
-      </div>
-      <pre>{JSON.stringify(obj, null, 1)}</pre>
+      {/if}
     </div>
   </div>
 </div>
@@ -22,18 +32,11 @@
 <script>
   import { fileDownloader } from "@kws3/ui/utils";
 
-  let obj = [
-    {
-      title: "Mr",
-      name: "User 1",
-      addr1: "Address 2",
-      city: "City",
-    },
-    {
-      title: "Mr",
-      name: "User 2",
-      addr1: "Address 2",
-      city: "City",
-    },
-  ];
+  let file; //, formData;
+
+  function upload(e) {
+    file = document.getElementById("image-file").files[0];
+    //formData = new FormData();
+    e.preventDefault();
+  }
 </script>

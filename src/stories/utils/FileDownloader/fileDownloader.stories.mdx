@@ -17,7 +17,10 @@ fileName: `type : string`
 
 ```js
 import { fileDownloader } from "@kws3/ui/utils";
-let obj = [{ name: "User", surname: "A" }, { name: "User", surname: "B" }];
+let obj = [
+  { name: "User", surname: "A" },
+  { name: "User", surname: "B" },
+];
 
 $: fileDownloader(obj, "users.csv");
 ```
