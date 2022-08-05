@@ -106,7 +106,7 @@ export function currency(n) {
  * Converts date to ordinal.
  * @param {number} [n=''] - Number., Default: `""`
  */
-export function DateToOrdinal(n) {
+export function dateToOrdinal(n) {
   return (
     n +
     (n > 0
