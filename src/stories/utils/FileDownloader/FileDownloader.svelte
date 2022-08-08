@@ -1,42 +1,27 @@
 <div>
   <div class="columns mb-0">
     <div class="column is-6">
-      <form enctype="multipart/form-data" on:submit={upload}>
-        <div class="field is-grouped">
-          <div class="control">
-            <input id="image-file" type="file" class="input" />
-          </div>
-          <div class="control">
-            <button type="submit" class="button is-info">Upload</button>
-          </div>
+      <Panel title="Input data" collapsible collapsed>
+        <div slot="toolbar">
+          <button
+            type="button"
+            class="button is-success is-pulled-right"
+            on:click={() => {
+              fileDownloader(
+                JSON.stringify(brands, null, 2),
+                "mobile-brands.json"
+              );
+            }}>
+            <Icon icon="download" /><span>Export</span></button>
         </div>
-      </form>
-    </div>
-    <div class="column">
-      {#if file}
-        <div class="field is-grouped">
-          <div class="control">
-            <button
-              type="button"
-              class="button is-success is-pulled-right"
-              on:click={() => {
-                fileDownloader(file, file.name);
-              }}>Download using `downloader`</button>
-          </div>
-        </div>
-      {/if}
+        <pre>{JSON.stringify(brands, null, 1)}</pre>
+      </Panel>
     </div>
   </div>
 </div>
 
 <script>
   import { fileDownloader } from "@kws3/ui/utils";
-
-  let file; //, formData;
-
-  function upload(e) {
-    file = document.getElementById("image-file").files[0];
-    //formData = new FormData();
-    e.preventDefault();
-  }
+  import { brands } from "./data.js";
+  import { Panel, Icon } from "@kws3/ui";
 </script>
