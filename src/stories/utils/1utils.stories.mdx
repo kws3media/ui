@@ -164,11 +164,13 @@ randomIntegerFromInterval(min, max);
 
 ## 15. randomPercent
 
-The `randomPercent` returns random percentage.
+The `randomPercent` returns random percentage. Default value for `min` and `max` are `1` & `100` respectively.
 
 #### Usage
 
 ```js
 import { randomPercent } from "@kws3/ui/utils";
 randomPercent(min, max);
+randomPercent(min);
+randomPercent();
 ```
