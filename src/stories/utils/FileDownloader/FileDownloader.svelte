@@ -1,24 +1,15 @@
-<div>
-  <div class="columns mb-0">
-    <div class="column is-6">
-      <Panel title="Input data" collapsible collapsed>
-        <div slot="toolbar">
-          <button
-            type="button"
-            class="button is-success is-pulled-right"
-            on:click={() => {
-              fileDownloader(
-                JSON.stringify(brands, null, 2),
-                "mobile-brands.json"
-              );
-            }}>
-            <Icon icon="download" /><span>Export</span></button>
-        </div>
-        <pre>{JSON.stringify(brands, null, 1)}</pre>
-      </Panel>
-    </div>
+<Panel title="Input data" collapsible collapsed>
+  <div slot="toolbar">
+    <button
+      type="button"
+      class="button is-success is-pulled-right"
+      on:click={() => {
+        fileDownloader(JSON.stringify(brands, null, 2), "mobile-brands.json");
+      }}>
+      <Icon icon="download" /><span>Export</span></button>
   </div>
-</div>
+  <pre>{JSON.stringify(brands, null, 1)}</pre>
+</Panel>
 
 <script>
   import { fileDownloader } from "@kws3/ui/utils";
