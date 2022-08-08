@@ -14,7 +14,7 @@
 </div>
 
 <script>
-  import { fuzzysearch } from "@kws3/ui/search";
+  import { makeSearchEngine } from "@kws3/ui/search";
   let filter = "";
   let data = [
     { id: 1, name: "AAA" },
@@ -33,13 +33,17 @@
       before: "",
     },
   };
+  let searchOptions = {
+    search_key: "name",
+    scoreThreshold: 5,
+    fuzzyOpts,
+  };
+
+  const fuzzysearch = makeSearchEngine(searchOptions);
 
   $: filter, search();
+
   function search() {
-    newData = fuzzysearch(filter, data, {
-      search_key: "name",
-      scoreThreshold: 5,
-      fuzzyOpts,
-    });
+    newData = fuzzysearch(filter, data);
   }
 </script>

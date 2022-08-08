@@ -1,15 +1,15 @@
 import { Meta, Story } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import FuzzySearch from "./FuzzySearch.svelte";
+import Search from "./Search.svelte";
 
 <Version />
 
-<Meta title="Utils/2. Examples/FuzzySearch" />
+<Meta title="Utils/2. Examples/Search" />
 
-### fuzzysearch
+### makeSearchEngine
 
-The `fuzzysearch` function used to filter the object
+The `makeSearchEngine` function can be used as factory function for search
 
 **Parameters:**
 needle : `type: String`
@@ -25,7 +25,7 @@ options : `type: Object`
 <pre>{JSON.stringify(newData, null, 4)}</pre>
 
 <script>
-  import { fuzzysearch } from "@kws3/ui/search";
+  import { makeSearchEngine } from "@kws3/ui/search";
   let filter = "";
   let data = [
     { id: 1, name: "AAA" },
@@ -35,21 +35,34 @@ options : `type: Object`
     { id: 5, name: "EEBB" },
   ];
   let newData = [];
-  let fuzzyOpts = {};
+
+  let fuzzyOpts = {
+    analyzeSubTerms: true,
+    analyzeSubTermDepth: 10,
+    highlighting: {
+      after: "",
+      before: "",
+    },
+  };
+  let searchOptions = {
+    search_key: "name",
+    scoreThreshold: 5,
+    fuzzyOpts,
+  };
+
+  const fuzzysearch = makeSearchEngine(searchOptions);
+
   $: filter, search();
+
   function search() {
-    newData = fuzzysearch(filter, data, {
-      search_key: "name",
-      scoreThreshold: 5,
-      fuzzyOpts,
-    });
+    newData = fuzzysearch(filter, data);
   }
 </script>
 
 ```
 
-<Story name="FuzzySearch" args={{}}>
+<Story name="Search" args={{}}>
   {(args) => ({
-    Component: FuzzySearch,
+    Component: Search,
   })}
 </Story>
