@@ -1,1 +1,1 @@
-export { fuzzysearch } from "./fuzzysearch";
+export { makeSearchEngine } from "./makeSearchEngine";
