@@ -1,4 +1,4 @@
-import fuzzy from "./fuzzy.js";
+import { fuzzy } from "../internal";
 
 /**
  * Used to filter the object

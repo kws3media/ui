@@ -115,7 +115,7 @@ Default value: `<span>{option.label}</span>`
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
   import { makeSearchEngine } from "@kws3/ui/search";
-  import { scrollIntoActiveElement } from "../internal/scrollIntoActiveElement";
+  import { scrollIntoActiveElement } from "../internal";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",

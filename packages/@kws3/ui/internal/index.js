@@ -1,4 +1,5 @@
 export { scrollIntoActiveElement } from "./scrollIntoActiveElement";
+export { fuzzy } from "./fuzzy.js";
 
 /**
  * Detect whether a user has pressed Enter.

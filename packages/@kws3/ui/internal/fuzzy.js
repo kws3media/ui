@@ -36,7 +36,7 @@
  * This can be configured through opts.analyzeSubTermDepth = 10.
  */
 
-export default function fuzzy(term, query, opts = {}) {
+export function fuzzy(term, query, opts = {}) {
   let analyzeSubTerms = opts.analyzeSubTerms ? opts.analyzeSubTerms : false;
   let analyzeSubTermDepth = opts.analyzeSubTermDepth
     ? opts.analyzeSubTermDepth
