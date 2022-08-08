@@ -11,14 +11,19 @@ import KeyboardEvents from "./KeyboardEvents.svelte";
 
 The `keyboardEvents` used to trigger the events based on the key stroke.
 
-**Parameters:**
-node : `type: Object`
+**Available Events:**
+`enter`, `tab`, `escape`, `space`, `leftarrow`, `rightarrow`, `downarrow`, `uparrow`, `backspace`, `del`
+
+**Usage Example:**
+
+```js
+<input use:`event`={customEvent}` />
+```
 
 **Example:**
 
 ```js
-<input type="tex" use:enter={enterEvent} class="input" />
-<input type="tex" use:tab={tabEvent} class="input" />
+<input type="tex" use:enter={enterEvent} use:tab={tabEvent} />
 <script>
   import {
     enter,
