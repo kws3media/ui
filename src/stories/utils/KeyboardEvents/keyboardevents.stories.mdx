@@ -17,8 +17,26 @@ node : `type: Object`
 **Example:**
 
 ```js
-import { keyboardEvents } from "@kws3/ui/keyboard";
-keyboardEvents(node);
+<input type="tex" use:enter={enterEvent} class="input" />
+<input type="tex" use:tab={tabEvent} class="input" />
+<script>
+  import {
+    enter,
+    tab,
+    escape,
+    space,
+    leftarrow,
+    rightarrow,
+    downarrow,
+    uparrow,
+    backspace,
+    del,
+  } from "@kws3/ui/keyboard";
+
+  function enterEvent() {
+    console.log();("Enter Pressed");
+  }
+</script>
 ```
 
 <Story name="KeyboardEvents" args={{}}>
