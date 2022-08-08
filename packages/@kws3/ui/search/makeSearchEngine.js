@@ -5,8 +5,15 @@ import { fuzzy } from "../internal";
  * @param {object} opts - contains search options and fuzzy lib options
  * @param {string} opts.search_key - which key to perform search on.
  * @param {number} opts.scoreThreshold - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
- * @param {object} opts.fuzzyOpts - fuzzy.js lib options
- * @return {function} Return function take params needle and haystack.
+ *
+ * @param {object} opts.fuzzyOpts - fuzzy match options
+ * @param {boolean} opts.fuzzyOpts.analyzeSubTerms -  Whether or not analyze sub-terms, default false
+ * @param {number} opts.fuzzyOpts.analyzeSubTermDepth - How many sub terms should be analyzed , default 10
+ *
+ * @param {string} opts.fuzzyOpts.highlighting.after, -  markup to add after matched character, default '</em>'
+ * @param {string} opts.fuzzyOpts.highlighting.before -  markup to add before matched character, default '<em>'
+ *
+ * @return {function} Return function take params `needle` and `haystack`.
  */
 export function makeSearchEngine(opts) {
   let search_key = defaultValue(opts, "search_key", "value");

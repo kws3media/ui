@@ -118,7 +118,14 @@ import { makeSearchEngine } from "@kws3/ui/search";
 let searchOptions = {
   search_key, // optional, default 'value'
   scoreThreshold, // optional, default 5
-  fuzzyOpts, // fuzzyjs lib options
+  fuzzyOpts : {
+    analyzeSubTerms, // Whether or not analyze sub-terms, default false
+    analyzeSubTermDepth, //How many sub terms should be analyzed , default 10,
+    highlighting: {
+      before, // markup to add before mattched charectar, default '<em>'
+      after, // markup to add after mattched charectar, default '</em>'
+    },
+  }
 }
 const fuzzysearch = makeSearchEngine(searchOptions);
 fuzzysearch(needle, haystack);
