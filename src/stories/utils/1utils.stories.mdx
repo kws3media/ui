@@ -114,8 +114,14 @@ The `fuzzysearch` used to filter the object.
 #### Usage
 
 ```js
-import { fuzzysearch } from "@kws3/ui/search";
-fuzzysearch(needle, haystack, opts);
+import { makeSearchEngine } from "@kws3/ui/search";
+let searchOptions = {
+  search_key, // optional, default 'value'
+  scoreThreshold, // optional, default 5
+  fuzzyOpts, // fuzzyjs lib options
+}
+const fuzzysearch = makeSearchEngine(searchOptions);
+fuzzysearch(needle, haystack);
 ```
 
 ## 11. keyboardEvents
