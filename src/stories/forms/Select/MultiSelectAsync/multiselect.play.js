@@ -1,3 +1,4 @@
+//@ts-check
 import { expect } from "@storybook/jest";
 import {
   within,
@@ -127,6 +128,7 @@ export default async ({ args, canvasElement }) => {
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  //@ts-ignore
   await userEvent.click(options[0].querySelector("li.active"));
   await expect(Number(tags.length)).toBe(2);
   await expect(getNodeText(tags[0]).trim()).toBe("XOLO");

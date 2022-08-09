@@ -1,3 +1,4 @@
+//@ts-check
 import { expect } from "@storybook/jest";
 import { within, userEvent, waitFor } from "@storybook/testing-library";
 
