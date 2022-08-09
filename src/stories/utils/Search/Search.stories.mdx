@@ -9,56 +9,54 @@ import Search from "./Search.svelte";
 
 ### makeSearchEngine
 
-The `makeSearchEngine` function can be used as factory function for search
+The `makeSearchEngine` is factory helper to create search engine with options.
 
 **Parameters:**
+searchOptions : `type: Object`
 needle : `type: String`
 haystack : `type: Array`
-options : `type: Object`
 
 **Example:**
 
 ```js
 <div>
-  <input type="text" bind:value={filter} class="input" />
+  <input type="text" bind:value={needle} class="input" />
 </div>
-<pre>{JSON.stringify(newData, null, 4)}</pre>
+<pre>{JSON.stringify(filtered_data, null, 4)}</pre>
 
 <script>
   import { makeSearchEngine } from "@kws3/ui/search";
-  let filter = "";
-  let data = [
+  let needle = "";
+  let haystack = [
     { id: 1, name: "AAA" },
     { id: 2, name: "BBB" },
     { id: 3, name: "CCC" },
     { id: 4, name: "DDAA" },
     { id: 5, name: "EEBB" },
   ];
-  let newData = [];
+  let filtered_data = [];
 
-  let fuzzyOpts = {
-    analyzeSubTerms: true,
-    analyzeSubTermDepth: 10,
-    highlighting: {
-      after: "",
-      before: "",
-    },
-  };
   let searchOptions = {
-    search_key: "name",
-    scoreThreshold: 5,
-    fuzzyOpts,
-  };
+    search_key: "name", // optional, default 'value'
+    scoreThreshold: 5, // optional, default 5
+    fuzzyOpts : {
+      analyzeSubTerms: true, // Whether or not analyze sub-terms, default false
+      analyzeSubTermDepth: 10, //How many sub terms should be analyzed , default 10,
+      highlighting: {
+        before: "", // markup to add before mattched charectar, default '<em>'
+        after: "", // markup to add after mattched charectar, default '</em>'
+      },
+    }
+  }
 
   const fuzzysearch = makeSearchEngine(searchOptions);
 
-  $: filter, search();
+  $: search();
 
   function search() {
-    newData = fuzzysearch(filter, data);
+    filtered_data = fuzzysearch(needle, haystack);
   }
 </script>
-
 ```
 
 <Story name="Search" args={{}}>
