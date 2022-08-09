@@ -1,3 +1,4 @@
+//@ts-check
 export default function (password, options) {
   const result = {
     items: [],
@@ -24,7 +25,7 @@ export default function (password, options) {
   });
 
   result.overall =
-    result.items.filter((el) => el.passed).length === result.items.length;
+    result.items.filter((el) => el["passed"]).length === result.items.length;
 
   return result;
 }

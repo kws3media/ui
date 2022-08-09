@@ -1,3 +1,4 @@
+//@ts-check
 export { scrollIntoActiveElement } from "./scrollIntoActiveElement";
 export { fuzzy } from "./fuzzy.js";
 

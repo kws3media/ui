@@ -1,3 +1,4 @@
+//@ts-check
 function makeKeyDefinition(code) {
   return function (node, fire) {
     function keydownHandler(event) {

@@ -1,3 +1,4 @@
+//@ts-check
 import { fuzzy } from "../internal";
 
 /**
@@ -10,6 +11,7 @@ import { fuzzy } from "../internal";
  * @param {boolean} opts.fuzzyOpts.analyzeSubTerms -  Whether or not analyze sub-terms, default false
  * @param {number} opts.fuzzyOpts.analyzeSubTermDepth - How many sub terms should be analyzed , default 10
  *
+ * @param {object} opts.fuzzyOpts.highlighting - markup
  * @param {string} opts.fuzzyOpts.highlighting.after, -  markup to add after matched character, default '</em>'
  * @param {string} opts.fuzzyOpts.highlighting.before -  markup to add before matched character, default '<em>'
  *
