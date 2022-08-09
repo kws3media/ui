@@ -1,17 +1,19 @@
+//@ts-check
+
 /**
  * Truncate a string.
  * @param {string} [str=""] - String to truncate, Default: `""`
- * @param {number} [len=""] - The number of characters to extract, Default: `""`
+ * @param {number} [len=0] - The number of characters to extract, Default: `""`
  */
-export function truncate(str, len) {
+export function truncate(str = "", len = 0) {
   return str && str.length >= len + 3 ? str.substr(0, len) + "..." : str;
 }
 
 /**
  * Insert line breaks where newlines (\n) occur in the string.
- * @param {string} [str=""] - String to be checked, Default: `""`
+ * @param {string} [input=""] - String to be checked, Default: `""`
  */
-export function nl2br(input) {
+export function nl2br(input = "") {
   if (!input) {
     return "";
   }
@@ -29,13 +31,17 @@ export function cloneObject(obj) {
 
 /**
  * Request an animation before the next repaint.
- * @param {function} [callback=()] - callback function
+ * @param {function} [callback=function(){}] - callback function
  */
 export var rAF =
   window.requestAnimationFrame ||
+  //@ts-ignore
   window.webkitRequestAnimationFrame ||
+  //@ts-ignore
   window.mozRequestAnimationFrame ||
+  //@ts-ignore
   window.oRequestAnimationFrame ||
+  //@ts-ignore
   window.msRequestAnimationFrame ||
   function (callback) {
     window.setTimeout(callback, 1000 / 60);
@@ -45,12 +51,12 @@ export var rAF =
  * Returns a function, that, as long as it continues to be invoked, will not
  * be triggered. The function will be called after it stops being called for
  * `threshold` milliseconds.
- * @param {function} [fn=()] - The function that you want to execute after the debounce time
+ * @param {function} [fn=function(){}] - The function that you want to execute after the debounce time
  * @param {number} [threshold=100] - The amount of time to wait, Default: `100`
  * @param {boolean} [isAsap=false] - flag to debounce early, Default: `false`
  *
  */
-export function debounce(fn, threshold, isAsap) {
+export function debounce(fn = function () {}, threshold, isAsap) {
   var timeout, result;
   function debounced() {
     var args = arguments,
@@ -79,7 +85,7 @@ export function debounce(fn, threshold, isAsap) {
  * Capitalise First letter of string.
  * @param {string} [string=""] - A string whose first letter is to be capitalised, Default: `""`
  */
-export function capitaliseFirstLetter(string) {
+export function capitaliseFirstLetter(string = "") {
   return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
 }
 
@@ -107,6 +113,7 @@ export function currency(n) {
  * @param {number} [n=''] - Number., Default: `""`
  */
 export function dateToOrdinal(n) {
+  n = Number(n);
   return (
     n +
     (n > 0
@@ -123,7 +130,7 @@ export function dateToOrdinal(n) {
  * @param {number} [min] - Minimum Number.
  * @param {number} [max] - Maximum Number.
  */
-export function randomIntegerFromInterval(min, max) {
+export function randomIntegerFromInterval(min = 0, max = Infinity) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -143,10 +150,10 @@ export function randomPercent(min = 1, max = 100) {
  * @param {Object} [data={}] - File data.
  * @param {string} [fileName=''] - File Name.
  */
-export function fileDownloader(data, fileName) {
+export function fileDownloader(data, fileName = "file_name") {
   let a = document.createElement("a");
   document.body.appendChild(a);
-  a.style = "display: none";
+  a.setAttribute("style", "display: none");
   let blob = new Blob([data], { type: "octet/stream" }),
     url = window.URL.createObjectURL(blob);
   a.href = url;
