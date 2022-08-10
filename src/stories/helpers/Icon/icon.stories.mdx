@@ -10,12 +10,14 @@ import {
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
 import { Icon } from "@kws3/ui";
+import IconDecorator from "./Icon.svelte";
 import { action } from "@storybook/addon-actions";
 
 export let args = {
+  family: "",
   size: "",
-  color: "",
-  icon: "save",
+  color: "primary",
+  icon: "bookmark",
   class: "",
   style: "",
   inner_class: "",
@@ -51,7 +53,7 @@ export let args = {
 <Canvas>
   <Story name="Icon" args={args}>
     {(args) => ({
-      Component: Icon,
+      Component: IconDecorator,
       props: args,
     })}
   </Story>
