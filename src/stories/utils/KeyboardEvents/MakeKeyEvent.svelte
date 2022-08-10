@@ -22,7 +22,12 @@
 <script>
   import { makeKeyDefinition } from "@kws3/ui/keyboard";
 
-  const save = makeKeyDefinition(83); //event on 's' key
+  let opts = {
+    code: 17, //ctrl
+    key: "s",
+    isMeta: true,
+  };
+  const save = makeKeyDefinition(opts); //event on 's' key
 
   let eventText = "";
   function saveEvent(event, key) {

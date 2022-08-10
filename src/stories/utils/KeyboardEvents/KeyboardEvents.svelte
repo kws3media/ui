@@ -37,11 +37,8 @@
             use:del={(event) => {
               eventSent(event, "Delete");
             }}
-            use:ctrl={(event) => {
-              eventSent(event, "Ctrl");
-            }}
-            use:alt={(event) => {
-              eventSent(event, "Alt");
+            use:ctrlS={(event) => {
+              eventSent(event, "Ctrl+S");
             }}
             class="input" />
         </p>
@@ -63,13 +60,15 @@
     uparrow,
     backspace,
     del,
-    alt,
     ctrl,
   } from "@kws3/ui/keyboard";
 
   let keys =
     "Enter,Tab, Escape,Space bar,Left Arrow, Right Arrow, Down Arrow, Up Arrow, Back Space, Delete, Alt, Ctrl";
   let eventText = "";
+
+  let ctrlS = ctrl("s");
+
   function eventSent(event, key) {
     eventText = key + " Pressed";
   }
