@@ -1,13 +1,17 @@
 //@ts-check
+const eventKeyModifierProps = {
+  17: "metaKey",
+  18: "shiftKey",
+};
 export function makeKeyDefinition(opts) {
   let code = opts;
-  let metaKey = false;
+  let modifierProp = null;
   let key = null;
 
   if (typeof opts === "object") {
-    metaKey = true;
     code = opts.code;
     key = opts.key;
+    modifierProp = eventKeyModifierProps[code];
   }
 
   return function (node, fire) {
@@ -15,9 +19,9 @@ export function makeKeyDefinition(opts) {
       var which = event.which || event.keyCode;
       let valid = false;
 
-      if (metaKey === event.metaKey && key === event.key) {
+      if (event[modifierProp] && key === event.key) {
         valid = true;
-      } else if (!metaKey && which === code) {
+      } else if (!modifierProp && which === code) {
         valid = true;
       }
 
@@ -52,6 +56,12 @@ export var ctrl = (key) => {
     key: key,
   });
 };
+export var shift = (key) => {
+  return makeKeyDefinition({
+    code: 16,
+    key: key,
+  });
+};
 
 export default {
   enter,
@@ -65,4 +75,5 @@ export default {
   backspace,
   del,
   ctrl,
+  shift,
 };
