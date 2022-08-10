@@ -1,0 +1,44 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import MakeKeyEvent from "./MakeKeyEvent.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/KeyboardEvents/2. Create Key Events" />
+
+### makeKeyDefinition
+
+The `makeKeyDefinition` is factory helper to create custom keydownHandler events.
+
+**Parameters:**
+code : `type: Number` Key code
+
+**Returns:**
+Function take params, node :`type : DOM Element` and event : `type: function`.
+
+#### Usage
+
+```js
+import {makeKeyDefinition} from "@kws3/ui/keyboard";
+const save = makeKeyDefinition(keyCode) 
+```
+
+**Example:**
+```html
+<input type="text" use:save={saveEvent} />
+<script>
+  import {makeKeyDefinition} from "@kws3/ui/keyboard";
+
+  const save = makeKeyDefinition(83) //event on 's' key
+  function saveEvent() {
+    console.log("Saved");
+  }
+</script>
+```
+
+<Story name="2. Create Key Events" args={{}}>
+  {(args) => ({
+    Component: MakeKeyEvent,
+  })}
+</Story>

@@ -6,7 +6,7 @@
         <p>{keys}</p>
         <p>
           <input
-            type="tex"
+            type="text"
             use:enter={(event) => {
               eventSent(event, "Enter");
             }}
@@ -37,6 +37,9 @@
             use:del={(event) => {
               eventSent(event, "Delete");
             }}
+            use:ctrlS={(event) => {
+              eventSent(event, "Ctrl+S");
+            }}
             class="input" />
         </p>
         <span class="help is-sucess has-text-success">{eventText}</span>
@@ -57,11 +60,15 @@
     uparrow,
     backspace,
     del,
+    ctrl,
   } from "@kws3/ui/keyboard";
 
   let keys =
-    "Enter,Tab, Escape,Space bar,Left Arrow, Right Arrow, Down Arrow, Up Arrow, Back Space, Delete";
+    "Enter,Tab, Escape,Space bar,Left Arrow, Right Arrow, Down Arrow, Up Arrow, Back Space, Delete, Alt, Ctrl";
   let eventText = "";
+
+  let ctrlS = ctrl("s");
+
   function eventSent(event, key) {
     eventText = key + " Pressed";
   }
