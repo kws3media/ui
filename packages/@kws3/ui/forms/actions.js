@@ -1,3 +1,4 @@
+//@ts-check
 import flatpickr from "flatpickr";
 
 function createFlatpickrAction(defaultOpts, hooks, type) {
@@ -91,10 +92,12 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
           }
           //respond reactively to props
           const visibleInput = picker.input.nextSibling;
-          visibleInput.className = `input is-${color} ${klass}`;
-          visibleInput.style = `${style}`;
-          visibleInput.disabled = disabled;
-          visibleInput.placeholder = placeholder;
+          if (visibleInput) {
+            visibleInput["className"] = `input is-${color} ${klass}`;
+            visibleInput["style"] = `${style}`;
+            visibleInput["disabled"] = disabled;
+            visibleInput["placeholder"] = placeholder;
+          }
         }
       },
       destroy() {

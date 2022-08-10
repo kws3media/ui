@@ -1,0 +1,33 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import CloneObject from "./CloneObject.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/CloneObject" />
+
+### CloneObject
+
+Function used to clone js object to another.
+
+**Parameter:**
+`object`
+
+```js
+import { cloneObject } from "@kws3/ui/utils";
+let obj = {
+  title: "Mr",
+  name: "User",
+};
+
+$: clone = cloneObject(obj);
+```
+
+**Example:**
+
+<Story name="CloneObject" args={{}}>
+  {(args) => ({
+    Component: CloneObject,
+  })}
+</Story>

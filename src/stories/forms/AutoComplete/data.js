@@ -1,3 +1,4 @@
+//@ts-check
 import { sleep } from "../../../utils";
 
 export let characters = [

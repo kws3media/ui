@@ -1,0 +1,52 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import KeyboardEvents from "./KeyboardEvents.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/KeyboardEvents/1. Pre-defined Events" />
+
+### keyboardEvents
+
+The `keyboardEvents` used to trigger the events based on the key stroke.
+
+**Available Events:**
+`enter`, `tab`, `escape`, `space`, `leftarrow`, `rightarrow`, `downarrow`, `uparrow`, `backspace`, `del`, `shift + {key}`, `ctrl + {key}`
+
+**Usage Example:**
+
+```js
+<input use:`event`={customEvent}` />
+```
+
+**Example:**
+
+```html
+<input type="tex" use:enter={enterEvent} use:tab={tabEvent} />
+<script>
+  import {
+    enter,
+    tab,
+    escape,
+    space,
+    leftarrow,
+    rightarrow,
+    downarrow,
+    uparrow,
+    backspace,
+    del,
+    ctrl
+  } from "@kws3/ui/keyboard";
+
+  function enterEvent() {
+    console.log();("Enter Pressed");
+  }
+</script>
+```
+
+<Story name="1. Pre-defined Events" args={{}}>
+  {(args) => ({
+    Component: KeyboardEvents,
+  })}
+</Story>

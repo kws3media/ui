@@ -1,3 +1,4 @@
+//@ts-check
 export default (function (win, doc) {
   var CP,
     instance = "__instance__",
@@ -77,7 +78,11 @@ export default (function (win, doc) {
         (r = v), (g = p), (b = q);
         break;
     }
-    return [round(r * 255), round(g * 255), round(b * 255)];
+    return [
+      r ? round(r * 255) : null,
+      g ? round(g * 255) : null,
+      b ? round(b * 255) : null,
+    ];
   }
 
   function HSV2HEX(a) {
@@ -116,8 +121,8 @@ export default (function (win, doc) {
   }
 
   function RGB2HEX(a) {
-    var s = +a[2] | (+a[1] << 8) | (+a[0] << 16);
-    s = "000000" + s.toString(16);
+    var s = (+a[2] | (+a[1] << 8) | (+a[0] << 16)).toString(16);
+    s = "000000" + s;
     return s.slice(-6);
   }
 
@@ -166,12 +171,14 @@ export default (function (win, doc) {
 
   return (function ($) {
     // plugin version
+    //@ts-ignore
     $.version = "1.3.2";
 
     // collect all instance(s)
     $[instance] = {};
 
     // plug to all instance(s)
+    //@ts-ignore
     $.each = function (fn, t) {
       return (
         delay(
@@ -189,27 +196,39 @@ export default (function (win, doc) {
     };
 
     // static method(s)
+    //@ts-ignore
     $.parse = parse;
+    //@ts-ignore
     $._HSV2RGB = HSV2RGB;
+    //@ts-ignore
     $._HSV2HEX = HSV2HEX;
+    //@ts-ignore
     $._RGB2HSV = RGB2HSV;
+    //@ts-ignore
     $._HEX2HSV = HEX2HSV;
+    //@ts-ignore
     $._HEX2RGB = function (a) {
       return _2RGB_pri(HEX2RGB(a));
     };
+    //@ts-ignore
     $.HSV2RGB = function (a) {
       return HSV2RGB(_2HSV_pri(a));
     };
+    //@ts-ignore
     $.HSV2HEX = function (a) {
       return HSV2HEX(_2HSV_pri(a));
     };
+    //@ts-ignore
     $.RGB2HSV = function (a) {
       return _2HSV_pub(RGB2HSV(a));
     };
+    //@ts-ignore
     $.RGB2HEX = RGB2HEX;
+    //@ts-ignore
     $.HEX2HSV = function (s) {
       return _2HSV_pub(HEX2HSV(s));
     };
+    //@ts-ignore
     $.HEX2RGB = HEX2RGB;
 
     return $;
@@ -405,6 +424,7 @@ export default (function (win, doc) {
           if (is_target) {
             create();
           } else {
+            //@ts-ignore
             $.exit();
           }
           trigger(is_target ? "enter" : "exit", [$]);
@@ -416,13 +436,16 @@ export default (function (win, doc) {
           if (events !== false) {
             on(events, target, click);
           }
+          //@ts-ignore
           $.create = function () {
             return create(1), trigger("create", [$]), $;
           };
+          //@ts-ignore
           $.destroy = function () {
             if (events !== false) {
               off(events, target, click);
             }
+            //@ts-ignore
             $.exit(), set_data(false);
             return trigger("destroy", [$]), $;
           };
@@ -435,8 +458,10 @@ export default (function (win, doc) {
           SV_point.style.right = SV_W - SV_point_W / 2 - SV_W * +HSV[1] + "px";
           SV_point.style.top = SV_H - SV_point_H / 2 - SV_H * +HSV[2] + "px";
         };
+        //@ts-ignore
         $.exit = function () {
           if (visible()) {
+            //@ts-ignore
             visible().removeChild(picker);
             $.visible = false;
           }
@@ -499,6 +524,7 @@ export default (function (win, doc) {
           if (!is_target && !is_picker) {
             // click outside the target or picker element to exit
             if (visible() && events !== false)
+              //@ts-ignore
               $.exit(), trigger("exit", [$]), trigger_(0, a);
           } else {
             if (is_picker) {

@@ -1,0 +1,57 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import SmartForms from "./SmartForms.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/SmartForms" />
+
+### SmartForms
+
+The `makeForm`, `makeForms` helpers used for tracking form data is dirty or not.
+
+**Example:**
+
+    
+```js
+<form>
+  <input class="{$errors.email ? 'is-danger' : ''}" bind:value={$data.email} />;
+  <input class="{$errors.password ? 'is-danger' : ''}" bind:value={$data.password}/>;
+  <button disabled={!$isValid}>Submit</button>;
+</form>;
+import { makeForm, notEmpty, withMsg } from "@kws3/ui/form";
+
+let form;
+let data;
+let errors;
+let isValid;
+let isTouched;
+let validators = {
+  email: withMsg("Email should not be empty", notEmpty),
+  password: withMsg("Password should not be empty", notEmpty),
+};
+
+$: load();
+
+function load(){
+  form = makeForm({
+    data: {
+      email: "",
+      password: "",
+    },
+    validators
+  });
+  data = form.formData;
+  errors = form.errors;
+  isValid = form.isValid;
+  isTouched = form.isTouched;
+}
+```
+
+
+<Story name="SmartForms" args={{}}>
+  {(args) => ({
+    Component: SmartForms,
+  })}
+</Story>

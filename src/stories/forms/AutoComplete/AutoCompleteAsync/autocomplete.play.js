@@ -1,9 +1,11 @@
+//@ts-check
 import { expect } from "@storybook/jest";
 import {
   within,
   userEvent,
   // eslint-disable-next-line no-unused-vars
   waitFor,
+  // eslint-disable-next-line no-unused-vars
   getNodeText,
   fireEvent,
 } from "@storybook/testing-library";
@@ -89,6 +91,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await sleep(300);
+  //@ts-ignore
   await userEvent.click(options[0].querySelector("li.active"));
   await expect(Number(items.length)).toBe(0);
   await expect(inputs[0].value).toEqual("Captain Midlands");

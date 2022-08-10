@@ -114,8 +114,8 @@ Default value: `<span>{option.label}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import { fuzzysearch } from "../utils/fuzzysearch";
-  import { scrollIntoActiveElelement } from "../utils/scrollIntoActiveElelement";
+  import { makeSearchEngine } from "@kws3/ui/search";
+  import { scrollIntoActiveElement } from "../internal";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -246,7 +246,8 @@ Default value: `<span>{option.label}</span>`
     normalised_options = [], //list of options normalised
     options_loading = false, //indictaes whether async search function is running
     mounted = false, //indicates whether component is mounted
-    fuzzyOpts = {}; // fuzzy.js lib options
+    fuzzyOpts = {}, // fuzzy.js lib options
+    fuzzysearch = null;
 
   let list_text_size = {
     small: "7",
@@ -334,6 +335,12 @@ Default value: `<span>{option.label}</span>`
         fuzzyOpts.highlighting.before = `<span class="h">`;
         fuzzyOpts.highlighting.after = "</span>";
       }
+      let searchOptions = {
+        search_key: "label",
+        scoreThreshold,
+        fuzzyOpts,
+      };
+      fuzzysearch = makeSearchEngine(searchOptions);
     }
 
     //normalize value
@@ -387,7 +394,7 @@ Default value: `<span>{option.label}</span>`
         if (dropdown) {
           mouseTracker.preventSelect = true;
           let activeElem = dropdown.querySelector(".active");
-          scrollIntoActiveElelement(dropdown, activeElem);
+          scrollIntoActiveElement(dropdown, activeElem);
         }
       });
     } else {
@@ -461,11 +468,7 @@ Default value: `<span>{option.label}</span>`
       // iterate over each word in the search query
       let opts = [];
       if (word) {
-        let result = fuzzysearch(word, options, {
-          search_key: "label",
-          scoreThreshold,
-          fuzzyOpts,
-        });
+        let result = fuzzysearch(word, options);
         opts = result;
       }
 

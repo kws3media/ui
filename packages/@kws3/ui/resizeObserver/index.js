@@ -1,3 +1,4 @@
+//@ts-check
 export const hasResizeObserver = typeof window.ResizeObserver != "undefined";
 
 /**
