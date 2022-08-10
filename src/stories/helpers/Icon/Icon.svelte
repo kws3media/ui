@@ -3,16 +3,6 @@
     <KwsIcon
       {size}
       {color}
-      {icon}
-      {style}
-      {inner_class}
-      {inner_style}
-      class={klass}
-      {family} />
-
-    <KwsIcon
-      {size}
-      {color}
       icon="bookmark"
       {style}
       {inner_class}
