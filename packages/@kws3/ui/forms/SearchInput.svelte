@@ -158,7 +158,7 @@
       filters.forEach((word, idx) => {
         // iterate over each word in the search query
         let opts = [];
-        if (word) opts = fuzzysearch(keywords, orginalItems);
+        if (word) opts = fuzzysearch(word, orginalItems);
         cache[idx] = opts; // storing options to current index on cache
       });
 
