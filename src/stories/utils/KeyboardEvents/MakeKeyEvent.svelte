@@ -3,7 +3,7 @@
     <div class="column">
       <div class="field">
         <label for=""
-          >Use 's' key to fire <code>save</code>
+          >Use <code>Ctrl + S</code> key to fire <code>save</code>
           event</label>
         <p>
           <input
@@ -25,7 +25,6 @@
   let opts = {
     code: 17, //ctrl
     key: "s",
-    isMeta: true,
   };
   const save = makeKeyDefinition(opts); //event on 's' key
 
