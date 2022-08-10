@@ -9,11 +9,11 @@ import {
 } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import { SearchTool } from "@kws3/ui";
+import { SearchInput } from "@kws3/ui";
 import { products_reviews } from "./data.js";
-import SearchToolDecorator from "./SearchTool.svelte";
+import SearchInputDecorator from "./SearchInput.svelte";
 import { action } from "@storybook/addon-actions";
-import playInteractions from "./searchtool.play.js";
+import playInteractions from "./searchinput.play.js";
 
 export let args = {
   style: "",
@@ -33,8 +33,8 @@ export let args = {
 <Version />
 
 <Meta
-  title="Forms/SearchTool/SearchTool"
-  component={SearchTool}
+  title="Forms/SearchInput"
+  component={SearchInput}
   args={args}
   argTypes={{
     color: {
@@ -51,21 +51,21 @@ export let args = {
 
 <Description
   markdown={dedent`
-# SearchTool
+# SearchInput
 ## An Input component that supports search on multiple properties.
 `}
 />
 
 <Canvas>
-  <Story name="SearchTool" args={args} play={playInteractions}>
+  <Story name="SearchInput" args={args} play={playInteractions}>
     {(args) => ({
-      Component: SearchToolDecorator,
+      Component: SearchInputDecorator,
       props: args,
     })}
   </Story>
 </Canvas>
 
-<ArgsTable story="SearchTool" />
+<ArgsTable story="SearchInput" />
 <div class="notification is-primary is-light">
   <div class="columns">
     <div class="column">
@@ -96,5 +96,5 @@ export let args = {
 
 <Source
   language="javascript"
-  code={dedent`import { SearchTool } from '@kws3/ui';`}
+  code={dedent`import { SearchInput } from '@kws3/ui';`}
 />

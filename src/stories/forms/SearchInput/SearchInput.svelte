@@ -1,6 +1,6 @@
 <div class="columns">
   <div class="column">
-    <KwsSearchTool
+    <KwsSearchInput
       {size}
       {color}
       {searchableKeys}
@@ -15,7 +15,7 @@
       {readonly} />
   </div>
 </div>
-<div class="columns searchtool-examples">
+<div class="columns searchinput-examples">
   <div class="column">
     <h3 class="title is-4">Reviews ({options.length})</h3>
     {#each options as { review }}
@@ -43,7 +43,7 @@
 </div>
 
 <script>
-  import { SearchTool as KwsSearchTool, Notification } from "@kws3/ui";
+  import { SearchInput as KwsSearchInput, Notification } from "@kws3/ui";
 
   export let size = "",
     color = "",
