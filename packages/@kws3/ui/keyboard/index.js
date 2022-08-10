@@ -29,6 +29,8 @@ export var downarrow = makeKeyDefinition(40);
 export var uparrow = makeKeyDefinition(38);
 export var backspace = makeKeyDefinition(8);
 export var del = makeKeyDefinition(46);
+export var alt = makeKeyDefinition(18);
+export var ctrl = makeKeyDefinition(17);
 
 export default {
   enter,
@@ -41,4 +43,6 @@ export default {
   uparrow,
   backspace,
   del,
+  alt,
+  ctrl,
 };
