@@ -5,7 +5,7 @@
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
   @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
   @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
-  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [family=""] - Icon family, can be modified globally in framework settings
+  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [family=""] - Icon family, can be modified globally in framework settings
 
 Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   @param {string} [style=""] - Inline CSS for icon container, Default: `""`
@@ -18,7 +18,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 <span class="icon is-{size} has-text-{color} {klass}" {style}>
   <i
     class="icon-i {familyClass}{icon} {internal_size} {inner_class}"
-    style={inner_style} />
+    style={inner_style}>{inner_icon}</i>
 </span>
 
 <style>
@@ -47,6 +47,19 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   .icon .uil.fa-3x {
     font-size: 3em;
   }
+
+  .icon .material-icons {
+    font-size: 1.25em;
+  }
+  .icon .material-icons.fa-lg {
+    font-size: 1.5em;
+  }
+  .icon .material-icons.fa-2x {
+    font-size: 2em;
+  }
+  .icon .material-icons.fa-3x {
+    font-size: 3em;
+  }
 </style>
 
 <script>
@@ -70,7 +83,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
      * Icon family, can be modified globally in framework settings
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
-     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}
+     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
      */
     family = "",
     /**
@@ -97,6 +110,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
     internal_size,
     usedFamily;
 
+  $: inner_icon = family === "material" ? icon : "";
   $: {
     usedFamily =
       family && family !== "" ? family : globalFamily ? globalFamily : "fa";
@@ -116,6 +130,9 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
         break;
       case "unicons":
         familyClass = "uil uil-";
+        break;
+      case "material":
+        familyClass = "material-icons ";
         break;
       default:
         familyClass = "fa fa-";
