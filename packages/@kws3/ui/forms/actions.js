@@ -91,12 +91,13 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
             }
           }
           //respond reactively to props
+          /** @type {any} */
           const visibleInput = picker.input.nextSibling;
           if (visibleInput) {
-            visibleInput["className"] = `input is-${color} ${klass}`;
-            visibleInput["style"] = `${style}`;
-            visibleInput["disabled"] = disabled;
-            visibleInput["placeholder"] = placeholder;
+            visibleInput.className = `input is-${color} ${klass}`;
+            visibleInput.style = `${style}`;
+            visibleInput.disabled = disabled;
+            visibleInput.placeholder = placeholder;
           }
         }
       },
