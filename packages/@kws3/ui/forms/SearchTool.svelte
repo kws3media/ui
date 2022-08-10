@@ -125,10 +125,10 @@
     }
 
     if (word_match) {
-      orginalItems = [...options];
-      orginalItems.forEach((item, i) => {
+      options.forEach((item, i) => {
         item._uid = i;
       });
+      orginalItems = [...options];
     } else {
       orginalItems = [...options];
     }
