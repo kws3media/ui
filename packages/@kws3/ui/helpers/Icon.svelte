@@ -132,7 +132,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
         familyClass = "uil uil-";
         break;
       case "material":
-        familyClass = "material-icons ";
+        familyClass = "material-icons material-symbols-outlined ";
         break;
       default:
         familyClass = "fa fa-";
