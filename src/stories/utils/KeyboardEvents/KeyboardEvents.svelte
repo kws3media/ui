@@ -6,7 +6,7 @@
         <p>{keys}</p>
         <p>
           <input
-            type="tex"
+            type="text"
             use:enter={(event) => {
               eventSent(event, "Enter");
             }}
