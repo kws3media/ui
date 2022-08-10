@@ -2,22 +2,21 @@
 import { fuzzy } from "../internal";
 
 /**
- * Used to filter the object
- * @param {object} opts - contains search options and fuzzy lib options
- * @param {string} opts.search_key - which key to perform search on.
- * @param {number} opts.scoreThreshold - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
- *
- * @param {object} opts.fuzzyOpts - fuzzy match options
- * @param {boolean} opts.fuzzyOpts.analyzeSubTerms -  Whether or not analyze sub-terms, default false
- * @param {number} opts.fuzzyOpts.analyzeSubTermDepth - How many sub terms should be analyzed , default 10
- *
- * @param {object} opts.fuzzyOpts.highlighting - markup
- * @param {string} opts.fuzzyOpts.highlighting.after, -  markup to add after matched character, default '</em>'
- * @param {string} opts.fuzzyOpts.highlighting.before -  markup to add before matched character, default '<em>'
- *
+ * @typedef {object} SearchOptions - contains search options and fuzzy lib options
+ * @property {string} search_key - which key to perform search on.
+ * @property {number} scoreThreshold - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+ * @property {object} fuzzyOpts - fuzzy match options
+ * @property {boolean} fuzzyOpts.analyzeSubTerms -  Whether or not analyze sub-terms, default false
+ * @property {number} fuzzyOpts.analyzeSubTermDepth - How many sub terms should be analyzed , default 10
+ * @property {object} fuzzyOpts.highlighting - markup
+ * @property {string} fuzzyOpts.highlighting.after, -  markup to add after matched character, default '</em>'
+ * @property {string} fuzzyOpts.highlighting.before -  markup to add before matched character, default '<em>'
+ */
+
+/**
  * @return {function} Return function take params `needle` and `haystack`.
  */
-export function makeSearchEngine(opts) {
+export function makeSearchEngine(/**@type {SearchOptions}*/ opts) {
   let search_key = defaultValue(opts, "search_key", "value");
   let scoreThreshold = defaultValue(opts, "scoreThreshold", 5);
   let fuzzyOpts = opts.fuzzyOpts ? opts.fuzzyOpts : {};
