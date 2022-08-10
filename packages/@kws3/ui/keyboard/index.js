@@ -1,10 +1,27 @@
 //@ts-check
-export function makeKeyDefinition(code) {
+export function makeKeyDefinition(opts) {
+  let code = opts;
+  let metaKey = false;
+  let key = null;
+
+  if (typeof opts === "object") {
+    metaKey = true;
+    code = opts.code;
+    key = opts.key;
+  }
+
   return function (node, fire) {
     function keydownHandler(event) {
       var which = event.which || event.keyCode;
+      let valid = false;
 
-      if (which === code) {
+      if (metaKey === event.metaKey && key === event.key) {
+        valid = true;
+      } else if (!metaKey && which === code) {
+        valid = true;
+      }
+
+      if (valid) {
         fire(event);
       }
     }
@@ -29,8 +46,12 @@ export var downarrow = makeKeyDefinition(40);
 export var uparrow = makeKeyDefinition(38);
 export var backspace = makeKeyDefinition(8);
 export var del = makeKeyDefinition(46);
-export var alt = makeKeyDefinition(18);
-export var ctrl = makeKeyDefinition(17);
+export var ctrl = (key) => {
+  return makeKeyDefinition({
+    code: 17,
+    key: key,
+  });
+};
 
 export default {
   enter,
@@ -43,6 +64,5 @@ export default {
   uparrow,
   backspace,
   del,
-  alt,
   ctrl,
 };
