@@ -1,5 +1,5 @@
 //@ts-check
-function makeKeyDefinition(code) {
+export function makeKeyDefinition(code) {
   return function (node, fire) {
     function keydownHandler(event) {
       var which = event.which || event.keyCode;
