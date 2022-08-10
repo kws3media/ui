@@ -56,7 +56,6 @@
   import { Icon as KwsIcon } from "@kws3/ui";
   export let size = "",
     color = "",
-    icon = "",
     style = "",
     inner_class = "",
     inner_style = "",
