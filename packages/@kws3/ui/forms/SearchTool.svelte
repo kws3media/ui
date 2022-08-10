@@ -125,10 +125,10 @@
     }
 
     if (word_match) {
-      options.forEach((item, i) => {
-        item.uid = i;
-      });
       orginalItems = [...options];
+      orginalItems.forEach((item, i) => {
+        item._uid = i;
+      });
     } else {
       orginalItems = [...options];
     }
@@ -159,7 +159,7 @@
 
       result = Object.values(cache) // get values from cache
         .flat()
-        .filter((v, i, self) => i === self.findIndex((t) => t.uid === v.uid)); // flatten array
+        .filter((v, i, self) => i === self.findIndex((t) => t._uid === v._uid)); // flatten array
     } else {
       result = fuzzysearch(keywords, orginalItems, fuzzy_opts);
     }
