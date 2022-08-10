@@ -46,7 +46,7 @@
   import { Icon } from "@kws3/ui";
   import { debounce } from "@kws3/ui/utils";
   import { onDestroy, onMount } from "svelte";
-  import { fuzzysearch } from "../utils/fuzzysearch";
+  import { makeSearchEngine } from "@kws3/ui/search";
 
   /**
    * Size of the input
@@ -103,7 +103,8 @@
 
   let keywords = "",
     orginalItems = [],
-    fuzzyOpts = {}; // fuzzy.js lib options
+    fuzzyOpts = {}, // fuzzy.js lib options
+    fuzzysearch = null;
 
   const debouncedSearch = debounce(search, 300);
 
@@ -124,6 +125,14 @@
       fuzzyOpts.highlighting.after = "</span>";
     }
 
+    let searchOptions = {
+      search_key: searchableKeys,
+      scoreThreshold,
+      fuzzyOpts,
+    };
+
+    fuzzysearch = makeSearchEngine(searchOptions);
+
     if (word_match) {
       options.forEach((item, i) => {
         item._uid = i;
@@ -141,19 +150,15 @@
       reset();
       return;
     }
-    let result = [],
-      fuzzy_opts = {
-        search_key: searchableKeys,
-        scoreThreshold,
-        fuzzyOpts,
-      };
+    let result = [];
+
     if (word_match) {
       let cache = {},
         filters = sanitizeValue(keywords);
       filters.forEach((word, idx) => {
         // iterate over each word in the search query
         let opts = [];
-        if (word) opts = fuzzysearch(word, orginalItems, fuzzy_opts);
+        if (word) opts = fuzzysearch(keywords, orginalItems);
         cache[idx] = opts; // storing options to current index on cache
       });
 
@@ -161,7 +166,7 @@
         .flat()
         .filter((v, i, self) => i === self.findIndex((t) => t._uid === v._uid)); // flatten array
     } else {
-      result = fuzzysearch(keywords, orginalItems, fuzzy_opts);
+      result = fuzzysearch(keywords, orginalItems);
     }
     options = result;
   }
