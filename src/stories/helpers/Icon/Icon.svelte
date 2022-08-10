@@ -3,7 +3,7 @@
     <KwsIcon
       {size}
       {color}
-      icon="bookmark"
+      {icon}
       {style}
       {inner_class}
       {inner_style}
@@ -57,6 +57,7 @@
   export let size = "",
     color = "",
     style = "",
+    icon = "",
     inner_class = "",
     inner_style = "",
     family = "";
