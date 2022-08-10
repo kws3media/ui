@@ -142,7 +142,18 @@ import { keyboardEvents } from "@kws3/ui/keyboard";
 keyboardEvents(node);
 ```
 
-## 12. currency
+## 12. makeKeyDefinition
+
+The `makeKeyDefinition` is factory helper to create custom keydownHandler events.
+
+#### Usage
+
+```js
+import {makeKeyDefinition} from "@kws3/ui/keyboard";
+const save = makeKeyDefinition(keyCode) 
+```
+
+## 13. currency
 
 The `currency` Returns currency format.
 
@@ -153,7 +164,7 @@ import { currency } from "@kws3/ui/utils";
 currency(number);
 ```
 
-## 13. dateToOrdinal
+## 14. dateToOrdinal
 
 The `dateToOrdinal` converts date to ordinal.
 
@@ -164,7 +175,7 @@ import { dateToOrdinal } from "@kws3/ui/utils";
 dateToOrdinal(number);
 ```
 
-## 14. randomIntegerFromInterval
+## 15. randomIntegerFromInterval
 
 The `randomIntegerFromInterval` returns random integer.
 
@@ -175,7 +186,7 @@ import { randomIntegerFromInterval } from "@kws3/ui/utils";
 randomIntegerFromInterval(min, max);
 ```
 
-## 15. randomPercent
+## 16. randomPercent
 
 The `randomPercent` returns random percentage. Default value for `min` and `max` are `1` & `100` respectively.
 
@@ -188,7 +199,7 @@ randomPercent(min);
 randomPercent();
 ```
 
-## 16. fileDownloader
+## 17. fileDownloader
 
 Function used to download data/stream..
 

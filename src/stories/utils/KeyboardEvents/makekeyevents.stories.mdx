@@ -17,8 +17,14 @@ code : `type: Number` Key code
 **Returns:**
 Function take params, node :`type : DOM Element` and event : `type: function`.
 
-**Example:**
+#### Usage
 
+```js
+import {makeKeyDefinition} from "@kws3/ui/keyboard";
+const save = makeKeyDefinition(keyCode) 
+```
+
+**Example:**
 ```html
 <input type="text" use:save={saveEvent} />
 <script>
