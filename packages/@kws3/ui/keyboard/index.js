@@ -1,7 +1,7 @@
 //@ts-check
 const eventKeyModifierProps = {
   17: "metaKey",
-  18: "shiftKey",
+  16: "shiftKey",
 };
 export function makeKeyDefinition(opts) {
   let code = opts;
