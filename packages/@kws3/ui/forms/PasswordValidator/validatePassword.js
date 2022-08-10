@@ -5,11 +5,28 @@ export default function (password, options) {
     overall: false,
   };
 
+  /**
+   * @typedef {object} ValidationOption
+   * @property {string} name
+   * @property {string} text
+   * @property {string} identifier
+   * @property {RegExp} regex
+   * @property {boolean} passed
+   * @property {boolean} active
+   * @property {number} [value]
+   * @property {boolean} [negate]
+   */
+
   result.items = (options || []).slice().map((_opt) => {
+    /** @type {ValidationOption} */
     const opt = Object.assign({}, _opt);
     if (opt && opt.active) {
       if (opt.name === "kws_pv_min_length") {
-        if (password && password.length >= opt.value) {
+        if (
+          typeof opt.value != "undefined" &&
+          password &&
+          password.length >= opt.value
+        ) {
           opt.passed = true;
         }
       } else {
@@ -25,7 +42,8 @@ export default function (password, options) {
   });
 
   result.overall =
-    result.items.filter((el) => el["passed"]).length === result.items.length;
+    result.items.filter((/** @type {ValidationOption} */ el) => el.passed)
+      .length === result.items.length;
 
   return result;
 }
