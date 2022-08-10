@@ -14,9 +14,10 @@ import { fuzzy } from "../internal";
  */
 
 /**
+ * @param {SearchOptions} opts
  * @return {function} Return function take params `needle` and `haystack`.
  */
-export function makeSearchEngine(/**@type {SearchOptions}*/ opts) {
+export function makeSearchEngine(opts) {
   let search_key = defaultValue(opts, "search_key", "value");
   let scoreThreshold = defaultValue(opts, "scoreThreshold", 5);
   let fuzzyOpts = opts.fuzzyOpts ? opts.fuzzyOpts : {};
