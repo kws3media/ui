@@ -18,6 +18,6 @@ export type ValidatePasswordOptions = {
   regex: RegExp;
   passed: boolean;
   active: boolean;
-  value: number;
-  negate: boolean;
+  value?: string;
+  negate?: boolean;
 };
