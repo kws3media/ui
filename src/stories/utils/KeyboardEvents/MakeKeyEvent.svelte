@@ -8,8 +8,11 @@
         <p>
           <input
             type="text"
-            use:save={(event) => {
-              saveEvent(event, "Save");
+            use:ctrlAltC={(event) => {
+              eventOne(event, "Save");
+            }}
+            use:AltF8={(event) => {
+              eventTwo(event, "Save");
             }}
             class="input" />
         </p>
@@ -26,10 +29,14 @@
     code: 17, //ctrl
     key: "s",
   };
-  const save = makeKeyDefinition(opts); //event on 's' key
+  const ctrlAltC = makeKeyDefinition("ctrl+alt+c");
+  const AltF8 = makeKeyDefinition("alt+F8");
 
   let eventText = "";
-  function saveEvent(event, key) {
-    eventText = key + " Pressed";
+  function eventOne(event) {
+    eventText = " ctrl+alt+c Pressed";
+  }
+  function eventTwo(event) {
+    eventText = " alt+F8 Pressed";
   }
 </script>
