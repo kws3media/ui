@@ -1,0 +1,46 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import MakeKeyEvent from "./MakeKeyEvent.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/KeyboardEvents/2. Create Key Events" />
+
+### makeKeyDefinition
+
+The `makeKeyDefinition` is factory helper to create custom keydownHandler events. 
+Key combination can be made with any modifier keys from `Shift`, `Ctrl`, `Alt`, `Meta` with characters, numbers or function keys.
+
+**Parameters:**
+code : `type: Number` Key combination
+
+**Returns:**
+Function take params, node :`type : DOM Element` and event : `type: function`.
+
+#### Usage
+
+```js
+import {makeKeyDefinition} from "@kws3/ui/keyboard";
+const save = makeKeyDefinition(keyCombination) 
+```
+
+**Example:**
+```html
+<input type="text" use:ctrlAltC={(event) => {eventKeyPressed(event, "ctrl+alt+c");}} />
+<script>
+  import {makeKeyDefinition} from "@kws3/ui/keyboard";
+
+  const ctrlAltC = makeKeyDefinition("ctrl+alt+c");
+
+  function eventKeyPressed(event, key) {
+    eventText = key + " Pressed";
+  }
+</script>
+```
+
+<Story name="2. Create Key Events" args={{}}>
+  {(args) => ({
+    Component: MakeKeyEvent,
+  })}
+</Story>

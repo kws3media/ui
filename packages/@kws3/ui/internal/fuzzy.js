@@ -1,3 +1,4 @@
+//@ts-check
 /**
  * fuzzy.js v0.1.0
  * (c) 2016 Ben Ripkens
@@ -36,7 +37,7 @@
  * This can be configured through opts.analyzeSubTermDepth = 10.
  */
 
-export default function fuzzy(term, query, opts = {}) {
+export function fuzzy(term, query, opts = {}) {
   let analyzeSubTerms = opts.analyzeSubTerms ? opts.analyzeSubTerms : false;
   let analyzeSubTermDepth = opts.analyzeSubTermDepth
     ? opts.analyzeSubTermDepth

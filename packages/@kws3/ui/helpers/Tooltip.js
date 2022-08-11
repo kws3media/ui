@@ -1,3 +1,4 @@
+//@ts-check
 import tippy, { delegate } from "tippy.js";
 
 /**

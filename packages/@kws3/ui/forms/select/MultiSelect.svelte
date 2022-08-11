@@ -178,8 +178,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
   import { createPopper } from "@popperjs/core";
-  import { fuzzysearch } from "../../utils/fuzzysearch";
-  import { scrollIntoActiveElelement } from "../../utils/scrollIntoActiveElelement";
+  import { makeSearchEngine } from "@kws3/ui/search";
+  import { scrollIntoActiveElement } from "../../internal";
 
   const sameWidthPopperModifier = {
     name: "sameWidth",
@@ -347,6 +347,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       preventSelect: false, //prevent select by mouse when up or down key is pressed
     },
     fuzzyOpts = {}, // fuzzy.js lib options
+    fuzzysearch = null,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
     selectedOptions = [], //list of options that are selected
@@ -515,6 +516,12 @@ Default value: `<span>{option[search_key] || option}</span>`
           before: "",
         },
       };
+      let searchOptions = {
+        search_key: used_search_key,
+        scoreThreshold,
+        fuzzyOpts,
+      };
+      fuzzysearch = makeSearchEngine(searchOptions);
     }
 
     //normalize value for single versus multiselect
@@ -669,7 +676,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         if (dropdown) {
           mouseTracker.preventSelect = true;
           let activeElem = dropdown.querySelector(".active");
-          scrollIntoActiveElelement(dropdown, activeElem);
+          scrollIntoActiveElement(dropdown, activeElem);
         }
       });
     } else if (event.key === `Backspace`) {
@@ -763,11 +770,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       return;
     }
     if (options.length) {
-      let result = fuzzysearch(filter, options, {
-        search_key: used_search_key,
-        scoreThreshold,
-        fuzzyOpts,
-      });
+      let result = fuzzysearch(filter, options);
       filteredOptions = result;
     }
   }

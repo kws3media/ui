@@ -87,9 +87,9 @@ For internal use only - not part of config object, Default: `""`
 
 <script>
   import { tick, onMount, createEventDispatcher } from "svelte";
-  import { Icon } from "@kws3/ui";
-  import { CardModal } from "@kws3/ui";
-  import { isEnterKey, isEscKey, capitaliseFirstLetter } from "@kws3/ui/utils";
+  import { Icon, CardModal } from "@kws3/ui";
+  import { capitaliseFirstLetter } from "@kws3/ui/utils";
+  import { isEnterKey, isEscKey } from "../../internal";
 
   const fire = createEventDispatcher();
 
