@@ -87,7 +87,7 @@
     placeholder = "Choose a Brand...",
     selected_brand = "", // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = "Blackberry";
+    selected_brand_string = "BlackBerry";
 
   let klass = "";
   export { klass as class };
