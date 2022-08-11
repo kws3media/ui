@@ -103,14 +103,17 @@ export function makeKeyDefinition(definition) {
 
   return function (node, fire) {
     function keydownHandler(event) {
-      console.log(event);
+      event.preventDefault();
       let firedCount = 0;
       let which = event.which || event.keyCode;
       keys.forEach((key) => {
         if (event[ctrlKeys[key]]) {
           firedCount++;
         }
-        if (key === event.key) {
+        if (
+          key === event.key ||
+          ("key" + key).toLowerCase() === event.code.toLowerCase()
+        ) {
           firedCount++;
         }
         if (key === which) {
