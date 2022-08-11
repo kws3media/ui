@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "checkJs": true,
+    "paths": {
+      "@kws3/*": ["./packages/@kws3/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "typeAcquisition": {
+    "include": ["svelte"]
+  }
+}
