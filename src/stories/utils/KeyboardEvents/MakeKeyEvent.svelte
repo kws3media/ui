@@ -6,19 +6,19 @@
           >Use following key combinations to check custom key events:</label>
         <p>
           <code>Ctrl + Alt + c</code>, <code>Alt + F8</code>,
-          <code>Meta + k</code>, <code>Shift + x</code>
+          <code>Meta + Shift + k</code>, <code>Shift + x</code>
         </p>
         <p>
           <input
             type="text"
-            use:ctrlAltC={(event) => {
+            use:CtrlAltC={(event) => {
               eventKeyPressed(event, "`Ctrl + Alt + c`");
             }}
             use:AltF8={(event) => {
               eventKeyPressed(event, "`Alt + F8`");
             }}
-            use:MetaD={(event) => {
-              eventKeyPressed(event, "`Meta + k`");
+            use:MetaShiftK={(event) => {
+              eventKeyPressed(event, "`Meta + Shift + k`");
             }}
             use:ShiftX={(event) => {
               eventKeyPressed(event, "`Shift + x`");
@@ -34,9 +34,9 @@
 <script>
   import { makeKeyDefinition } from "@kws3/ui/keyboard";
 
-  const ctrlAltC = makeKeyDefinition("ctrl+alt+c");
+  const CtrlAltC = makeKeyDefinition("ctrl+alt+c");
   const AltF8 = makeKeyDefinition("alt+F8");
-  const MetaD = makeKeyDefinition("meta+k");
+  const MetaShiftK = makeKeyDefinition("meta+shift+k");
   const ShiftX = makeKeyDefinition("shift+x");
 
   let eventText = "";
