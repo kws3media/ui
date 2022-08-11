@@ -3,16 +3,25 @@
     <div class="column">
       <div class="field">
         <label for=""
-          >Use <code>Ctrl + S</code> key to fire <code>save</code>
-          event</label>
+          >Use following key combinations to check custom key events:</label>
+        <p>
+          <code>Ctrl + Alt + c</code>, <code>Alt + F8</code>,
+          <code>Meta + d</code>, <code>Shift + x</code>
+        </p>
         <p>
           <input
             type="text"
             use:ctrlAltC={(event) => {
-              eventOne(event, "Save");
+              eventKeyPressed(event, "`Ctrl + Alt + c`");
             }}
             use:AltF8={(event) => {
-              eventTwo(event, "Save");
+              eventKeyPressed(event, "`Alt + F8`");
+            }}
+            use:MetaD={(event) => {
+              eventKeyPressed(event, "`Meta + d`");
+            }}
+            use:ShiftX={(event) => {
+              eventKeyPressed(event, "`Shift + x`");
             }}
             class="input" />
         </p>
@@ -25,18 +34,13 @@
 <script>
   import { makeKeyDefinition } from "@kws3/ui/keyboard";
 
-  let opts = {
-    code: 17, //ctrl
-    key: "s",
-  };
   const ctrlAltC = makeKeyDefinition("ctrl+alt+c");
   const AltF8 = makeKeyDefinition("alt+F8");
+  const MetaD = makeKeyDefinition("meta+D");
+  const ShiftX = makeKeyDefinition("shift+x");
 
   let eventText = "";
-  function eventOne(event) {
-    eventText = " ctrl+alt+c Pressed";
-  }
-  function eventTwo(event) {
-    eventText = " alt+F8 Pressed";
+  function eventKeyPressed(event, key) {
+    eventText = key + " Pressed";
   }
 </script>
