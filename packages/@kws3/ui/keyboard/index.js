@@ -1,10 +1,23 @@
+//@ts-nocheck
 const ctrlKeys = {
   ctrl: "ctrlKey",
   meta: "metaKey",
   shift: "shiftKey",
   alt: "altKey",
 };
-export function makeKeyDefinition(definition) {
+const NAVIGATOR = window.navigator;
+
+export function makeKeyDefinition(definition, allowMac = false) {
+  if (allowMac) {
+    let isMac = /mac/i.test(
+      NAVIGATOR.userAgentData
+        ? NAVIGATOR.userAgentData.platform
+        : NAVIGATOR.platform
+    );
+    if (isMac) {
+      definition = definition.replace("ctrl", "meta");
+    }
+  }
   let keys = Number.isInteger(definition)
     ? [definition]
     : definition.split("+");
