@@ -1,4 +1,3 @@
-//@ts-check
 export default function (password, options) {
   const result = {
     items: [],

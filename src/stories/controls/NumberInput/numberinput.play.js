@@ -1,4 +1,3 @@
-//@ts-check
 import { expect } from "@storybook/jest";
 // eslint-disable-next-line no-unused-vars
 import { within, userEvent, waitFor } from "@storybook/testing-library";

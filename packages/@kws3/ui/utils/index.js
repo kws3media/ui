@@ -1,5 +1,3 @@
-//@ts-check
-
 /**
  * Truncate a string.
  * @param {string} [str=""] - String to truncate, Default: `""`

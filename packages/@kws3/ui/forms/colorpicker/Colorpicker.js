@@ -1,4 +1,3 @@
-//@ts-check
 export default (function (win, doc) {
   var CP,
     instance = "__instance__",

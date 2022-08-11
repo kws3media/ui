@@ -1,4 +1,3 @@
-//@ts-check
 /**
  * fuzzy.js v0.1.0
  * (c) 2016 Ben Ripkens

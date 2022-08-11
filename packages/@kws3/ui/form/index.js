@@ -1,4 +1,3 @@
-//@ts-check
 import { cloneObject } from "../utils/index";
 import { derived, get, writable } from "svelte/store";
 

@@ -1,4 +1,3 @@
-//@ts-check
 const ctrlKeys = {
   ctrl: "ctrlKey",
   meta: "metaKey",
