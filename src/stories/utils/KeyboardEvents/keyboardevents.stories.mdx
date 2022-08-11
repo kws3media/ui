@@ -9,10 +9,10 @@ import KeyboardEvents from "./KeyboardEvents.svelte";
 
 ### keyboardEvents
 
-The `keyboardEvents` used to trigger the events based on the key stroke.
+The `keyboard` package used to trigger the events based on the key stroke.
 
 **Available Events:**
-`enter`, `tab`, `escape`, `space`, `leftarrow`, `rightarrow`, `downarrow`, `uparrow`, `backspace`, `del`, `shift + {key}`, `ctrl + {key}`
+`enter`, `tab`, `escape`, `space`, `leftarrow`, `rightarrow`, `downarrow`, `uparrow`, `backspace`, `del`
 
 **Usage Example:**
 
@@ -27,16 +27,7 @@ The `keyboardEvents` used to trigger the events based on the key stroke.
 <script>
   import {
     enter,
-    tab,
-    escape,
-    space,
-    leftarrow,
-    rightarrow,
-    downarrow,
-    uparrow,
-    backspace,
-    del,
-    ctrl
+    tab
   } from "@kws3/ui/keyboard";
 
   function enterEvent() {

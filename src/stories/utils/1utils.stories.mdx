@@ -133,7 +133,7 @@ fuzzysearch(needle, haystack);
 
 ## 11. keyboardEvents
 
-The `keyboardEvents` used to trigger the events based on the key stroke.
+The `keyboard` package used to trigger the events based on the key stroke.
 
 #### Usage
 
@@ -145,12 +145,13 @@ keyboardEvents(node);
 ## 12. makeKeyDefinition
 
 The `makeKeyDefinition` is factory helper to create custom keydownHandler events.
+Key combination can be made with any modifier keys from `Shift`, `Ctrl`, `Alt`, `Meta` with characters, numbers or function keys.
 
 #### Usage
 
 ```js
 import {makeKeyDefinition} from "@kws3/ui/keyboard";
-const save = makeKeyDefinition(keyCode) 
+const save = makeKeyDefinition(keyCombination) 
 ```
 
 ## 13. currency
