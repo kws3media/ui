@@ -6,7 +6,7 @@
           >Use following key combinations to check custom key events:</label>
         <p>
           <code>Ctrl + Alt + c</code>, <code>Alt + F8</code>,
-          <code>Meta + k</code>, <code>Shift + x</code>
+          <code>Meta + Shift + k</code>, <code>Shift + x</code>
         </p>
         <p>
           <input
@@ -18,7 +18,7 @@
               eventKeyPressed(event, "`Alt + F8`");
             }}
             use:MetaD={(event) => {
-              eventKeyPressed(event, "`Meta + k`");
+              eventKeyPressed(event, "`Meta + Shift + k`");
             }}
             use:ShiftX={(event) => {
               eventKeyPressed(event, "`Shift + x`");
@@ -36,7 +36,7 @@
 
   const ctrlAltC = makeKeyDefinition("ctrl+alt+c");
   const AltF8 = makeKeyDefinition("alt+F8");
-  const MetaD = makeKeyDefinition("meta+k");
+  const MetaD = makeKeyDefinition("meta+shift+k");
   const ShiftX = makeKeyDefinition("shift+x");
 
   let eventText = "";
