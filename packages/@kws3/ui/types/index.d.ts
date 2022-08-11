@@ -10,3 +10,14 @@ export type SearchOptions = {
     }
   }
 }
+
+export type ValidatePasswordOptions = {
+  name: string,
+  text: string,
+  identifier: string,
+  regex: RegExp,
+  passed: boolean
+  active: boolean
+  value: number
+  negate: boolean
+}
