@@ -2,20 +2,12 @@
 import { fuzzy } from "../internal";
 
 /**
- * @typedef {object} SearchOptions - contains search options and fuzzy lib options
- * @property {string} search_key - which key to perform search on.
- * @property {number} scoreThreshold - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
- * @property {object} fuzzyOpts - fuzzy match options
- * @property {boolean} fuzzyOpts.analyzeSubTerms -  Whether or not analyze sub-terms, default false
- * @property {number} fuzzyOpts.analyzeSubTermDepth - How many sub terms should be analyzed , default 10
- * @property {object} fuzzyOpts.highlighting - markup
- * @property {string} fuzzyOpts.highlighting.after, -  markup to add after matched character, default '</em>'
- * @property {string} fuzzyOpts.highlighting.before -  markup to add before matched character, default '<em>'
+ * @typedef {import('@kws3/ui/types').SearchOptions} SearchOptions - contains search options and fuzzy lib options
  */
 
 /**
  * @param {SearchOptions} opts
- * @return {function} Return function take params `needle` and `haystack`.
+ * @returns {function} Return function take params `needle` and `haystack`.
  */
 export function makeSearchEngine(opts) {
   let search_key = defaultValue(opts, "search_key", "value");
