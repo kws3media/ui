@@ -9,18 +9,19 @@ import SmartForms from "./SmartForms.svelte";
 
 ### SmartForms
 
-The `makeForm`, `makeForms` helpers used for tracking form data is dirty or not.
+The `makeForms` helper used for tracking form data is dirty or not.
 
 **Example:**
 
-    
 ```js
 <form>
   <input class="{$errors.email ? 'is-danger' : ''}" bind:value={$data.email} />;
-  <input class="{$errors.password ? 'is-danger' : ''}" bind:value={$data.password}/>;
-  <button disabled={!$isValid}>Submit</button>;
+  <input
+    class="{$errors.password ? 'is-danger' : ''}"
+    bind:value={$data.password}
+  />;<button disabled={!$isValid}>Submit</button>;
 </form>;
-import { makeForm, notEmpty, withMsg } from "@kws3/ui/form";
+import { makeForms, notEmpty, withMsg } from "@kws3/ui/form";
 
 let form;
 let data;
@@ -34,13 +35,13 @@ let validators = {
 
 $: load();
 
-function load(){
-  form = makeForm({
+function load() {
+  form = makeForms({
     data: {
       email: "",
       password: "",
     },
-    validators
+    validators,
   });
   data = form.formData;
   errors = form.errors;
@@ -48,7 +49,6 @@ function load(){
   isTouched = form.isTouched;
 }
 ```
-
 
 <Story name="SmartForms" args={{}}>
   {(args) => ({

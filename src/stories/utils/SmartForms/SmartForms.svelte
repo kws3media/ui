@@ -36,7 +36,7 @@
 </div>
 
 <script>
-  import { makeForm, notEmpty, withMsg } from "@kws3/ui/form";
+  import { makeForms, notEmpty, withMsg } from "@kws3/ui/form";
 
   let form;
   let data;
@@ -51,7 +51,7 @@
   $: load();
 
   function load() {
-    form = makeForm({
+    form = makeForms({
       data: {
         email: "",
         password: "",

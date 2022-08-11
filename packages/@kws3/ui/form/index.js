@@ -2,7 +2,20 @@
 import { cloneObject } from "../utils/index";
 import { derived, get, writable } from "svelte/store";
 
-const makeForm = (config) => {
+const makeForms = (items) => {
+  var res = Array.isArray(items);
+  if (!res) {
+    return formMaker(items);
+  }
+
+  let ret = [];
+  if (items.length) {
+    items.forEach((item) => ret.push(formMaker(item)));
+  }
+  return ret;
+};
+
+const formMaker = (config) => {
   let data = config.data || {};
   let validators = config.validators || {};
   let strictMode = config.strictMode || false;
@@ -130,18 +143,10 @@ const makeForm = (config) => {
   };
 };
 
-const makeForms = (items) => {
-  let ret = [];
-  if (items.length) {
-    items.forEach((item) => ret.push(makeForm(item)));
-  }
-  return ret;
-};
-
 const notEmpty = (v) => v && v.trim() !== "";
 
 const noDigits = (v) => !/\d/.test(v);
 
 const withMsg = (msg, fn) => (v, otherFields) => fn(v, otherFields) ? "" : msg;
 
-export { makeForm, makeForms, notEmpty, noDigits, withMsg };
+export { makeForms, notEmpty, noDigits, withMsg };
