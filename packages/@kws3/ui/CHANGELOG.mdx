@@ -1,5 +1,4 @@
 ## UNRELEASED
-
 - Add support for custom CSS classes for the table in `GridView` component
 - Add support for displaying `GridView` table rows in a compact manner using `is_narrow` prop.
 - Vertically center all rows by default in `GridView`.
@@ -17,76 +16,63 @@
 - Expose factory functions `makeForm`, `makeForms` from `@kws3/ui/form`
 
 ## 1.9.3
-
 - Bug fix with fuzzy.js initial config hoisting
 
 ## 1.9.2
-
 - Bug fix with fuzzy.js and Vite prebundling
 - Debounce fuzzy searches
 - Expose `@kws3/ui/utils/fuzzysearch` as a reusable function
 
 ## 1.9.1
-
 - `SearchableSelect` and `MultiSelect`: match colors of dropdown area to theme color when dropdown area is inside a `Portal`
 - `AutoComplete`: match colors of dropdown area to theme color when dropdown area is inside a `Portal`
 
 ## 1.9.0
-
 - Use new fuzzy algorithm for `AutoComplete`,`MultiSelect` and `SearchableSelect` component
 - Add property `scoreThreshold` in `AutoComplete`,`MultiSelect` and `SearchableSelect` component to control search accuracy.
 - Bugfix: Keep `SubmitButton` disabled while it's not ready to submit yet
 
 ## 1.8.4
-
 - New `AutoComplete` component
 - Make options text size match the input `size` in `MultiSelect` and `SearchableSelect`.
 - Prevent default arrow up/down behaviour on `MultiSelect` and `SearchableSelect` when options dropdown is open.
 
 ## 1.8.3
-
 - Allow `clickableRows` and `bulk_actions` to work at the same time on `GridView`
 - Various bugfixes on `GridRow`
 - New `visualActivationOnClick` prop for `GridView` and `TileView`
 - Change the way click activation works on `GridView` and `TileView` rows. Now only one row can be activated at a time
 
 ## 1.8.2
-
 - Usability fixes for `NumberInput`
 - New `input_only`, `force_integer`, `style` and `class` props for `NumberInput`
 - Forward `focus`, `blur` input events for `NumberInput`
 - Use custom version of `fuzzysearch` for `SearchableSelect` and `MultiSelect`
 
 ## 1.8.1
-
 - New `ScrollableList` component
 
 ## 1.8.0
-
 - `Modal`, `CardModal` and `ActionSheet` components now play an outro transition instead of abruptly disappearing.
 - Usability fixes for `SearchableSelect` and `MultiSelect`.
 - `SearchableSelect` and `MultiSelect` now support loading options via an async function.
 - `SearchableSelect` and `MultiSelect` now match results using a fuzzy `search_strategy`. This can be changed to old behaviour by specifying `search_strategy="strict"`.
 
 ## 1.7.4
-
 - Update ApexCharts to version 3.33.2
 - Added support for subscribing to chart events
 - Added support for distributed bar charts using new `distributed` prop on `BarChart` component
 - Added examples for leveraging advanced chart features
 
 ## 1.7.3
-
 - Fix docs for `Popover`
 - Increase performance for `SlidingPane` by using ResizeObserver when available
 
 ## 1.7.2
-
 - `DatePicker` component: fix initialisation bug on mobile
 - `Pagination` component: rename property `breakThreshold` -> `maxVisiblePages` plus bugfix and documentation update
 
 ## 1.7.1
-
 - `Skeleton` component: Illustrate in example the use of empty string for `color` prop.
 - `Pagination` component: Deprecate `meta` prop. And use separate props for `offset`, `limit`, `count` and `total` instead.
 - `Pagination` component: Add methods `prev()`, `next()`, `first()`, `last()` and `goto(page)`.
@@ -95,79 +81,63 @@
 - Added linting rules for ESLint. And corrected all resulting issues.
 
 ## 1.7.0
-
 - Ensure uniform usage of `$kws-theme-colors` across all components, this means `$kws-theme-colors` can be independent of the global `$colors` SCSS variable.
 - `DataSearch` component: Expand filters to fill area when main search input is not present.
 - `DataSort` component: Increase click area for activating dropdown, and provide visual segementation between label and dropdown.
 - New `Skeleton` component.
 
 ## 1.6.9
-
 - New `Timeline`, `TimelineItem` and `TimelineHeader` components.
 
 ## 1.6.8
-
 - Vertically align `is-icon` cells in `Grid`
 
 ## 1.6.7
-
 - Added granular events `showing`, `shown`, `hiding` and `hidden` for `Popover`.
 - Added `is-checked` class on `Grid` when a row is checked using the multiselect checkboxes.
 - New colors for `is-checked` class on `Grid`
 
 ## 1.6.6
-
 - Enhance `Popover` with native `show` `hide` `enable` `disable` methods
 
 ## 1.6.5
-
 - Filter fix on `DataSearch`
 
 ## 1.6.4
-
 - Add support for `dropdown_portal` prop in `SearchableSelect`
 
 ## 1.6.3
-
 - Prevent submit call on `MultiSelect` when `Enter` key is pressed while searching
 - Fix filter items going blank after search is initiated in `DataSearch`
 
 ## 1.6.2
-
 - Add `dropdown_portal` prop on `MultiSelect` to allow rendering dropdown in alternative locations
 
 ## 1.6.1
-
 - New `Portal` component
 - Use `Portal` for `MultiSelect` and `SearchableSelect` components
 
 ## 1.6.0
-
 - Fix `DataSearch` responsiveness for mobile
 - Fix `Pagination` CSS for mobile
 - Fix `DataSort` responsiveness for mobile
 - Fix functionality of `DataSearch`
 
 ## 1.5.9
-
 - Fix `z-index` issue with `SearchableSelect`
 
 ## 1.5.8
-
 - Showing `undefined` on total in `Pagination`
 
 ## 1.5.7
-
 - Width calculation on `DataSearch`
 - More `text` validation `Nl2br`
 
 ## 1.5.6
-
 - Fix attribute of `MultiSelect`
 - Fix `text` checking on `Nl2br`
 
 ## 1.5.5
-
 - Added `BarChart`
 - Added `LineChart`
 - Added `AreaChart`
@@ -178,34 +148,25 @@
 - Fix error Handling in `MixedChart`
 
 ## 1.5.1
-
 - Chart bugfixes
 - Fix attribute of `NumberInput` for UI testing
 
 ## 1.5.0
-
 - Added `DonutChart`
 - Added `MixedChart`
 - Added `PieChart`
 
 ## 1.4.7
-
 - Fix value mismatch on `NumberInput`
 
 ## 1.4.6
-
 - Fix Typing bug on `NumberInput`
 
 ## 1.4.5
-
 - Fix **on:change** event on `NumberInput`
 
 ## 1.4.4
-
-- import  `Floatie`, `FloatingUIOutput`, `FloatiesStore` from `@kws3/ui` for `FloatingUIOutput
-
-  `
+- import  `Floatie`, `FloatingUIOutput`, `FloatiesStore` from `@kws3/ui` for `FloatingUIOutput`
 
 ## 1.4.3
-
 - Rename `completion_timeout` to `error_timeout` in `Buttons`
