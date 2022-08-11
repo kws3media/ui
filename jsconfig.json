@@ -3,7 +3,8 @@
     "module": "commonjs",
     "target": "es6",
     "checkJs": true,
-    "strictNullChecks": true,
+    "strict": true,
+    "noImplicitAny": false,
     "paths": {
       "@kws3/ui": ["./packages/@kws3/ui/index"],
       "@kws3/*": ["./packages/@kws3/*"]
