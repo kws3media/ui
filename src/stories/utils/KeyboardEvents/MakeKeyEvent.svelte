@@ -11,13 +11,13 @@
         <p>
           <input
             type="text"
-            use:ctrlAltC={(event) => {
+            use:CtrlAltC={(event) => {
               eventKeyPressed(event, "`Ctrl + Alt + c`");
             }}
             use:AltF8={(event) => {
               eventKeyPressed(event, "`Alt + F8`");
             }}
-            use:MetaD={(event) => {
+            use:MetaShiftK={(event) => {
               eventKeyPressed(event, "`Meta + Shift + k`");
             }}
             use:ShiftX={(event) => {
@@ -34,9 +34,9 @@
 <script>
   import { makeKeyDefinition } from "@kws3/ui/keyboard";
 
-  const ctrlAltC = makeKeyDefinition("ctrl+alt+c");
+  const CtrlAltC = makeKeyDefinition("ctrl+alt+c");
   const AltF8 = makeKeyDefinition("alt+F8");
-  const MetaD = makeKeyDefinition("meta+shift+k");
+  const MetaShiftK = makeKeyDefinition("meta+shift+k");
   const ShiftX = makeKeyDefinition("shift+x");
 
   let eventText = "";
