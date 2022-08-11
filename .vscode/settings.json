@@ -5,25 +5,22 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "eslint.validate": ["javascript", "svelte"],
-  "eslint.probe": [
-    "javascript",
-    "typescript",
-    "svelte"
-  ],
+  "eslint.probe": ["javascript", "typescript", "svelte"],
   "[javascript]": {
-    "editor.defaultFormatter":"esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.quickSuggestions": { "comments": true }
   },
   "[scss]": {
-    "editor.defaultFormatter":"esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode",
     "editor.formatOnSave": true
   },
-  "[mdx]":{
-    "files.trimTrailingWhitespace": false
+  "[mdx]": {
+    "files.trimTrailingWhitespace": false,
+    "editor.formatOnSave": false
   }
 }
