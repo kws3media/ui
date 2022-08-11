@@ -2,6 +2,7 @@
 const eventKeyModifierProps = {
   17: "metaKey",
   16: "shiftKey",
+  18: "altKey",
 };
 export function makeKeyDefinition(opts) {
   let code = opts;
@@ -16,6 +17,9 @@ export function makeKeyDefinition(opts) {
 
   return function (node, fire) {
     function keydownHandler(event) {
+      if (modifierProp && event[modifierProp]) {
+        event.preventDefault();
+      }
       var which = event.which || event.keyCode;
       let valid = false;
 
@@ -59,6 +63,12 @@ export var ctrl = (key) => {
 export var shift = (key) => {
   return makeKeyDefinition({
     code: 16,
+    key: key,
+  });
+};
+export var alt = (key) => {
+  return makeKeyDefinition({
+    code: 18,
     key: key,
   });
 };
