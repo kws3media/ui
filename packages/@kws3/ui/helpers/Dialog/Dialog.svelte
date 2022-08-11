@@ -89,7 +89,7 @@ For internal use only - not part of config object, Default: `""`
   import { tick, onMount, createEventDispatcher } from "svelte";
   import { Icon, CardModal } from "@kws3/ui";
   import { capitaliseFirstLetter } from "@kws3/ui/utils";
-  import { isEnterKey, isEscKey } from "../../internal/index";
+  import { isEnterKey, isEscKey } from "../../internal";
 
   const fire = createEventDispatcher();
 
