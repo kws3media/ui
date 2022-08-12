@@ -36,7 +36,7 @@
       <!--Title slot, falls back to a text node-->
       <slot name="title"><p>{title}</p></slot>
       {#if dismissable}
-        <button class="delete" on:click={dismiss} />
+        <button type="button" class="delete" on:click={dismiss} />
       {/if}
     </div>
   {/if}
@@ -48,7 +48,7 @@
 </div>
 
 <script context="module">
-  let family;
+  export let family;
 
   export function setDefaultIconType(type) {
     family = type;
@@ -56,7 +56,6 @@
 </script>
 
 <script>
-  //@ts-nocheck
   /**
    * size doc, should apply to size only, and not get copied to others in block
    */
@@ -72,13 +71,13 @@
     inner_classes = [],
     title = null,
     has_title = false,
-    dismissable = false,
-    /**
-     * today property docs
-     * @type {Date}
-     * @default "new Date()"
-     */
-    today = new Date(),
+    dismissable = false;
+  /**
+   * today property docs
+   * @type {Date}
+   * @default "new Date()"
+   */
+  export const today = new Date(),
     /**
      * subtract 2 number
      * @param x
@@ -93,19 +92,19 @@
    * @type {Date}
    * @default "new Date()"
    */
-  export let tomorrow = new Date();
+  export const tomorrow = new Date();
 
-  export let thisShouldbeanObject = {};
+  export const thisShouldbeanObject = {};
 
   /**
    * @type {object}
    */
-  export let thisShouldbeAnotherObject = { done: false };
+  export const thisShouldbeAnotherObject = { done: false };
 
   /**
    * one Item doc
    */
-  export let oneItem = 1;
+  export const oneItem = 1;
 
   /**
    * adds 2 numbers
@@ -119,7 +118,7 @@
    * @param x
    * @param y
    */
-  export let divide = (x, y = 20) => {
+  export const divide = (x, y = 20) => {
     return x / y;
   };
 
