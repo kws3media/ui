@@ -77,7 +77,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { Icon } from "@kws3/ui";
   import { createEventDispatcher } from "svelte";
 

@@ -56,7 +56,6 @@
     fire("error", detail)} />
 
 <script>
-  //@ts-nocheck
   import { ConfirmButton } from "@kws3/ui";
   import { createEventDispatcher } from "svelte";
 
