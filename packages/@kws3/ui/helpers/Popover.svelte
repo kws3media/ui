@@ -73,6 +73,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
 </style>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { popover } from "./Tooltip";
   import { Icon } from "@kws3/ui";

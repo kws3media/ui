@@ -59,6 +59,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import {
     activateTooltips,
     ClipboardCopier as KwsClipboardCopier,

@@ -50,6 +50,7 @@
 {/if}
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { FileUpload as KwsFileUpload } from "@kws3/ui";
 

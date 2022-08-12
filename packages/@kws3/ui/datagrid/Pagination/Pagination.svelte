@@ -135,6 +135,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import Icon from "../../helpers/Icon.svelte";
 

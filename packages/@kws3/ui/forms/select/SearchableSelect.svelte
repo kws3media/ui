@@ -77,6 +77,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 </MultiSelect>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { MultiSelect } from "@kws3/ui";
 

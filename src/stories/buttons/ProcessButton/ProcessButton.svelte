@@ -39,6 +39,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { ProcessButton as KwsButton } from "@kws3/ui";
 
   export let button_class = "",

@@ -11,5 +11,6 @@
 </div>
 
 <script>
+  //@ts-nocheck
   //import { debounce } from "@kws3/ui/utils";
 </script> -->

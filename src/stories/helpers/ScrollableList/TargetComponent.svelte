@@ -42,6 +42,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   export let item, index;
 
   import { createEventDispatcher } from "svelte";

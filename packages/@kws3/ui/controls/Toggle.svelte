@@ -36,6 +36,7 @@ This property can be bound to, to fetch the current value, Default: `false`
 </style>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   const fire = createEventDispatcher();
 

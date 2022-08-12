@@ -71,6 +71,7 @@ Only programmatic closing is possible, Default: `true`
 </style>
 
 <script>
+  //@ts-nocheck
   import { fade, scale } from "svelte/transition";
   import { hasTransitions } from "../settings";
   /**

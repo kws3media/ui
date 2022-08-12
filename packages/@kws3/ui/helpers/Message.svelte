@@ -65,6 +65,7 @@ The parent can then decide what to do with the component
 </style>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   const fire = createEventDispatcher();
 

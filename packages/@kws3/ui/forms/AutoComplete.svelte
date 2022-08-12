@@ -110,6 +110,7 @@ Default value: `<span>{option.label}</span>`
 </div>
 
 <script>
+  //@ts-nocheck
   import { portal } from "@kws3/ui";
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";

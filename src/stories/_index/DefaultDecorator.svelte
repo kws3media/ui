@@ -1,3 +1,5 @@
 <slot />
 
-<script></script>
+<script>
+  //@ts-nocheck
+</script>

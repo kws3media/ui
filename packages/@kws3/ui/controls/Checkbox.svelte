@@ -44,6 +44,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
 </label>
 
 <script>
+  //@ts-nocheck
   import { Icon } from "@kws3/ui";
 
   /**

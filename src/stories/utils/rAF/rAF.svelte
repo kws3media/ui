@@ -22,6 +22,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { rAF } from "@kws3/ui/utils";
 
   let globalID;

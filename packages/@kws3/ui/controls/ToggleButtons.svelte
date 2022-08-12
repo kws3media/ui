@@ -74,6 +74,7 @@ This property can be bound to, to fetch the current value, Default: `null`
 </style>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 

@@ -7,6 +7,7 @@
 </style>
 
 <script>
+  //@ts-nocheck
   import { DataSort as KwsDataSort } from "@kws3/ui";
   export let options = [],
     sort_by = "";

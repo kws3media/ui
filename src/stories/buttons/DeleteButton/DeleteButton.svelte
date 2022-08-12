@@ -39,6 +39,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { DeleteButton as KwsButton } from "@kws3/ui";
 
   export let text = "Delete",

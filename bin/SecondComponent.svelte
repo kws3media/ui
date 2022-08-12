@@ -13,6 +13,7 @@
 <div on:focus on:click={click} on:mouseleave={msl}>s</div>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
 
   let fire = createEventDispatcher();

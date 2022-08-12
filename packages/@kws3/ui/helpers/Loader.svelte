@@ -31,6 +31,7 @@ The overlay is absolutely positioned. Ensure that the parent container is relati
 </div>
 
 <script>
+  //@ts-nocheck
   /**
    * Color of the Spinner
    * @link https://bulma.io/documentation/helpers/color-helpers/

@@ -62,6 +62,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import {
     Panel,
     MultiSelect as KwsMultiSelect,

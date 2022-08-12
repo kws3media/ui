@@ -10,6 +10,7 @@
   {sparklines} />
 
 <script>
+  //@ts-nocheck
   import { LineChart as Chart } from "@kws3/ui";
 
   export let colors = null,

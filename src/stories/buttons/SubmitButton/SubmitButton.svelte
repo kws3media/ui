@@ -38,6 +38,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { SubmitButton as KwsButton } from "@kws3/ui";
 
   export let color = "primary",

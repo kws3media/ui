@@ -36,6 +36,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { makeForms, notEmpty, withMsg } from "@kws3/ui/form";
 
   let form;

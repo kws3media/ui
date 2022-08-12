@@ -23,6 +23,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   /**
    * Color of the Divider lines
    * @type {'' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link' | 'dark' | 'light'}

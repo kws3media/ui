@@ -44,6 +44,7 @@
 </li>
 
 <script>
+  //@ts-nocheck
   import { Icon } from "@kws3/ui";
 
   /**

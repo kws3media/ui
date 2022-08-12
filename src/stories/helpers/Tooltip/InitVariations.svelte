@@ -44,6 +44,7 @@ activateTooltips("#an-1", &#123;
 </div>
 
 <script>
+  //@ts-nocheck
   import { activateTooltips } from "@kws3/ui";
   import { onMount } from "svelte";
 

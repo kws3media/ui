@@ -41,6 +41,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { ConfirmButton as KwsButton } from "@kws3/ui";
 
   export let button_class = "",

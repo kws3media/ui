@@ -18,6 +18,7 @@
   on:click={() => (is_active = true)}>Open Modal</button>
 
 <script>
+  //@ts-nocheck
   import { Modal as KwsModal } from "@kws3/ui";
   export let size = "",
     is_active = false,

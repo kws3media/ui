@@ -16,6 +16,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { Dialog as KwsDialog } from "@kws3/ui";
   import { Checkbox } from "@kws3/ui";
 

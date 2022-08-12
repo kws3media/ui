@@ -17,6 +17,7 @@
 </KwsMessage>
 
 <script>
+  //@ts-nocheck
   import { Message as KwsMessage } from "@kws3/ui";
 
   export let size = "medium",

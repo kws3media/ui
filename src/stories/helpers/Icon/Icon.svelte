@@ -53,6 +53,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { Icon as KwsIcon } from "@kws3/ui";
   export let size = "",
     color = "",

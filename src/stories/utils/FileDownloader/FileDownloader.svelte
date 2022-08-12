@@ -12,6 +12,7 @@
 </Panel>
 
 <script>
+  //@ts-nocheck
   import { fileDownloader } from "@kws3/ui/utils";
   import { brands } from "./data.js";
   import { Panel, Icon } from "@kws3/ui";

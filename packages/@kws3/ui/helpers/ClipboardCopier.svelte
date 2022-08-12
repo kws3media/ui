@@ -38,6 +38,7 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
 </style>
 
 <script>
+  //@ts-nocheck
   import { tick } from "svelte";
   import { Icon } from "@kws3/ui";
 

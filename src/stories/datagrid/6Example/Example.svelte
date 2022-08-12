@@ -105,6 +105,7 @@
   {#if is_searching}Searching...{/if}
 </div>-->
 <script>
+  //@ts-nocheck
   import { onMount } from "svelte";
   import {
     DataSearch,

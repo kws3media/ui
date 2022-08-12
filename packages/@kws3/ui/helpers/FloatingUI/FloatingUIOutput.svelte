@@ -26,6 +26,7 @@
 {/each}
 
 <script>
+  //@ts-nocheck
   import { fly } from "svelte/transition";
   import { sineOut } from "svelte/easing";
   import { flip } from "svelte/animate";

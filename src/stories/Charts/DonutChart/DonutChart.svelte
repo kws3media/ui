@@ -1,6 +1,7 @@
 <Chart {options} {colors} {data} {labels} {width} {height} {sparklines} />
 
 <script>
+  //@ts-nocheck
   import { DonutChart as Chart } from "@kws3/ui";
 
   export let options = {},

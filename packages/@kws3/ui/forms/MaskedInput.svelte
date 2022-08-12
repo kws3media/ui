@@ -32,6 +32,7 @@ Requires `guide` to be `true`, Default: `false`
   bind:this={inputElement} />
 
 <script>
+  //@ts-nocheck
   import { onMount } from "svelte";
   import {
     createTextMaskInputElement,

@@ -26,6 +26,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import {
     Panel,
     AutoComplete as KwsAutoComplete,

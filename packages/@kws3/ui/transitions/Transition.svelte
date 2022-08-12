@@ -41,6 +41,7 @@ Defaults to `sineOut` if left empty
 {/if}
 
 <script>
+  //@ts-nocheck
   import Fly from "./components/Fly.svelte";
   import Fade from "./components/Fade.svelte";
   import Slide from "./components/Slide.svelte";

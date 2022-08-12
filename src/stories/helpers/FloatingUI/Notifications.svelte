@@ -10,6 +10,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { Notifications as KWSNotif } from "@kws3/ui";
   import CustomNotification from "./CustomNotification.svelte";
 

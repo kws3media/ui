@@ -87,6 +87,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import GridRow from "./GridRow.svelte";
   import { Checkbox } from "@kws3/ui";
   import { createEventDispatcher } from "svelte";

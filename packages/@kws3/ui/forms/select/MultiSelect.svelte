@@ -174,6 +174,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
+  //@ts-nocheck
   import { Icon, portal } from "@kws3/ui";
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";

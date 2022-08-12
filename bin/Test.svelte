@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param {string} [size=""] - size doc, should apply to size only, and not get copied to others in block, Default: `""`
   @param {string} [color="info"] - Color property, Default: `"info"`
@@ -56,6 +56,7 @@
 </script>
 
 <script>
+  //@ts-nocheck
   /**
    * size doc, should apply to size only, and not get copied to others in block
    */

@@ -69,6 +69,7 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
   {captured_events} />
 
 <script>
+  //@ts-nocheck
   import { Chart } from "@kws3/ui";
   import { pieChartOptions, merge } from "./utils";
   import { defaultChartColors } from "../settings";

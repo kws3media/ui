@@ -258,6 +258,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { activateTooltips, tooltip } from "@kws3/ui";
   import { onMount } from "svelte";
 

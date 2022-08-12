@@ -26,6 +26,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();

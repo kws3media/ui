@@ -65,6 +65,7 @@
 </style>
 
 <script>
+  //@ts-nocheck
   import { Divider as KwsDivider, Icon, Message } from "@kws3/ui";
 
   export let color = "",

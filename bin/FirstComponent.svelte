@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param [_] - No properties on this component
 
@@ -16,6 +16,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import SecondComponent from "./SecondComponent.svelte";
   import { createEventDispatcher } from "svelte";
 

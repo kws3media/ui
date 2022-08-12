@@ -20,6 +20,7 @@
   class={klass} />
 
 <script>
+  //@ts-nocheck
   import { GridView as KwsGridView } from "@kws3/ui";
 
   export let iteration_key = "id",

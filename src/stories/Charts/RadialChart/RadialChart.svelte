@@ -10,6 +10,7 @@
   {height} />
 
 <script>
+  //@ts-nocheck
   import { RadialChart as Chart } from "@kws3/ui";
 
   export let options = {},

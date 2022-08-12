@@ -61,6 +61,7 @@
 {/if}
 
 <script>
+  //@ts-nocheck
   //TODO: Icon support
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
 

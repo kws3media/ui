@@ -157,6 +157,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import {
     Popover as KwsPopover,
     Message,

@@ -14,6 +14,7 @@
 </ul>
 
 <script>
+  //@ts-nocheck
   /**
    * Alignment of the Timeline child items
    * @type {'left'|'center'|'right'}

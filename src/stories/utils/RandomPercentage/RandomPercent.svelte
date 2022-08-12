@@ -30,6 +30,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { randomPercent } from "@kws3/ui/utils";
   import { Icon } from "@kws3/ui";
   import { onMount } from "svelte";

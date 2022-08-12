@@ -43,6 +43,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { SearchInput as KwsSearchInput, Notification } from "@kws3/ui";
 
   export let size = "",

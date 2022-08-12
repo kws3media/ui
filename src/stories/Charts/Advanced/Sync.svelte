@@ -62,6 +62,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { LineChart, AreaChart, BarChart } from "@kws3/ui";
 
   export let colors = null,

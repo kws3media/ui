@@ -42,6 +42,7 @@ If `false` , the component won't have a close button, and will not close on clic
 </div>
 
 <script>
+  //@ts-nocheck
   import { fade, fly } from "svelte/transition";
   import { hasTransitions } from "../settings";
   /**

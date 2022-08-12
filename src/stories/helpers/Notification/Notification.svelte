@@ -2,6 +2,7 @@
   >Your have 41 notifications</KwsNotification>
 
 <script>
+  //@ts-nocheck
   import { Notification as KwsNotification } from "@kws3/ui";
   export let color = "info",
     style = "",

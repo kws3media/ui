@@ -16,6 +16,7 @@
 </td>
 
 <script>
+  //@ts-nocheck
   /**
    * Name of the column in the DB
    */

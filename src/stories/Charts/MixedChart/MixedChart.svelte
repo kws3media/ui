@@ -11,6 +11,7 @@
   {height} />
 
 <script>
+  //@ts-nocheck
   import { MixedChart as Chart } from "@kws3/ui";
 
   export let colors = null,

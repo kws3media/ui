@@ -76,6 +76,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import {
     PasswordValidator as KwsPasswordValidator,
     activateTooltips,

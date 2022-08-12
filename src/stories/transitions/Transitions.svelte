@@ -61,6 +61,7 @@
 {/if}
 
 <script>
+  //@ts-nocheck
   import { Transition as KwsTransition, Message, Checkbox } from "@kws3/ui";
   let show_transition = false;
 

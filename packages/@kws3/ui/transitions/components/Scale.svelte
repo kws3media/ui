@@ -27,6 +27,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { scale } from "svelte/transition";
   import getEasing from "./getEasing";
 

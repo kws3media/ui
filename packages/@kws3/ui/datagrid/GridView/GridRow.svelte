@@ -92,6 +92,7 @@
 {/if}
 
 <script>
+  //@ts-nocheck
   import { fly } from "svelte/transition";
   import GridCell from "./GridCell.svelte";
   import { Checkbox } from "@kws3/ui";

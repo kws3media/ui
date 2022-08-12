@@ -86,6 +86,7 @@ For internal use only - not part of config object, Default: `""`
 </CardModal>
 
 <script>
+  //@ts-nocheck
   import { tick, onMount, createEventDispatcher } from "svelte";
   import { Icon, CardModal } from "@kws3/ui";
   import { capitaliseFirstLetter } from "@kws3/ui/utils";

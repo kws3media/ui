@@ -55,6 +55,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:yearChange={fireYearChange} />
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { datepicker } from "./actions";
 

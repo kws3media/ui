@@ -47,6 +47,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:close={fireClose} />
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { timepicker } from "./actions";
 

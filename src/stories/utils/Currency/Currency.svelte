@@ -12,6 +12,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { currency } from "@kws3/ui/utils";
   // eslint-disable-next-line @kws3/svelte3/no-date-string-arg
   let cValue = 300;

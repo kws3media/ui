@@ -9,6 +9,7 @@
 </KwsTimelineItem>
 
 <script>
+  //@ts-nocheck
   import { TimelineItem as KwsTimelineItem } from "@kws3/ui";
   export let color = "",
     marker_image = null,

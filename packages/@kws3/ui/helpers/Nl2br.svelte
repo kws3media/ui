@@ -12,6 +12,7 @@
 {/if}
 
 <script>
+  //@ts-nocheck
   /**
    * Text to process and output
    */

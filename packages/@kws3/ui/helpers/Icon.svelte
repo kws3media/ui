@@ -63,6 +63,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 </style>
 
 <script>
+  //@ts-nocheck
   import { defaultIconFamily } from "../settings";
 
   /**

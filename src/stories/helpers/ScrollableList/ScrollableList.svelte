@@ -28,6 +28,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { ScrollableList as KwsScrollableList } from "@kws3/ui";
   import TargetComponent from "./TargetComponent.svelte";

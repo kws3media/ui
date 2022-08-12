@@ -85,6 +85,7 @@ The following functions are returned in `event.detail`:
 </div>
 
 <script>
+  //@ts-nocheck
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 

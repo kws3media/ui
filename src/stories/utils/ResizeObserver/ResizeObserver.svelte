@@ -44,6 +44,7 @@
 </style>
 
 <script>
+  //@ts-nocheck
   import { resizeObserver, hasResizeObserver } from "@kws3/ui/resizeObserver";
   import { cloneObject } from "@kws3/ui/utils";
   let name = "User",

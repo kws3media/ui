@@ -96,6 +96,7 @@ Should be used with `bind` from parent component, Default: `false`
 </style>
 
 <script>
+  //@ts-nocheck
   import validate from "./validatePassword";
   import { Icon } from "@kws3/ui";
 

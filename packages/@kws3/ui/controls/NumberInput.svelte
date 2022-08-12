@@ -121,6 +121,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 </style>
 
 <script>
+  //@ts-nocheck
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 

@@ -53,6 +53,7 @@
 </div>
 
 <script>
+  //@ts-nocheck
   import {
     SlidingPaneSet as KwsSlidingPaneSet,
     SlidingPane,
