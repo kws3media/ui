@@ -63,12 +63,11 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 </style>
 
 <script>
-  //@ts-nocheck
   import { defaultIconFamily } from "../settings";
 
   /**
    * Size of the Icon
-   *  @type {''|'small'|'medium'|'large'}
+   *  @type {string|''|'small'|'medium'|'large'}
    */
   export let size = "",
     /**
