@@ -1,20 +1,22 @@
 //@ts-nocheck
+
+import { IS_MAC } from "../internal";
 const ctrlKeys = {
   ctrl: "ctrlKey",
   meta: "metaKey",
   shift: "shiftKey",
   alt: "altKey",
 };
-const NAVIGATOR = window.navigator;
 
-export function makeKeyDefinition(definition, allowMac = false) {
-  if (allowMac) {
-    let isMac = /mac/i.test(
-      NAVIGATOR.userAgentData
-        ? NAVIGATOR.userAgentData.platform
-        : NAVIGATOR.platform
-    );
-    if (isMac) {
+/**
+ * @param {string | number} definition - can be a string like 'Enter', 'Tab' or number as keyCode, also allow combination key like 'ctrl+d', 'ctrl+alt+x'
+ * @param {boolean} CommandKey - if true, in mac 'ctrl' key binding will be shift on 'command' key.
+ * @returns {function} .
+ */
+
+export function makeKeyDefinition(definition, CommandKey = false) {
+  if (CommandKey) {
+    if (IS_MAC) {
       definition = definition.replace("ctrl", "meta");
     }
   }
