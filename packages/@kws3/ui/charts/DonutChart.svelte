@@ -69,7 +69,6 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
   {captured_events} />
 
 <script>
-  //@ts-nocheck
   import { Chart } from "@kws3/ui";
   import { donutChartOptions, merge } from "./utils";
   import { defaultChartColors } from "../settings";
@@ -106,7 +105,7 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
      * Send an array of colors to override the default colors, or do not send anything to use the default colors
      * @type {array}
      */
-    colors = null,
+    colors = [],
     /**
      * String array of event names that will be captured and fired as svelte events.
      * This is to prevent unnecessary event subscriptions.
