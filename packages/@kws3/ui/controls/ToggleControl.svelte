@@ -34,7 +34,6 @@
 </style>
 
 <script>
-  //@ts-nocheck
   /**
    * Inline css for ToggleControl
    */

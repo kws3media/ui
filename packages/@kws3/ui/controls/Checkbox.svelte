@@ -44,7 +44,6 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
 </label>
 
 <script>
-  //@ts-nocheck
   import { Icon } from "@kws3/ui";
 
   /**
@@ -101,9 +100,9 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
      *
-     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}
+     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
      */
-    icon_family = null;
+    icon_family = "";
 
   /**
    * CSS classes of the Checkbox

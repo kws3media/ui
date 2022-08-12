@@ -37,9 +37,9 @@ The following functions are returned in `event.detail`:
       {#if _is_uploading}
         <span class="loader" />
       {:else if _is_finished}
-        <Icon size="" icon="check-circle" fa_class="fa-lg" />
+        <Icon size="" icon="check-circle" />
       {:else}
-        <Icon size="" icon="upload" fa_class="fa-lg" />
+        <Icon size="" icon="upload" />
       {/if}
     </div>
     <div class="file">
@@ -85,7 +85,6 @@ The following functions are returned in `event.detail`:
 </div>
 
 <script>
-  //@ts-nocheck
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 
@@ -158,13 +157,13 @@ The following functions are returned in `event.detail`:
       return "N/A";
     }
     if (n > 1073741824) {
-      return Math.round(n / 1073741824, 1) + " GB";
+      return Math.round(n / 1073741824) + " GB";
     }
     if (n > 1048576) {
-      return Math.round(n / 1048576, 1) + " MB";
+      return Math.round(n / 1048576) + " MB";
     }
     if (n > 1024) {
-      return Math.round(n / 1024, 1) + " KB";
+      return Math.round(n / 1024) + " KB";
     }
     return n + " b";
   }

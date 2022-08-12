@@ -33,7 +33,9 @@ This property can be bound to, to fetch the current value, Default: `null`
       <button
         type="button"
         {disabled}
-        on:click={setValue(option.value)}
+        on:click={() => {
+          setValue(option.value);
+        }}
         class="button is-{size}  {fullwidth ? 'is-fullwidth' : ''} {value ===
         option.value
           ? 'is-active ' +
@@ -44,7 +46,7 @@ This property can be bound to, to fetch the current value, Default: `null`
         style="height:auto">
         <span>
           {#if option.icon}
-            <Icon icon={option.icon} size="small" icon_class="is-marginless" />
+            <Icon icon={option.icon} size="small" />
           {/if}
           <span class="is-block">{option.name}</span>
           {#if option.subtitle}
@@ -74,7 +76,6 @@ This property can be bound to, to fetch the current value, Default: `null`
 </style>
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 

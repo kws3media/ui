@@ -38,7 +38,6 @@ See: https://svelte.dev/docs#bind_group, Default: `null`
 </label>
 
 <script>
-  //@ts-nocheck
   /**
    * Value of radio button
    */

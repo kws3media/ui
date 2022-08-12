@@ -46,7 +46,6 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 </div>
 
 <script>
-  //@ts-nocheck
   import { onMount } from "svelte";
 
   /**
