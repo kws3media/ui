@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import { IS_MAC } from "../internal";
 const ctrlKeys = {
   ctrl: "ctrlKey",
@@ -15,14 +13,21 @@ const ctrlKeys = {
  */
 
 export function makeKeyDefinition(definition, CommandKey = false) {
-  if (CommandKey) {
-    if (IS_MAC) {
-      definition = definition.replace("ctrl", "meta");
-    }
+  let def = definition;
+  let keys = [];
+
+  if (typeof def === "number") {
+    keys = [def];
   }
-  let keys = Number.isInteger(definition)
-    ? [definition]
-    : definition.split("+");
+
+  if (typeof def === "string") {
+    if (CommandKey) {
+      if (IS_MAC) {
+        def = def.replace("ctrl", "meta");
+      }
+    }
+    keys = def.split("+");
+  }
 
   return function (node, fire) {
     function keydownHandler(event) {

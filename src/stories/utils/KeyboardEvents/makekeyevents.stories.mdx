@@ -12,8 +12,9 @@ import MakeKeyEvent from "./MakeKeyEvent.svelte";
 The `makeKeyDefinition` is factory helper to create custom keydownHandler events. 
 Key combination can be made with any modifier keys from `Shift`, `Ctrl`, `Alt`, `Meta` with characters, numbers or function keys.
 
-**Parameters:**
-code : `type: Number` Key combination
+#### **Parameters**
+- definition : `type: Number | string` can be a string like `Enter`, `Tab` or number as keyCode, also allow combination key like `ctrl+d`, `ctrl+alt+x`
+- CommandKey : `type: boolean` if true, in mac 'ctrl' key binding will be shift on 'command' key.
 
 **Returns:**
 Function take params, node :`type : DOM Element` and event : `type: function`.
