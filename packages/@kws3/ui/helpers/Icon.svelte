@@ -83,7 +83,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
      * Icon family, can be modified globally in framework settings
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
-     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+     * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
      */
     family = "",
     /**
