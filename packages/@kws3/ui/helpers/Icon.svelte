@@ -112,8 +112,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 
   $: inner_icon = family === "material" ? icon : "";
   $: {
-    usedFamily =
-      family && family !== "" ? family : globalFamily ? globalFamily : "fa";
+    usedFamily = family !== "" ? family : globalFamily ? globalFamily : "fa";
 
     switch (usedFamily) {
       case "lar":
