@@ -2,8 +2,8 @@
   @component
 
 
-  @param {''|'small'|'medium'|'large'} [size="small"] - Size of the input, Default: `"small"`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string|''|'small'|'medium'|'large'} [size="small"] - Size of the input, Default: `"small"`
+  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [placeholder="Search"] - Placeholder text for the input, Default: `"Search"`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -105,7 +105,6 @@
 
   let keywords = "",
     orginalItems = [],
-    fuzzyOpts = {}, // fuzzy.js lib options
     fuzzysearch = null;
 
   const debouncedSearch = debounce(search, 300);
@@ -114,7 +113,7 @@
     v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
 
   onMount(() => {
-    fuzzyOpts = {
+    let fuzzyOpts = {
       analyzeSubTerms: true,
       analyzeSubTermDepth: 10,
       highlighting: {
@@ -133,9 +132,6 @@
       fuzzyOpts,
     };
 
-    console.log(searchOptions);
-
-    // @ts-ignore
     fuzzysearch = makeSearchEngine(searchOptions);
 
     if (word_match) {
