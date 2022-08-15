@@ -53,7 +53,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { MaskedInput as KwsMaskedInput } from "@kws3/ui";
   let us_phpne_mask = [
     "(",
