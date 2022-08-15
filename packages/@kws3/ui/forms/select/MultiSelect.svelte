@@ -518,9 +518,8 @@ Default value: `<span>{option[search_key] || option}</span>`
       modifiers: [sameWidthPopperModifier],
     });
 
-    let fuzzyOpts = null;
     if (allow_fuzzy_match) {
-      fuzzyOpts = {
+      let fuzzyOpts = {
         analyzeSubTerms: true,
         analyzeSubTermDepth: 10,
         highlighting: {
