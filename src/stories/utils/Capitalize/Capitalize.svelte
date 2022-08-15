@@ -12,7 +12,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { capitaliseFirstLetter } from "@kws3/ui/utils";
   let text = "lorem ipsum dollar sit amet.";
 </script>

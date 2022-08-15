@@ -12,7 +12,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { cloneObject } from "@kws3/ui/utils";
   let obj = {
     title: "Mr",

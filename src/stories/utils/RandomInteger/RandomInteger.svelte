@@ -30,7 +30,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { randomIntegerFromInterval } from "@kws3/ui/utils";
   import { Icon } from "@kws3/ui";
   import { onMount } from "svelte";

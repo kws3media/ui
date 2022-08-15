@@ -39,7 +39,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { makeKeyDefinition } from "@kws3/ui/keyboard";
 
   const CtrlAltC = makeKeyDefinition("ctrl+alt+c");
