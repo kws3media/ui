@@ -152,7 +152,6 @@
 </style>
 
 <script>
-  //@ts-nocheck
   import { SlidingPane, SlidingPaneSet, Icon, Message } from "@kws3/ui";
   export let pane_height = 150,
     style = "",
