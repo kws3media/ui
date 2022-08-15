@@ -30,22 +30,22 @@ Should be used with `bind` from parent component, Default: `false`
       <li>
         <span class="help expanded">
           <span
-            class="tag is-small is-normal is-light pv-identifier {opt.passed
+            class="tag is-small is-normal is-light pv-identifier {opt['passed']
               ? 'is-success'
-              : 'is-danger'}">{opt.identifier}</span>
-          <span class="pv-text">{opt.text}</span>
+              : 'is-danger'}">{opt["identifier"]}</span>
+          <span class="pv-text">{opt["text"]}</span>
           <Icon
             class="pv-icon"
-            icon={opt.passed ? "check" : "ban"}
-            color={opt.passed ? "success" : "danger"} />
+            icon={opt["passed"] ? "check" : "ban"}
+            color={opt["passed"] ? "success" : "danger"} />
         </span>
         <span class="summarized">
           <span
-            data-tooltip={opt.text}
+            data-tooltip={opt["text"]}
             data-tippy-hideOnClick="false"
-            class="tag is-small is-normal is-light pv-identifier {opt.passed
+            class="tag is-small is-normal is-light pv-identifier {opt['passed']
               ? 'is-success'
-              : 'is-danger'}">{opt.identifier}</span>
+              : 'is-danger'}">{opt["identifier"]}</span>
         </span>
       </li>
     {/each}
@@ -96,7 +96,6 @@ Should be used with `bind` from parent component, Default: `false`
 </style>
 
 <script>
-  //@ts-nocheck
   import validate from "./validatePassword";
   import { Icon } from "@kws3/ui";
 
