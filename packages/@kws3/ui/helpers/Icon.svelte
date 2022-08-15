@@ -72,7 +72,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   export let size = "",
     /**
      * Color of the Icon
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
