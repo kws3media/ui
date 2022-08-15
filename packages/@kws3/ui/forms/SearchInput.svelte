@@ -135,6 +135,7 @@
 
     console.log(searchOptions);
 
+    // @ts-ignore
     fuzzysearch = makeSearchEngine(searchOptions);
 
     if (word_match) {
