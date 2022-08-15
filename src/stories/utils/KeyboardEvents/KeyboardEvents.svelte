@@ -46,7 +46,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import {
     enter,
     tab,

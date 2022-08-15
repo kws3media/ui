@@ -30,7 +30,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { randomPercent } from "@kws3/ui/utils";
   import { Icon } from "@kws3/ui";
   import { onMount } from "svelte";
@@ -44,6 +43,6 @@
   });
 
   function regenerate() {
-    value = randomPercent(min, max);
+    value = Number(randomPercent(min, max));
   }
 </script>

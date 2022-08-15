@@ -15,7 +15,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { nl2br } from "@kws3/ui/utils";
   let text = `Lorem ipsum dolor sit amet\n, consectetur adipiscing elit\n, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`;
 </script>

@@ -22,7 +22,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { slide } from "svelte/transition";
   import getEasing from "./getEasing";
 

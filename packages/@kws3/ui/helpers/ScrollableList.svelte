@@ -75,7 +75,6 @@ while more items are loading
 </style>
 
 <script>
-  //@ts-nocheck
   import { onMount, tick } from "svelte";
   import { createEventDispatcher } from "svelte";
   import { resizeObserver, hasResizeObserver } from "@kws3/ui/resizeObserver";

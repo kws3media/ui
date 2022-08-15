@@ -34,8 +34,8 @@
             type="button"
             bind:this={x}
             class="button is-small"
-            on:click={() => Dialog.alert("Clicked!!!")}
-            >Try to click me!</button>
+            on:click={// @ts-ignore
+            () => Dialog.alert("Clicked!!!")}>Try to click me!</button>
         </Message>
       </svelte:fragment>
     </KwsPopover>
@@ -59,8 +59,8 @@
           <button
             type="button"
             class="button is-small"
-            on:click={() => Dialog.alert("Clicked!!!")}
-            >Try to click me!</button>
+            on:click={// @ts-ignore
+            () => Dialog.alert("Clicked!!!")}>Try to click me!</button>
         </Message>
       </svelte:fragment>
     </KwsPopover>
@@ -84,8 +84,8 @@
             <button
               type="button"
               class="button is-small"
-              on:click={() => Dialog.alert("Clicked!!!")}
-              >Try to click me!</button>
+              on:click={// @ts-ignore
+              () => Dialog.alert("Clicked!!!")}>Try to click me!</button>
           </Message>
         </svelte:fragment>
       </KwsPopover>
@@ -117,8 +117,8 @@
             <button
               type="button"
               class="button is-small"
-              on:click={() => Dialog.alert("Clicked!!!")}
-              >Try to click me!</button>
+              on:click={// @ts-ignore
+              () => Dialog.alert("Clicked!!!")}>Try to click me!</button>
           </Message>
         </svelte:fragment>
       </KwsPopover> This popover can only be opened and closed programatically using
@@ -157,7 +157,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import {
     Popover as KwsPopover,
     Message,
@@ -169,7 +168,7 @@
   export let icon_size = "small";
   export let trigger = "click";
   export let placement = "auto";
-  export let interactive = "false";
+  export let interactive = false;
   export let max_width = "none";
   export let style = "";
 

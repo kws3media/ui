@@ -15,7 +15,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   /**
    * Inline style of component
    */

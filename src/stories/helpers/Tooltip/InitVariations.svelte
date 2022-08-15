@@ -44,12 +44,11 @@ activateTooltips("#an-1", &#123;
 </div>
 
 <script>
-  //@ts-nocheck
   import { activateTooltips } from "@kws3/ui";
   import { onMount } from "svelte";
 
   onMount(() => {
-    activateTooltips("#dt-1");
+    activateTooltips("#dt-1", null);
     activateTooltips("#dt-2", {
       theme: "light",
     });

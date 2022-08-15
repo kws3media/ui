@@ -14,7 +14,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { makeSearchEngine } from "@kws3/ui/search";
   let filter = "";
   let data = [
