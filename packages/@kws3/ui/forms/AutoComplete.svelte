@@ -165,7 +165,7 @@ Default value: `<span>{option.label}</span>`
   /**
    * Filtered options to be displayed strictly based on search text or perform a fuzzy match.
    * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching.
-   * @type {'fuzzy'|'strict'}
+   * @type {string|'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
 
@@ -180,12 +180,12 @@ Default value: `<span>{option.label}</span>`
   export let scoreThreshold = 5;
   /**
    * Size of the input
-   *  @type {''|'small'|'medium'|'large'}
+   *  @type {string|''|'small'|'medium'|'large'}
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "";
   /**

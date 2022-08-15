@@ -85,7 +85,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
     disabled = false,
     /**
      * Size of the colour picker trigger
-     * @type {''|'small'|'medium'|'large'}
+     * @type {string|''|'small'|'medium'|'large'}
      */
     size = "";
 

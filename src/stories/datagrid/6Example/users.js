@@ -1,4 +1,4 @@
-{
+export let response = {
   "records" : [
     { "id": 1, "username": "user1", "name": "Jhon", "surname": "Doe", "role": "A", "status" : "1" },
     { "id": 2, "username": "user2", "name": "James", "surname": "Bond", "role": "U", "status" : "1" },
@@ -37,4 +37,4 @@
     { "name": "ID Newest First", "value": "id DESC" },
     { "name": "ID Oldest First", "value": "id ASC" }
   ]
-}
+};

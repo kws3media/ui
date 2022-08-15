@@ -16,7 +16,6 @@
   {perPageOptions} />
 
 <script>
-  //@ts-nocheck
   import { Pagination as KwsPagination } from "@kws3/ui";
 
   export let meta = {

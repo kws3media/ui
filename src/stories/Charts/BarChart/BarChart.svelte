@@ -14,7 +14,6 @@
   {stacked_full_width} />
 
 <script>
-  //@ts-nocheck
   import { BarChart as Chart } from "@kws3/ui";
 
   export let colors = null,

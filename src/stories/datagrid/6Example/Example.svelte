@@ -105,7 +105,6 @@
   {#if is_searching}Searching...{/if}
 </div>-->
 <script>
-  //@ts-nocheck
   import { onMount } from "svelte";
   import {
     DataSearch,
@@ -117,7 +116,7 @@
     ToggleControl,
     Loader,
   } from "@kws3/ui";
-  const response = require("./users.json");
+  import { response } from "./users.js";
 
   let hasSearch = true,
     hasFilters = true,

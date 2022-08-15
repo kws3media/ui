@@ -1,7 +1,6 @@
 <Chart {options} {colors} {data} {labels} {sparklines} {width} {height} />
 
 <script>
-  //@ts-nocheck
   import { PieChart as Chart } from "@kws3/ui";
 
   export let options = {},

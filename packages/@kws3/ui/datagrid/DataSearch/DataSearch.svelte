@@ -68,7 +68,6 @@
 </form>
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
   import SearchFilter from "./SearchFilter.svelte";
@@ -112,7 +111,7 @@
      */
     filter_label_map = {};
 
-  let query = "",
+  let query = null,
     _filters = [],
     filterVals = {},
     filterWidthStyle = "";

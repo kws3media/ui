@@ -48,7 +48,6 @@
 </style>
 
 <script>
-  //@ts-nocheck
   import { PieChart, BarChart } from "@kws3/ui";
 
   let dataset = {

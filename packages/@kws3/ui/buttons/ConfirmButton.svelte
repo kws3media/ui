@@ -92,7 +92,7 @@
     text = "",
     /**
      * Size of the Button
-     * @type {''|'small'|'medium'|'large'}
+     * @type {string|''|'small'|'medium'|'large'}
      */
     size = "",
     /**
@@ -101,7 +101,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {string|''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
      */
     color = "primary",
     /**

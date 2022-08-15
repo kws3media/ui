@@ -22,7 +22,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { TileView as KwsTileView } from "@kws3/ui";
 
   export let iteration_key = "id",

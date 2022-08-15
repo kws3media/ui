@@ -76,7 +76,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import {
     PasswordValidator as KwsPasswordValidator,
     activateTooltips,
@@ -84,7 +83,7 @@
   import { onMount } from "svelte";
 
   onMount(() => {
-    activateTooltips("#story-root");
+    activateTooltips("#story-root", null);
   });
 
   export let password = "",
