@@ -26,7 +26,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import {
     Panel,
     AutoComplete as KwsAutoComplete,
@@ -38,7 +37,7 @@
   import { characters_string_only, fetchCharacters } from "../data.js";
 
   onMount(() => {
-    activateTooltips("#ss_container");
+    activateTooltips("#ss_container", null);
   });
 
   export let size = "",
