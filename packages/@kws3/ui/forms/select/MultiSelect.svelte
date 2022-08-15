@@ -2,9 +2,9 @@
   @component
 
 
-  @param {array} [value=[]] - Value of the Input
+  @param {Array|?string} [value=undefined] - Value of the Input
 
-This property can be bound to, to fetch the current value, Default: `[]`
+This property can be bound to, to fetch the current value, Default: `undefined`
   @param {object} [max=null] - Maximum number of selectable items from dropdown list.
 
 Accepts a `null` value for unlimited selected items.
@@ -20,7 +20,7 @@ this property of each object will be returned as the value, Default: `"id"`
 
 Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
-  @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+  @param {string|'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {number} [scoreThreshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
@@ -246,7 +246,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * Filtered options to be displayed strictly based on search text or perform a fuzzy match.
    * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching.
-   * @type {string | 'fuzzy'|'strict'}
+   * @type {string|'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
 
