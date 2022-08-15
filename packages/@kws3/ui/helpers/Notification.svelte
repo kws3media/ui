@@ -30,13 +30,12 @@ The parent can then decide what to do with the component
 {/if}
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   const fire = createEventDispatcher();
 
   /**
    * Color of the Notification box
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'light'|'dark'}
+   * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'light'|'dark'}
    */
   export let color = "info";
 
