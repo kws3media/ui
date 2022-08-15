@@ -10,7 +10,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { Snackbars as KWSSnack } from "@kws3/ui";
 
   /**

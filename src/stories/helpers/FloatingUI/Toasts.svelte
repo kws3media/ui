@@ -6,7 +6,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { Toasts as KWSToast } from "@kws3/ui";
 
   /**

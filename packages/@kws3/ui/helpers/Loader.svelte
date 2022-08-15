@@ -31,21 +31,20 @@ The overlay is absolutely positioned. Ensure that the parent container is relati
 </div>
 
 <script>
-  //@ts-nocheck
   /**
    * Color of the Spinner
    * @link https://bulma.io/documentation/helpers/color-helpers/
-   * @type {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+   * @type {string|'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
    */
   export let spinner_color = "grey",
     /**
      * Size of the Spinner
-     * @type {'small'|'medium'|'large'}
+     * @type {string|'small'|'medium'|'large'}
      */
     spinner_size = "medium",
     /**
      * Backgound color of the Spinner container
-     * @type {'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'}
+     * @type {string|'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'}
      */
     background_color = "transparent",
     /**

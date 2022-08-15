@@ -38,7 +38,6 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
 </style>
 
 <script>
-  //@ts-nocheck
   import { tick } from "svelte";
   import { Icon } from "@kws3/ui";
 
@@ -71,7 +70,7 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
      *
      * If `''` is selected, Icon will not change colour after copying
      *
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     copied_icon_color = "success";
 

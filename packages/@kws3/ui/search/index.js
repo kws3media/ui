@@ -9,8 +9,8 @@ import { fuzzy } from "../internal";
  * @returns {function} Return function take params `needle` and `haystack`.
  */
 export function makeSearchEngine(opts) {
-  let search_key = defaultValue(opts, "search_key", "value");
-  let scoreThreshold = defaultValue(opts, "scoreThreshold", 5);
+  let search_key = opts.search_key ? opts.search_key : "value";
+  let scoreThreshold = opts.scoreThreshold ? opts.scoreThreshold : 5;
   let fuzzyOpts = opts.fuzzyOpts ? opts.fuzzyOpts : {};
 
   return function (needle, haystack) {
@@ -44,8 +44,4 @@ export function makeSearchEngine(opts) {
     );
     return OPTS.map((i) => i.original);
   };
-}
-
-function defaultValue(opts, key, value) {
-  return opts && opts[key] ? opts[key] : value;
 }

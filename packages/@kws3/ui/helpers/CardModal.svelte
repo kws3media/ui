@@ -37,6 +37,7 @@ Only visible when the
     <div
       transition:scale={{
         duration: transitionDuration,
+        // @ts-ignore
         from: 0.8,
         to: 1,
         delay: transitionDelay,
@@ -107,7 +108,6 @@ Only visible when the
 </style>
 
 <script>
-  //@ts-nocheck
   import { fade, scale } from "svelte/transition";
   import { hasTransitions } from "../settings";
   /**
@@ -117,7 +117,7 @@ Only visible when the
   export let title = "",
     /**
      * Size of the modal
-     * @type {'small'|'medium'|'large'}
+     * @type {string|'small'|'medium'|'large'}
      */
     size = "small",
     /**

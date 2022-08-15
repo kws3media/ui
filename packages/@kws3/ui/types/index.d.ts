@@ -1,5 +1,5 @@
 export type SearchOptions = {
-  search_key: string;
+  search_key: Array<string> | string;
   scoreThreshold: number;
   fuzzyOpts: {
     analyzeSubTerms: boolean;

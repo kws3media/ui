@@ -65,18 +65,17 @@ The parent can then decide what to do with the component
 </style>
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   const fire = createEventDispatcher();
 
   /**
    * Size of the Message
-   * @type {''|'small'|'medium'|'large'}
+   * @type {string|''|'small'|'medium'|'large'}
    */
   export let size = "",
     /**
      * Color of the Message box
-     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "info",
     /**

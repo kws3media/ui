@@ -7,7 +7,6 @@
 </KwsTimelineItem>
 
 <script>
-  //@ts-nocheck
   import {
     TimelineHeader as KwsTimelineHeader,
     TimelineItem as KwsTimelineItem,

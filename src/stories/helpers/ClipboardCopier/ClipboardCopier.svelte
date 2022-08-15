@@ -13,7 +13,7 @@
           class={klass} />
       </div>
       <p>{text_area_1}</p>
-      <hr cass="is-small" />
+      <hr class="is-small" />
       <div class="has-text-danger is-size-6">
         <KwsClipboardCopier
           {text}
@@ -59,7 +59,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import {
     activateTooltips,
     ClipboardCopier as KwsClipboardCopier,
@@ -82,6 +81,6 @@
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et libero in metus blandit malesuada vitae in dolor. ";
 
   onMount(() => {
-    activateTooltips("#cc-parent");
+    activateTooltips("#cc-parent", null);
   });
 </script>

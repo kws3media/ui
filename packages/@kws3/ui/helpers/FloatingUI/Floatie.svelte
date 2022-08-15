@@ -10,7 +10,6 @@
   @param {boolean} [light=false] - Inverted colors for notification box and contents, Default: `false`
   @param {boolean} [dismissable=true] - Determines if notification is dismissable, Default: `true`
   @param {boolean} [persistent=false] - A persistent notification without duration, stays till dismissed, Default: `false`
-  @param {string} [context=""] - Context value, Default: `""`
   @param {object} [component=null] - Custom component, Default: `null`
   @param {function} [beforeClose(props)] - Callback function call before close event
   @param {function} [afterClose(props)] - Callback function call after close event
@@ -61,7 +60,6 @@
 {/if}
 
 <script>
-  //@ts-nocheck
   //TODO: Icon support
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
 
@@ -102,10 +100,6 @@
      */
     persistent = false,
     /**
-     * Context value
-     */
-    context = "",
-    /**
      * Custom component
      */
     component = null,
@@ -132,6 +126,7 @@
     let defaults = { text: "Ok", color: "", click: () => {} },
       obj = b;
     if (typeof b == "string") {
+      // @ts-ignore
       obj = { text: b };
     }
     return Object.assign({}, defaults, obj);

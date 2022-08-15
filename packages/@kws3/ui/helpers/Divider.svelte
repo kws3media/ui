@@ -23,10 +23,9 @@
 </div>
 
 <script>
-  //@ts-nocheck
   /**
    * Color of the Divider lines
-   * @type {'' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link' | 'dark' | 'light'}
+   * @type {string|'' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link' | 'dark' | 'light'}
    */
   export let color = "",
     /**
@@ -39,7 +38,7 @@
     vertical = false,
     /**
      * Alignment of the Divider text. `top`/`left` and `bottom`/`right` are analogous for vertical Dividers
-     * @type {'center' | 'left' | 'right' | 'top' | 'bottom'}
+     * @type {string|'center' | 'left' | 'right' | 'top' | 'bottom'}
      */
     alignment = "center",
     /**

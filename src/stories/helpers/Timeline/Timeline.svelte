@@ -37,7 +37,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import {
     Timeline as KwsTimeline,
     TimelineHeader as KwsTimelineHeader,

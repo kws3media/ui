@@ -86,7 +86,6 @@ For internal use only - not part of config object, Default: `""`
 </CardModal>
 
 <script>
-  //@ts-nocheck
   import { tick, onMount, createEventDispatcher } from "svelte";
   import { Icon, CardModal } from "@kws3/ui";
   import { capitaliseFirstLetter } from "@kws3/ui/utils";
@@ -119,12 +118,12 @@ For internal use only - not part of config object, Default: `""`
     icon = "",
     /**
      * Color of the Icon in the Dialog box
-     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {string|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     icon_color = "primary",
     /**
      * Size of the Icon in the Dialog box
-     * @type {'small'|'medium'|'large'}
+     * @type {string|'small'|'medium'|'large'}
      */
     icon_size = "",
     /**
@@ -133,7 +132,7 @@ For internal use only - not part of config object, Default: `""`
     ok_button_text = "Ok",
     /**
      * Color of OK button
-     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {string|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     ok_button_color = "primary",
     /**
@@ -147,7 +146,7 @@ For internal use only - not part of config object, Default: `""`
     cancel_button_text = "Cancel",
     /**
      * Color of Cancel button
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     cancel_button_color = "",
     /**

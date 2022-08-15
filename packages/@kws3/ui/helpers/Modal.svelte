@@ -29,6 +29,7 @@ Only programmatic closing is possible, Default: `true`
     <div
       transition:scale={{
         duration: transitionDuration,
+        // @ts-ignore
         from: 0.8,
         to: 1,
         delay: transitionDelay,
@@ -71,12 +72,11 @@ Only programmatic closing is possible, Default: `true`
 </style>
 
 <script>
-  //@ts-nocheck
   import { fade, scale } from "svelte/transition";
   import { hasTransitions } from "../settings";
   /**
    * Size of the modal
-   * @type {'small'|'medium'|'large'}
+   * @type {string|'small'|'medium'|'large'}
    */
   export let size = "small",
     /**
