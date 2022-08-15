@@ -43,7 +43,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { Icon } from "@kws3/ui";
   import { debounce } from "@kws3/ui/utils";
   import { onDestroy, onMount } from "svelte";
@@ -51,12 +50,12 @@
 
   /**
    * Size of the input
-   *  @type {''|'small'|'medium'|'large'}
+   *  @type {string|''|'small'|'medium'|'large'}
    */
   export let size = "small";
   /**
    * Color of the input
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "";
   /**
@@ -73,10 +72,12 @@
   export let disabled = false;
   /**
    * Array of objects.
+   * @type {array}
    */
   export let options = [];
   /**
    * array of object properties to search in.
+   * @type {array}
    */
   export let searchableKeys = [];
   /**
@@ -131,6 +132,8 @@
       scoreThreshold,
       fuzzyOpts,
     };
+
+    console.log(searchOptions);
 
     fuzzysearch = makeSearchEngine(searchOptions);
 
