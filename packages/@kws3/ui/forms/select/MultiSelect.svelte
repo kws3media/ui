@@ -174,7 +174,6 @@ Default value: `<span>{option[search_key] || option}</span>`
 </div>
 
 <script>
-  //@ts-nocheck
   import { Icon, portal } from "@kws3/ui";
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount, tick } from "svelte";
@@ -204,6 +203,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Value of the Input
    *
    * This property can be bound to, to fetch the current value
+   * @type {Array|?string}
    */
   export let value = [];
   /**
@@ -246,7 +246,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * Filtered options to be displayed strictly based on search text or perform a fuzzy match.
    * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching.
-   * @type {'fuzzy'|'strict'}
+   * @type {string | 'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
 
@@ -347,7 +347,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       lastY: 0, //  to check actual mouse is moving or not, for WebKit compatibility,
       preventSelect: false, //prevent select by mouse when up or down key is pressed
     },
-    fuzzyOpts = {}, // fuzzy.js lib options
     fuzzysearch = null,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
@@ -391,11 +390,15 @@ Default value: `<span>{option[search_key] || option}</span>`
   $: activeOption, searchText, filteredOptions, updateActiveOption();
 
   //TODO: optimise isSelected function
+  /** @type {(option: array)=> boolean}*/
   $: isSelected = (option) => {
     if (single) return matchesValue(value, option);
     if (!(value && value.length > 0) || value === "") return false;
     // nothing is selected if `value` is the empty array or string
-    else return value.some((v) => matchesValue(v, option));
+    else
+      return Array.isArray(value)
+        ? value.some((v) => matchesValue(v, option))
+        : false;
   };
 
   $: singleVisibleValue =
@@ -471,14 +474,15 @@ Default value: `<span>{option[search_key] || option}</span>`
           )
         : normalisedOptions;
 
-      selectedOptions = _normalisedOptions
-        .filter(
-          (v) => value && value.some((vl) => `${v[used_value_key]}` === `${vl}`)
-        )
-        .sort(
-          (a, b) =>
-            value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
-        );
+      if (Array.isArray(value)) {
+        selectedOptions = _normalisedOptions
+          .filter((v) => value.some((vl) => `${v[used_value_key]}` === `${vl}`))
+          .sort(
+            (a, b) =>
+              value.indexOf(a[used_value_key]) -
+              value.indexOf(b[used_value_key])
+          );
+      }
     }
 
     POPPER && POPPER.update();
@@ -492,11 +496,13 @@ Default value: `<span>{option[search_key] || option}</span>`
       return;
     }
     options_loading = true;
-    search(filter).then((_options) => {
-      options = _options;
-      searching = false;
-      options_loading = false;
-    });
+    if (search !== null) {
+      search(filter).then((_options) => {
+        options = _options;
+        searching = false;
+        options_loading = false;
+      });
+    }
   }
 
   const debouncedTriggerSearch = debounce(triggerSearch, 150, false);
@@ -505,9 +511,11 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
       placement: "bottom-start",
+      // @ts-ignore
       modifiers: [sameWidthPopperModifier],
     });
 
+    let fuzzyOpts = null;
     if (allow_fuzzy_match) {
       fuzzyOpts = {
         analyzeSubTerms: true,
