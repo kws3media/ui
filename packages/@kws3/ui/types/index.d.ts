@@ -21,3 +21,9 @@ export type ValidatePasswordOptions = {
   value?: string;
   negate?: boolean;
 };
+
+declare global {
+  interface Window {
+    ApexCharts: Object;
+  }
+}
