@@ -43,6 +43,7 @@ function loadLocalConfig(filename, withHidden) {
 function exec(command) {
   return new Promise((fulfil, reject) => {
     console.log("\n------------------------------------------");
+    /** @type {any} */
     const cp = child_process.exec(command, (err, stdout, stderr) => {
       console.log("------------------------------------------\n");
       if (err) {
@@ -66,7 +67,8 @@ function dirIsEmpty(dir) {
     const files = readdirSync(dir);
     return files.length === 0;
   } catch (err) {
-    if (err.code !== "ENOENT") throw err;
+    if (typeof err === "object" && err !== null && err["code"] !== "ENOENT")
+      throw err;
   }
 }
 
