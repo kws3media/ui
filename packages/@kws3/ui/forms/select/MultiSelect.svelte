@@ -474,15 +474,18 @@ Default value: `<span>{option[search_key] || option}</span>`
           )
         : normalisedOptions;
 
-      if (Array.isArray(value)) {
-        selectedOptions = _normalisedOptions
-          .filter((v) => value.some((vl) => `${v[used_value_key]}` === `${vl}`))
-          .sort(
-            (a, b) =>
-              value.indexOf(a[used_value_key]) -
-              value.indexOf(b[used_value_key])
-          );
-      }
+      selectedOptions = _normalisedOptions
+        .filter(
+          (v) =>
+            Array.isArray(value) &&
+            value.some((vl) => `${v[used_value_key]}` === `${vl}`)
+        )
+        .sort(
+          (a, b) =>
+            // tweak for 'value is nullable' type error
+            (value ? value.indexOf(a[used_value_key]) : 0) -
+            (value ? value.indexOf(b[used_value_key]) : 0)
+        );
     }
 
     POPPER && POPPER.update();
@@ -578,16 +581,20 @@ Default value: `<span>{option[search_key] || option}</span>`
       setOptionsVisible(false);
     }
 
-    if (!isAlreadySelected && !single && (max === null || value.length < max)) {
+    if (
+      !isAlreadySelected &&
+      !single &&
+      (max === null || (value && value.length < max))
+    ) {
       if (asyncMode) {
         //Do not filter invalid options, as they are async and might not be invalid
         //but ensure they are unique
-        value = [...value, token[used_value_key]].filter(
+        value = [...(value ? value : []), token[used_value_key]].filter(
           (v, i, a) => a.indexOf(v) === i
         );
       } else {
         //attach to value array while filtering out invalid values
-        value = [...value, token[used_value_key]].filter((v) => {
+        value = [...(value ? value : []), token[used_value_key]].filter((v) => {
           return normalisedOptions.filter((nv) => nv[used_value_key] === v)
             .length;
         });
@@ -615,7 +622,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   function remove(token) {
     if (readonly || disabled || single) return;
-    value = value.filter
+    value = Array.isArray(value)
       ? value.filter((item) => !matchesValue(item, token))
       : value;
 
