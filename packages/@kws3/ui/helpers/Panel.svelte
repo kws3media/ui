@@ -94,7 +94,6 @@ This will not work if there is no title area
 </div>
 
 <script>
-  //@ts-nocheck
   import { Icon } from "@kws3/ui";
   /**
    * Title of the panel

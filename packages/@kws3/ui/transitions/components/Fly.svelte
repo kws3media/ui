@@ -26,7 +26,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { fly } from "svelte/transition";
   import getEasing from "./getEasing";
 

@@ -18,7 +18,6 @@
 </KwsPanel>
 
 <script>
-  //@ts-nocheck
   import { Panel as KwsPanel } from "@kws3/ui";
   export let title = "Demo Panel",
     subtitle = "",

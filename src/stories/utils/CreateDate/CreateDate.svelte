@@ -12,7 +12,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { createDate } from "@kws3/ui/utils";
   // eslint-disable-next-line @kws3/svelte3/no-date-string-arg
   let date = new Date("2022-01-01");

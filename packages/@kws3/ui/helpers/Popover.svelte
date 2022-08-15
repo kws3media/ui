@@ -73,7 +73,6 @@ It can be any CSS value associated with `max-width` property, including `"none"`
 </style>
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { popover } from "./Tooltip";
   import { Icon } from "@kws3/ui";
@@ -86,12 +85,12 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   export let icon = "info-circle";
   /**
    * Colour of the trigger icon displayed when default slot has no content
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let icon_color = "primary";
   /**
    * Size of the trigger icon displayed when default slot has no content
-   * @type {''|'small'|'medium'|'large'}
+   * @type {string|''|'small'|'medium'|'large'}
    */
   export let icon_size = "small";
   /**

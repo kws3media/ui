@@ -1,7 +1,5 @@
 const _manifest = require("../manifest.json");
-//const { Select, Input } = require("enquirer");
-import Select from "enquirer";
-import Input from "enquirer";
+const { Select, Input } = require("enquirer");
 const { rimrafSync } = require("sander");
 const chalk = require("chalk");
 const {
@@ -76,9 +74,6 @@ async function main() {
   if (repo && repo_keys.indexOf(repo) !== -1) {
     getBranch(getValueFromNiceOption(repo, "repo", manifest));
   } else {
-    /**
-     * @type {object}
-     */
     const prompt = new Select({
       name: "repo",
       message: "Pick a repo to start on",
@@ -95,9 +90,6 @@ async function main() {
 }
 
 async function getRepo() {
-  /**
-   * @type {object}
-   */
   const input = new Input({
     message: "What is the repo short url?",
     initial: "example: nodejs/node",
@@ -116,9 +108,6 @@ async function getBranch(repo) {
     if (branch) {
       prepare(repo, branch);
     } else {
-      /**
-       * @type {object}
-       */
       const input = new Input({
         message: "Which branch or tag would you like to use?",
         initial: "default branch for repo",
@@ -136,9 +125,6 @@ function prepare(repo, branch) {
   if (protocol && protocol_keys.indexOf(protocol) !== -1) {
     download(repo, branch, protocol);
   } else {
-    /**
-     * @type {object}
-     */
     const prompt = new Select({
       name: "repo",
       message: "Pick a protocol",
@@ -147,7 +133,13 @@ function prepare(repo, branch) {
 
     prompt
       .run()
-      .then((answer) => download(repo, branch, getKeyFromNiceOption(answer)))
+      .then((answer) =>
+        download(
+          repo,
+          branch,
+          getKeyFromNiceOption(answer, null, supported_protocols)
+        )
+      )
       .catch(console.error);
   }
 }

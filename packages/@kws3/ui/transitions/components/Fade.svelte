@@ -22,7 +22,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { fade } from "svelte/transition";
   import getEasing from "./getEasing";
 
