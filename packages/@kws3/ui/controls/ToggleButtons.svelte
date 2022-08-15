@@ -46,7 +46,7 @@ This property can be bound to, to fetch the current value, Default: `null`
         style="height:auto">
         <span>
           {#if option.icon}
-            <Icon icon={option.icon} size="small" />
+            <Icon icon={option.icon} size="small" class="is-marginless" />
           {/if}
           <span class="is-block">{option.name}</span>
           {#if option.subtitle}
