@@ -28,7 +28,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { ScrollableList as KwsScrollableList } from "@kws3/ui";
   import TargetComponent from "./TargetComponent.svelte";
@@ -50,6 +49,7 @@
   let records = data.records;
   let loading = false;
   let _items = new Array(100)
+    // @ts-ignore
     .fill()
     .map(() => records[Math.floor(Math.random() * records.length)]);
 
