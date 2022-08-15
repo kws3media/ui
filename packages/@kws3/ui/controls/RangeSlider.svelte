@@ -78,12 +78,12 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     disabled = false,
     /**
      * Size of the Slider
-     * @type {''|'small'|'medium'|'large'}
+     * @type {string|''|'small'|'medium'|'large'}
      */
     size = "",
     /**
      * Colour of the Slider
-     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**

@@ -48,12 +48,12 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
 
   /**
    * Size of the Checkbox
-   * @type {''|'small'|'medium'|'large'}
+   * @type {string|''|'small'|'medium'|'large'}
    */
   export let size = "",
     /**
      * Colour of the Checkbox
-     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
@@ -100,7 +100,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
      *
-     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+     * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
      */
     icon_family = "";
 
