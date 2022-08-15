@@ -51,7 +51,7 @@ This property can be bound to, to fetch the current value, Default: `false`
     disabled = false,
     /**
      * Color of the Toggle
-     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "",
     /**
@@ -64,7 +64,7 @@ This property can be bound to, to fetch the current value, Default: `false`
     off_text = "",
     /**
      * Size of the Toggle
-     * @type {''|'small'|'medium'|'large'}
+     * @type {string|''|'small'|'medium'|'large'}
      */
     size = "",
     /**

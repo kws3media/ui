@@ -33,7 +33,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { ToggleControl as KwsToggleControl } from "@kws3/ui";
   import { Toggle } from "@kws3/ui";
   import { ToggleButtons } from "@kws3/ui";

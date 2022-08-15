@@ -121,7 +121,7 @@ This property can be bound to, to fetch the current value, Default: `null`
     inactive_class = "is-outlined",
     /**
      * Size of the Toggle Buttons
-     * @type {''|'small'|'medium'|'large'}
+     * @type {string|''|'small'|'medium'|'large'}
      */
     size = "",
     /**
