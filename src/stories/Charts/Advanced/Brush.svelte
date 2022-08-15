@@ -17,7 +17,6 @@
   height={height2} />
 
 <script>
-  //@ts-nocheck
   import { LineChart, BarChart } from "@kws3/ui";
 
   export let colors = null,
