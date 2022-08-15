@@ -16,7 +16,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { DataSearch as KwsDataSearch } from "@kws3/ui";
 
   export let hasSearch = true,
