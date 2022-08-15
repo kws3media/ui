@@ -108,9 +108,6 @@ async function getBranch(repo) {
     if (branch) {
       prepare(repo, branch);
     } else {
-      /**
-       * @type {object}
-       */
       const input = new Input({
         message: "Which branch or tag would you like to use?",
         initial: "default branch for repo",
