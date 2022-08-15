@@ -13,7 +13,6 @@
 </header>
 
 <script>
-  //@ts-nocheck
   /**
    * CSS classes for the TimelineItem container
    */
