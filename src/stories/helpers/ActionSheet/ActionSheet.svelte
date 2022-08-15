@@ -27,7 +27,6 @@
   on:click={() => (is_active = true)}>Open Action Sheet</button>
 
 <script>
-  //@ts-nocheck
   import { ActionSheet as KwsActionSheet } from "@kws3/ui";
   export let is_active = false,
     closable = true,
