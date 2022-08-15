@@ -5,7 +5,6 @@
   {style}
   {inner_class}
   {inner_style}
-  {classes}
   {title_class}
   {title}
   {has_title}
@@ -17,14 +16,12 @@
 </KwsMessage>
 
 <script>
-  //@ts-nocheck
   import { Message as KwsMessage } from "@kws3/ui";
 
   export let size = "medium",
     color = "info",
     style = "",
     inner_style = "",
-    classes = "",
     title_class = "",
     inner_class = "",
     title = null,
