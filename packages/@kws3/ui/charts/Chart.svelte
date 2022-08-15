@@ -16,7 +16,6 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
 <div class="kws-chart {klass}" bind:this={canvas} />
 
 <script>
-  //@ts-nocheck
   import { onMount, createEventDispatcher } from "svelte";
   import ApexCharts from "apexcharts/dist/apexcharts.esm";
   import { merge } from "./utils";
@@ -141,6 +140,7 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
 
     if (canvas) {
       chart = new ApexCharts(canvas, config);
+      //@ts-ignore
       chart.render();
     }
   };
