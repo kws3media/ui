@@ -20,7 +20,6 @@
   on:click={() => (is_active = true)}>Open Card Modal</button>
 
 <script>
-  //@ts-nocheck
   import { CardModal as KwsCardModal } from "@kws3/ui";
   export let title = "Card Modal",
     size = "",
