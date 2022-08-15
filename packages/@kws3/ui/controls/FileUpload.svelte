@@ -37,9 +37,9 @@ The following functions are returned in `event.detail`:
       {#if _is_uploading}
         <span class="loader" />
       {:else if _is_finished}
-        <Icon size="" icon="check-circle" />
+        <Icon size="" icon="check-circle" class="fa-lg" />
       {:else}
-        <Icon size="" icon="upload" />
+        <Icon size="" icon="upload" class="fa-lg" />
       {/if}
     </div>
     <div class="file">
@@ -106,7 +106,7 @@ The following functions are returned in `event.detail`:
     info = "",
     /**
      * Color of the information text
-     * @type {''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     info_color = "grey",
     /**
@@ -124,12 +124,12 @@ The following functions are returned in `event.detail`:
     disabled = false,
     /**
      * Size of the File Input
-     * @type {''|'small'|'medium'|'large'}
+     * @type {string|''|'small'|'medium'|'large'}
      */
     size = "",
     /**
      * Color of the File Input
-     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {string|''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
      */
     color = "";
 
