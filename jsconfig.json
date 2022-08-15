@@ -8,7 +8,8 @@
     "paths": {
       "@kws3/ui": ["./packages/@kws3/ui/index"],
       "@kws3/*": ["./packages/@kws3/*"]
-    }
+    },
+    "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
   "typeAcquisition": {
