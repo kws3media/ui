@@ -23,8 +23,8 @@ Only send this prop if you want to fetch `options` asynchronously.
   @param {string|'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {number} [scoreThreshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
+  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -256,12 +256,12 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let scoreThreshold = 3;
   /**
    * Size of the input
-   *  @type {''|'small'|'medium'|'large'}
+   *  @type {string|''|'small'|'medium'|'large'}
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "";
   /**
