@@ -42,10 +42,9 @@
 </div>
 
 <script>
-  //@ts-nocheck
-  export let item, index;
-
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
+
+  export let item, index;
 </script>
