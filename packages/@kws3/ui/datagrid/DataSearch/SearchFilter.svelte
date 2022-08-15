@@ -80,7 +80,6 @@
 {/if}
 
 <script>
-  //@ts-nocheck
   import { tick } from "svelte";
   import { SearchableSelect, MultiSelect, Datepicker } from "@kws3/ui";
   import { capitaliseFirstLetter } from "@kws3/ui/utils";
