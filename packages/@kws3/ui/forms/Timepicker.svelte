@@ -47,7 +47,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:close={fireClose} />
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { timepicker } from "./actions";
 
@@ -144,6 +143,9 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   };
 
   function fillOptions() {
+    /**
+     * @type {object}
+     */
     let _opts = Object.assign(
       {
         color: ui_color,
