@@ -16,22 +16,26 @@
             stop();
           }}>Stop</button>
       </h2>
-      <div id="animatedDiv" style="width:100%;height : 200px" key={globalID} />
+      <div
+        id="animatedDiv"
+        style="width:100%;height : 200px"
+        data-key={globalID} />
     </div>
   </div>
 </div>
 
 <script>
-  //@ts-nocheck
   import { rAF } from "@kws3/ui/utils";
 
   let globalID;
   function repeatOften() {
-    var div = document.getElementById("animatedDiv");
-    div.innerHTML += `<div style=" width: 10px;
-    height: 10px;
-    background: orange;
-    float: left;"></div>`;
+    let div = document.getElementById("animatedDiv");
+    if (div) {
+      div.innerHTML += `<div style=" width: 10px;
+      height: 10px;
+      background: orange;
+      float: left;"></div>`;
+    }
     globalID = rAF(repeatOften);
   }
   globalID = rAF(repeatOften);
