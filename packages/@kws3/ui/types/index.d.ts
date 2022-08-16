@@ -23,7 +23,14 @@ export type ValidatePasswordOptions = {
 };
 
 declare global {
+  interface Navigator {
+    readonly userAgentData: {
+      platform: string;
+    };
+    readonly platform: string;
+  }
   interface Window {
     ApexCharts: Object;
+    readonly navigator: Navigator;
   }
 }
