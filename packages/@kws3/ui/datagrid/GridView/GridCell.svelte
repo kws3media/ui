@@ -16,7 +16,6 @@
 </td>
 
 <script>
-  //@ts-nocheck
   /**
    * Name of the column in the DB
    */
@@ -27,14 +26,17 @@
     row = {},
     /**
      * Finds custom values for the column
+     * @type {object}
      */
     transforms = {},
     /**
      * Finds CSS class for the column
+     * @type {object}
      */
     classNames = {},
     /**
      * Finds CSS styles for the column
+     * @type {object}
      */
     styles = {};
 </script>
