@@ -34,3 +34,19 @@ declare global {
     readonly navigator: Navigator;
   }
 }
+export type ColorOptions =
+  | ""
+  | "primary"
+  | "success"
+  | "warning"
+  | "info"
+  | "danger"
+  | "dark"
+  | "light";
+
+export type BGColorOptions = ColorOptions | "transparent" | "link";
+export type SpinnerColorOptions = ColorOptions | "grey";
+
+export type SizeOptions = "" | "small" | "medium" | "large";
+
+export type Options<T> = T;
