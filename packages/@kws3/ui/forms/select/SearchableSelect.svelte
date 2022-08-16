@@ -12,8 +12,8 @@ Used to populate the list of options in the dropdown, Default: `[]`
 this property of each object will be searched, Default: `"name"`
   @param {string} [value_key="id"] - If `options` is an array of objects,
 this property of each object will be returned as the value, Default: `"id"`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
+  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {function|null} [search=null] - Async function to fetch options
@@ -88,6 +88,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Value of the Input
    *
    * This property can be bound to, to fetch the current value
+   * @type {object}
    */
   export let value = null;
   /**
@@ -112,12 +113,12 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let value_key = "id";
   /**
    * Size of the input
-   *  @type {''|'small'|'medium'|'large'}
+   *  @type {string|''|'small'|'medium'|'large'}
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
    */
   export let color = "";
   /**
@@ -140,7 +141,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * Filtered options to be displayed strictly based on search text or perform a fuzzy match.
    * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching.
-   * @type {'fuzzy'|'strict'}
+   * @type {string|'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
   /**
