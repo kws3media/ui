@@ -1,3 +1,4 @@
+import { Colors, BGColors, SpinnerColors, Sizes } from "./type-defs";
 export type SearchOptions = {
   search_key: Array<string> | string;
   scoreThreshold: number;
@@ -34,3 +35,10 @@ declare global {
     readonly navigator: Navigator;
   }
 }
+
+export type Options<T> = T;
+
+export type ColorOptions = Options<Colors>;
+export type SizeOptions = Options<Sizes>;
+export type SpinnerColorOptions = Options<Colors | SpinnerColors>;
+export type BGColorOptions = Options<Colors | BGColors>;

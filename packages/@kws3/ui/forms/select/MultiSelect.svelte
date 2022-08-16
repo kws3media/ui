@@ -200,6 +200,13 @@ Default value: `<span>{option[search_key] || option}</span>`
   const rootContainerId = "kws-overlay-root";
 
   /**
+
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+
+   */
+
+  /**
    * Value of the Input
    *
    * This property can be bound to, to fetch the current value
@@ -211,7 +218,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    *
    * Accepts a `null` value for unlimited selected items.
    * Or a number value
-   * @type {any}
+   * @type {?number}
    */
   export let max = null;
   /**
@@ -258,12 +265,12 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let scoreThreshold = 3;
   /**
    * Size of the input
-   *  @type {string|''|'small'|'medium'|'large'}
+   *  @type {SizeOptions} size
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   *  @type {ColorOptions} color
    */
   export let color = "";
   /**

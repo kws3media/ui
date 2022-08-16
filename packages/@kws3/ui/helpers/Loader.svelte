@@ -32,19 +32,26 @@ The overlay is absolutely positioned. Ensure that the parent container is relati
 
 <script>
   /**
+
+   * @typedef {import('@kws3/ui/types').SpinnerColorOptions} SpinnerColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').BGColorOptions} BGColorOptions
+   *
+   */
+  /**
    * Color of the Spinner
    * @link https://bulma.io/documentation/helpers/color-helpers/
-   * @type {string|'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+   * @type {SpinnerColorOptions}
    */
   export let spinner_color = "grey",
     /**
      * Size of the Spinner
-     * @type {string|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     spinner_size = "medium",
     /**
      * Backgound color of the Spinner container
-     * @type {string|'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'}
+     * @type {BGColorOptions}
      */
     background_color = "transparent",
     /**
