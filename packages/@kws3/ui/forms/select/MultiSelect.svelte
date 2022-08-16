@@ -201,11 +201,9 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   /**
 
-   * @typedef {import('@kws3/ui/types').ColorOptions} COpts
-   * @typedef {import('@kws3/ui/types').SizeOptions} SOpts
-   * @typedef {import('@kws3/ui/types').Options<COpts>} ColorOptions
-   * @typedef {import('@kws3/ui/types').Options<SOpts>} SizeOptions
-   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+
    */
 
   /**
