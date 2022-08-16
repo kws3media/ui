@@ -92,7 +92,6 @@
 {/if}
 
 <script>
-  //@ts-nocheck
   import { fly } from "svelte/transition";
   import GridCell from "./GridCell.svelte";
   import { Checkbox } from "@kws3/ui";
@@ -118,6 +117,7 @@
     activatedId = null,
     /**
      * Determines whether column is visible or not
+     * @type {object}
      */
     isVisible = {},
     /**
@@ -126,10 +126,12 @@
     clickableRows = false,
     /**
      * Contains all custom values for each columns
+     * @type {object}
      */
     transforms = {},
     /**
      * Contails all CSS class for each column
+     * @type {object}
      */
     classNames = {},
     /**
@@ -138,8 +140,12 @@
     transition = false,
     /**
      * Contains all CSS styles for each column
+     * @type {object}
      */
     styles = {},
+    /**
+     * Column keys
+     */
     column_keys = [],
     /**
      * Determines if selecting multiple rows and doing multiple actions is allowed
@@ -167,6 +173,7 @@
     cellComponent = () => null;
 
   $: resolveComponent = (column, row) => {
+    // @ts-ignore
     return cellComponent(column, row) || GridCell;
   };
 
