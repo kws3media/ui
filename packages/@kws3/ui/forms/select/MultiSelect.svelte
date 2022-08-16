@@ -211,6 +211,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    *
    * Accepts a `null` value for unlimited selected items.
    * Or a number value
+   * @type {any}
    */
   export let max = null;
   /**
