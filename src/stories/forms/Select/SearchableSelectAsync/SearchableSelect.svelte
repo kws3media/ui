@@ -54,7 +54,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import {
     Panel,
     SearchableSelect as KwsSearchableSelect,
