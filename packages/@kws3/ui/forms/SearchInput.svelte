@@ -87,6 +87,7 @@
 
   /**
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   *  @type {number}
    */
   export let scoreThreshold = 2;
   /**

@@ -2,10 +2,10 @@
   @component
 
 
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
+  @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
+  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
   @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
-  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [family=""] - Icon family, can be modified globally in framework settings
+  @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [family=""] - Icon family, can be modified globally in framework settings
 
 Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   @param {string} [style=""] - Inline CSS for icon container, Default: `""`

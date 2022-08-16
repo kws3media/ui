@@ -58,7 +58,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { Transition } from "@kws3/ui";
   import TileViewItem from "./TileViewItem.svelte";
 
