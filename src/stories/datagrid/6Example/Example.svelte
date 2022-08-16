@@ -58,11 +58,6 @@
           {per_row}
           {columns}
           {clickableRows}
-          {bulk_actions}
-          {selectAll}
-          {selectedIds}
-          {selectCheckboxColor}
-          {selectCheckboxSize}
           {valueTransformers}
           {classTransformers}
           {styleTransformers}
