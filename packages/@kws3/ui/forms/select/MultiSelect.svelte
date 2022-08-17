@@ -200,10 +200,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   const rootContainerId = "kws-overlay-root";
 
   /**
-
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-
    */
 
   /**

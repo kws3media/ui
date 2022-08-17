@@ -49,13 +49,18 @@
   import { makeSearchEngine } from "@kws3/ui/search";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Size of the input
-   *  @type {string|''|'small'|'medium'|'large'}
+   *  @type {SizeOptions} size
    */
   export let size = "small";
   /**
    * Color of the input
-   * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {ColorOptions} color
    */
   export let color = "";
   /**
