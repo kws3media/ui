@@ -75,7 +75,7 @@ The parent can then decide what to do with the component
   export let size = "",
     /**
      * Color of the Message box
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
      */
     color = "info",
     /**

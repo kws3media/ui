@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column">
     <Message
-      color="grey"
+      {color}
       inner_style="border-width:0"
       style="margin: -1rem -1.3rem -0.8rem;">
       <div id="stepsHolder">
@@ -163,7 +163,12 @@
       { key: "step_two", name: "Step Two" },
       { key: "step_three", name: "Step Three" },
     ],
-    active_index = 0;
+    active_index = 0,
+    /**
+     * Color of the Message box
+     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     */
+    color = "grey";
 
   export function changeStep(i) {
     let max = steps.length;
