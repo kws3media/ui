@@ -41,9 +41,22 @@
 <script>
   import { DeleteButton as KwsButton } from "@kws3/ui";
 
+  /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
   export let text = "Delete",
+    /**
+     * Size of the Button
+     * @type {SizeOptions}
+     */
     size = "",
     icon = "minus-circle",
+    /**
+     * Color of the Button
+     * @type {ColorOptions}
+     */
     color = "danger",
     done_icon = "check",
     done_text = "Deleted",
