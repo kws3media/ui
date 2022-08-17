@@ -95,7 +95,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let placeholder = "Select Date..";
   /**
    * Colour of the Calendar
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {Exclude<ColorOptions, ''>}
    */
   export let calendar_color = "primary";
   /**
