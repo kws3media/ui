@@ -88,7 +88,7 @@ The following functions are returned in `event.detail`:
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 
-   /**
+  /**
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
@@ -112,7 +112,7 @@ The following functions are returned in `event.detail`:
     info = "",
     /**
      * Color of the information text
-     * @type {string|''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions | 'grey'}
      */
     info_color = "grey",
     /**

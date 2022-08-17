@@ -60,7 +60,13 @@
     max = 5000000,
     allowed = "*",
     disabled = false,
+    /**
+     * @type {import('@kws3/ui/types').SizeOptions}
+     */
     size = "",
+    /**
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "",
     info_color = "grey";
 
