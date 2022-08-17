@@ -47,7 +47,7 @@
 
   /**
    * Color of the Button
-   * @type {ColorOptions}
+   * @type {Exclude<ColorOptions , 'success'>}
    */
   export let color = "primary",
     /**

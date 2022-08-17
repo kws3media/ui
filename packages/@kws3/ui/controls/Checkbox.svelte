@@ -59,7 +59,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
   export let size = "",
     /**
      * Colour of the Checkbox
-     * @type {ColorOptions}
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     color = "",
     /**

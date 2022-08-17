@@ -64,7 +64,7 @@
   export let size = "",
     /**
      * Color of the Button
-     * @type {ColorOptions}
+     * @type {Exclude<ColorOptions , 'success'>}
      */
     color = "primary",
     /**
