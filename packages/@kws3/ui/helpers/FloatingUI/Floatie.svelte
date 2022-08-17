@@ -66,6 +66,10 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
+  /**
    * Title/Heading of the notification
    */
   export let title = "",
@@ -84,7 +88,7 @@
     duration = 3000,
     /**
      * Toast notification background color
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**

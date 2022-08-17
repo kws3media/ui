@@ -69,13 +69,18 @@ The parent can then decide what to do with the component
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Size of the Message
-   * @type {string|''|'small'|'medium'|'large'}
+   * @type {SizeOptions}
    */
   export let size = "",
     /**
      * Color of the Message box
-     * @type {string|''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "info",
     /**

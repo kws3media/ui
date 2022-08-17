@@ -43,10 +43,23 @@
 <script>
   import { ConfirmButton as KwsButton } from "@kws3/ui";
 
+  /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
   export let button_class = "",
     text = "Click Me",
+    /**
+     * Size of the Button
+     * @type {SizeOptions}
+     */
     size = "",
     icon = "check",
+    /**
+     * Color of the Button
+     * @type {ColorOptions}
+     */
     color = "primary",
     cy = "",
     done_icon = "check",

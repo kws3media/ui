@@ -1,11 +1,8 @@
 <!--
   @component
 
-  @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-  @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-
-  @param {SizeOptions} [size=""] - Size of the Button, Default: `""`
-  @param {ColorOptions} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
   @param {string} [saved_text="Saved"] - Text displayed after submission is completed successfully, Default: `"Saved"`
   @param {string} [error_text="Failed to Save"] - Text displayed if submission is not successful, Default: `"Failed to Save"`
@@ -56,13 +53,18 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Size of the Button
-   * @type {SizeOptions} size
+   * @type {SizeOptions}
    */
   export let size = "",
     /**
      * Color of the Button
-     * @type {ColorOptions} color
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
@@ -176,5 +178,9 @@
   }
 
   $: err_text = error_text === "" ? text : error_text;
+  /**
+   * Icon Size
+   * @type {SizeOptions}
+   */
   $: icon_size = size === "large" ? "" : "small";
 </script>

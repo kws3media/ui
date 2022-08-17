@@ -111,13 +111,16 @@ Only visible when the
   import { fade, scale } from "svelte/transition";
   import { hasTransitions } from "../settings";
   /**
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+  /**
    * Title of the modal
    * @type {string}
    */
   export let title = "",
     /**
      * Size of the modal
-     * @type {string|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "small",
     /**
