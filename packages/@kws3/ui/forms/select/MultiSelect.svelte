@@ -263,12 +263,12 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let scoreThreshold = 3;
   /**
    * Size of the input
-   *  @type {SizeOptions} size
+   *  @type {import('@kws3/ui/types').SizeOptions}
    */
   export let size = "";
   /**
    * Color of the input
-   *  @type {ColorOptions} color
+   *  @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "";
   /**
