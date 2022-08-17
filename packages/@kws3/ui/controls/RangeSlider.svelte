@@ -49,6 +49,12 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   import { onMount } from "svelte";
 
   /**
+   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
+  /**
    * Minumum permitted value
    */
   export let min = 0,
@@ -78,12 +84,12 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     disabled = false,
     /**
      * Size of the Slider
-     * @type {string|''|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "",
     /**
      * Colour of the Slider
-     * @type {string|''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "",
     /**
