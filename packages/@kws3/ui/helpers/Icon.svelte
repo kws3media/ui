@@ -66,13 +66,18 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   import { defaultIconFamily } from "../settings";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Size of the Icon
-   *  @type {string|''|'small'|'medium'|'large'}
+   *  @type {SizeOptions}
    */
   export let size = "",
     /**
      * Color of the Icon
-     * @type {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "",
     /**

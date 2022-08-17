@@ -74,7 +74,7 @@
     text = "Delete",
     /**
      * Size of the Button
-     * @type {SizeOptions} size
+     * @type {SizeOptions}
      */
     size = "",
     /**
@@ -83,7 +83,7 @@
     icon = "minus-circle",
     /**
      * Color of the Button
-     * @type {ColorOptions} color
+     * @type {ColorOptions}
      */
     color = "danger",
     /**

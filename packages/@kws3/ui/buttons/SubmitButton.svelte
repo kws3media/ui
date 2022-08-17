@@ -59,12 +59,12 @@
 
   /**
    * Size of the Button
-   * @type {SizeOptions} size
+   * @type {SizeOptions}
    */
   export let size = "",
     /**
      * Color of the Button
-     * @type {ColorOptions} color
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
@@ -178,5 +178,9 @@
   }
 
   $: err_text = error_text === "" ? text : error_text;
+  /**
+   * Icon Size
+   * @type {SizeOptions}
+   */
   $: icon_size = size === "large" ? "" : "small";
 </script>

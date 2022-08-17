@@ -24,8 +24,11 @@
 
 <script>
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+  /**
    * Color of the Divider lines
-   * @type {string|'' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link' | 'dark' | 'light'}
+   * @type {ColorOptions}
    */
   export let color = "",
     /**
