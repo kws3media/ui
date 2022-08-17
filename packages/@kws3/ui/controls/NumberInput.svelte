@@ -124,11 +124,17 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 
+    /**
+   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
   const fire = createEventDispatcher();
 
   /**
    * Size of the component
-   * @type {''|'small'|'medium'|'large'}
+   * @type {SizeOptions}
    */
   export let size = "",
     /**
@@ -172,12 +178,12 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     minus_icon = "minus",
     /**
      * Color of the Minus Icon
-     * @type {string|''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     minus_icon_color = "danger",
     /**
      * Color of the Minus Button
-     * @type {string|''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     minus_button_color = "",
     /**
@@ -186,12 +192,12 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     plus_icon = "plus",
     /**
      * Color of the Plus Icon
-     * @type {string|''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     plus_icon_color = "success",
     /**
      * Color of the Plus Button
-     * @type {string|''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     plus_button_color = "",
     /**

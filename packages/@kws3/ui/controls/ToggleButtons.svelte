@@ -78,6 +78,11 @@ This property can be bound to, to fetch the current value, Default: `null`
 <script>
   import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
+  /**
+   *
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
 
   const fire = createEventDispatcher();
   /**
@@ -121,7 +126,7 @@ This property can be bound to, to fetch the current value, Default: `null`
     inactive_class = "is-outlined",
     /**
      * Size of the Toggle Buttons
-     * @type {string|''|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "",
     /**

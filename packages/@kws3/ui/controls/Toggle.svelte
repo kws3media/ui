@@ -37,6 +37,13 @@ This property can be bound to, to fetch the current value, Default: `false`
 
 <script>
   import { createEventDispatcher } from "svelte";
+
+  /**
+   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
   const fire = createEventDispatcher();
 
   /**
@@ -51,7 +58,7 @@ This property can be bound to, to fetch the current value, Default: `false`
     disabled = false,
     /**
      * Color of the Toggle
-     * @type {string|''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "",
     /**
@@ -64,7 +71,7 @@ This property can be bound to, to fetch the current value, Default: `false`
     off_text = "",
     /**
      * Size of the Toggle
-     * @type {string|''|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "",
     /**
