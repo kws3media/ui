@@ -36,8 +36,15 @@
   import { ToggleControl as KwsToggleControl } from "@kws3/ui";
   import { Toggle } from "@kws3/ui";
   import { ToggleButtons } from "@kws3/ui";
+
+  /**
+   * @type {import('@kws3/ui/types').ColorOptions}
+   */
   export let color = "primary",
-    size = "normal",
+    /**
+     * @type {import('@kws3/ui/types').SizeOptions}
+     */
+    size = "",
     on_text = "",
     off_text = "",
     toggle = false,
