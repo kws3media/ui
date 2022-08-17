@@ -12,6 +12,8 @@ export type SearchOptions = {
   };
 };
 
+export type SearchHelper = (needle: string, haystack: array) => array;
+
 export type ValidatePasswordOptions = {
   name: string;
   text: string;

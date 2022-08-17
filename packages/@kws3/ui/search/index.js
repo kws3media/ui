@@ -2,17 +2,22 @@ import { fuzzy } from "../internal";
 
 /**
  * @typedef {import('@kws3/ui/types').SearchOptions} SearchOptions - contains search options and fuzzy lib options
+ * @typedef {import('@kws3/ui/types').SearchHelper} SearchHelper - returned search helper function which take unction take params `needle` and `haystack`.
  */
 
 /**
  * @param {SearchOptions} opts
- * @returns {function} Return function take params `needle` and `haystack`.
  */
 export function makeSearchEngine(opts) {
   let search_key = opts.search_key ? opts.search_key : "value";
   let scoreThreshold = opts.scoreThreshold ? opts.scoreThreshold : 5;
   let fuzzyOpts = opts.fuzzyOpts ? opts.fuzzyOpts : {};
 
+  /**
+   * @param {string} needle
+   * @param {array} haystack
+   * @returns {array}
+   */
   return function (needle, haystack) {
     let OPTS = haystack.map((option) => {
       let item = { ...option };
