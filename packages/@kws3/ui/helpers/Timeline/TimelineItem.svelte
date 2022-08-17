@@ -47,8 +47,12 @@
   import { Icon } from "@kws3/ui";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
+  /**
    * Color of marker and border
-   * @type {string|''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+   * @type {ColorOptions}
    */
   export let color = "primary";
   /**
