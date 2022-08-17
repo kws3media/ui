@@ -68,6 +68,9 @@
      * @type {import('@kws3/ui/types').ColorOptions}
      */
     color = "",
+    /**
+     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     */
     info_color = "grey";
 
   let klass = "";
