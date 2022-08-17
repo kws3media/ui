@@ -150,7 +150,7 @@
     selectedIds = [],
     /**
      * Colour of the `select all` checkbox
-     * @type {ColorOptions}
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     selectAllCheckboxColor = "primary",
     /**

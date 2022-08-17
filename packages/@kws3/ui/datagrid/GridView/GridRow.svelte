@@ -166,7 +166,7 @@
     selectedIds = [],
     /**
      * Selected checkbox color
-     * @type {ColorOptions}
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     selectCheckboxColor = "info",
     /**
