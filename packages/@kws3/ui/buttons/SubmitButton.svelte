@@ -1,11 +1,8 @@
 <!--
   @component
 
-  @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-  @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-
-  @param {SizeOptions} [size=""] - Size of the Button, Default: `""`
-  @param {ColorOptions} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
   @param {string} [saved_text="Saved"] - Text displayed after submission is completed successfully, Default: `"Saved"`
   @param {string} [error_text="Failed to Save"] - Text displayed if submission is not successful, Default: `"Failed to Save"`
@@ -54,6 +51,11 @@
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
+
+  /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
 
   /**
    * Size of the Button
