@@ -75,7 +75,7 @@
     text = "Click Me",
     /**
      * Size of the Button
-     * @type {SizeOptions}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "",
     /**
@@ -84,7 +84,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {ColorOptions}
+     * @type {import('@kws3/ui/types').ColorOptions}
      */
     color = "primary",
     /**

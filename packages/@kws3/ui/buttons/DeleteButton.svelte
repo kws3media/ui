@@ -60,11 +60,6 @@
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   */
-
-  /**
    * CSS classes for the Delete button
    */
   export let button_class = "",
@@ -74,7 +69,7 @@
     text = "Delete",
     /**
      * Size of the Button
-     * @type {SizeOptions}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "",
     /**
@@ -83,7 +78,7 @@
     icon = "minus-circle",
     /**
      * Color of the Button
-     * @type {ColorOptions}
+     * @type {import('@kws3/ui/types').ColorOptions}
      */
     color = "danger",
     /**
