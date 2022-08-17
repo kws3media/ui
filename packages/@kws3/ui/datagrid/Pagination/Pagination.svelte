@@ -189,7 +189,7 @@
     entityName = "entries",
     /**
      * Size of the pagination elements
-     * @type {string|''|'small'|'medium'|'large'}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "small",
     /**

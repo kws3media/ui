@@ -140,6 +140,9 @@
     bulk_actions = false,
     selectAll = false,
     selectedIds = [],
+    /**
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     selectAllCheckboxColor = "primary",
     selectCheckboxColor = "info",
     selectCheckboxSize = "medium",
