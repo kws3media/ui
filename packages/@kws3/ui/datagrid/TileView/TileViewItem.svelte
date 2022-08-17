@@ -31,7 +31,6 @@
 </div>
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
@@ -54,18 +53,22 @@
     clickableRows = false,
     /**
      * Returns whether a column can be visible or not
+     * @type {function}
      */
     isVisible = function () {},
     /**
      * Returns column custom value
+     * @type {function}
      */
     transforms = function () {},
     /**
      * Returns column custom CSS class
+     * @type {function}
      */
     classNames = function () {},
     /**
      * Returns column custom CSS styles
+     * @type {function}
      */
     styles = function () {},
     /**
