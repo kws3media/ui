@@ -12,8 +12,7 @@
     "resolveJsonModule": true
   },
   "include": [
-    "./packages/@kws3/ui/types/index.d.ts",
-    "./packages/@kws3/ui/types/ambient.d.ts"
+    "./packages/@kws3/ui/types/*.d.ts",
   ],
   "exclude": ["node_modules"],
   "typeAcquisition": {
