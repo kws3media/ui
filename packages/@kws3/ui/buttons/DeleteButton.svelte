@@ -1,12 +1,14 @@
 <!--
   @component
 
+  @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+  @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
 
   @param {string} [button_class=""] - CSS classes for the Delete button, Default: `""`
   @param {string} [text="Delete"] - Button text, Default: `"Delete"`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {SizeOptions} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="minus-circle"] - Name of the icon that is to be displayed in the button, Default: `"minus-circle"`
-  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="danger"] - Color of the Button, Default: `"danger"`
+  @param {ColorOptions} [color="danger"] - Color of the Button, Default: `"danger"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Deleted"] - Button text displayed after task is completed successfully, Default: `"Deleted"`
@@ -70,7 +72,7 @@
     text = "Delete",
     /**
      * Size of the Button
-     * @type {string|''|'small'|'medium'|'large'}
+     * @type {SizeOptions} size
      */
     size = "",
     /**
@@ -79,7 +81,7 @@
     icon = "minus-circle",
     /**
      * Color of the Button
-     * @type {string|''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {ColorOptions} color
      */
     color = "danger",
     /**

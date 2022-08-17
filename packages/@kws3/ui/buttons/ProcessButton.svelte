@@ -1,12 +1,14 @@
 <!--
   @component
 
+  @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+  @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
 
   @param {string} [button_class=""] - CSS classes for the Process button, Default: `""`
   @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+  @param {SizeOptions} [size=""] - Size of the Button, Default: `""`
   @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
-  @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {ColorOptions} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`
@@ -71,7 +73,7 @@
     text = "Click Me",
     /**
      * Size of the Button
-     * @type {string|''|'small'|'medium'|'large'}
+     * @type {SizeOptions} size
      */
     size = "",
     /**
@@ -80,7 +82,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {string|''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {ColorOptions} color
      */
     color = "primary",
     /**
