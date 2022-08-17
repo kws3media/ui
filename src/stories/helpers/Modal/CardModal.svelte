@@ -22,6 +22,10 @@
 <script>
   import { CardModal as KwsCardModal } from "@kws3/ui";
   export let title = "Card Modal",
+    /**
+     * Size of the modal
+     * @type {import('@kws3/ui/types').SizeOptions}
+     */
     size = "",
     is_active = false,
     closable = true,

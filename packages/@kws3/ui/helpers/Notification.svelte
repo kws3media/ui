@@ -34,12 +34,8 @@ The parent can then decide what to do with the component
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   */
-
-  /**
    * Color of the Notification box
-   * @type {ColorOptions}
+   * @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "info";
 

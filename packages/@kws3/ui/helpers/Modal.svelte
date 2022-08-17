@@ -75,11 +75,8 @@ Only programmatic closing is possible, Default: `true`
   import { fade, scale } from "svelte/transition";
   import { hasTransitions } from "../settings";
   /**
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   */
-  /**
    * Size of the modal
-   * @type {SizeOptions}
+   * @type {import('@kws3/ui/types').SizeOptions}
    */
   export let size = "small",
     /**

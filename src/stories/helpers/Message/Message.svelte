@@ -18,7 +18,15 @@
 <script>
   import { Message as KwsMessage } from "@kws3/ui";
 
+  /**
+   * Size of the Message
+   * @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let size = "medium",
+    /**
+     * Color of the Message box
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "info",
     style = "",
     inner_style = "",

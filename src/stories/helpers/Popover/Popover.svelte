@@ -164,7 +164,15 @@
     Notification,
   } from "@kws3/ui";
   export let icon = "info-circle";
+  /**
+   * Colour of the trigger icon displayed when default slot has no content
+   * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+   */
   export let icon_color = "grey";
+  /**
+   * Size of the trigger icon displayed when default slot has no content
+   * @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let icon_size = "small";
   export let trigger = "click";
   export let placement = "auto";

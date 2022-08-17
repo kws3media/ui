@@ -10,6 +10,10 @@
 
 <script>
   import { TimelineItem as KwsTimelineItem } from "@kws3/ui";
+  /**
+   * Color of marker and border
+   * @type {import('@kws3/ui/types').ColorOptions}
+   */
   export let color = "",
     marker_image = null,
     marker_icon = null;

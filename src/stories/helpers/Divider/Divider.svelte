@@ -67,6 +67,10 @@
 <script>
   import { Divider as KwsDivider, Icon, Message } from "@kws3/ui";
 
+  /**
+   * Color of the Divider lines
+   * @type {import('@kws3/ui/types').ColorOptions}
+   */
   export let color = "",
     light = false,
     vertical = false,

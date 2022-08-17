@@ -3,6 +3,11 @@
 
 <script>
   import { Notification as KwsNotification } from "@kws3/ui";
+
+  /**
+   * Color of the Notification box
+   * @type {import('@kws3/ui/types').ColorOptions}
+   */
   export let color = "info",
     style = "",
     light = false,

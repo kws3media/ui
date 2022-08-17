@@ -71,6 +71,9 @@
     copied_text = "Copied!",
     copied_icon = "check",
     copied = false,
+    /**
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     copied_icon_color = "",
     copy = "";
 
