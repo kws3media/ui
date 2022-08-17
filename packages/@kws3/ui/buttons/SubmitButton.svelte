@@ -1,9 +1,11 @@
 <!--
   @component
 
+  @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+  @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
 
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {SizeOptions} [size=""] - Size of the Button, Default: `""`
+  @param {ColorOptions} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
   @param {string} [saved_text="Saved"] - Text displayed after submission is completed successfully, Default: `"Saved"`
   @param {string} [error_text="Failed to Save"] - Text displayed if submission is not successful, Default: `"Failed to Save"`
@@ -55,12 +57,12 @@
 
   /**
    * Size of the Button
-   * @type {string|''|'small'|'medium'|'large'}
+   * @type {SizeOptions} size
    */
   export let size = "",
     /**
      * Color of the Button
-     * @type {string|''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions} color
      */
     color = "primary",
     /**
