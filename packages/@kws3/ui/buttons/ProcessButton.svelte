@@ -75,7 +75,7 @@
     text = "Click Me",
     /**
      * Size of the Button
-     * @type {SizeOptions} size
+     * @type {SizeOptions}
      */
     size = "",
     /**
@@ -84,7 +84,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {ColorOptions} color
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
