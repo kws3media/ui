@@ -83,7 +83,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let placeholder = "Select Time..";
   /**
    * Colour of popup time selection UI
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {Exclude<ColorOptions, ''>}
    */
   export let ui_color = "primary";
 

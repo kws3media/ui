@@ -124,7 +124,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 
-    /**
+  /**
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
