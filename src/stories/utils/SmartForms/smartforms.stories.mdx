@@ -28,6 +28,7 @@ let data;
 let errors;
 let isValid;
 let isTouched;
+let tracker;
 let validators = {
   email: withMsg("Email should not be empty", notEmpty),
   password: withMsg("Password should not be empty", notEmpty),
@@ -47,6 +48,7 @@ function load() {
   errors = form.errors;
   isValid = form.isValid;
   isTouched = form.isTouched;
+  tracker = form.tracker;
 }
 ```
 
