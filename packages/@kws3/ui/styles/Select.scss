@@ -10,6 +10,7 @@ $kws-select-selecting-color: $primary-invert !default;
 $kws-select-selecting-background: $primary !default;
 $kws-select-selected-color: $primary-dark !default;
 $kws-select-selected-background: $primary-light !default;
+$kws-select-options-background: $scheme-main-ter;
 
 $__modal-z: 41 !default;
 @if $modal-z {
@@ -96,7 +97,7 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
     cursor: pointer;
     border-radius: 0 0 $kws-select-radius $kws-select-radius;
     overflow: auto;
-    background: #fff;
+    background: $kws-select-options-background;
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 4;
