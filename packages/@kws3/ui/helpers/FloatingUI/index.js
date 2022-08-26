@@ -1,4 +1,5 @@
-import { FloatingUIOutput } from "@kws3/ui";
+//@ts-check
+import FloatingUIOutput from "./FloatingUIOutput.svelte";
 import { writable, get } from "svelte/store";
 import {
   defaultToastPlacement,
@@ -19,6 +20,7 @@ function ensureOutputIsOnPage() {
     return;
   }
 
+  //@ts-ignore
   OUTPUT_IS_ON_PAGE = new FloatingUIOutput({
     target: document.body,
   });

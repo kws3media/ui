@@ -55,8 +55,8 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:yearChange={fireYearChange} />
 
 <script>
-  import { datepicker } from "./actions";
   import { createEventDispatcher } from "svelte";
+  import { datepicker } from "./actions";
 
   const fire = createEventDispatcher();
 
@@ -81,6 +81,10 @@ See: https://flatpickr.js.org/options/, Default: `{}`
    * Disables the component
    */
   export let disabled = false;
+  /**
+   * Make input value read-only
+   */
+  export let readonly = false;
   /**
    * Placeholder text for the input
    */
@@ -140,6 +144,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
     min_date,
     max_date,
     options,
+    readonly,
     fillOptions();
 
   function fillOptions() {
@@ -163,6 +168,11 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
     if (max_date) {
       _opts.maxDate = max_date;
+    }
+
+    _opts.clickOpens = true;
+    if (readonly) {
+      _opts.clickOpens = false;
     }
     opts = _opts;
   }

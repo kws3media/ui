@@ -1,0 +1,32 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import RandomPercent from "./RandomPercent.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/RandomPercent" />
+
+## randomPercent
+
+The `randomPercent` returns random percentage.
+
+**Parameters:** 
+
+1. min : `type: Number`, Default `1`
+2. max : `type: Number`, Default `100`
+
+#### Usage
+
+```js
+import { randomPercent } from "@kws3/ui/utils";
+randomPercent(min, max);
+randomPercent(min);
+randomPercent();
+```
+
+<Story name="RandomPercent" args={{}}>
+  {(args) => ({
+    Component: RandomPercent,
+  })}
+</Story>

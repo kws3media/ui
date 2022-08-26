@@ -1,3 +1,4 @@
+//@ts-check
 import { expect } from "@storybook/jest";
 import {
   within,
@@ -83,7 +84,7 @@ export default async ({ args, canvasElement }) => {
   //show 'No matching options' message when no matching items found
   await sleep(300);
   inputs[0].value = "";
-  await userEvent.type(inputs[0], "ex", { delay: 100 });
+  await userEvent.type(inputs[0], "exe", { delay: 100 });
   await sleep(1000);
   await expect(getNodeText(items[0]).trim()).toEqual("No matching options");
 
@@ -127,10 +128,11 @@ export default async ({ args, canvasElement }) => {
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  //@ts-ignore
   await userEvent.click(options[0].querySelector("li.active"));
   await expect(Number(tags.length)).toBe(2);
-  await expect(getNodeText(tags[0]).trim()).toBe("Vivo");
-  await expect(getNodeText(tags[1]).trim()).toBe("Sony");
+  await expect(getNodeText(tags[0]).trim()).toBe("XOLO");
+  await expect(getNodeText(tags[1]).trim()).toBe("Bosch");
 
   //Removing all selected items
   await sleep(300);

@@ -1,0 +1,27 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import ResizeObserver from "./ResizeObserver.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/ResizeObserver" />
+
+### ResizeObserver
+
+The `resizeObserver` used to handle window resizing.
+
+**Example:**
+
+```js
+import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
+if(hasResizeObserver){
+  <div use:resizeObserver on:resize={resizeHandler}>
+}
+```
+
+<Story name="ResizeObserver" args={{}}>
+  {(args) => ({
+    Component: ResizeObserver,
+  })}
+</Story>

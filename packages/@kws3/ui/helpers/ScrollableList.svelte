@@ -78,10 +78,7 @@ while more items are loading
 <script>
   import { onMount, tick } from "svelte";
   import { createEventDispatcher } from "svelte";
-  import {
-    resizeObserver,
-    hasResizeObserver,
-  } from "@kws3/ui/utils/resizeObserver";
+  import { resizeObserver, hasResizeObserver } from "@kws3/ui/resizeObserver";
 
   const fire = createEventDispatcher();
   /**

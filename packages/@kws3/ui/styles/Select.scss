@@ -187,7 +187,7 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
   $color-invert: nth($pair, 2);
   $color-light: findLightColor($color);
   $color-dark: findDarkColor($color);
-  .searchableselect {
+  .kws-searchableselect {
     &.is-#{$name} {
       border-color: $color;
       &:focus-within {

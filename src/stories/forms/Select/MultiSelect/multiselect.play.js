@@ -1,3 +1,4 @@
+//@ts-check
 import { expect } from "@storybook/jest";
 import {
   within,
@@ -72,8 +73,9 @@ export default async ({ args, canvasElement }) => {
   //Search for an item
   await sleep(300);
   await userEvent.type(inputs[0], "no", { delay: 100 });
-  await expect(Number(items.length)).toBe(1);
-  await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("no");
+  await sleep(300);
+  await expect(Number(items.length)).toBe(12);
+  await expect(getNodeText(items[0]).substring(0, 2).toLowerCase()).toBe("be");
 
   //Clear search input
   await sleep(300);
@@ -83,25 +85,31 @@ export default async ({ args, canvasElement }) => {
   //Search and select for multiple items using Enter key
   await sleep(300);
   await userEvent.type(inputs[0], "son", { delay: 100 });
+  await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
   await userEvent.type(inputs[0], "hua", { delay: 100 });
+  await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
+  await sleep(300);
   await expect(Number(tags.length)).toBe(2);
-  await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("son");
+  await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("eri");
   await expect(getNodeText(tags[1]).substring(0, 3).toLowerCase()).toBe("hua");
 
   //Clear selected items
   await fireEvent.keyDown(inputs[0], { key: "Backspace" });
   await expect(Number(tags.length)).toBe(1);
-  await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("son");
+  await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("eri");
   await userEvent.click(within(tags[0]).getByRole("button"));
   await expect(Number(tags.length)).toEqual(0);
 
   //Clear input using Escape key
   await sleep(300);
   await userEvent.type(inputs[0], "bl", { delay: 100 });
+  await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await userEvent.type(inputs[0], "nok", { delay: 100 });
+  await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Escape" });
   await expect(Number(tags.length)).toBe(1);
   await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("bla");
@@ -119,28 +127,37 @@ export default async ({ args, canvasElement }) => {
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
+  //@ts-ignore
   await userEvent.click(options[0].querySelector("li.active"));
   await expect(Number(tags.length)).toBe(3);
-  await expect(getNodeText(tags[0]).trim()).toBe("Blackberry");
-  await expect(getNodeText(tags[1]).trim()).toBe("LG");
-  await expect(getNodeText(tags[2]).trim()).toBe("Oppo");
+  await expect(getNodeText(tags[0]).trim()).toBe("BlackBerry");
+  await expect(getNodeText(tags[1]).trim()).toBe("NEC");
+  await expect(getNodeText(tags[2]).trim()).toBe("Nothing");
 
   //By default search strategy  should be 'fuzzy'
   await sleep(300);
-  await userEvent.type(inputs[0], "hw", { delay: 100 });
+  await userEvent.type(inputs[0], "hwe", { delay: 100 });
+  await sleep(300);
   await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("huawei");
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await sleep(300);
-  await userEvent.type(inputs[0], "bery", { delay: 100 });
-  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("blackberry");
+  await userEvent.type(inputs[0], "xia", { delay: 100 });
+  await sleep(300);
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("xiaomi");
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
 
-  //Clear input if input loses focus on it
+  // //Clear input if input loses focus on it
   await sleep(300);
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
+  await fireEvent.keyDown(inputs[0], { key: "Backspace" });
   await userEvent.type(inputs[0], "s", { delay: 100 });
   await userEvent.click(document.body);
+  await sleep(300);
   await expect(inputs[0].value).toBe("");
-  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("lg");
+  await expect(getNodeText(items[0]).trim().toLowerCase()).toBe("acer");
 
   //Removing all selected items
   await sleep(300);
