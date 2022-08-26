@@ -8,10 +8,10 @@ In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`
 
 This property can be bound to, to fetch the selected date or date range. Output is in the same format as input., Default: `""`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
+  @param {string|''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Date picker input, Default: `""`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [placeholder="Select Date.."] - Placeholder text for the input, Default: `"Select Date.."`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
+  @param {string|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [calendar_color="primary"] - Colour of the Calendar, Default: `"primary"`
   @param {any} [min_date=null] - Set earliest selectable date as an object or string
 
 **Example:** `"2021-06-06"` or `"(new Date('2021-01-01'))"`, Default: `null`
@@ -61,6 +61,10 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
+  /**
    * Accepts a date value in the format `yyyy-mm-dd`
    *
    * In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`
@@ -74,7 +78,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let style = "";
   /**
    * Colour of the Date picker input
-   * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {ColorOptions} color
    */
   export let color = "";
   /**
@@ -91,7 +95,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let placeholder = "Select Date..";
   /**
    * Colour of the Calendar
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {Exclude<ColorOptions, ''>}
    */
   export let calendar_color = "primary";
   /**
@@ -148,6 +152,9 @@ See: https://flatpickr.js.org/options/, Default: `{}`
     fillOptions();
 
   function fillOptions() {
+    /**
+     * @type {object}
+     */
     let _opts = Object.assign(
       {
         color: calendar_color,

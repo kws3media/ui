@@ -1,4 +1,3 @@
-//@ts-check
 import { cloneObject } from "../utils/index";
 import { derived, get, writable } from "svelte/store";
 
@@ -19,8 +18,15 @@ const formMaker = (config) => {
   let data = config.data || {};
   let validators = config.validators || {};
   let strictMode = config.strictMode || false;
+  let tracker_data = {
+    saving: false,
+    saved: false,
+    error: false,
+  };
 
   const formData = writable(cloneObject(data));
+
+  const tracker = writable(cloneObject(tracker_data));
 
   const touched = derived(formData, ($formData, set) => {
     let fields = Object.keys($formData);
@@ -129,6 +135,7 @@ const formMaker = (config) => {
   function reset(e) {
     e && e.preventDefault();
     formData.set(cloneObject(data));
+    tracker.set(cloneObject(tracker_data));
   }
 
   return {
@@ -137,6 +144,7 @@ const formMaker = (config) => {
     touched,
     isValid,
     isTouched,
+    tracker,
     update,
     reset,
     setValidators,

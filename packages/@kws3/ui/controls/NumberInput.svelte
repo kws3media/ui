@@ -40,8 +40,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
       ? 'danger'
       : ''}"
     type="number"
-    min
-    max
+    {min}
+    {max}
     {step}
     {disabled}
     readonly={!typeable}
@@ -72,8 +72,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
           ? 'danger'
           : ''}"
         type="number"
-        min
-        max
+        {min}
+        {max}
         {step}
         {disabled}
         readonly={!typeable}
@@ -124,11 +124,17 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 
+  /**
+   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
   const fire = createEventDispatcher();
 
   /**
    * Size of the component
-   * @type {''|'small'|'medium'|'large'}
+   * @type {SizeOptions}
    */
   export let size = "",
     /**
@@ -137,6 +143,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      * This property can be bound to, to fetch the current value
      *
      * This will be overridden if `min` is higher, or `max` is lower
+     * @type {number}
      */
     value = 0,
     /**
@@ -145,10 +152,12 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     step = 1,
     /**
      * Minumum permitted value
+     * @type {number}
      */
     min = 0,
     /**
      * Maximum permitted value
+     * @type {number}
      */
     max = 100,
     /**
@@ -169,12 +178,12 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     minus_icon = "minus",
     /**
      * Color of the Minus Icon
-     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     minus_icon_color = "danger",
     /**
      * Color of the Minus Button
-     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     minus_button_color = "",
     /**
@@ -183,12 +192,12 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     plus_icon = "plus",
     /**
      * Color of the Plus Icon
-     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     plus_icon_color = "success",
     /**
      * Color of the Plus Button
-     * @type {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     plus_button_color = "",
     /**
@@ -231,7 +240,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   const count = (i) => () => {
     if (typeof value == "undefined" || value === null) value = min;
     value = Number(value) + i * step;
-    if (step % 1 !== 0) value = value.toFixed(1);
+    if (step % 1 !== 0) value = Number(value.toFixed(1));
   };
 
   function validateInput() {

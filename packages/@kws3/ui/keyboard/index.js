@@ -1,14 +1,33 @@
-//@ts-check
+import { IS_MAC } from "../internal";
 const ctrlKeys = {
   ctrl: "ctrlKey",
   meta: "metaKey",
   shift: "shiftKey",
   alt: "altKey",
 };
-export function makeKeyDefinition(definition) {
-  let keys = Number.isInteger(definition)
-    ? [definition]
-    : definition.split("+");
+
+/**
+ * @param {string | number} definition - can be a string like 'Enter', 'Tab' or number as keyCode, also allow combination key like 'ctrl+d', 'ctrl+alt+x'
+ * @param {boolean} CommandKey - if true, in mac 'ctrl' key binding will be shift on 'command' key.
+ * @returns {function} .
+ */
+
+export function makeKeyDefinition(definition, CommandKey = false) {
+  let def = definition;
+  let keys = [];
+
+  if (typeof def === "number") {
+    keys = [def];
+  }
+
+  if (typeof def === "string") {
+    if (CommandKey) {
+      if (IS_MAC) {
+        def = def.replace("ctrl", "meta");
+      }
+    }
+    keys = def.split("+");
+  }
 
   return function (node, fire) {
     function keydownHandler(event) {

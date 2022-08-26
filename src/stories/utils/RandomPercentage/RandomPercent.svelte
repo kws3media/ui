@@ -43,6 +43,6 @@
   });
 
   function regenerate() {
-    value = randomPercent(min, max);
+    value = Number(randomPercent(min, max));
   }
 </script>

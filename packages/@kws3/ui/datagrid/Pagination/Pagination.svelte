@@ -189,7 +189,7 @@
     entityName = "entries",
     /**
      * Size of the pagination elements
-     * @type {''|'small'|'medium'|'large'}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "small",
     /**
@@ -210,7 +210,7 @@
     perPageOptions = [20, 50, 100, 150, 200, 250];
 
   let pages = [],
-    _perPageOptions = 0;
+    _perPageOptions = {};
 
   $: _total = total || meta.total || 0;
   $: _count = count || meta.count || 0;
@@ -303,7 +303,7 @@
 
   /**
    * Go to an arbitrary page number
-   * @param {int} targetPage
+   * @param {number} targetPage
    */
   export function goto(targetPage) {
     let limit = _limit,

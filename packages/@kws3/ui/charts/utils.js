@@ -9,6 +9,7 @@ const themeColors = [
   "#77ED11",
 ];
 
+//@ts-ignore
 export const merge = ApexCharts.merge;
 
 export function pieChartOptions(labels, is_sparkline) {

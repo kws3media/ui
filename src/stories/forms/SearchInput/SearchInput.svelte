@@ -45,7 +45,15 @@
 <script>
   import { SearchInput as KwsSearchInput, Notification } from "@kws3/ui";
 
+  /**
+   * Size of the input
+   *  @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let size = "",
+    /**
+     * Color of the input
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "",
     style = "",
     disabled = false,

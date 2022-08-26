@@ -2,9 +2,9 @@
   @component
 
 
-  @param {array} [value=[]] - Value of the Input
+  @param {Array|?string} [value=undefined] - Value of the Input
 
-This property can be bound to, to fetch the current value, Default: `[]`
+This property can be bound to, to fetch the current value, Default: `undefined`
   @param {object} [max=null] - Maximum number of selectable items from dropdown list.
 
 Accepts a `null` value for unlimited selected items.
@@ -20,11 +20,11 @@ this property of each object will be returned as the value, Default: `"id"`
 
 Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
-  @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+  @param {string|'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {number} [scoreThreshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
+  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -200,9 +200,15 @@ Default value: `<span>{option[search_key] || option}</span>`
   const rootContainerId = "kws-overlay-root";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Value of the Input
    *
    * This property can be bound to, to fetch the current value
+   * @type {Array|?string}
    */
   export let value = [];
   /**
@@ -210,6 +216,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    *
    * Accepts a `null` value for unlimited selected items.
    * Or a number value
+   * @type {?number}
    */
   export let max = null;
   /**
@@ -245,22 +252,23 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * Filtered options to be displayed strictly based on search text or perform a fuzzy match.
    * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching.
-   * @type {'fuzzy'|'strict'}
+   * @type {string|'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
 
   /**
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   * @type {number}
    */
   export let scoreThreshold = 3;
   /**
    * Size of the input
-   *  @type {''|'small'|'medium'|'large'}
+   *  @type {import('@kws3/ui/types').SizeOptions}
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   *  @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "";
   /**
@@ -346,7 +354,6 @@ Default value: `<span>{option[search_key] || option}</span>`
       lastY: 0, //  to check actual mouse is moving or not, for WebKit compatibility,
       preventSelect: false, //prevent select by mouse when up or down key is pressed
     },
-    fuzzyOpts = {}, // fuzzy.js lib options
     fuzzysearch = null,
     filteredOptions = [], //list of options filtered by search query
     normalisedOptions = [], //list of options normalised
@@ -390,11 +397,15 @@ Default value: `<span>{option[search_key] || option}</span>`
   $: activeOption, searchText, filteredOptions, updateActiveOption();
 
   //TODO: optimise isSelected function
+  /** @type {(option: array)=> boolean}*/
   $: isSelected = (option) => {
     if (single) return matchesValue(value, option);
     if (!(value && value.length > 0) || value === "") return false;
     // nothing is selected if `value` is the empty array or string
-    else return value.some((v) => matchesValue(v, option));
+    else
+      return Array.isArray(value)
+        ? value.some((v) => matchesValue(v, option))
+        : false;
   };
 
   $: singleVisibleValue =
@@ -472,11 +483,15 @@ Default value: `<span>{option[search_key] || option}</span>`
 
       selectedOptions = _normalisedOptions
         .filter(
-          (v) => value && value.some((vl) => `${v[used_value_key]}` === `${vl}`)
+          (v) =>
+            Array.isArray(value) &&
+            value.some((vl) => `${v[used_value_key]}` === `${vl}`)
         )
         .sort(
           (a, b) =>
-            value.indexOf(a[used_value_key]) - value.indexOf(b[used_value_key])
+            // tweak for 'value is nullable' type error
+            (value ? value.indexOf(a[used_value_key]) : 0) -
+            (value ? value.indexOf(b[used_value_key]) : 0)
         );
     }
 
@@ -491,11 +506,13 @@ Default value: `<span>{option[search_key] || option}</span>`
       return;
     }
     options_loading = true;
-    search(filter).then((_options) => {
-      options = _options;
-      searching = false;
-      options_loading = false;
-    });
+    if (search !== null) {
+      search(filter).then((_options) => {
+        options = _options;
+        searching = false;
+        options_loading = false;
+      });
+    }
   }
 
   const debouncedTriggerSearch = debounce(triggerSearch, 150, false);
@@ -504,11 +521,12 @@ Default value: `<span>{option[search_key] || option}</span>`
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
       placement: "bottom-start",
+      // @ts-ignore
       modifiers: [sameWidthPopperModifier],
     });
 
     if (allow_fuzzy_match) {
-      fuzzyOpts = {
+      let fuzzyOpts = {
         analyzeSubTerms: true,
         analyzeSubTermDepth: 10,
         highlighting: {
@@ -569,16 +587,20 @@ Default value: `<span>{option[search_key] || option}</span>`
       setOptionsVisible(false);
     }
 
-    if (!isAlreadySelected && !single && (max === null || value.length < max)) {
+    if (
+      !isAlreadySelected &&
+      !single &&
+      (max === null || (value && value.length < max))
+    ) {
       if (asyncMode) {
         //Do not filter invalid options, as they are async and might not be invalid
         //but ensure they are unique
-        value = [...value, token[used_value_key]].filter(
+        value = [...(value ? value : []), token[used_value_key]].filter(
           (v, i, a) => a.indexOf(v) === i
         );
       } else {
         //attach to value array while filtering out invalid values
-        value = [...value, token[used_value_key]].filter((v) => {
+        value = [...(value ? value : []), token[used_value_key]].filter((v) => {
           return normalisedOptions.filter((nv) => nv[used_value_key] === v)
             .length;
         });
@@ -606,7 +628,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   function remove(token) {
     if (readonly || disabled || single) return;
-    value = value.filter
+    value = Array.isArray(value)
       ? value.filter((item) => !matchesValue(item, token))
       : value;
 

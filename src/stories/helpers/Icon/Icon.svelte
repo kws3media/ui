@@ -54,7 +54,16 @@
 
 <script>
   import { Icon as KwsIcon } from "@kws3/ui";
+
+  /**
+   * Size of the Icon
+   *  @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let size = "",
+    /**
+     * Color of the Icon
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "",
     style = "",
     icon = "",

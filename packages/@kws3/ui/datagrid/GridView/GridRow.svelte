@@ -100,6 +100,11 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Row index value
    */
   export let row_index = 0,
@@ -117,6 +122,7 @@
     activatedId = null,
     /**
      * Determines whether column is visible or not
+     * @type {object}
      */
     isVisible = {},
     /**
@@ -125,10 +131,12 @@
     clickableRows = false,
     /**
      * Contains all custom values for each columns
+     * @type {object}
      */
     transforms = {},
     /**
      * Contails all CSS class for each column
+     * @type {object}
      */
     classNames = {},
     /**
@@ -137,8 +145,12 @@
     transition = false,
     /**
      * Contains all CSS styles for each column
+     * @type {object}
      */
     styles = {},
+    /**
+     * Column keys
+     */
     column_keys = [],
     /**
      * Determines if selecting multiple rows and doing multiple actions is allowed
@@ -154,10 +166,12 @@
     selectedIds = [],
     /**
      * Selected checkbox color
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     selectCheckboxColor = "info",
     /**
      * selected checkbox size
+     * @type {SizeOptions}
      */
     selectCheckboxSize = "medium",
     /**
@@ -166,6 +180,7 @@
     cellComponent = () => null;
 
   $: resolveComponent = (column, row) => {
+    // @ts-ignore
     return cellComponent(column, row) || GridCell;
   };
 

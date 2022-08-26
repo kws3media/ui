@@ -61,10 +61,18 @@
   import { characters, characters_string_only } from "../data.js";
 
   onMount(() => {
-    activateTooltips("#ss_container");
+    activateTooltips("#ss_container", null);
   });
 
+  /**
+   * Size of the input
+   *  @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let size = "",
+    /**
+     * Color of the input
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "",
     style = "",
     disabled = false,

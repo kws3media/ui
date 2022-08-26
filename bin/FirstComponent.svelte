@@ -1,6 +1,6 @@
 <!--
   @component
-  
+
 
   @param [_] - No properties on this component
 

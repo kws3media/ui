@@ -1,4 +1,3 @@
-//@ts-check
 import Dialog from "./Dialog.svelte";
 
 function createDialog(msg, props) {

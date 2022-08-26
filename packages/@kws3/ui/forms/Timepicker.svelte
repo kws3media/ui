@@ -53,6 +53,10 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
+  /**
    * Accepts a date value in the format `H:i`
    *
    * Where `H` is in 24hr format
@@ -66,7 +70,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let style = "";
   /**
    * Colour of the Time picker input
-   * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {ColorOptions} color
    */
   export let color = "";
   /**
@@ -79,7 +83,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let placeholder = "Select Time..";
   /**
    * Colour of popup time selection UI
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {Exclude<ColorOptions, ''>}
    */
   export let ui_color = "primary";
 
@@ -143,6 +147,9 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   };
 
   function fillOptions() {
+    /**
+     * @type {object}
+     */
     let _opts = Object.assign(
       {
         color: ui_color,

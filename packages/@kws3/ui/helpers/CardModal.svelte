@@ -37,6 +37,7 @@ Only visible when the
     <div
       transition:scale={{
         duration: transitionDuration,
+        // @ts-ignore
         from: 0.8,
         to: 1,
         delay: transitionDelay,
@@ -116,7 +117,7 @@ Only visible when the
   export let title = "",
     /**
      * Size of the modal
-     * @type {'small'|'medium'|'large'}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "small",
     /**

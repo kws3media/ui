@@ -1,4 +1,3 @@
-//@ts-check
 import { expect } from "@storybook/jest";
 import {
   within,

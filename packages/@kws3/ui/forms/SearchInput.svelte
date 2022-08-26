@@ -2,8 +2,8 @@
   @component
 
 
-  @param {''|'small'|'medium'|'large'} [size="small"] - Size of the input, Default: `"small"`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string|''|'small'|'medium'|'large'} [size="small"] - Size of the input, Default: `"small"`
+  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [placeholder="Search"] - Placeholder text for the input, Default: `"Search"`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -50,12 +50,12 @@
 
   /**
    * Size of the input
-   *  @type {''|'small'|'medium'|'large'}
+   *  @type {import('@kws3/ui/types').SizeOptions} size
    */
   export let size = "small";
   /**
    * Color of the input
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {import('@kws3/ui/types').ColorOptions} color
    */
   export let color = "";
   /**
@@ -72,10 +72,12 @@
   export let disabled = false;
   /**
    * Array of objects.
+   * @type {array}
    */
   export let options = [];
   /**
    * array of object properties to search in.
+   * @type {array}
    */
   export let searchableKeys = [];
   /**
@@ -85,6 +87,7 @@
 
   /**
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   *  @type {number}
    */
   export let scoreThreshold = 2;
   /**
@@ -103,7 +106,6 @@
 
   let keywords = "",
     orginalItems = [],
-    fuzzyOpts = {}, // fuzzy.js lib options
     fuzzysearch = null;
 
   const debouncedSearch = debounce(search, 300);
@@ -112,7 +114,7 @@
     v && v.trim() ? v.toLowerCase().trim().split(/\s+/) : [];
 
   onMount(() => {
-    fuzzyOpts = {
+    let fuzzyOpts = {
       analyzeSubTerms: true,
       analyzeSubTermDepth: 10,
       highlighting: {

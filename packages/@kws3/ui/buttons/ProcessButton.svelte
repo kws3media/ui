@@ -1,7 +1,6 @@
 <!--
   @component
 
-
   @param {string} [button_class=""] - CSS classes for the Process button, Default: `""`
   @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
@@ -71,7 +70,7 @@
     text = "Click Me",
     /**
      * Size of the Button
-     * @type {''|'small'|'medium'|'large'}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "",
     /**
@@ -80,7 +79,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {import('@kws3/ui/types').ColorOptions}
      */
     color = "primary",
     /**
@@ -98,7 +97,7 @@
     /**
      * Context property
      */
-    context = null,
+    context = "",
     /**
      * Removes text, and text space in the button
      */

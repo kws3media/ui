@@ -140,6 +140,7 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
 
     if (canvas) {
       chart = new ApexCharts(canvas, config);
+      //@ts-ignore
       chart.render();
     }
   };

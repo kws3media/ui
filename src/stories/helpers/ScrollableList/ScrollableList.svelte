@@ -51,6 +51,7 @@
   let records = data.records;
   let loading = false;
   let _items = new Array(100)
+    // @ts-ignore
     .fill()
     .map(() => records[Math.floor(Math.random() * records.length)]);
 

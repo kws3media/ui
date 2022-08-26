@@ -1,4 +1,3 @@
-//@ts-check
 import flatpickr from "flatpickr";
 
 function createFlatpickrAction(defaultOpts, hooks, type) {

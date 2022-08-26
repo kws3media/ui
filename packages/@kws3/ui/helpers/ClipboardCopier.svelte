@@ -42,6 +42,9 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
   import { Icon } from "@kws3/ui";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+  /**
    * Default tooltip text
    */
   export let text = "Copy to clipboard",
@@ -70,7 +73,7 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
      *
      * If `''` is selected, Icon will not change colour after copying
      *
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {import('@kws3/ui/types').ColorOptions}
      */
     copied_icon_color = "success";
 

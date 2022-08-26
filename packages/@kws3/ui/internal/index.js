@@ -1,4 +1,3 @@
-//@ts-check
 export { scrollIntoActiveElement } from "./scrollIntoActiveElement";
 export { fuzzy } from "./fuzzy.js";
 
@@ -17,3 +16,12 @@ export function isEnterKey(e) {
 export function isEscKey(e) {
   return e.keyCode && e.keyCode === 27;
 }
+
+export const IS_MAC =
+  "navigator" in window
+    ? /mac/i.test(
+        window.navigator.userAgentData
+          ? window.navigator.userAgentData.platform
+          : window.navigator.platform
+      )
+    : false;

@@ -34,8 +34,8 @@
             type="button"
             bind:this={x}
             class="button is-small"
-            on:click={() => Dialog.alert("Clicked!!!")}
-            >Try to click me!</button>
+            on:click={// @ts-ignore
+            () => Dialog.alert("Clicked!!!")}>Try to click me!</button>
         </Message>
       </svelte:fragment>
     </KwsPopover>
@@ -59,8 +59,8 @@
           <button
             type="button"
             class="button is-small"
-            on:click={() => Dialog.alert("Clicked!!!")}
-            >Try to click me!</button>
+            on:click={// @ts-ignore
+            () => Dialog.alert("Clicked!!!")}>Try to click me!</button>
         </Message>
       </svelte:fragment>
     </KwsPopover>
@@ -84,8 +84,8 @@
             <button
               type="button"
               class="button is-small"
-              on:click={() => Dialog.alert("Clicked!!!")}
-              >Try to click me!</button>
+              on:click={// @ts-ignore
+              () => Dialog.alert("Clicked!!!")}>Try to click me!</button>
           </Message>
         </svelte:fragment>
       </KwsPopover>
@@ -117,8 +117,8 @@
             <button
               type="button"
               class="button is-small"
-              on:click={() => Dialog.alert("Clicked!!!")}
-              >Try to click me!</button>
+              on:click={// @ts-ignore
+              () => Dialog.alert("Clicked!!!")}>Try to click me!</button>
           </Message>
         </svelte:fragment>
       </KwsPopover> This popover can only be opened and closed programatically using
@@ -164,11 +164,19 @@
     Notification,
   } from "@kws3/ui";
   export let icon = "info-circle";
+  /**
+   * Colour of the trigger icon displayed when default slot has no content
+   * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+   */
   export let icon_color = "grey";
+  /**
+   * Size of the trigger icon displayed when default slot has no content
+   * @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let icon_size = "small";
   export let trigger = "click";
   export let placement = "auto";
-  export let interactive = "false";
+  export let interactive = false;
   export let max_width = "none";
   export let style = "";
 

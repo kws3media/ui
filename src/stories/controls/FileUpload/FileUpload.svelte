@@ -1,9 +1,9 @@
 <div class="columns">
   <div class="column" style="width: 400px;">
     <KwsFileUpload
-      on:file_chosen={(event) => onFileChosen(event)}
-      on:file_uploaded={(event) => onFileUploaded(event)}
-      on:file_upload_error={(event) => onFileUploadError(event)}
+      on:file_chosen={(event) => onFileChosen(event, false)}
+      on:file_uploaded={() => onFileUploaded()}
+      on:file_upload_error={() => onFileUploadError()}
       {allowed}
       {disabled}
       {message}
@@ -20,15 +20,14 @@
   <div class="column" style="width: 400px;">
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event, true)}
-      on:file_uploaded={(event) => onFileUploaded(event)}
-      on:file_upload_error={(event) => onFileUploadError(event)}
+      on:file_uploaded={() => onFileUploaded()}
+      on:file_upload_error={() => onFileUploadError()}
       {allowed}
       {disabled}
       {message}
       {key}
       {info}
       {max}
-      {classes}
       class={klass}
       {color}
       {size}
@@ -60,10 +59,18 @@
     info = "",
     max = 5000000,
     allowed = "*",
-    classes = "",
     disabled = false,
+    /**
+     * @type {import('@kws3/ui/types').SizeOptions}
+     */
     size = "",
+    /**
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "",
+    /**
+     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     */
     info_color = "grey";
 
   let klass = "";
@@ -91,7 +98,7 @@
           var reader = new FileReader();
           reader.readAsDataURL(file.file.get("userfile"));
           reader.onload = () => {
-            image = reader.result;
+            image = String(reader.result);
           };
         }
         progrss = 0;

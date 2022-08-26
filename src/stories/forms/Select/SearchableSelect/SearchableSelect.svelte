@@ -14,7 +14,6 @@
         search_key="name"
         value_key="id"
         {search_strategy}
-        {scoreThreshold}
         {placeholder}
         {style}
         class={klass}
@@ -43,7 +42,6 @@
         {search_key}
         {value_key}
         {search_strategy}
-        {scoreThreshold}
         {placeholder}
         {style}
         class={klass}
@@ -72,7 +70,15 @@
     activateTooltips("#ss_container");
   });
 
+  /**
+   * Size of the input
+   *  @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let size = "",
+    /**
+     * Color of the input
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "",
     style = "",
     disabled = false,
@@ -80,14 +86,13 @@
     search_key = "name",
     value_key = "id",
     search_strategy = "fuzzy",
-    scoreThreshold = 5,
     selected_icon = "check",
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
     placeholder = "Choose a Brand...",
     selected_brand = "", // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = "Blackberry";
+    selected_brand_string = "BlackBerry";
 
   let klass = "";
   export { klass as class };

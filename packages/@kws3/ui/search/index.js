@@ -1,27 +1,23 @@
-//@ts-check
 import { fuzzy } from "../internal";
 
 /**
- * @typedef {object} SearchOptions - contains search options and fuzzy lib options
- * @property {string} search_key - which key to perform search on.
- * @property {number} scoreThreshold - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
- * @property {object} fuzzyOpts - fuzzy match options
- * @property {boolean} fuzzyOpts.analyzeSubTerms -  Whether or not analyze sub-terms, default false
- * @property {number} fuzzyOpts.analyzeSubTermDepth - How many sub terms should be analyzed , default 10
- * @property {object} fuzzyOpts.highlighting - markup
- * @property {string} fuzzyOpts.highlighting.after, -  markup to add after matched character, default '</em>'
- * @property {string} fuzzyOpts.highlighting.before -  markup to add before matched character, default '<em>'
+ * @typedef {import('@kws3/ui/types').SearchOptions} SearchOptions - contains search options and fuzzy lib options
+ * @typedef {import('@kws3/ui/types').SearchHelper} SearchHelper - returned search helper function which take unction take params `needle` and `haystack`.
  */
 
 /**
  * @param {SearchOptions} opts
- * @return {function} Return function take params `needle` and `haystack`.
  */
 export function makeSearchEngine(opts) {
-  let search_key = defaultValue(opts, "search_key", "value");
-  let scoreThreshold = defaultValue(opts, "scoreThreshold", 5);
+  let search_key = opts.search_key ? opts.search_key : "value";
+  let scoreThreshold = opts.scoreThreshold ? opts.scoreThreshold : 5;
   let fuzzyOpts = opts.fuzzyOpts ? opts.fuzzyOpts : {};
 
+  /**
+   * @param {string} needle
+   * @param {array} haystack
+   * @returns {array}
+   */
   return function (needle, haystack) {
     let OPTS = haystack.map((option) => {
       let item = { ...option };
@@ -53,8 +49,4 @@ export function makeSearchEngine(opts) {
     );
     return OPTS.map((i) => i.original);
   };
-}
-
-function defaultValue(opts, key, value) {
-  return opts && opts[key] ? opts[key] : value;
 }

@@ -262,6 +262,6 @@
   import { onMount } from "svelte";
 
   onMount(() => {
-    activateTooltips("#tooltip-example-container-1");
+    activateTooltips("#tooltip-example-container-1", null);
   });
 </script>

@@ -76,7 +76,15 @@
   let selected_brand = { id: 10, name: "Blackberry" },
     selected_brand_string = "Blackberry";
 
+  /**
+   * Size of the input
+   * @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let size = "",
+    /**
+     * Color of the input
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "",
     style = "",
     disabled = false,

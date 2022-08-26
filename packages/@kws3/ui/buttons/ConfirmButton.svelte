@@ -1,7 +1,6 @@
 <!--
   @component
 
-
   @param {string} [button_class=""] - CSS classes for the Confirm button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
@@ -83,6 +82,11 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * CSS classes for the Confirm button
    */
   export let button_class = "",
@@ -92,7 +96,7 @@
     text = "",
     /**
      * Size of the Button
-     * @type {''|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "",
     /**
@@ -101,7 +105,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
@@ -154,6 +158,10 @@
   let confirm = false;
 
   $: main_color = "is-" + color;
+  /**
+   * Icon Size
+   * @type {SizeOptions}
+   */
   $: icon_size = "small";
   $: _confirm = should_confirm && confirm;
 

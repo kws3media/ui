@@ -1,4 +1,3 @@
-//@ts-check
 export default function (password, options) {
   const result = {
     items: [],
@@ -6,19 +5,11 @@ export default function (password, options) {
   };
 
   /**
-   * @typedef {object} ValidationOption
-   * @property {string} name
-   * @property {string} text
-   * @property {string} identifier
-   * @property {RegExp} regex
-   * @property {boolean} passed
-   * @property {boolean} active
-   * @property {number} [value]
-   * @property {boolean} [negate]
+   * @typedef {import('@kws3/ui/types').ValidatePasswordOptions} ValidatePasswordOptions - contains ValidatePassword options
    */
 
   result.items = (options || []).slice().map((_opt) => {
-    /** @type {ValidationOption} */
+    /** @type {ValidatePasswordOptions} */
     const opt = Object.assign({}, _opt);
     if (opt && opt.active) {
       if (opt.name === "kws_pv_min_length") {
@@ -42,8 +33,9 @@ export default function (password, options) {
   });
 
   result.overall =
-    result.items.filter((/** @type {ValidationOption} */ el) => el.passed)
-      .length === result.items.length;
+    result.items.filter(
+      (/** @type {ValidatePasswordOptions} */ el) => el.passed
+    ).length === result.items.length;
 
   return result;
 }

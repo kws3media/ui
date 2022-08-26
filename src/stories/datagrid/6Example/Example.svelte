@@ -58,11 +58,6 @@
           {per_row}
           {columns}
           {clickableRows}
-          {bulk_actions}
-          {selectAll}
-          {selectedIds}
-          {selectCheckboxColor}
-          {selectCheckboxSize}
           {valueTransformers}
           {classTransformers}
           {styleTransformers}
@@ -116,7 +111,7 @@
     ToggleControl,
     Loader,
   } from "@kws3/ui";
-  const response = require("./users.json");
+  import { response } from "./users.js";
 
   let hasSearch = true,
     hasFilters = true,
@@ -145,6 +140,9 @@
     bulk_actions = false,
     selectAll = false,
     selectedIds = [],
+    /**
+     * @type {Exclude<import('@kws3/ui/types').ColorOptions, 'success'>}
+     */
     selectAllCheckboxColor = "primary",
     selectCheckboxColor = "info",
     selectCheckboxSize = "medium",

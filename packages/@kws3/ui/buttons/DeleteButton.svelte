@@ -1,7 +1,6 @@
 <!--
   @component
 
-
   @param {string} [button_class=""] - CSS classes for the Delete button, Default: `""`
   @param {string} [text="Delete"] - Button text, Default: `"Delete"`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
@@ -70,7 +69,7 @@
     text = "Delete",
     /**
      * Size of the Button
-     * @type {''|'small'|'medium'|'large'}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "",
     /**
@@ -79,7 +78,7 @@
     icon = "minus-circle",
     /**
      * Color of the Button
-     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {import('@kws3/ui/types').ColorOptions}
      */
     color = "danger",
     /**

@@ -40,7 +40,20 @@
 <script>
   import { SubmitButton as KwsButton } from "@kws3/ui";
 
+  /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
+   * Color of the Button
+   * @type {Exclude<ColorOptions , 'success'>}
+   */
   export let color = "primary",
+    /**
+     * Size of the Button
+     * @type {SizeOptions}
+     */
     size = "",
     text = "Save Changes",
     saved_text = "Saved",

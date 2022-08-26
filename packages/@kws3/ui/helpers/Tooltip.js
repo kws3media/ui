@@ -1,4 +1,3 @@
-//@ts-check
 import tippy, { delegate } from "tippy.js";
 
 /**
@@ -6,7 +5,7 @@ import tippy, { delegate } from "tippy.js";
  * @param {string} container - CSS selector of container
  * @param {object} opts - tooltip options
  */
-export function activateTooltips(container, opts) {
+export function activateTooltips(container, opts = {}) {
   let _opts = Object.assign(
     {
       target: "[data-tooltip]",

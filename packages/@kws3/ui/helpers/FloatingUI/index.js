@@ -1,4 +1,3 @@
-//@ts-check
 import FloatingUIOutput from "./FloatingUIOutput.svelte";
 import { writable, get } from "svelte/store";
 import {

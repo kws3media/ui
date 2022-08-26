@@ -94,6 +94,10 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
+  /**
    * Iteration key
    */
   export let iteration_key = "id",
@@ -145,6 +149,7 @@
     selectedIds = [],
     /**
      * Colour of the `select all` checkbox
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     selectAllCheckboxColor = "primary",
     /**

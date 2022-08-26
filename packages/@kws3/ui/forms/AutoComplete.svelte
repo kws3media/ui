@@ -2,9 +2,9 @@
   @component
 
 
-  @param {string} [value=""] - Value of the Input
+  @param {?string} [value=] - Value of the Input
 
-This property can be bound to, to fetch the current value, Default: `""`
+This property can be bound to, to fetch the current value, Default: ``
   @param {string} [placeholder=""] - Placeholder text for the input, Default: `""`
   @param {array} [options=[]] - Array of strings, or objects.
 Used to populate the list of options in the dropdown, Default: `[]`
@@ -12,12 +12,12 @@ Used to populate the list of options in the dropdown, Default: `[]`
 
 Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
-  @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+  @param {string|'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
   @param {number} [scoreThreshold=5] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
+  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -136,9 +136,15 @@ Default value: `<span>{option.label}</span>`
   const rootContainerId = "kws-overlay-root";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Value of the Input
    *
    * This property can be bound to, to fetch the current value
+   * @type {?string}
    */
   export let value = "";
 
@@ -164,7 +170,7 @@ Default value: `<span>{option.label}</span>`
   /**
    * Filtered options to be displayed strictly based on search text or perform a fuzzy match.
    * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching.
-   * @type {'fuzzy'|'strict'}
+   * @type {string|'fuzzy'|'strict'}
    */
   export let search_strategy = "fuzzy";
 
@@ -175,16 +181,17 @@ Default value: `<span>{option.label}</span>`
 
   /**
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   * @type {number}
    */
   export let scoreThreshold = 5;
   /**
    * Size of the input
-   *  @type {''|'small'|'medium'|'large'}
+   *  @type {import('@kws3/ui/types').SizeOptions}
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "";
   /**
@@ -246,7 +253,6 @@ Default value: `<span>{option.label}</span>`
     normalised_options = [], //list of options normalised
     options_loading = false, //indictaes whether async search function is running
     mounted = false, //indicates whether component is mounted
-    fuzzyOpts = {}, // fuzzy.js lib options
     fuzzysearch = null;
 
   let list_text_size = {
@@ -298,19 +304,20 @@ Default value: `<span>{option.label}</span>`
       return;
     }
     options_loading = true;
-    // filtered_options = [];
-    search(filters).then((_options) => {
-      searching = false;
-      options_loading = false;
-      tick().then(() => {
-        filtered_options = normaliseArraysToObjects(_options);
+    if (search) {
+      search(filters).then((_options) => {
+        searching = false;
+        options_loading = false;
+        tick().then(() => {
+          filtered_options = normaliseArraysToObjects(_options);
 
-        if (highlighted_results) {
-          filtered_options = highlightMatches(filtered_options, filters);
-        }
-        setOptionsVisible(true);
+          if (highlighted_results) {
+            filtered_options = highlightMatches(filtered_options, filters);
+          }
+          setOptionsVisible(true);
+        });
       });
-    });
+    }
   }
 
   const debouncedTriggerSearch = debounce(triggerExternalSearch, 150, false);
@@ -319,11 +326,12 @@ Default value: `<span>{option.label}</span>`
     POPPER = createPopper(el, dropdown, {
       strategy: "fixed",
       placement: "bottom-start",
+      // @ts-ignore
       modifiers: [sameWidthPopperModifier],
     });
 
     if (allow_fuzzy_match) {
-      fuzzyOpts = {
+      let fuzzyOpts = {
         analyzeSubTerms: true,
         analyzeSubTermDepth: 10,
         highlighting: {

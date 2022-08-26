@@ -1,5 +1,3 @@
-//@ts-check
-
 /**
  * Truncate a string.
  * @param {string} [str=""] - String to truncate, Default: `""`
@@ -60,6 +58,7 @@ export function debounce(fn = function () {}, threshold, isAsap) {
   var timeout, result;
   function debounced() {
     var args = arguments,
+      //@ts-ignore
       context = this;
     function delayed() {
       if (!isAsap) {

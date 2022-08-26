@@ -77,7 +77,15 @@
 
   onMount(() => activateTooltips("#ms_container"));
 
+  /**
+   * Size of the input
+   *  @type {import('@kws3/ui/types').SizeOptions}
+   */
   export let size = "",
+    /**
+     * Color of the input
+     *  @type {import('@kws3/ui/types').ColorOptions}
+     */
     color = "",
     style = "",
     disabled = false,
@@ -95,7 +103,7 @@
     summary_mode = false,
     selected_brand = [], // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = ["Blackberry"];
+    selected_brand_string = ["BlackBerry"];
 
   let klass = "";
   export { klass as class };

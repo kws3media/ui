@@ -18,11 +18,13 @@
   "contributors": [
     "Sharif Ahmed <me.sharifahmed@gmail.com>",
     "Sabir <sabirveli@gmail.com>",
-    "Suneesh S K <suneeshsk3@gmail.com>"
+    "Suneesh S K <suneeshsk3@gmail.com>",
+    "Nikeeta <nikeetaa231@gmail.com>"
   ],
   "publishConfig": {
     "access": "public"
   },
+  "types": "types/index.d.ts",
   "dependencies": {
     "apexcharts": "3.33.2",
     "flatpickr": "^4.5.2",
