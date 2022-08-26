@@ -36,7 +36,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
         on:focus={focused}
         {disabled}
         bind:value={color}
-        use:colorpicker={color} />
+        use:colorpicker />
       {#if !mini}
         <Icon icon="hashtag" class="is-left" inner_style="color:#{color}" />
       {/if}
@@ -46,7 +46,6 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
 </div>
 
 <script>
-  //@ts-nocheck
   import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
   import ColorPicker from "./Colorpicker";
