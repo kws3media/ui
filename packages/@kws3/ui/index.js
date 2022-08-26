@@ -1,6 +1,6 @@
-export { applySettings } from "./settings";
+export { applySettings } from "./settings.js";
 
-export { activateTooltips, tooltip, popover } from "./helpers/Tooltip";
+export { activateTooltips, tooltip, popover } from "./helpers/Tooltip.js";
 export { default as Popover } from "./helpers/Popover.svelte";
 export { default as Icon } from "./helpers/Icon.svelte";
 export { default as Message } from "./helpers/Message.svelte";
@@ -18,13 +18,18 @@ export { default as TimelineHeader } from "./helpers/Timeline/TimelineHeader.sve
 export { default as Nl2br } from "./helpers/Nl2br.svelte";
 export { default as ClipboardCopier } from "./helpers/ClipboardCopier.svelte";
 export { default as ScrollableList } from "./helpers/ScrollableList.svelte";
-export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
+export {
+  alert,
+  confirm,
+  prompt,
+  default as Dialog,
+} from "./helpers/Dialog/index.js";
 export {
   Notifications,
   Toasts,
   Snackbars,
   FloatiesStore,
-} from "./helpers/FloatingUI";
+} from "./helpers/FloatingUI/index.js";
 export { default as FloatingUIOutput } from "./helpers/FloatingUI/FloatingUIOutput.svelte";
 export { default as Floatie } from "./helpers/FloatingUI/Floatie.svelte";
 export { portal } from "svelte-portal";
