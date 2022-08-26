@@ -8,7 +8,7 @@
   @param {number} [start=0] - First item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end=0] - Last item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end_threshold=10] - `end` event will be fired when the list reaches this many items before the end of the list., Default: `10`
-  @param {number} [padding_threshold=5] - items to render outside the viewport as padding top and bottom., Default: `5`
+  @param {number} [padding_threshold=5] - render 'n' number of items on outside the viewport (top and bottom) to avoid visible glitches on scrolling., Default: `5`
   @param {string} [style=""] - Inline CSS for scroller container, Default: `""`
   @param {string} [class=""] - CSS classes for scroller container, Default: `""`
 
@@ -107,7 +107,7 @@ while more items are loading
      */
     end_threshold = 10,
     /**
-     *  items to render outside the viewport as padding top and bottom.
+     *  render 'n' number of items on outside the viewport (top and bottom) to avoid visible glitches on scrolling.
      */
     padding_threshold = 5,
     /**
