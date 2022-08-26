@@ -78,9 +78,9 @@ export default (function (win, doc) {
         break;
     }
     return [
-      r ? round(r * 255) : null,
-      g ? round(g * 255) : null,
-      b ? round(b * 255) : null,
+      r !== undefined ? round(r * 255) : NaN,
+      g !== undefined ? round(g * 255) : NaN,
+      b !== undefined ? round(b * 255) : NaN,
     ];
   }
 
