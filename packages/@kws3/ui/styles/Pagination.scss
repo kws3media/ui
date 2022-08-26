@@ -1,5 +1,5 @@
 $kws-pagination-item-color: $text !default;
-$kws-pagination-item-background: #fff !default;
+$kws-pagination-item-background: $scheme-main !default;
 $kws-pagination-item-border: 1px solid $border !default;
 $kws-pagination-item-hover-color: $kws-pagination-item-color !default;
 $kws-pagination-item-hover-border: $kws-pagination-item-border !default;
@@ -14,7 +14,10 @@ $kws-pagination-item-active-color: findColorInvert(
 
 $kws-pagination-frame-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
   0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
-$kws-pagination-frame-background: linear-gradient(#fff, #fafafa) !default;
+$kws-pagination-frame-background: linear-gradient(
+  $scheme-main,
+  $scheme-main-ter
+) !default;
 
 .pagination {
   &.is-small {
