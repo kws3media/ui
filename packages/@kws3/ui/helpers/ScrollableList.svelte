@@ -8,6 +8,7 @@
   @param {number} [start=0] - First item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end=0] - Last item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end_threshold=10] - `end` event will be fired when the list reaches this many items before the end of the list., Default: `10`
+  @param {number} [padding_threshold=5] - render 'n' number of items on outside the viewport (top and bottom) to avoid visible glitches on scrolling., Default: `5`
   @param {string} [style=""] - Inline CSS for scroller container, Default: `""`
   @param {string} [class=""] - CSS classes for scroller container, Default: `""`
 
@@ -106,6 +107,10 @@ while more items are loading
      */
     end_threshold = 10,
     /**
+     *  render 'n' number of items on outside the viewport (top and bottom) to avoid visible glitches on scrolling.
+     */
+    padding_threshold = 5,
+    /**
      * Inline CSS for scroller container
      */
     style = "";
@@ -129,9 +134,11 @@ while more items are loading
     average_height,
     items_count = 0;
 
-  $: visible = items.slice(start, end).map((data, i) => {
-    return { index: i + start, data };
-  });
+  $: padStart = start > padding_threshold ? start - padding_threshold : start;
+  $: padEnd = end + padding_threshold;
+  $: visible = items
+    .slice(padStart, padEnd)
+    .map((data, i) => ({ index: i + padStart, data }));
 
   // whenever `items` changes, invalidate the current heightmap
   $: items, viewport_height, item_height, mounted, refresh();
@@ -173,7 +180,7 @@ while more items are loading
       const row_height = height_map[i] || average_height;
       if (y + row_height > scrollTop) {
         start = i;
-        top = y;
+        top = y - row_height * padding_threshold;
         break;
       }
       y += row_height;
