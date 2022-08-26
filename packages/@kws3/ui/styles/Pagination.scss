@@ -3,10 +3,10 @@ $kws-pagination-item-background: $scheme-main !default;
 $kws-pagination-item-border: 1px solid $border !default;
 $kws-pagination-item-hover-color: $kws-pagination-item-color !default;
 $kws-pagination-item-hover-border: $kws-pagination-item-border !default;
-$kws-pagination-item-disabled-background: $white-ter !default;
+$kws-pagination-item-disabled-background: $scheme-main-ter !default;
 $kws-pagination-item-disabled-color: $grey !default;
-$kws-pagination-item-ellipsis-background: $white-bis !default;
-$kws-pagination-item-ellipsis-border-color: $grey-lighter !default;
+$kws-pagination-item-ellipsis-background: $scheme-main-ter !default;
+$kws-pagination-item-ellipsis-border-color: $scheme-main-ter !default;
 $kws-pagination-item-active-background: $success !default;
 $kws-pagination-item-active-color: findColorInvert(
   $kws-pagination-item-active-background
