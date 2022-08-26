@@ -14,7 +14,7 @@ $kws-autocomplete-selecting-background: $primary !default;
 $kws-autocomplete-text-matches-color: currentColor !default;
 $kws-autocomplete-text-matches-background: transparent !default;
 $kws-autocomplete-text-matches-font-weight: $weight-bold !default;
-$kws-autocomplete-options-background: $scheme-main-ter;
+$kws-autocomplete-options-background: $scheme-main-ter !default;
 
 $__modal-z: 41 !default;
 @if $modal-z {
