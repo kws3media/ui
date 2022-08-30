@@ -13,7 +13,35 @@
       class={klass}
       {color}
       {size}
-      {info_color} />
+      {info_color}
+      {multiple}
+      {accept}>
+      <div slot="default" let:filename let:uploading let:progress let:finished>
+        <div class="up-icon">
+          {#if uploading}
+            <span class="loader" />
+          {:else if finished}
+            <Icon size="" icon="check-circle" class="fa-lg" />
+          {:else}
+            <Icon size="" icon="upload" class="fa-lg" />
+          {/if}
+        </div>
+        <div class="file">
+          {#if uploading}
+            <div class="upload-progress">
+              <div class="progress-inner">
+                <div class="bar" style="width:{progress}%" />
+              </div>
+            </div>
+            <div class="progress-caption">{progress}% - Uploading...</div>
+          {:else if finished}
+            <div class="filename">Upload complete!</div>
+          {:else}
+            <div class="filename"><span>{filename}</span></div>
+          {/if}
+        </div>
+      </div>
+    </KwsFileUpload>
     <p class="is-block mt-2 has-text-success">This will succeed.</p>
   </div>
 
@@ -31,7 +59,37 @@
       class={klass}
       {color}
       {size}
-      {info_color} />
+      {info_color}
+      {multiple}
+      {accept}>
+      <div slot="default" let:filename let:uploading let:progress let:finished>
+        {#if !uploading}
+          <div class="filename"><span>{filename}</span></div>
+        {/if}
+        <div class="up-icon">
+          {#if uploading}
+            <span class="loader" />
+          {:else if finished}
+            <Icon size="" icon="check-circle" class="fa-lg" />
+          {:else}
+            <Icon size="" icon="upload" class="fa-lg" />
+          {/if}
+        </div>
+        <div class="file">
+          {#if uploading}
+            <div class="upload-progress">
+              <div class="progress-inner">
+                <div class="bar" style="width:{progress}%" />
+              </div>
+            </div>
+            <div class="progress-caption">{progress}% - Uploading...</div>
+          {:else if finished}
+            <div class="filename">Upload complete!</div>
+          {/if}
+        </div>
+      </div>
+    </KwsFileUpload>
+
     <p class="is-block mt-2 has-text-danger">This will fail.</p>
   </div>
 </div>
@@ -50,7 +108,7 @@
 
 <script>
   import { createEventDispatcher } from "svelte";
-  import { FileUpload as KwsFileUpload } from "@kws3/ui";
+  import { FileUpload as KwsFileUpload, Icon } from "@kws3/ui";
 
   const fire = createEventDispatcher();
 
@@ -60,18 +118,11 @@
     max = 5000000,
     allowed = "*",
     disabled = false,
-    /**
-     * @type {import('@kws3/ui/types').SizeOptions}
-     */
     size = "",
-    /**
-     * @type {import('@kws3/ui/types').ColorOptions}
-     */
     color = "",
-    /**
-     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
-     */
-    info_color = "grey";
+    info_color = "grey",
+    multiple = false,
+    accept = "*";
 
   let klass = "";
   export { klass as class };
@@ -84,6 +135,7 @@
 
     let { getFile, progress, uploaded, error } = event.detail;
     var file = getFile();
+    console.log(file);
     var size = file.size;
     let progrss = 0;
     progress(progrss);
