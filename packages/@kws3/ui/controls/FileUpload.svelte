@@ -34,29 +34,11 @@ The following functions are returned in `event.detail`:
     ? 'danger'
     : ''} {disabled ? 'is-disabled' : ''} {_is_finished ? 'is-success' : ''}">
   <div class="file-upload-inner">
-    <div class="up-icon">
-      {#if _is_uploading}
-        <span class="loader" />
-      {:else if _is_finished}
-        <Icon size="" icon="check-circle" class="fa-lg" />
-      {:else}
-        <Icon size="" icon="upload" class="fa-lg" />
-      {/if}
-    </div>
-    <div class="file">
-      {#if _is_uploading}
-        <div class="upload-progress">
-          <div class="progress-inner">
-            <div class="bar" style="width:{_progress}%" />
-          </div>
-        </div>
-        <div class="progress-caption">{_progress}% - Uploading...</div>
-      {:else if _is_finished}
-        <div class="filename">Upload complete!</div>
-      {:else}
-        <div class="filename"><span>{_filename}</span></div>
-      {/if}
-    </div>
+    <slot
+      filename={_filename}
+      uploading={_is_uploading}
+      progress={_progress}
+      finished={_is_finished} />
     <input
       bind:this={uploadInput}
       type="file"
@@ -66,6 +48,7 @@ The following functions are returned in `event.detail`:
       {accept}
       disabled={disabled || _is_uploading || _is_finished} />
   </div>
+
   <div class="level is-mobile">
     {#if _error}
       <div class="level-item" style="max-width:100%;white-space: break-spaces;">
@@ -99,7 +82,6 @@ The following functions are returned in `event.detail`:
 
 <script>
   import { onMount, createEventDispatcher } from "svelte";
-  import { Icon } from "@kws3/ui";
 
   /**
    *
@@ -290,7 +272,8 @@ The following functions are returned in `event.detail`:
       } else {
         size = 0;
       }
-      val = val.split(/[/\\]+/);
+      // eslint-disable-next-line no-useless-escape
+      val = val.split(/[\/\\]+/);
       val = val[val.length - 1];
       ext = val.split(/\./);
       ext = ext[ext.length - 1];
@@ -343,7 +326,7 @@ The following functions are returned in `event.detail`:
 
     if (valid) {
       _total = size;
-      console.log(file);
+
       if (multiple) {
         for (let index = 0; index < file.length; index++) {
           var rs = file[index];
@@ -361,6 +344,7 @@ The following functions are returned in `event.detail`:
        *  - `uploaded()`: Function to call when upload completes
        *  - `error()`: Function to call on upload error, send error message as parameter
        */
+
       fire("file_chosen", { getFile, progress, uploaded, error });
     }
   }
