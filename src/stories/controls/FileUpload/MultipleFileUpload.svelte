@@ -93,11 +93,11 @@
 
     let { getFile, progress, uploaded, error } = event.detail;
     var file = getFile();
-    console.log(file);
     var size = file.size;
     let progrss = 0;
     progress(progrss);
 
+    let user_images = [];
     let inter_val = setInterval(() => {
       if (progrss > size) {
         if (error_state) {
@@ -105,12 +105,17 @@
           images = [];
         } else {
           uploaded();
-
-          // var reader = new FileReader();
-          // reader.readAsDataURL(file.file.get("userfile"));
-          // reader.onload = () => {
-          //   image = String(reader.result);
-          // };
+          user_images = file.file.getAll("userfile[]");
+          if (user_images && user_images.length) {
+            user_images.forEach((image) => {
+              const reader = new FileReader();
+              reader.readAsDataURL(image);
+              reader.onload = () => {
+                let image_url = String(reader.result);
+                images.push(image_url);
+              };
+            });
+          }
         }
         progrss = 0;
         clearInterval(inter_val);
@@ -122,6 +127,7 @@
   }
 
   function onFileUploaded() {
+    console.log(images);
     console.log("File uploaded successfully");
   }
   function onFileUploadError() {
