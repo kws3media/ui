@@ -33,12 +33,16 @@ The following functions are returned in `event.detail`:
   class="kws-file-upload {klass} is-{color} is-{size} is-{_error
     ? 'danger'
     : ''} {disabled ? 'is-disabled' : ''} {_is_finished ? 'is-success' : ''}">
-  <div class="file-upload-inner">
+  <div class="file-upload-inner" style={inner_style}>
     <slot
       filename={_filename}
       uploading={_is_uploading}
       progress={_progress}
-      finished={_is_finished} />
+      finished={_is_finished}
+      error={_error}
+      {fileTypes}
+      {maxFileSize}
+      error_message={_error_message} />
     <input
       bind:this={uploadInput}
       type="file"
@@ -138,7 +142,8 @@ The following functions are returned in `event.detail`:
      * @type {boolean}
      */
     multiple = false,
-    accept = "*";
+    accept = "*",
+    inner_style = "";
 
   /**
    * CSS classes for the Uploader
