@@ -14,6 +14,7 @@ It is returned back in the `getFile()` call from `file_chosen` event, Default: `
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the File Input, Default: `""`
   @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the File Input, Default: `""`
   @param {string} [class=""] - CSS classes for the Uploader, Default: `""`
+  @param {boolean} [multiple=false] - Disables the multiple file uploader, Default: `false`
 
   ### Events
   - `file_uploaded` - Triggered when upload completes
@@ -61,19 +62,31 @@ The following functions are returned in `event.detail`:
       type="file"
       name="file"
       on:change={updateFile}
+      {multiple}
+      {accept}
       disabled={disabled || _is_uploading || _is_finished} />
   </div>
   <div class="level is-mobile">
     {#if _error}
-      <div class="level-item" style="max-width:100%">
+      <div class="level-item" style="max-width:100%;white-space: break-spaces;">
         <span class="help is-{_error ? 'danger' : ''}">{_error_message}</span>
       </div>
     {:else}
+      <div class="level-item">
+        <span class="help has-text-centered">
+          {!multiple ? "Max size:" + maxFileSize : "Upload Image(s)"}
+        </span>
+      </div>
+    {/if}
+    {#if !_error}
       <div class="level-left">
         <div class="level-item">
           <span class="help">Max size: {maxFileSize}</span>
         </div>
       </div>
+    {/if}
+
+    {#if info}
       <div class="level-item" style="max-width:100%">
         <span class="help has-text-{info_color}">{info}</span>
       </div>
@@ -137,7 +150,13 @@ The following functions are returned in `event.detail`:
      * Color of the File Input
      * @type {ColorOptions}
      */
-    color = "";
+    color = "",
+    /**
+     * Whether to upload multiple or single file(s).
+     * @type {boolean}
+     */
+    multiple = false,
+    accept = "*";
 
   /**
    * CSS classes for the Uploader
@@ -241,7 +260,8 @@ The following functions are returned in `event.detail`:
       ext = "",
       size = 0,
       file = null,
-      valid = true;
+      valid = true,
+      allowedExtensions = true;
 
     formData = new FormData();
 
@@ -250,6 +270,10 @@ The following functions are returned in `event.detail`:
 
     try {
       file = el.files[0];
+      if (multiple) {
+        file = el.files;
+        allowedExtensions = checkAnyNotAllowed(file);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -258,7 +282,11 @@ The following functions are returned in `event.detail`:
       val = "No file selected";
     } else {
       if (file) {
-        size = file.fileSize || file.size;
+        if (multiple) {
+          size = [...file].reduce((acc, cur) => acc + cur.size, 0);
+        } else {
+          size = file.fileSize || file.size;
+        }
       } else {
         size = 0;
       }
@@ -303,11 +331,27 @@ The following functions are returned in `event.detail`:
       }
     }
 
+    if (!allowedExtensions) {
+      valid = false;
+      _error = true;
+      _error_message =
+        "Invalid file types found.\nAllowed file types: " + fileTypes;
+      val = "No file selected";
+    }
+
     _filename = val;
 
     if (valid) {
       _total = size;
-      formData.append("userfile", file);
+      console.log(file);
+      if (multiple) {
+        for (let index = 0; index < file.length; index++) {
+          var rs = file[index];
+          formData.append("userfile[]", rs);
+        }
+      } else {
+        formData.append("userfile", file);
+      }
       /**
        * Triggered when file is chosen by user.
        * The following functions are returned in `event.detail`:
@@ -319,6 +363,30 @@ The following functions are returned in `event.detail`:
        */
       fire("file_chosen", { getFile, progress, uploaded, error });
     }
+  }
+
+  function checkAnyNotAllowed(files) {
+    let res = true,
+      ext = "";
+    for (let i = 0; i < files.length; i++) {
+      let val = files[i].name;
+      // eslint-disable-next-line no-useless-escape
+      val = val.split(/[\/\\]+/);
+      val = val[val.length - 1];
+      ext = val.split(/\./);
+      ext = ext[ext.length - 1];
+      ext = ext.toLowerCase();
+
+      if (allowed !== "*") {
+        if (typeof allowed.length != "undefined") {
+          if (allowed.indexOf(ext) === -1) {
+            res = false;
+            break;
+          }
+        }
+      }
+    }
+    return res;
   }
 
   onMount(() => {
