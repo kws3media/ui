@@ -15,7 +15,8 @@
       {size}
       {info_color}
       {multiple}
-      {accept}>
+      {accept}
+      inner_style="min-height: 2.5rem;">
       <div slot="default" let:filename let:uploading let:progress let:finished>
         <div class="up-icon">
           {#if uploading}
@@ -61,32 +62,81 @@
       {size}
       {info_color}
       {multiple}
-      {accept}>
-      <div slot="default" let:filename let:uploading let:progress let:finished>
-        {#if !uploading}
-          <div class="filename"><span>{filename}</span></div>
-        {/if}
-        <div class="up-icon">
-          {#if uploading}
-            <span class="loader" />
-          {:else if finished}
-            <Icon size="" icon="check-circle" class="fa-lg" />
-          {:else}
-            <Icon size="" icon="upload" class="fa-lg" />
-          {/if}
-        </div>
-        <div class="file">
-          {#if uploading}
-            <div class="upload-progress">
-              <div class="progress-inner">
-                <div class="bar" style="width:{progress}%" />
-              </div>
+      {accept}
+      inner_style="min-height:10rem">
+      <div
+        class="file has-name is-boxed"
+        slot="default"
+        let:filename
+        let:uploading
+        let:progress
+        let:finished
+        let:error
+        let:fileTypes
+        let:maxFileSize
+        let:error_message>
+        <label class="file-label" for="">
+          <div class="file-cta">
+            <div>
+              <span>
+                {#if uploading}
+                  <span class="loader" style="display:inline-block" />
+                {:else if finished}
+                  <Icon size="small" icon="check-circle" />
+                {:else}
+                  <Icon size="small" icon="plus" />
+                {/if}
+              </span>
+              {#if uploading}
+                <span class="progress-caption has-text-centered">
+                  {progress ? progress + "% - " : ""} Uploading...
+                </span>
+              {:else if finished}
+                <span class="filename">Upload complete!</span>
+              {:else}
+                <span class="filename"><span>{filename}</span></span>
+              {/if}
             </div>
-            <div class="progress-caption">{progress}% - Uploading...</div>
-          {:else if finished}
-            <div class="filename">Upload complete!</div>
-          {/if}
-        </div>
+            {#if uploading}
+              <div class="upload-progress">
+                <div class="progress-inner">
+                  <div class="bar" style="width:{progress}%;" />
+                </div>
+              </div>
+            {/if}
+          </div>
+          <span class="file-name">
+            <div class="level mt-2">
+              {#if error}
+                <div
+                  class="level-item"
+                  style="max-width:100%;white-space: break-spaces;">
+                  <span class="help is-{error ? 'danger' : ''}"
+                    >{error_message}</span>
+                </div>
+              {:else}
+                <div class="level-item">
+                  <span class="help">
+                    {!multiple ? "Max size:" + maxFileSize : ""}
+                  </span>
+                </div>
+              {/if}
+            </div>
+
+            {#if !error}
+              <div class="control" style="max-width:100%">
+                <span class="help has-text-centered">{fileTypes}</span>
+              </div>
+            {/if}
+
+            {#if info}
+              <div class="control" style="max-width:100%">
+                <span class="help has-text-{info_color}">{info}</span>
+              </div>
+            {/if}
+          </span>
+          <div class="drop-on-me">Drop files here to upload</div>
+        </label>
       </div>
     </KwsFileUpload>
 
