@@ -53,10 +53,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   */
-
-  /**
    * Accepts a date value in the format `H:i`
    *
    * Where `H` is in 24hr format
