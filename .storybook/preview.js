@@ -23,3 +23,23 @@ themes: {
     },
   },
 */
+/**
+ * Color of the input
+ *  @type {ColorOptions}
+ */
+const ColorOptions = [
+  "",
+  "primary",
+  "success",
+  "warning",
+  "info",
+  "danger",
+  "dark",
+  "light",
+];
+
+const SizeOptions = ["", "small", "medium", "large"];
+export const argTypes = {
+  color: { control: "select", options: ColorOptions },
+  size: { control: "select", options: SizeOptions },
+};
