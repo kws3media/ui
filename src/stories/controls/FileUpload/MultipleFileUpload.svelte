@@ -143,7 +143,6 @@
   </div>
 </div>
 
-{images.length}
 {#if images && images.length}
   <div class="columns">
     <div class="column">
@@ -214,12 +213,11 @@
           uploaded();
           user_images = file.file.getAll("userfile[]");
           if (user_images && user_images.length) {
-            user_images.forEach((image) => {
+            user_images.forEach((image, index) => {
               const reader = new FileReader();
               reader.readAsDataURL(image);
               reader.onload = () => {
-                let image_url = String(reader.result);
-                images.push(image_url);
+                images[index] = String(reader.result);
               };
             });
           }
