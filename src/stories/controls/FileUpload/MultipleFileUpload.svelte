@@ -1,5 +1,8 @@
 <div class="columns">
   <div class="column" style="width: 400px;">
+    <h4 class="title is-size-5 is-primary has-text-centered">
+      Multiple File Upload
+    </h4>
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event, false)}
       on:file_uploaded={() => onFileUploaded()}
