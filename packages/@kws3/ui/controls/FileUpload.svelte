@@ -50,6 +50,8 @@ The following functions are returned in `event.detail`:
       error={_error}
       {fileTypes}
       {maxFileSize}
+      {info}
+      {info_color}
       error_message={_error_message}>
       <div class="up-icon">
         {#if _is_uploading}
