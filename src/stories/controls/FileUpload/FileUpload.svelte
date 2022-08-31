@@ -1,5 +1,6 @@
 <div class="columns">
   <div class="column" style="width: 400px;">
+    <h4 class="title is-4 is-primary">Default design</h4>
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event, false)}
       on:file_uploaded={() => onFileUploaded()}
@@ -16,29 +17,46 @@
       {info_color}
       {multiple}
       {accept}
+      inner_style="min-height: 2.5rem;" />
+    <p class="is-block mt-2 has-text-success">This will succeed.</p>
+  </div>
+
+  <div class="column" style="width: 400px;">
+    <h4 class="title is-4 is-primary">Custom design-1</h4>
+    <KwsFileUpload
+      on:file_chosen={(event) => onFileChosen(event, false)}
+      on:file_uploaded={() => onFileUploaded()}
+      on:file_upload_error={() => onFileUploadError()}
+      {allowed}
+      {disabled}
+      message="Upload your file..."
+      {key}
+      {info}
+      {max}
+      class={klass}
+      {color}
+      {size}
+      {info_color}
+      {multiple}
+      {accept}
       inner_style="min-height: 2.5rem;">
       <div slot="default" let:filename let:uploading let:progress let:finished>
-        <div class="up-icon">
+        <div
+          class="progress {!uploading ? 'cs is-primary' : ''}"
+          style={finished ? "background:green;color:#FFF" : ""}>
           {#if uploading}
-            <span class="loader" />
-          {:else if finished}
-            <Icon size="" icon="check-circle" class="fa-lg" />
-          {:else}
-            <Icon size="" icon="upload" class="fa-lg" />
-          {/if}
-        </div>
-        <div class="file">
-          {#if uploading}
-            <div class="upload-progress">
-              <div class="progress-inner">
-                <div class="bar" style="width:{progress}%" />
-              </div>
+            <div class="bar" style="width:{progress}%">
+              <p class="percent">{progress}%</p>
             </div>
-            <div class="progress-caption">{progress}% - Uploading...</div>
           {:else if finished}
-            <div class="filename">Upload complete!</div>
+            <div>
+              Finished <Icon size="small" icon="check-circle" />
+            </div>
           {:else}
-            <div class="filename"><span>{filename}</span></div>
+            <div>
+              {filename}
+              <Icon size="small" icon="file" family="gg" />
+            </div>
           {/if}
         </div>
       </div>
@@ -47,6 +65,7 @@
   </div>
 
   <div class="column" style="width: 400px;">
+    <h4 class="title is-4 is-primary">Custom design-2</h4>
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event, true)}
       on:file_uploaded={() => onFileUploaded()}
@@ -97,13 +116,6 @@
                 <span class="filename"><span>{filename}</span></span>
               {/if}
             </div>
-            {#if uploading}
-              <div class="upload-progress">
-                <div class="progress-inner">
-                  <div class="bar" style="width:{progress}%;" />
-                </div>
-              </div>
-            {/if}
           </div>
           <span class="file-name">
             <div class="level mt-2">
@@ -155,6 +167,43 @@
     </div>
   </div>
 {/if}
+
+<style>
+  .progress {
+    margin: 20px auto;
+    padding: 0;
+    width: 90%;
+    height: 30px;
+    overflow: hidden;
+    background: #e5e5e5;
+    border-radius: 5rem;
+  }
+
+  .bar {
+    position: relative;
+    float: left;
+    min-width: 1%;
+    height: 100%;
+    background: cornflowerblue;
+  }
+
+  .percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-family: tahoma, arial, helvetica;
+    font-size: 12px;
+    color: white;
+  }
+
+  .cs {
+    text-align: center;
+    padding: 0.2rem;
+    font-size: 0.8rem;
+  }
+</style>
 
 <script>
   import { createEventDispatcher } from "svelte";
