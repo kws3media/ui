@@ -21,7 +21,7 @@
   import { Modal as KwsModal } from "@kws3/ui";
   /**
    * Size of the modal
-   * @type {import('@kws3/ui/types').SizeOptions}
+   * @type {SizeOptions}
    */
   export let size = "",
     is_active = false,

@@ -69,7 +69,7 @@
     text = "Delete",
     /**
      * Size of the Button
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SIzeOptions}
      */
     size = "",
     /**
@@ -78,7 +78,7 @@
     icon = "minus-circle",
     /**
      * Color of the Button
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {ColorOptions}
      */
     color = "danger",
     /**

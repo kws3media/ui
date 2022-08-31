@@ -24,7 +24,7 @@
   export let title = "Card Modal",
     /**
      * Size of the modal
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SizeOptions}
      */
     size = "",
     is_active = false,

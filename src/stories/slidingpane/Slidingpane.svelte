@@ -166,7 +166,7 @@
     active_index = 0,
     /**
      * Color of the Message box
-     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     * @type {ColorOptions | 'grey'}
      */
     color = "grey";
 

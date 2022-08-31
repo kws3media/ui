@@ -38,12 +38,6 @@ This property can be bound to, to fetch the current value, Default: `false`
 <script>
   import { createEventDispatcher } from "svelte";
 
-  /**
-   *
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   *
-   */
   const fire = createEventDispatcher();
 
   /**

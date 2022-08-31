@@ -70,12 +70,12 @@ The parent can then decide what to do with the component
 
   /**
    * Size of the Message
-   * @type {import('@kws3/ui/types').SizeOptions}
+   * @type {SIzeOptions}
    */
   export let size = "",
     /**
      * Color of the Message box
-     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     * @type {ColorOptions | 'grey'}
      */
     color = "info",
     /**

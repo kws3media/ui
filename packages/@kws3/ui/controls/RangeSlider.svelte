@@ -49,12 +49,6 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   import { onMount } from "svelte";
 
   /**
-   *
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   *
-   */
-  /**
    * Minumum permitted value
    */
   export let min = 0,

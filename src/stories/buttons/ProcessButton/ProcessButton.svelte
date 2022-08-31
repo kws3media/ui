@@ -41,11 +41,6 @@
 <script>
   import { ProcessButton as KwsButton } from "@kws3/ui";
 
-  /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   */
-
   export let button_class = "",
     text = "Click Me",
     /**

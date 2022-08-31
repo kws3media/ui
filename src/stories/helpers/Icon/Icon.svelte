@@ -57,12 +57,12 @@
 
   /**
    * Size of the Icon
-   *  @type {import('@kws3/ui/types').SizeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "",
     /**
      * Color of the Icon
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {ColorOptions}
      */
     color = "",
     style = "",

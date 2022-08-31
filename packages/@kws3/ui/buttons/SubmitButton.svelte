@@ -53,11 +53,6 @@
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   */
-
-  /**
    * Size of the Button
    * @type {SizeOptions}
    */

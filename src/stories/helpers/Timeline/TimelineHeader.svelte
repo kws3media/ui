@@ -13,7 +13,7 @@
   } from "@kws3/ui";
   /**
    * Color of marker and border
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "success",
     marker_image = null,

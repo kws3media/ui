@@ -61,10 +61,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   */
-
-  /**
    * Accepts a date value in the format `yyyy-mm-dd`
    *
    * In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`

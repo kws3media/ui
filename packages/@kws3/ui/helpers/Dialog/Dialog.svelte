@@ -94,8 +94,8 @@ For internal use only - not part of config object, Default: `""`
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {ColorOptions} ColorOptions
+   * @typedef {SIzeOptions} SizeOptions
    */
 
   /**

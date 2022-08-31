@@ -141,7 +141,7 @@
     selectAll = false,
     selectedIds = [],
     /**
-     * @type {Exclude<import('@kws3/ui/types').ColorOptions, 'success'>}
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     selectAllCheckboxColor = "primary",
     selectCheckboxColor = "info",

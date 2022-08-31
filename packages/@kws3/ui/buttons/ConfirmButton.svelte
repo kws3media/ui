@@ -82,11 +82,6 @@
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   */
-
-  /**
    * CSS classes for the Confirm button
    */
   export let button_class = "",

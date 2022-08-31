@@ -38,11 +38,11 @@
   import { ToggleButtons } from "@kws3/ui";
 
   /**
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "primary",
     /**
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SizeOptions}
      */
     size = "",
     on_text = "",

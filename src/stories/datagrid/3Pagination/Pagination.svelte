@@ -35,7 +35,7 @@
     maxVisiblePages = 10,
     entityName = "entries",
     /**
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SizeOptions}
      */
     size = "small",
     frame = false,

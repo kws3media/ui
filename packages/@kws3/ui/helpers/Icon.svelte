@@ -67,12 +67,12 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 
   /**
    * Size of the Icon
-   *  @type {import('@kws3/ui/types').SizeOptions}
+   *  @type {SIzeOptions}
    */
   export let size = "",
     /**
      * Color of the Icon
-     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     * @type {ColorOptions | 'grey'}
      */
     color = "",
     /**

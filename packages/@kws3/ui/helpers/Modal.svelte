@@ -76,7 +76,7 @@ Only programmatic closing is possible, Default: `true`
   import { hasTransitions } from "../settings";
   /**
    * Size of the modal
-   * @type {import('@kws3/ui/types').SizeOptions}
+   * @type {SIzeOptions}
    */
   export let size = "small",
     /**

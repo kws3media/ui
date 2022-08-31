@@ -20,12 +20,12 @@
 
   /**
    * Size of the Message
-   * @type {import('@kws3/ui/types').SizeOptions}
+   * @type {SizeOptions}
    */
   export let size = "medium",
     /**
      * Color of the Message box
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {ColorOptions}
      */
     color = "info",
     style = "",

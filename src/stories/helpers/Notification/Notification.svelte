@@ -6,7 +6,7 @@
 
   /**
    * Color of the Notification box
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "info",
     style = "",

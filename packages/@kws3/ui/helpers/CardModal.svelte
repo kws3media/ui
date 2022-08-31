@@ -117,7 +117,7 @@ Only visible when the
   export let title = "",
     /**
      * Size of the modal
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SIzeOptions}
      */
     size = "small",
     /**

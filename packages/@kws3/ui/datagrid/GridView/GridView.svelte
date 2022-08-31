@@ -94,7 +94,7 @@
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {ColorOptions} ColorOptions
    */
 
   /**

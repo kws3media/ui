@@ -50,12 +50,12 @@
 
   /**
    * Size of the input
-   *  @type {import('@kws3/ui/types').SizeOptions} size
+   *  @type {SIzeOptions} size
    */
   export let size = "small";
   /**
    * Color of the input
-   * @type {import('@kws3/ui/types').ColorOptions} color
+   * @type {ColorOptions} color
    */
   export let color = "";
   /**
