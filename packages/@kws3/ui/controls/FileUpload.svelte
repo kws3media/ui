@@ -39,6 +39,9 @@ The following functions are returned in `event.detail`:
     ? 'is-success'
     : ''} {_is_dragging ? 'is-dragging' : ''}">
   <div class="file-upload-inner" style={inner_style}>
+    <!--
+      Slot containing uploader design
+    -->
     <slot
       filename={_filename}
       uploading={_is_uploading}
@@ -47,7 +50,31 @@ The following functions are returned in `event.detail`:
       error={_error}
       {fileTypes}
       {maxFileSize}
-      error_message={_error_message} />
+      error_message={_error_message}>
+      <div class="up-icon">
+        {#if _is_uploading}
+          <span class="loader" />
+        {:else if _is_finished}
+          <Icon size="" icon="check-circle" class="fa-lg" />
+        {:else}
+          <Icon size="" icon="upload" class="fa-lg" />
+        {/if}
+      </div>
+      <div class="file">
+        {#if _is_uploading}
+          <div class="upload-progress">
+            <div class="progress-inner">
+              <div class="bar" style="width:{_progress}%" />
+            </div>
+          </div>
+          <div class="progress-caption">{_progress}% - Uploading...</div>
+        {:else if _is_finished}
+          <div class="filename">Upload complete!</div>
+        {:else}
+          <div class="filename"><span>{_filename}</span></div>
+        {/if}
+      </div>
+    </slot>
     <input
       bind:this={uploadInput}
       type="file"
@@ -58,7 +85,7 @@ The following functions are returned in `event.detail`:
       disabled={disabled || _is_uploading || _is_finished} />
   </div>
 
-  <div class="level is-mobile">
+  <!-- <div class="level is-mobile">
     {#if _error}
       <div class="level-item" style="max-width:100%;white-space: break-spaces;">
         <span class="help is-{_error ? 'danger' : ''}">{_error_message}</span>
@@ -86,12 +113,12 @@ The following functions are returned in `event.detail`:
         <span class="help">{fileTypes}</span>
       </div>
     {/if}
-  </div>
+  </div> -->
 </div>
 
 <script>
   import { onMount, createEventDispatcher } from "svelte";
-
+  import { Icon } from "@kws3/ui";
   /**
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
