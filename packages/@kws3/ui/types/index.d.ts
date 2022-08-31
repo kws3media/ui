@@ -1,5 +1,4 @@
-import { Colors, BGColors, SpinnerColors, Sizes } from "./type-defs.ts";
-export type SearchOptions = {
+type SearchOptions = {
   search_key: Array<string> | string;
   scoreThreshold: number;
   fuzzyOpts: {
@@ -12,9 +11,9 @@ export type SearchOptions = {
   };
 };
 
-export type SearchHelper = (needle: string, haystack: array) => array;
+type SearchHelper = (needle: string, haystack: array) => array;
 
-export type ValidatePasswordOptions = {
+type ValidatePasswordOptions = {
   name: string;
   text: string;
   identifier: string;
@@ -38,9 +37,24 @@ declare global {
   }
 }
 
-export type Options<T> = T;
+type Colors =
+  | ""
+  | "primary"
+  | "success"
+  | "warning"
+  | "info"
+  | "danger"
+  | "dark"
+  | "light";
 
-export type ColorOptions = Options<Colors>;
-export type SizeOptions = Options<Sizes>;
-export type SpinnerColorOptions = Options<Colors | SpinnerColors>;
-export type BGColorOptions = Options<Colors | BGColors>;
+type BGColors = "" | "transparent" | "link";
+type SpinnerColors = "" | "grey";
+
+type Sizes = "" | "small" | "medium" | "large";
+
+type Options<T> = T;
+
+type ColorOptions = Options<Colors>;
+type SizeOptions = Options<Sizes>;
+type SpinnerColorOptions = Options<Colors | SpinnerColors>;
+type BGColorOptions = Options<Colors | BGColors>;
