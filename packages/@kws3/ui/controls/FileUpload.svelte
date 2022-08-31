@@ -30,9 +30,14 @@ The following functions are returned in `event.detail`:
 
 -->
 <div
+  on:dragenter={dragenter}
+  on:dragleave={dragleave}
+  on:drop={drop}
   class="kws-file-upload {klass} is-{color} is-{size} is-{_error
     ? 'danger'
-    : ''} {disabled ? 'is-disabled' : ''} {_is_finished ? 'is-success' : ''}">
+    : ''} {disabled ? 'is-disabled' : ''} {_is_finished
+    ? 'is-success'
+    : ''} {_is_dragging ? 'is-dragging' : ''}">
   <div class="file-upload-inner" style={inner_style}>
     <slot
       filename={_filename}
@@ -378,6 +383,16 @@ The following functions are returned in `event.detail`:
     return res;
   }
 
+  let _is_dragging = false;
+  const dragenter = () => {
+    _is_dragging = true;
+  };
+  const dragleave = () => {
+    _is_dragging = false;
+  };
+  const drop = () => {
+    _is_dragging = false;
+  };
   onMount(() => {
     uploadField = uploadInput;
     _filename = message;
