@@ -182,11 +182,19 @@
   </div>
 {/if}
 
-<div class="columns">
-  <div class="column">
-    <MultipleFileUpload />
+{#if images && images.length}
+  <div class="columns is-multiline">
+    {#each images as image}
+      <div class="column">
+        <div class="is-text-centered">
+          <figure class="image is-128x128" style="margin: 0 auto 20px auto">
+            <img src={image || ""} alt="" />
+          </figure>
+        </div>
+      </div>
+    {/each}
   </div>
-</div>
+{/if}
 
 <style>
   .drop-on-me {
@@ -231,7 +239,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { FileUpload as KwsFileUpload, Icon } from "@kws3/ui";
-  import MultipleFileUpload from "./MultipleFileUpload.svelte";
 
   const fire = createEventDispatcher();
 
@@ -251,18 +258,20 @@
   export { klass as class };
 
   let image = "";
+  let images = [];
 
   function onFileChosen(event, error_state = false) {
     //refire handled event for sotrybook to pick up in actions
     fire("file_chosen");
-
+    images = [];
+    image = "";
     let { getFile, progress, uploaded, error } = event.detail;
     var file = getFile();
     console.log(file);
     var size = file.size;
     let progrss = 0;
     progress(progrss);
-
+    let user_images = [];
     let inter_val = setInterval(() => {
       if (progrss > size) {
         if (error_state) {
@@ -270,11 +279,24 @@
           image = "";
         } else {
           uploaded();
-          var reader = new FileReader();
-          reader.readAsDataURL(file.file.get("userfile"));
-          reader.onload = () => {
-            image = String(reader.result);
-          };
+          if (multiple) {
+            user_images = file.file.getAll("userfile[]");
+            if (user_images && user_images.length) {
+              user_images.forEach((image, index) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = () => {
+                  images[index] = String(reader.result);
+                };
+              });
+            }
+          } else {
+            var reader = new FileReader();
+            reader.readAsDataURL(file.file.get("userfile"));
+            reader.onload = () => {
+              image = String(reader.result);
+            };
+          }
         }
         progrss = 0;
         clearInterval(inter_val);
