@@ -234,7 +234,6 @@
 
     let { getFile, progress, uploaded, error } = event.detail;
     var file = getFile();
-    console.log(file);
     var size = file.size;
     let progrss = 0;
     progress(progrss);
