@@ -144,16 +144,16 @@
 </div>
 
 {#if images && images.length}
-  <div class="columns">
-    <div class="column">
-      {#each images as image}
+  <div class="columns is-multiline">
+    {#each images as image}
+      <div class="column">
         <div class="is-text-centered">
           <figure class="image is-128x128" style="margin: 0 auto 20px auto">
             <img src={image || ""} alt="" />
           </figure>
         </div>
-      {/each}
-    </div>
+      </div>
+    {/each}
   </div>
 {/if}
 
@@ -232,7 +232,6 @@
   }
 
   function onFileUploaded() {
-    console.log(images);
     console.log("File uploaded successfully");
   }
   function onFileUploadError() {
