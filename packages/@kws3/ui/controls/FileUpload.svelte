@@ -88,12 +88,6 @@ The following functions are returned in `event.detail`:
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 
-  /**
-   *
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   *
-   */
   const fire = createEventDispatcher();
 
   /**

@@ -80,7 +80,7 @@ This property can be bound to, to fetch the current value, Default: `null`
   import { Icon } from "@kws3/ui";
   /**
    *
-   * @typedef {SIzeOptions} SizeOptions
+   * @typedef {SizeOptions} SizeOptions
    *
    */
 

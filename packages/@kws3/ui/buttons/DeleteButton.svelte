@@ -69,7 +69,7 @@
     text = "Delete",
     /**
      * Size of the Button
-     * @type {SIzeOptions}
+     * @type {SizeOptions}
      */
     size = "",
     /**

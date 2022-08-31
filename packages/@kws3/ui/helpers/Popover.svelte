@@ -90,7 +90,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   export let icon_color = "primary";
   /**
    * Size of the trigger icon displayed when default slot has no content
-   * @type {SIzeOptions}
+   * @type {SizeOptions}
    */
   export let icon_size = "small";
   /**

@@ -39,12 +39,6 @@ See: https://svelte.dev/docs#bind_group, Default: `null`
 
 <script>
   /**
-   *
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   *
-   */
-  /**
    * Value of radio button
    */
   export let value = null,

@@ -67,7 +67,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 
   /**
    * Size of the Icon
-   *  @type {SIzeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "",
     /**

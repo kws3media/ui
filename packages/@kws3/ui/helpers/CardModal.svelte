@@ -117,7 +117,7 @@ Only visible when the
   export let title = "",
     /**
      * Size of the modal
-     * @type {SIzeOptions}
+     * @type {SizeOptions}
      */
     size = "small",
     /**

@@ -181,7 +181,7 @@ Default value: `<span>{option.label}</span>`
   export let scoreThreshold = 5;
   /**
    * Size of the input
-   *  @type {SIzeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "";
   /**

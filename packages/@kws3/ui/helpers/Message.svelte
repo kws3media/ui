@@ -70,7 +70,7 @@ The parent can then decide what to do with the component
 
   /**
    * Size of the Message
-   * @type {SIzeOptions}
+   * @type {SizeOptions}
    */
   export let size = "",
     /**

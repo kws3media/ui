@@ -34,7 +34,7 @@ The overlay is absolutely positioned. Ensure that the parent container is relati
   /**
 
    * @typedef {import('@kws3/ui/types').SpinnerColorOptions} SpinnerColorOptions
-   * @typedef {SIzeOptions} SizeOptions
+   * @typedef {SizeOptions} SizeOptions
    * @typedef {import('@kws3/ui/types').BGColorOptions} BGColorOptions
    *
    */

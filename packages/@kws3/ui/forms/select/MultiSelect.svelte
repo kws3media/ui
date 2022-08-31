@@ -258,7 +258,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let scoreThreshold = 3;
   /**
    * Size of the input
-   *  @type {SIzeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "";
   /**

@@ -189,7 +189,7 @@
     entityName = "entries",
     /**
      * Size of the pagination elements
-     * @type {SIzeOptions}
+     * @type {SizeOptions}
      */
     size = "small",
     /**

@@ -76,7 +76,7 @@ Only programmatic closing is possible, Default: `true`
   import { hasTransitions } from "../settings";
   /**
    * Size of the modal
-   * @type {SIzeOptions}
+   * @type {SizeOptions}
    */
   export let size = "small",
     /**

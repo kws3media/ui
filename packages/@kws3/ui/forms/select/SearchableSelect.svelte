@@ -113,7 +113,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let value_key = "id";
   /**
    * Size of the input
-   *  @type {SIzeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "";
   /**

@@ -70,7 +70,7 @@
     text = "Click Me",
     /**
      * Size of the Button
-     * @type {SIzeOptions}
+     * @type {SizeOptions}
      */
     size = "",
     /**

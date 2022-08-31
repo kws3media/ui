@@ -50,7 +50,7 @@
 
   /**
    * Size of the input
-   *  @type {SIzeOptions} size
+   *  @type {SizeOptions} size
    */
   export let size = "small";
   /**

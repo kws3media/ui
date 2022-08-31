@@ -95,7 +95,7 @@ For internal use only - not part of config object, Default: `""`
 
   /**
    * @typedef {ColorOptions} ColorOptions
-   * @typedef {SIzeOptions} SizeOptions
+   * @typedef {SizeOptions} SizeOptions
    */
 
   /**
