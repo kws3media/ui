@@ -1,6 +1,6 @@
 <div class="columns">
   <div class="column" style="width: 400px;">
-    <h4 class="title is-4 is-primary">Default design</h4>
+    <h4 class="title is-size-5 is-primary has-text-centered">Default design</h4>
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event, false)}
       on:file_uploaded={() => onFileUploaded()}
@@ -18,18 +18,22 @@
       {multiple}
       {accept}
       inner_style="min-height: 2.5rem;" />
-    <p class="is-block mt-2 has-text-success">This will succeed.</p>
+    <p class="is-block mt-2 is-size-7 has-text-centered has-text-success">
+      This will succeed.
+    </p>
   </div>
 
   <div class="column" style="width: 400px;">
-    <h4 class="title is-4 is-primary">Custom design-1</h4>
+    <h4 class="title is-size-5 is-primary has-text-centered">
+      Custom design-1
+    </h4>
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event, false)}
       on:file_uploaded={() => onFileUploaded()}
       on:file_upload_error={() => onFileUploadError()}
       {allowed}
       {disabled}
-      message="Upload your file..."
+      message="Browse/drop file..."
       {key}
       {info}
       {max}
@@ -61,18 +65,22 @@
         </div>
       </div>
     </KwsFileUpload>
-    <p class="is-block mt-2 has-text-success">This will succeed.</p>
+    <p class="is-block mt-2 is-size-7 has-text-centered has-text-success">
+      This will succeed.
+    </p>
   </div>
 
   <div class="column" style="width: 400px;">
-    <h4 class="title is-4 is-primary">Custom design-2</h4>
+    <h4 class="title is-size-5 is-primary has-text-centered">
+      Custom design-2
+    </h4>
     <KwsFileUpload
       on:file_chosen={(event) => onFileChosen(event, true)}
       on:file_uploaded={() => onFileUploaded()}
       on:file_upload_error={() => onFileUploadError()}
       {allowed}
       {disabled}
-      {message}
+      message="Browse/Drop file(s)"
       {key}
       {info}
       {max}
@@ -82,7 +90,7 @@
       {info_color}
       {multiple}
       {accept}
-      inner_style="min-height:10rem">
+      inner_style="min-height:8rem">
       <div
         class="file has-name is-boxed"
         slot="default"
@@ -93,9 +101,10 @@
         let:error
         let:fileTypes
         let:maxFileSize
-        let:error_message>
-        <label class="file-label" for="">
-          <div class="file-cta">
+        let:error_message
+        style="margin-left: 5rem;margin-right: 2rem;border:none">
+        <div style="width: 100%;">
+          <div class="file-cta" style="width: 100%;">
             <div>
               <span>
                 {#if uploading}
@@ -113,12 +122,16 @@
               {:else if finished}
                 <span class="filename">Upload complete!</span>
               {:else}
-                <span class="filename"><span>{filename}</span></span>
+                <div
+                  class="filename has-text-centered is-size-7"
+                  style="display:block;margin-top:0.5rem">
+                  {filename}
+                </div>
               {/if}
             </div>
           </div>
-          <span class="file-name">
-            <div class="level mt-2">
+          <span class="file-name" style="height: 54%;">
+            <div class="level mt-5">
               {#if error}
                 <div
                   class="level-item"
@@ -147,12 +160,13 @@
               </div>
             {/if}
           </span>
-          <div class="drop-on-me">Drop files here to upload</div>
-        </label>
+        </div>
       </div>
     </KwsFileUpload>
 
-    <p class="is-block mt-2 has-text-danger">This will fail.</p>
+    <p class="is-block mt-2 is-size-7 has-text-centered has-text-danger">
+      This will fail.
+    </p>
   </div>
 </div>
 
@@ -169,6 +183,9 @@
 {/if}
 
 <style>
+  .drop-on-me {
+    font-size: 0.8rem;
+  }
   .progress {
     margin: 20px auto;
     padding: 0;
@@ -234,6 +251,7 @@
 
     let { getFile, progress, uploaded, error } = event.detail;
     var file = getFile();
+    console.log(file);
     var size = file.size;
     let progrss = 0;
     progress(progrss);
