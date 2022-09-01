@@ -18,7 +18,7 @@
     duration = 3000,
     /**
      * Toast toast background color
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**

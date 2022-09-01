@@ -29,7 +29,7 @@
     duration = 3000,
     /**
      * Toast notification background color
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
