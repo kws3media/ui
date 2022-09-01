@@ -59,6 +59,12 @@
   import { readable } from "svelte/store";
   import { Icon } from "@kws3/ui";
 
+  /**
+   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
   const fire = createEventDispatcher();
 
   /**
@@ -74,30 +80,37 @@
      */
     queue = "a-random-queue-name",
     /**
-     * @type {string}
+     * Size of the File Input
+     * @type {SizeOptions}
      */
     size = "",
     /**
-     * @type {string}
+     * Color of the File Input
+     * @type {ColorOptions}
      */
     color = "info",
     /**
+     * Input Label Text
      * @type {string}
      */
     label = "Upload Files",
     /**
+     * Drag Message
      * @type {string}
      */
     drag_msg = "Drop files here to upload",
     /**
+     * Maximum File size
      * @type {Number}
      */
     max = 500000,
     /**
-     * @type {string}
+     * Extensions of allowed file types
+     * @type {string| array}
      */
     allowed = "*",
     /**
+     * Extensions of valid file types
      * @type {string}
      */
     accept = "*";
