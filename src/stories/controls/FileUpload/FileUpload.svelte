@@ -196,6 +196,12 @@
   </div>
 {/if}
 
+<div class="columns">
+  <div class="column">
+    <CloudFileUploadDecorator />
+  </div>
+</div>
+
 <style>
   .drop-on-me {
     font-size: 0.8rem;
@@ -239,6 +245,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { FileUpload as KwsFileUpload, Icon } from "@kws3/ui";
+  import CloudFileUploadDecorator from "./CloudFileUploadDecorator.svelte";
 
   const fire = createEventDispatcher();
 
