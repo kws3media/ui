@@ -42,6 +42,7 @@ export { default as ProcessButton } from "./buttons/ProcessButton.svelte";
 
 export { default as Checkbox } from "./controls/Checkbox.svelte";
 export { default as FileUpload } from "./controls/FileUpload.svelte";
+export { default as CloudFileUpload } from "./controls/CloudFileUpload.svelte";
 export { default as NumberInput } from "./controls/NumberInput.svelte";
 export { default as Radio } from "./controls/Radio.svelte";
 export { default as Toggle } from "./controls/Toggle.svelte";
