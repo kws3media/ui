@@ -17,21 +17,17 @@ The `keyboard` package used to trigger the events based on the key stroke.
 **Usage Example:**
 
 ```js
-<input use:`event`={customEvent}` />
+<input use:event={customEvent} />
 ```
 
 **Example:**
 
-```html
-<input type="tex" use:enter={enterEvent} use:tab={tabEvent} />
+```js
+<input type="text" use:enter={enterEvent} use:tab={tabEvent} />
 <script>
-  import {
-    enter,
-    tab
-  } from "@kws3/ui/keyboard";
-
+  import { enter, tab } from "@kws3/ui/keyboard";
   function enterEvent() {
-    console.log();("Enter Pressed");
+    console.log("Enter Pressed");
   }
 </script>
 ```

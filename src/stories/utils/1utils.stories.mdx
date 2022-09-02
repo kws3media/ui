@@ -170,8 +170,13 @@ The `keyboard` package used to trigger the events based on the key stroke.
 #### Usage
 
 ```js
-import { keyboardEvents } from "@kws3/ui/keyboard";
-keyboardEvents(node);
+<input type="text" use:enter={enterEvent} use:tab={tabEvent} />
+<script>
+  import { enter, tab } from "@kws3/ui/keyboard";
+  function enterEvent() {
+    console.log("Enter Pressed");
+  }
+</script>
 ```
 
 #### [&#128279; Learn more about keyboardEvents](?path=/story/utils-2-examples-keyboardevents-1-pre-defined-events--1-pre-defined-events)
