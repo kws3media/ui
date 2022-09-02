@@ -39,88 +39,98 @@ The following functions are returned in `event.detail`:
     ? 'is-success'
     : ''} {_is_dragging ? 'is-dragging' : ''}">
   <div class="file-upload-inner" style={inner_style}>
-    <!--
-      Slot containing uploader design
-    -->
-    <slot
-      filename={_filename}
-      uploading={_is_uploading}
-      progress={_progress}
-      finished={_is_finished}
-      error={_error}
-      {fileTypes}
-      {maxFileSize}
-      {info}
-      {info_color}
-      error_message={_error_message}>
-      <div class="up-icon">
-        {#if _is_uploading}
-          <span class="loader" />
-        {:else if _is_finished}
-          <Icon size="" icon="check-circle" class="fa-lg" />
-        {:else}
-          <Icon size="" icon="upload" class="fa-lg" />
-        {/if}
-      </div>
-      <div class="file">
-        {#if _is_uploading}
-          <div class="upload-progress">
-            <div class="progress-inner">
-              <div class="bar" style="width:{_progress}%" />
-            </div>
+    {#if is_cloud_upload}
+      <form bind:this={formElement} on:submit|preventDefault={handleSubmit}>
+        <slot>
+          <div class="file has-name is-fullwidth is-{size} is-{color} {klass}">
+            <label class="file-label" for="">
+              <span class="file-cta">
+                <span class="icon">
+                  <Icon icon="plus" size="small" />
+                </span>
+                <span class="f-label"> Test </span>
+              </span>
+              <span class="file-name">
+                <div>
+                  <span class="help">
+                    Max size: {maxFileSize}
+                  </span>
+                </div>
+
+                <div style="max-width:100%;white-space:normal">
+                  <span class="help has-text-centered">{fileTypes}</span>
+                </div>
+              </span>
+            </label>
           </div>
-          <div class="progress-caption">{_progress}% - Uploading...</div>
-        {:else if _is_finished}
-          <div class="filename">Upload complete!</div>
-        {:else}
-          <div class="filename"><span>{_filename}</span></div>
-        {/if}
-      </div>
-    </slot>
-    <input
-      bind:this={uploadInput}
-      type="file"
-      name="file"
-      on:change={updateFile}
-      {multiple}
-      {accept}
-      disabled={disabled || _is_uploading || _is_finished} />
-  </div>
-
-  <!-- <div class="level is-mobile">
-    {#if _error}
-      <div class="level-item" style="max-width:100%;white-space: break-spaces;">
-        <span class="help is-{_error ? 'danger' : ''}">{_error_message}</span>
-      </div>
+        </slot>
+        <div class="drop-on-me">Drag here!!</div>
+        <input
+          class="file-input"
+          bind:this={uploadInput}
+          multiple
+          type="file"
+          name="file"
+          {accept}
+          on:change={updateState} />
+      </form>
     {:else}
-      <div class="level-item">
-        <span class="help has-text-centered">
-          {!multiple ? "Max size:" + maxFileSize : "Upload Image(s)"}
-        </span>
-      </div>
-    {/if}
-    {#if !_error}
-      <div class="level-left">
-        <div class="level-item">
-          <span class="help">Max size: {maxFileSize}</span>
+      <!--
+        Slot containing uploader design
+    -->
+      <slot
+        filename={_filename}
+        uploading={_is_uploading}
+        progress={_progress}
+        finished={_is_finished}
+        error={_error}
+        {fileTypes}
+        {maxFileSize}
+        {info}
+        {info_color}
+        error_message={_error_message}
+        {failedValidation}>
+        <div class="up-icon">
+          {#if _is_uploading}
+            <span class="loader" />
+          {:else if _is_finished}
+            <Icon size="" icon="check-circle" class="fa-lg" />
+          {:else}
+            <Icon size="" icon="upload" class="fa-lg" />
+          {/if}
         </div>
-      </div>
+        <div class="file">
+          {#if _is_uploading}
+            <div class="upload-progress">
+              <div class="progress-inner">
+                <div class="bar" style="width:{_progress}%" />
+              </div>
+            </div>
+            <div class="progress-caption">{_progress}% - Uploading...</div>
+          {:else if _is_finished}
+            <div class="filename">Upload complete!</div>
+          {:else}
+            <div class="filename"><span>{_filename}</span></div>
+          {/if}
+        </div>
+      </slot>
+      <input
+        bind:this={uploadInput}
+        type="file"
+        name="file"
+        on:change={updateFile}
+        {multiple}
+        {accept}
+        disabled={disabled || _is_uploading || _is_finished} />
     {/if}
-
-    {#if info}
-      <div class="level-item" style="max-width:100%">
-        <span class="help has-text-{info_color}">{info}</span>
-      </div>
-      <div class="level-right">
-        <span class="help">{fileTypes}</span>
-      </div>
-    {/if}
-  </div> -->
+  </div>
 </div>
 
 <script>
-  import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
+  import { createEventDispatcher, onMount } from "svelte";
+  import { readable } from "svelte/store";
+  import { uploadQueue } from "./services/uploadQueueStore";
   /**
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
@@ -177,7 +187,10 @@ The following functions are returned in `event.detail`:
      */
     multiple = false,
     accept = "*",
-    inner_style = "";
+    inner_style = "",
+    is_cloud_upload = false,
+    preparer,
+    queue = "a-random-queue-name";
 
   /**
    * CSS classes for the Uploader
@@ -194,9 +207,11 @@ The following functions are returned in `event.detail`:
     _uploaded = 0,
     uploadInput,
     uploadField,
-    formData;
+    formData,
+    formElement;
 
   let fileTypes, _progress, maxFileSize;
+  let failedValidation = [];
 
   function formatFileSize(n) {
     if (n === undefined || /\D/.test(n)) {
@@ -425,5 +440,140 @@ The following functions are returned in `event.detail`:
   onMount(() => {
     uploadField = uploadInput;
     _filename = message;
+    console.log("Mount uploader");
   });
+
+  const handleSubmit = () => {};
+  const updateState = () => {
+    console.log("update state");
+    try {
+      let files = uploadInput.files;
+      const formattedFiles = [...files].map((f) => {
+        return {
+          name: f.name,
+          size: f.fileSize || f.size,
+          type: f.type,
+          blob: f,
+        };
+      });
+
+      file_chosen(formattedFiles);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  function filter(files) {
+    //use this function to filter filetypes and file max allowable sizes
+    for (let i = 0; i < files.length; i++) {
+      let file = files[i];
+
+      let validateType = fileTypesValidation(file, allowed);
+      if (!validateType.allowed) {
+        file.stamp = +new Date();
+        file.error = true;
+        file.error_message = validateType.msg;
+        failedValidation.push(file);
+        files.splice(i, 1);
+        i--;
+      }
+
+      let validateSize = fileSizeValidation(file, max);
+
+      if (!validateSize.allowed) {
+        file.stamp = +new Date();
+        file.error = true;
+        file.error_message = validateSize.msg;
+        failedValidation.push(file);
+        files.splice(i, 1);
+        i--;
+      }
+    }
+    return files;
+  }
+
+  function file_chosen(files) {
+    //reset failedValidation list
+    failedValidation = [];
+    console.log(files);
+    filter(files).forEach((file) => {
+      console.log(file);
+      const queueItem = readable(null, (set) => {
+        /**
+         * @type {Object}
+         */
+        const statusObject = {
+          status: "preparing",
+          loaded: 0,
+          total: file.size,
+          progress: 0,
+          original_name: file.name,
+          url: "",
+          ack_payload: {},
+        };
+        set(statusObject);
+        console.log(file.name);
+        preparer({ file: file.name })
+          .then((r) => {
+            console.log(r.response);
+
+            const endpoint = r.response;
+
+            const { url } = endpoint;
+
+            statusObject.url = url.split("?")[0];
+            set(statusObject);
+            fire("upload", { endpoint, file });
+          })
+          .catch((r) => {
+            console.log(r);
+            statusObject.status = "failed";
+            set(statusObject);
+          });
+      });
+      uploadQueue.create(queue, queueItem);
+      //fire("uploadQueue", { queue, queueItem });
+    });
+
+    formElement.reset();
+  }
+
+  function fileSizeValidation(file, max) {
+    let _allowed = true;
+    let msg = "";
+
+    if (max > 0) {
+      if (file.size > max) {
+        _allowed = false;
+        msg =
+          "File size is too large. Maximum allowed file size is " +
+          formatFileSize(max);
+      }
+    }
+    return { allowed: _allowed, msg: msg };
+  }
+  function fileTypesValidation(file, allowed) {
+    if (allowed === "*") {
+      return {
+        allowed: true,
+        msg: "",
+      };
+    }
+    let _allowed = true;
+    let msg = "";
+
+    // eslint-disable-next-line no-useless-escape
+    var ext = file.name.toLowerCase().match(/\.([^\.]+)$/)[1];
+    if (typeof allowed.length != "undefined") {
+      if (allowed.indexOf(ext) === -1) {
+        _allowed = false;
+        msg =
+          "Files of type " +
+          ext +
+          " are not allowed.\n Allowed file types: " +
+          allowed.join(", ");
+      }
+    }
+    return { allowed: _allowed, msg: msg };
+  }
 </script>
