@@ -24,22 +24,25 @@ p {
   margin: 0.5rem 0;
 }
 
-pre.prismjs > code {
-  font-size: 1.1em;
-  .tag,
-  .number {
-    padding: unset;
-    display: inline;
-    height: auto;
-    min-width: unset;
-    background: inherit;
-    white-space: inherit;
-    line-height: inherit;
-    font-size: inherit;
-    border: none;
-    margin: inherit;
-    vertical-align: inherit;
-    text-align: inherit;
+pre.prismjs {
+  > code,
+  > div {
+    font-size: 1.1em;
+    .tag,
+    .number {
+      padding: unset;
+      display: inline;
+      height: auto;
+      min-width: unset;
+      background: inherit;
+      white-space: inherit;
+      line-height: inherit;
+      font-size: inherit;
+      border: none;
+      margin: inherit;
+      vertical-align: inherit;
+      text-align: inherit;
+    }
   }
 }
 
