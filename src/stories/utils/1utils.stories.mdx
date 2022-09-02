@@ -124,10 +124,11 @@ The `resizeObserver` is used to handle window resizing.
 
 #### Usage
 
-```html
+```js
 {#if hasResizeObserver}
   <div use:resizeObserver on:resize={resizeHandler}>
 {/if}
+
 <script>
   import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
 </script>

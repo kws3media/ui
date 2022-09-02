@@ -19,7 +19,7 @@ Function take params, needle : `type: String` and haystack : `type: Array`.
 
 **Example:**
 
-```html
+```
 <div>
   <input type="text" bind:value={needle} class="input" />
 </div>
@@ -27,6 +27,7 @@ Function take params, needle : `type: String` and haystack : `type: Array`.
 
 <script>
   import { makeSearchEngine } from "@kws3/ui/search";
+
   let needle = "";
   let haystack = [
     { id: 1, name: "AAA" },

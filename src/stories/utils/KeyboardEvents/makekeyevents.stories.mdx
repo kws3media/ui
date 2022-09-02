@@ -27,8 +27,9 @@ const save = makeKeyDefinition(keyCombination)
 ```
 
 **Example:**
-```html
-<input type="text" use:ctrlAltC={(event) => {eventKeyPressed(event, "ctrl+alt+c");}} />
+```js
+<input type="text" use:ctrlAltC={(event) => {eventKeyPressed(event, "ctrl+alt+c")}} />
+
 <script>
   import {makeKeyDefinition} from "@kws3/ui/keyboard";
 

@@ -15,41 +15,42 @@ The `makeForms` factory helper is used to track the form data is dirty or not.
 
 ```js
 <form>
-  <input class="{$errors.email ? 'is-danger' : ''}" bind:value={$data.email} />;
-  <input
-    class="{$errors.password ? 'is-danger' : ''}"
-    bind:value={$data.password}
-  />;<button disabled={!$isValid}>Submit</button>;
-</form>;
-import { makeForms, notEmpty, withMsg } from "@kws3/ui/form";
+  <input class="{$errors.email ? 'is-danger' : ''}" bind:value={$data.email} />
+  <input class="{$errors.password ? 'is-danger' : ''}" bind:value={$data.password} />
+  <button disabled={!$isValid}>Submit</button>
+</form>
 
-let form;
-let data;
-let errors;
-let isValid;
-let isTouched;
-let tracker;
-let validators = {
-  email: withMsg("Email should not be empty", notEmpty),
-  password: withMsg("Password should not be empty", notEmpty),
-};
+<script>
+  import { makeForms, notEmpty, withMsg } from "@kws3/ui/form";
 
-$: load();
+  let form;
+  let data;
+  let errors;
+  let isValid;
+  let isTouched;
+  let tracker;
+  let validators = {
+    email: withMsg("Email should not be empty", notEmpty),
+    password: withMsg("Password should not be empty", notEmpty),
+  };
 
-function load() {
-  form = makeForms({
-    data: {
-      email: "",
-      password: "",
-    },
-    validators,
-  });
-  data = form.formData;
-  errors = form.errors;
-  isValid = form.isValid;
-  isTouched = form.isTouched;
-  tracker = form.tracker;
-}
+  $: load();
+
+  function load() {
+    form = makeForms({
+      data: {
+        email: "",
+        password: "",
+      },
+      validators,
+    });
+    data = form.formData;
+    errors = form.errors;
+    isValid = form.isValid;
+    isTouched = form.isTouched;
+    tracker = form.tracker;
+  }
+</script>
 ```
 
 <Story name="SmartForms" args={{}}>

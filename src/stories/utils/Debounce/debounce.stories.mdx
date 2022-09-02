@@ -13,12 +13,15 @@ The `Debounce` method Returns a function, that, as long as it continues to be in
 
 **Example:**
 
-```js
-<input bind:value={keywords} on:keyup={debouncedSearch} />;
-import { debounce } from "@kws3/ui/utils";
-const debouncedSearch = debounce(search, 300);
+```
+<input bind:value={keywords} on:keyup={debouncedSearch} />
 
-function search() {}
+<script>
+  import { debounce } from "@kws3/ui/utils";
+  const debouncedSearch = debounce(search, 300);
+
+  function search() {}
+</script>
 ```
 
 <Story name="Debounce" args={{}}>

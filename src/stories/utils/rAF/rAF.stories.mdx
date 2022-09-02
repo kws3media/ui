@@ -15,24 +15,29 @@ The `rAF` method tells the browser that you wish to perform an animation and req
 `call back function`
 
 ```js
-<div id="animatedDiv" />;
-import { rAF } from "@kws3/ui/utils";
+<div id="animatedDiv" />
 
-let globalID;
-function repeatOften() {
-  var div = document.getElementById("animatedDiv");
-  div.innerHTML += `<div class="orange"></div>`;
+<script>
+  import { rAF } from "@kws3/ui/utils";
+
+  let globalID;
+
+  function repeatOften() {
+    var div = document.getElementById("animatedDiv");
+    div.innerHTML += `<div class="orange"></div>`;
+    globalID = rAF(repeatOften);
+  }
+  
   globalID = rAF(repeatOften);
-}
-globalID = rAF(repeatOften);
 
-function start() {
-  globalID = rAF(repeatOften);
-}
+  function start() {
+    globalID = rAF(repeatOften);
+  }
 
-function stop() {
-  cancelAnimationFrame(globalID);
-}
+  function stop() {
+    cancelAnimationFrame(globalID);
+  }
+</script>
 ```
 
 **Example:**
