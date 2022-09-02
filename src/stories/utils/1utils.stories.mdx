@@ -124,7 +124,7 @@ The `resizeObserver` is used to handle window resizing.
 
 #### Usage
 
-```js
+```html
 {#if hasResizeObserver}
   <div use:resizeObserver on:resize={resizeHandler}>
 {/if}
@@ -170,7 +170,7 @@ The `keyboard` package is used to trigger events based on certain key strokes.
 
 #### Usage
 
-```js
+```html
 <input type="text" use:enter={enterEvent} use:tab={tabEvent} />
 <script>
   import { enter, tab } from "@kws3/ui/keyboard";

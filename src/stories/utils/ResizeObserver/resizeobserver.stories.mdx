@@ -13,11 +13,14 @@ The `resizeObserver` is used to handle window resizing.
 
 **Example:**
 
-```js
-import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
-if(hasResizeObserver){
+```html
+{#if hasResizeObserver}
   <div use:resizeObserver on:resize={resizeHandler}>
-}
+{/if}
+
+<script>
+  import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
+</script>
 ```
 
 <Story name="ResizeObserver" args={{}}>
