@@ -17,7 +17,8 @@
       {info_color}
       {multiple}
       {accept}
-      inner_style="min-height: 2.5rem;" />
+      inner_style="min-height: 2.5rem;"
+      {is_cloud_upload} />
     <p class="is-block mt-2 is-size-7 has-text-centered has-text-success">
       This will succeed.
     </p>
@@ -43,7 +44,8 @@
       {info_color}
       {multiple}
       {accept}
-      inner_style="min-height: 2.5rem;">
+      inner_style="min-height: 2.5rem;"
+      {is_cloud_upload}>
       <div slot="default" let:filename let:uploading let:progress let:finished>
         <div
           class="progress {!uploading ? 'cs is-primary' : ''}"
@@ -90,7 +92,8 @@
       {info_color}
       {multiple}
       {accept}
-      inner_style="min-height:8rem">
+      inner_style="min-height:8rem"
+      {is_cloud_upload}>
       <div
         class="file has-name is-boxed"
         slot="default"
@@ -196,12 +199,6 @@
   </div>
 {/if}
 
-<div class="columns">
-  <div class="column">
-    <CloudFileUploadDecorator />
-  </div>
-</div>
-
 <style>
   .drop-on-me {
     font-size: 0.8rem;
@@ -245,7 +242,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { FileUpload as KwsFileUpload, Icon } from "@kws3/ui";
-  import CloudFileUploadDecorator from "./CloudFileUploadDecorator.svelte";
 
   const fire = createEventDispatcher();
 
@@ -259,7 +255,8 @@
     color = "",
     info_color = "grey",
     multiple = false,
-    accept = "*";
+    accept = "*",
+    is_cloud_upload = false;
 
   let klass = "";
   export { klass as class };
