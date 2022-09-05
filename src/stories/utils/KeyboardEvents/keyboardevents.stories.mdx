@@ -7,31 +7,27 @@ import KeyboardEvents from "./KeyboardEvents.svelte";
 
 <Meta title="Utils/2. Examples/KeyboardEvents/1. Pre-defined Events" />
 
-### keyboardEvents
+### keyboard events
 
-The `keyboard` package used to trigger the events based on the key stroke.
+The `keyboard` package is used to trigger events based on certain key strokes.
 
 **Available Events:**
 `enter`, `tab`, `escape`, `space`, `leftarrow`, `rightarrow`, `downarrow`, `uparrow`, `backspace`, `del`
 
 **Usage Example:**
 
-```js
-<input use:`event`={customEvent}` />
+```html
+<input use:event={customEvent} />
 ```
 
 **Example:**
 
 ```html
-<input type="tex" use:enter={enterEvent} use:tab={tabEvent} />
+<input type="text" use:enter={enterEvent} use:tab={tabEvent} />
 <script>
-  import {
-    enter,
-    tab
-  } from "@kws3/ui/keyboard";
-
+  import { enter, tab } from "@kws3/ui/keyboard";
   function enterEvent() {
-    console.log();("Enter Pressed");
+    console.log("Enter Pressed");
   }
 </script>
 ```
