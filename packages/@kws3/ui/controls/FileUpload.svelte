@@ -41,30 +41,42 @@ The following functions are returned in `event.detail`:
   <div class="file-upload-inner" style={inner_style}>
     {#if is_cloud_upload}
       <form bind:this={formElement} on:submit|preventDefault={handleSubmit}>
-        <slot>
-          <div class="file has-name is-fullwidth is-{size} is-{color} {klass}">
-            <label class="file-label" for="">
-              <span class="file-cta">
-                <span class="icon">
-                  <Icon icon="plus" size="small" />
-                </span>
-                <span class="f-label"> Test </span>
-              </span>
-              <span class="file-name">
-                <div>
-                  <span class="help">
-                    Max size: {maxFileSize}
-                  </span>
+        <slot
+          filename={_filename}
+          uploading={_is_uploading}
+          progress={_progress}
+          finished={_is_finished}
+          error={_error}
+          {fileTypes}
+          {maxFileSize}
+          {info}
+          {info_color}
+          error_message={_error_message}
+          {failedValidation}>
+          <div class="up-icon">
+            {#if _is_uploading}
+              <span class="loader" />
+            {:else if _is_finished}
+              <Icon size="" icon="check-circle" class="fa-lg" />
+            {:else}
+              <Icon size="" icon="upload" class="fa-lg" />
+            {/if}
+          </div>
+          <div class="file">
+            {#if _is_uploading}
+              <div class="upload-progress">
+                <div class="progress-inner">
+                  <div class="bar" style="width:{_progress}%" />
                 </div>
-
-                <div style="max-width:100%;white-space:normal">
-                  <span class="help has-text-centered">{fileTypes}</span>
-                </div>
-              </span>
-            </label>
+              </div>
+              <div class="progress-caption">{_progress}% - Uploading...</div>
+            {:else if _is_finished}
+              <div class="filename">Upload complete!</div>
+            {:else}
+              <div class="filename"><span>{_filename}</span></div>
+            {/if}
           </div>
         </slot>
-        <div class="drop-on-me">Drag here!!</div>
         <input
           class="file-input"
           bind:this={uploadInput}
@@ -130,6 +142,7 @@ The following functions are returned in `event.detail`:
   import { Icon } from "@kws3/ui";
   import { createEventDispatcher, onMount } from "svelte";
   import { readable } from "svelte/store";
+  import Net from "./services/net";
   import { uploadQueue } from "./services/uploadQueueStore";
   /**
    *
@@ -190,6 +203,7 @@ The following functions are returned in `event.detail`:
     inner_style = "",
     is_cloud_upload = false,
     preparer,
+    acknowledger,
     queue = "a-random-queue-name";
 
   /**
@@ -495,13 +509,9 @@ The following functions are returned in `event.detail`:
   function file_chosen(files) {
     //reset failedValidation list
     failedValidation = [];
-    console.log(files);
+
     filter(files).forEach((file) => {
-      console.log(file);
       const queueItem = readable(null, (set) => {
-        /**
-         * @type {Object}
-         */
         const statusObject = {
           status: "preparing",
           loaded: 0,
@@ -511,32 +521,133 @@ The following functions are returned in `event.detail`:
           url: "",
           ack_payload: {},
         };
+        // @ts-ignore
         set(statusObject);
-        console.log(file.name);
+
         preparer({ file: file.name })
           .then((r) => {
-            console.log(r.response);
+            //console.log(r.response);
 
             const endpoint = r.response;
 
-            const { url } = endpoint;
+            const { url, acl, bucket, folder, name, original_name, driver } =
+              endpoint;
 
             statusObject.url = url.split("?")[0];
+            // @ts-ignore
             set(statusObject);
-            fire("upload", { endpoint, file });
+
+            Net.raw(
+              {
+                url: url,
+                method: "PUT",
+                body: file.blob,
+                onprogress: (e) => {
+                  statusObject.status = "uploading";
+                  statusObject.loaded = e.loaded;
+                  statusObject.total = e.total;
+                  statusObject.progress = Math.round(
+                    (e.loaded / e.total) * 100
+                  );
+                  // @ts-ignore
+                  set(statusObject);
+                },
+                headers: {
+                  "x-amz-acl": acl,
+                },
+              },
+              true
+            )
+              .then(() => {
+                statusObject.status = "completing";
+                // @ts-ignore
+                set(statusObject);
+
+                acknowledger({
+                  bucket,
+                  folder,
+                  name,
+                  original_name,
+                  driver,
+                })
+                  .then((r) => {
+                    statusObject.ack_payload = r.response;
+                    statusObject.status = "uploaded";
+                    // @ts-ignore
+                    set(statusObject);
+                  })
+                  .catch((r) => {
+                    console.log(r);
+                    statusObject.status = "failed";
+                    // @ts-ignore
+                    set(statusObject);
+                  });
+              })
+              .catch((r) => {
+                console.log(r);
+                statusObject.status = "failed";
+                // @ts-ignore
+                set(statusObject);
+              });
           })
           .catch((r) => {
             console.log(r);
             statusObject.status = "failed";
+            // @ts-ignore
             set(statusObject);
           });
       });
       uploadQueue.create(queue, queueItem);
-      //fire("uploadQueue", { queue, queueItem });
     });
 
     formElement.reset();
   }
+
+  // function file_chosen(files) {
+  //   //reset failedValidation list
+  //   failedValidation = [];
+  //   console.log(files);
+  //   filter(files).forEach((file) => {
+  //     console.log(file);
+  //     const queueItem = readable(null, (set) => {
+  //       /**
+  //        * @type {Object}
+  //        */
+  //       const statusObject = {
+  //         status: "preparing",
+  //         loaded: 0,
+  //         total: file.size,
+  //         progress: 0,
+  //         original_name: file.name,
+  //         url: "",
+  //         ack_payload: {},
+  //       };
+  //       set(statusObject);
+  //       console.log(file.name);
+  //       preparer({ file: file.name })
+  //         .then((r) => {
+  //           console.log(r.response);
+
+  //           const endpoint = r.response;
+
+  //           const { url } = endpoint;
+
+  //           statusObject.url = url.split("?")[0];
+  //           set(statusObject);
+  //           fire("upload", { endpoint, file });
+  //         })
+  //         .catch((r) => {
+  //           console.log(r);
+  //           statusObject.status = "failed";
+  //           set(statusObject);
+  //         });
+  //     });
+  //     uploadQueue.create(queue, queueItem);
+  //     //fire("uploadQueue", { queue, queueItem });
+  //   });
+
+  //   formElement.reset();
+  // }
 
   function fileSizeValidation(file, max) {
     let _allowed = true;
