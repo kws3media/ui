@@ -603,52 +603,6 @@ The following functions are returned in `event.detail`:
     formElement.reset();
   }
 
-  // function file_chosen(files) {
-  //   //reset failedValidation list
-  //   failedValidation = [];
-  //   console.log(files);
-  //   filter(files).forEach((file) => {
-  //     console.log(file);
-  //     const queueItem = readable(null, (set) => {
-  //       /**
-  //        * @type {Object}
-  //        */
-  //       const statusObject = {
-  //         status: "preparing",
-  //         loaded: 0,
-  //         total: file.size,
-  //         progress: 0,
-  //         original_name: file.name,
-  //         url: "",
-  //         ack_payload: {},
-  //       };
-  //       set(statusObject);
-  //       console.log(file.name);
-  //       preparer({ file: file.name })
-  //         .then((r) => {
-  //           console.log(r.response);
-
-  //           const endpoint = r.response;
-
-  //           const { url } = endpoint;
-
-  //           statusObject.url = url.split("?")[0];
-  //           set(statusObject);
-  //           fire("upload", { endpoint, file });
-  //         })
-  //         .catch((r) => {
-  //           console.log(r);
-  //           statusObject.status = "failed";
-  //           set(statusObject);
-  //         });
-  //     });
-  //     uploadQueue.create(queue, queueItem);
-  //     //fire("uploadQueue", { queue, queueItem });
-  //   });
-
-  //   formElement.reset();
-  // }
-
   function fileSizeValidation(file, max) {
     let _allowed = true;
     let msg = "";
