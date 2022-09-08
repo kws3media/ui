@@ -66,10 +66,6 @@
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {ColorOptions} ColorOptions
-   */
-
-  /**
    * Title/Heading of the notification
    */
   export let title = "",

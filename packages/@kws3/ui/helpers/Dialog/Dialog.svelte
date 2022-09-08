@@ -94,11 +94,6 @@ For internal use only - not part of config object, Default: `""`
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {ColorOptions} ColorOptions
-   * @typedef {SizeOptions} SizeOptions
-   */
-
-  /**
    * Title text of the Dialog box
    * @type {string}
    */

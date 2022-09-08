@@ -92,11 +92,6 @@
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
-
-  /**
-   * @typedef {ColorOptions} ColorOptions
-   */
-
   /**
    * Iteration key
    */

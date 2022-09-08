@@ -78,11 +78,6 @@ This property can be bound to, to fetch the current value, Default: `null`
 <script>
   import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
-  /**
-   *
-   * @typedef {SizeOptions} SizeOptions
-   *
-   */
 
   const fire = createEventDispatcher();
   /**
