@@ -129,11 +129,12 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
   $: __class =
     "kws-donut-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
 
-  $: usedColors = colors
-    ? colors
-    : $defaultChartColors
-    ? $defaultChartColors
-    : [];
+  $: usedColors =
+    colors && colors.length
+      ? colors
+      : $defaultChartColors
+      ? $defaultChartColors
+      : [];
 
   $: _data = data || Array(labels.length || 0).fill(0);
   $: _options = merge(

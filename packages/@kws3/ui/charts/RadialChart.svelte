@@ -142,11 +142,12 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
   $: __class =
     "kws-radial-chart " + `${sparklines ? "kws-sparklines" : ""} ` + klass;
 
-  $: usedColors = colors
-    ? colors
-    : $defaultChartColors
-    ? $defaultChartColors
-    : [];
+  $: usedColors =
+    colors && colors.length
+      ? colors
+      : $defaultChartColors
+      ? $defaultChartColors
+      : [];
 
   $: data, normaliseData();
   $: labels, normaliseLabels();

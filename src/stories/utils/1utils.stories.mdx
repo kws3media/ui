@@ -8,7 +8,7 @@ import Version from "~/version.mdx";
 
 ## 1. truncate
 
-The truncate() function shorten the given String to a specified length.
+The `truncate` function shortens the given string to a specified length.
 
 #### Usage
 
@@ -17,9 +17,12 @@ import { truncate } from "@kws3/ui/utils";
 truncate(string, length);
 ```
 
+#### [&#128279; Learn more about truncate](?path=/story/utils-2-examples-truncate--truncate)
+<br/>
+
 ## 2. nl2br
 
-The nl2br function replace each newline (`\n`) with HTML line breaks (`<br>`) in a string.
+The `nl2br` function replaces each newline (`\n`) with HTML line breaks (`<br>`) in a string.
 
 #### Usage
 
@@ -28,9 +31,12 @@ import { nl2br } from "@kws3/ui/utils";
 nl2br(input);
 ```
 
+#### [&#128279; Learn more about nl2br](?path=/story/utils-2-examples-nl2br--nl-2-br)
+<br/>
+
 ## 3. cloneObject
 
-The cloneObject function used to clone js object.
+The `cloneObject` function is used to clone any js object.
 
 #### Usage
 
@@ -39,9 +45,12 @@ import { cloneObject } from "@kws3/ui/utils";
 cloneObject(obj);
 ```
 
+#### [&#128279; Learn more about cloneObject](?path=/story/utils-2-examples-cloneobject--clone-object)
+<br/>
+
 ## 4. rAF
 
-The rAF function - Request an animation before the next repaint.
+The `rAF` function is used to request an animation before the next repaint.
 
 #### Usage
 
@@ -50,9 +59,12 @@ import { rAF } from "@kws3/ui/utils";
 rAF(callBackFunction);
 ```
 
+#### [&#128279; Learn more about rAF](?path=/story/utils-2-examples-raf--raf)
+<br/>
+
 ## 5. debounce
 
-The function that you want to execute after the debounce time.
+The `debounce` function is used to specify the function to execute after the debounce time.
 
 #### Usage
 
@@ -60,6 +72,9 @@ The function that you want to execute after the debounce time.
 import { debounce } from "@kws3/ui/utils";
 debounce(callBackFunction, threshold);
 ```
+
+#### [&#128279; Learn more about debounce](?path=/story/utils-2-examples-debounce--debounce)
+<br/>
 
 ## 6. capitaliseFirstLetter
 
@@ -72,9 +87,12 @@ import { capitaliseFirstLetter } from "@kws3/ui/utils";
 capitaliseFirstLetter(string);
 ```
 
+#### [&#128279; Learn more about capitaliseFirstLetter](?path=/story/utils-2-examples-capitalisefirstletter--capitalise-first-letter)
+<br/>
+
 ## 7. createDate
 
-The createDate function makes mysql dates work in safari.
+The `createDate` function makes mysql dates work in safari.
 
 #### Usage
 
@@ -83,9 +101,12 @@ import { createDate } from "@kws3/ui/utils";
 createDate(date);
 ```
 
+#### [&#128279; Learn more about createDate](?path=/story/utils-2-examples-createdate--create-date)
+<br/>
+
 ## 8. Smart Forms
 
-The `makeForms` factory helper used for tracking form data is dirty or not.
+The `makeForms` is a factory helper used for tracking if the form data is clean.
 
 #### Usage
 
@@ -94,9 +115,12 @@ import { makeForms } from "@kws3/ui/form";
 makeForms({form1_data}, {form2_data});
 ```
 
+#### [&#128279; Learn more about Smart Forms](?path=/story/utils-2-examples-smartforms--smart-forms)
+<br/>
+
 ## 9. Resize Observer
 
-The `resizeObserver` used to handle window resizing.
+The `resizeObserver` is used to handle window resizing.
 
 #### Usage
 
@@ -104,14 +128,18 @@ The `resizeObserver` used to handle window resizing.
 {#if hasResizeObserver}
   <div use:resizeObserver on:resize={resizeHandler}>
 {/if}
+
 <script>
   import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
 </script>
 ```
 
+#### [&#128279; Learn more about Resize Observer](?path=/story/utils-2-examples-resizeobserver--resize-observer)
+<br/>
+
 ## 10. Search
 
-The `makeSearchEngine` is factory helper to create search engine with options.
+The `makeSearchEngine` is a factory helper used to create a search engine with options.
 
 #### Usage
 
@@ -133,21 +161,32 @@ const fuzzysearch = makeSearchEngine(searchOptions);
 fuzzysearch(needle, haystack);
 ```
 
-## 11. keyboardEvents
+#### [&#128279; Learn more about Search](?path=/story/utils-2-examples-search--search)
+<br/>
 
-The `keyboard` package used to trigger the events based on the key stroke.
+## 11. keyboard events
+
+The `keyboard` package is used to trigger events based on certain key strokes.
 
 #### Usage
 
-```js
-import { keyboardEvents } from "@kws3/ui/keyboard";
-keyboardEvents(node);
+```html
+<input type="text" use:enter={enterEvent} use:tab={tabEvent} />
+<script>
+  import { enter, tab } from "@kws3/ui/keyboard";
+  function enterEvent() {
+    console.log("Enter Pressed");
+  }
+</script>
 ```
+
+#### [&#128279; Learn more about keyboardEvents](?path=/story/utils-2-examples-keyboardevents-1-pre-defined-events--1-pre-defined-events)
+<br/>
 
 ## 12. makeKeyDefinition
 
-The `makeKeyDefinition` is factory helper to create custom keydownHandler events.
-Key combination can be made with any modifier keys from `Shift`, `Ctrl`, `Alt`, `Meta` with characters, numbers or function keys.
+The `makeKeyDefinition` is a factory helper used to create custom keydown handler events.
+Key combinations can be made with any modifier keys from `Shift`, `Ctrl`, `Alt`, `Meta` with characters, numbers or function keys.
 
 #### Usage
 
@@ -156,9 +195,12 @@ import {makeKeyDefinition} from "@kws3/ui/keyboard";
 const save = makeKeyDefinition(keyCombination) 
 ```
 
+#### [&#128279; Learn more about makeKeyDefinition](?path=/story/utils-2-examples-keyboardevents-2-create-key-events--2-create-key-events)
+<br/>
+
 ## 13. currency
 
-The `currency` Returns currency format.
+The `currency` function is used to return a number in a currency format.
 
 #### Usage
 
@@ -167,9 +209,12 @@ import { currency } from "@kws3/ui/utils";
 currency(number);
 ```
 
+#### [&#128279; Learn more about currency](?path=/story/utils-2-examples-currency--currency)
+<br/>
+
 ## 14. dateToOrdinal
 
-The `dateToOrdinal` converts date to ordinal.
+The `dateToOrdinal` function converts an date to an ordinal.
 
 #### Usage
 
@@ -178,9 +223,12 @@ import { dateToOrdinal } from "@kws3/ui/utils";
 dateToOrdinal(number);
 ```
 
+#### [&#128279; Learn more about dateToOrdinal](?path=/story/utils-2-examples-datetoordinal--date-to-ordinal)
+<br/>
+
 ## 15. randomIntegerFromInterval
 
-The `randomIntegerFromInterval` returns random integer.
+The `randomIntegerFromInterval` function is used to return a random integer.
 
 #### Usage
 
@@ -189,9 +237,12 @@ import { randomIntegerFromInterval } from "@kws3/ui/utils";
 randomIntegerFromInterval(min, max);
 ```
 
+#### [&#128279; Learn more about randomIntegerFromInterval](?path=/story/utils-2-examples-randominteger--random-integer)
+<br/>
+
 ## 16. randomPercent
 
-The `randomPercent` returns random percentage. Default value for `min` and `max` are `1` & `100` respectively.
+The `randomPercent` returns a random percentage. Default value for `min` and `max` are `1` & `100` respectively.
 
 #### Usage
 
@@ -202,9 +253,12 @@ randomPercent(min);
 randomPercent();
 ```
 
+#### [&#128279; Learn more about randomPercent](?path=/story/utils-2-examples-randompercent--random-percent)
+<br/>
+
 ## 17. fileDownloader
 
-Function used to download data/stream..
+The `fileDownloader` function is used to download data/stream.
 
 **Parameter:**
 data: `type : object`
@@ -214,3 +268,6 @@ fileName: `type : string`
 import { fileDownloader } from "@kws3/ui/utils";
 fileDownloader(data, filename);
 ```
+
+#### [&#128279; Learn more about fileDownloader](?path=/story/utils-2-examples-filedownloader--file-downloader)
+<br/>

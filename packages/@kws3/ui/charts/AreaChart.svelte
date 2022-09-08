@@ -142,11 +142,12 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
   let _data = [];
   let yAxis = {};
 
-  $: usedColors = colors
-    ? colors
-    : $defaultChartColors
-    ? $defaultChartColors
-    : [];
+  $: usedColors =
+    colors && colors.length
+      ? colors
+      : $defaultChartColors
+      ? $defaultChartColors
+      : [];
 
   $: data, sets, normaliseAll();
   $: _options = merge(
