@@ -144,7 +144,10 @@ The following functions are returned in `event.detail`:
   import { createEventDispatcher, onMount } from "svelte";
   import { readable } from "svelte/store";
   import Net from "./services/net";
-  import { uploadQueue } from "./services/uploadQueueStore";
+  import {
+    totalUploadProgress,
+    uploadQueue,
+  } from "./services/uploadQueueStore";
   /**
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
@@ -250,7 +253,13 @@ The following functions are returned in `event.detail`:
       allowed !== "*" && Array.isArray(allowed) && allowed.length
         ? allowed.join(", ")
         : "";
-    _progress = Math.floor((_uploaded / _total) * 100);
+
+    if (is_cloud_upload) {
+      _progress = $totalUploadProgress.progress || 0;
+    } else {
+      _progress = Math.floor((_uploaded / _total) * 100);
+    }
+
     maxFileSize = formatFileSize(max);
   }
 
@@ -477,12 +486,10 @@ The following functions are returned in `event.detail`:
   onMount(() => {
     uploadField = uploadInput;
     _filename = message;
-    console.log("Mount uploader");
   });
 
   const handleSubmit = () => {};
   const updateState = () => {
-    console.log("update state");
     try {
       let files = uploadInput.files;
       const formattedFiles = [...files].map((f) => {
@@ -558,7 +565,7 @@ The following functions are returned in `event.detail`:
 
             statusObject.url = url.split("?")[0];
             // @ts-ignore
-            set(statusObject);
+            //set(statusObject);
 
             Net.raw(
               {
@@ -575,7 +582,7 @@ The following functions are returned in `event.detail`:
                   console.log(_progress);
                   statusObject.progress = _progress;
                   // @ts-ignore
-                  set(statusObject);
+                  //set(statusObject);
                 },
                 headers: {
                   "x-amz-acl": acl,
