@@ -140,6 +140,7 @@ The following functions are returned in `event.detail`:
 
 <script>
   import { Icon } from "@kws3/ui";
+  import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount } from "svelte";
   import { readable } from "svelte/store";
   import Net from "./services/net";
@@ -204,7 +205,8 @@ The following functions are returned in `event.detail`:
     is_cloud_upload = false,
     preparer,
     acknowledger,
-    queue = "a-random-queue-name";
+    queue = "a-random-queue-name",
+    images;
 
   /**
    * CSS classes for the Uploader
@@ -451,6 +453,27 @@ The following functions are returned in `event.detail`:
   const drop = () => {
     _is_dragging = false;
   };
+
+  $: $uploadQueue[queue], debouncedHandleUploadCompletions();
+
+  const debouncedHandleUploadCompletions = debounce(
+    handleUploadCompletions,
+    500
+  );
+
+  function handleUploadCompletions() {
+    if (!$uploadQueue[queue]) return;
+    $uploadQueue[queue].forEach((item) => {
+      if (item.state.status === "uploaded") {
+        if (!images) {
+          images = [];
+        }
+        images = [item.state.ack_payload, ...images];
+        uploadQueue.removeItem(queue, item.__unique_id);
+      }
+    });
+  }
+
   onMount(() => {
     uploadField = uploadInput;
     _filename = message;
@@ -509,7 +532,7 @@ The following functions are returned in `event.detail`:
   function file_chosen(files) {
     //reset failedValidation list
     failedValidation = [];
-
+    _is_uploading = true;
     filter(files).forEach((file) => {
       const queueItem = readable(null, (set) => {
         const statusObject = {
@@ -546,9 +569,11 @@ The following functions are returned in `event.detail`:
                   statusObject.status = "uploading";
                   statusObject.loaded = e.loaded;
                   statusObject.total = e.total;
-                  statusObject.progress = Math.round(
-                    (e.loaded / e.total) * 100
-                  );
+                  _uploaded = e.loaded;
+                  _total = e.total;
+                  _progress = Math.round((_uploaded / _total) * 100);
+                  console.log(_progress);
+                  statusObject.progress = _progress;
                   // @ts-ignore
                   set(statusObject);
                 },
@@ -559,6 +584,7 @@ The following functions are returned in `event.detail`:
               true
             )
               .then(() => {
+                _is_uploading = true;
                 statusObject.status = "completing";
                 // @ts-ignore
                 set(statusObject);
@@ -573,6 +599,8 @@ The following functions are returned in `event.detail`:
                   .then((r) => {
                     statusObject.ack_payload = r.response;
                     statusObject.status = "uploaded";
+                    _is_uploading = false;
+                    _is_finished = true;
                     // @ts-ignore
                     set(statusObject);
                   })
