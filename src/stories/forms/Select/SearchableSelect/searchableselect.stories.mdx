@@ -41,6 +41,9 @@ export let args = {
   component={SearchableSelect}
   args={args}
   argTypes={{
+    value:{
+      control: {type: 'object'}
+    },
     search_strategy: {
       control: { type: "select" },
     }

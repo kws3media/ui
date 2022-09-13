@@ -44,6 +44,11 @@ export let args={
   <Story
   name="MultiSelect (Async)"
   args={args}
+  argTypes={{
+    value:{
+      control: {type: 'text'}
+    },
+  }}
   play={playInteractions}
   >
   {(args) => ({
