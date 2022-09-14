@@ -139,15 +139,18 @@ The following functions are returned in `event.detail`:
 </div>
 
 <script>
-  import { Icon } from "@kws3/ui";
+  import { Icon, Notifications } from "@kws3/ui";
   import { debounce } from "@kws3/ui/utils";
   import { createEventDispatcher, onMount } from "svelte";
   import { readable } from "svelte/store";
   import Net from "./services/net";
   import {
+    activeUploadsCount,
     totalUploadProgress,
     uploadQueue,
   } from "./services/uploadQueueStore";
+  import UploadNotification from "./uploader/UploadNotification.svelte";
+
   /**
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
@@ -209,7 +212,8 @@ The following functions are returned in `event.detail`:
     preparer,
     acknowledger,
     queue = "a-random-queue-name",
-    images;
+    images,
+    notification_position = "bottom-left";
 
   /**
    * CSS classes for the Uploader
@@ -231,6 +235,27 @@ The following functions are returned in `event.detail`:
 
   let fileTypes, _progress, maxFileSize;
   let failedValidation = [];
+
+  $: $uploadQueue, $activeUploadsCount, watchUploads();
+
+  let persistentNotificationIsOpen = false;
+
+  const watchUploads = () => {
+    if ($activeUploadsCount > 0 && !persistentNotificationIsOpen) {
+      Notifications.create({
+        component: UploadNotification,
+        color: "primary",
+        light: true,
+        persistent: true,
+        position: notification_position,
+        afterClose: () => {
+          persistentNotificationIsOpen = false;
+          uploadQueue.clearCompleted();
+        },
+      });
+      persistentNotificationIsOpen = true;
+    }
+  };
 
   function formatFileSize(n) {
     if (n === undefined || /\D/.test(n)) {
