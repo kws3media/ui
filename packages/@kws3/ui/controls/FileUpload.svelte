@@ -251,6 +251,7 @@ The following functions are returned in `event.detail`:
         afterClose: () => {
           persistentNotificationIsOpen = false;
           uploadQueue.clearCompleted();
+          uploaded();
         },
       });
       persistentNotificationIsOpen = true;
