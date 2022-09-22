@@ -39,93 +39,55 @@ The following functions are returned in `event.detail`:
     ? 'is-success'
     : ''} {_is_dragging ? 'is-dragging' : ''}">
   <div class="file-upload-inner" style={inner_style}>
-    {#if is_cloud_upload}
-      <form bind:this={formElement} on:submit|preventDefault={handleSubmit}>
-        <slot
-          filename={_filename}
-          uploading={_is_uploading}
-          progress={_progress}
-          finished={_is_finished}
-          error={_error}
-          {fileTypes}
-          {maxFileSize}
-          {info}
-          {info_color}
-          error_message={_error_message}
-          {failedValidation}>
-          <div class="up-icon">
-            {#if _is_uploading}
-              <span class="loader" />
-            {:else if _is_finished}
-              <Icon size="" icon="check-circle" class="fa-lg" />
-            {:else}
-              <Icon size="" icon="upload" class="fa-lg" />
-            {/if}
-          </div>
-          <div class="file">
-            {#if _is_uploading}
-              <div class="upload-progress">
-                <div class="progress-inner">
-                  <div class="bar" style="width:{_progress}%" />
-                </div>
-              </div>
-              <div class="progress-caption">{_progress}% - Uploading...</div>
-            {:else if _is_finished}
-              <div class="filename">Upload complete!</div>
-            {:else}
-              <div class="filename"><span>{_filename}</span></div>
-            {/if}
-          </div>
-        </slot>
-        <input
-          class="file-input"
-          bind:this={uploadInput}
-          multiple
-          type="file"
-          name="file"
-          {accept}
-          on:change={updateState} />
-      </form>
-    {:else}
-      <!--
+    <!--
         Slot containing uploader design
     -->
-      <slot
-        filename={_filename}
-        uploading={_is_uploading}
-        progress={_progress}
-        finished={_is_finished}
-        error={_error}
-        {fileTypes}
-        {maxFileSize}
-        {info}
-        {info_color}
-        error_message={_error_message}
-        {failedValidation}>
-        <div class="up-icon">
-          {#if _is_uploading}
-            <span class="loader" />
-          {:else if _is_finished}
-            <Icon size="" icon="check-circle" class="fa-lg" />
-          {:else}
-            <Icon size="" icon="upload" class="fa-lg" />
-          {/if}
-        </div>
-        <div class="file">
-          {#if _is_uploading}
-            <div class="upload-progress">
-              <div class="progress-inner">
-                <div class="bar" style="width:{_progress}%" />
-              </div>
+    <slot
+      filename={_filename}
+      uploading={_is_uploading}
+      progress={_progress}
+      finished={_is_finished}
+      error={_error}
+      {fileTypes}
+      {maxFileSize}
+      {info}
+      {info_color}
+      error_message={_error_message}
+      {failedValidation}>
+      <div class="up-icon">
+        {#if _is_uploading}
+          <span class="loader" />
+        {:else if _is_finished}
+          <Icon size="" icon="check-circle" class="fa-lg" />
+        {:else}
+          <Icon size="" icon="upload" class="fa-lg" />
+        {/if}
+      </div>
+      <div class="file">
+        {#if _is_uploading}
+          <div class="upload-progress">
+            <div class="progress-inner">
+              <div class="bar" style="width:{_progress}%" />
             </div>
-            <div class="progress-caption">{_progress}% - Uploading...</div>
-          {:else if _is_finished}
-            <div class="filename">Upload complete!</div>
-          {:else}
-            <div class="filename"><span>{_filename}</span></div>
-          {/if}
-        </div>
-      </slot>
+          </div>
+          <div class="progress-caption">{_progress}% - Uploading...</div>
+        {:else if _is_finished}
+          <div class="filename">Upload complete!</div>
+        {:else}
+          <div class="filename"><span>{_filename}</span></div>
+        {/if}
+      </div>
+    </slot>
+    {#if is_cloud_upload}
+      <input
+        class="file-input"
+        bind:this={uploadInput}
+        multiple
+        type="file"
+        name="file"
+        {accept}
+        on:change={updateState} />
+    {:else}
       <input
         bind:this={uploadInput}
         type="file"
@@ -230,8 +192,7 @@ The following functions are returned in `event.detail`:
     _uploaded = 0,
     uploadInput,
     uploadField,
-    formData,
-    formElement;
+    formData;
 
   let fileTypes, _progress, maxFileSize;
   let failedValidation = [];
@@ -249,9 +210,9 @@ The following functions are returned in `event.detail`:
         persistent: true,
         position: notification_position,
         afterClose: () => {
+          uploaded();
           persistentNotificationIsOpen = false;
           uploadQueue.clearCompleted();
-          uploaded();
         },
       });
       persistentNotificationIsOpen = true;
@@ -514,7 +475,6 @@ The following functions are returned in `event.detail`:
     _filename = message;
   });
 
-  const handleSubmit = () => {};
   const updateState = () => {
     try {
       let files = uploadInput.files;
@@ -660,8 +620,6 @@ The following functions are returned in `event.detail`:
       });
       uploadQueue.create(queue, queueItem);
     });
-
-    formElement.reset();
   }
 
   function fileSizeValidation(file, max) {
