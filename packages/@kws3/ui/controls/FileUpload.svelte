@@ -33,11 +33,9 @@ The following functions are returned in `event.detail`:
   on:dragenter={dragenter}
   on:dragleave={dragleave}
   on:drop={drop}
-  class="kws-file-upload {klass} is-{color} is-{size} is-{_error
-    ? 'danger'
-    : ''} {disabled ? 'is-disabled' : ''} {_is_finished
-    ? 'is-success'
-    : ''} {_is_dragging ? 'is-dragging' : ''}">
+  class="kws-file-upload {klass} is-{color} is-{size}
+    is-{_error ? 'danger' : ''} {disabled ? 'is-disabled' : ''}
+    {_is_finished ? 'is-success' : ''} {_is_dragging ? 'is-dragging' : ''}">
   <div class="file-upload-inner" style={inner_style}>
     <!--
         Slot containing uploader design
