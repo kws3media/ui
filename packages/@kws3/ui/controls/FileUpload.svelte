@@ -9,12 +9,19 @@ It is returned back in the `getFile()` call from `file_chosen` event, Default: `
   @param {string} [info=""] - Information / help / subtitle displayed under the uploader, Default: `""`
   @param {''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [info_color="grey"] - Color of the information text, Default: `"grey"`
   @param {number} [max=5000000] - Maximum allowed size in bytes, Default: `5000000`
-  @param {any} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
+  @param {string | array} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
   @param {boolean} [disabled=false] - Disables the uploader, Default: `false`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the File Input, Default: `""`
   @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the File Input, Default: `""`
   @param {string} [class=""] - CSS classes for the Uploader, Default: `""`
   @param {boolean} [multiple=false] - Disables the multiple file uploader, Default: `false`
+  @param {function} [preparer()] - Cloud Upload preparer
+  @param {function} [acknowledger()] - Cloud Upload acknowledger
+  @param {string} [inner_style=""] - CSS style for the Uploader, Default: `""`
+  @param {boolean} [is_cloud_upload=false] - Specifies Cloud Upload or normal upload, Default: `false`
+  @param {string} [queue="a-random-queue-name"] - Queue name for cloud Uploader, Default: `"a-random-queue-name"`
+  @param {string | array} [images] - Images uploaded
+  @param {string} [notification_position = "bottom-left"] - Notification position speifier, Default: `"bottom-left"`
 
   ### Events
   - `file_uploaded` - Triggered when upload completes
@@ -123,14 +130,17 @@ The following functions are returned in `event.detail`:
    * A property you can send to uniquely identify an uploader.
    *
    * It is returned back in the `getFile()` call from `file_chosen` event
+   * @type {string}
    */
   export let key = "",
     /**
      * Message displayed in uploader
+     * @type {string}
      */
     message = "Choose File...",
     /**
      * Information / help / subtitle displayed under the uploader
+     * @type {string}
      */
     info = "",
     /**
@@ -140,15 +150,17 @@ The following functions are returned in `event.detail`:
     info_color = "grey",
     /**
      * Maximum allowed size in bytes
+     * @type {Number}
      */
     max = 5000000,
     /**
      * Allowed file types - accepts the string `"*"`, or an array of file type suffixes
-     * @type {any}
+     * @type {string | array}
      */
     allowed = "*",
     /**
      * Disables the uploader
+     * @type {boolean}
      */
     disabled = false,
     /**
@@ -166,13 +178,45 @@ The following functions are returned in `event.detail`:
      * @type {boolean}
      */
     multiple = false,
+    /**
+     * String of accepted file types
+     * @type {string}
+     */
     accept = "*",
+    /**
+     * CSS styles
+     * @type {string}
+     */
     inner_style = "",
+    /**
+     * Specifies Cloud Upload or normal upload.
+     * @type {boolean}
+     */
     is_cloud_upload = false,
+    /**
+     * Cloud Upload preparer.
+     * @type {function}
+     */
     preparer,
+    /**
+     * Cloud Upload acknowledger.
+     * @type {function}
+     */
     acknowledger,
+    /**
+     * Upload queue name
+     * @type {string}
+     */
     queue = "a-random-queue-name",
+    /**
+     * Images uploaded
+     * @type {string | array}
+     */
     images,
+    /**
+     * Notification position speifier
+     * @type {string}
+     */
     notification_position = "bottom-left";
 
   /**
