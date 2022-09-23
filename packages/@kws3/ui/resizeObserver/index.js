@@ -1,7 +1,7 @@
 export const hasResizeObserver =
   typeof window !== "undefined"
-    ? typeof window.ResizeObserver != "undefined"
-    : null;
+    ? typeof window.ResizeObserver !== "undefined"
+    : false;
 
 /**
  * Usage: `<div use:resizeObserver on:resize={resizeHandler}>`

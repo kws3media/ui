@@ -45,7 +45,7 @@ export var rAF =
       function (callback) {
         window.setTimeout(callback, 1000 / 60);
       }
-    : null;
+    : false;
 
 /**
  * Returns a function, that, as long as it continues to be invoked, will not
