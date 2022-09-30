@@ -1,10 +1,17 @@
 <!-- svelte-ignore missing-declaration -->
-<div class="columns">
-  <div class="column">
-    {#each photos_id as id}
-      <KwsImage {size} {alt_text} src={`https://source.unsplash.com/${id}`} />
-    {/each}
-  </div>
+<div class="columns is-multiline">
+  {#each photos_id as id}
+    <div class="column is-6">
+      <div class="card p-2 has-background-white">
+        <div class="card-image">
+          <KwsImage
+            {size}
+            {alt_text}
+            src={`https://source.unsplash.com/${id}`} />
+        </div>
+      </div>
+    </div>
+  {/each}
 </div>
 
 <script>
@@ -15,15 +22,17 @@
     alt_text = "";
 
   let photos_id = [
-    "wz7Z51XjZ_E",
-    "YZUgnOTxA44",
-    "oGgLxhuu2EI",
     "bLobpucHIvw",
-    "lkP1TaSZIPA",
+    "YZUgnOTxA44",
+    "MbbT3AXDcW8",
     "5efR4mM5Nlk",
-    "UFr2682tngs",
-    "Nh8K3V6vucM",
+    "lkP1TaSZIPA",
+    "wz7Z51XjZ_E",
+    "7N3iEdqgTlU",
+    "tGQHbUrUMu0",
     "ZN3Hsru3SIM",
     "5Eobs8jiW-c",
+    "O7NHbnjrz94",
+    "Bkw-aS2Nvg8",
   ];
 </script>
