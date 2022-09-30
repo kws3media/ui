@@ -32,6 +32,7 @@ export {
 } from "./helpers/FloatingUI/index.js";
 export { default as FloatingUIOutput } from "./helpers/FloatingUI/FloatingUIOutput.svelte";
 export { default as Floatie } from "./helpers/FloatingUI/Floatie.svelte";
+export { default as Image } from "./helpers/Image.svelte";
 export { portal } from "svelte-portal";
 export { default as Portal } from "svelte-portal";
 
