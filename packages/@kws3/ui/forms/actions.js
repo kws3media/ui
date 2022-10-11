@@ -34,6 +34,10 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
       _opts["onChange"] = createFirer("dateChange");
     }
 
+    //set today's date on initilisation
+    //otherwise pages that are open overnight do not update their "Today's date"
+    _opts.now = new Date();
+
     let OPTS = Object.assign(defaultOpts, _opts, opts);
 
     let picker = flatpickr(node, OPTS);
