@@ -32,18 +32,20 @@ export function cloneObject(obj) {
  * @param {function} [callback=function(){}] - callback function
  */
 export var rAF =
-  window.requestAnimationFrame ||
-  //@ts-ignore
-  window.webkitRequestAnimationFrame ||
-  //@ts-ignore
-  window.mozRequestAnimationFrame ||
-  //@ts-ignore
-  window.oRequestAnimationFrame ||
-  //@ts-ignore
-  window.msRequestAnimationFrame ||
-  function (callback) {
-    window.setTimeout(callback, 1000 / 60);
-  };
+  typeof window !== "undefined"
+    ? window.requestAnimationFrame ||
+      //@ts-ignore
+      window.webkitRequestAnimationFrame ||
+      //@ts-ignore
+      window.mozRequestAnimationFrame ||
+      //@ts-ignore
+      window.oRequestAnimationFrame ||
+      //@ts-ignore
+      window.msRequestAnimationFrame ||
+      function (callback) {
+        window.setTimeout(callback, 1000 / 60);
+      }
+    : () => {};
 
 /**
  * Returns a function, that, as long as it continues to be invoked, will not

@@ -18,10 +18,12 @@ export function isEscKey(e) {
 }
 
 export const IS_MAC =
-  "navigator" in window
-    ? /mac/i.test(
-        window.navigator.userAgentData
-          ? window.navigator.userAgentData.platform
-          : window.navigator.platform
-      )
+  typeof window !== "undefined"
+    ? "navigator" in window
+      ? /mac/i.test(
+          window.navigator.userAgentData
+            ? window.navigator.userAgentData.platform
+            : window.navigator.platform
+        )
+      : false
     : false;

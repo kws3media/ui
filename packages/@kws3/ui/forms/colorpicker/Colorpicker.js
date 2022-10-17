@@ -1,4 +1,4 @@
-export default (function (win, doc) {
+function initialize(win, doc) {
   var CP,
     instance = "__instance__",
     first = "firstChild",
@@ -619,4 +619,8 @@ export default (function (win, doc) {
       return $;
     })
   );
-})(window, document);
+}
+
+export default typeof window !== "undefined"
+  ? initialize(window, document)
+  : function () {};
