@@ -141,10 +141,12 @@ This property can be bound to, to fetch the current value, Default: `null`
   export { klass as class };
 
   function setValue(v) {
-    value = v;
-    /**
-     * Toggle button change event
-     */
-    fire("change");
+    if (!disabled && value !== v) {
+      value = v;
+      /**
+       * Toggle button change event
+       */
+      fire("change");
+    }
   }
 </script>
