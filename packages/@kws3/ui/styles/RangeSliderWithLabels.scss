@@ -1,0 +1,301 @@
+$kws-theme-colors: $colors !default;
+$kws-slider-radius: $radius !default;
+$kws-slider-track-background: $grey-lighter !default;
+$kws-slider-track-radius: $radius !default;
+$kws-slider-track-border: 0px solid $grey !default;
+$kws-slider-track-shadow: 0px 0px 0px $grey !default;
+$kws-slider-thumb-background: $white !default;
+$kws-slider-thumb-radius: $radius !default;
+$kws-slider-thumb-border: 1px solid $grey-light !default;
+$kws-slider-thumb-shadow: none !default;
+$kws-slider-thumb-to-track-ratio: 2 !default;
+$kws-slider-output-width: 3rem !default;
+$kws-slider-output-background: $grey-dark !default;
+$kws-slider-output-color: $white !default;
+$kws-slider-output-radius: $radius !default;
+
+@use "sass:math";
+
+@mixin slider-size($size) {
+  $track-height: math.div($size, $kws-slider-thumb-to-track-ratio);
+  $thumb-size: $size;
+
+  min-height: calc((#{$size} + 2px) * 1.25);
+
+  &::-webkit-slider-runnable-track {
+    height: $track-height;
+  }
+  &::-moz-range-track {
+    height: $track-height;
+  }
+  &::-ms-track {
+    height: $track-height;
+  }
+  &::-webkit-slider-thumb {
+    height: $thumb-size;
+    width: $thumb-size;
+  }
+  &::-moz-range-thumb {
+    height: $thumb-size;
+    width: $thumb-size;
+  }
+  &::-ms-thumb {
+    height: $thumb-size;
+    width: $thumb-size;
+  }
+  &::-ms-thumb {
+    margin-top: 0;
+  }
+  &::-webkit-slider-thumb {
+    margin-top: -(math.div($thumb-size, 4));
+  }
+}
+
+.kws-range-with-label-control {
+  position: relative;
+
+  input[type="range"] {
+    &.slider {
+      appearance: none;
+      margin: 1rem 0;
+      background: transparent;
+      touch-action: none;
+
+      &.is-fullwidth {
+        display: block;
+        width: 100%;
+      }
+      &:focus {
+        outline: none;
+      }
+
+      &::-webkit-slider-runnable-track {
+        width: 100%;
+      }
+      &::-moz-range-track {
+        width: 100%;
+      }
+      &::-ms-track {
+        width: 100%;
+      }
+      &.has-output,
+      &.has-output-tooltip {
+        + output {
+          width: $kws-slider-output-width;
+          background: $kws-slider-output-background;
+          border-radius: $kws-slider-output-radius;
+          padding: 0.4rem 0.8rem;
+          font-size: $size-7;
+          line-height: $size-7;
+          text-align: center;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color: $kws-slider-output-color;
+          overflow: hidden;
+          pointer-events: none;
+          z-index: 200;
+        }
+        &:disabled + output {
+          opacity: 0.5;
+        }
+      }
+      &.has-output {
+        display: inline-block;
+        vertical-align: middle;
+        width: calc(100% - (#{$kws-slider-output-width + 1.2rem}));
+
+        + output {
+          display: inline-block;
+          margin-left: 0.75rem;
+          vertical-align: middle;
+        }
+      }
+      &.has-output-tooltip {
+        display: block;
+
+        + output {
+          position: absolute;
+          left: 0;
+          top: -1.8rem;
+        }
+      }
+
+      &::-webkit-slider-runnable-track {
+        cursor: pointer;
+        box-shadow: $kws-slider-track-shadow;
+        background: $kws-slider-track-background;
+        border-radius: $kws-slider-track-radius;
+        border: $kws-slider-track-border;
+      }
+      &::-moz-range-track {
+        cursor: pointer;
+        box-shadow: $kws-slider-track-shadow;
+        background: $kws-slider-track-background;
+        border-radius: $kws-slider-track-radius;
+        border: $kws-slider-track-border;
+      }
+      &::-ms-track {
+        cursor: pointer;
+        box-shadow: $kws-slider-track-shadow;
+        background: $kws-slider-track-background;
+        border-radius: $kws-slider-track-radius;
+        border: $kws-slider-track-border;
+      }
+      &::-ms-fill-lower {
+        background: $grey-lighter;
+        border-radius: $kws-slider-radius;
+      }
+      &::-ms-fill-upper {
+        background: $grey-lighter;
+        border-radius: $kws-slider-radius;
+      }
+      &::-webkit-slider-thumb {
+        box-shadow: $kws-slider-thumb-shadow;
+        border: $kws-slider-thumb-border;
+        border-radius: $kws-slider-thumb-radius;
+        background: $kws-slider-thumb-background;
+        cursor: pointer;
+      }
+      &::-moz-range-thumb {
+        box-shadow: $kws-slider-thumb-shadow;
+        border: $kws-slider-thumb-border;
+        border-radius: $kws-slider-thumb-radius;
+        background: $kws-slider-thumb-background;
+        cursor: pointer;
+      }
+      &::-ms-thumb {
+        box-shadow: $kws-slider-thumb-shadow;
+        border: $kws-slider-thumb-border;
+        border-radius: $kws-slider-thumb-radius;
+        background: $kws-slider-thumb-background;
+        cursor: pointer;
+      }
+      &::-webkit-slider-thumb {
+        appearance: none;
+      }
+      &.is-circle {
+        &::-webkit-slider-thumb {
+          border-radius: $radius-rounded;
+        }
+        &::-moz-range-thumb {
+          border-radius: $radius-rounded;
+        }
+        &::-ms-thumb {
+          border-radius: $radius-rounded;
+        }
+      }
+      &:active {
+        &::-webkit-slider-thumb {
+          transform: scale(1.25);
+        }
+        &::-moz-range-thumb {
+          transform: scale(1.25);
+        }
+        &::-ms-thumb {
+          transform: scale(1.25);
+        }
+      }
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+
+        &::-webkit-slider-thumb {
+          cursor: not-allowed;
+          transform: scale(1);
+        }
+        &::-moz-range-thumb {
+          cursor: not-allowed;
+          transform: scale(1);
+        }
+        &::-ms-thumb {
+          cursor: not-allowed;
+          transform: scale(1);
+        }
+      }
+      @include slider-size($size-normal);
+
+      &.is-small {
+        @include slider-size($size-small);
+      }
+      &.is-medium {
+        @include slider-size($size-medium);
+      }
+      &.is-large {
+        @include slider-size($size-large);
+      }
+      @each $name, $pair in $kws-theme-colors {
+        $color: nth($pair, 1);
+        $color-invert: nth($pair, 2);
+        $color-light: findLightColor($color);
+        $color-dark: findDarkColor($color);
+
+        &.is-#{$name} {
+          &::-moz-range-track {
+            background: $color !important;
+          }
+          &::-webkit-slider-runnable-track {
+            background: $color !important;
+          }
+          &::-ms-track {
+            background: $color !important;
+          }
+          &::-ms-fill-lower {
+            background: $color;
+          }
+          &::-ms-fill-upper {
+            background: $color;
+          }
+          &.has-output,
+          &.has-output-tooltip {
+            + output {
+              background-color: $color-light;
+              color: $color-dark;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Labels below slider
+  .kws-range-labels {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      position: relative;
+      float: left;
+      width: 90.25px;
+      text-align: center;
+      color: #b2b2b2;
+      font-size: 14px;
+      cursor: pointer;
+
+      &::before {
+        position: absolute;
+        top: -25px;
+        right: 0;
+        left: 0;
+        content: "";
+        margin: 0 auto;
+        width: 9px;
+        height: 9px;
+        background: #b2b2b2;
+        border-radius: 50%;
+      }
+    }
+
+    .active {
+      color: #37adbf;
+    }
+
+    .selected::before {
+      background: #37adbf;
+    }
+
+    .active.selected::before {
+      display: none;
+    }
+  }
+}
