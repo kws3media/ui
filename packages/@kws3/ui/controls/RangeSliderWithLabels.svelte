@@ -41,21 +41,21 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     {disabled}
     {style} />
   {#if output}
-    <output style={computedStyle}>{value}</output>
+    <output style={computedStyle}>{labels[value]}</output>
   {/if}
-
-  <ul class="kws-range-labels">
-    {#if labels && labels.length}
-      {#each labels as label, index}
-        <li
-          class="is-{label_color} {value === index ? 'active' : ''}
-          {index <= value ? 'selected' : ''}">
-          {label}
-        </li>
-      {/each}
-    {/if}
-  </ul>
 </div>
+
+<ul class="kws-range-labels">
+  {#if labels && labels.length}
+    {#each labels as label, index}
+      <li
+        class="range-label {value === index ? 'active' : ''}
+        {index <= value ? 'selected' : ''}">
+        {label}
+      </li>
+    {/each}
+  {/if}
+</ul>
 
 <script>
   import { onMount } from "svelte";
@@ -105,7 +105,6 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      * @type {ColorOptions}
      */
     color = "",
-    label_color = "primary",
     /**
      * Inline CSS for the Slider
      */
@@ -140,7 +139,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     let range = max - min;
     let position = ((value - min) / range) * 100;
     let positionOffset = Math.round(position * 0.4);
-    computedStyle = `left:calc(${position}% - ${positionOffset}px`;
+    computedStyle = `left:calc(${position}% - ${positionOffset}px)`;
+    style = `background: linear-gradient(to right, #4a4a4a 0%, #4a4a4a ${position}%, #fff ${position}%, #fff 100%)`;
   }
 
   onMount(() => {
