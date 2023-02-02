@@ -1,7 +1,7 @@
 $kws-theme-colors: $colors !default;
 $kws-slider-radius: $radius !default;
 $kws-slider-track-background: $grey-lighter !default;
-$kws-slider-active-track-background: $grey !default;
+$kws-slider-active-track-background: $info !default;
 $kws-slider-track-radius: $radius !default;
 $kws-slider-track-border: 0px solid $grey !default;
 $kws-slider-track-shadow: 0px 0px 0px $grey !default;
@@ -15,7 +15,7 @@ $kws-slider-output-background: $grey-dark !default;
 $kws-slider-output-color: $white !default;
 $kws-slider-output-radius: $radius !default;
 $kws-slider-active-label-color: findColorInvert(
-  $kws-slider-track-background
+  $kws-slider-active-track-background
 ) !default;
 
 @use "sass:math";
@@ -274,24 +274,28 @@ $kws-slider-active-label-color: findColorInvert(
     font-size: 14px;
     cursor: pointer;
 
-    .active {
-      text-shadow: none;
-      color: $kws-slider-active-label-color;
-      background: $kws-slider-active-track-background;
-      border-color: $kws-slider-active-track-background;
+    &::before {
+      position: absolute;
+      top: -32px;
+      content: "";
+      margin: 0 auto;
+      width: 9px;
+      height: 9px;
+      background: #b2b2b2;
+      border-radius: 50%;
     }
-  }
 
-  .active {
-    color: $grey-dark;
-  }
+    &.active {
+      color: #37adbf;
+    }
 
-  .selected::before {
-    background: $grey-dark;
-  }
+    &.selected::before {
+      display: none;
+    }
 
-  .active.selected::before {
-    display: none;
+    &.active.selected::before {
+      display: none;
+    }
   }
 }
 
