@@ -45,12 +45,13 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   {/if}
 </div>
 
-<ul class="kws-range-labels">
+<ul class="kws-range-labels {output ? 'has-output' : ''}">
   {#if labels && labels.length}
     {#each labels as label, index}
       <li
         class="is-{label_size} {value === index ? 'active' : ''}
-        {index <= value ? 'selected' : ''}">
+        {index <= value ? 'selected' : ''}"
+        style="width:${label_spacing}%">
         <span class={value === index ? "has-text-" + { active_color } : ""}>
           {label}</span>
       </li>
@@ -139,6 +140,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 
   let computedStyle = "";
   let outputClass = "";
+  let label_spacing = 0;
 
   $: outputClass = output
     ? tooltip
@@ -151,7 +153,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     let position = ((value - min) / range) * 100;
     let positionOffset = Math.round(position * 0.4);
     computedStyle = `left:calc(${position}% - ${positionOffset}px)`;
-    style = `background: linear-gradient(to right, #1dafec 0%, #1dafec ${position}%, #fff ${position}%, #fff 100%)`;
+    //style = `background: linear-gradient(to right, #1dafec 0%, #1dafec ${position}%, #fff ${position}%, #fff 100%)`;
   }
 
   onMount(() => {
@@ -163,5 +165,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 
     if (value < min) value = min;
     if (value > max) value = max;
+
+    label_spacing = (1 / (max - min)) * 100;
+    console.log(label_spacing);
   }
 </script>
