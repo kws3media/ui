@@ -49,9 +49,10 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   {#if labels && labels.length}
     {#each labels as label, index}
       <li
-        class="range-label {value === index ? 'active' : ''}
+        class="is-{label_size} {value === index ? 'active' : ''}
         {index <= value ? 'selected' : ''}">
-        {label}
+        <span class={value === index ? "has-text-" + { active_color } : ""}>
+          {label}</span>
       </li>
     {/each}
   {/if}
@@ -101,10 +102,20 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      */
     size = "",
     /**
+     * Size of the Label Size
+     * @type {SizeOptions}
+     */
+    label_size = "small",
+    /**
      * Colour of the Slider
      * @type {ColorOptions}
      */
     color = "",
+    /**
+     * Colour of the Active Label
+     * @type {ColorOptions}
+     */
+    active_color = "info",
     /**
      * Inline CSS for the Slider
      */
@@ -140,7 +151,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     let position = ((value - min) / range) * 100;
     let positionOffset = Math.round(position * 0.4);
     computedStyle = `left:calc(${position}% - ${positionOffset}px)`;
-    style = `background: linear-gradient(to right, #4a4a4a 0%, #4a4a4a ${position}%, #fff ${position}%, #fff 100%)`;
+    style = `background: linear-gradient(to right, #1dafec 0%, #1dafec ${position}%, #fff ${position}%, #fff 100%)`;
   }
 
   onMount(() => {
