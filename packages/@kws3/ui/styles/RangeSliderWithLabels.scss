@@ -57,6 +57,7 @@ $kws-slider-active-label-color: findColorInvert(
 
 .kws-range-with-label-control {
   position: relative;
+  margin: 0 0.5rem;
 
   input[type="range"] {
     &.slider {
@@ -264,7 +265,7 @@ $kws-slider-active-label-color: findColorInvert(
 }
 // Labels below slider
 .kws-range-labels {
-  margin: 0;
+  margin-left: -30px;
   padding: 0;
   display: flex;
   width: 100%;
@@ -278,6 +279,7 @@ $kws-slider-active-label-color: findColorInvert(
     width: 90.25px;
     font-size: 14px;
     cursor: pointer;
+    text-align: center;
 
     &::before {
       position: absolute;
