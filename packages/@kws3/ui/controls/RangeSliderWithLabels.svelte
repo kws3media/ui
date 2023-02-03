@@ -41,19 +41,19 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     {disabled}
     {style} />
   {#if output}
-    <output style={computedStyle}>{labels[value]}</output>
+    <output style={computedStyle}>{value}</output>
   {/if}
 </div>
 
 <ul class="kws-range-labels {output ? 'has-output' : ''}">
-  {#if labels && labels.length}
-    {#each labels as label, index}
+  {#if _data && _data.length}
+    {#each _data as item}
       <li
-        class="is-{label_size} {value === index ? 'active' : ''}
-        {index <= value ? 'selected' : ''}"
-        style="width:${label_spacing}%">
-        <span class={value === index ? "has-text-" + { active_color } : ""}>
-          {label}</span>
+        class="is-{label_size} {value === item.value ? 'active' : ''}
+        {item.value <= value ? 'selected' : ''}">
+        <span
+          class={value === item.value ? "has-text-" + { active_color } : ""}>
+          {item.label}</span>
       </li>
     {/each}
   {/if}
@@ -92,7 +92,14 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      * Displays the current value
      */
     output = false,
+    /**
+     * Range labels
+     */
     labels = [],
+    /**
+     * Range values
+     */
+    values = [],
     /**
      * Disables the Slider
      */
@@ -140,13 +147,15 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 
   let computedStyle = "";
   let outputClass = "";
-  let label_spacing = 0;
+  let _data = [];
 
   $: outputClass = output
     ? tooltip
       ? "has-output-tooltip"
       : "has-output"
     : "";
+
+  $: labels, values, normaliseData();
 
   $: {
     let range = max - min;
@@ -160,13 +169,25 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     validateInput();
   });
 
+  const normaliseData = () => {
+    _data = [];
+
+    if (labels.length !== values.length) {
+      console.warn("Values and labels lengths do not match");
+    }
+
+    labels.forEach((item, index) => {
+      _data.push({
+        label: item,
+        value: values[index],
+      });
+    });
+  };
+
   function validateInput() {
     if (typeof value == "undefined" || value === null) value = min;
 
     if (value < min) value = min;
     if (value > max) value = max;
-
-    label_spacing = (1 / (max - min)) * 100;
-    console.log(label_spacing);
   }
 </script>

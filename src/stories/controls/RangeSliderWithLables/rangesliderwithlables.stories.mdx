@@ -5,10 +5,12 @@ import { RangeSliderWithLabels } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  min : 0,
-  max : 6,
+  labels: ["Today", "2 days", "3 days", "4 days", "5 days"],
+  values: [1,2,3,4,5],
+  min : 1,
+  max : 5,
   step: 1,
-  value : 0,
+  value : 1,
   class : "",
   style:"",
   size:"",
@@ -17,7 +19,6 @@ export let args={
   disabled:false,
   circle:false,
   tooltip:false,
-  labels:["12", "24", "36", "48", "60", "72", "81"]
 };
 
 
