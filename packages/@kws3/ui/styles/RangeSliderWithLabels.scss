@@ -271,7 +271,7 @@ $kws-slider-active-label-color: findColorInvert(
   width: 100%;
 
   &.has-output {
-    width: calc(100% - (#{$kws-slider-output-width + 1.2rem}));
+    width: calc(100% - (#{$kws-slider-output-width}));
   }
 
   li {
