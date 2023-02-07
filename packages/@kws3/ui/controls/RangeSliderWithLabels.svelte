@@ -2,7 +2,6 @@
   @component
 
   @param {array} [labels=[]] - Range labels, Default: []
-  @param {array} [values=[]] - Range values, Default: []
   @param {number} [min=0] - Minumum permitted value, Default: `0`
   @param {number} [max=100] - Maximum permitted value, Default: `100`
   @param {number} [step=1] - Stepping interval or Rate of change of value, Default: `1`
@@ -134,10 +133,6 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      */
     labels = [],
     /**
-     * Range values
-     */
-    values = [],
-    /**
      * Disables the Slider
      */
     disabled = false,
@@ -194,7 +189,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     : "";
 
   $: cssVariables = `--slider-position:${position}%;`;
-  $: labels, values, normaliseData();
+  $: labels, normaliseData();
   $: {
     let range = max - min;
     position = ((value - min) / range) * 100;
@@ -210,14 +205,14 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   const normaliseData = () => {
     _data = [];
 
-    if (labels.length !== values.length) {
-      console.warn("Values and labels lengths do not match");
-    }
-
     labels.forEach((item, index) => {
+      let _value = index * step + min;
+      if (_value < min) _value = min;
+      if (_value > max) _value = max;
+
       _data.push({
         label: item,
-        value: values[index],
+        value: _value,
       });
     });
   };
