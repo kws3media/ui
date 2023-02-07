@@ -1,7 +1,8 @@
 <!--
   @component
 
-
+  @param {array} [labels=[]] - Range labels, Default: []
+  @param {array} [values=[]] - Range values, Default: []
   @param {number} [min=0] - Minumum permitted value, Default: `0`
   @param {number} [max=100] - Maximum permitted value, Default: `100`
   @param {number} [step=1] - Stepping interval or Rate of change of value, Default: `1`
@@ -25,7 +26,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   - `change` - Native input change event
 
 -->
-<div class="kws-range-with-label-control">
+<div class="kws-range-with-label-control" style={cssVariables}>
   <!--Native input change event-->
   <input
     class="slider is-fullwidth
@@ -50,7 +51,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     {#each _data as item}
       <li
         class="is-{label_size} {value === item.value ? 'active' : ''}
-        {item.value <= value ? 'selected' : ''}">
+          {item.value <= value ? 'selected' : ''}">
         <span
           class={value === item.value ? "has-text-" + { active_color } : ""}>
           {item.label}</span>
@@ -58,6 +59,42 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     {/each}
   {/if}
 </ul>
+
+<style lang="scss">
+  .kws-range-with-label-control {
+    input[type="range"] {
+      &.slider {
+        &::-webkit-slider-runnable-track {
+          background: linear-gradient(
+            to right,
+            #1dafec 0%,
+            #1dafec var(--slider-position),
+            #dbdbdb var(--slider-position),
+            #dbdbdb 100%
+          );
+        }
+        &::-moz-range-track {
+          background: linear-gradient(
+            to right,
+            #1dafec 0%,
+            #1dafec var(--slider-position),
+            #dbdbdb var(--slider-position),
+            #dbdbdb 100%
+          );
+        }
+        &::-ms-track {
+          background: linear-gradient(
+            to right,
+            #1dafec 0%,
+            #1dafec var(--slider-position),
+            #dbdbdb var(--slider-position),
+            #dbdbdb 100%
+          );
+        }
+      }
+    }
+  }
+</style>
 
 <script>
   import { onMount } from "svelte";
@@ -148,6 +185,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   let computedStyle = "";
   let outputClass = "";
   let _data = [];
+  let position = 0;
 
   $: outputClass = output
     ? tooltip
@@ -155,14 +193,14 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
       : "has-output"
     : "";
 
+  $: cssVariables = `--slider-position:${position}%;`;
   $: labels, values, normaliseData();
-
   $: {
     let range = max - min;
-    let position = ((value - min) / range) * 100;
+    position = ((value - min) / range) * 100;
     let positionOffset = Math.round(position * 0.4);
     computedStyle = `left:calc(${position}% - ${positionOffset}px)`;
-    //style = `background: linear-gradient(to right, #1dafec 0%, #1dafec ${position}%, #fff ${position}%, #fff 100%)`;
+    // style = `background: linear-gradient(to right, #1dafec 0%, #1dafec ${position}%, #fff ${position}%, #fff 100%);`;
   }
 
   onMount(() => {
