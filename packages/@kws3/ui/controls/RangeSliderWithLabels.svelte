@@ -1,7 +1,7 @@
 <!--
   @component
 
-  @param {array} [labels=[]] - Range labels, Default: []
+  @param {array} [options=[]] - Range data, Default: []
   @param {number} [min=0] - Minumum permitted value, Default: `0`
   @param {number} [max=100] - Maximum permitted value, Default: `100`
   @param {number} [step=1] - Stepping interval or Rate of change of value, Default: `1`
@@ -33,27 +33,30 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     is-{size} is-{color} {klass}
     {circle ? 'is-circle' : ''}"
     type="range"
-    bind:value
-    on:change
+    bind:value={_value}
+    on:change={() => {
+      value = options[_value].value;
+      fire("change", value);
+    }}
     {min}
     {max}
     {step}
     {disabled}
     {style} />
   {#if output}
-    <output style={computedStyle}>{value}</output>
+    <output style={computedStyle}>{options[_value].value}</output>
   {/if}
 </div>
 
 <ul class="kws-range-labels {output ? 'has-output' : ''}">
-  {#if _data && _data.length}
-    {#each _data as item}
+  {#if options && options.length}
+    {#each options as item, index}
       <li
-        class="is-{label_size} {value === item.value ? 'active' : ''}
-          {item.value <= value ? 'selected' : ''}">
+        class="is-{label_size} {_value === index ? 'active' : ''}
+          {index <= _value ? 'selected' : ''}">
         <span
           class={value === item.value ? "has-text-" + { active_color } : ""}>
-          {item.label}</span>
+          {item.title}</span>
       </li>
     {/each}
   {/if}
@@ -96,7 +99,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 </style>
 
 <script>
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
 
   /**
    *
@@ -104,6 +107,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    *
    */
+  const fire = createEventDispatcher();
   /**
    * Minumum permitted value
    */
@@ -129,9 +133,9 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      */
     output = false,
     /**
-     * Range labels
+     * Range options
      */
-    labels = [],
+    options = [],
     /**
      * Disables the Slider
      */
@@ -179,7 +183,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 
   let computedStyle = "";
   let outputClass = "";
-  let _data = [];
+  let _value = 0;
   let position = 0;
 
   $: outputClass = output
@@ -189,10 +193,9 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     : "";
 
   $: cssVariables = `--slider-position:${position}%;`;
-  $: labels, normaliseData();
   $: {
     let range = max - min;
-    position = ((value - min) / range) * 100;
+    position = ((_value - min) / range) * 100;
     let positionOffset = Math.round(position * 0.4);
     computedStyle = `left:calc(${position}% - ${positionOffset}px)`;
     // style = `background: linear-gradient(to right, #1dafec 0%, #1dafec ${position}%, #fff ${position}%, #fff 100%);`;
@@ -202,25 +205,11 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     validateInput();
   });
 
-  const normaliseData = () => {
-    _data = [];
-
-    labels.forEach((item, index) => {
-      let _value = index * step + min;
-      if (_value < min) _value = min;
-      if (_value > max) _value = max;
-
-      _data.push({
-        label: item,
-        value: _value,
-      });
-    });
-  };
-
   function validateInput() {
-    if (typeof value == "undefined" || value === null) value = min;
+    _value = options.findIndex((opt) => opt.value === value);
+    if (typeof _value == "undefined" || _value === null) _value = min;
 
-    if (value < min) value = min;
-    if (value > max) value = max;
+    if (_value < min) _value = min;
+    if (_value > max) _value = max;
   }
 </script>
