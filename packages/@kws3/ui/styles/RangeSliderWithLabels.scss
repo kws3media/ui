@@ -90,9 +90,10 @@ $kws-slider-active-label-color: findColorInvert(
           width: $kws-slider-output-width;
           background: $kws-slider-output-background;
           border-radius: $kws-slider-output-radius;
-          padding: 0.4rem 0.8rem;
+          padding: 0.4rem;
           font-size: $size-7;
           line-height: $size-7;
+          text-align: center;
           white-space: nowrap;
           color: $kws-slider-output-color;
           overflow: hidden;
