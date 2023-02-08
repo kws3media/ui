@@ -5,11 +5,16 @@ import { RangeSliderWithLabels } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
 
 export let args={
-  labels: ["6", "12", "18", "24", "30", "36", "42"],
-  min : 6,
-  max : 42,
-  step: 6,
-  value : 6,
+  options: [{title: "5000 miles", value:5000}, 
+  {title: "8000 miles", value: 8000}, 
+  {title: "10000 miles", value: 10000}, 
+  {title: "15000 miles", value: 15000},
+  {title: "18000 miles", value: 18000},
+  {title: "22000 miles", value: 20000}],
+  min : 0,
+  max : 5,
+  step: 1,
+  value : 5000,
   class : "",
   style:"",
   size:"",
