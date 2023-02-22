@@ -90,7 +90,7 @@
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
    * @type {number}
    */
-  export let score_threshold = 5;
+  export let score_threshold = 2;
   /**
    * (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
    * @type {number}
