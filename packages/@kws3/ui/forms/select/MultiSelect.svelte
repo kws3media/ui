@@ -22,7 +22,7 @@ Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
   @param {string|'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
-  @param {number} [scoreThreshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
+  @param {number} [score_threshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
   @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
   @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
@@ -260,7 +260,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
    * @type {number}
    */
-  export let scoreThreshold = 3;
+  export let score_threshold = 3;
   /**
    * Size of the input
    *  @type {import('@kws3/ui/types').SizeOptions}
@@ -536,7 +536,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       };
       let searchOptions = {
         search_key: used_search_key,
-        scoreThreshold,
+        score_threshold,
         fuzzyOpts,
       };
       fuzzysearch = makeSearchEngine(searchOptions);

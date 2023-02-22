@@ -1,7 +1,7 @@
 import { Colors, BGColors, SpinnerColors, Sizes } from "./type-defs.ts";
 export type SearchOptions = {
   search_key: Array<string> | string;
-  scoreThreshold: number;
+  score_threshold: number;
   fuzzyOpts: {
     analyzeSubTerms: boolean;
     analyzeSubTermDepth: number;

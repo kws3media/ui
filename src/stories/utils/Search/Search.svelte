@@ -35,7 +35,7 @@
   };
   let searchOptions = {
     search_key: "name",
-    scoreThreshold: 5,
+    score_threshold: 5,
     fuzzyOpts,
   };
 
