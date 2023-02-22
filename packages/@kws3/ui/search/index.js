@@ -10,7 +10,7 @@ import { fuzzy } from "../internal";
  */
 export function makeSearchEngine(opts) {
   let search_key = opts.search_key ? opts.search_key : "value";
-  let score_threshold = opts.score_threshold ? opts.score_threshold : 5;
+  let scoreThreshold = opts.scoreThreshold ? opts.scoreThreshold : 5;
   let fuzzyOpts = opts.fuzzyOpts ? opts.fuzzyOpts : {};
 
   /**
@@ -42,7 +42,7 @@ export function makeSearchEngine(opts) {
     });
 
     let maxScore = Math.max(...OPTS.map((i) => i.score));
-    let calculatedLimit = maxScore - score_threshold;
+    let calculatedLimit = maxScore - scoreThreshold;
 
     OPTS = OPTS.filter(
       (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)

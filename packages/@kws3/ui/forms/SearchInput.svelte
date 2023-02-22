@@ -10,7 +10,7 @@
   @param {array} [options=[]] - Array of objects., Default: `[]`
   @param {array} [searchableKeys=[]] - array of object properties to search in., Default: `[]`
   @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
-  @param {number} [score_threshold=2] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `2`
+  @param {number} [scoreThreshold=2] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `2`
   @param {boolean} [word_match=false] - Whether to match against each word seperatly or whole sentence in flow., Default: `false`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
@@ -89,7 +89,7 @@
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
    *  @type {number}
    */
-  export let score_threshold = 2;
+  export let scoreThreshold = 2;
   /**
    * Whether to match against each word seperatly or whole sentence in flow.
    */
@@ -129,7 +129,7 @@
 
     let searchOptions = {
       search_key: searchableKeys,
-      score_threshold,
+      scoreThreshold,
       fuzzyOpts,
     };
 

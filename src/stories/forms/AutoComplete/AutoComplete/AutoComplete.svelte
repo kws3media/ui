@@ -13,7 +13,7 @@
         bind:value={selected_character}
         {search_strategy}
         {highlighted_results}
-        {score_threshold}
+        {scoreThreshold}
         {placeholder}
         {style}
         class={klass}
@@ -37,7 +37,7 @@
         bind:value={selected_character_string}
         {search_strategy}
         {highlighted_results}
-        {score_threshold}
+        {scoreThreshold}
         {placeholder}
         {style}
         class={klass}
@@ -79,7 +79,7 @@
     readonly = false,
     search_strategy = "fuzzy",
     highlighted_results = true,
-    score_threshold = 5,
+    scoreThreshold = 5,
     placeholder = "Marvel characters...",
     selected_character = "", // single , also work with { label: "Tony Stark", value: "Tony Stark"}
     selected_character_string = "Tony";

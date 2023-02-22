@@ -6,7 +6,7 @@
       {searchableKeys}
       bind:options
       {highlighted_results}
-      {score_threshold}
+      {scoreThreshold}
       {word_match}
       {placeholder}
       {style}
@@ -62,7 +62,7 @@
     options = [],
     searchableKeys = [],
     highlighted_results = true,
-    score_threshold = 2,
+    scoreThreshold = 2,
     placeholder = "";
 
   // $: console.log(options);
