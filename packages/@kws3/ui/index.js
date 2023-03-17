@@ -80,3 +80,6 @@ export { default as BarChart } from "./charts/BarChart.svelte";
 export { default as LineChart } from "./charts/LineChart.svelte";
 export { default as AreaChart } from "./charts/AreaChart.svelte";
 export { default as RadialChart } from "./charts/RadialChart.svelte";
+
+export { default as CanvasControls } from "./canvas/CanvasControls.svelte";
+export { default as PenInput } from "./canvas/PenInput.svelte";

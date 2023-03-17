@@ -1,3 +1,28 @@
+<!--
+  @component
+
+  @param {boolean} [readonly=false] - Setting the `readonly` prop to `true` disables user input on the canvas. , Default: `false`
+  @param {boolean} [disabled=false] - Setting the `disabled` prop to `true` disables user input on the canvas. , Default: `false`
+  @param {boolean} [expanded=false] - Default: `false`
+  @param {boolean} [is_filled=false] - Default: `false`
+
+  @param {string} [width="250px"] - Canvas width, Default: `"250px"`
+  @param {string} [height="250px"] - Canvas height, Default: `"250px"`
+  @param {string} [lineColor="#000000"] - Pen color, Default: `"#000000"`
+  @param {string} [image=""] - Canvas image, Default: `""`
+  @param {string} [backgroundImage=""] - Canvas Background Image, Default: `""`
+
+  @param {number} [lineWidth=2] - Pen width, Default: `2`
+  @param {number} [eraserWidth=6] - Pen width, Default: `6`
+  @param {number} [initialScale=1] - Pen width, Default: `1`
+
+  @param {object} [expand={ from: "center", to: "center", scale: 50 }] - expand object, Default: `{ from: "center", to: "center", scale: 50 }`
+  @param {object} [styles={}] - Styles property, Default: `{}`
+
+  ### Events
+  - `change` - Fired when user stop drawing in canvas
+-->
+
 <div
   class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
   style="width:{width || '250px'};height:{height || '250px'}">
@@ -22,7 +47,7 @@
     backgroundImage = "",
     expanded = false,
     initialScale = 1,
-    expand = 2,
+    expand = { from: "center", to: "center", scale: 50 },
     readonly = false,
     disabled = false,
     CANVAS_IMAGE;
@@ -31,6 +56,7 @@
     _styles = {},
     emptyImage =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+
   $: _image_syles = `
     width:${width || "250px"};
     height:${height || "250px"};
@@ -40,6 +66,7 @@
     background-size: contain;
     background-position: center center;
   `;
+
   $: {
     let default_styles = {
       "background-color": "#fdfdfd",
@@ -66,6 +93,7 @@
       .join(";");
   }
   $: readonly, setEvents();
+
   onMount(() => {
     CANVAS && CANVAS.setAttribute("width", width.replace("px", ""));
     CANVAS && CANVAS.setAttribute("height", height.replace("px", ""));
