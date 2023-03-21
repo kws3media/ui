@@ -1,3 +1,24 @@
+<!--
+  @component
+
+  @param {object} [styles={}] - Inline CSS for the canvas, Default: `{}`
+  @param {string} [width="250px"] - Width of the canvas, Default: `250px`
+  @param {string} [height="250px"] - Height of the canvas, Default: `250px`
+  @param {number} [line=2] - line width width, Default: `2`
+  @param {number} [eraser=6] - Eraser width, Default: `6`
+  @param {string} [color="#000000"] - Line color, Default: `"#000000"`
+  @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
+  @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
+  @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
+  @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
+  @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
+  @param {object} [expand={}] - Transform scale and the direction from which the canvas should expand on expansion, Default: `{from: "center", to: "center", scale: 50}`
+  @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
+
+Only active when canvas is `readonly` or `disabled`, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+-->
+
 <div
   class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
   style="width:{width || '250px'};height:{height || '250px'}">
@@ -44,7 +65,6 @@
     background-size: contain;
     background-position: center center;
   `;
-
   $: {
     let default_styles = {
       "background-color": "#fdfdfd",
@@ -57,16 +77,15 @@
       "border-bottom": "1px dotted #ccc",
       "background-image": `url(${backgroundImage})`,
     };
-
     default_styles["width"] = width;
     default_styles["height"] = height;
-
     let __styles = { ...default_styles, ...styles };
-
     if (readonly) {
       __styles["background-color"] = "transparent";
     }
-
+    if (!is_filled) {
+      __styles["border"] = "1px dotted #ff0000";
+    }
     _styles = Object.entries(__styles)
       .map(([key, val]) => `${key}:${val}`)
       .join(";");
