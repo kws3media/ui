@@ -3,7 +3,7 @@
   style={canvasControlsStyles}>
   {#if !readonly && !disabled}
     <div
-      class="columns m-0 is-justify-content-center {controlClasses}"
+      class="columns m-0 is-flex is-justify-content-{controlPosition} {controlClasses}"
       style="gap: 0.5rem;">
       {#each actions as action}
         {#if action === "controls"}
@@ -72,7 +72,11 @@
               type="button"
               class="button is-small is-danger"
               data-tooltip="Reset"
-              on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.reset()}>
+              on:click={() => {
+                CANVAS_IMAGE && CANVAS_IMAGE.reset();
+                canUndo = false;
+                canRedo = false;
+              }}>
               <Icon icon="refresh" size="small" />
             </button>
           </div>
@@ -100,11 +104,8 @@
 
 <script>
   import { Icon, tooltip } from "@kws3/ui";
-  import ColorPicker from "../forms/colorpicker/Colorpicker";
-
   export let CANVAS_IMAGE,
     EXPANDED_BUTTON,
-    width,
     disabled,
     drawing_label,
     readonly,
@@ -120,8 +121,8 @@
     expandContract,
     setColor,
     toolbarPlacement,
-    activeTool;
-
+    activeTool,
+    controlPosition = "center";
   let toolMap = {
     Pen: {
       name: "Pen",
@@ -132,11 +133,8 @@
       icon: "eraser",
     },
   };
-
   let canvasControlsStyles = {};
-  let _colorpicker;
   let controlClasses = "is-flex-direction-row";
-
   $: penColor, setColor();
   $: {
     penColor =
@@ -146,39 +144,9 @@
         ? color
         : "000000";
   }
-
   $: {
     if (toolbarPlacement === "left" || toolbarPlacement === "right") {
       controlClasses = "is-flex-direction-column";
     }
   }
-
-  // $: {
-  //   let control_default_styles = {
-  //     width:
-  //       toolbarPlacement === "left" || toolbarPlacement === "right"
-  //         ? "auto"
-  //         : width || "250px",
-  //   };
-
-  //   canvasControlsStyles = Object.entries(control_default_styles)
-  //     .map(([key, val]) => `${key}:${val}`)
-  //     .join(";");
-  // }
-
-  // function colorpicker(node) {
-  //   _colorpicker = new ColorPicker(node);
-
-  //   _colorpicker.on("change", (_color) => (penColor = _color));
-  //   _colorpicker.set("#" + penColor);
-
-  //   return {
-  //     update(newColor) {
-  //       _colorpicker.set("#" + newColor);
-  //     },
-  //     destroy() {
-  //       _colorpicker.destroy();
-  //     },
-  //   };
-  // }
 </script>
