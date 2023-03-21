@@ -1,10 +1,18 @@
-import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas } from '@storybook/addon-docs';
-import dedent from 'ts-dedent';
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-docs";
+import dedent from "ts-dedent";
 import { Canvas as KWS3Canvas } from "@kws3/ui";
 import CanvasDecorator from "./Canvas.svelte";
-import { action } from '@storybook/addon-actions';
+import { action } from "@storybook/addon-actions";
 
-export let args={
+export let args = {
   styles: {
     border: "1px solid #b5b5b5",
   },
@@ -20,7 +28,9 @@ export let args={
   initialScale: 1,
   // expand: 50,
   expand: {
-    from: "center", to: "center", scale: 50
+    from: "center",
+    to: "center",
+    scale: 50,
   },
   tools: ["Pen", "Eraser"],
   actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
@@ -28,50 +38,51 @@ export let args={
   activeTool: "Pen",
   drawing_label: "",
   hide_colorpicker: false,
-  cy: ""
+  cy: "",
 };
 
 <Meta
-  title="Helpers/Canvas"
+  title="Canvas/ESignature"
   component={KWS3Canvas}
   args={args}
   argTypes={{
     activeTool: {
-      control: 'select'
+      control: "select",
     },
     tools: {
-      control: 'check'
+      control: "check",
     },
   }}
 />
 
-<Description markdown={dedent`
+<Description
+  markdown={dedent`
 # Canvas
-## Canvas components for drawing.
-`}/>
+## Canvas components for ESignature.
+`}
+/>
 
 <Canvas>
-  <Story
-  name="Canvas"
-  args={args}
-  >
-  {(args) => ({
-    Component: CanvasDecorator,
-    props: args,
-  })}
+  <Story name="ESignature" args={args}>
+    {(args) => ({
+      Component: CanvasDecorator,
+      props: args,
+    })}
   </Story>
 </Canvas>
 
-<ArgsTable story="Canvas" />
+<ArgsTable story="ESignature" />
 
 ### Usage
+
 <Source
-  language='javascript'
-  code={ dedent`import { Canvas } from '@kws3/ui';`}
+  language="javascript"
+  code={dedent`import { Canvas } from '@kws3/ui';`}
 />
 
 ##### Import the CSS:
+
 <Source
-  language='javascript'
-  code={ dedent`@import '@kws3/ui/styles/Canvas.scss';`}
+  language="javascript"
+  code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
 />
