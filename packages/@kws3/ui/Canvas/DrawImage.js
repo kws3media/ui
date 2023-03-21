@@ -7,7 +7,9 @@ try {
     get: () => (passiveSupported = !0),
   });
   window && window.addEventListener("test", null, options);
-} catch (err) {}
+} catch (err) {
+  console.log(err);
+}
 
 var eventOpts = passiveSupported ? { passive: false, capture: false } : false;
 
@@ -60,7 +62,7 @@ export default function DrawImage(app, opts) {
 
   let draw = () => {
     if (drawing) {
-      if (drawingType == "line") {
+      if (drawingType === "line") {
         context.beginPath();
         context.moveTo(lastPos.x, lastPos.y);
         context.lineCap = "round";
@@ -138,7 +140,7 @@ export default function DrawImage(app, opts) {
     if (imgSrc) {
       let img = new Image();
       img.src = imgSrc;
-      img.onload = (e) => {
+      img.onload = () => {
         context.drawImage(
           img,
           0,
@@ -189,7 +191,7 @@ export default function DrawImage(app, opts) {
   //this is for syncing incoming data from another source
   this.syncImage = (imgData) => {
     var curUrl = canvas.toDataURL();
-    if (curUrl != imgData) {
+    if (curUrl !== imgData) {
       _prevState = getImageData();
       context.clearRect(0, 0, canvas.width, canvas.height);
       setImage(imgData, () => {
@@ -236,12 +238,12 @@ export default function DrawImage(app, opts) {
   };
 
   this.setTool = (toolType) => {
-    if (toolType == "Pen") {
+    if (toolType === "Pen") {
       drawingType = "line";
       context.globalCompositeOperation = "source-over";
       context.strokeStyle = opts.lineColor || "#3d44c8";
       context.lineWidth = opts.lineWidth || 1;
-    } else if (toolType == "Eraser") {
+    } else if (toolType === "Eraser") {
       context.globalCompositeOperation = "destination-out";
       context.lineWidth = opts.eraserWidth || 4;
     }
