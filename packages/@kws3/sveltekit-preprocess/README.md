@@ -1,6 +1,6 @@
 # sveltekit-preprocess
 
-Collection of Svelte preprocessors for the KWS3 Design System
+Collection of SvelteKit preprocessors for the KWS3 Design System
 
 
 Install
