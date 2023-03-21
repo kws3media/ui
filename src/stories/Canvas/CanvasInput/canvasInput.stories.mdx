@@ -33,7 +33,7 @@ export let args={
 
 <Description markdown={dedent`
 # Canvas Input
-## Canvas Input.
+## Canvas Input for Drawing.
 `}/>
 
 <Canvas>
@@ -53,5 +53,70 @@ export let args={
 ### Example source code
 <Source
   language='html'
-  code={ dedent``}
+  code={ dedent`
+      <CanvasInput
+        expanded={false}
+        readonly={false}
+        disabled={false}
+        is_filled={false}
+        styles={}
+        width="250px"
+        height="250px"
+        lineColor="#ff0000"
+        lineWidth=2
+        eraserWidth=6
+        image=""
+        backgroundImage=""
+        initialScale=1
+        expand={ from: "center", to: "center", scale: 50 }
+        bind:CANVAS_IMAGE
+        on:change={onChange} 
+      />`}
+/>
+
+### Usage Example
+<Source
+  language='html'
+  code={ dedent`
+      <CanvasInput
+      {expanded}
+      {readonly}
+      {disabled}
+      {is_filled}
+      {styles}
+      {width}
+      {height}
+      {lineColor}
+      {lineWidth}
+      {eraserWidth}
+      {image}
+      {backgroundImage}
+      {initialScale}
+      {expand}
+      bind:CANVAS_IMAGE
+      on:change={onChange} />
+    
+    <script>
+      import { CanvasInput } from '@kws3/ui';
+      export let is_filled = false;
+      export let styles = {};
+      export let width = "250px";
+      export let height = "250px";
+      export let lineColor = "#000000";
+      export let lineWidth = 2;
+      export let eraserWidth = 6;
+      export let image = "";
+      export let backgroundImage = ""; 
+      export let expanded = false;
+      export let initialScale = 1;
+      export let expand = { from: "center", to: "center", scale: 50 }; 
+      export let readonly = false;
+      export let disabled = false; 
+      export let CANVAS_IMAGE;
+      
+      function onChange({ detail }) {
+        image = detail.canvasImage;
+      }
+    </script>
+  `}
 />
