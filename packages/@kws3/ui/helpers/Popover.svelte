@@ -3,8 +3,8 @@
 
 
   @param {string} [icon="info-circle"] - Icon used when default slot has no content, Default: `"info-circle"`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [icon_color="primary"] - Colour of the trigger icon displayed when default slot has no content, Default: `"primary"`
-  @param {''|'small'|'medium'|'large'} [icon_size="small"] - Size of the trigger icon displayed when default slot has no content, Default: `"small"`
+  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [icon_color="primary"] - Colour of the trigger icon displayed when default slot has no content, Default: `"primary"`
+  @param {string|''|'small'|'medium'|'large'} [icon_size="small"] - Size of the trigger icon displayed when default slot has no content, Default: `"small"`
   @param {string} [trigger="click"] - Determines the events that cause the Popover to show. Multiple event names are separated by spaces.
 
 **Examples:** `click`, `mouseenter`, `mouseenter focus`
@@ -85,12 +85,12 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   export let icon = "info-circle";
   /**
    * Colour of the trigger icon displayed when default slot has no content
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
    */
   export let icon_color = "primary";
   /**
    * Size of the trigger icon displayed when default slot has no content
-   * @type {''|'small'|'medium'|'large'}
+   * @type {import('@kws3/ui/types').SizeOptions}
    */
   export let icon_size = "small";
   /**

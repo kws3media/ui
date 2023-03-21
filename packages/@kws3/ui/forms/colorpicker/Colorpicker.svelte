@@ -36,7 +36,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
         on:focus={focused}
         {disabled}
         bind:value={color}
-        use:colorpicker={color} />
+        use:colorpicker />
       {#if !mini}
         <Icon icon="hashtag" class="is-left" inner_style="color:#{color}" />
       {/if}
@@ -84,7 +84,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
     disabled = false,
     /**
      * Size of the colour picker trigger
-     * @type {''|'small'|'medium'|'large'}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "";
 

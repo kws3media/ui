@@ -48,7 +48,7 @@ activateTooltips("#an-1", &#123;
   import { onMount } from "svelte";
 
   onMount(() => {
-    activateTooltips("#dt-1");
+    activateTooltips("#dt-1", null);
     activateTooltips("#dt-2", {
       theme: "light",
     });

@@ -9,6 +9,7 @@
   {height}
   {sparklines}
   {horizontal}
+  {distributed}
   {stacked}
   {stacked_full_width} />
 
@@ -23,6 +24,7 @@
     labels = [],
     y_axis_options = {},
     horizontal = false,
+    distributed = false,
     stacked = false,
     stacked_full_width = false,
     sparklines = false,

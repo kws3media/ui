@@ -7,7 +7,7 @@
   {showTotal}
   {showCurrent}
   {showPerPage}
-  {breakThreshold}
+  {maxVisiblePages}
   {entityName}
   {size}
   {frame}
@@ -32,8 +32,11 @@
     showTotal = true,
     showCurrent = true,
     showPerPage = true,
-    breakThreshold = 10,
+    maxVisiblePages = 10,
     entityName = "entries",
+    /**
+     * @type {import('@kws3/ui/types').SizeOptions}
+     */
     size = "small",
     frame = false,
     iconRight = "chevron-right",

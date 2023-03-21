@@ -4,7 +4,8 @@
 
   @param {number} [row_index=0] - Row index value, Default: `0`
   @param {object} [row={}] - Contains all the column values in a row, Default: `{}`
-  @param {boolean} [rowActive=false] - Determines whether the row is selected or not, Default: `false`
+  @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
+  @param {object} [activatedId=null] - Unique id of row that is activated, Default: `null`
   @param {object} [isVisible={}] - Determines whether column is visible or not, Default: `{}`
   @param {boolean} [clickableRows=false] - Determines whether the row is clickable or not, Default: `false`
   @param {object} [transforms={}] - Contains all custom values for each columns, Default: `{}`
@@ -29,10 +30,14 @@
   <tr
     in:fly={{ x: 20, delay: 25 * row_index }}
     on:click|stopPropagation={rowClick}
-    class:is-selected={rowActive}
+    class:is-selected={activated && visualActivationOnClick}
     class:is-checked={checked}>
     {#if bulk_actions}
-      <td style="vertical-align:middle;">
+      <td
+        style="vertical-align:middle;"
+        on:click={(e) => {
+          clickableRows && e.stopImmediatePropagation();
+        }}>
         <Checkbox
           size={selectCheckboxSize}
           color={selectCheckboxColor}
@@ -58,7 +63,7 @@
 {:else}
   <tr
     on:click|stopPropagation={rowClick}
-    class:is-selected={rowActive}
+    class:is-selected={activated && visualActivationOnClick}
     class:is-checked={checked}>
     {#if bulk_actions}
       <td style="vertical-align:middle;">
@@ -95,6 +100,11 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Row index value
    */
   export let row_index = 0,
@@ -103,11 +113,16 @@
      */
     row = {},
     /**
-     * Determines whether the row is selected or not
+     * Determines whether clickable rows activate visually on click
      */
-    rowActive = false,
+    visualActivationOnClick = true,
+    /**
+     * Unique id of row that is activated
+     */
+    activatedId = null,
     /**
      * Determines whether column is visible or not
+     * @type {object}
      */
     isVisible = {},
     /**
@@ -116,10 +131,12 @@
     clickableRows = false,
     /**
      * Contains all custom values for each columns
+     * @type {object}
      */
     transforms = {},
     /**
      * Contails all CSS class for each column
+     * @type {object}
      */
     classNames = {},
     /**
@@ -128,8 +145,12 @@
     transition = false,
     /**
      * Contains all CSS styles for each column
+     * @type {object}
      */
     styles = {},
+    /**
+     * Column keys
+     */
     column_keys = [],
     /**
      * Determines if selecting multiple rows and doing multiple actions is allowed
@@ -145,10 +166,12 @@
     selectedIds = [],
     /**
      * Selected checkbox color
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     selectCheckboxColor = "info",
     /**
      * selected checkbox size
+     * @type {SizeOptions}
      */
     selectCheckboxSize = "medium",
     /**
@@ -157,10 +180,12 @@
     cellComponent = () => null;
 
   $: resolveComponent = (column, row) => {
+    // @ts-ignore
     return cellComponent(column, row) || GridCell;
   };
 
   $: selectedIds, setCheckedValue();
+  $: activated = activatedId === row.id;
 
   function setCheckedValue() {
     checked = false;
@@ -175,7 +200,6 @@
 
   function rowClick() {
     if (clickableRows) {
-      rowActive = true;
       fire("rowClick", { row });
     }
   }

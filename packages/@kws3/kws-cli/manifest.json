@@ -4,15 +4,20 @@
     "description":"PHP Backend to serve API requests",
     "repo": "kws3media/kws-api-starter"
   },
-  "fe-routed": {
-    "name":"Routed Frontend",
-    "description":"For apps that require URL based routing, such as admin panels",
-    "repo": "kws3media/kws-fe-routed-starter"
-  },
   "fe-routed-sv3": {
     "name":"Svelte3 Routed Frontend",
     "description":"For svelte3 apps that require URL based routing, such as admin panels",
     "repo": "kws3media/kws-fe-routed-svelte3-starter"
+  },
+  "fe-unrouted-sv3": {
+    "name":"Svete3 Un-Routed Frontend",
+    "description":"For svelte3 apps that don't require URL based routing, such as sales apps",
+    "repo": "kws3media/kws-fe-unrouted-svelte3-starter"
+  },
+  "fe-routed": {
+    "name":"Routed Frontend",
+    "description":"For apps that require URL based routing, such as admin panels",
+    "repo": "kws3media/kws-fe-routed-starter"
   },
   "fe-unrouted": {
     "name":"Un-Routed Frontend",

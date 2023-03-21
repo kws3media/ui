@@ -1,7 +1,6 @@
 <!--
   @component
 
-
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
   @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
@@ -33,7 +32,7 @@
     : tracker.saved
     ? 'is-success'
     : 'is-' + color}"
-  {disabled}
+  disabled={tracker.saved || tracker.saving || tracker.error || disabled}
   data-cy={cy}>
   {#if tracker.saved}
     <Icon icon="check" size={icon_size} />
@@ -54,13 +53,18 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Size of the Button
-   * @type {''|'small'|'medium'|'large'}
+   * @type {SizeOptions}
    */
   export let size = "",
     /**
      * Color of the Button
-     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {Exclude<ColorOptions , 'success'>}
      */
     color = "primary",
     /**
@@ -174,5 +178,9 @@
   }
 
   $: err_text = error_text === "" ? text : error_text;
+  /**
+   * Icon Size
+   * @type {SizeOptions}
+   */
   $: icon_size = size === "large" ? "" : "small";
 </script>

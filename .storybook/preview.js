@@ -6,6 +6,7 @@ export const parameters = {
   docs: { page: null },
   options: { showPanel: true },
   backgrounds: { disable: true },
+  viewMode: "docs",
 };
 
 /*

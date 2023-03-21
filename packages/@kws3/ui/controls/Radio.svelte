@@ -39,6 +39,12 @@ See: https://svelte.dev/docs#bind_group, Default: `null`
 
 <script>
   /**
+   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
+  /**
    * Value of radio button
    */
   export let value = null,
@@ -52,12 +58,12 @@ See: https://svelte.dev/docs#bind_group, Default: `null`
     label_style = "",
     /**
      * Size of the Radio Button
-     * @type {''|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "",
     /**
      * Color of the Radio button when selected
-     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "",
     /**

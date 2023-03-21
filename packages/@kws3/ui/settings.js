@@ -40,7 +40,7 @@ export {
  * - `hasTransitions`: `true` - Transitions are applied
  * - `defaultChartColors`: `["#284BED", "#ED6134", "#1DAFEC", "#EDB405", "#11EDB7", "#77ED11"]` - default colors for charts
  *
- * @param {*} object containing all settings
+ * @param {*} obj containing all settings
  */
 export function applySettings(obj) {
   Object.entries(obj).forEach(([k, v]) => {

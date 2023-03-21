@@ -47,13 +47,19 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
   import { Icon } from "@kws3/ui";
 
   /**
+   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
+  /**
    * Size of the Checkbox
-   * @type {''|'small'|'medium'|'large'}
+   * @type {SizeOptions}
    */
   export let size = "",
     /**
      * Colour of the Checkbox
-     * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     color = "",
     /**
@@ -100,9 +106,9 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
      *
-     * @type {''|'fa'|'lar'|'las'|'gg'|'unicons'}
+     * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
      */
-    icon_family = null;
+    icon_family = "";
 
   /**
    * CSS classes of the Checkbox

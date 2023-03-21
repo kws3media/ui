@@ -34,10 +34,10 @@ Only visible when the
       transition:fade={{ duration: transitionDuration }}
       class="modal-background"
       on:click={clickOutside} />
-
     <div
       transition:scale={{
         duration: transitionDuration,
+        // @ts-ignore
         from: 0.8,
         to: 1,
         delay: transitionDelay,
@@ -83,6 +83,17 @@ Only visible when the
 </div>
 
 <style lang="scss">
+  .modal {
+    display: flex;
+    visibility: hidden;
+    &.is-active {
+      visibility: visible;
+    }
+    .modal-card,
+    .modal-background {
+      transition: all 0.3s;
+    }
+  }
   @media screen and (min-width: 769px), print {
     .modal-card {
       min-width: 640px;
@@ -106,7 +117,7 @@ Only visible when the
   export let title = "",
     /**
      * Size of the modal
-     * @type {'small'|'medium'|'large'}
+     * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "small",
     /**

@@ -4,11 +4,20 @@ export default function (password, options) {
     overall: false,
   };
 
+  /**
+   * @typedef {import('@kws3/ui/types').ValidatePasswordOptions} ValidatePasswordOptions - contains ValidatePassword options
+   */
+
   result.items = (options || []).slice().map((_opt) => {
+    /** @type {ValidatePasswordOptions} */
     const opt = Object.assign({}, _opt);
     if (opt && opt.active) {
       if (opt.name === "kws_pv_min_length") {
-        if (password && password.length >= opt.value) {
+        if (
+          typeof opt.value != "undefined" &&
+          password &&
+          password.length >= opt.value
+        ) {
           opt.passed = true;
         }
       } else {
@@ -24,7 +33,9 @@ export default function (password, options) {
   });
 
   result.overall =
-    result.items.filter((el) => el.passed).length === result.items.length;
+    result.items.filter(
+      (/** @type {ValidatePasswordOptions} */ el) => el.passed
+    ).length === result.items.length;
 
   return result;
 }

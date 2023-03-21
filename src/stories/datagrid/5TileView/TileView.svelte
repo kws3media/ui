@@ -6,12 +6,18 @@
       {transition}
       {tileItemComponent}
       {per_row}
+      {fluid_items_per_row}
+      {min_width}
+      {max_width}
+      {grow}
+      {shrink}
       {columns}
       {clickableRows}
       {valueTransformers}
       {classTransformers}
       {styleTransformers}
-      {visibilityMap} />
+      {visibilityMap}
+      class={klass} />
   </div>
 </div>
 
@@ -23,10 +29,18 @@
     transition = false,
     tileItemComponent = null,
     per_row = 3,
+    fluid_items_per_row = false,
+    min_width = "unset",
+    max_width = "unset",
+    grow = true,
+    shrink = true,
     columns = {},
     clickableRows = false,
     valueTransformers = {},
     classTransformers = {},
     styleTransformers = {},
     visibilityMap = {};
+
+  let klass = "";
+  export { klass as class };
 </script>

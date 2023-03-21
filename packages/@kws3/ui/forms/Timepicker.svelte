@@ -14,6 +14,10 @@ This property can be bound to, to fetch the selected time. Output is in the same
   @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [ui_color="primary"] - Colour of popup time selection UI, Default: `"primary"`
   @param {boolean} [time_24hr=false] - Display time selection UI in 24hr format, Default: `false`
   @param {object} [options={}] - Extended set of options as supported by Flatpicker
+  @param {any} [min_time=null] - Set earliest selectable time as string
+  **Example:** `"12:00 PM"` Default: `null`
+  @param {any} [max_time=null] - Set latest selectable time as string
+  **Example:** `"12:00 AM"` Default: `null`
 
 See: https://flatpickr.js.org/options/, Default: `{}`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
@@ -43,10 +47,14 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   on:close={fireClose} />
 
 <script>
-  import { timepicker } from "./actions";
   import { createEventDispatcher } from "svelte";
+  import { timepicker } from "./actions";
 
   const fire = createEventDispatcher();
+
+  /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
 
   /**
    * Accepts a date value in the format `H:i`
@@ -62,7 +70,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let style = "";
   /**
    * Colour of the Time picker input
-   * @type {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {ColorOptions} color
    */
   export let color = "";
   /**
@@ -75,7 +83,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let placeholder = "Select Time..";
   /**
    * Colour of popup time selection UI
-   * @type {'primary'|'warning'|'info'|'danger'|'dark'|'light'}
+   * @type {Exclude<ColorOptions, ''>}
    */
   export let ui_color = "primary";
 
@@ -85,22 +93,63 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let time_24hr = false;
 
   /**
+   * Set earliest selectable time as string
+   *
+   * **Example:** `"01:00 PM"` or "13:00"`
+   * @type {any}
+   */
+  export let min_time = null;
+  /**
+   * Set latest selectable time as string
+   *
+   * **Example:** `"03:00 PM"` or "15:00"`
+   * @type {any}
+   */
+  export let max_time = null;
+
+  /**
    * Extended set of options as supported by Flatpicker
    *
    * See: https://flatpickr.js.org/options/
    */
   export let options = {};
+
+  /**
+   * Make input value read-only
+   */
+  export let readonly = false;
+
   /**
    * CSS classes for the input
    */
+
   let klass = "";
   export { klass as class };
 
   let opts;
 
-  $: ui_color, options, time_24hr, fillOptions();
+  $: ui_color, options, time_24hr, min_time, max_time, readonly, fillOptions();
+
+  const convertTime12to24 = (time12h) => {
+    const [time, modifier] = time12h.split(" ");
+    let [hours, minutes] = time.split(":");
+    if (hours === "12") {
+      hours = "00";
+    }
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12;
+    }
+    return {
+      hour: String(hours),
+      minute: String(minutes),
+      time: `${hours}:${minutes}`,
+    };
+  };
 
   function fillOptions() {
+    /**
+     * @type {object}
+     */
     let _opts = Object.assign(
       {
         color: ui_color,
@@ -109,6 +158,22 @@ See: https://flatpickr.js.org/options/, Default: `{}`
       options
     );
 
+    if (min_time) {
+      let _minTime24 = convertTime12to24(min_time);
+      _opts.minTime = _minTime24.time;
+      _opts.defaultHour = _minTime24.hour;
+      _opts.defaultMinute = _minTime24.minute;
+    }
+
+    if (max_time) {
+      let _maxTime24 = convertTime12to24(max_time);
+      _opts.maxTime = _maxTime24.time;
+    }
+
+    _opts.clickOpens = true;
+    if (readonly) {
+      _opts.clickOpens = false;
+    }
     opts = _opts;
   }
 

@@ -6,6 +6,8 @@
 @import url("https://unicons.iconscout.com/release/v3.0.0/css/line.css");
 
 @import url("https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css");
+//material icons
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
 
 //bulma vars and utils
 @import "../../node_modules/bulma/sass/utilities/initial-variables";
@@ -22,22 +24,25 @@ p {
   margin: 0.5rem 0;
 }
 
-pre.prismjs > code {
-  font-size: 1.1em;
-  .tag,
-  .number {
-    padding: unset;
-    display: inline;
-    height: auto;
-    min-width: unset;
-    background: inherit;
-    white-space: inherit;
-    line-height: inherit;
-    font-size: inherit;
-    border: none;
-    margin: inherit;
-    vertical-align: inherit;
-    text-align: inherit;
+pre.prismjs {
+  > code,
+  > div {
+    font-size: 1.1em;
+    .tag,
+    .number {
+      padding: unset;
+      display: inline;
+      height: auto;
+      min-width: unset;
+      background: inherit;
+      white-space: inherit;
+      line-height: inherit;
+      font-size: inherit;
+      border: none;
+      margin: inherit;
+      vertical-align: inherit;
+      text-align: inherit;
+    }
   }
 }
 
@@ -116,6 +121,8 @@ pre.prismjs > code {
 // @import '../../packages/@kws3/transitions/styles.scss';
 // //searchable select
 @import "../../packages/@kws3/ui/styles/Select.scss";
+// //auto complete
+@import "../../packages/@kws3/ui/styles/AutoComplete.scss";
 // //helpers - Panel
 @import "../../packages/@kws3/ui/styles/Panel.scss";
 // //helpers - Loader
@@ -236,15 +243,41 @@ pre.prismjs > code {
 .sbdocs-content {
   position: relative;
 }
-.main-version-tag {
+.page-top-right-artifacts {
   position: absolute;
-  top: 0;
+  margin: 0 !important;
+  padding: 0.75rem;
+  border-radius: 0 0 $radius $radius;
+  background: linear-gradient(180deg, #f4f4f4 0%, #f6f9fc 4%, #fcfdfd 35%);
+  top: -4rem;
   right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  .artifact-item-block {
+    display: flex;
+    flex-direction: row;
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+  .artifact-item:not(:last-child) {
+    margin-right: 0.5rem;
+    padding-right: 0.5rem;
+    border-right: 1px solid #ebebeb;
+  }
 }
 
 .datagrid-example {
   .box.is-selected {
     background-color: $primary;
     color: #fff;
+  }
+}
+.searchinput-examples {
+  span.h {
+    font-weight: 700;
+    color: currentColor;
+    background: transparent;
   }
 }

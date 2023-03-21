@@ -5,9 +5,12 @@
   @param {string} [iteration_key="id"] - Iteration key, Default: `"id"`
   @param {array} [data=[]] - Contains all the results that needs to be displayed, Default: `[]`
   @param {object} [columns={}] - Table column names. {db_field_name: column_name}, Default: `{}`
-  @param {boolean} [transition=false] - Determines if a transision effect is used, Default: `false`
+  @param {boolean} [transition=false] - Determines if a transition effect is used, Default: `false`
   @param {boolean} [is_striped=true] - Determines whether to use alternating row shading in the table view, Default: `true`
+  @param {boolean} [is_narrow=false] - Determines whether to display rows in a more compact manner, Default: `false`
+  @param {boolean} [visualActivationOnClick=true] - Determines whether clickable rows activate visually on click, Default: `true`
   @param {boolean} [clickableRows=false] - Determines whether rows are clickable or not, Default: `false`
+  @param {object} [activatedId=null] - Unique id of row that is activated, Default: `null`
   @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
   @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
   @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
@@ -20,6 +23,7 @@
   @param {object} [visibilityMap={}] - Contains list of columns which can be visible or not, Default: `{}`
   @param {object} [cellComponentMap={}] - Contains list of columns with its custom cell component, Default: `{}`
   @param {any} [rowComponent="GridRow"] - Contains a custom row component, Default: `"GridRow"`
+  @param {string} [class=""] - CSS classes for parent table, Default: `""`
 
   ### Events
   - `toggleSelectAll` - Fires an event every time the `select all` checkbox is toggled
@@ -30,9 +34,9 @@
 -->
 <div class="data-table" data-cy="data-table">
   <table
-    class="table is-fullwidth {is_striped ? 'is-striped' : ''} {clickableRows
-      ? 'is-hoverable'
-      : ''} is-bordered">
+    class="table is-fullwidth {is_striped ? 'is-striped' : ''} {is_narrow
+      ? 'is-narrow'
+      : ''} {clickableRows ? 'is-hoverable' : ''} is-bordered {klass}">
     <thead>
       <tr>
         {#if bulk_actions}
@@ -64,6 +68,7 @@
           {transition}
           {column_keys}
           {clickableRows}
+          {visualActivationOnClick}
           {isVisible}
           {transforms}
           {classNames}
@@ -71,6 +76,7 @@
           {cellComponent}
           {row}
           {bulk_actions}
+          {activatedId}
           {selectedIds}
           {selectCheckboxColor}
           {selectCheckboxSize}
@@ -88,6 +94,10 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
+  /**
    * Iteration key
    */
   export let iteration_key = "id",
@@ -100,7 +110,7 @@
      */
     columns = {},
     /**
-     * Determines if a transision effect is used
+     * Determines if a transition effect is used
      */
     transition = false,
     /**
@@ -109,9 +119,22 @@
      */
     is_striped = true,
     /**
+     * Determines whether to display rows in a more compact manner
+     * @link https://bulma.io/documentation/elements/table/#modifiers
+     */
+    is_narrow = false,
+    /**
+     * Determines whether clickable rows activate visually on click
+     */
+    visualActivationOnClick = true,
+    /**
      * Determines whether rows are clickable or not
      */
     clickableRows = false,
+    /**
+     * Unique id of row that is activated
+     */
+    activatedId = null,
     /**
      * Determines if selecting multiple rows and doing multiple actions is allowed
      */
@@ -126,6 +149,7 @@
     selectedIds = [],
     /**
      * Colour of the `select all` checkbox
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     selectAllCheckboxColor = "primary",
     /**
@@ -161,6 +185,12 @@
      * @default "GridRow"
      */
     rowComponent = GridRow;
+
+  /**
+   * CSS classes for parent table
+   */
+  let klass = "";
+  export { klass as class };
 
   $: mainRowComponent = rowComponent ? rowComponent : GridRow;
   $: column_keys = columns ? Object.keys(columns) : [];

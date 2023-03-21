@@ -87,11 +87,16 @@ For internal use only - not part of config object, Default: `""`
 
 <script>
   import { tick, onMount, createEventDispatcher } from "svelte";
-  import { Icon } from "@kws3/ui";
-  import { CardModal } from "@kws3/ui";
-  import { isEnterKey, isEscKey, capitaliseFirstLetter } from "@kws3/ui/utils";
+  import { Icon, CardModal } from "@kws3/ui";
+  import { capitaliseFirstLetter } from "@kws3/ui/utils";
+  import { isEnterKey, isEscKey } from "../../internal";
 
   const fire = createEventDispatcher();
+
+  /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
 
   /**
    * Title text of the Dialog box
@@ -104,7 +109,7 @@ For internal use only - not part of config object, Default: `""`
     help_text = "",
     /**
      * Size of the Dialog box
-     * @type {'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "small",
     /**
@@ -118,12 +123,12 @@ For internal use only - not part of config object, Default: `""`
     icon = "",
     /**
      * Color of the Icon in the Dialog box
-     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     icon_color = "primary",
     /**
      * Size of the Icon in the Dialog box
-     * @type {'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     icon_size = "",
     /**
@@ -132,7 +137,7 @@ For internal use only - not part of config object, Default: `""`
     ok_button_text = "Ok",
     /**
      * Color of OK button
-     * @type {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions} ok_button_color
      */
     ok_button_color = "primary",
     /**
@@ -146,7 +151,7 @@ For internal use only - not part of config object, Default: `""`
     cancel_button_text = "Cancel",
     /**
      * Color of Cancel button
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     cancel_button_color = "",
     /**

@@ -111,7 +111,7 @@
      */
     filter_label_map = {};
 
-  let query = "",
+  let query = null,
     _filters = [],
     filterVals = {},
     filterWidthStyle = "";

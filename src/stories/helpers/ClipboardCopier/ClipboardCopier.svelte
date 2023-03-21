@@ -13,7 +13,7 @@
           class={klass} />
       </div>
       <p>{text_area_1}</p>
-      <hr cass="is-small" />
+      <hr class="is-small" />
       <div class="has-text-danger is-size-6">
         <KwsClipboardCopier
           {text}
@@ -71,6 +71,9 @@
     copied_text = "Copied!",
     copied_icon = "check",
     copied = false,
+    /**
+     * @type {import('@kws3/ui/types').ColorOptions}
+     */
     copied_icon_color = "",
     copy = "";
 
@@ -81,6 +84,6 @@
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et libero in metus blandit malesuada vitae in dolor. ";
 
   onMount(() => {
-    activateTooltips("#cc-parent");
+    activateTooltips("#cc-parent", null);
   });
 </script>

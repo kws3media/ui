@@ -25,7 +25,7 @@
 <script>
   /**
    * Color of the Divider lines
-   * @type {'' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link' | 'dark' | 'light'}
+   * @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "",
     /**
@@ -38,7 +38,7 @@
     vertical = false,
     /**
      * Alignment of the Divider text. `top`/`left` and `bottom`/`right` are analogous for vertical Dividers
-     * @type {'center' | 'left' | 'right' | 'top' | 'bottom'}
+     * @type {string|'center' | 'left' | 'right' | 'top' | 'bottom'}
      */
     alignment = "center",
     /**

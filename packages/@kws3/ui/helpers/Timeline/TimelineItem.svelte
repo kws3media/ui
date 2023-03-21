@@ -3,8 +3,8 @@
 
 
   @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of marker and border, Default: `"primary"`
-  @param {string} [marker_icon="null"] - Any icon name accepted by the Icon component, icon will be placed inside the marker, Default: `"null"`
-  @param {string} [marker_image="null"] - Any image URL, the image will be placed inside the marker, Default: `"null"`
+  @param {string} [marker_icon=""] - Any icon name accepted by the Icon component, icon will be placed inside the marker, Default: `"null"`
+  @param {string} [marker_image=""] - Any image URL, the image will be placed inside the marker, Default: `"null"`
   @param {string} [class=""] - CSS classes for the TimelineItem container, Default: `""`
 
   ### Slots
@@ -48,19 +48,19 @@
 
   /**
    * Color of marker and border
-   * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+   * @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "primary";
   /**
    * Any icon name accepted by the Icon component, icon will be placed inside the marker
    * @type {string}
    */
-  export let marker_icon = null;
+  export let marker_icon = "";
   /**
    * Any image URL, the image will be placed inside the marker
    * @type {string}
    */
-  export let marker_image = null;
+  export let marker_image = "";
 
   /**
    * CSS classes for the TimelineItem container

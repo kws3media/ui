@@ -1,7 +1,7 @@
 name: Build and Deploy
 on:
   deployment:
-  create:
+  push:
     tags:
       - '@kws3/ui@*'
 jobs:
@@ -17,7 +17,7 @@ jobs:
     - name: Run Build script
       uses: actions/setup-node@v1
       with:
-        node-version: '12.22.4'
+        node-version: '16.6.1'
     - run: npm ci
     - run: npx lerna bootstrap --hoist --no-ci
     - run: npm run build:dist

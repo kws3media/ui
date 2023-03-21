@@ -17,6 +17,7 @@
   class="transible {klass}"
   style="transform:translate3d(0,0,0)"
   in:scale={{
+    // @ts-ignore
     from: from || 0.5,
     to: to || 1,
     duration: duration || 300,

@@ -1,6 +1,6 @@
-export { applySettings } from "./settings";
+export { applySettings } from "./settings.js";
 
-export { activateTooltips, tooltip, popover } from "./helpers/Tooltip";
+export { activateTooltips, tooltip, popover } from "./helpers/Tooltip.js";
 export { default as Popover } from "./helpers/Popover.svelte";
 export { default as Icon } from "./helpers/Icon.svelte";
 export { default as Message } from "./helpers/Message.svelte";
@@ -17,13 +17,19 @@ export { default as TimelineItem } from "./helpers/Timeline/TimelineItem.svelte"
 export { default as TimelineHeader } from "./helpers/Timeline/TimelineHeader.svelte";
 export { default as Nl2br } from "./helpers/Nl2br.svelte";
 export { default as ClipboardCopier } from "./helpers/ClipboardCopier.svelte";
-export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog";
+export { default as ScrollableList } from "./helpers/ScrollableList.svelte";
+export {
+  alert,
+  confirm,
+  prompt,
+  default as Dialog,
+} from "./helpers/Dialog/index.js";
 export {
   Notifications,
   Toasts,
   Snackbars,
   FloatiesStore,
-} from "./helpers/FloatingUI";
+} from "./helpers/FloatingUI/index.js";
 export { default as FloatingUIOutput } from "./helpers/FloatingUI/FloatingUIOutput.svelte";
 export { default as Floatie } from "./helpers/FloatingUI/Floatie.svelte";
 export { portal } from "svelte-portal";
@@ -49,12 +55,14 @@ export { default as Transition } from "./transitions/Transition.svelte";
 export { default as SlidingPane } from "./sliding-panes/SlidingPane.svelte";
 export { default as SlidingPaneSet } from "./sliding-panes/SlidingPaneSet.svelte";
 
+export { default as AutoComplete } from "./forms/AutoComplete.svelte";
 export { default as SearchableSelect } from "./forms/select/SearchableSelect.svelte";
 export { default as MultiSelect } from "./forms/select/MultiSelect.svelte";
 export { default as MaskedInput } from "./forms/MaskedInput.svelte";
 export { default as Colorpicker } from "./forms/colorpicker/Colorpicker.svelte";
 export { default as Datepicker } from "./forms/Datepicker.svelte";
 export { default as Timepicker } from "./forms/Timepicker.svelte";
+export { default as SearchInput } from "./forms/SearchInput.svelte";
 export { datepicker as DatepickerAction } from "./forms/actions.js";
 export { timepicker as TimepickerAction } from "./forms/actions.js";
 export { default as PasswordValidator } from "./forms/PasswordValidator/PasswordValidator.svelte";

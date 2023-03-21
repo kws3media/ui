@@ -1,0 +1,133 @@
+$kws-theme-colors: $colors !default;
+$kws-autocomplete-radius: $radius !default;
+$kws-autocomplete-border-color: $input-border-color !default;
+$kws-autocomplete-box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+  0 0px 0 1px rgb(10 10 10 / 2%) !default;
+$kws-autocomplete-focus-border-color: $input-focus-border-color !default;
+$kws-autocomplete-focus-box-shadow-size: $input-focus-box-shadow-size !default;
+$kws-autocomplete-focus-box-shadow-color: $input-focus-box-shadow-color !default;
+$kws-autocomplete-disabled-background-color: $input-disabled-background-color !default;
+$kws-autocomplete-disabled-border-color: $input-disabled-border-color !default;
+$kws-autocomplete-disabled-color: $input-disabled-color !default;
+$kws-autocomplete-selecting-color: $primary-invert !default;
+$kws-autocomplete-selecting-background: $primary !default;
+$kws-autocomplete-text-matches-color: currentColor !default;
+$kws-autocomplete-text-matches-background: transparent !default;
+$kws-autocomplete-text-matches-font-weight: $weight-bold !default;
+$kws-autocomplete-options-background: $scheme-main-ter !default;
+
+$__modal-z: 41 !default;
+@if $modal-z {
+  $__modal-z: $modal-z;
+}
+
+$kws-autocomplete-options-z-index: $__modal-z + 1 !default;
+
+.kws-autocomplete {
+  position: relative;
+  align-items: center;
+  display: flex;
+  cursor: text;
+  height: auto;
+  min-height: 2.5em;
+  padding-top: calc(0.4em - 1px);
+  padding-bottom: calc(0.4em - 1px);
+  &:focus-within {
+    border-color: $kws-autocomplete-focus-border-color;
+    box-shadow: $kws-autocomplete-focus-box-shadow-size
+      $kws-autocomplete-focus-box-shadow-color;
+  }
+  &.is-disabled {
+    background-color: $kws-autocomplete-disabled-background-color;
+    border-color: $kws-autocomplete-disabled-border-color;
+    color: $kws-autocomplete-disabled-color;
+    cursor: not-allowed;
+  }
+  &.is-readonly {
+    box-shadow: none;
+  }
+
+  input {
+    border: none !important;
+    outline: none !important;
+    background: none !important;
+    /* needed to hide red shadow around required inputs in some browsers */
+    box-shadow: none !important;
+    color: inherit;
+    flex: 1;
+    padding: 1pt;
+    height: auto;
+    min-height: 0;
+  }
+
+  ul.options {
+    list-style: none;
+    max-height: 50vh;
+    padding: 0;
+    cursor: pointer;
+    overflow: auto;
+    background: $kws-autocomplete-options-background;
+    border: 1px solid $kws-autocomplete-border-color;
+    box-shadow: $kws-autocomplete-box-shadow;
+    position: relative;
+    z-index: 4;
+    &[data-popper-placement="top"] {
+      border-radius: $kws-autocomplete-radius $kws-autocomplete-radius 0 0;
+      box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.4);
+    }
+    &.hidden {
+      display: none;
+    }
+
+    li {
+      padding: 0.3em 0.5em;
+      position: relative;
+      word-break: break-all;
+      &.active {
+        // keyboard focused item
+        color: $kws-autocomplete-selecting-color;
+        background: $kws-autocomplete-selecting-background;
+      }
+      span.h {
+        // highlight text matches
+        font-weight: $kws-autocomplete-text-matches-font-weight;
+        color: $kws-autocomplete-text-matches-color;
+        background: $kws-autocomplete-text-matches-background;
+      }
+    }
+  }
+}
+
+@each $name, $pair in $kws-theme-colors {
+  $color: nth($pair, 1);
+  $color-invert: nth($pair, 2);
+  $color-light: findLightColor($color);
+  $color-dark: findDarkColor($color);
+  .kws-autocomplete {
+    &.is-#{$name} {
+      border-color: $color;
+      &:focus-within {
+        box-shadow: $input-focus-box-shadow-size bulmaRgba($color, 0.25);
+      }
+      ul.options {
+        li {
+          &.selected {
+            color: $color-dark;
+            background: $color-light;
+          }
+          &.active {
+            color: $color-invert;
+            background: $color;
+          }
+        }
+      }
+    }
+  }
+}
+
+#kws-overlay-root {
+  .kws-autocomplete {
+    position: absolute;
+    z-index: $kws-autocomplete-options-z-index;
+  }
+}

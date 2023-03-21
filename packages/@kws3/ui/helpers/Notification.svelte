@@ -35,7 +35,7 @@ The parent can then decide what to do with the component
 
   /**
    * Color of the Notification box
-   * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'light'|'dark'}
+   * @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "info";
 

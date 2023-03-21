@@ -1,7 +1,6 @@
 <!--
   @component
 
-
   @param {string} [button_class=""] - CSS classes for the Confirm button, Default: `""`
   @param {string} [text=""] - Button text, Default: `""`
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
@@ -28,7 +27,6 @@
   <p class="control">
     {#if _confirm}
       <button
-        role="button"
         class="button is-success is-light is-shadowless is-{size} {button_class}"
         type="button"
         on:click|preventDefault|stopPropagation={cancel}>
@@ -38,7 +36,6 @@
   </p>
   <p class="control is-expanded">
     <button
-      role="button"
       class="button is-{size} {_doing
         ? main_color + ' is-loading'
         : _error
@@ -85,6 +82,11 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * CSS classes for the Confirm button
    */
   export let button_class = "",
@@ -94,7 +96,7 @@
     text = "",
     /**
      * Size of the Button
-     * @type {''|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "",
     /**
@@ -103,7 +105,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
@@ -156,6 +158,10 @@
   let confirm = false;
 
   $: main_color = "is-" + color;
+  /**
+   * Icon Size
+   * @type {SizeOptions}
+   */
   $: icon_size = "small";
   $: _confirm = should_confirm && confirm;
 

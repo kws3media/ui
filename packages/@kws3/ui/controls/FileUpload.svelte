@@ -37,9 +37,9 @@ The following functions are returned in `event.detail`:
       {#if _is_uploading}
         <span class="loader" />
       {:else if _is_finished}
-        <Icon size="" icon="check-circle" fa_class="fa-lg" />
+        <Icon size="" icon="check-circle" class="fa-lg" />
       {:else}
-        <Icon size="" icon="upload" fa_class="fa-lg" />
+        <Icon size="" icon="upload" class="fa-lg" />
       {/if}
     </div>
     <div class="file">
@@ -88,6 +88,12 @@ The following functions are returned in `event.detail`:
   import { onMount, createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
 
+  /**
+   *
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   *
+   */
   const fire = createEventDispatcher();
 
   /**
@@ -106,7 +112,7 @@ The following functions are returned in `event.detail`:
     info = "",
     /**
      * Color of the information text
-     * @type {''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions | 'grey'}
      */
     info_color = "grey",
     /**
@@ -124,12 +130,12 @@ The following functions are returned in `event.detail`:
     disabled = false,
     /**
      * Size of the File Input
-     * @type {''|'small'|'medium'|'large'}
+     * @type {SizeOptions}
      */
     size = "",
     /**
      * Color of the File Input
-     * @type {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'}
+     * @type {ColorOptions}
      */
     color = "";
 
@@ -157,13 +163,13 @@ The following functions are returned in `event.detail`:
       return "N/A";
     }
     if (n > 1073741824) {
-      return Math.round(n / 1073741824, 1) + " GB";
+      return Math.round(n / 1073741824) + " GB";
     }
     if (n > 1048576) {
-      return Math.round(n / 1048576, 1) + " MB";
+      return Math.round(n / 1048576) + " MB";
     }
     if (n > 1024) {
-      return Math.round(n / 1024, 1) + " KB";
+      return Math.round(n / 1024) + " KB";
     }
     return n + " b";
   }

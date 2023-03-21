@@ -13,6 +13,9 @@ $kws-gridview-checked-row-background: $primary-light !default;
     color: $kws-gridview-th-color;
     vertical-align: middle;
   }
+  td {
+    vertical-align: middle;
+  }
   &.is-bordered {
     tr {
       th:last-child,
@@ -51,6 +54,18 @@ $kws-gridview-checked-row-background: $primary-light !default;
     background-color: $kws-gridview-checked-row-background !important;
     td {
       background-color: $kws-gridview-checked-row-background !important;
+      color: findColorInvert($kws-gridview-checked-row-background) !important;
+    }
+  }
+
+  &.is-narrow {
+    th {
+      font-size: 0.9rem;
+      line-height: 1.2;
+    }
+    td,
+    th {
+      padding: 0.25rem 0.4rem;
     }
   }
 }
