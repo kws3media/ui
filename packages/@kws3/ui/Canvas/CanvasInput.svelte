@@ -4,7 +4,7 @@
   @param {object} [styles={}] - Inline CSS for the canvas, Default: `{}`
   @param {string} [width="250px"] - Width of the canvas, Default: `250px`
   @param {string} [height="250px"] - Height of the canvas, Default: `250px`
-  @param {number} [line=2] - line width width, Default: `2`
+  @param {number} [lineWidth=2] - line width width, Default: `2`
   @param {number} [eraser=6] - Eraser width, Default: `6`
   @param {string} [color="#000000"] - Line color, Default: `"#000000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
@@ -35,19 +35,65 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   const fire = createEventDispatcher();
 
   export let is_filled = false,
+    /**
+     * Inline CSS for the canvas
+     */
     styles = {},
+    /**
+     * Canvas width
+     */
     width = "250px",
+    /**
+     * Canvas height
+     */
     height = "250px",
-    lineColor = "#000000",
+    /**
+     *line width
+     */
     lineWidth = 2,
+    /**
+     * Eraser width
+     */
     eraserWidth = 6,
-    image = "",
+    /**
+     * line color
+     */
+    lineColor = "#000000",
+    /**
+     * Background image for the canvas
+     */
     backgroundImage = "",
-    expanded = false,
-    initialScale = 1,
-    expand = { from: "center", to: "center", scale: 50 },
+    /**
+     * Determines whether canvas is readonly or not
+     */
     readonly = false,
+    /**
+     * Determines whether canvas is disabled or not
+     */
     disabled = false,
+    /**
+     * The Data created in the canvas by the user
+     */
+    image = "",
+    /**
+     * Initial transform scale for the canvas before expansion
+     */
+    initialScale = 1,
+    /**
+     * Transform scale of the canvas on expansion
+     * The direction from which the canvas should expand
+     */
+    expand = { from: "center", to: "center", scale: 50 },
+    /**
+     * Label for the canvas drawing box
+     *
+     * Only active when canvas is `readonly` or `disabled`
+     */
+    drawing_label = "",
+    /**
+     * data-cy attribute for cypress
+     */
+    cy = "",
     CANVAS_IMAGE;
 
   let CANVAS,
@@ -105,7 +151,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
         eraserWidth,
         image: image || emptyImage,
         readonly,
-        expanded,
         initialScale,
         expand: expand.scale,
       }
