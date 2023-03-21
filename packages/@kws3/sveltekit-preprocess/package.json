@@ -4,7 +4,10 @@
   "description": "kws3 ui SvelteKit preprocessor",
   "main": "src/index.js",
   "author": "Khaled Ahmed <me.khaled@gmail.com>",
-  "contributors": [],
+  "contributors": [
+    "Sharif Ahmed <me.sharifahmed@gmail.com>",
+    "Saiful <msisaifulsaif@gmail.com>"
+  ],
   "keywords": [
     "SvelteKit",
     "Preprocessor"
