@@ -1,5 +1,6 @@
 <div class="columns">
-  <div class="column">
+  <div class="column has-text-centered">
+    <label for="" class="label">Input</label>
     <CanvasInput
       {expanded}
       {readonly}
@@ -17,6 +18,17 @@
       {expand}
       bind:CANVAS_IMAGE
       on:change={onChange} />
+  </div>
+  <div class="column has-text-centered">
+    <label for="" class="label">Output</label>
+    {#if image}
+      <img
+        alt="canvasoutput"
+        src={image}
+        {width}
+        {height}
+        style="border: 1px solid #b5b5b5;" />
+    {/if}
   </div>
 </div>
 
@@ -41,6 +53,5 @@
 
   function onChange({ detail }) {
     image = detail.canvasImage;
-    console.log(detail);
   }
 </script>
