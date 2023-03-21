@@ -13,17 +13,18 @@
 
   const fire = createEventDispatcher();
 
-  export let styles = {},
+  export let is_filled = false,
+    styles = {},
     width = "250px",
     height = "250px",
-    lineColor = "#ff0000",
+    lineColor = "#000000",
     lineWidth = 2,
     eraserWidth = 6,
     image = "",
     backgroundImage = "",
     expanded = false,
     initialScale = 1,
-    expand = 2,
+    expand = { from: "center", to: "center", scale: 50 },
     readonly = false,
     disabled = false,
     CANVAS_IMAGE;

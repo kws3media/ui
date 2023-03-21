@@ -11,6 +11,7 @@
             <div class="dropdown is-{showTools ? 'active' : ''} is-up">
               <div class="dropdown-trigger">
                 <button
+                  type="button"
                   use:tooltip
                   class="button is-info is-small "
                   data-tooltip="Tools"
@@ -40,21 +41,6 @@
               </div>
             </div>
           </div>
-          <!-- {:else if action === "colorpicker"}
-          {#if tools.indexOf("Pen") != -1}
-            <div class="control" use:tooltip data-tooltip="Pen Color">
-              <button
-                use:colorpicker={penColor}
-                use:tooltip
-                type="button"
-                class="button is-small"
-                data-tooltip="Pen Color"
-                style="background-color:#{penColor};"
-                disabled={activeTool != "Pen"}>
-                <Icon icon="crosshairs" size="small" />
-              </button>
-            </div>
-          {/if} -->
         {:else if action === "undo"}
           <div class="control">
             <button
