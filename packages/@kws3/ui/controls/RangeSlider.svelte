@@ -23,6 +23,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
 
   ### Events
   - `change` - Native input change event
+  - `input` - Native input event
 
 -->
 <div class="kws-range-control">
@@ -35,6 +36,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     type="range"
     bind:value
     on:change
+    on:input
     {min}
     {max}
     {step}
