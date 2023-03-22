@@ -46,7 +46,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 </div>
 
 <script>
-  import CanvasInput from "./CanvasInput.svelte";
+  import CanvasInput from "./PenInput.svelte";
   import CanvasControls from "./CanvasControls.svelte";
   import { onMount } from "svelte";
 
