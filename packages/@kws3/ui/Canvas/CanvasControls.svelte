@@ -6,12 +6,10 @@
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'undo' , 'redo', 'reset', 'expand']`
   @param {bottom'|'top'} [toolbarPlacement="bottom"] - Position of the action toolbar, Default: `"bottom"`
-  @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
+  @param {array} [tools=[]] - List of tools available for user to select from, Default: `["Pen", "Eraser"]`
   @param {'Pen'|'Eraser'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
-  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
-
 -->
 
 <div
@@ -129,33 +127,38 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Determines whether canvas is disabled or not
      */
-    disabled,
+    disabled = false,
     /**
      * Label for the canvas drawing box
      *
      * Only active when canvas is `readonly` or `disabled`
      */
-    drawing_label,
+    drawing_label = "",
     /**
      * Determines whether canvas is readonly or not
      */
-    readonly,
+    readonly = false,
     /**
-     * List of tools available for user to select from
-     * @type {'Pen'|'Eraser'}
+     * List of tools available
      */
-    tools,
+    tools = ["Pen", "Eraser"],
     /**
      * List of actions toolbar
      */
     actions = ["controls", "undo", "redo", "reset", "expand"],
-    activeTool,
-    canUndo,
-    canRedo,
-    expanded,
-    showTools,
-    toolbarPlacement,
-    controlPosition = "center";
+    /**
+     * Determines which tool is select
+     */
+    activeTool = "Pen",
+    /**
+     * Determines where the action tools are placed
+     */
+    toolbarPlacement = "bottom",
+    controlPosition = "center",
+    canUndo = false,
+    canRedo = false,
+    expanded = false,
+    showTools = false;
 
   export let setTool = (tool) => {};
   export let expandContract = () => {};

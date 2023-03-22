@@ -8,57 +8,33 @@ import {
   Canvas,
 } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
-import { ESignature as KWS3ESignature } from "@kws3/ui";
+import { CanvasControl as KWS3CanvasControl } from "@kws3/ui";
 import CanvasControlDecorator from "./CanvasControl.svelte";
 import { action } from "@storybook/addon-actions";
 
 export let args = {
-  styles: {
-    border: "1px solid #b5b5b5",
-  },
-  width: "250px",
-  height: "250px",
-  lineWidth: 2,
-  eraserWidth: 6,
-  lineColor: "#ff0000",
-  backgroundImage: "",
+  canvasControlsStyles: "",
   readonly: false,
   disabled: false,
-  image: "",
-  initialScale: 1,
-  // expand: 50,
-  expand: {
-    from: "center",
-    to: "center",
-    scale: 50,
-  },
   tools: ["Pen", "Eraser"],
-  actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-  actionToolbarPosition: "bottom",
+  actions: ["controls", "undo", "redo", "reset", "expand"],
+  toolbarPlacement: "bottom",
   activeTool: "Pen",
-  drawing_label: "",
-  hide_colorpicker: false,
-  cy: "",
+  drawing_label: ""
 };
 
 <Meta
   title="Canvas/Canvas Control"
-  component={KWS3ESignature}
+  component={KWS3CanvasControl}
   args={args}
   argTypes={{
-    activeTool: {
-      control: "select",
-    },
-    tools: {
-      control: "check",
-    },
   }}
 />
 
 <Description
   markdown={dedent`
-# Canvas
-## Canvas components for ESignature.
+# Canvas Control
+## Canvas tools.
 `}
 />
 
@@ -71,13 +47,13 @@ export let args = {
   </Story>
 </Canvas>
 
-<ArgsTable story="ESignature" />
+<ArgsTable story="Canvas Control" />
 
 ### Usage
 
 <Source
   language="javascript"
-  code={dedent`import { ESignature } from '@kws3/ui';`}
+  code={dedent`import { CanvasControl } from '@kws3/ui';`}
 />
 
 ##### Import the CSS:
@@ -85,4 +61,39 @@ export let args = {
 <Source
   language="javascript"
   code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
+/>
+
+### Usage Example
+<Source
+  language='html'
+  code={ dedent`
+      <CanvasControls
+      {canvasControlsStyles}
+      {readonly}
+      {disabled}
+      {tools}
+      {activeTool}
+      {actions}
+      {toolbarPlacement}
+      {drawing_label}
+      {setTool}
+      {expandContract}
+      bind:EXPANDED_BUTTON
+      bind:CANVAS_IMAGE
+      bind:canUndo
+      bind:canRedo
+      bind:showTools />
+    
+    <script>
+      import { CanvasControls } from '@kws3/ui';
+      export let canvasControlsStyles = "";
+      export let readonly = false;
+      export let disabled = false;
+      export let tools =["Pen", "Eraser"];
+      export let actions = ["controls", "undo", "redo", "reset", "expand"];
+      export let toolbarPlacement = "bottom";
+      export letactiveTool = "Pen";
+      export let drawing_label = "";      
+    </script>
+  `}
 />
