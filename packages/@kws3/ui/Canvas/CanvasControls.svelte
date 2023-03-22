@@ -1,3 +1,19 @@
+<!--
+  @component
+
+  @param {string} [canvasControlsStyles=""] - Inline CSS for the canvas control, Default: `""`
+  @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
+  @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
+  @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'undo' , 'redo', 'reset', 'expand']`
+  @param {bottom'|'top'} [toolbarPlacement="bottom"] - Position of the action toolbar, Default: `"bottom"`
+  @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
+  @param {'Pen'|'Eraser'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
+
+Only active when canvas is `readonly` or `disabled`, Default: `""`
+  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
+
+-->
+
 <div
   class="canvas-controls is-placement-{toolbarPlacement}"
   style={canvasControlsStyles}>
@@ -106,23 +122,44 @@
   import { Icon, tooltip } from "@kws3/ui";
   export let CANVAS_IMAGE,
     EXPANDED_BUTTON,
+    /**
+     * Inline CSS for the control
+     */
+    canvasControlsStyles = "",
+    /**
+     * Determines whether canvas is disabled or not
+     */
     disabled,
+    /**
+     * Label for the canvas drawing box
+     *
+     * Only active when canvas is `readonly` or `disabled`
+     */
     drawing_label,
+    /**
+     * Determines whether canvas is readonly or not
+     */
     readonly,
-    showTools,
+    /**
+     * List of tools available for user to select from
+     * @type {'Pen'|'Eraser'}
+     */
     tools,
-    color,
-    penColor,
-    setTool,
+    /**
+     * List of actions toolbar
+     */
+    actions = ["controls", "undo", "redo", "reset", "expand"],
+    activeTool,
     canUndo,
     canRedo,
     expanded,
-    actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-    expandContract,
-    setColor,
+    showTools,
     toolbarPlacement,
-    activeTool,
     controlPosition = "center";
+
+  export let setTool = (tool) => {};
+  export let expandContract = () => {};
+
   let toolMap = {
     Pen: {
       name: "Pen",
@@ -133,17 +170,7 @@
       icon: "eraser",
     },
   };
-  let canvasControlsStyles = {};
   let controlClasses = "is-flex-direction-row";
-  $: penColor, setColor();
-  $: {
-    penColor =
-      color.substr(0, 1) === "#"
-        ? color.substr(1)
-        : color.length === 6
-        ? color
-        : "000000";
-  }
   $: {
     if (toolbarPlacement === "left" || toolbarPlacement === "right") {
       controlClasses = "is-flex-direction-column";

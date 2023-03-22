@@ -1,0 +1,88 @@
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import { ESignature as KWS3ESignature } from "@kws3/ui";
+import CanvasControlDecorator from "./CanvasControl.svelte";
+import { action } from "@storybook/addon-actions";
+
+export let args = {
+  styles: {
+    border: "1px solid #b5b5b5",
+  },
+  width: "250px",
+  height: "250px",
+  lineWidth: 2,
+  eraserWidth: 6,
+  lineColor: "#ff0000",
+  backgroundImage: "",
+  readonly: false,
+  disabled: false,
+  image: "",
+  initialScale: 1,
+  // expand: 50,
+  expand: {
+    from: "center",
+    to: "center",
+    scale: 50,
+  },
+  tools: ["Pen", "Eraser"],
+  actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
+  actionToolbarPosition: "bottom",
+  activeTool: "Pen",
+  drawing_label: "",
+  hide_colorpicker: false,
+  cy: "",
+};
+
+<Meta
+  title="Canvas/Canvas Control"
+  component={KWS3ESignature}
+  args={args}
+  argTypes={{
+    activeTool: {
+      control: "select",
+    },
+    tools: {
+      control: "check",
+    },
+  }}
+/>
+
+<Description
+  markdown={dedent`
+# Canvas
+## Canvas components for ESignature.
+`}
+/>
+
+<Canvas>
+  <Story name="Canvas Control" args={args}>
+    {(args) => ({
+      Component: CanvasControlDecorator,
+      props: args,
+    })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ESignature" />
+
+### Usage
+
+<Source
+  language="javascript"
+  code={dedent`import { ESignature } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+
+<Source
+  language="javascript"
+  code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
+/>

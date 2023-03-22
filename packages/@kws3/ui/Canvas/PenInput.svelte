@@ -5,8 +5,8 @@
   @param {string} [width="250px"] - Width of the canvas, Default: `250px`
   @param {string} [height="250px"] - Height of the canvas, Default: `250px`
   @param {number} [lineWidth=2] - line width width, Default: `2`
-  @param {number} [eraser=6] - Eraser width, Default: `6`
-  @param {string} [color="#000000"] - Line color, Default: `"#000000"`
+  @param {number} [eraserWidth=6] - Eraser width, Default: `6`
+  @param {string} [lineColor="#000000"] - Line color, Default: `"#000000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
