@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column has-text-centered">
     <label for="" class="label">Input</label>
-    <CanvasInput
+    <KwsPenInput
       {expanded}
       {readonly}
       {disabled}
@@ -33,7 +33,7 @@
 </div>
 
 <script>
-  import { CanvasInput as CanvasInput } from "@kws3/ui";
+  import { PenInput as KwsPenInput } from "@kws3/ui";
 
   export let is_filled = false,
     styles = {},

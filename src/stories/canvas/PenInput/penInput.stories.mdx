@@ -3,7 +3,7 @@ import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import { PenInput as CanvasInput } from '@kws3/ui';
 import { action } from '@storybook/addon-actions';
-import CanvasInputDecorator from "./CanvasInput.svelte";
+import PenInputDecorator from "./PenInput.svelte";
 
 export let args={
   expanded: false,
@@ -26,35 +26,35 @@ export let args={
 <Version />
 
 <Meta
-  title="Canvas/Canvas Input"
+  title="Canvas/Pen Input"
   component={CanvasInput}
   args={args}
 />
 
 <Description markdown={dedent`
-# Canvas Input
-## Canvas Input for Drawing.
+# Canvas
+## Canvas for Drawing.
 `}/>
 
 <Canvas>
   <Story
-  name="Canvas Input"
+  name="Pen Input"
   args={args}
   >
   {(args) => ({
-    Component: CanvasInputDecorator,
+    Component: PenInputDecorator,
     props: args
   })}
   </Story>
 </Canvas>
 
-<ArgsTable story="Canvas Input" />
+<ArgsTable story="Pen Input" />
 
 ### Example source code
 <Source
   language='html'
   code={ dedent`
-      <CanvasInput
+      <PenInput
         expanded={false}
         readonly={false}
         disabled={false}
@@ -78,7 +78,7 @@ export let args={
 <Source
   language='html'
   code={ dedent`
-      <CanvasInput
+      <PenInput
       {expanded}
       {readonly}
       {disabled}
@@ -97,7 +97,7 @@ export let args={
       on:change={onChange} />
     
     <script>
-      import { CanvasInput } from '@kws3/ui';
+      import { PenInput } from '@kws3/ui';
       export let is_filled = false;
       export let styles = {};
       export let width = "250px";
