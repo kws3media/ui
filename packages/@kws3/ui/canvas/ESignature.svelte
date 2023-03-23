@@ -154,10 +154,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   $: {
     penColor =
-      color.substr(0, 1) === +"#"
-        ? color.substr(1)
-        : color.length === 6
-        ? color
+      lineColor.substr(0, 1) === +"#"
+        ? lineColor.substr(1)
+        : lineColor.length === 6
+        ? lineColor
         : "000000";
   }
   $: {
