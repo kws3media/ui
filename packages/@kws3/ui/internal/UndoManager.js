@@ -1,96 +1,84 @@
-// @ts-nocheck
-var undoManager = function () {
-  "use strict";
-  var commands = [],
-    index = -1,
-    isExecuting = false,
-    callback,
-    // functions
-    execute;
-  execute = function (command, action) {
+class UndoManager {
+  constructor() {
+    this.commands = [];
+    this.index = -1;
+    this.isExecuting = false;
+    this.callback = null;
+  }
+
+  execute(command, action) {
     if (!command || typeof command[action] !== "function") {
       return this;
     }
-    isExecuting = true;
+    this.isExecuting = true;
     command[action]();
-    isExecuting = false;
+    this.isExecuting = false;
     return this;
-  };
-  return {
-    /*
-      Add a command to the queue.
-      */
-    add: function (command) {
-      if (isExecuting) {
-        return this;
-      }
-      // if we are here after having called undo,
-      // invalidate items higher on the stack
-      commands.splice(index + 1, commands.length - index);
-      commands.push(command);
-      // set the current index to the end
-      index = commands.length - 1;
-      if (callback) {
-        callback();
-      }
+  }
+
+  add(command) {
+    if (this.isExecuting) {
       return this;
-    },
-    /*
-      Pass a function to be called on undo and redo actions.
-      */
-    setCallback: function (callbackFunc) {
-      callback = callbackFunc;
-    },
-    /*
-      Perform undo: call the undo function at the current index and decrease the index by 1.
-      */
-    undo: function () {
-      var command = commands[index];
-      if (!command) {
-        return this;
-      }
-      execute(command, "undo");
-      index -= 1;
-      if (callback) {
-        callback();
-      }
+    }
+
+    // If we are here after having called undo, invalidate items higher on the stack.
+    this.commands.splice(this.index + 1, this.commands.length - this.index);
+    this.commands.push(command);
+    // Set the current index to the end.
+    this.index = this.commands.length - 1;
+    if (this.callback) {
+      this.callback();
+    }
+    return this;
+  }
+
+  setCallback(callbackFunc) {
+    this.callback = callbackFunc;
+  }
+
+  undo() {
+    const command = this.commands[this.index];
+    if (!command) {
       return this;
-    },
-    /*
-      Perform redo: call the redo function at the next index and increase the index by 1.
-      */
-    redo: function () {
-      var command = commands[index + 1];
-      if (!command) {
-        return this;
-      }
-      execute(command, "redo");
-      index += 1;
-      if (callback) {
-        callback();
-      }
+    }
+    this.execute(command, "undo");
+    this.index -= 1;
+    if (this.callback) {
+      this.callback();
+    }
+    return this;
+  }
+
+  redo() {
+    const command = this.commands[this.index + 1];
+    if (!command) {
       return this;
-    },
-    /*
-      Clears the memory, losing all stored states. Reset the index.
-      */
-    clear: function () {
-      var prev_size = commands.length;
-      commands = [];
-      index = -1;
-      if (callback && prev_size > 0) {
-        callback();
-      }
-    },
-    hasUndo: function () {
-      return index !== -1;
-    },
-    hasRedo: function () {
-      return index < commands.length - 1;
-    },
-    getCommands: function () {
-      return commands;
-    },
-  };
-};
-export default undoManager;
+    }
+    this.execute(command, "redo");
+    this.index += 1;
+    if (this.callback) {
+      this.callback();
+    }
+    return this;
+  }
+
+  clear() {
+    const prev_size = this.commands.length;
+    this.commands = [];
+    this.index = -1;
+    if (this.callback && prev_size > 0) {
+      this.callback();
+    }
+  }
+  hasUndo() {
+    return this.index !== -1;
+  }
+  hasRedo() {
+    return this.index < this.commands.length - 1;
+  }
+  getCommands() {
+    return this.commands;
+  }
+}
+
+export default UndoManager;
