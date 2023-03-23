@@ -1,3 +1,4 @@
+// @ts-nocheck
 import UndoManager from "./UndoManager";
 
 var passiveSupported = false;
@@ -6,7 +7,8 @@ try {
   let options = Object.defineProperty({}, "passive", {
     get: () => (passiveSupported = !0),
   });
-  window && window.addEventListener("test", null, options);
+  typeof window !== "undefined" &&
+    window.addEventListener("test", null, options);
 } catch (err) {
   console.log(err);
 }

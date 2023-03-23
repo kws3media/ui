@@ -1,3 +1,4 @@
+// @ts-nocheck
 var undoManager = function () {
   "use strict";
   var commands = [],

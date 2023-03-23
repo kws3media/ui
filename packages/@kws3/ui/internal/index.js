@@ -1,5 +1,7 @@
 export { scrollIntoActiveElement } from "./scrollIntoActiveElement";
 export { fuzzy } from "./fuzzy.js";
+export { default as UndoManager } from "./UndoManager";
+export { default as DrawImage } from "./DrawImage";
 
 /**
  * Detect whether a user has pressed Enter.

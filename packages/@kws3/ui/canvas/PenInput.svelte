@@ -29,7 +29,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 </div>
 
 <script>
-  import DrawImage from "./DrawImage";
+  import { DrawImage } from "../internal";
+
   import { onMount, createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
