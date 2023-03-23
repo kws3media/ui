@@ -86,3 +86,56 @@ export let args = {
   language="javascript"
   code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
 />
+
+### Usage Example
+<Source
+  language='html'
+  code={ dedent`
+      <KwsESignature
+        bind:this={canvasWrapper}
+        bind:image
+        {styles}
+        {width}
+        {height}
+        {lineWidth}
+        {eraserWidth}
+        {lineColor}
+        {backgroundImage}
+        {readonly}
+        {disabled}
+        {initialScale}
+        {expand}
+        {tools}
+        {activeTool}
+        {actions}
+        {toolbarPlacement}
+        {drawing_label}
+        />
+    
+    <script>
+      import { ESignature } from '@kws3/ui';
+      let canvasWrapper;
+      export let width = "250px",
+        height = "250px",
+        lineWidth = 2,
+        eraserWidth = 6,
+        lineColor = "#ff0000",
+        backgroundImage = "",
+        readonly = false,
+        disabled = false,
+        image = "",
+        initialScale = 1,
+        expand = {
+          from: "center",
+          to: "center",
+          scale: 50,
+        },
+        tools = ["Pen", "Eraser"],
+        actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
+        toolbarPlacement = "bottom",
+        activeTool = "Pen",
+        drawing_label = "",
+        cy = "";
+    </script>
+  `}
+/>

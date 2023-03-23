@@ -5,9 +5,9 @@
   @param {object} [styles={}] - Inline CSS for the canvas, Default: `{}`
   @param {string} [width="250px"] - Width of the canvas, Default: `250px`
   @param {string} [height="250px"] - Height of the canvas, Default: `250px`
-  @param {number} [line=2] - line width width, Default: `2`
-  @param {number} [eraser=6] - Eraser width, Default: `6`
-  @param {string} [color="#ff0000"] - Line color, Default: `"#ff0000"`
+  @param {number} [lineWidth=2] - line width width, Default: `2`
+  @param {number} [eraserWidth=6] - Eraser width, Default: `6`
+  @param {string} [lineColor="#ff0000"] - Line color, Default: `"#ff0000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
@@ -65,15 +65,15 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      *line width
      */
-    line = 2,
+    lineWidth = 2,
     /**
      * Eraser width
      */
-    eraser = 6,
+    eraserWidth = 6,
     /**
      * line color
      */
-    color = "#ff0000",
+    lineColor = "#ff0000",
     /**
      * Background image for the canvas
      */

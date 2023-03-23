@@ -92,8 +92,26 @@ export let args = {
       export let tools =["Pen", "Eraser"];
       export let actions = ["controls", "undo", "redo", "reset", "expand"];
       export let toolbarPlacement = "bottom";
-      export letactiveTool = "Pen";
-      export let drawing_label = "";      
+      export let activeTool = "Pen";
+      export let drawing_label = "";
+      let CANVAS_IMAGE, EXPANDED_BUTTON;
+      let canUndo = false,
+          canRedo = false,
+          expanded = false,
+          showTools = false;
+      function setTool(tool) {
+        activeTool = tool;
+        showTools = false;
+        CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool);
+      }
+      function expandContract() {
+        expanded = !expanded;
+        if (EXPANDED_BUTTON) {
+          EXPANDED_BUTTON._tippy.setContent(
+            EXPANDED_BUTTON.getAttribute("data-tooltip")
+          );
+        }
+      }
     </script>
   `}
 />

@@ -7,9 +7,9 @@
       {styles}
       {width}
       {height}
-      {line}
-      {eraser}
-      {color}
+      {lineWidth}
+      {eraserWidth}
+      {lineColor}
       {backgroundImage}
       {readonly}
       {disabled}
@@ -45,9 +45,9 @@
     },
     width = "250px",
     height = "250px",
-    line = 2,
-    eraser = 6,
-    color = "#ff0000",
+    lineWidth = 2,
+    eraserWidth = 6,
+    lineColor = "#ff0000",
     backgroundImage = "",
     readonly = false,
     disabled = false,

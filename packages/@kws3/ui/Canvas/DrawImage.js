@@ -22,6 +22,11 @@ export default function DrawImage(app, opts) {
   let scaleFactor = opts.initialScale;
   let drawingType = "line";
 
+  if (drawingType === "line") {
+    context.strokeStyle = opts.lineColor || "#3d44c8";
+    context.lineWidth = opts.lineWidth || 1;
+  }
+
   if (opts.expanded) {
     scaleFactor = opts.expand;
   }
