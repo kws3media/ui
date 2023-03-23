@@ -41,7 +41,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     bind:penColor
     bind:canUndo
     bind:canRedo
-    bind:color
+    bind:lineColor
     bind:showTools />
 </div>
 
