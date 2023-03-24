@@ -29,7 +29,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   class="canvas-wrapper {expanded ? 'expanded' : ''}"
   style={wrapperStyles}
   data-cy={cy}>
-  <PenInput {...$$props} {expanded} bind:PEN_INPUT on:change={onChange} />
+  <PenInput {...$$props} {expanded} bind:DRAWING_PAD on:change={onChange} />
 
   <PenControls
     {...$$props}
@@ -130,7 +130,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     cy = "";
 
-  let PEN_INPUT;
+  let DRAWING_PAD;
 
   let canUndo = false,
     canRedo = false,
@@ -189,8 +189,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   });
 
   export function getActions() {
-    if (PEN_INPUT) {
-      return PEN_INPUT;
+    if (DRAWING_PAD) {
+      return DRAWING_PAD;
     }
     return null;
   }
@@ -198,23 +198,23 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
-    PEN_INPUT && PEN_INPUT.setTool(tool);
+    DRAWING_PAD && DRAWING_PAD.setTool(tool);
   }
 
   function setScaleFactor() {
-    PEN_INPUT &&
-      PEN_INPUT.setScaleFactor(
+    DRAWING_PAD &&
+      DRAWING_PAD.setScaleFactor(
         expanded ? 1 + expand.scale * 0.01 : initialScale
       );
   }
 
   function setColor() {
-    PEN_INPUT && PEN_INPUT.setColor(`#${penColor}`);
+    DRAWING_PAD && DRAWING_PAD.setColor(`#${penColor}`);
   }
 
   function syncImage() {
     if (!settingFlag) {
-      PEN_INPUT && PEN_INPUT.syncImage(image);
+      DRAWING_PAD && DRAWING_PAD.syncImage(image);
     }
   }
 
@@ -227,15 +227,15 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   }
 
   function undo() {
-    PEN_INPUT && PEN_INPUT.undo();
+    DRAWING_PAD && DRAWING_PAD.undo();
   }
 
   function redo() {
-    PEN_INPUT && PEN_INPUT.redo();
+    DRAWING_PAD && DRAWING_PAD.redo();
   }
 
   function reset() {
-    PEN_INPUT && PEN_INPUT.reset();
+    DRAWING_PAD && DRAWING_PAD.reset();
     canUndo = false;
     canRedo = false;
   }

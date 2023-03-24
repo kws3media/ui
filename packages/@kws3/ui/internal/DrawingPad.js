@@ -15,7 +15,7 @@ try {
 
 var eventOpts = passiveSupported ? { passive: false, capture: false } : false;
 
-export default function DrawImage(app, opts) {
+export default function DrawingPad(app, opts) {
   let canvas = app.CANVAS;
   let context = canvas.getContext("2d");
   let drawing = false;

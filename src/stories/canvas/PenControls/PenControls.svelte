@@ -13,7 +13,7 @@
       {setTool}
       {expandContract}
       bind:EXPANDED_BUTTON
-      bind:PEN_INPUT
+      bind:DRAWING_PAD
       bind:canUndo
       bind:canRedo
       bind:showTools />
@@ -32,7 +32,7 @@
     activeTool = "Pen",
     drawing_label = "";
 
-  let PEN_INPUT, EXPANDED_BUTTON;
+  let DRAWING_PAD, EXPANDED_BUTTON;
 
   let canUndo = false,
     canRedo = false,
@@ -42,7 +42,7 @@
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
-    PEN_INPUT && PEN_INPUT.setTool(tool);
+    DRAWING_PAD && DRAWING_PAD.setTool(tool);
   }
   function expandContract() {
     expanded = !expanded;

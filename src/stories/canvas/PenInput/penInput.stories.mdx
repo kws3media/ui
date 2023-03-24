@@ -83,7 +83,7 @@ export let args={
         backgroundImage=""
         initialScale=1
         expand={ from: "center", to: "center", scale: 50 }
-        bind:PEN_INPUT
+        bind:DRAWING_PAD
         on:change={onChange} 
       />`}
 />
@@ -107,7 +107,7 @@ export let args={
       {backgroundImage}
       {initialScale}
       {expand}
-      bind:PEN_INPUT
+      bind:DRAWING_PAD
       on:change={onChange} />
     
     <script>
@@ -126,7 +126,7 @@ export let args={
       export let expand = { from: "center", to: "center", scale: 50 }; 
       export let readonly = false;
       export let disabled = false; 
-      export let PEN_INPUT;
+      export let DRAWING_PAD;
       
       function onChange({ detail }) {
         image = detail.canvasImage;

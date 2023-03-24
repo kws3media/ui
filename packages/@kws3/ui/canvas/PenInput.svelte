@@ -29,7 +29,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 </div>
 
 <script>
-  import { DrawImage } from "../internal";
+  import { DrawingPad } from "../internal";
 
   import { onMount, createEventDispatcher } from "svelte";
 
@@ -95,7 +95,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * data-cy attribute for cypress
      */
     cy = "",
-    PEN_INPUT;
+    DRAWING_PAD;
 
   let CANVAS,
     is_ready = false,
@@ -144,7 +144,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     CANVAS && CANVAS.setAttribute("width", width.replace("px", ""));
     CANVAS && CANVAS.setAttribute("height", height.replace("px", ""));
 
-    PEN_INPUT = new DrawImage(
+    DRAWING_PAD = new DrawingPad(
       { CANVAS, fire },
       {
         lineColor,
@@ -157,20 +157,20 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       }
     );
 
-    PEN_INPUT && PEN_INPUT.init();
+    DRAWING_PAD && DRAWING_PAD.init();
     is_ready = true;
 
     return () => {
-      CANVAS && PEN_INPUT.removeEvent();
+      CANVAS && DRAWING_PAD.removeEvent();
     };
   });
 
   function setEvents() {
     if (is_ready) {
       if (readonly) {
-        PEN_INPUT && PEN_INPUT.removeEvent();
+        DRAWING_PAD && DRAWING_PAD.removeEvent();
       } else {
-        PEN_INPUT && PEN_INPUT.addEvent();
+        DRAWING_PAD && DRAWING_PAD.addEvent();
       }
     }
   }
