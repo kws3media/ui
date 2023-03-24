@@ -37,6 +37,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     {setColor}
     {expanded}
     {expandContract}
+    on:changeColor={(event) => changeColor(event)}
     bind:CANVAS_IMAGE
     bind:penColor
     bind:canUndo
@@ -235,6 +236,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
         EXPANDED_BUTTON.getAttribute("data-tooltip")
       );
     }
+  }
+
+  function changeColor(event) {
+    let { detail } = event;
+    penColor = detail.value.substring(1);
+    setColor();
   }
 
   function onChange({ detail }) {

@@ -106,6 +106,18 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               <Icon icon={expanded ? "compress" : "expand"} size="small" />
             </button>
           </div>
+        {:else if action === "colorpicker"}
+          <div class="control">
+            <input
+              use:tooltip
+              type="color"
+              bind:value={color}
+              class="button is-small"
+              on:input={() => {
+                fire("changeColor", { value: color });
+              }}
+              data-tooltip="Pick Color" />
+          </div>
         {/if}
       {/each}
     </div>
@@ -118,6 +130,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
 <script>
   import { Icon, tooltip } from "@kws3/ui";
+  import { createEventDispatcher } from "svelte";
+
+  const fire = createEventDispatcher();
   export let CANVAS_IMAGE,
     EXPANDED_BUTTON,
     /**
@@ -162,6 +177,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   export let setTool = (tool) => {};
   export let expandContract = () => {};
+
+  let color = "";
 
   let toolMap = {
     Pen: {
