@@ -29,9 +29,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   class="canvas-wrapper {expanded ? 'expanded' : ''}"
   style={wrapperStyles}
   data-cy={cy}>
-  <CanvasInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
+  <PenInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
 
-  <CanvasControls
+  <PenControls
     {...$$props}
     {setTool}
     {setColor}
@@ -47,8 +47,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 </div>
 
 <script>
-  import CanvasInput from "./PenInput.svelte";
-  import CanvasControls from "./CanvasControls.svelte";
+  import PenInput from "./PenInput.svelte";
+  import PenControls from "./PenControls.svelte";
   import { onMount } from "svelte";
 
   /**
