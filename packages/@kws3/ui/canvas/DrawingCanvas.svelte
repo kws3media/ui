@@ -33,15 +33,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   <PenControls
     {...$$props}
-    {setColor}
-    {expanded}
-    {expandContract}
     on:changeColor={({ detail: { color } }) => changeColor(color)}
     on:setTool={({ detail: { tool } }) => setTool(tool)}
     on:undo={() => undo()}
     on:redo={() => redo()}
     on:reset={() => reset()}
-    {PEN_INPUT}
+    on:toggleExpand={() => toggleExpand()}
     bind:penColor
     bind:canUndo
     bind:canRedo
@@ -133,24 +130,13 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     cy = "";
 
-  let EXPANDED_BUTTON, PEN_INPUT;
+  let PEN_INPUT;
 
   let canUndo = false,
     canRedo = false,
     expanded = false,
     showTools = false,
     settingFlag = false;
-
-  let toolMap = {
-    Pen: {
-      name: "Pen",
-      icon: "pencil",
-    },
-    Eraser: {
-      name: "Eraser",
-      icon: "eraser",
-    },
-  };
 
   let _colorpicker,
     wrapperStyles = {},
@@ -232,26 +218,22 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     }
   }
 
-  function expandContract() {
-    expanded = !expanded;
-    if (EXPANDED_BUTTON) {
-      EXPANDED_BUTTON._tippy.setContent(
-        EXPANDED_BUTTON.getAttribute("data-tooltip")
-      );
-    }
-  }
-
   function changeColor(color) {
     penColor = color.substring(1);
     setColor();
+  }
+  function toggleExpand() {
+    expanded = !expanded;
   }
 
   function undo() {
     PEN_INPUT && PEN_INPUT.undo();
   }
+
   function redo() {
     PEN_INPUT && PEN_INPUT.redo();
   }
+
   function reset() {
     PEN_INPUT && PEN_INPUT.reset();
     canUndo = false;

@@ -98,7 +98,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               type="button"
               class="button is-small is-dark"
               data-tooltip={expanded ? "Contract" : "Expand"}
-              on:click={expandContract}>
+              on:click={() => expandContract()}>
               <Icon icon={expanded ? "compress" : "expand"} size="small" />
             </button>
           </div>
@@ -167,12 +167,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     controlPosition = "center",
     canUndo = false,
     canRedo = false,
-    expanded = false,
     showTools = false;
 
-  export let setTool = (tool) => {};
-  export let expandContract = () => {};
-
+  let expanded = false;
   let color = "";
 
   let toolMap = {
@@ -185,6 +182,16 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       icon: "eraser",
     },
   };
+
+  function expandContract() {
+    expanded = !expanded;
+    if (EXPANDED_BUTTON) {
+      EXPANDED_BUTTON._tippy.setContent(
+        EXPANDED_BUTTON.getAttribute("data-tooltip")
+      );
+    }
+    fire("toggleExpand");
+  }
   let controlClasses = "is-flex-direction-row";
   $: {
     if (toolbarPlacement === "left" || toolbarPlacement === "right") {
