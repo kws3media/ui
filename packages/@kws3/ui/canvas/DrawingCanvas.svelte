@@ -33,12 +33,15 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   <PenControls
     {...$$props}
-    {setTool}
     {setColor}
     {expanded}
     {expandContract}
-    on:changeColor={(event) => changeColor(event)}
-    bind:PEN_INPUT
+    on:changeColor={({ detail: { color } }) => changeColor(color)}
+    on:setTool={({ detail: { tool } }) => setTool(tool)}
+    on:undo={() => undo()}
+    on:redo={() => redo()}
+    on:reset={() => reset()}
+    {PEN_INPUT}
     bind:penColor
     bind:canUndo
     bind:canRedo
@@ -238,10 +241,21 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     }
   }
 
-  function changeColor(event) {
-    let { detail } = event;
-    penColor = detail.value.substring(1);
+  function changeColor(color) {
+    penColor = color.substring(1);
     setColor();
+  }
+
+  function undo() {
+    PEN_INPUT && PEN_INPUT.undo();
+  }
+  function redo() {
+    PEN_INPUT && PEN_INPUT.redo();
+  }
+  function reset() {
+    PEN_INPUT && PEN_INPUT.reset();
+    canUndo = false;
+    canRedo = false;
   }
 
   function onChange({ detail }) {

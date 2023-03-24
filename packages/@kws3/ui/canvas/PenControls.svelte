@@ -45,7 +45,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
                     <a
                       href="/#"
                       class="dropdown-item"
-                      on:click|preventDefault={() => setTool(tool)}
+                      on:click|preventDefault={() => fire("setTool", { tool })}
                       style="padding-right:1rem;">
                       <Icon icon={toolMap[tool].icon} size="small" />
                       <span>{toolMap[tool].name}</span>
@@ -62,7 +62,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               type="button"
               class="button is-small is-warning "
               data-tooltip="Undo"
-              on:click={() => PEN_INPUT && PEN_INPUT.undo()}
+              on:click={() => fire("undo")}
               disabled={!canUndo}>
               <Icon icon="undo" size="small" />
             </button>
@@ -74,7 +74,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               type="button"
               class="button is-small is-warning "
               data-tooltip="Redo"
-              on:click={() => PEN_INPUT && PEN_INPUT.redo()}
+              on:click={() => fire("redo")}
               disabled={!canRedo}>
               <Icon icon="repeat" size="small" />
             </button>
@@ -86,11 +86,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               type="button"
               class="button is-small is-danger"
               data-tooltip="Reset"
-              on:click={() => {
-                PEN_INPUT && PEN_INPUT.reset();
-                canUndo = false;
-                canRedo = false;
-              }}>
+              on:click={() => fire("reset")}>
               <Icon icon="refresh" size="small" />
             </button>
           </div>
@@ -114,7 +110,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               bind:value={color}
               class="button is-small"
               on:input={() => {
-                fire("changeColor", { value: color });
+                fire("changeColor", { color });
               }}
               data-tooltip="Pick Color" />
           </div>
@@ -133,8 +129,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
-  export let PEN_INPUT,
-    EXPANDED_BUTTON,
+  export let EXPANDED_BUTTON,
     /**
      * Inline CSS for the control
      */
