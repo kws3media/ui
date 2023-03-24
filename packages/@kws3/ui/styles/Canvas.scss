@@ -13,6 +13,7 @@
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
+  position: relative;
   .canvas-controls {
     position: absolute;
     width: 100%;
@@ -49,33 +50,45 @@
     }
     input[type="color"]::-webkit-color-swatch {
       border: none;
-    }
-  }
-  &.expanded {
-    z-index: 999;
-    position: relative;
-    box-shadow: $card-shadow;
-    .canvas-controls {
-      background: $grey-lighter;
-    }
-  }
-}
+      &.is-placement-left,
+      &.is-placement-right {
+        width: 15%;
+        height: 100%;
+      }
 
-.canvas-box {
-  position: relative;
-  margin: auto auto;
-  overflow: hidden;
-  img {
-    display: block;
+      &.is-placement-left {
+        left: -40px;
+      }
+      &.is-placement-right {
+        right: -40px;
+      }
+    }
+    &.expanded {
+      z-index: 999;
+      position: relative;
+      box-shadow: $card-shadow;
+      .canvas-controls {
+        background: $grey-lighter;
+      }
+    }
   }
-  canvas {
-    display: block;
-    cursor: crosshair;
-    box-sizing: border-box;
-  }
-  &.is-readonly {
+
+  .canvas-box {
+    position: relative;
+    margin: auto auto;
+    overflow: hidden;
+    img {
+      display: block;
+    }
     canvas {
-      cursor: default;
+      display: block;
+      cursor: crosshair;
+      box-sizing: border-box;
+    }
+    &.is-readonly {
+      canvas {
+        cursor: default;
+      }
     }
   }
 }
