@@ -1,8 +1,8 @@
 <div class="columns">
   <div class="column has-text-centered mt-4">
     <label for="" class="label">Canvas Control</label>
-    <KwsCanvasControls
-      {canvasControlsStyles}
+    <KwsPenControls
+      {penControlsStyles}
       {readonly}
       {disabled}
       {tools}
@@ -21,9 +21,9 @@
 </div>
 
 <script>
-  import { CanvasControls as KwsCanvasControls } from "@kws3/ui";
+  import { PenControls as KwsPenControls } from "@kws3/ui";
 
-  export let canvasControlsStyles = "",
+  export let penControlsStyles = "",
     readonly = false,
     disabled = false,
     tools = ["Pen", "Eraser"],
