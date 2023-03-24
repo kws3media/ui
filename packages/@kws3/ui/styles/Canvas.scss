@@ -13,6 +13,7 @@
   will-change: transform;
   backface-visibility: hidden;
   transform-style: preserve-3d;
+  position: relative;
   .canvas-controls {
     position: absolute;
     width: 100%;
@@ -34,6 +35,18 @@
     }
     &.is-placement-top {
       top: calc(-1 * var(--kws-peninput-controls-height));
+    }
+    &.is-placement-left,
+    &.is-placement-right {
+      width: 15%;
+      height: 100%;
+    }
+
+    &.is-placement-left {
+      left: -40px;
+    }
+    &.is-placement-right {
+      right: -40px;
     }
   }
   &.expanded {

@@ -55,6 +55,23 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               </div>
             </div>
           </div>
+          <!-- {:else if action === "colorpicker"}
+          <div class="control">
+            <Colorpicker
+              color="000000"
+              typeable
+              readonly={false}
+              mini={false}
+              disabled={false} />
+            <button
+              use:tooltip
+              type="button"
+              class="button is-small is-warning "
+              data-tooltip="Color Picker"
+              on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.undo()}>
+              <Icon icon="eyedropper" size="small" />
+            </button>
+          </div> -->
         {:else if action === "undo"}
           <div class="control">
             <button
@@ -117,7 +134,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 </div>
 
 <script>
-  import { Icon, tooltip } from "@kws3/ui";
+  import { Icon, tooltip, Colorpicker } from "@kws3/ui";
   export let CANVAS_IMAGE,
     EXPANDED_BUTTON,
     /**
