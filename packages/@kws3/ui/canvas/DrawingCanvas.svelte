@@ -29,7 +29,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   class="canvas-wrapper {expanded ? 'expanded' : ''}"
   style={wrapperStyles}
   data-cy={cy}>
-  <PenInput {...$$props} {expanded} bind:CANVAS_IMAGE on:change={onChange} />
+  <PenInput {...$$props} {expanded} bind:PEN_INPUT on:change={onChange} />
 
   <PenControls
     {...$$props}
@@ -38,7 +38,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     {expanded}
     {expandContract}
     on:changeColor={(event) => changeColor(event)}
-    bind:CANVAS_IMAGE
+    bind:PEN_INPUT
     bind:penColor
     bind:canUndo
     bind:canRedo
@@ -130,7 +130,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     cy = "";
 
-  let EXPANDED_BUTTON, CANVAS_IMAGE;
+  let EXPANDED_BUTTON, PEN_INPUT;
 
   let canUndo = false,
     canRedo = false,
@@ -200,8 +200,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   });
 
   export function getActions() {
-    if (CANVAS_IMAGE) {
-      return CANVAS_IMAGE;
+    if (PEN_INPUT) {
+      return PEN_INPUT;
     }
     return null;
   }
@@ -209,23 +209,23 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
-    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool);
+    PEN_INPUT && PEN_INPUT.setTool(tool);
   }
 
   function setScaleFactor() {
-    CANVAS_IMAGE &&
-      CANVAS_IMAGE.setScaleFactor(
+    PEN_INPUT &&
+      PEN_INPUT.setScaleFactor(
         expanded ? 1 + expand.scale * 0.01 : initialScale
       );
   }
 
   function setColor() {
-    CANVAS_IMAGE && CANVAS_IMAGE.setColor(`#${penColor}`);
+    PEN_INPUT && PEN_INPUT.setColor(`#${penColor}`);
   }
 
   function syncImage() {
     if (!settingFlag) {
-      CANVAS_IMAGE && CANVAS_IMAGE.syncImage(image);
+      PEN_INPUT && PEN_INPUT.syncImage(image);
     }
   }
 

@@ -13,7 +13,7 @@
       {setTool}
       {expandContract}
       bind:EXPANDED_BUTTON
-      bind:CANVAS_IMAGE
+      bind:PEN_INPUT
       bind:canUndo
       bind:canRedo
       bind:showTools />
@@ -32,7 +32,7 @@
     activeTool = "Pen",
     drawing_label = "";
 
-  let CANVAS_IMAGE, EXPANDED_BUTTON;
+  let PEN_INPUT, EXPANDED_BUTTON;
 
   let canUndo = false,
     canRedo = false,
@@ -42,7 +42,7 @@
   function setTool(tool) {
     activeTool = tool;
     showTools = false;
-    CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool);
+    PEN_INPUT && PEN_INPUT.setTool(tool);
   }
   function expandContract() {
     expanded = !expanded;

@@ -16,7 +16,7 @@
       {backgroundImage}
       {initialScale}
       {expand}
-      bind:CANVAS_IMAGE
+      bind:PEN_INPUT
       on:change={onChange} />
   </div>
   <div class="column has-text-centered">
@@ -49,7 +49,7 @@
     expand = { from: "center", to: "center", scale: 50 },
     readonly = false,
     disabled = false,
-    CANVAS_IMAGE;
+    PEN_INPUT;
 
   function onChange({ detail }) {
     image = detail.canvasImage;

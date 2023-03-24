@@ -95,7 +95,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * data-cy attribute for cypress
      */
     cy = "",
-    CANVAS_IMAGE;
+    PEN_INPUT;
 
   let CANVAS,
     is_ready = false,
@@ -144,7 +144,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     CANVAS && CANVAS.setAttribute("width", width.replace("px", ""));
     CANVAS && CANVAS.setAttribute("height", height.replace("px", ""));
 
-    CANVAS_IMAGE = new DrawImage(
+    PEN_INPUT = new DrawImage(
       { CANVAS, fire },
       {
         lineColor,
@@ -157,20 +157,20 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       }
     );
 
-    CANVAS_IMAGE && CANVAS_IMAGE.init();
+    PEN_INPUT && PEN_INPUT.init();
     is_ready = true;
 
     return () => {
-      CANVAS && CANVAS_IMAGE.removeEvent();
+      CANVAS && PEN_INPUT.removeEvent();
     };
   });
 
   function setEvents() {
     if (is_ready) {
       if (readonly) {
-        CANVAS_IMAGE && CANVAS_IMAGE.removeEvent();
+        PEN_INPUT && PEN_INPUT.removeEvent();
       } else {
-        CANVAS_IMAGE && CANVAS_IMAGE.addEvent();
+        PEN_INPUT && PEN_INPUT.addEvent();
       }
     }
   }

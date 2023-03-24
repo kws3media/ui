@@ -55,23 +55,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               </div>
             </div>
           </div>
-          <!-- {:else if action === "colorpicker"}
-          <div class="control">
-            <Colorpicker
-              color="000000"
-              typeable
-              readonly={false}
-              mini={false}
-              disabled={false} />
-            <button
-              use:tooltip
-              type="button"
-              class="button is-small is-warning "
-              data-tooltip="Color Picker"
-              on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.undo()}>
-              <Icon icon="eyedropper" size="small" />
-            </button>
-          </div> -->
         {:else if action === "undo"}
           <div class="control">
             <button
@@ -79,7 +62,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               type="button"
               class="button is-small is-warning "
               data-tooltip="Undo"
-              on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.undo()}
+              on:click={() => PEN_INPUT && PEN_INPUT.undo()}
               disabled={!canUndo}>
               <Icon icon="undo" size="small" />
             </button>
@@ -91,7 +74,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               type="button"
               class="button is-small is-warning "
               data-tooltip="Redo"
-              on:click={() => CANVAS_IMAGE && CANVAS_IMAGE.redo()}
+              on:click={() => PEN_INPUT && PEN_INPUT.redo()}
               disabled={!canRedo}>
               <Icon icon="repeat" size="small" />
             </button>
@@ -104,7 +87,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               class="button is-small is-danger"
               data-tooltip="Reset"
               on:click={() => {
-                CANVAS_IMAGE && CANVAS_IMAGE.reset();
+                PEN_INPUT && PEN_INPUT.reset();
                 canUndo = false;
                 canRedo = false;
               }}>
@@ -146,11 +129,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 </div>
 
 <script>
-  import { Icon, tooltip, Colorpicker } from "@kws3/ui";
+  import { Icon, tooltip } from "@kws3/ui";
   import { createEventDispatcher } from "svelte";
 
   const fire = createEventDispatcher();
-  export let CANVAS_IMAGE,
+  export let PEN_INPUT,
     EXPANDED_BUTTON,
     /**
      * Inline CSS for the control

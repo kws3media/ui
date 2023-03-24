@@ -79,7 +79,7 @@ export let args = {
       {setTool}
       {expandContract}
       bind:EXPANDED_BUTTON
-      bind:CANVAS_IMAGE
+      bind:PEN_INPUT
       bind:canUndo
       bind:canRedo
       bind:showTools />
@@ -94,7 +94,7 @@ export let args = {
       export let toolbarPlacement = "bottom";
       export let activeTool = "Pen";
       export let drawing_label = "";
-      let CANVAS_IMAGE, EXPANDED_BUTTON;
+      let PEN_INPUT, EXPANDED_BUTTON;
       let canUndo = false,
           canRedo = false,
           expanded = false,
@@ -102,7 +102,7 @@ export let args = {
       function setTool(tool) {
         activeTool = tool;
         showTools = false;
-        CANVAS_IMAGE && CANVAS_IMAGE.setTool(tool);
+        PEN_INPUT && PEN_INPUT.setTool(tool);
       }
       function expandContract() {
         expanded = !expanded;
