@@ -10,10 +10,10 @@
       {pen_width}
       {eraser_width}
       {pen_color}
-      {backgroundImage}
+      {background_image}
       {readonly}
       {disabled}
-      {initialScale}
+      {initial_scale}
       {expand}
       {tools}
       {active_tool}
@@ -48,11 +48,11 @@
     pen_width = 2,
     eraser_width = 6,
     pen_color = "#ff0000",
-    backgroundImage = "",
+    background_image = "",
     readonly = false,
     disabled = false,
     image = "",
-    initialScale = 1,
+    initial_scale = 1,
     expand = {
       from: "center",
       to: "center",

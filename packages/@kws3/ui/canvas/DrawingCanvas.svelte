@@ -8,11 +8,11 @@
   @param {number} [pen_width=2] -  width of the line, Default: `2`
   @param {number} [eraser_width=6] - Eraser width, Default: `6`
   @param {string} [pen_color="#ff0000"] - Line color, Default: `"#ff0000"`
-  @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
+  @param {string} [background_image=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
-  @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
+  @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {object} [expand={}] - Transform scale and the direction from which the canvas should expand on expansion, Default: `{from: "center", to: "center", scale: 50}`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
   @param {bottom'|'top'} [toolbar_placement="bottom"] - Position of the action toolbar, Default: `"bottom"`
@@ -78,7 +78,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Background image for the canvas
      */
-    backgroundImage = "",
+    background_image = "",
     /**
      * Determines whether canvas is readonly or not
      */
@@ -94,7 +94,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Initial transform scale for the canvas before expansion
      */
-    initialScale = 1,
+    initial_scale = 1,
     /**
      * Transform scale of the canvas on expansion
      * The direction from which the canvas should expand
@@ -154,7 +154,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     let default_styles = {
       display: "flex",
       width: width || "250px",
-      transform: `scale(${expanded ? 1 + expand.scale * 0.01 : initialScale})`,
+      transform: `scale(${expanded ? 1 + expand.scale * 0.01 : initial_scale})`,
       "transform-origin": `${expand.from || "center"} ${expand.to || "center"}`,
       "flex-direction": "column",
       "--kws-peninput-height": height,
@@ -190,7 +190,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   function setScaleFactor() {
     DRAWING_PAD &&
       DRAWING_PAD.setScaleFactor(
-        expanded ? 1 + expand.scale * 0.01 : initialScale
+        expanded ? 1 + expand.scale * 0.01 : initial_scale
       );
   }
 

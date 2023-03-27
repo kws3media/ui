@@ -17,8 +17,8 @@ export let args={
   pen_width : 2,
   eraser_width : 6,
   image : "",
-  backgroundImage : "",
-  initialScale : 1,
+  background_image : "",
+  initial_scale : 1,
   expand : { from: "center", to: "center", scale: 50 },
 };
 
@@ -80,8 +80,8 @@ export let args={
         pen_width=2
         eraser_width=6
         image=""
-        backgroundImage=""
-        initialScale=1
+        background_image=""
+        initial_scale=1
         expand={ from: "center", to: "center", scale: 50 }
         bind:DRAWING_PAD
         on:change={onChange} 
@@ -104,8 +104,8 @@ export let args={
       {pen_width}
       {eraser_width}
       {image}
-      {backgroundImage}
-      {initialScale}
+      {background_image}
+      {initial_scale}
       {expand}
       bind:DRAWING_PAD
       on:change={onChange} />
@@ -120,9 +120,9 @@ export let args={
       export let pen_width = 2;
       export let eraser_width = 6;
       export let image = "";
-      export let backgroundImage = ""; 
+      export let background_image = ""; 
       export let expanded = false;
-      export let initialScale = 1;
+      export let initial_scale = 1;
       export let expand = { from: "center", to: "center", scale: 50 }; 
       export let readonly = false;
       export let disabled = false; 

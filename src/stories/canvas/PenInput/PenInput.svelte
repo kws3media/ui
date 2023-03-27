@@ -13,8 +13,8 @@
       {pen_width}
       {eraser_width}
       {image}
-      {backgroundImage}
-      {initialScale}
+      {background_image}
+      {initial_scale}
       {expand}
       bind:DRAWING_PAD
       on:change={onChange} />
@@ -43,9 +43,9 @@
     pen_width = 2,
     eraser_width = 6,
     image = "",
-    backgroundImage = "",
+    background_image = "",
     expanded = false,
-    initialScale = 1,
+    initial_scale = 1,
     expand = { from: "center", to: "center", scale: 50 },
     readonly = false,
     disabled = false,

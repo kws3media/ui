@@ -7,11 +7,11 @@
   @param {number} [pen_width=2] - width of the line, Default: `2`
   @param {number} [eraser_width=6] - Eraser width, Default: `6`
   @param {string} [pen_color="#000000"] - Line color, Default: `"#000000"`
-  @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
+  @param {string} [background_image=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
-  @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
+  @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {object} [expand={}] - Transform scale and the direction from which the canvas should expand on expansion, Default: `{from: "center", to: "center", scale: 50}`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
 
@@ -63,7 +63,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Background image for the canvas
      */
-    backgroundImage = "",
+    background_image = "",
     /**
      * Determines whether canvas is readonly or not
      */
@@ -79,7 +79,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Initial transform scale for the canvas before expansion
      */
-    initialScale = 1,
+    initial_scale = 1,
     /**
      * Transform scale of the canvas on expansion
      * The direction from which the canvas should expand
@@ -107,7 +107,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     width:${width || "250px"};
     height:${height || "250px"};
     border:${styles.border || "1px solid #000000"};
-    pointer-events: none; background-image:url(${backgroundImage || ""});
+    pointer-events: none; background-image:url(${background_image || ""});
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
@@ -122,7 +122,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       "border-left": "1px dotted #ccc",
       "border-right": "1px dotted #ccc",
       "border-bottom": "1px dotted #ccc",
-      "background-image": `url(${backgroundImage})`,
+      "background-image": `url(${background_image})`,
     };
     default_styles["width"] = width;
     default_styles["height"] = height;
@@ -150,9 +150,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
         penWidth: pen_width,
         penColor: pen_color,
         eraserWidth: eraser_width,
+        initialScale: initial_scale,
         image: image || emptyImage,
         readonly,
-        initialScale,
         expand: expand.scale,
       }
     );
