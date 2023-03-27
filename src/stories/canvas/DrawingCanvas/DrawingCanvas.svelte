@@ -7,7 +7,7 @@
       {styles}
       {width}
       {height}
-      {lineWidth}
+      {pen_width}
       {eraserWidth}
       {lineColor}
       {backgroundImage}
@@ -45,7 +45,7 @@
     },
     width = "250px",
     height = "250px",
-    lineWidth = 2,
+    pen_width = 2,
     eraserWidth = 6,
     lineColor = "#ff0000",
     backgroundImage = "",

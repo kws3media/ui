@@ -26,7 +26,7 @@ export default function DrawingPad(app, opts) {
 
   if (drawingType === "line") {
     context.strokeStyle = opts.lineColor || "#3d44c8";
-    context.lineWidth = opts.lineWidth || 1;
+    context.lineWidth = opts.penWidth || 1;
   }
 
   if (opts.expanded) {
@@ -249,7 +249,7 @@ export default function DrawingPad(app, opts) {
       drawingType = "line";
       context.globalCompositeOperation = "source-over";
       context.strokeStyle = opts.lineColor || "#3d44c8";
-      context.lineWidth = opts.lineWidth || 1;
+      context.lineWidth = opts.penWidth || 1;
     } else if (toolType === "Eraser") {
       context.globalCompositeOperation = "destination-out";
       context.lineWidth = opts.eraserWidth || 4;
