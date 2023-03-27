@@ -1,20 +1,20 @@
 <!--
   @component
 
-  @param {string} [canvasControlsStyles=""] - Inline CSS for the canvas control, Default: `""`
+  @param {string} [canvas_controls_styles=""] - Inline CSS for the canvas control, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'undo' , 'redo', 'reset', 'expand']`
-  @param {bottom'|'top'} [toolbarPlacement="bottom"] - Position of the action toolbar, Default: `"bottom"`
+  @param {bottom'|'top'} [toolbar_placement="bottom"] - Position of the action toolbar, Default: `"bottom"`
   @param {array} [tools=[]] - List of tools available for user to select from, Default: `["Pen", "Eraser"]`
-  @param {'Pen'|'Eraser'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
+  @param {'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
 -->
 
 <div
-  class="canvas-controls is-placement-{toolbarPlacement}"
-  style={canvasControlsStyles}>
+  class="canvas-controls is-placement-{toolbar_placement}"
+  style={canvas_controls_styles}>
   {#if !readonly && !disabled}
     <div
       class="columns m-0 is-flex is-justify-content-{controlPosition} {controlClasses}"
@@ -31,7 +31,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
                   data-tooltip="Tools"
                   aria-controls="tools-dropdown"
                   on:click={() => (showTools = !showTools)}>
-                  <Icon icon={toolMap[activeTool].icon} size="small" />
+                  <Icon icon={toolMap[active_tool].icon} size="small" />
                 </button>
               </div>
 
@@ -133,7 +133,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Inline CSS for the control
      */
-    canvasControlsStyles = "",
+    canvas_controls_styles = "",
     /**
      * Determines whether canvas is disabled or not
      */
@@ -159,11 +159,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Determines which tool is select
      */
-    activeTool = "Pen",
+    active_tool = "Pen",
     /**
      * Determines where the action tools are placed
      */
-    toolbarPlacement = "bottom",
+    toolbar_placement = "bottom",
     controlPosition = "center",
     canUndo = false,
     canRedo = false,
@@ -194,7 +194,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   }
   let controlClasses = "is-flex-direction-row";
   $: {
-    if (toolbarPlacement === "left" || toolbarPlacement === "right") {
+    if (toolbar_placement === "left" || toolbar_placement === "right") {
       controlClasses = "is-flex-direction-column";
     }
   }

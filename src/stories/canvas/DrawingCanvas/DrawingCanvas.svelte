@@ -16,9 +16,9 @@
       {initialScale}
       {expand}
       {tools}
-      {activeTool}
+      {active_tool}
       {actions}
-      {toolbarPlacement}
+      {toolbar_placement}
       {drawing_label}
       {cy} />
   </div>
@@ -60,8 +60,8 @@
     },
     tools = ["Pen", "Eraser"],
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-    toolbarPlacement = "bottom",
-    activeTool = "Pen",
+    toolbar_placement = "bottom",
+    active_tool = "Pen",
     drawing_label = "",
     cy = "";
 </script>

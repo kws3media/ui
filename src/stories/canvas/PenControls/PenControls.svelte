@@ -6,9 +6,9 @@
       {readonly}
       {disabled}
       {tools}
-      {activeTool}
+      {active_tool}
       {actions}
-      {toolbarPlacement}
+      {toolbar_placement}
       {drawing_label}
       {setTool}
       {expandContract}
@@ -28,8 +28,8 @@
     disabled = false,
     tools = ["Pen", "Eraser"],
     actions = ["controls", "undo", "redo", "reset", "expand"],
-    toolbarPlacement = "bottom",
-    activeTool = "Pen",
+    toolbar_placement = "bottom",
+    active_tool = "Pen",
     drawing_label = "";
 
   let DRAWING_PAD, EXPANDED_BUTTON;
@@ -40,7 +40,7 @@
     showTools = false;
 
   function setTool(tool) {
-    activeTool = tool;
+    active_tool = tool;
     showTools = false;
     DRAWING_PAD && DRAWING_PAD.setTool(tool);
   }

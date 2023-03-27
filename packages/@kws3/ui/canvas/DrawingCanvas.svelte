@@ -15,9 +15,9 @@
   @param {number} [initialScale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {object} [expand={}] - Transform scale and the direction from which the canvas should expand on expansion, Default: `{from: "center", to: "center", scale: 50}`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
-  @param {bottom'|'top'} [toolbarPlacement="bottom"] - Position of the action toolbar, Default: `"bottom"`
+  @param {bottom'|'top'} [toolbar_placement="bottom"] - Position of the action toolbar, Default: `"bottom"`
   @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
-  @param {'Pen'|'Eraser'} [activeTool="Pen"] - Default active tool, Default: `"Pen"`
+  @param {'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
@@ -108,7 +108,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * Default position of the action toolbar
      * @type {'bottom'|'top'|'left'|'right'}
      */
-    toolbarPlacement = "bottom",
+    toolbar_placement = "bottom",
     /**
      * List of tools available for user to select from
      * @type {'Pen'|'Eraser'}
@@ -118,7 +118,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * Default active tool
      * @type {'Pen'|'Eraser'}
      */
-    activeTool = "Pen",
+    active_tool = "Pen",
     /**
      * Label for the canvas drawing box
      *
@@ -161,20 +161,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       "--kws-peninput-width": width,
     };
 
-    // if (toolbarPlacement == "bottom") {
-    //   default_styles["flex-direction"] = "column";
-    // } else if (toolbarPlacement == "top") {
-    //   default_styles["flex-direction"] = "column-reverse";
-    // } else if (toolbarPlacement == "right") {
-    //   let _width = +width.replace("px", "") + 30;
-    //   default_styles["width"] = _width + "px";
-    //   default_styles["flex-direction"] = "row";
-    // } else if (toolbarPlacement == "left") {
-    //   let _width = +width.replace("px", "") + 40;
-    //   default_styles["width"] = _width + "px";
-    //   default_styles["flex-direction"] = "row-reverse";
-    // }
-
     wrapperStyles = Object.entries(default_styles)
       .map(([key, val]) => `${key}:${val}`)
       .join(";");
@@ -185,7 +171,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   $: penColor, setColor();
 
   onMount(() => {
-    setTool(activeTool);
+    setTool(active_tool);
   });
 
   export function getActions() {
@@ -196,7 +182,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   }
 
   function setTool(tool) {
-    activeTool = tool;
+    active_tool = tool;
     showTools = false;
     DRAWING_PAD && DRAWING_PAD.setTool(tool);
   }

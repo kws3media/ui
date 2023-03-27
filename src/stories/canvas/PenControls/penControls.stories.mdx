@@ -13,13 +13,13 @@ import PenControlsDecorator from "./PenControls.svelte";
 import { action } from "@storybook/addon-actions";
 
 export let args = {
-  canvasControlsStyles: "",
+  canvas_controls_styles: "",
   readonly: false,
   disabled: false,
   tools: ["Pen", "Eraser"],
   actions: ["controls", "undo", "redo", "reset", "expand"],
-  toolbarPlacement: "bottom",
-  activeTool: "Pen",
+  toolbar_placement: "bottom",
+  active_tool: "Pen",
   drawing_label: ""
 };
 
@@ -68,13 +68,13 @@ export let args = {
   language='html'
   code={ dedent`
       <PenControls
-      {canvasControlsStyles}
+      {canvas_controls_styles}
       {readonly}
       {disabled}
       {tools}
-      {activeTool}
+      {active_tool}
       {actions}
-      {toolbarPlacement}
+      {toolbar_placement}
       {drawing_label}
       {setTool}
       {expandContract}
@@ -86,13 +86,13 @@ export let args = {
     
     <script>
       import { PenControls } from '@kws3/ui';
-      export let canvasControlsStyles = "";
+      export let canvas_controls_styles = "";
       export let readonly = false;
       export let disabled = false;
       export let tools =["Pen", "Eraser"];
       export let actions = ["controls", "undo", "redo", "reset", "expand"];
-      export let toolbarPlacement = "bottom";
-      export let activeTool = "Pen";
+      export let toolbar_placement = "bottom";
+      export let active_tool = "Pen";
       export let drawing_label = "";
       let DRAWING_PAD, EXPANDED_BUTTON;
       let canUndo = false,
@@ -100,7 +100,7 @@ export let args = {
           expanded = false,
           showTools = false;
       function setTool(tool) {
-        activeTool = tool;
+        active_tool = tool;
         showTools = false;
         DRAWING_PAD && DRAWING_PAD.setTool(tool);
       }

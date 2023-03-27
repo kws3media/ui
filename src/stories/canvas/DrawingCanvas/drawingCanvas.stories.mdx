@@ -35,7 +35,7 @@ export let args = {
   tools: ["Pen", "Eraser"],
   actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
   actionToolbarPosition: "bottom",
-  activeTool: "Pen",
+  active_tool: "Pen",
   drawing_label: "",
   hide_colorpicker: false,
   cy: "",
@@ -46,7 +46,7 @@ export let args = {
   component={KWS3DrawingCanvas}
   args={args}
   argTypes={{
-    activeTool: {
+    active_tool: {
       control: "select",
     },
     tools: {
@@ -106,9 +106,9 @@ export let args = {
         {initialScale}
         {expand}
         {tools}
-        {activeTool}
+        {active_tool}
         {actions}
-        {toolbarPlacement}
+        {toolbar_placement}
         {drawing_label}
         />
     
@@ -132,8 +132,8 @@ export let args = {
         },
         tools = ["Pen", "Eraser"],
         actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-        toolbarPlacement = "bottom",
-        activeTool = "Pen",
+        toolbar_placement = "bottom",
+        active_tool = "Pen",
         drawing_label = "",
         cy = "";
     </script>
