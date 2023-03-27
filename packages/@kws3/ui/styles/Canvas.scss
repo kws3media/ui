@@ -45,23 +45,23 @@
       padding: 3px;
       background-color: $white-ter;
     }
+    &.is-placement-left,
+    &.is-placement-right {
+      width: 15%;
+      height: 100%;
+    }
+
+    &.is-placement-left {
+      left: -40px;
+    }
+    &.is-placement-right {
+      right: -40px;
+    }
     input[type="color"]::-webkit-color-swatch-wrapper {
       padding: 0;
     }
     input[type="color"]::-webkit-color-swatch {
       border: none;
-      &.is-placement-left,
-      &.is-placement-right {
-        width: 15%;
-        height: 100%;
-      }
-
-      &.is-placement-left {
-        left: -40px;
-      }
-      &.is-placement-right {
-        right: -40px;
-      }
     }
     &.expanded {
       z-index: 999;
