@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column has-text-centered">
     <label for="" class="label">Input</label>
-    <KwsDrawingCanvas
+    <KwsCanvas
       bind:this={canvasWrapper}
       bind:image
       {styles}
@@ -36,7 +36,7 @@
 </div>
 
 <script>
-  import { DrawingCanvas as KwsDrawingCanvas } from "@kws3/ui";
+  import { Canvas as KwsCanvas } from "@kws3/ui";
 
   let canvasWrapper;
 

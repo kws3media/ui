@@ -8,8 +8,8 @@ import {
   Canvas,
 } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
-import { DrawingCanvas as KWS3DrawingCanvas } from "@kws3/ui";
-import DrawingCanvasDecorator from "./DrawingCanvas.svelte";
+import { Canvas as KWS3Canvas } from "@kws3/ui";
+import CanvasDecorator from "./Canvas.svelte";
 import { action } from "@storybook/addon-actions";
 
 export let args = {
@@ -42,8 +42,8 @@ export let args = {
 };
 
 <Meta
-  title="Canvas/DrawingCanvas"
-  component={KWS3DrawingCanvas}
+  title="Canvas/Canvas"
+  component={KWS3Canvas}
   args={args}
   argTypes={{
     active_tool: {
@@ -57,27 +57,27 @@ export let args = {
 
 <Description
   markdown={dedent`
-# DrawingCanvas
-## DrawingCanvas components for Drawing.
+# Canvas
+## Canvas components for Drawing.
 `}
 />
 
 <Canvas>
-  <Story name="Drawing Canvas" args={args}>
+  <Story name="Canvas" args={args}>
     {(args) => ({
-      Component: DrawingCanvasDecorator,
+      Component: CanvasDecorator,
       props: args,
     })}
   </Story>
 </Canvas>
 
-<ArgsTable story="Drawing Canvas" />
+<ArgsTable story="Canvas" />
 
 ### Usage
 
 <Source
   language="javascript"
-  code={dedent`import { DrawingCanvas } from '@kws3/ui';`}
+  code={dedent`import { Canvas } from '@kws3/ui';`}
 />
 
 ##### Import the CSS:
@@ -91,7 +91,7 @@ export let args = {
 <Source
   language='html'
   code={ dedent`
-      <KwsDrawingCanvas
+      <Canvas
         bind:this={canvasWrapper}
         bind:image
         {styles}
@@ -113,7 +113,7 @@ export let args = {
         />
     
     <script>
-      import { DrawingCanvas } from '@kws3/ui';
+      import { Canvas } from '@kws3/ui';
       let canvasWrapper;
       export let width = "250px",
         height = "250px",
