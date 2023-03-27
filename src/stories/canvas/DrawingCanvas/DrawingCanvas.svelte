@@ -8,8 +8,8 @@
       {width}
       {height}
       {pen_width}
-      {eraserWidth}
-      {lineColor}
+      {eraser_width}
+      {pen_color}
       {backgroundImage}
       {readonly}
       {disabled}
@@ -46,8 +46,8 @@
     width = "250px",
     height = "250px",
     pen_width = 2,
-    eraserWidth = 6,
-    lineColor = "#ff0000",
+    eraser_width = 6,
+    pen_color = "#ff0000",
     backgroundImage = "",
     readonly = false,
     disabled = false,

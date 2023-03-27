@@ -5,8 +5,8 @@
   @param {string} [width="250px"] - Width of the canvas, Default: `250px`
   @param {string} [height="250px"] - Height of the canvas, Default: `250px`
   @param {number} [pen_width=2] - width of the line, Default: `2`
-  @param {number} [eraserWidth=6] - Eraser width, Default: `6`
-  @param {string} [lineColor="#000000"] - Line color, Default: `"#000000"`
+  @param {number} [eraser_width=6] - Eraser width, Default: `6`
+  @param {string} [pen_color="#000000"] - Line color, Default: `"#000000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
@@ -55,11 +55,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Eraser width
      */
-    eraserWidth = 6,
+    eraser_width = 6,
     /**
      * line color
      */
-    lineColor = "#000000",
+    pen_color = "#000000",
     /**
      * Background image for the canvas
      */
@@ -148,8 +148,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       { CANVAS, fire },
       {
         penWidth: pen_width,
-        lineColor,
-        eraserWidth,
+        penColor: pen_color,
+        eraserWidth: eraser_width,
         image: image || emptyImage,
         readonly,
         initialScale,

@@ -9,9 +9,9 @@
       {styles}
       {width}
       {height}
-      {lineColor}
+      {pen_color}
       {pen_width}
-      {eraserWidth}
+      {eraser_width}
       {image}
       {backgroundImage}
       {initialScale}
@@ -39,9 +39,9 @@
     styles = {},
     width = "250px",
     height = "250px",
-    lineColor = "#000000",
+    pen_color = "#000000",
     pen_width = 2,
-    eraserWidth = 6,
+    eraser_width = 6,
     image = "",
     backgroundImage = "",
     expanded = false,

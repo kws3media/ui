@@ -6,8 +6,8 @@
   @param {string} [width="250px"] - Width of the canvas, Default: `250px`
   @param {string} [height="250px"] - Height of the canvas, Default: `250px`
   @param {number} [pen_width=2] -  width of the line, Default: `2`
-  @param {number} [eraserWidth=6] - Eraser width, Default: `6`
-  @param {string} [lineColor="#ff0000"] - Line color, Default: `"#ff0000"`
+  @param {number} [eraser_width=6] - Eraser width, Default: `6`
+  @param {string} [pen_color="#ff0000"] - Line color, Default: `"#ff0000"`
   @param {string} [backgroundImage=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
@@ -42,7 +42,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     bind:penColor
     bind:canUndo
     bind:canRedo
-    bind:lineColor
+    bind:pen_color
     bind:showTools />
 </div>
 
@@ -70,11 +70,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Eraser width
      */
-    eraserWidth = 6,
+    eraser_width = 6,
     /**
      * line color
      */
-    lineColor = "#ff0000",
+    pen_color = "#ff0000",
     /**
      * Background image for the canvas
      */
@@ -144,10 +144,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   $: {
     penColor =
-      lineColor.substr(0, 1) === +"#"
-        ? lineColor.substr(1)
-        : lineColor.length === 6
-        ? lineColor
+      pen_color.substr(0, 1) === +"#"
+        ? pen_color.substr(1)
+        : pen_color.length === 6
+        ? pen_color
         : "000000";
   }
   $: {
