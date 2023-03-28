@@ -1,15 +1,32 @@
 <!--
   @component
 
-  @param {string} [canvas_controls_styles=""] - Inline CSS for the canvas control, Default: `""`
-  @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
+
+  @param {any} [EXPANDED_BUTTON=undefined] - EXPANDED_BUTTON property, Default: `undefined`
+  @param {string} [canvas_controls_styles=""] - Inline CSS for the control, Default: `""`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
-  @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'undo' , 'redo', 'reset', 'expand']`
-  @param {bottom'|'top'} [toolbar_placement="bottom"] - Position of the action toolbar, Default: `"bottom"`
-  @param {array} [tools=[]] - List of tools available for user to select from, Default: `["Pen", "Eraser"]`
-  @param {'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
+  @param {string} [drawing_label=""] - Label for the canvas drawing box
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
+  @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
+  @param {array} [tools=[]] - List of tools available, Default: `[]`
+  @param {array} [actions=[]] - List of actions toolbar, Default: `[]`
+  @param {string} [active_tool="Pen"] - Determines which tool is select, Default: `"Pen"`
+  @param {string} [toolbar_placement="bottom"] - Determines where the action tools are placed, Default: `"bottom"`
+  @param {string} [default_color=""] - colorpicker's default color, Default: `""`
+  @param {string} [controlPosition="center"] - ControlPosition property, Default: `"center"`
+  @param {boolean} [canUndo=false] - CanUndo property, Default: `false`
+  @param {boolean} [canRedo=false] - CanRedo property, Default: `false`
+  @param {boolean} [showTools=false] - ShowTools property, Default: `false`
+
+  ### Events
+  - `toggleExpand`
+  - `setTool`
+  - `undo`
+  - `redo`
+  - `reset`
+  - `changeColor`
+
 -->
 
 <div
@@ -126,7 +143,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
 <script>
   import { Icon, tooltip } from "@kws3/ui";
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
 
   const fire = createEventDispatcher();
   export let EXPANDED_BUTTON,
@@ -163,7 +180,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Determines where the action tools are placed
      */
+
     toolbar_placement = "bottom",
+    /**
+     * colorpicker's default color
+     */
+    default_color = "",
     controlPosition = "center",
     canUndo = false,
     canRedo = false,
@@ -183,6 +205,13 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     },
   };
 
+  onMount(() => {
+    if (actions.includes("colorpicker") && default_color !== "") {
+      console.log(default_color);
+      color = default_color;
+    }
+  });
+
   function expandContract() {
     expanded = !expanded;
     if (EXPANDED_BUTTON) {
@@ -192,7 +221,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     }
     fire("toggleExpand");
   }
+
   let controlClasses = "is-flex-direction-row";
+
   $: {
     if (toolbar_placement === "left" || toolbar_placement === "right") {
       controlClasses = "is-flex-direction-column";

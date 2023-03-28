@@ -39,10 +39,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     on:redo={() => redo()}
     on:reset={() => reset()}
     on:toggleExpand={() => toggleExpand()}
-    bind:penColor
+    default_color={pen_color}
     bind:canUndo
     bind:canRedo
-    bind:pen_color
     bind:showTools />
 </div>
 
