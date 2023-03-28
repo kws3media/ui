@@ -1,141 +1,72 @@
-import {
-  Story,
-  Preview,
-  Meta,
-  ArgsTable,
-  Source,
-  Description,
-  Canvas,
-} from "@storybook/addon-docs";
+import { Meta, Story } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
-import { Canvas as KWS3Canvas } from "@kws3/ui";
+import Version from "~/version.mdx";
 import ExampleDecorator from "./Example.svelte";
-import { action } from "@storybook/addon-actions";
 
-export let args = {
-  styles: {
-    border: "1px solid #b5b5b5",
-  },
-  width: "250px",
-  height: "250px",
-  pen_width: 2,
-  eraser_width: 6,
-  pen_color: "#ff0000",
-  background_image: "",
-  readonly: false,
-  disabled: false,
-  image: "",
-  initial_scale: 1,
-  // expand: 50,
-  expand: {
+
+<Version />
+
+<Meta title="Canvas/Example" />
+
+
+### ESignature Example
+
+This is example of creating an ESignature/Signature Pad component using Kws3 UI `Canvas` helper  
+
+**Example:**
+
+```html
+
+<Canvas
+  bind:image
+  {styles}
+  {width}
+  {height}
+  {pen_width}
+  {eraser_width}
+  {pen_color}
+  {background_image}
+  {readonly}
+  {disabled}
+  {initial_scale}
+  {expand}
+  {tools}
+  {active_tool}
+  {actions}
+  {toolbar_placement}
+  {drawing_label}
+  />
+
+<script>
+import { Canvas } from '@kws3/ui';
+
+export let width = "250px",
+  height = "250px",
+  pen_width = 2,
+  eraser_width = 6,
+  pen_color = "#ff0000",
+  background_image = "",
+  readonly = false,
+  disabled = false,
+  image = "",
+  initial_scale = 1,
+  expand = {
     from: "center",
     to: "center",
     scale: 50,
   },
-  tools: ["Pen", "Eraser"],
-  actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-  toolbar_placement: "bottom",
-  active_tool: "Pen",
-  drawing_label: "",
-  hide_colorpicker: false,
-  cy: "",
-};
+  tools = ["Pen", "Eraser"],
+  actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
+  toolbar_placement = "bottom",
+  active_tool = "Pen",
+  drawing_label = "",
+  cy = "";
+</script>
 
-<Meta
-  title="Canvas/Example"
-  component={KWS3Canvas}
-  args={args}
-  argTypes={{
-    active_tool: {
-      control: "select",
-    },
-    tools: {
-      control: "check",
-    },
-  }}
-/>
+```
 
-<Description
-  markdown={dedent`
-# Example
-## This is example of creating an e-signature component using the canvas component.
-`}
-/>
-
-<Canvas>
-  <Story name="Example" args={args}>
-    {(args) => ({
-      Component: ExampleDecorator,
-      props: args,
-    })}
-  </Story>
-</Canvas>
-
-<ArgsTable story="Example" />
-
-### Usage
-
-<Source
-  language="javascript"
-  code={dedent`import { Canvas } from '@kws3/ui';`}
-/>
-
-##### Import the CSS:
-
-<Source
-  language="javascript"
-  code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
-/>
-
-### Usage Example
-<Source
-  language='html'
-  code={ dedent`
-      <ESignature
-        bind:this={canvasWrapper}
-        bind:image
-        {styles}
-        {width}
-        {height}
-        {pen_width}
-        {eraser_width}
-        {pen_color}
-        {background_image}
-        {readonly}
-        {disabled}
-        {initial_scale}
-        {expand}
-        {tools}
-        {active_tool}
-        {actions}
-        {toolbar_placement}
-        {drawing_label}
-        />
-    
-    <script>
-      import { Canvas as ESignature } from '@kws3/ui';
-      let canvasWrapper;
-      export let width = "250px",
-        height = "250px",
-        pen_width = 2,
-        eraser_width = 6,
-        pen_color = "#ff0000",
-        background_image = "",
-        readonly = false,
-        disabled = false,
-        image = "",
-        initial_scale = 1,
-        expand = {
-          from: "center",
-          to: "center",
-          scale: 50,
-        },
-        tools = ["Pen", "Eraser"],
-        actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-        toolbar_placement = "bottom",
-        active_tool = "Pen",
-        drawing_label = "",
-        cy = "";
-    </script>
-  `}
-/>
+<Story name="Example" args={{}}>
+  {(args) => ({
+    Component: ExampleDecorator,
+  })}
+</Story>
