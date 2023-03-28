@@ -19,48 +19,37 @@ This is example of creating an ESignature/Signature Pad component using Kws3 UI 
 
 <Canvas
   bind:image
+  bind:is_filled
   {styles}
   {width}
   {height}
-  {pen_width}
-  {eraser_width}
-  {pen_color}
   {background_image}
   {readonly}
   {disabled}
-  {initial_scale}
-  {expand}
-  {tools}
-  {active_tool}
+  {activeTool}
   {actions}
-  {toolbar_placement}
-  {drawing_label}
-  />
+  {cy}
+  {has_controls}
+  {control_position} />
 
 <script>
-import { Canvas } from '@kws3/ui';
+  import { Canvas } from '@kws3/ui';
 
-export let width = "250px",
-  height = "250px",
-  pen_width = 2,
-  eraser_width = 6,
-  pen_color = "#ff0000",
+  export let image, is_filled;
+  let styles = {
+    border: "1px solid #b5b5b5",
+  },
+  width = "520px",
+  height = "170px",
   background_image = "",
   readonly = false,
   disabled = false,
-  image = "",
-  initial_scale = 1,
-  expand = {
-    from: "center",
-    to: "center",
-    scale: 50,
-  },
-  tools = ["Pen", "Eraser"],
-  actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-  toolbar_placement = "bottom",
-  active_tool = "Pen",
-  drawing_label = "",
-  cy = "";
+  actions = ["undo", "redo", "reset"],
+  activeTool = "Pen",
+  cy = "",
+  has_controls = true,
+  control_position = "end";
+
 </script>
 
 ```
