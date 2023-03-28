@@ -2,27 +2,29 @@
   <div class="column has-text-centered">
     <label for="" class="label">Input</label>
     <KwsCanvas
-      bind:this={canvasWrapper}
       bind:image
+      bind:is_filled
       {styles}
       {width}
       {height}
-      {pen_width}
-      {eraser_width}
-      {pen_color}
+      {line}
+      {eraser}
+      {color}
       {background_image}
       {readonly}
       {disabled}
       {initial_scale}
       {expand}
       {tools}
-      {active_tool}
+      {activeTool}
       {actions}
       {toolbar_placement}
       {drawing_label}
-      {cy} />
+      {cy}
+      {has_controls}
+      {control_position} />
   </div>
-  <div class="column has-text-centered">
+  <!-- <div class="column has-text-centered">
     <label for="" class="label">Output</label>
     {#if image}
       <img
@@ -32,26 +34,24 @@
         {height}
         style="border: 1px solid #b5b5b5;" />
     {/if}
-  </div>
+  </div> -->
 </div>
 
 <script>
   import { Canvas as KwsCanvas } from "@kws3/ui";
 
-  let canvasWrapper;
-
-  export let styles = {
+  export let image, is_filled;
+  let styles = {
       border: "1px solid #b5b5b5",
     },
-    width = "250px",
-    height = "250px",
-    pen_width = 2,
-    eraser_width = 6,
-    pen_color = "#ff0000",
+    width = "520px",
+    height = "170px",
+    line = 2,
+    eraser = 6,
+    color = "#000000",
     background_image = "",
     readonly = false,
     disabled = false,
-    image = "",
     initial_scale = 1,
     expand = {
       from: "center",
@@ -59,9 +59,11 @@
       scale: 50,
     },
     tools = ["Pen", "Eraser"],
-    actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
+    actions = ["undo", "redo", "reset"],
     toolbar_placement = "bottom",
-    active_tool = "Pen",
+    activeTool = "Pen",
     drawing_label = "",
-    cy = "";
+    cy = "",
+    has_controls = true,
+    control_position = "end";
 </script>
