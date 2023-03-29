@@ -23,9 +23,22 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
   style="width:{width || '250px'};height:{height || '250px'}">
   {#if disabled || readonly}
-    <img alt="canvasimage" src={image || emptyImage} style={_image_syles} style:width style:height style:background-image="{background_image}"  />
+    <img
+      alt="canvasimage"
+      src={image || emptyImage}
+      style={_image_syles}
+      style:width
+      style:height
+      style:background-image="{background_image}"
+      />
   {/if}
-  <canvas bind:this={CANVAS} style:background-image="{background_image}" style:width style:height />
+  <canvas bind:this={CANVAS}
+    style:width
+    style:height
+    style:background-image="{background_image}"
+    style:background-color={readonly ? 'transparent':''}
+    style:border={!is_filled ? '1px solid #000000':''}
+  />
 </div>
 
 <script>
@@ -116,21 +129,21 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     border:${styles.border || "1px solid #000000"};
   `;
   $: {
-    let default_styles = {
-      "background-image": `url(${background_image})`,
-    };
-    default_styles["width"] = width;
-    default_styles["height"] = height;
-    let __styles = { ...default_styles, ...styles };
-    if (readonly) {
-      __styles["background-color"] = "transparent";
-    }
-    if (!is_filled) {
-      __styles["border"] = "1px dotted #ff0000";
-    }
-    _styles = Object.entries(__styles)
-      .map(([key, val]) => `${key}:${val}`)
-      .join(";");
+    // let default_styles = {
+    //   "background-image": `url(${background_image})`,
+    // };
+    // default_styles["width"] = width;
+    // default_styles["height"] = height;
+    // let __styles = { ...default_styles, ...styles };
+    // if (readonly) {
+    //   __styles["background-color"] = "transparent";
+    // }
+    // if (!is_filled) {
+    //   __styles["border"] = "1px dotted #ff0000";
+    // }
+    // _styles = Object.entries(__styles)
+    //   .map(([key, val]) => `${key}:${val}`)
+    //   .join(";");
   }
 
   $: readonly, setEvents();
