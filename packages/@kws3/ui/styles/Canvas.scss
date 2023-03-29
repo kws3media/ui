@@ -63,6 +63,10 @@
     overflow: hidden;
     img {
       display: block;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      border: 1px dotted #ccc;
     }
     canvas {
       display: block;

@@ -23,9 +23,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
   style="width:{width || '250px'};height:{height || '250px'}">
   {#if disabled || readonly}
-    <img alt="canvasimage" src={image || emptyImage} style={_image_syles} />
+    <img alt="canvasimage" src={image || emptyImage} style={_image_syles} style:width style:height style:background-image="{background_image}"  />
   {/if}
-  <canvas bind:this={CANVAS} style={_styles} />
+  <canvas bind:this={CANVAS} style:background-image="{background_image}" style:width style:height />
 </div>
 
 <script>
@@ -112,6 +112,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   //   background-size: contain;
   //   background-position: center center;
   // `;
+    $: _image_syles = `
+    border:${styles.border || "1px solid #000000"};
+  `;
   $: {
     let default_styles = {
       "background-image": `url(${background_image})`,
