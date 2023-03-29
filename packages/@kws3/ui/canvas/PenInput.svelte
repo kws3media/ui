@@ -103,25 +103,17 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     emptyImage =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 
-  $: _image_syles = `
-    width:${width || "250px"};
-    height:${height || "250px"};
-    border:${styles.border || "1px solid #000000"};
-    pointer-events: none; background-image:url(${background_image || ""});
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-  `;
+  // $: _image_syles = `
+  //   width:${width || "250px"};
+  //   height:${height || "250px"};
+  //   border:${styles.border || "1px solid #000000"};
+  //   pointer-events: none; background-image:url(${background_image || ""});
+  //   background-repeat: no-repeat;
+  //   background-size: contain;
+  //   background-position: center center;
+  // `;
   $: {
     let default_styles = {
-      "background-color": "#fdfdfd",
-      "background-repeat": "no-repeat",
-      "background-size": "contain",
-      "background-position": "center center",
-      "border-top": "1px dotted #ccc",
-      "border-left": "1px dotted #ccc",
-      "border-right": "1px dotted #ccc",
-      "border-bottom": "1px dotted #ccc",
       "background-image": `url(${background_image})`,
     };
     default_styles["width"] = width;

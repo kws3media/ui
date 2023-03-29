@@ -7,8 +7,6 @@
       {disabled}
       {is_filled}
       {styles}
-      {width}
-      {height}
       {pen_color}
       {pen_width}
       {eraser_width}
@@ -18,17 +16,6 @@
       {expand}
       bind:DRAWING_PAD
       on:change={onChange} />
-  </div>
-  <div class="column has-text-centered">
-    <label for="" class="label">Output</label>
-    {#if image}
-      <img
-        alt="canvasoutput"
-        src={image}
-        {width}
-        {height}
-        style="border: 1px solid #b5b5b5;" />
-    {/if}
   </div>
 </div>
 

@@ -1,6 +1,7 @@
 :root {
-  --kws-peninput-height: 250px;
+  --kws-peninput-height: 350px;
   --kws-peninput-width: 250px;
+  --kws-peninput-border: 1px dotted #ccc;
   --kws-peninput-controls-height: 2.4rem;
 }
 .canvas-wrapper {
@@ -67,6 +68,11 @@
       display: block;
       cursor: crosshair;
       box-sizing: border-box;
+      background-color: #fdfdfd;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      border: 1px dotted #ccc;
     }
     &.is-readonly {
       canvas {
