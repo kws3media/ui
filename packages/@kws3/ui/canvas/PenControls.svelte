@@ -14,10 +14,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {string} [active_tool="Pen"] - Determines which tool is select, Default: `"Pen"`
   @param {string} [toolbar_placement="bottom"] - Determines where the action tools are placed, Default: `"bottom"`
   @param {string} [default_color=""] - colorpicker's default color, Default: `""`
-  @param {string} [controlPosition="center"] - ControlPosition property, Default: `"center"`
-  @param {boolean} [canUndo=false] - CanUndo property, Default: `false`
-  @param {boolean} [canRedo=false] - CanRedo property, Default: `false`
-  @param {boolean} [showTools=false] - ShowTools property, Default: `false`
+  @param {string} [control_position="center"] - ControlPosition property, Default: `"center"`
+  @param {boolean} [can_undo=false] - CanUndo property, Default: `false`
+  @param {boolean} [can_redo=false] - CanRedo property, Default: `false`
+  @param {boolean} [show_tools=false] - ShowTools property, Default: `false`
 
   ### Events
   - `toggleExpand`
@@ -34,12 +34,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   style={canvas_controls_styles}>
   {#if !readonly && !disabled}
     <div
-      class="columns m-0 is-flex is-justify-content-{controlPosition} {controlClasses}"
+      class="columns m-0 is-flex is-justify-content-{control_position} {controlClasses}"
       style="gap: 0.5rem;">
       {#each actions as action}
         {#if action === "controls"}
           <div class="control">
-            <div class="dropdown is-{showTools ? 'active' : ''} is-up">
+            <div class="dropdown is-{show_tools ? 'active' : ''} is-up">
               <div class="dropdown-trigger">
                 <button
                   type="button"
@@ -47,7 +47,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
                   class="button is-info is-small "
                   data-tooltip="Tools"
                   aria-controls="tools-dropdown"
-                  on:click={() => (showTools = !showTools)}>
+                  on:click={() => (show_tools = !show_tools)}>
                   <Icon icon={toolMap[active_tool].icon} size="small" />
                 </button>
               </div>
@@ -80,7 +80,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               class="button is-small is-warning "
               data-tooltip="Undo"
               on:click={() => fire("undo")}
-              disabled={!canUndo}>
+              disabled={!can_undo}>
               <Icon icon="undo" size="small" />
             </button>
           </div>
@@ -92,7 +92,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
               class="button is-small is-warning "
               data-tooltip="Redo"
               on:click={() => fire("redo")}
-              disabled={!canRedo}>
+              disabled={!can_redo}>
               <Icon icon="repeat" size="small" />
             </button>
           </div>
@@ -186,10 +186,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * colorpicker's default color
      */
     default_color = "",
-    controlPosition = "center",
-    canUndo = false,
-    canRedo = false,
-    showTools = false;
+    control_position = "center",
+    can_undo = false,
+    can_redo = false,
+    show_tools = false;
 
   let expanded = false;
   let color = "";

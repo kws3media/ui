@@ -80,9 +80,9 @@ export let args = {
       {expandContract}
       bind:EXPANDED_BUTTON
       bind:DRAWING_PAD
-      bind:canUndo
-      bind:canRedo
-      bind:showTools />
+      bind:can_undo
+      bind:can_redo
+      bind:show_tools />
     
     <script>
       import { PenControls } from '@kws3/ui';
@@ -95,13 +95,13 @@ export let args = {
       export let active_tool = "Pen";
       export let drawing_label = "";
       let DRAWING_PAD, EXPANDED_BUTTON;
-      let canUndo = false,
-          canRedo = false,
+      let can_undo = false,
+          can_redo = false,
           expanded = false,
-          showTools = false;
+          show_tools = false;
       function setTool(tool) {
         active_tool = tool;
-        showTools = false;
+        show_tools = false;
         DRAWING_PAD && DRAWING_PAD.setTool(tool);
       }
       function expandContract() {

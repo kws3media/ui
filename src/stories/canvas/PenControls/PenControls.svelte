@@ -14,9 +14,9 @@
       {expandContract}
       bind:EXPANDED_BUTTON
       bind:DRAWING_PAD
-      bind:canUndo
+      bind:can_undo
       bind:canRedo
-      bind:showTools />
+      bind:show_tools />
   </div>
 </div>
 
@@ -34,14 +34,14 @@
 
   let DRAWING_PAD, EXPANDED_BUTTON;
 
-  let canUndo = false,
+  let can_undo = false,
     canRedo = false,
     expanded = false,
-    showTools = false;
+    show_tools = false;
 
   function setTool(tool) {
     active_tool = tool;
-    showTools = false;
+    show_tools = false;
     DRAWING_PAD && DRAWING_PAD.setTool(tool);
   }
   function expandContract() {

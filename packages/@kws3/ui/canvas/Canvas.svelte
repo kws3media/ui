@@ -40,9 +40,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     on:reset={() => reset()}
     on:toggleExpand={() => toggleExpand()}
     default_color={pen_color}
-    bind:canUndo
-    bind:canRedo
-    bind:showTools />
+    bind:can_undo
+    bind:can_redo
+    bind:show_tools />
 </div>
 
 <script>
@@ -131,10 +131,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   let DRAWING_PAD;
 
-  let canUndo = false,
-    canRedo = false,
+  let can_undo = false,
+    can_redo = false,
     expanded = false,
-    showTools = false,
+    show_tools = false,
     settingFlag = false;
 
   let _colorpicker,
@@ -182,7 +182,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   function setTool(tool) {
     active_tool = tool;
-    showTools = false;
+    show_tools = false;
     DRAWING_PAD && DRAWING_PAD.setTool(tool);
   }
 
@@ -221,15 +221,15 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   function reset() {
     DRAWING_PAD && DRAWING_PAD.reset();
-    canUndo = false;
-    canRedo = false;
+    can_undo = false;
+    can_redo = false;
   }
 
   function onChange({ detail }) {
     settingFlag = true;
     image = detail.canvasImage;
-    canUndo = detail.canUndo;
-    canRedo = detail.canRedo;
+    can_undo = detail.canUndo;
+    can_redo = detail.canRedo;
     settingFlag = false;
   }
 </script>
