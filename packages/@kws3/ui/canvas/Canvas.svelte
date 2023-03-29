@@ -15,7 +15,6 @@
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {object} [expand={}] - Transform scale and the direction from which the canvas should expand on expansion, Default: `{from: "center", to: "center", scale: 50}`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
-  @param {bottom'|'top'} [toolbar_placement="bottom"] - Position of the action toolbar, Default: `"bottom"`
   @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
   @param {'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
@@ -46,6 +45,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 </div>
 
 <script>
+  // @ts-nocheck
+
   import PenInput from "./PenInput.svelte";
   import PenControls from "./PenControls.svelte";
   import { onMount } from "svelte";
@@ -103,11 +104,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * List of actions toolbar
      */
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-    /**
-     * Default position of the action toolbar
-     * @type {'bottom'|'top'|'left'|'right'}
-     */
-    toolbar_placement = "bottom",
     /**
      * List of tools available for user to select from
      * @type {'Pen'|'Eraser'}

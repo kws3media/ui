@@ -2,7 +2,6 @@
   <div class="column has-text-centered">
     <label for="" class="label">Input</label>
     <KwsCanvas
-      bind:this={canvasWrapper}
       bind:image
       {styles}
       {width}
@@ -18,7 +17,6 @@
       {tools}
       {active_tool}
       {actions}
-      {toolbar_placement}
       {drawing_label}
       {cy} />
   </div>
@@ -36,9 +34,9 @@
 </div>
 
 <script>
-  import { Canvas as KwsCanvas } from "@kws3/ui";
+  // @ts-nocheck
 
-  let canvasWrapper;
+  import { Canvas as KwsCanvas } from "@kws3/ui";
 
   export let styles = {
       border: "1px solid #b5b5b5",
@@ -60,7 +58,6 @@
     },
     tools = ["Pen", "Eraser"],
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-    toolbar_placement = "bottom",
     active_tool = "Pen",
     drawing_label = "",
     cy = "";

@@ -14,13 +14,14 @@
   backface-visibility: hidden;
   transform-style: preserve-3d;
   position: relative;
-  .canvas-controls {
+  .pen-controls {
     position: absolute;
     width: 100%;
     min-height: var(--kws-peninput-controls-height);
     background: transparentize($grey-light, 0.5);
     padding: 0.25rem;
     margin: 0 auto;
+    top: var(--kws-peninput-height);
     .control {
       .button {
         &.is-always-rounded {
@@ -30,12 +31,6 @@
         }
       }
     }
-    &.is-placement-bottom {
-      top: var(--kws-peninput-height);
-    }
-    &.is-placement-top {
-      top: calc(-1 * var(--kws-peninput-controls-height));
-    }
 
     input[type="color"] {
       -webkit-appearance: none;
@@ -44,18 +39,6 @@
       height: 32px;
       padding: 3px;
       background-color: $white-ter;
-    }
-    &.is-placement-left,
-    &.is-placement-right {
-      width: 15%;
-      height: 100%;
-    }
-
-    &.is-placement-left {
-      left: -40px;
-    }
-    &.is-placement-right {
-      right: -40px;
     }
     input[type="color"]::-webkit-color-swatch-wrapper {
       padding: 0;
@@ -67,7 +50,7 @@
       z-index: 999;
       position: relative;
       box-shadow: $card-shadow;
-      .canvas-controls {
+      .pen-controls {
         background: $grey-lighter;
       }
     }

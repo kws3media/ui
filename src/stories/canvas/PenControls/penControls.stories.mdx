@@ -18,7 +18,6 @@ export let args = {
   disabled: false,
   tools: ["Pen", "Eraser"],
   actions: ["controls", "undo", "redo", "reset", "expand"],
-  toolbar_placement: "bottom",
   active_tool: "Pen",
   drawing_label: ""
 };
@@ -74,7 +73,6 @@ export let args = {
       {tools}
       {active_tool}
       {actions}
-      {toolbar_placement}
       {drawing_label}
       {setTool}
       {expandContract}
@@ -91,7 +89,6 @@ export let args = {
       export let disabled = false;
       export let tools =["Pen", "Eraser"];
       export let actions = ["controls", "undo", "redo", "reset", "expand"];
-      export let toolbar_placement = "bottom";
       export let active_tool = "Pen";
       export let drawing_label = "";
       let DRAWING_PAD, EXPANDED_BUTTON;

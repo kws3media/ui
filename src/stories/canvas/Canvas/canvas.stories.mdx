@@ -34,10 +34,8 @@ export let args = {
   },
   tools: ["Pen", "Eraser"],
   actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-  toolbar_placement: "bottom",
   active_tool: "Pen",
   drawing_label: "",
-  hide_colorpicker: false,
   cy: "",
 };
 
@@ -92,7 +90,6 @@ export let args = {
   language='html'
   code={ dedent`
       <Canvas
-        bind:this={canvasWrapper}
         bind:image
         {styles}
         {width}
@@ -108,13 +105,11 @@ export let args = {
         {tools}
         {active_tool}
         {actions}
-        {toolbar_placement}
         {drawing_label}
         />
     
     <script>
       import { Canvas } from '@kws3/ui';
-      let canvasWrapper;
       export let width = "250px",
         height = "250px",
         pen_width = 2,
@@ -132,7 +127,6 @@ export let args = {
         },
         tools = ["Pen", "Eraser"],
         actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-        toolbar_placement = "bottom",
         active_tool = "Pen",
         drawing_label = "",
         cy = "";
