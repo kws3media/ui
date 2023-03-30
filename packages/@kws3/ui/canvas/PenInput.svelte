@@ -1,7 +1,6 @@
 <!--
   @component
 
-  @param {object} [styles={}] - Inline CSS for the canvas, Default: `{}`
   @param {string} [width="250px"] - Width of the canvas, Default: `250px`
   @param {string} [height="250px"] - Height of the canvas, Default: `250px`
   @param {number} [pen_width=2] - width of the line, Default: `2`
@@ -21,12 +20,13 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
 <div
   class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
-  style="width:{width || '250px'};height:{height || '250px'}">
+  style:width
+  style:height
+>
   {#if disabled || readonly}
     <img
       alt="canvasimage"
       src={image || emptyImage}
-      style={_image_syles}
       style:width
       style:height
       style:background-image="{background_image}"
@@ -49,10 +49,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   const fire = createEventDispatcher();
 
   export let is_filled = false,
-    /**
-     * Inline CSS for the canvas
-     */
-    styles = {},
     /**
      * Canvas width
      */
@@ -111,39 +107,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   let CANVAS,
     is_ready = false,
-    _styles = {},
     emptyImage =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 
-  // $: _image_syles = `
-  //   width:${width || "250px"};
-  //   height:${height || "250px"};
-  //   border:${styles.border || "1px solid #000000"};
-  //   pointer-events: none; background-image:url(${background_image || ""});
-  //   background-repeat: no-repeat;
-  //   background-size: contain;
-  //   background-position: center center;
-  // `;
-    $: _image_syles = `
-    border:${styles.border || "1px solid #000000"};
-  `;
-  $: {
-    // let default_styles = {
-    //   "background-image": `url(${background_image})`,
-    // };
-    // default_styles["width"] = width;
-    // default_styles["height"] = height;
-    // let __styles = { ...default_styles, ...styles };
-    // if (readonly) {
-    //   __styles["background-color"] = "transparent";
-    // }
-    // if (!is_filled) {
-    //   __styles["border"] = "1px dotted #ff0000";
-    // }
-    // _styles = Object.entries(__styles)
-    //   .map(([key, val]) => `${key}:${val}`)
-    //   .join(";");
-  }
 
   $: readonly, setEvents();
 
