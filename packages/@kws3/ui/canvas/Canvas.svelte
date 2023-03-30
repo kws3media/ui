@@ -69,13 +69,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   import { onMount } from "svelte";
 
   /**
-   * Inline CSS for the canvas
-   */
-  export let styles = {},
-    /**
      * Canvas width
      */
-    width = "250px",
+  export let width = "250px",
     /**
      * Canvas height
      */

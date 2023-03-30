@@ -12,12 +12,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {array} [tools=[]] - List of tools available, Default: `[]`
   @param {array} [actions=[]] - List of actions toolbar, Default: `[]`
   @param {string} [active_tool="Pen"] - Determines which tool is select, Default: `"Pen"`
-  @param {string} [toolbar_placement="bottom"] - Determines where the action tools are placed, Default: `"bottom"`
+  @param {'bottom'|'top'} [toolbar_placement="bottom"] - Determines where the action tools are placed, Default: `"bottom"`
   @param {string} [default_color=""] - colorpicker's default color, Default: `""`
-  @param {string} [control_position="center"] - ControlPosition property, Default: `"center"`
-  @param {boolean} [can_undo=false] - CanUndo property, Default: `false`
-  @param {boolean} [can_redo=false] - CanRedo property, Default: `false`
-  @param {boolean} [show_tools=false] - ShowTools property, Default: `false`
+  @param {string} [control_position="center"] - Control_position property, Default: `"center"`
+  @param {boolean} [can_undo=false] - Can_undo property, Default: `false`
+  @param {boolean} [can_redo=false] - Can_redo property, Default: `false`
+  @param {boolean} [show_tools=false] - Show_tools property, Default: `false`
 
   ### Events
   - `toggleExpand`
