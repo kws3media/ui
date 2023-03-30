@@ -9,13 +9,15 @@
 
   Checked\Not Checked, Default: `false`
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
+
 -->
 
 <div class="control has-icons-left has-icons-right">
   <input
-    class="input is-{size} is-{color} {klass} {disabled} {style}"
+    class="input is-{size} is-{color} {klass} {style}"
     type={visibility ? "text" : "password"}
-    {placeholder} />
+    {placeholder}
+    {disabled} />
 
   <span class="icon is-{size} is-left">
     <Icon family={icon_family} icon="lock" {size} />
