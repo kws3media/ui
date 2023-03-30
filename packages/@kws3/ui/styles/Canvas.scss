@@ -35,7 +35,7 @@
       top: var(--kws-peninput-height);
     }
     &.is-placement-top {
-      top: calc(-1 * var(--kws-peninput-controls-height));
+      top: 0;
     }
 
     input[type="color"] {
@@ -45,18 +45,6 @@
       height: 32px;
       padding: 3px;
       background-color: $white-ter;
-    }
-    &.is-placement-left,
-    &.is-placement-right {
-      width: 15%;
-      height: 100%;
-    }
-
-    &.is-placement-left {
-      left: -40px;
-    }
-    &.is-placement-right {
-      right: -40px;
     }
     input[type="color"]::-webkit-color-swatch-wrapper {
       padding: 0;
@@ -99,6 +87,12 @@
       canvas {
         cursor: default;
       }
+    }
+  }
+
+  &.has-toolbar-top {
+    .canvas-box {
+      top: var(--kws-peninput-controls-height);
     }
   }
 }

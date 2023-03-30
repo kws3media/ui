@@ -28,7 +28,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 -->
 
 <div
-  class="canvas-wrapper {expanded ? 'expanded' : ''}"
+  class="canvas-wrapper {expanded ? 'expanded' : ''} {toolbar_placement ===
+  'top'
+    ? 'has-toolbar-top'
+    : ''}"
   style={wrapperStyles}
   data-cy={cy}>
   <PenInput {...$$props} {expanded} bind:DRAWING_PAD on:change={onChange} />
@@ -109,7 +112,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     /**
      * Default position of the action toolbar
-     * @type {'bottom'|'top'|'left'|'right'}
+     * @type {'bottom'|'top'}
      */
     toolbar_placement = "bottom",
     /**

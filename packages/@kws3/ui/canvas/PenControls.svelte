@@ -34,7 +34,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   style={canvas_controls_styles}>
   {#if !readonly && !disabled}
     <div
-      class="columns m-0 is-flex is-justify-content-{control_position} {controlClasses}"
+      class="columns m-0 is-flex is-justify-content-{control_position}"
       style="gap: 0.5rem;">
       {#each actions as action}
         {#if action === "controls"}
@@ -179,6 +179,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     active_tool = "Pen",
     /**
      * Determines where the action tools are placed
+     *  @type {'bottom'|'top'}
      */
 
     toolbar_placement = "bottom",
@@ -220,13 +221,5 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       );
     }
     fire("toggleExpand");
-  }
-
-  let controlClasses = "is-flex-direction-row";
-
-  $: {
-    if (toolbar_placement === "left" || toolbar_placement === "right") {
-      controlClasses = "is-flex-direction-column";
-    }
   }
 </script>
