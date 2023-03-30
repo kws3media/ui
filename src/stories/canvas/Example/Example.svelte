@@ -4,7 +4,6 @@
     <KwsCanvas
       bind:image
       bind:is_filled
-      {styles}
       {width}
       {height}
       {background_image}
@@ -22,10 +21,7 @@
   import { Canvas as KwsCanvas } from "@kws3/ui";
 
   export let image, is_filled;
-  let styles = {
-      border: "1px solid #b5b5b5",
-    },
-    width = "520px",
+  let width = "520px",
     height = "170px",
     background_image = "",
     readonly = false,
