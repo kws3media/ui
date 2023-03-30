@@ -222,10 +222,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   }
 
   function onChange({ detail }) {
+    let { canvasImage, canRedo, canUndo } = detail;
     settingFlag = true;
-    image = detail.canvasImage;
-    can_undo = detail.canUndo;
-    can_redo = detail.canRedo;
+    image = canvasImage;
+    can_undo = canUndo;
+    can_redo = canRedo;
     settingFlag = false;
   }
 </script>
