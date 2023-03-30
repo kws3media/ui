@@ -29,13 +29,13 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       src={image || emptyImage}
       style:width
       style:height
-      style:background-image="{background_image}"
+      style:background-image={`url(${background_image})`}
       />
   {/if}
   <canvas bind:this={CANVAS}
     style:width
     style:height
-    style:background-image="{background_image}"
+    style:background-image={`url(${background_image})`}
     style:background-color={readonly ? 'transparent':''}
     style:border={!is_filled ? '1px solid #000000':''}
   />
