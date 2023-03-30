@@ -19,7 +19,7 @@ export let args={
   image : "",
   background_image : "",
   initial_scale : 1,
-  expand : { from: "center", to: "center", scale: 50 },
+  expand_scale: 50
 };
 
 
@@ -82,7 +82,7 @@ export let args={
         image=""
         background_image=""
         initial_scale=1
-        expand={ from: "center", to: "center", scale: 50 }
+        expand_scale=50
         bind:DRAWING_PAD
         on:change={onChange} 
       />`}
@@ -106,7 +106,7 @@ export let args={
       {image}
       {background_image}
       {initial_scale}
-      {expand}
+      {expand_scale}
       bind:DRAWING_PAD
       on:change={onChange} />
     
@@ -123,7 +123,7 @@ export let args={
       export let background_image = ""; 
       export let expanded = false;
       export let initial_scale = 1;
-      export let expand = { from: "center", to: "center", scale: 50 }; 
+      export let expand_scale = 50; 
       export let readonly = false;
       export let disabled = false; 
       export let DRAWING_PAD;

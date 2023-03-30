@@ -13,7 +13,9 @@
       {readonly}
       {disabled}
       {initial_scale}
-      {expand}
+      {expand_to}
+      {expand_from}
+      {expand_scale}
       {tools}
       {active_tool}
       {actions}
@@ -51,11 +53,9 @@
     disabled = false,
     image = "",
     initial_scale = 1,
-    expand = {
-      from: "center",
-      to: "center",
-      scale: 50,
-    },
+    expand_to = "center",
+    expand_from = "center",
+    expand_scale = 50,
     tools = ["Pen", "Eraser"],
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     active_tool = "Pen",

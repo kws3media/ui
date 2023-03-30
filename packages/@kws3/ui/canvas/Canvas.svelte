@@ -13,7 +13,9 @@
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
-  @param {object} [expand={}] - Transform scale and the direction from which the canvas should expand on expansion, Default: `{from: "center", to: "center", scale: 50}`
+  @param {string} [expand_from="center"] -  Determines whether the canvas should begin expanding., Default: `center`
+  @param {string} [expand_to="center"] -  Determines whether the canvas should end expanding., Default: `center`
+  @param {number} [expand_scale=50] -  Transform scale of the canvas on expansion Default: `50`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
   @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
   @param {'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
@@ -99,7 +101,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * Transform scale of the canvas on expansion
      * The direction from which the canvas should expand
      */
-    expand = { from: "center", to: "center", scale: 50 },
+    expand_from = "center",
+    expand_to = "center",
+    expand_scale = 50,
     /**
      * List of actions toolbar
      */
@@ -149,8 +153,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     let default_styles = {
       display: "flex",
       width: width || "250px",
-      transform: `scale(${expanded ? 1 + expand.scale * 0.01 : initial_scale})`,
-      "transform-origin": `${expand.from || "center"} ${expand.to || "center"}`,
+      transform: `scale(${expanded ? 1 + expand_scale * 0.01 : initial_scale})`,
+      "transform-origin": `${expand_from || "center"} ${expand_to || "center"}`,
       "flex-direction": "column",
       "--kws-peninput-height": height,
       "--kws-peninput-width": width,
@@ -185,7 +189,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   function setScaleFactor() {
     DRAWING_PAD &&
       DRAWING_PAD.setScaleFactor(
-        expanded ? 1 + expand.scale * 0.01 : initial_scale
+        expanded ? 1 + expand_scale * 0.01 : initial_scale
       );
   }
 

@@ -12,7 +12,7 @@
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
-  @param {object} [expand={}] - Transform scale and the direction from which the canvas should expand on expansion, Default: `{from: "center", to: "center", scale: 50}`
+  @param {number} [expand_scale=50] -  Transform scale of the canvas on expansion Default: `50`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
@@ -95,9 +95,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     initial_scale = 1,
     /**
      * Transform scale of the canvas on expansion
-     * The direction from which the canvas should expand
      */
-    expand = { from: "center", to: "center", scale: 50 },
+    expand_scale = 50,
     /**
      * Label for the canvas drawing box
      *
@@ -161,7 +160,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
         initialScale: initial_scale,
         image: image || emptyImage,
         readonly,
-        expand: expand.scale,
+        expand: expand_scale,
       }
     );
 
