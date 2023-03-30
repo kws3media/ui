@@ -28,13 +28,24 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 -->
 
 <div
-  class="canvas-wrapper {expanded ? 'expanded' : ''} {toolbar_placement ===
-  'top'
-    ? 'has-toolbar-top'
-    : ''}"
-  style={wrapperStyles}
-  data-cy={cy}>
-  <PenInput {...$$props} {expanded} bind:DRAWING_PAD on:change={onChange} />
+  class="
+    canvas-wrapper
+    {expanded ? 'expanded' : ''}
+    {toolbar_placement === 'top' ? 'has-toolbar-top' : ''}
+  "
+  style="--kws-peninput-height: {height}; --kws-peninput-width: {width}"
+  style:transform="scale({expanded ? 1 + expand_scale * 0.01 : initial_scale})"
+  style:transform-origin="{expand_from} {expand_to}"
+  style:width
+  data-cy={cy}
+>
+
+  <PenInput
+    {...$$props}
+    {expanded}
+    bind:DRAWING_PAD
+    on:change={onChange}
+  />
 
   <PenControls
     {...$$props}
@@ -51,6 +62,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 </div>
 
 <script>
+// @ts-nocheck
+
   import PenInput from "./PenInput.svelte";
   import PenControls from "./PenControls.svelte";
   import { onMount } from "svelte";
@@ -144,9 +157,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     show_tools = false,
     settingFlag = false;
 
-  let _colorpicker,
-    wrapperStyles = {},
-    penColor = "000000";
+  let penColor = "000000";
 
   $: {
     penColor =
@@ -155,21 +166,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
         : pen_color.length === 6
         ? pen_color
         : "000000";
-  }
-  $: {
-    let default_styles = {
-      display: "flex",
-      width: width || "250px",
-      transform: `scale(${expanded ? 1 + expand_scale * 0.01 : initial_scale})`,
-      "transform-origin": `${expand_from || "center"} ${expand_to || "center"}`,
-      "flex-direction": "column",
-      "--kws-peninput-height": height,
-      "--kws-peninput-width": width,
-    };
-
-    wrapperStyles = Object.entries(default_styles)
-      .map(([key, val]) => `${key}:${val}`)
-      .join(";");
   }
 
   $: expanded, setScaleFactor();
