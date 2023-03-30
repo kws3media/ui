@@ -5,9 +5,9 @@
   @param {''|'small'|'medium'|'large'} [size=""] - Size of the PasswordInput, Default: `""`
   @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the PasswordInput, Default: `""`
   @param {string} [style=""] - Inline CSS for the PasswordInput, Default: `""`
- @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
+  @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
 
-Checked\Not Checked, Default: `false`
+  Checked\Not Checked, Default: `false`
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
 -->
 
@@ -29,7 +29,7 @@ Checked\Not Checked, Default: `false`
       }}>
       <Icon
         family={icon_family}
-        icon={visibility ? visibility_icon.hide : visibility_icon.show}
+        icon={visibility ? visibility_icon.show : visibility_icon.hide}
         {size} />
     </span>
   {/if}
