@@ -12,6 +12,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {array} [tools=[]] - List of tools available, Default: `[]`
   @param {array} [actions=[]] - List of actions toolbar, Default: `[]`
   @param {string} [active_tool="Pen"] - Determines which tool is select, Default: `"Pen"`
+  @param {string} [toolbar_placement="bottom"] - Determines where the action tools are placed, Default: `"bottom"`
   @param {string} [default_color=""] - colorpicker's default color, Default: `""`
   @param {string} [control_position="center"] - ControlPosition property, Default: `"center"`
   @param {boolean} [can_undo=false] - CanUndo property, Default: `false`
@@ -28,10 +29,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
 -->
 
-<div class="pen-controls" style={canvas_controls_styles}>
+<div
+  class="canvas-controls is-placement-{toolbar_placement}"
+  style={canvas_controls_styles}>
   {#if !readonly && !disabled}
     <div
-      class="columns m-0 is-flex is-justify-content-{control_position} is-flex-direction-row"
+      class="columns m-0 is-flex is-justify-content-{control_position} {controlClasses}"
       style="gap: 0.5rem;">
       {#each actions as action}
         {#if action === "controls"}
@@ -175,6 +178,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     active_tool = "Pen",
     /**
+     * Determines where the action tools are placed
+     */
+
+    toolbar_placement = "bottom",
+    /**
      * colorpicker's default color
      */
     default_color = "",
@@ -212,5 +220,13 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       );
     }
     fire("toggleExpand");
+  }
+
+  let controlClasses = "is-flex-direction-row";
+
+  $: {
+    if (toolbar_placement === "left" || toolbar_placement === "right") {
+      controlClasses = "is-flex-direction-column";
+    }
   }
 </script>

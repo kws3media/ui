@@ -8,6 +8,7 @@
       {tools}
       {active_tool}
       {actions}
+      {toolbar_placement}
       {drawing_label}
       {setTool}
       {expandContract}
@@ -27,6 +28,7 @@
     disabled = false,
     tools = ["Pen", "Eraser"],
     actions = ["controls", "undo", "redo", "reset", "expand"],
+    toolbar_placement = "bottom",
     active_tool = "Pen",
     drawing_label = "";
 
