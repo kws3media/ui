@@ -13,19 +13,9 @@
       {activeTool}
       {actions}
       {has_controls}
+      {toolbar_placement}
       {control_position} />
   </div>
-  <!-- <div class="column has-text-centered">
-    <label for="" class="label">Output</label>
-    {#if image}
-      <img
-        alt="canvasoutput"
-        src={image}
-        {width}
-        {height}
-        style="border: 1px solid #b5b5b5;" />
-    {/if}
-  </div> -->
 </div>
 
 <script>
@@ -43,5 +33,6 @@
     actions = ["undo", "redo", "reset"],
     activeTool = "Pen",
     has_controls = true,
-    control_position = "end";
+    toolbar_placement = "top",
+    control_position = "center";
 </script>
