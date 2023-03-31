@@ -7,9 +7,6 @@
   @param {number} [eraser_width=6] - Eraser width, Default: `6`
   @param {string} [pen_color="#000000"] - Line color, Default: `"#000000"`
   @param {string} [background_image=""] - Background image for the canvas, Default: `""`
-  @param {string} [background_size="cover"] - Background image size for the canvas, Default: `"cover"`
-  @param {string} [background_repeat="no-repeat"] - Background image repeatation for the canvas, Default: `"no-repeat"`
-
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
@@ -33,16 +30,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       style:width
       style:height
       style:background-image="url({background_image})"
-      style:background-size={background_size}
-      style:background-repeat={background_repeat}
       />
   {/if}
   <canvas bind:this={CANVAS}
     style:width
     style:height
-    style:background-size={background_size}
-    style:background-repeat={background_repeat}
-    style:background-image="url({background_image})"
     style:background-color={readonly ? 'transparent':''}
     style:border={!is_filled ? '1px solid #000000':''}
   />
@@ -81,14 +73,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * Background image for the canvas
      */
     background_image = "",
-    /**
-     * Background image size for the canvas
-     */
-    background_size = "cover",
-    /**
-     * Background image repeatation for the canvas
-     */
-    background_repeat = "no-repeat",
     /**
      * Determines whether canvas is readonly or not
      */
