@@ -30,7 +30,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
 <div
   class="
-    canvas-wrapper
+    kws-canvas-wrapper
     {expanded ? 'expanded' : ''}
     {toolbar_placement === 'top' ? 'has-toolbar-top' : ''}
   "

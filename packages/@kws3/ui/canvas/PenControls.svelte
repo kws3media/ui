@@ -30,7 +30,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 -->
 
 <div
-  class="canvas-controls is-placement-{toolbar_placement}"
+  class="kws-pen-controls is-placement-{toolbar_placement}"
   style={canvas_controls_styles}>
   {#if !readonly && !disabled}
     <div

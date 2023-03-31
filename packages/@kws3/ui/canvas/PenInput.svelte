@@ -19,7 +19,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 -->
 
 <div
-  class="canvas-box {readonly || disabled ? 'is-readonly' : ''}"
+  class="kws-pen-input {readonly || disabled ? 'is-readonly' : ''}"
   style:width
   style:height
 >

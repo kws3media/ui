@@ -4,7 +4,7 @@
   --kws-peninput-border: 1px dotted #ccc;
   --kws-peninput-controls-height: 2.4rem;
 }
-.canvas-wrapper {
+.kws-canvas-wrapper {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -17,7 +17,7 @@
   backface-visibility: hidden;
   transform-style: preserve-3d;
   position: relative;
-  .canvas-controls {
+  .kws-pen-controls {
     position: absolute;
     width: 100%;
     min-height: var(--kws-peninput-controls-height);
@@ -58,13 +58,13 @@
       z-index: 999;
       position: relative;
       box-shadow: $card-shadow;
-      .canvas-controls {
+      .kws-pen-controls {
         background: $grey-lighter;
       }
     }
   }
 
-  .canvas-box {
+  .kws-pen-input {
     position: relative;
     margin: auto auto;
     overflow: hidden;
@@ -93,7 +93,7 @@
   }
 
   &.has-toolbar-top {
-    .canvas-box {
+    .kws-pen-input {
       top: var(--kws-peninput-controls-height);
     }
   }
