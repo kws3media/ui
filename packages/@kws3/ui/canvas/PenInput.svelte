@@ -30,13 +30,15 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
       style:width
       style:height
       style:background-image={`url(${background_image})`}
+      style:background-size={background_size}
+      style:background-repeat={background_repeat}
       />
   {/if}
   <canvas bind:this={CANVAS}
     style:width
     style:height
-    style:background-size="cover"
-    style:background-repeat="no-repeat"
+    style:background-size={background_size}
+    style:background-repeat={background_repeat}
     style:background-image={`url(${background_image})`}
     style:background-color={readonly ? 'transparent':''}
     style:border={!is_filled ? '1px solid #000000':''}
@@ -72,9 +74,18 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     pen_color = "#000000",
     /**
+    /**
      * Background image for the canvas
      */
     background_image = "",
+    /**
+     * Background image size for the canvas
+     */
+    background_size = "cover",
+    /**
+     * Background image repeatation for the canvas
+     */
+    background_repeat = "no-repeat",
     /**
      * Determines whether canvas is readonly or not
      */
