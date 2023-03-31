@@ -22,8 +22,8 @@
   {control_position}
   activeTool="Pen"
   actions={["undo", "redo", "reset"]}
-  has_controls
-  toolbar_placement="top" />
+  has_controls={!readonly && !disabled}
+  toolbar_placement={!readonly && !disabled ? "top" : ""} />
 
 <script>
   import { Canvas } from "@kws3/ui";
