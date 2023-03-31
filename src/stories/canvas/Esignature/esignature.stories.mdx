@@ -1,0 +1,60 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import EsignatureDecorator from "./Esignature.svelte";
+
+
+<Version />
+
+<Meta title="Canvas/ESignature" />
+
+
+### ESignature
+
+Create ESignature/Signature Pad component using Kws3 UI `Canvas` helper  
+
+**Example:**
+
+```html
+
+<Canvas
+  bind:image
+  bind:is_filled
+  {styles}
+  {width}
+  {height}
+  {background_image}
+  {readonly}
+  {disabled}
+  {activeTool}
+  {actions}
+  {cy}
+  {has_controls}
+  {toolbar_placement}
+  {control_position} />
+
+<script>
+  import { Canvas } from '@kws3/ui';
+
+  export let image, is_filled;
+  width = "520px",
+  height = "170px",
+  background_image = "",
+  readonly = false,
+  disabled = false,
+  actions = ["undo", "redo", "reset"],
+  activeTool = "Pen",
+  cy = "",
+  has_controls = true,
+  toolbar_placement = 'top',
+  control_position = "center";
+
+</script>
+
+```
+
+<Story name="ESignature" args={{}}>
+  {(args) => ({
+    Component: EsignatureDecorator,
+  })}
+</Story>
