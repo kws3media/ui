@@ -24,6 +24,7 @@ export let args = {
   background_image: "",
   readonly: false,
   disabled: false,
+  has_controls: true,
   image: "",
   initial_scale: 1,
   expand_to: "center",
@@ -115,6 +116,7 @@ export let args = {
         {tools}
         {active_tool}
         {actions}
+        {has_controls}
         {toolbar_placement}
         {drawing_label}
         />
@@ -140,6 +142,7 @@ export let args = {
         toolbar_placement = "bottom",
         active_tool = "Pen",
         drawing_label = "",
+        has_controls = true,
         cy = "";
     </script>
   `}

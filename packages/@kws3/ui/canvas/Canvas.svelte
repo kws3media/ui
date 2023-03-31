@@ -17,6 +17,7 @@
   @param {string} [expand_to="center"] -  Determines whether the canvas should end expanding., Default: `center`
   @param {number} [expand_scale=50] -  Transform scale of the canvas on expansion Default: `50`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
+  @param {boolean} [has_controls=true] - Determines control tools available or not, Default: `true`
   @param {bottom'|'top'} [toolbar_placement="bottom"] - Position of the action toolbar, Default: `"bottom"`
   @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
   @param {'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
@@ -47,8 +48,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     on:change={onChange}
   />
 
-  {#if has}
-
+  {#if has_controls}
   <PenControls
     {...$$props}
     on:changeColor={({ detail: { color } }) => changeColor(color)}
@@ -61,6 +61,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     bind:can_undo
     bind:can_redo
     bind:show_tools />
+  {/if}
 </div>
 
 <script>
@@ -150,6 +151,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      *  Determines whether canvas is touched or not
      */
     is_touched = false,
+    /**
+     *  Determines control tools available or not
+     */
+    has_controls = true,
     /**
      * Default position of controls
      * @type {'start'|'center'|'end'}

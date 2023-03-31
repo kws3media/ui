@@ -17,6 +17,7 @@
       {expand_to}
       {expand_from}
       {expand_scale}
+      {has_controls}
       {tools}
       {active_tool}
       {actions}
@@ -63,5 +64,6 @@
     toolbar_placement = "bottom",
     active_tool = "Pen",
     drawing_label = "",
+    has_controls = true,
     cy = "";
 </script>
