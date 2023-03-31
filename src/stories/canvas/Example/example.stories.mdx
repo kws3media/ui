@@ -69,30 +69,18 @@ export let args = {
 `}
 />
 
-<Canvas>
+
   <Story name="Example" args={args}>
     {(args) => ({
       Component: ExampleDecorator,
       props: args,
     })}
   </Story>
-</Canvas>
 
-<ArgsTable story="Example" />
 
 ### Usage
 
-<Source
-  language="javascript"
-  code={dedent`import { Canvas } from '@kws3/ui';`}
-/>
 
-##### Import the CSS:
-
-<Source
-  language="javascript"
-  code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
-/>
 
 ### Usage Example
 <Source

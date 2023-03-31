@@ -50,6 +50,7 @@ export { default as ToggleControl } from "./controls/ToggleControl.svelte";
 export { default as RangeSlider } from "./controls/RangeSlider.svelte";
 
 export { default as Canvas } from "./canvas/Canvas.svelte";
+export { default as ESignature } from "./canvas/ESignature.svelte";
 export { default as PenControls } from "./canvas/PenControls.svelte";
 export { default as PenInput } from "./canvas/PenInput.svelte";
 

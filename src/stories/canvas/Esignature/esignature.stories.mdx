@@ -1,61 +1,87 @@
-import { Meta, Story } from "@storybook/addon-docs";
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-docs";
 import dedent from "ts-dedent";
-import Version from "~/version.mdx";
-import EsignatureDecorator from "./Esignature.svelte";
+import { ESignature as KWS3ESignature } from "@kws3/ui";
+import ESignatureDecorator from "./ESignature.svelte";
+import { action } from "@storybook/addon-actions";
 
+export let args = {
+  width: "520px",
+  height: "170px",
+  background_image: "",
+  readonly: false,
+  disabled: false,
+  
+};
 
-<Version />
+<Meta
+  title="Canvas/ESignature"
+  component={KWS3ESignature}
+  args={args}
+/>
 
-<Meta title="Canvas/ESignature" />
+<Description
+  markdown={dedent`
+# ESignature
+## ESignature components for taking user's digital signature.
+`}
+/>
 
+<Canvas>
+  <Story name="ESignature" args={args}>
+    {(args) => ({
+      Component: ESignatureDecorator,
+      props: args,
+    })}
+  </Story>
+</Canvas>
 
-### ESignature
+<ArgsTable story="ESignature" />
 
+### Usage
 
+<Source
+  language="javascript"
+  code={dedent`import { ESignature } from '@kws3/ui';`}
+/>
 
-<Story name="ESignature" args={{}}>
-  {(args) => ({
-    Component: EsignatureDecorator,
-  })}
-</Story>
+##### Import the CSS:
 
+<Source
+  language="javascript"
+  code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
+/>
 
-#### Create ESignature/Signature Pad component using Kws3 UI `Canvas` helper  
-
-```html
-
-<Canvas
-  bind:image
-  bind:is_filled
-  {styles}
-  {width}
-  {height}
-  {background_image}
-  {readonly}
-  {disabled}
-  {activeTool}
-  {actions}
-  {cy}
-  {has_controls}
-  {toolbar_placement}
-  {control_position} />
-
-<script>
-  import { Canvas } from '@kws3/ui';
-
-  export let image, is_filled;
-  width = "520px",
-  height = "170px",
-  background_image = "",
-  readonly = false,
-  disabled = false,
-  actions = ["undo", "redo", "reset"],
-  activeTool = "Pen",
-  cy = "",
-  has_controls = true,
-  toolbar_placement = 'top',
-  control_position = "center";
-
-</script>
-
-```
+### Usage Example
+<Source
+  language='html'
+  code={ dedent`
+    <ESignature
+      bind:image
+      bind:is_touched
+      {width}
+      {height}
+      {readonly}
+      {disabled}
+    />
+    
+  <script>
+    import { ESignature } from '@kws3/ui';
+    export let width = "520px",
+      height = "170px",
+      background_image = "",
+      readonly = false,
+      disabled = false,
+      image = "",
+      is_touched = "";
+    
+  </script>
+  `}
+/>

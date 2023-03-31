@@ -153,7 +153,11 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * data-cy attribute for cypress
      */
-    cy = "";
+    cy = "",
+    /**
+     *  Determines whether canvas is touched or not
+     */
+    is_touched = false;
 
   let DRAWING_PAD;
 
@@ -166,6 +170,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   let penColor = "000000";
 
   $: {
+    is_touched = can_undo;
     penColor =
       pen_color.substr(0, 1) === +"#"
         ? pen_color.substr(1)

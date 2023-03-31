@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column has-text-centered">
     <label for="" class="label">Input</label>
-    <KwsCanvas
+    <KwsESignature
       bind:image
       {styles}
       {width}
@@ -43,7 +43,7 @@
 </div>
 
 <script>
-  import { Canvas as KwsCanvas } from "@kws3/ui";
+  import { ESignature as KwsESignature} from "@kws3/ui";
 
   export let image, is_filled;
 
