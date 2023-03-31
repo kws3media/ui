@@ -23,7 +23,7 @@
   export let image, is_filled;
   let width = "520px",
     height = "170px",
-    background_image = "http://localhost:9009/images/canvas_bg.png",
+    background_image = "./images/canvas_bg.png",
     readonly = false,
     disabled = false,
     actions = ["undo", "redo", "reset"],
