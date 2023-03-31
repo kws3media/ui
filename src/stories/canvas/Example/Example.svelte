@@ -35,7 +35,8 @@
         {width}
         {height}
         style:border="1px solid #b5b5b5;"
-        style:background-image="url({background_image})"/>
+        style:background-image="url({background_image})"
+        style:background-size="contain"/>
     {/if}
   </div>
 </div>

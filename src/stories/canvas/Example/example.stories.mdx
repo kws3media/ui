@@ -133,3 +133,15 @@ export let args = {
     </script>
   `}
 />
+
+##### Override background image CSS:
+
+<Source
+  language="css"
+  code={dedent`
+    .canvas-box canvas{
+      background-repeat: "no-repeat";
+      background-size: "cover";
+    }
+  `}
+/>
