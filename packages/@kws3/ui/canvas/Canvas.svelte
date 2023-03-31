@@ -157,7 +157,12 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      *  Determines whether canvas is touched or not
      */
-    is_touched = false;
+    is_touched = false,
+    /**
+     * Default position of controls
+     * @type {'start'|'center'|'end'}
+     */
+    control_position = 'center';
 
   let DRAWING_PAD;
 

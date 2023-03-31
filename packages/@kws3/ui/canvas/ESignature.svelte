@@ -19,6 +19,7 @@
   {background_image}
   {readonly}
   {disabled}
+  {control_position}
   activeTool="Pen"
   actions={["undo", "redo", "reset"]}
   has_controls
@@ -54,5 +55,10 @@
     /**
      * Determines whether canvas is disabled or not
      */
-    disabled = false;
+    disabled = false,
+    /**
+     * Default position of controls
+     * @type {'start'|'center'|'end'}
+     */
+    control_position = "center";
 </script>
