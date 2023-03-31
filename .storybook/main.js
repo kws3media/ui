@@ -44,5 +44,4 @@ module.exports = {
     return config;
   },
   framework: "@storybook/svelte",
-  staticDirs: ["../public"],
 };
