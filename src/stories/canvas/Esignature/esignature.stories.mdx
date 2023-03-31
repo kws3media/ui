@@ -11,9 +11,16 @@ import EsignatureDecorator from "./Esignature.svelte";
 
 ### ESignature
 
-Create ESignature/Signature Pad component using Kws3 UI `Canvas` helper  
 
-**Example:**
+
+<Story name="ESignature" args={{}}>
+  {(args) => ({
+    Component: EsignatureDecorator,
+  })}
+</Story>
+
+
+#### Create ESignature/Signature Pad component using Kws3 UI `Canvas` helper  
 
 ```html
 
@@ -52,9 +59,3 @@ Create ESignature/Signature Pad component using Kws3 UI `Canvas` helper
 </script>
 
 ```
-
-<Story name="ESignature" args={{}}>
-  {(args) => ({
-    Component: EsignatureDecorator,
-  })}
-</Story>
