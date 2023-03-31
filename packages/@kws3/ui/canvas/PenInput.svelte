@@ -35,6 +35,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   <canvas bind:this={CANVAS}
     style:width
     style:height
+    style:background-image="url({background_image})"
     style:background-color={readonly ? 'transparent':''}
     style:border={!is_filled ? '1px solid #000000':''}
   />

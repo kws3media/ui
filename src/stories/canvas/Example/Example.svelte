@@ -1,4 +1,4 @@
-<div class="columns">
+<div class="columns mb-6">
   <div class="column has-text-centered">
     <label for="" class="label">Input</label>
     <KwsESignature
