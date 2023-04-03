@@ -115,7 +115,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Determines whether canvas is readonly or not
      */
-  export const  readonly = false;
+  export const readonly = false;
     /**
      * Determines whether canvas is disabled or not
      */
@@ -124,17 +124,17 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Initial transform scale for the canvas before expansion
      */
-  export let  initial_scale = 1;
+  export let initial_scale = 1;
     /**
      * The direction from which the canvas should expand.
      * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
      */
-  export let  expand_from = "center";
+  export let expand_from = "center";
     /**
      * The direction to which the canvas should expand.
      * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
      */
-  export let  expand_to = "center";
+  export let expand_to = "center";
     /**
       * Transform scale of the canvas on expansion
       * value in percentage %
@@ -143,7 +143,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * List of actions toolbar
      */
-  export const  actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"];
+  export const actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"];
     /**
      * Default position of the action toolbar
      * @type {'bottom'|'top'}
@@ -175,7 +175,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * Default position of controls
      * @type {'start'|'center'|'end'}
      */
-  export const  control_position = 'center';
+  export const control_position = 'center';
 
 
 
@@ -262,6 +262,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   function onChange({ detail }) {
     let { canvasImage, canRedo, canUndo } = detail;
+    console.log(canvasImage);
     settingFlag = true;
     image = canvasImage;
     can_undo = canUndo;
