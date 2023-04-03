@@ -77,85 +77,83 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * Canvas width
      */
-  export let  width = "250px",
+  export let width = "250px";
     /**
      * Canvas height
      */
-    height = "250px",
+  export let height = "250px";
      /**
      * Default active tool
      * @type {'Pen'|'Eraser'}
      */
-    active_tool = "Pen",
+  export let active_tool = "Pen";
     /**
      * The Data created in the canvas by the user
      */
-    image = "",
+  export let image = "";
      /**
      *  Determines whether canvas is touched or not
      */
-    is_touched = false;
-
-
+  export let is_touched = false;
 
     /**
      *  pen width
     */
-  export const pen_width = 2,
+  export const pen_width = 2;
     /**
      * Eraser width
      */
-    eraser_width = 6,
+  export const eraser_width = 6;
     /**
      * line color
      */
-    pen_color = "#ff0000",
+  export let pen_color = "#ff0000";
     /**
      * Background image for the canvas
      */
-    background_image = "",
+  export const background_image = "";
     /**
      * Determines whether canvas is readonly or not
      */
-    readonly = false,
+  export const  readonly = false;
     /**
      * Determines whether canvas is disabled or not
      */
-    disabled = false,
+  export const disabled = false;
 
     /**
      * Initial transform scale for the canvas before expansion
      */
-    initial_scale = 1,
+  export let  initial_scale = 1;
     /**
      * The direction from which the canvas should expand.
      * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
      */
-    expand_from = "center",
+  export let  expand_from = "center";
     /**
      * The direction to which the canvas should expand.
      * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
      */
-    expand_to = "center",
+  export let  expand_to = "center";
     /**
       * Transform scale of the canvas on expansion
       * value in percentage %
      */
-    expand_scale = 50,
+  export let expand_scale = 50;
     /**
      * List of actions toolbar
      */
-    actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
+  export const  actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"];
     /**
      * Default position of the action toolbar
      * @type {'bottom'|'top'}
      */
-    toolbar_placement = "bottom",
+  export let toolbar_placement = "bottom";
     /**
      * List of tools available for user to select from
      * @type {'Pen'|'Eraser'}
      */
-    tools = ["Pen", "Eraser"],
+  export const tools = ["Pen", "Eraser"];
 
 
     /**
@@ -163,21 +161,21 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      *
      * Only active when canvas is `readonly` or `disabled`
      */
-    drawing_label = "",
+  export const drawing_label = "";
     /**
      * data-cy attribute for cypress
      */
-    cy = "",
+  export let cy = "";
 
     /**
      *  Determines control tools available or not
      */
-    has_controls = true,
+  export let has_controls = true;
     /**
      * Default position of controls
      * @type {'start'|'center'|'end'}
      */
-    control_position = 'center';
+  export const  control_position = 'center';
 
 
 
