@@ -31,13 +31,14 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 <div
   class="
     kws-canvas-wrapper
-    {expanded ? 'expanded' : ''}
     {toolbar_placement === 'top' ? 'has-toolbar-top' : ''}
   "
-  style="--kws-peninput-height: {height}; --kws-peninput-width: {width}"
+  class:expanded
+  style:width
+  style:--kws-peninput-height={height}
+  style:--kws-peninput-width={width}
   style:transform="scale({expanded ? 1 + expand_scale * 0.01 : initial_scale})"
   style:transform-origin="{expand_from} {expand_to}"
-  style:width
   data-cy={cy}
 >
 
@@ -71,18 +72,36 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   import PenControls from "./PenControls.svelte";
   import { onMount } from "svelte";
 
-  /**
+
+
+    /**
      * Canvas width
      */
-  export let width = "250px",
+  export let  width = "250px",
     /**
      * Canvas height
      */
     height = "250px",
-    /**
-     *pen width
+     /**
+     * Default active tool
+     * @type {'Pen'|'Eraser'}
      */
-    pen_width = 2,
+    active_tool = "Pen",
+    /**
+     * The Data created in the canvas by the user
+     */
+    image = "",
+     /**
+     *  Determines whether canvas is touched or not
+     */
+    is_touched = false;
+
+
+
+    /**
+     *  pen width
+    */
+  export const pen_width = 2,
     /**
      * Eraser width
      */
@@ -103,10 +122,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * Determines whether canvas is disabled or not
      */
     disabled = false,
-    /**
-     * The Data created in the canvas by the user
-     */
-    image = "",
+
     /**
      * Initial transform scale for the canvas before expansion
      */
@@ -132,11 +148,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * @type {'Pen'|'Eraser'}
      */
     tools = ["Pen", "Eraser"],
-    /**
-     * Default active tool
-     * @type {'Pen'|'Eraser'}
-     */
-    active_tool = "Pen",
+
+
     /**
      * Label for the canvas drawing box
      *
@@ -147,10 +160,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * data-cy attribute for cypress
      */
     cy = "",
-    /**
-     *  Determines whether canvas is touched or not
-     */
-    is_touched = false,
+
     /**
      *  Determines control tools available or not
      */
@@ -160,6 +170,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * @type {'start'|'center'|'end'}
      */
     control_position = 'center';
+
+
+
 
   let DRAWING_PAD;
 
