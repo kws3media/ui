@@ -12,10 +12,7 @@
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {number} [expand_scale=50] -  Transform scale of the canvas on expansion Default: `50`
-  @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
 
-Only active when canvas is `readonly` or `disabled`, Default: `""`
-  @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
 -->
 
 <div
@@ -37,7 +34,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     style:height
     style:background-image="url({background_image})"
     style:background-color={readonly ? 'transparent':''}
-    style:border={!is_filled ? '1px solid #000000':''}
+    style:border={!is_touched ? '1px solid #000000':''}
   />
 </div>
 
@@ -48,63 +45,54 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   const fire = createEventDispatcher();
 
-  export let is_filled = false,
+  export let is_touched = false;
     /**
      * Canvas width
      */
-    width = "250px",
+  export let width = "250px";
     /**
      * Canvas height
      */
-    height = "250px",
+  export let height = "250px";
     /**
      *pen width
      */
-    pen_width = 2,
+  export let pen_width = 2;
     /**
      * Eraser width
      */
-    eraser_width = 6,
+  export let eraser_width = 6;
     /**
      * line color
      */
-    pen_color = "#000000",
+  export let pen_color = "#000000";
     /**
     /**
      * Background image for the canvas
      */
-    background_image = "",
+  export let background_image = "";
     /**
      * Determines whether canvas is readonly or not
      */
-    readonly = false,
+  export let readonly = false;
     /**
      * Determines whether canvas is disabled or not
      */
-    disabled = false,
+  export let disabled = false;
     /**
      * The Data created in the canvas by the user
      */
-    image = "",
+  export let image = "";
     /**
      * Initial transform scale for the canvas before expansion
      */
-    initial_scale = 1,
+  export let initial_scale = 1;
     /**
      * Transform scale of the canvas on expansion
      */
-    expand_scale = 50,
-    /**
-     * Label for the canvas drawing box
-     *
-     * Only active when canvas is `readonly` or `disabled`
-     */
-    drawing_label = "",
-    /**
-     * data-cy attribute for cypress
-     */
-    cy = "",
-    DRAWING_PAD;
+  export let expand_scale = 50;
+
+  export let DRAWING_PAD;
 
   let CANVAS,
     is_ready = false,
