@@ -188,21 +188,13 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     show_tools = false,
     settingFlag = false;
 
-  let penColor = "000000";
+    let penColor = "000000";
 
-  $: {
-    is_touched = can_undo;
-    penColor =
-      pen_color.substr(0, 1) === +"#"
-        ? pen_color.substr(1)
-        : pen_color.length === 6
-        ? pen_color
-        : "000000";
-  }
-
-  $: expanded, setScaleFactor();
-  $: image, syncImage();
-  $: penColor, setColor();
+    $: penColor = CSS.supports('color', pen_color)? pen_color : '#000000';
+    $: is_touched = can_undo;
+    $: expanded, setScaleFactor();
+    $: image, syncImage();
+    $: penColor, setColor();
 
   onMount(() => {
     setTool(active_tool);
