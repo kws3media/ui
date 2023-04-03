@@ -13,9 +13,6 @@ import CanvasDecorator from "./Canvas.svelte";
 import { action } from "@storybook/addon-actions";
 
 export let args = {
-  styles: {
-    border: "1px solid #b5b5b5",
-  },
   width: "400px",
   height: "200px",
   pen_width: 2,
@@ -35,7 +32,6 @@ export let args = {
   toolbar_placement: "bottom",
   active_tool: "Pen",
   drawing_label: "",
-  hide_colorpicker: false,
   cy: "",
 };
 
@@ -98,7 +94,6 @@ export let args = {
   language='html'
   code={ dedent`
       <Canvas
-        bind:this={canvasWrapper}
         bind:image
         {styles}
         {width}
@@ -123,7 +118,7 @@ export let args = {
     
     <script>
       import { Canvas } from '@kws3/ui';
-      let canvasWrapper;
+      
       export let width = "250px",
         height = "250px",
         pen_width = 2,
