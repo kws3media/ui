@@ -13,13 +13,13 @@
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
-  @param {string} [expand_from="center"] -  Determines whether the canvas should begin expanding., Default: `center`
-  @param {string} [expand_to="center"] -  Determines whether the canvas should end expanding., Default: `center`
-  @param {number} [expand_scale=50] -  Transform scale of the canvas on expansion Default: `50`
+  @param {string} [expand_from="center"] -  The direction from which the canvas should expand. 'top', 'bottom', 'left', 'right', 'center' and also 'n%' ., Default: `center`
+  @param {string} [expand_to="center"] -  The direction to which the canvas should expand. 'top', 'bottom', 'left', 'right', 'center' and also 'n%', Default: `center`
+  @param {number} [expand_scale=50] -  Transform scale of the canvas on expansion, value in percentage %. Default: `50`
   @param {array} [actions=[]] - Contains all the action item name, Default: `['controls', 'colorpicker', 'undo' , 'redo', 'reset', 'expand']`
   @param {boolean} [has_controls=true] - Determines control tools available or not, Default: `true`
   @param {bottom'|'top'} [toolbar_placement="bottom"] - Position of the action toolbar, Default: `"bottom"`
-  @param {'Pen'|'Eraser'} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
+  @param {array} [tools=['Pen','Eraser']] - List of tools available for user to select from, Default: `undefined`
   @param {'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
   @param {string} [drawing_label=""] - Label for the canvas drawing box, for readonly mode
 
@@ -128,11 +128,19 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      */
     initial_scale = 1,
     /**
-     * Transform scale of the canvas on expansion
-     * The direction from which the canvas should expand
+     * The direction from which the canvas should expand.
+     * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
      */
     expand_from = "center",
+    /**
+     * The direction to which the canvas should expand.
+     * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+     */
     expand_to = "center",
+    /**
+      * Transform scale of the canvas on expansion
+      * value in percentage %
+     */
     expand_scale = 50,
     /**
      * List of actions toolbar
