@@ -8,6 +8,7 @@ import {
   Canvas,
 } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
+import Version from "~/version.mdx";
 import { ESignature as KWS3ESignature } from "@kws3/ui";
 import ESignatureDecorator from "./ESignature.svelte";
 import { action } from "@storybook/addon-actions";
@@ -20,6 +21,8 @@ export let args = {
   disabled: false,
   control_position: "center"
 };
+
+<Version />
 
 <Meta
   title="Canvas/ESignature"

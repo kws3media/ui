@@ -1,147 +1,50 @@
-import {
-  Story,
-  Preview,
-  Meta,
-  ArgsTable,
-  Source,
-  Description,
-  Canvas,
-} from "@storybook/addon-docs";
+import { Meta, Story, Source } from "@storybook/addon-docs";
 import dedent from "ts-dedent";
-import { Canvas as KWS3Canvas } from "@kws3/ui";
+import Version from "~/version.mdx";
 import ExampleDecorator from "./Example.svelte";
-import { action } from "@storybook/addon-actions";
 
-export let args = {
-  styles: {
-    border: "1px solid #b5b5b5",
-  },
-  width: "400px",
-  height: "200px",
-  pen_width: 2,
-  eraser_width: 6,
-  pen_color: "#ff0000",
-  background_image: "/images/canvas_bg.png",
-  background_size: "cover",
-  background_repeat: "no-repeat",
-  readonly: false,
-  disabled: false,
-  image: "",
-  initial_scale: 1,
-  expand_to: "center",
-  expand_from :"center",
-  expand_scale: 50,
-  tools: ["Pen", "Eraser"],
-  actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-  toolbar_placement: "bottom",
-  active_tool: "Pen",
-  drawing_label: "",
-  hide_colorpicker: false,
-  cy: "",
-};
+<Version />
 
-<Meta
-  title="Canvas/Example"
-  component={KWS3Canvas}
-  args={args}
-  argTypes={{
-    active_tool: {
-      control: "select",
-    },
-    tools: {
-      control: "check",
-    },
-    expand_from: {
-      options: ['top', 'bottom', 'left', 'right', 'center'],
-      control: { type: 'radio' }
-    },
-    expand_to: {
-      options: ['top', 'bottom', 'left', 'right', 'center'],
-      control: { type: 'radio' }
-    }
-  }}
-/>
-
-<Description
-  markdown={dedent`
-# Example of Canvas
-## Add background image on canvas components for drawing.
-`}
-/>
+<Meta  title="Canvas/Example" />
 
 
-  <Story name="Example" args={args}>
-    {(args) => ({
-      Component: ExampleDecorator,
-      props: args,
-    })}
-  </Story>
+### Canvas with background image Example
 
-### Usage Example
 <Source
   language='html'
   code={ dedent`
       <Canvas
-        bind:this={canvasWrapper}
-        bind:image
-        {styles}
-        {width}
-        {height}
-        {pen_width}
-        {eraser_width}
-        {pen_color}
+        bind:image        
         {background_image}
-        {background_size}
-        {background_repeat}
-        {readonly}
-        {disabled}
-        {initial_scale}
-        {expand_to}
-        {expand_from}
-        {expand_scale}
-        {tools}
-        {active_tool}
-        {actions}
-        {toolbar_placement}
-        {drawing_label}
-        />
+        ....
+      />
     
     <script>
       import { Canvas } from '@kws3/ui';
       let canvasWrapper;
-      export let width = "250px",
-        height = "250px",
-        pen_width = 2,
-        eraser_width = 6,
-        pen_color = "#ff0000",
+      export let ......
         background_image = "/images/canvas_bg.png",
-        background_size = "cover",
-        background_repeat = "no-repeat",
-        readonly = false,
-        disabled = false,
-        image = "",
-        initial_scale = 1,
-        expand_to = "center",
-        expand_from = "center",
-        expand_scale = 50,
-        tools = ["Pen", "Eraser"],
-        actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
-        toolbar_placement = "bottom",
-        active_tool = "Pen",
-        drawing_label = "",
-        cy = "";
+    
     </script>
   `}
 />
 
-##### Override background image CSS:
+##### Can override background image CSS:
 
 <Source
   language="css"
   code={dedent`
-    .kws-pen-input canvas{
-      background-repeat: "no-repeat";
-      background-size: "cover";
+    .kws-canvas-wrapper .kws-pen-input canvas{
+      background-repeat: repeat;
+      ....
     }
   `}
 />
+
+
+  <Story name="Example">
+    {() => ({
+      Component: ExampleDecorator,
+    
+    })}
+  </Story>
