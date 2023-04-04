@@ -260,3 +260,142 @@ export default function DrawingPad(app, opts) {
     context.strokeStyle = color;
   };
 }
+
+class DrawingPadS {
+  constructor(app, opts) {
+    this.canvas = app.CANVAS;
+    this.context = this.canvas.getContext("2d");
+    this.drawing = false;
+    this.currentPos = { x: 0, y: 0 };
+    this.lastPos = this.currentPos;
+    this.scaleFactor = opts.initialScale;
+    this.drawingType = "Pen";
+
+    this.penColor = opts.penColor;
+    this.penWidth = opts.penWidth;
+    this.eraserWidth = opts.eraserWidth;
+
+    if (opts.expanded) {
+      this.scaleFactor = opts.expand;
+    }
+
+    this.undoManager = new UndoManager();
+    this.prevState = null;
+  }
+
+  prevent(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+  }
+
+  getPosition(e) {
+    let x, y;
+    let rect = this.canvas.getBoundingClientRect();
+
+    if (e.type.indexOf("touch") !== -1) {
+      // Touch event
+      x = e.touches[0].clientX - rect.left;
+      y = e.touches[0].clientY - rect.top;
+    } else {
+      // Mouse event
+      x = e.clientX - rect.left;
+      y = e.clientY - rect.top;
+    }
+
+    return { x: x / this.scaleFactor, y: y / this.scaleFactor };
+  }
+
+  render() {
+    this.draw();
+    if (this.drawing) {
+      typeof window !== "undefined" &&
+        window.setTimeout(this.render, 1000 / 60);
+    }
+  }
+
+  draw() {
+    if (this.drawing) {
+      this.context.beginPath();
+      this.context.moveTo(this.lastPos.x, this.lastPos.y);
+      this.context.lineCap = "round";
+      this.context.lineTo(this.currentPos.x, this.currentPos.y);
+      this.context.stroke();
+      if (this.drawingType === "Pen") {
+        this.context.globalCompositeOperation = "source-over";
+        this.context.strokeStyle = this.penColor;
+        this.context.lineWidth = this.penWidth;
+        this.lastPos = this.currentPos;
+      }
+      if (this.drawingType === "Eraser") {
+        this.context.globalCompositeOperation = "destination-out";
+        this.context.lineWidth = this.eraserWidth || 4;
+      }
+    }
+  }
+
+  move(e) {
+    console.log("moving");
+    this.prevent(e);
+    this.currentPos = this.getPosition(e);
+  }
+
+  end(e) {
+    this.prevent(e);
+    this.drawing = false;
+
+    this.addHistory();
+
+    document.removeEventListener("touchmove", this.move);
+    document.removeEventListener("mousemove", this.move);
+    document.removeEventListener("touchend", this.end);
+    document.removeEventListener("mouseup", this.end);
+
+    this.fire("change");
+  }
+
+  start(e) {
+    this.prevent(e);
+    this.drawing = true;
+    this.currentPos = this.getPosition(e);
+    this.lastPos = this.currentPos;
+
+    document.addEventListener("touchmove", this.move, eventOpts);
+    document.addEventListener("mousemove", this.move, eventOpts);
+    document.addEventListener("touchend", this.end, eventOpts);
+    document.addEventListener("mouseup", this.end, eventOpts);
+
+    this.prevState = this.getImageData();
+
+    this.render();
+  }
+
+  addHistory() {
+    let nextStack = this.getImageData();
+    let prevStack = this.prevState;
+    this.undoManager.add({
+      undo: function () {
+        this.setImageData(prevStack.data);
+      },
+      redo: function () {
+        this.setImageData(nextStack.data);
+      },
+    });
+  }
+
+  resetHistory() {
+    this.undoManager.clear();
+  }
+
+  getImageData() {
+    this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  setImageData(data) {
+    let imageData = this.getImageData();
+    for (let i = 0; i < imageData.data.length; i++) {
+      imageData.data[i] = data[i];
+    }
+    this.context.putImageData(imageData, 0, 0);
+  }
+}
