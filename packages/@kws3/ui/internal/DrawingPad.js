@@ -63,7 +63,7 @@ export default function DrawingPad(app, opts) {
   let render = () => {
     draw();
     if (drawing) {
-      window.setTimeout(render, 1000 / 60);
+      typeof window !== "undefined" && window.setTimeout(render, 1000 / 60);
     }
   };
 
