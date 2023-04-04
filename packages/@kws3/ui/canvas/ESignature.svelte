@@ -6,10 +6,10 @@
   @param {boolean} [is_touched=false] - (readonly) Determines whether canvas is touched or not, Default: `false`
   @param {string} [width="520px"] - Canvas width, Default: `"520px"`
   @param {string} [height="170px"] - Canvas height, Default: `"170px"`
-  @param {string} [background_image=""] - Background image size for the canvas, Default: `""`
+  @param {string} [background_image=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
-  @param {'start'|'center'|'end'} [control_position="center"] - Default position of controls, Default: `"center"`
+  @param {string|'start'|'center'|'end'} [control_position="center"] - Default position of controls, Default: `"center"`
 
 -->
 <Canvas
@@ -46,7 +46,7 @@
      */
     height = "170px",
     /**
-     * Background image size for the canvas
+     * Background image for the canvas
      */
     background_image = "",
     /**
@@ -59,7 +59,7 @@
     disabled = false,
     /**
      * Default position of controls
-     * @type {'start'|'center'|'end'}
+     * @type {string|'start'|'center'|'end'}
      */
     control_position = "center";
 </script>
