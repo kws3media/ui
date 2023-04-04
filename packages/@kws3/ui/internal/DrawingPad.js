@@ -398,4 +398,49 @@ class DrawingPadS {
     }
     this.context.putImageData(imageData, 0, 0);
   }
+
+  setImage(imgSrc, callBackFn) {
+    if (imgSrc) {
+      let img = new Image();
+      img.src = imgSrc;
+      img.onload = () => {
+        this.context.drawImage(
+          img,
+          0,
+          0,
+          img.width,
+          img.height,
+          0,
+          0,
+          this.canvas.width,
+          this.canvas.height
+        );
+        if (callBackFn) {
+          callBackFn();
+        }
+
+        this.fire("change");
+      };
+    }
+  }
+
+  fire(type) {
+    switch (type) {
+      case "change":
+        this.app.fire("change", {
+          canUndo: this.canUndo(),
+          canRedo: this.canRedo(),
+          canvasImage: this.canvas.toDataURL(),
+        });
+        break;
+    }
+  }
+
+  canUndo() {
+    return this.undoManager.hasUndo();
+  }
+
+  canRedo() {
+    return this.undoManager.hasRedo();
+  }
 }
