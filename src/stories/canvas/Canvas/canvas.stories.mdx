@@ -30,6 +30,7 @@ export let args = {
   tools: ["Pen", "Eraser"],
   actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
   toolbar_placement: "bottom",
+  control_position: "center",
   active_tool: "Pen",
   drawing_label: "",
   cy: "",
@@ -43,8 +44,11 @@ export let args = {
     active_tool: {
       control: "select",
     },
-    tools: {
-      control: "check",
+    control_position: {
+      control: "select",
+    },
+    toolbar_placement: {
+      control: "select",
     }
   }}
 />
@@ -87,7 +91,6 @@ export let args = {
   code={ dedent`
       <Canvas
         bind:image
-        {styles}
         {width}
         {height}
         {pen_width}
@@ -105,6 +108,7 @@ export let args = {
         {actions}
         {has_controls}
         {toolbar_placement}
+        {control_position}
         {drawing_label}
         />
     
@@ -127,6 +131,7 @@ export let args = {
         tools = ["Pen", "Eraser"],
         actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
         toolbar_placement = "bottom",
+        control_position = "center",
         active_tool = "Pen",
         drawing_label = "",
         has_controls = true,
