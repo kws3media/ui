@@ -1,20 +1,21 @@
 <!--
   @component
 
-  @param {string} [width="250px"] - Width of the canvas, Default: `250px`
-  @param {string} [height="250px"] - Height of the canvas, Default: `250px`
-  @param {number} [pen_width=2] - width of the line, Default: `2`
+
+  @param {string} [width="250px"] - Canvas width, Default: `"250px"`
+  @param {string} [height="250px"] - Canvas height, Default: `"250px"`
+  @param {number} [pen_width=2] - pen width, Default: `2`
   @param {number} [eraser_width=6] - Eraser width, Default: `6`
-  @param {string} [pen_color="#000000"] - Line color, Default: `"#000000"`
+  @param {string} [pen_color="#000000"] - line color, Default: `"#000000"`
   @param {string} [background_image=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
-  @param {number} [expand_scale=50] -  Transform scale of the canvas on expansion Default: `50`
+  @param {number} [expand_scale=50] - Transform scale of the canvas on expansion, Default: `50`
+  @param {any} [DRAWING_PAD=undefined] - DRAWING_PAD property, Default: `undefined`
 
 -->
-
 <div
   class="kws-pen-input {readonly || disabled ? 'is-readonly' : ''}"
   style:width
@@ -44,51 +45,50 @@
 
   const fire = createEventDispatcher();
 
-  export let is_touched = false;
-    /**
-     * Canvas width
-     */
+  /**
+   * Canvas width
+   */
   export let width = "250px";
-    /**
-     * Canvas height
-     */
+  /**
+   * Canvas height
+   */
   export let height = "250px";
-    /**
-     *pen width
-     */
+  /**
+   *pen width
+   */
   export let pen_width = 2;
-    /**
-     * Eraser width
-     */
+  /**
+   * Eraser width
+   */
   export let eraser_width = 6;
-    /**
-     * line color
-     */
+  /**
+   * line color
+   */
   export let pen_color = "#000000";
-    /**
+  /**
     /**
      * Background image for the canvas
      */
   export let background_image = "";
-    /**
-     * Determines whether canvas is readonly or not
-     */
+  /**
+   * Determines whether canvas is readonly or not
+   */
   export let readonly = false;
-    /**
-     * Determines whether canvas is disabled or not
-     */
+  /**
+   * Determines whether canvas is disabled or not
+   */
   export let disabled = false;
-    /**
-     * The Data created in the canvas by the user
-     */
+  /**
+   * The Data created in the canvas by the user
+   */
   export let image = "";
-    /**
-     * Initial transform scale for the canvas before expansion
-     */
+  /**
+   * Initial transform scale for the canvas before expansion
+   */
   export let initial_scale = 1;
-    /**
-     * Transform scale of the canvas on expansion
-     */
+  /**
+   * Transform scale of the canvas on expansion
+   */
   export let expand_scale = 50;
 
   export let DRAWING_PAD;
@@ -97,7 +97,6 @@
     is_ready = false,
     emptyImage =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
-
 
   $: readonly, setEvents();
 
