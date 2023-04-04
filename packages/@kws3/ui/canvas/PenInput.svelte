@@ -34,7 +34,6 @@
     style:height
     style:background-image="url({background_image})"
     style:background-color={readonly ? 'transparent':''}
-    style:border={!is_touched ? '1px solid #000000':''}
   />
 </div>
 
