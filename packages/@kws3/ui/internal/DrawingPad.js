@@ -22,12 +22,12 @@ export default function DrawingPad(app, opts) {
   let currentPos = { x: 0, y: 0 };
   let lastPos = currentPos;
   let scaleFactor = opts.initialScale;
-  let drawingType = "line";
+  let drawingType = "Pen";
 
-  if (drawingType === "line") {
-    context.strokeStyle = opts.penColor || "#3d44c8";
-    context.lineWidth = opts.penWidth || 1;
-  }
+  // if (drawingType === "line") {
+  //   context.strokeStyle = opts.penColor || "#3d44c8";
+  //   context.lineWidth = opts.penWidth || 1;
+  // }
 
   if (opts.expanded) {
     scaleFactor = opts.expand;
@@ -69,18 +69,26 @@ export default function DrawingPad(app, opts) {
 
   let draw = () => {
     if (drawing) {
-      if (drawingType === "line") {
-        context.beginPath();
-        context.moveTo(lastPos.x, lastPos.y);
-        context.lineCap = "round";
-        context.lineTo(currentPos.x, currentPos.y);
-        context.stroke();
+      context.beginPath();
+      context.moveTo(lastPos.x, lastPos.y);
+      context.lineCap = "round";
+      context.lineTo(currentPos.x, currentPos.y);
+      context.stroke();
+      if (drawingType === "Pen") {
+        context.globalCompositeOperation = "source-over";
+        context.strokeStyle = opts.penColor;
+        context.lineWidth = opts.penWidth;
         lastPos = currentPos;
+      }
+      if (drawingType === "Eraser") {
+        context.globalCompositeOperation = "destination-out";
+        context.lineWidth = opts.eraserWidth || 4;
       }
     }
   };
 
   let move = (e) => {
+    console.log("moving");
     prevent(e);
     currentPos = getPosition(e);
   };
@@ -245,15 +253,7 @@ export default function DrawingPad(app, opts) {
   };
 
   this.setTool = (toolType) => {
-    if (toolType === "Pen") {
-      drawingType = "line";
-      context.globalCompositeOperation = "source-over";
-      context.strokeStyle = opts.penColor || "#3d44c8";
-      context.lineWidth = opts.penWidth || 1;
-    } else if (toolType === "Eraser") {
-      context.globalCompositeOperation = "destination-out";
-      context.lineWidth = opts.eraserWidth || 4;
-    }
+    drawingType = toolType;
   };
 
   this.setColor = (color) => {
