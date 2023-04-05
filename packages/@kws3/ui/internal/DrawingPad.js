@@ -261,7 +261,7 @@ var eventOpts = passiveSupported ? { passive: false, capture: false } : false;
 //   };
 // }
 
-class DrawingPad {
+export class DrawingPad {
   constructor(app, opts) {
     this.app = app;
     this.canvas = this.app.CANVAS;
@@ -277,6 +277,7 @@ class DrawingPad {
     this.eraserWidth = opts.eraserWidth;
     this.readonly = opts.readonly;
     this.image = opts.image;
+    this.tools = opts.tools;
 
     if (opts.expanded) {
       this.scaleFactor = opts.expand;
@@ -324,21 +325,14 @@ class DrawingPad {
 
   draw() {
     if (this.drawing) {
-      this.context.beginPath();
-      this.context.moveTo(this.lastPos.x, this.lastPos.y);
-      this.context.lineCap = "round";
-      this.context.lineTo(this.currentPos.x, this.currentPos.y);
-      this.context.stroke();
-      if (this.drawingType === "Pen") {
-        this.context.globalCompositeOperation = "source-over";
-        this.context.strokeStyle = this.penColor;
-        this.context.lineWidth = this.penWidth;
-        this.lastPos = this.currentPos;
-      }
+      this.context.strokeStyle = this.penColor;
+      this.context.lineWidth = this.penWidth;
       if (this.drawingType === "Eraser") {
-        this.context.globalCompositeOperation = "destination-out";
-        this.context.lineWidth = this.eraserWidth || 4;
+        this.context.lineWidth = this.eraserWidth;
       }
+
+      console.log(this.drawingType);
+      this.tools[this.drawingType].draw(this);
     }
   }
 
@@ -520,4 +514,28 @@ class DrawingPad {
   }
 }
 
-export default DrawingPad;
+export let Pen = {
+  name: "Pen",
+  icon: "pencil",
+  draw: (instance) => {
+    instance.context.beginPath();
+    instance.context.moveTo(instance.lastPos.x, instance.lastPos.y);
+    instance.context.lineCap = "round";
+    instance.context.lineTo(instance.currentPos.x, instance.currentPos.y);
+    instance.context.stroke();
+    instance.context.globalCompositeOperation = "source-over";
+    instance.lastPos = instance.currentPos;
+  },
+};
+
+export let Eraser = {
+  name: "Eraser",
+  icon: "eraser",
+  draw: (instance) => {
+    instance.context.beginPath();
+    instance.context.moveTo(instance.lastPos.x, instance.lastPos.y);
+    instance.context.lineTo(instance.currentPos.x, instance.currentPos.y);
+    instance.context.stroke();
+    instance.context.globalCompositeOperation = "destination-out";
+  },
+};
