@@ -15,255 +15,256 @@ try {
 
 var eventOpts = passiveSupported ? { passive: false, capture: false } : false;
 
-export default function DrawingPad(app, opts) {
-  let canvas = app.CANVAS;
-  let context = canvas.getContext("2d");
-  let drawing = false;
-  let currentPos = { x: 0, y: 0 };
-  let lastPos = currentPos;
-  let scaleFactor = opts.initialScale;
-  let drawingType = "Pen";
+// export default function DrawingPad(app, opts) {
+//   let canvas = app.CANVAS;
+//   let context = canvas.getContext("2d");
+//   let drawing = false;
+//   let currentPos = { x: 0, y: 0 };
+//   let lastPos = currentPos;
+//   let scaleFactor = opts.initialScale;
+//   let drawingType = "Pen";
 
-  // if (drawingType === "line") {
-  //   context.strokeStyle = opts.penColor || "#3d44c8";
-  //   context.lineWidth = opts.penWidth || 1;
-  // }
+//   // if (drawingType === "line") {
+//   //   context.strokeStyle = opts.penColor || "#3d44c8";
+//   //   context.lineWidth = opts.penWidth || 1;
+//   // }
 
-  if (opts.expanded) {
-    scaleFactor = opts.expand;
-  }
+//   if (opts.expanded) {
+//     scaleFactor = opts.expand;
+//   }
 
-  this.undoManager = new UndoManager();
+//   this.undoManager = new UndoManager();
 
-  let _prevState = null;
+//   let _prevState = null;
 
-  let prevent = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-  };
+//   let prevent = (e) => {
+//     e.preventDefault();
+//     e.stopPropagation();
+//     e.stopImmediatePropagation();
+//   };
 
-  let getPosition = (e) => {
-    let x, y;
-    let rect = canvas.getBoundingClientRect();
+//   let getPosition = (e) => {
+//     let x, y;
+//     let rect = canvas.getBoundingClientRect();
 
-    if (e.type.indexOf("touch") !== -1) {
-      // Touch event
-      x = e.touches[0].clientX - rect.left;
-      y = e.touches[0].clientY - rect.top;
-    } else {
-      // Mouse event
-      x = e.clientX - rect.left;
-      y = e.clientY - rect.top;
-    }
+//     if (e.type.indexOf("touch") !== -1) {
+//       // Touch event
+//       x = e.touches[0].clientX - rect.left;
+//       y = e.touches[0].clientY - rect.top;
+//     } else {
+//       // Mouse event
+//       x = e.clientX - rect.left;
+//       y = e.clientY - rect.top;
+//     }
 
-    return { x: x / scaleFactor, y: y / scaleFactor };
-  };
+//     return { x: x / scaleFactor, y: y / scaleFactor };
+//   };
 
-  let render = () => {
-    draw();
-    if (drawing) {
-      typeof window !== "undefined" && window.setTimeout(render, 1000 / 60);
-    }
-  };
+//   let render = () => {
+//     draw();
+//     if (drawing) {
+//       typeof window !== "undefined" && window.setTimeout(render, 1000 / 60);
+//     }
+//   };
 
-  let draw = () => {
-    if (drawing) {
-      context.beginPath();
-      context.moveTo(lastPos.x, lastPos.y);
-      context.lineCap = "round";
-      context.lineTo(currentPos.x, currentPos.y);
-      context.stroke();
-      if (drawingType === "Pen") {
-        context.globalCompositeOperation = "source-over";
-        context.strokeStyle = opts.penColor;
-        context.lineWidth = opts.penWidth;
-        lastPos = currentPos;
-      }
-      if (drawingType === "Eraser") {
-        context.globalCompositeOperation = "destination-out";
-        context.lineWidth = opts.eraserWidth || 4;
-      }
-    }
-  };
+//   let draw = () => {
+//     if (drawing) {
+//       context.beginPath();
+//       context.moveTo(lastPos.x, lastPos.y);
+//       context.lineCap = "round";
+//       context.lineTo(currentPos.x, currentPos.y);
+//       context.stroke();
+//       if (drawingType === "Pen") {
+//         context.globalCompositeOperation = "source-over";
+//         context.strokeStyle = opts.penColor;
+//         context.lineWidth = opts.penWidth;
+//         lastPos = currentPos;
+//       }
+//       if (drawingType === "Eraser") {
+//         context.globalCompositeOperation = "destination-out";
+//         context.lineWidth = opts.eraserWidth || 4;
+//       }
+//     }
+//   };
 
-  let move = (e) => {
-    console.log("moving");
-    prevent(e);
-    currentPos = getPosition(e);
-  };
+//   let move = (e) => {
+//     console.log("moving");
+//     prevent(e);
+//     currentPos = getPosition(e);
+//   };
 
-  let end = (e) => {
-    prevent(e);
-    drawing = false;
+//   let end = (e) => {
+//     prevent(e);
+//     drawing = false;
 
-    addHistory();
+//     addHistory();
 
-    document.removeEventListener("touchmove", move);
-    document.removeEventListener("mousemove", move);
-    document.removeEventListener("touchend", end);
-    document.removeEventListener("mouseup", end);
+//     document.removeEventListener("touchmove", move);
+//     document.removeEventListener("mousemove", move);
+//     document.removeEventListener("touchend", end);
+//     document.removeEventListener("mouseup", end);
 
-    fire("change");
-  };
+//     fire("change");
+//   };
 
-  let start = (e) => {
-    prevent(e);
-    drawing = true;
-    currentPos = getPosition(e);
-    lastPos = currentPos;
+//   let start = (e) => {
+//     prevent(e);
+//     drawing = true;
+//     currentPos = getPosition(e);
+//     lastPos = currentPos;
 
-    document.addEventListener("touchmove", move, eventOpts);
-    document.addEventListener("mousemove", move, eventOpts);
-    document.addEventListener("touchend", end, eventOpts);
-    document.addEventListener("mouseup", end, eventOpts);
+//     document.addEventListener("touchmove", move, eventOpts);
+//     document.addEventListener("mousemove", move, eventOpts);
+//     document.addEventListener("touchend", end, eventOpts);
+//     document.addEventListener("mouseup", end, eventOpts);
 
-    _prevState = getImageData();
+//     _prevState = getImageData();
 
-    render();
-  };
+//     render();
+//   };
 
-  let addHistory = () => {
-    let _nextStack = getImageData();
-    let _prevStack = _prevState;
-    this.undoManager.add({
-      undo: function () {
-        setImageData(_prevStack.data);
-      },
-      redo: function () {
-        setImageData(_nextStack.data);
-      },
-    });
-  };
+//   let addHistory = () => {
+//     let _nextStack = getImageData();
+//     let _prevStack = _prevState;
+//     this.undoManager.add({
+//       undo: function () {
+//         setImageData(_prevStack.data);
+//       },
+//       redo: function () {
+//         setImageData(_nextStack.data);
+//       },
+//     });
+//   };
 
-  let resetHistory = () => {
-    this.undoManager.clear();
-  };
+//   let resetHistory = () => {
+//     this.undoManager.clear();
+//   };
 
-  let getImageData = () =>
-    context.getImageData(0, 0, canvas.width, canvas.height);
+//   let getImageData = () =>
+//     context.getImageData(0, 0, canvas.width, canvas.height);
 
-  let setImageData = (data) => {
-    let imageData = getImageData();
-    for (let i = 0; i < imageData.data.length; i++) {
-      imageData.data[i] = data[i];
-    }
-    context.putImageData(imageData, 0, 0);
-  };
+//   let setImageData = (data) => {
+//     let imageData = getImageData();
+//     for (let i = 0; i < imageData.data.length; i++) {
+//       imageData.data[i] = data[i];
+//     }
+//     context.putImageData(imageData, 0, 0);
+//   };
 
-  let setImage = (imgSrc, callBackFn) => {
-    if (imgSrc) {
-      let img = new Image();
-      img.src = imgSrc;
-      img.onload = () => {
-        context.drawImage(
-          img,
-          0,
-          0,
-          img.width,
-          img.height,
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-        if (callBackFn) {
-          callBackFn();
-        }
+//   let setImage = (imgSrc, callBackFn) => {
+//     if (imgSrc) {
+//       let img = new Image();
+//       img.src = imgSrc;
+//       img.onload = () => {
+//         context.drawImage(
+//           img,
+//           0,
+//           0,
+//           img.width,
+//           img.height,
+//           0,
+//           0,
+//           canvas.width,
+//           canvas.height
+//         );
+//         if (callBackFn) {
+//           callBackFn();
+//         }
 
-        fire("change");
-      };
-    }
-  };
+//         fire("change");
+//       };
+//     }
+//   };
 
-  let fire = (type) => {
-    switch (type) {
-      case "change":
-        app.fire("change", {
-          canUndo: canUndo(),
-          canRedo: canRedo(),
-          canvasImage: canvas.toDataURL(),
-        });
-        break;
-    }
-  };
+//   let fire = (type) => {
+//     switch (type) {
+//       case "change":
+//         app.fire("change", {
+//           canUndo: canUndo(),
+//           canRedo: canRedo(),
+//           canvasImage: canvas.toDataURL(),
+//         });
+//         break;
+//     }
+//   };
 
-  let canUndo = () => this.undoManager.hasUndo();
+//   let canUndo = () => this.undoManager.hasUndo();
 
-  let canRedo = () => this.undoManager.hasRedo();
+//   let canRedo = () => this.undoManager.hasRedo();
 
-  this.init = () => {
-    this.is_readonly = opts.readonly || false;
-    this.imageDataUrl = opts.image || "";
+//   this.init = () => {
+//     this.is_readonly = opts.readonly || false;
+//     this.imageDataUrl = opts.image || "";
 
-    resetHistory();
+//     resetHistory();
 
-    setImage(this.imageDataUrl);
+//     setImage(this.imageDataUrl);
 
-    this.addEvent();
-  };
+//     this.addEvent();
+//   };
 
-  //this is for syncing incoming data from another source
-  this.syncImage = (imgData) => {
-    var curUrl = canvas.toDataURL();
-    if (curUrl !== imgData) {
-      _prevState = getImageData();
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      setImage(imgData, () => {
-        addHistory();
-      });
-    }
-  };
+//   //this is for syncing incoming data from another source
+//   this.syncImage = (imgData) => {
+//     var curUrl = canvas.toDataURL();
+//     if (curUrl !== imgData) {
+//       _prevState = getImageData();
+//       context.clearRect(0, 0, canvas.width, canvas.height);
+//       setImage(imgData, () => {
+//         addHistory();
+//       });
+//     }
+//   };
 
-  this.addEvent = () => {
-    if (!this.is_readonly) {
-      canvas.addEventListener("touchstart", start, false);
-      canvas.addEventListener("mousedown", start, false);
-    }
-  };
+//   this.addEvent = () => {
+//     if (!this.is_readonly) {
+//       canvas.addEventListener("touchstart", start, false);
+//       canvas.addEventListener("mousedown", start, false);
+//     }
+//   };
 
-  this.removeEvent = () => {
-    canvas.removeEventListener("touchstart", start);
-    canvas.removeEventListener("mousedown", start);
-  };
+//   this.removeEvent = () => {
+//     canvas.removeEventListener("touchstart", start);
+//     canvas.removeEventListener("mousedown", start);
+//   };
 
-  this.undo = () => {
-    if (canUndo()) {
-      this.undoManager.undo();
-      fire("change");
-    }
-  };
+//   this.undo = () => {
+//     if (canUndo()) {
+//       this.undoManager.undo();
+//       fire("change");
+//     }
+//   };
 
-  this.redo = () => {
-    if (canRedo()) {
-      this.undoManager.redo();
-      fire("change");
-    }
-  };
+//   this.redo = () => {
+//     if (canRedo()) {
+//       this.undoManager.redo();
+//       fire("change");
+//     }
+//   };
 
-  this.reset = () => {
-    _prevState = getImageData();
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    addHistory();
-    fire("change");
-  };
+//   this.reset = () => {
+//     _prevState = getImageData();
+//     context.clearRect(0, 0, canvas.width, canvas.height);
+//     addHistory();
+//     fire("change");
+//   };
 
-  this.setScaleFactor = (f) => {
-    scaleFactor = f;
-  };
+//   this.setScaleFactor = (f) => {
+//     scaleFactor = f;
+//   };
 
-  this.setTool = (toolType) => {
-    drawingType = toolType;
-  };
+//   this.setTool = (toolType) => {
+//     drawingType = toolType;
+//   };
 
-  this.setColor = (color) => {
-    context.strokeStyle = color;
-  };
-}
+//   this.setColor = (color) => {
+//     context.strokeStyle = color;
+//   };
+// }
 
-class DrawingPadS {
+class DrawingPad {
   constructor(app, opts) {
-    this.canvas = app.CANVAS;
+    this.app = app;
+    this.canvas = this.app.CANVAS;
     this.context = this.canvas.getContext("2d");
     this.drawing = false;
     this.currentPos = { x: 0, y: 0 };
@@ -311,8 +312,9 @@ class DrawingPadS {
   render() {
     this.draw();
     if (this.drawing) {
+      let self = this;
       typeof window !== "undefined" &&
-        window.setTimeout(this.render, 1000 / 60);
+        window.setTimeout(this.render.bind(self), 1000 / 60);
     }
   }
 
@@ -362,25 +364,27 @@ class DrawingPadS {
     this.currentPos = this.getPosition(e);
     this.lastPos = this.currentPos;
 
-    document.addEventListener("touchmove", this.move, eventOpts);
-    document.addEventListener("mousemove", this.move, eventOpts);
-    document.addEventListener("touchend", this.end, eventOpts);
-    document.addEventListener("mouseup", this.end, eventOpts);
+    let self = this;
 
-    this._prevState = this.getImageData();
+    document.addEventListener("touchmove", this.move.bind(self), eventOpts);
+    document.addEventListener("mousemove", this.move.bind(self), eventOpts);
+    document.addEventListener("touchend", this.end.bind(self), eventOpts);
+    document.addEventListener("mouseup", this.end.bind(self), eventOpts);
+
+    this.prevState = this.getImageData();
 
     this.render();
   }
 
   addHistory() {
-    let _nextStack = this.getImageData();
-    let _prevStack = this._prevState;
+    let nextStack = this.getImageData();
+    let prevStack = this.prevState;
     this.undoManager.add({
       undo: () => {
-        this.setImageData(_prevStack.data);
+        this.setImageData(prevStack.data);
       },
       redo: () => {
-        this.setImageData(_nextStack.data);
+        this.setImageData(nextStack.data);
       },
     });
   }
@@ -469,8 +473,10 @@ class DrawingPadS {
 
   addEvent() {
     if (!this.is_readonly) {
-      this.canvas.addEventListener("touchstart", this.start, false);
-      this.canvas.addEventListener("mousedown", this.start, false);
+      let self = this;
+
+      this.canvas.addEventListener("touchstart", this.start.bind(self), false);
+      this.canvas.addEventListener("mousedown", this.start.bind(self), false);
     }
   }
 
@@ -494,7 +500,7 @@ class DrawingPadS {
   }
 
   reset() {
-    this._prevState = this.getImageData();
+    this.prevState = this.getImageData();
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.addHistory();
     this.fire("change");
@@ -512,3 +518,5 @@ class DrawingPadS {
     this.context.strokeStyle = color;
   }
 }
+
+export default DrawingPad;
