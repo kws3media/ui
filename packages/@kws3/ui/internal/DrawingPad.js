@@ -283,7 +283,12 @@ class DrawingPad {
     }
 
     this.undoManager = new UndoManager();
-    this._prevState = null;
+    this.prevState = null;
+
+    this.START = this.start.bind(this);
+    this.MOVE = this.move.bind(this);
+    this.END = this.end.bind(this);
+    this.RENDER = this.render.bind(this);
   }
 
   prevent(e) {
@@ -312,9 +317,8 @@ class DrawingPad {
   render() {
     this.draw();
     if (this.drawing) {
-      let self = this;
       typeof window !== "undefined" &&
-        window.setTimeout(this.render.bind(self), 1000 / 60);
+        window.setTimeout(() => this.render(), 1000 / 60);
     }
   }
 
@@ -339,8 +343,8 @@ class DrawingPad {
   }
 
   move(e) {
-    console.log("moving");
     this.prevent(e);
+    console.log("moving");
     this.currentPos = this.getPosition(e);
   }
 
@@ -350,10 +354,10 @@ class DrawingPad {
 
     this.addHistory();
 
-    document.removeEventListener("touchmove", this.move);
-    document.removeEventListener("mousemove", this.move);
-    document.removeEventListener("touchend", this.end);
-    document.removeEventListener("mouseup", this.end);
+    document.removeEventListener("touchmove", this.MOVE);
+    document.removeEventListener("mousemove", this.MOVE);
+    document.removeEventListener("touchend", this.END);
+    document.removeEventListener("mouseup", this.END);
 
     this.fire("change");
   }
@@ -364,12 +368,10 @@ class DrawingPad {
     this.currentPos = this.getPosition(e);
     this.lastPos = this.currentPos;
 
-    let self = this;
-
-    document.addEventListener("touchmove", this.move.bind(self), eventOpts);
-    document.addEventListener("mousemove", this.move.bind(self), eventOpts);
-    document.addEventListener("touchend", this.end.bind(self), eventOpts);
-    document.addEventListener("mouseup", this.end.bind(self), eventOpts);
+    document.addEventListener("touchmove", this.MOVE, eventOpts);
+    document.addEventListener("mousemove", this.MOVE, eventOpts);
+    document.addEventListener("touchend", this.END, eventOpts);
+    document.addEventListener("mouseup", this.END, eventOpts);
 
     this.prevState = this.getImageData();
 
@@ -460,10 +462,11 @@ class DrawingPad {
 
     this.addEvent();
   }
+
   syncImage(imgData) {
     let curUrl = this.canvas.toDataURL();
     if (curUrl !== imgData) {
-      this._prevState = this.getImageData();
+      this.prevState = this.getImageData();
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.setImage(imgData, () => {
         this.addHistory();
@@ -473,16 +476,14 @@ class DrawingPad {
 
   addEvent() {
     if (!this.is_readonly) {
-      let self = this;
-
-      this.canvas.addEventListener("touchstart", this.start.bind(self), false);
-      this.canvas.addEventListener("mousedown", this.start.bind(self), false);
+      this.canvas.addEventListener("touchstart", this.START, false);
+      this.canvas.addEventListener("mousedown", this.START, false);
     }
   }
 
   removeEvent() {
-    this.canvas.removeEventListener("touchstart", this.start);
-    this.canvas.removeEventListener("mousedown", this.start);
+    this.canvas.removeEventListener("touchstart", this.START);
+    this.canvas.removeEventListener("mousedown", this.START);
   }
 
   undo() {
