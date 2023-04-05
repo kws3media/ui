@@ -39,7 +39,7 @@
 </div>
 
 <script>
-  import { DrawingPad } from "../internal";
+  import { DrawingPad, Pen, Eraser } from "../internal";
 
   import { onMount, createEventDispatcher } from "svelte";
 
@@ -114,6 +114,7 @@
         image: image || emptyImage,
         readonly,
         expand: expand_scale,
+        tools:{Pen, Eraser}
       }
     );
 
