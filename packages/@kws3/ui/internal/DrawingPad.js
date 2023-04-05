@@ -274,13 +274,15 @@ class DrawingPadS {
     this.penColor = opts.penColor;
     this.penWidth = opts.penWidth;
     this.eraserWidth = opts.eraserWidth;
+    this.readonly = opts.readonly;
+    this.image = opts.image;
 
     if (opts.expanded) {
       this.scaleFactor = opts.expand;
     }
 
     this.undoManager = new UndoManager();
-    this.prevState = null;
+    this._prevState = null;
   }
 
   prevent(e) {
@@ -365,20 +367,20 @@ class DrawingPadS {
     document.addEventListener("touchend", this.end, eventOpts);
     document.addEventListener("mouseup", this.end, eventOpts);
 
-    this.prevState = this.getImageData();
+    this._prevState = this.getImageData();
 
     this.render();
   }
 
   addHistory() {
-    let nextStack = this.getImageData();
-    let prevStack = this.prevState;
+    let _nextStack = this.getImageData();
+    let _prevStack = this._prevState;
     this.undoManager.add({
-      undo: function () {
-        this.setImageData(prevStack.data);
+      undo: () => {
+        this.setImageData(_prevStack.data);
       },
-      redo: function () {
-        this.setImageData(nextStack.data);
+      redo: () => {
+        this.setImageData(_nextStack.data);
       },
     });
   }
@@ -442,5 +444,71 @@ class DrawingPadS {
 
   canRedo() {
     return this.undoManager.hasRedo();
+  }
+
+  init() {
+    this.is_readonly = this.readonly || false;
+    this.imageDataUrl = this.image || "";
+
+    this.resetHistory();
+
+    this.setImage(this.imageDataUrl);
+
+    this.addEvent();
+  }
+  syncImage(imgData) {
+    let curUrl = this.canvas.toDataURL();
+    if (curUrl !== imgData) {
+      this._prevState = this.getImageData();
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.setImage(imgData, () => {
+        this.addHistory();
+      });
+    }
+  }
+
+  addEvent() {
+    if (!this.is_readonly) {
+      this.canvas.addEventListener("touchstart", this.start, false);
+      this.canvas.addEventListener("mousedown", this.start, false);
+    }
+  }
+
+  removeEvent() {
+    this.canvas.removeEventListener("touchstart", this.start);
+    this.canvas.removeEventListener("mousedown", this.start);
+  }
+
+  undo() {
+    if (this.canUndo()) {
+      this.undoManager.undo();
+      this.fire("change");
+    }
+  }
+
+  redo() {
+    if (this.canRedo()) {
+      this.undoManager.redo();
+      this.fire("change");
+    }
+  }
+
+  reset() {
+    this._prevState = this.getImageData();
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.addHistory();
+    this.fire("change");
+  }
+
+  setScaleFactor(f) {
+    this.scaleFactor = f;
+  }
+
+  setTool(toolType) {
+    this.drawingType = toolType;
+  }
+
+  setColor(color) {
+    this.context.strokeStyle = color;
   }
 }
