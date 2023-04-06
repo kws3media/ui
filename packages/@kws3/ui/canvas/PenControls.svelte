@@ -200,11 +200,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   let toolMap = {};
   let initialized = false;
 
-  $: active_tool, console.log(active_tool);
-
   onMount(() => {
     if (actions.includes("colorpicker") && default_color !== "") {
-      console.log(default_color);
       color = default_color;
     }
     setToolMap();

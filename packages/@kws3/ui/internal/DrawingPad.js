@@ -514,7 +514,7 @@ export class DrawingPad {
   }
 
   setColor(color) {
-    this.context.strokeStyle = color;
+    this.penColor = color;
   }
 }
 
