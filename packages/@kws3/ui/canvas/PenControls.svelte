@@ -32,7 +32,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 <div
   class="kws-pen-controls is-placement-{toolbar_placement}"
   style={canvas_controls_styles}>
-  {#if !readonly && !disabled}
+  {#if initialized && !readonly && !disabled}
     <div
       class="columns m-0 is-flex is-justify-content-{control_position}"
       style="gap: 0.5rem;">
@@ -58,15 +58,17 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
                 role="menu"
                 style="min-width:auto;">
                 <div class="dropdown-content has-text-left">
-                  {#each Object.values(tools) as tool}
+                  {#each Object.values(tools) as { name, icon }}
                     <a
                       href="/#"
                       class="dropdown-item"
-                      on:click|preventDefault={() =>
-                        fire("setTool", { tool: tool.name })}
+                      on:click|preventDefault={() => {
+                        active_tool = name;
+                        fire("setTool", { tool: name });
+                      }}
                       style="padding-right:1rem;">
-                      <Icon icon={tool.icon} size="small" />
-                      <span>{tool.name}</span>
+                      <Icon {icon} size="small" />
+                      <span>{name}</span>
                     </a>
                   {/each}
                 </div>
@@ -195,24 +197,27 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
 
   let expanded = false;
   let color = "";
+  let toolMap = {};
+  let initialized = false;
 
-  let toolMap = {
-    Pen: {
-      name: "Pen",
-      icon: "pencil",
-    },
-    Eraser: {
-      name: "Eraser",
-      icon: "eraser",
-    },
-  };
+  $: active_tool, console.log(active_tool);
 
   onMount(() => {
     if (actions.includes("colorpicker") && default_color !== "") {
       console.log(default_color);
       color = default_color;
     }
+    setToolMap();
+    initialized = true;
   });
+
+  function setToolMap() {
+    Object.values(tools).forEach((v) => {
+      toolMap[v.name] = v;
+    });
+
+    console.log(toolMap);
+  }
 
   function expandContract() {
     expanded = !expanded;
