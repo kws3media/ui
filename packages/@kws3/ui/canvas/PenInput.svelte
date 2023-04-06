@@ -13,6 +13,7 @@
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {number} [expand_scale=50] - Transform scale of the canvas on expansion, Default: `50`
+  @param {object} [tools={}] - List of tools available for user to select from, Default: `{}`
   @param {any} [DRAWING_PAD=undefined] - DRAWING_PAD property, Default: `undefined`
 
 -->
@@ -118,7 +119,7 @@
         image: image || emptyImage,
         readonly,
         expand: expand_scale,
-        tools:tools
+        tools: tools,
       }
     );
 
