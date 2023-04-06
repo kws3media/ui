@@ -21,13 +21,14 @@
   {readonly}
   {disabled}
   {control_position}
+  {tools}
   activeTool="Pen"
   actions={["undo", "redo", "reset"]}
   has_controls={!readonly && !disabled}
   toolbar_placement={!readonly && !disabled ? "top" : ""} />
 
 <script>
-  import { Canvas } from "@kws3/ui";
+  import { Canvas, Pen } from "@kws3/ui";
 
   /**
    * The Data created in the canvas by the user (readonly) (base64)
@@ -62,4 +63,6 @@
      * @type {string|'start'|'center'|'end'}
      */
     control_position = "center";
+
+  let tools = { Pen };
 </script>
