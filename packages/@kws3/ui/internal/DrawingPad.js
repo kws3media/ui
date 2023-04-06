@@ -338,7 +338,6 @@ export class DrawingPad {
 
   move(e) {
     this.prevent(e);
-    console.log("moving");
     this.currentPos = this.getPosition(e);
   }
 

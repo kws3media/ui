@@ -64,6 +64,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     on:redo={() => redo()}
     on:reset={() => reset()}
     on:toggleExpand={() => toggleExpand()}
+    {active_tool}
     default_color={pen_color}
     bind:can_undo
     bind:can_redo
@@ -88,9 +89,9 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   export let height = "250px";
   /**
    * Default active tool
-   * @type {string | 'Pen'|'Eraser'}
+   * @type {string |'Pen'|'Eraser'}
    */
-  export let active_tool = "Pen";
+  export let active_tool = "";
   /**
    * The Data created in the canvas by the user
    */
@@ -201,6 +202,8 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   $: expanded, setScaleFactor();
   $: image, syncImage();
   $: penColor, setColor();
+
+
 
   onMount(() => {
     setTool(active_tool);
