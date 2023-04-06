@@ -9,7 +9,7 @@ import {
 } from "@storybook/addon-docs";
 import Version from "~/version.mdx";
 import dedent from "ts-dedent";
-import { Canvas as KWS3Canvas } from "@kws3/ui";
+import { Canvas as KWS3Canvas, Pen, Eraser } from "@kws3/ui";
 import CanvasDecorator from "./Canvas.svelte";
 import { action } from "@storybook/addon-actions";
 
@@ -28,7 +28,7 @@ export let args = {
   expand_to: "center",
   expand_from :"center",
   expand_scale: 50,
-  tools: ["Pen", "Eraser"],
+  tools: {Pen, Eraser},
   actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
   toolbar_placement: "bottom",
   control_position: "center",

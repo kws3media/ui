@@ -39,7 +39,7 @@
 </div>
 
 <script>
-  import { DrawingPad, Pen, Eraser } from "../internal";
+  import { DrawingPad } from "../internal";
 
   import { onMount, createEventDispatcher } from "svelte";
 
@@ -90,6 +90,10 @@
    * Transform scale of the canvas on expansion
    */
   export let expand_scale = 50;
+  /**
+   * List of tools available for user to select from
+   */
+  export let tools = {};
 
   export let DRAWING_PAD;
 
@@ -114,7 +118,7 @@
         image: image || emptyImage,
         readonly,
         expand: expand_scale,
-        tools:{Pen, Eraser}
+        tools:tools
       }
     );
 

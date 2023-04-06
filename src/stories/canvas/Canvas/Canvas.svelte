@@ -38,7 +38,7 @@
 </div>
 
 <script>
-  import { Canvas as KwsCanvas } from "@kws3/ui";
+  import { Canvas as KwsCanvas, Pen, Eraser } from "@kws3/ui";
 
   export let width = "250px",
     height = "250px",
@@ -53,7 +53,7 @@
     expand_to = "center",
     expand_from = "center",
     expand_scale = 50,
-    tools = ["Pen", "Eraser"],
+    tools = { Pen, Eraser },
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     toolbar_placement = "bottom",
     control_position = "center",

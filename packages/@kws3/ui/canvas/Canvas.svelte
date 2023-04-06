@@ -162,7 +162,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   /**
    * List of tools available for user to select from
    */
-  export const tools = ["Pen", "Eraser"];
+  export let tools = {};
 
   /**
    * Label for the canvas drawing box
