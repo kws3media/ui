@@ -9,7 +9,7 @@
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
-  @param {array} [tools=[]] - List of tools available, Default: `[]`
+  @param {array} [tools={}] - List of tools available, Default: `{}`
   @param {array} [actions=[]] - List of actions toolbar, Default: `[]`
   @param {string} [active_tool="Pen"] - Determines which tool is select, Default: `"Pen"`
   @param {'bottom'|'top'} [toolbar_placement="bottom"] - Determines where the action tools are placed, Default: `"bottom"`
@@ -58,14 +58,15 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
                 role="menu"
                 style="min-width:auto;">
                 <div class="dropdown-content has-text-left">
-                  {#each tools as tool}
+                  {#each Object.values(tools) as tool}
                     <a
                       href="/#"
                       class="dropdown-item"
-                      on:click|preventDefault={() => fire("setTool", { tool })}
+                      on:click|preventDefault={() =>
+                        fire("setTool", { tool: tool.name })}
                       style="padding-right:1rem;">
-                      <Icon icon={toolMap[tool].icon} size="small" />
-                      <span>{toolMap[tool].name}</span>
+                      <Icon icon={tool.icon} size="small" />
+                      <span>{tool.name}</span>
                     </a>
                   {/each}
                 </div>
@@ -168,7 +169,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
     /**
      * List of tools available
      */
-    tools = ["Pen", "Eraser"],
+    tools = {},
     /**
      * List of actions toolbar
      */
