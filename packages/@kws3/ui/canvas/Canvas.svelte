@@ -23,7 +23,6 @@ value in percentage %, Default: `50`
   @param {array} [actions=[]] - `CONST` List of actions toolbar, Default: `[]`
   @param {string|'bottom'|'top'} [toolbar_placement="bottom"] - Default position of the action toolbar, Default: `"bottom"`
   @param {object} [tools={}] - List of tools available for user to select from, Default: `{}`
-  @param {string} [drawing_label=""] - `CONST` Label for the canvas drawing box
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
@@ -166,12 +165,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
    */
   export let tools = {};
 
-  /**
-   * Label for the canvas drawing box
-   *
-   * Only active when canvas is `readonly` or `disabled`
-   */
-  export const drawing_label = "";
   /**
    * data-cy attribute for cypress
    */

@@ -21,7 +21,6 @@
       {actions}
       {toolbar_placement}
       {control_position}
-      {drawing_label}
       {cy} />
   </div>
   <div class="column has-text-centered">
@@ -58,7 +57,6 @@
     toolbar_placement = "bottom",
     control_position = "center",
     active_tool = "Pen",
-    drawing_label = "",
     has_controls = true,
     cy = "";
 </script>

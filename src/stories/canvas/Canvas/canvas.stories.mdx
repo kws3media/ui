@@ -33,7 +33,6 @@ export let args = {
   toolbar_placement: "bottom",
   control_position: "center",
   active_tool: "Pen",
-  drawing_label: "",
   cy: "",
 };
 
@@ -113,11 +112,10 @@ export let args = {
         {has_controls}
         {toolbar_placement}
         {control_position}
-        {drawing_label}
         />
     
     <script>
-      import { Canvas } from '@kws3/ui';
+      import { Canvas, Pen, Eraser  } from '@kws3/ui';
       
       export let width = "250px",
         height = "250px",
@@ -132,12 +130,11 @@ export let args = {
         expand_to = "center",
         expand_from = "center",
         expand_scale = 50,
-        tools = ["Pen", "Eraser"],
+        tools = { Pen, Eraser },
         actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
         toolbar_placement = "bottom",
         control_position = "center",
         active_tool = "Pen",
-        drawing_label = "",
         has_controls = true,
         cy = "";
     </script>

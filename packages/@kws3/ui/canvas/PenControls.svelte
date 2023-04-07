@@ -5,7 +5,6 @@
   @param {any} [EXPANDED_BUTTON=undefined] - EXPANDED_BUTTON property, Default: `undefined`
   @param {string} [canvas_controls_styles=""] - Inline CSS for the control, Default: `""`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
-  @param {string} [drawing_label=""] - Label for the canvas drawing box
 
 Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
@@ -137,10 +136,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
         {/if}
       {/each}
     </div>
-  {:else if drawing_label}
-    <p class="title is-5 has-text-centered">
-      {drawing_label}
-    </p>
   {/if}
 </div>
 
@@ -158,12 +153,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
      * Determines whether canvas is disabled or not
      */
     disabled = false,
-    /**
-     * Label for the canvas drawing box
-     *
-     * Only active when canvas is `readonly` or `disabled`
-     */
-    drawing_label = "",
     /**
      * Determines whether canvas is readonly or not
      */
