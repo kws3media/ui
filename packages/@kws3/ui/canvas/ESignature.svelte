@@ -22,7 +22,7 @@
   {disabled}
   {control_position}
   {tools}
-  activeTool="Pen"
+  active_tool="Pen"
   actions={["undo", "redo", "reset"]}
   has_controls={!readonly && !disabled}
   toolbar_placement={!readonly && !disabled ? "top" : ""} />
