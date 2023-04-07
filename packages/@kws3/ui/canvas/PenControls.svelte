@@ -5,29 +5,21 @@
   @param {any} [EXPANDED_BUTTON=undefined] - EXPANDED_BUTTON property, Default: `undefined`
   @param {string} [canvas_controls_styles=""] - Inline CSS for the control, Default: `""`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
-
-Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
-  @param {array} [tools={}] - List of tools available, Default: `{}`
+  @param {object} [tools={}] - List of tools available, Default: `{}`
   @param {array} [actions=[]] - List of actions toolbar, Default: `[]`
   @param {string} [active_tool="Pen"] - Determines which tool is select, Default: `"Pen"`
   @param {'bottom'|'top'} [toolbar_placement="bottom"] - Determines where the action tools are placed, Default: `"bottom"`
   @param {string} [default_color=""] - colorpicker's default color, Default: `""`
-  @param {string} [control_position="center"] - Control_position property, Default: `"center"`
+  @param {string|'start'|'center'|'end'} [control_position="center"] - Default position of controls, Default: `"center"`
   @param {boolean} [can_undo=false] - Can_undo property, Default: `false`
   @param {boolean} [can_redo=false] - Can_redo property, Default: `false`
   @param {boolean} [show_tools=false] - Show_tools property, Default: `false`
 
   ### Events
   - `toggleExpand`
-  - `setTool`
-  - `undo`
-  - `redo`
-  - `reset`
-  - `changeColor`
 
 -->
-
 <div
   class="kws-pen-controls is-placement-{toolbar_placement}"
   style={canvas_controls_styles}>
@@ -144,45 +136,49 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   import { createEventDispatcher, onMount } from "svelte";
 
   const fire = createEventDispatcher();
-  export let EXPANDED_BUTTON,
-    /**
-     * Inline CSS for the control
-     */
-    canvas_controls_styles = "",
-    /**
-     * Determines whether canvas is disabled or not
-     */
-    disabled = false,
-    /**
-     * Determines whether canvas is readonly or not
-     */
-    readonly = false,
-    /**
-     * List of tools available
-     */
-    tools = {},
-    /**
-     * List of actions toolbar
-     */
-    actions = ["controls", "undo", "redo", "reset", "expand"],
-    /**
-     * Determines which tool is select
-     */
-    active_tool = "Pen",
-    /**
-     * Determines where the action tools are placed
-     *  @type {'bottom'|'top'}
-     */
+  export let EXPANDED_BUTTON;
+  /**
+   * Inline CSS for the control
+   */
+  export let canvas_controls_styles = "";
+  /**
+   * Determines whether canvas is disabled or not
+   */
+  export let disabled = false;
+  /**
+   * Determines whether canvas is readonly or not
+   */
+  export let readonly = false;
+  /**
+   * List of tools available
+   */
+  export let tools = {};
+  /**
+   * List of actions toolbar
+   */
+  export let actions = ["controls", "undo", "redo", "reset", "expand"];
+  /**
+   * Determines which tool is select
+   */
+  export let active_tool = "Pen";
+  /**
+   * Determines where the action tools are placed
+   *  @type {'bottom'|'top'}
+   */
 
-    toolbar_placement = "bottom",
-    /**
-     * colorpicker's default color
-     */
-    default_color = "",
-    control_position = "center",
-    can_undo = false,
-    can_redo = false,
-    show_tools = false;
+  export let toolbar_placement = "bottom";
+  /**
+   * colorpicker's default color
+   */
+  export let default_color = "";
+  /**
+   * Default position of controls
+   * @type {string|'start'|'center'|'end'}
+   */
+  export let control_position = "center";
+  export let can_undo = false;
+  export let can_redo = false;
+  export let show_tools = false;
 
   let expanded = false;
   let color = "";
