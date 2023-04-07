@@ -1,0 +1,100 @@
+:root {
+  --kws-peninput-height: 350px;
+  --kws-peninput-width: 250px;
+  --kws-peninput-border: 1px dotted #ccc;
+  --kws-peninput-controls-height: 2.4rem;
+}
+.kws-canvas-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  height: var(--kws-peninput-height);
+  width: var(--kws-peninput-width);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s $easeOutCustom;
+  transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  position: relative;
+  .kws-pen-controls {
+    position: absolute;
+    width: 100%;
+    min-height: var(--kws-peninput-controls-height);
+    background: transparentize($grey-light, 0.5);
+    padding: 0.25rem;
+    margin: 0 auto;
+    .control {
+      .button {
+        &.is-always-rounded {
+          border-radius: 1rem !important;
+          padding-left: 1em;
+          padding-right: 1em;
+        }
+      }
+    }
+    &.is-placement-bottom {
+      top: var(--kws-peninput-height);
+    }
+    &.is-placement-top {
+      top: 0;
+    }
+
+    input[type="color"] {
+      -webkit-appearance: none;
+      border: none;
+      width: 32px;
+      height: 32px;
+      padding: 3px;
+      background-color: $white-ter;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+    }
+    &.expanded {
+      z-index: 999;
+      position: relative;
+      box-shadow: $card-shadow;
+      .kws-pen-controls {
+        background: $grey-lighter;
+      }
+    }
+  }
+
+  .kws-pen-input {
+    position: relative;
+    margin: auto auto;
+    overflow: hidden;
+    img {
+      display: block;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      border: 1px dotted #ccc;
+    }
+    canvas {
+      display: block;
+      cursor: crosshair;
+      box-sizing: border-box;
+      background-color: #fdfdfd;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      border: 1px solid #000000;
+    }
+    &.is-readonly {
+      canvas {
+        cursor: default;
+      }
+    }
+  }
+
+  &.has-toolbar-top {
+    .kws-pen-input {
+      top: var(--kws-peninput-controls-height);
+    }
+  }
+}
