@@ -3,8 +3,9 @@
     <label for="" class="label">Input</label>
     <KwsCanvas
       bind:image
+      active_tool="Circle"
       {width}
-      {background_image}
+      {tools}
      />
   </div>
   <div class="column has-text-centered">
@@ -15,9 +16,7 @@
         src={image}
         {width}
         {height}
-        style:border="1px solid #b5b5b5;"
-        style:background-image="url({background_image})"
-        style:background-size="contain"/>
+        style:border="1px solid #b5b5b5;"/>
     {/if}
   </div>
 </div>
@@ -31,12 +30,28 @@
 </style>
 
 <script>
-  import { Canvas as KwsCanvas} from "@kws3/ui";
+  import { Canvas as KwsCanvas, Eraser} from "@kws3/ui";
 
   export let image;
 
+  let Circle = {
+    name: "Circle",
+    icon: "circle-o",
+    draw: (instance) => {
+      const x = instance.currentPos.x;
+      const y = instance.currentPos.y;
+      const radius = 50;
+
+      instance.context.beginPath();
+      instance.context.arc(x, y, radius, 0, 2 * Math.PI);
+      instance.context.stroke();
+      instance.context.globalCompositeOperation = "source-over";
+    },
+  };
+
 
   export let width = "350px",
-    height='250px',
-    background_image = "/images/canvas_bg.png";
+    height='250px';
+
+    let tools = {Circle, Eraser};
 </script>
