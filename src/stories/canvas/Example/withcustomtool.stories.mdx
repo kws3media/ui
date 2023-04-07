@@ -31,7 +31,7 @@ import WithCustomTool from "./WithCustomTool.svelte";
   />
     
 <script>
-  import { Canvas as KwsCanvas, Eraser} from "@kws3/ui";
+  import { Canvas, Eraser } from "@kws3/ui";
 
   export let image;
 
@@ -57,15 +57,3 @@ import WithCustomTool from "./WithCustomTool.svelte";
     let tools = {Circle, Eraser};
 </script>
 ```
-
-##### Can override background image CSS:
-
-<Source
-  language="css"
-  code={dedent`
-    .kws-canvas-wrapper .kws-pen-input canvas{
-      background-repeat: repeat;
-      ....
-    }
-  `}
-/>
