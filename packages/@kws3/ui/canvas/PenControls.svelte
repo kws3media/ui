@@ -197,8 +197,6 @@
     Object.values(tools).forEach((v) => {
       toolMap[v.name] = v;
     });
-
-    console.log(toolMap);
   }
 
   function expandContract() {
