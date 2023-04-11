@@ -1,7 +1,5 @@
 const path = require("path");
-
 const autoPreprocess = require("svelte-preprocess");
-
 module.exports = {
   stories: [
     "../src/stories/_index/index.stories.mdx",
@@ -12,8 +10,10 @@ module.exports = {
   ],
   logLevel: "debug",
   features: {
-    storyStoreV7: true,
+    legacyMdx1: true,
+    storyStoreV7: false,
     interactionsDebugger: true,
+    previewMdx2: true,
   },
   addons: [
     {
@@ -26,6 +26,7 @@ module.exports = {
     "@storybook/addon-actions",
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
+    "@storybook/addon-svelte-csf",
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({
@@ -43,5 +44,8 @@ module.exports = {
     };
     return config;
   },
-  framework: "@storybook/svelte",
+  framework: "@storybook/svelte-vite",
+  docs: {
+    autodocs: true,
+  },
 };
