@@ -52,7 +52,9 @@
                   {#each Object.values(tools) as { name, icon }}
                     <a
                       href="/#"
-                      class="dropdown-item"
+                      class="dropdown-item {toolMap[active_tool].icon === icon
+                        ? 'has-text-weight-bold'
+                        : ''}"
                       on:click|preventDefault={() => {
                         active_tool = name;
                         fire("setTool", { tool: name });
