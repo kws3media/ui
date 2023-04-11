@@ -16,17 +16,26 @@
   "extends": [
     "eslint:recommended",
     "plugin:@ota-meshi/svelte/recommended",
-    "plugin:@kws3/svelte3/base"
+    "plugin:@kws3/svelte3/base",
+    "plugin:storybook/recommended"
   ],
   "overrides": [
     {
-      "files": ["*.svelte"],
+      "files": [
+        "*.svelte"
+      ],
       "parser": "svelte-eslint-parser"
     }
   ],
   "rules": {
-    "semi": ["error", "always"],
-    "eqeqeq": ["error", "smart"],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
     "@ota-meshi/svelte/no-dupe-else-if-blocks": "error",
     "@ota-meshi/svelte/no-dynamic-slot-name": "error",
     "@ota-meshi/svelte/no-not-function-handler": "error",
