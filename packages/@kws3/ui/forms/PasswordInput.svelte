@@ -11,8 +11,10 @@
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
 
 -->
-
-<div class="control has-icons-left has-icons-right">
+{#if label}
+  <label for="" class="label">Password</label>
+{/if}
+<p class="control has-icons-left has-icons-right">
   <input
     class="input is-{size} is-{color} {klass} {style}"
     type={visibility ? "text" : "password"}
@@ -35,7 +37,8 @@
         {size} />
     </span>
   {/if}
-</div>
+  <slot />
+</p>
 
 <style lang="scss">
   .visibility-btn {
@@ -53,7 +56,8 @@
    *
    */
   let visibility = false;
-  export let has_visibility = true;
+  export let has_visibility = true,
+    label = true;
 
   /**
    * Size of the PasswordInput
