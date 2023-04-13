@@ -1,0 +1,95 @@
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-docs";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import { ESignature as KWS3ESignature } from "@kws3/ui";
+import ESignatureDecorator from "./ESignature.svelte";
+import { action } from "@storybook/addon-actions";
+
+export let args = {
+  width: "520px",
+  height: "170px",
+  background_image: "",
+  readonly: false,
+  disabled: false,
+  control_position: "center"
+};
+
+<Version />
+
+<Meta
+  title="Canvas/ESignature"
+  component={KWS3ESignature}
+  args={args}
+  argTypes={{
+    control_position: {
+      control: "select",
+    }
+  }}
+/>
+
+<Description
+  markdown={dedent`
+# ESignature
+## ESignature component for taking user pen input.
+`}
+/>
+
+<Canvas>
+  <Story name="ESignature" args={args}>
+    {(args) => ({
+      Component: ESignatureDecorator,
+      props: args,
+    })}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ESignature" />
+
+### Usage
+
+<Source
+  language="javascript"
+  code={dedent`import { ESignature } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+
+<Source
+  language="javascript"
+  code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
+/>
+
+### Usage Example
+<Source
+  language='html'
+  code={ dedent`
+    <ESignature
+      bind:image
+      bind:is_touched
+      {width}
+      {height}
+      {readonly}
+      {disabled}
+    />
+    
+  <script>
+    import { ESignature } from '@kws3/ui';
+    export let width = "520px",
+      height = "170px",
+      background_image = "",
+      readonly = false,
+      disabled = false,
+      image = "",
+      is_touched = false;
+    
+  </script>
+  `}
+/>
