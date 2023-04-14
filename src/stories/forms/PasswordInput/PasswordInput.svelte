@@ -49,8 +49,7 @@
     color = "",
     has_visibility_switcher = true,
     disabled = false,
-    placeholder = "Password",
-    password = "";
+    placeholder = "Password";
 
-  let new_pass = "fghfhg";
+  let new_pass = "";
 </script>
