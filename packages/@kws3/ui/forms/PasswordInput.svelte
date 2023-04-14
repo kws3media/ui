@@ -2,13 +2,21 @@
   @component
 
 
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the PasswordInput, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the PasswordInput, Default: `""`
-  @param {string} [style=""] - Inline CSS for the PasswordInput, Default: `""`
-  @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
+  @param {boolean} [has_visibility_switcher=true] - whether has visibility feature or not, Default: `true`
+  @param {?string} [value=] - Value of the Input
 
-  Checked\Not Checked, Default: `false`
+This property can be bound to, to fetch the current value, Default: ``
+  @param {SizeOptions} [size=] - Size of the PasswordInput, Default: ``
+  @param {ColorOptions} [color=] - Colour of the PasswordInput, Default: ``
+  @param {string} [style=""] - Inline CSS for the PasswordInput, Default: `""`
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
+  @param {string} [placeholder=""] - Input placeholder, Default: `""`
+  @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [icon_family=""] - Icon family to be used
+
+Defaults to global family set via `Icon.setDefaultIconType()`
+
+Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
+  @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
 
 -->
 
@@ -27,7 +35,7 @@
       <Icon family={icon_family} icon="lock" {size} />
     </span>
 
-    {#if has_visibility}
+    {#if has_visibility_switcher}
       <span
         class="icon is-{size} is-right visibility-btn"
         on:click={() => {
@@ -58,7 +66,12 @@
    *
    */
   let visibility = false;
-  export let has_visibility = true;
+
+  /**
+   * whether has visibility feature or not
+   * @type {boolean}
+   */
+  export let has_visibility_switcher = true;
 
   /**
    * Value of the Input
