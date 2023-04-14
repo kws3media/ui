@@ -5,7 +5,7 @@
         {size}
         {color}
         {placeholder}
-        {has_visibility}
+        {has_visibility_switcher}
         {disabled} />
     </div>
   </div>
@@ -17,7 +17,7 @@
           {size}
           {color}
           {placeholder}
-          {has_visibility}
+          {has_visibility_switcher}
           {disabled} />
         <PasswordValidator password={new_pass} />
       </div>
@@ -47,7 +47,7 @@
      */
 
     color = "",
-    has_visibility = true,
+    has_visibility_switcher = true,
     disabled = false,
     placeholder = "Password",
     password = "";
