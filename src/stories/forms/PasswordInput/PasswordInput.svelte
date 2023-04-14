@@ -5,32 +5,22 @@
         {size}
         {color}
         {placeholder}
-        {style}
-        {label}
         {has_visibility}
-        class={klass}
         {disabled} />
     </div>
   </div>
   <div class="column">
-    Usage with PasswordValidator:
-    <pre>
-<code>
-&lt;PasswordInput&gt;
-  &lt;PasswordValidator ... /&gt;
-&lt;PasswordInput/&gt;
-</code>
-    </pre>
     <div class="field">
-      <KwsPasswordInput
-        bind:value={new_pass}
-        {size}
-        {color}
-        {placeholder}
-        {has_visibility}
-        {disabled}>
+      <div class="control">
+        <KwsPasswordInput
+          bind:value={new_pass}
+          {size}
+          {color}
+          {placeholder}
+          {has_visibility}
+          {disabled} />
         <PasswordValidator password={new_pass} />
-      </KwsPasswordInput>
+      </div>
     </div>
   </div>
 </div>
@@ -57,11 +47,10 @@
      */
 
     color = "",
-    label = "Password",
     has_visibility = true,
     disabled = false,
     placeholder = "Password",
     password = "";
 
-  let new_pass = "";
+  let new_pass = "fghfhg";
 </script>

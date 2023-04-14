@@ -11,34 +11,36 @@
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
 
 -->
-{#if label}
-  <label for="" class="label">{label}</label>
-{/if}
-<p class="control has-icons-left has-icons-right">
-  <input
-    class="input is-{size} is-{color} {klass} {style}"
-    type={visibility ? "text" : "password"}
-    {placeholder}
-    {disabled} />
-  <slot />
 
-  <span class="icon is-{size} is-left">
-    <Icon family={icon_family} icon="lock" {size} />
-  </span>
+<div class="field is-marginless">
+  <p class="control has-icons-left has-icons-right is-marginless">
+    <input
+      {type}
+      {style}
+      {value}
+      class="input is-{size} is-{color} {klass} {style}"
+      on:input={(event) => onInput(event)}
+      {placeholder}
+      {disabled} />
 
-  {#if has_visibility}
-    <span
-      class="icon is-{size} is-right visibility-btn"
-      on:click={() => {
-        visibility = !visibility;
-      }}>
-      <Icon
-        family={icon_family}
-        icon={visibility ? visibility_icon.show : visibility_icon.hide}
-        {size} />
+    <span class="icon is-{size} is-left">
+      <Icon family={icon_family} icon="lock" {size} />
     </span>
-  {/if}
-</p>
+
+    {#if has_visibility}
+      <span
+        class="icon is-{size} is-right visibility-btn"
+        on:click={() => {
+          visibility = !visibility;
+        }}>
+        <Icon
+          family={icon_family}
+          icon={visibility ? visibility_icon.show : visibility_icon.hide}
+          {size} />
+      </span>
+    {/if}
+  </p>
+</div>
 
 <style lang="scss">
   .visibility-btn {
@@ -56,50 +58,64 @@
    *
    */
   let visibility = false;
-  export let has_visibility = true,
-    label = "Password";
+  export let has_visibility = true;
+
+  /**
+   * Value of the Input
+   *
+   * This property can be bound to, to fetch the current value
+   * @type {?string}
+   */
+  export let value = "";
 
   /**
    * Size of the PasswordInput
    * @type {SizeOptions}
    */
-  export let size = "",
-    /**
-     * Colour of the PasswordInput
-     * @type {Exclude<ColorOptions, 'success'>}
-     */
-    color = "",
-    /**
-     * Inline CSS for the Checkbox
-     * @type {string}
-     */
-    style = "",
-    /**
-     * Disables the Checkbox
-     * @type {boolean}
-     */
-    disabled = false,
-    /**
-     * Input placeholder
-     * @type {string}
-     */
-    placeholder = "",
-    /**
-     * Icon family to be used
-     *
-     * Defaults to global family set via `Icon.setDefaultIconType()`
-     *
-     * Ultimately defaults to `fa`, if family is not set anywhere
-     *
-     * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
-     */
-    icon_family = "";
+  export let size = "";
+  /**
+   * Colour of the PasswordInput
+   * @type {ColorOptions}
+   */
+  export let color = "";
+  /**
+   * Inline CSS for the PasswordInput
+   * @type {string}
+   */
+  export let style = "";
+  /**
+   * Disables the PasswordInput
+   * @type {boolean}
+   */
+  export let disabled = false;
+  /**
+   * Input placeholder
+   * @type {string}
+   */
+  export let placeholder = "";
+  /**
+   * Icon family to be used
+   *
+   * Defaults to global family set via `Icon.setDefaultIconType()`
+   *
+   * Ultimately defaults to `fa`, if family is not set anywhere
+   *
+   * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+   */
+  export let icon_family = "";
   /**
    * CSS classes of the PasswordInput
    * @type {string}
    */
   let klass = "";
   export { klass as class };
+
+  function onInput(event) {
+    console.log("value change");
+    value = event.target.value;
+  }
+
+  $: type = visibility ? "text" : "password";
 
   $: visibility_icon = {
     show: icon_family === "material" ? "visibility" : "eye",
