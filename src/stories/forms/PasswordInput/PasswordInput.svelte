@@ -1,7 +1,7 @@
 <div id="story-root" class="columns">
   <div class="column">
     <div class="field">
-        <KwsPasswordInput
+      <KwsPasswordInput
         {size}
         {color}
         {placeholder}
@@ -13,40 +13,24 @@
     </div>
   </div>
   <div class="column">
+    Usage with PasswordValidator:
+    <pre>
+<code>
+&lt;PasswordInput&gt;
+  &lt;PasswordValidator ... /&gt;
+&lt;PasswordInput/&gt;
+</code>
+    </pre>
     <div class="field">
-      <label for="" class="label">PasswordInput (with custom rule)</label>
-        <KwsPasswordInput
+      <KwsPasswordInput
+        bind:value={new_pass}
         {size}
         {color}
         {placeholder}
-        {style}
-        label={false}
         {has_visibility}
-        class={klass}
-        {disabled} 
-       />
-        <p class="control">
-        <PasswordValidator
-          {compact}
-          {password}
-          {min}
-          {lower}
-          {upper}
-          {digit}
-          {special}
-          custom_rules={[
-            {
-              name: "not_1234",
-              text: "Should not be '1234'",
-              identifier: "!1234",
-              negate: true,
-              regex: "(1234)",
-            },
-          ]}
-          bind:valid
-          class={klass}
-          {style} />
-      </p>
+        {disabled}>
+        <PasswordValidator password={new_pass} />
+      </KwsPasswordInput>
     </div>
   </div>
 </div>
@@ -54,39 +38,30 @@
 <script>
   import {
     PasswordInput as KwsPasswordInput,
-    activateTooltips, PasswordValidator
+    activateTooltips,
+    PasswordValidator,
   } from "@kws3/ui";
   import { onMount } from "svelte";
 
   onMount(() => {
     activateTooltips("#story-root", null);
   });
- /**
+  /**
    * Size of the input
    *  @type {import('@kws3/ui/types').SizeOptions}
    */
-   export let size = "",
+  export let size = "",
     /**
      * Color of the input
      * @type {import('@kws3/ui/types').ColorOptions}
      */
 
     color = "",
-    label = true,
+    label = "Password",
     has_visibility = true,
     disabled = false,
     placeholder = "Password",
-    password = "",
-    compact = true,
-    min = 8,
-    lower = true,
-    upper = true,
-    digit = true,
-    special = true,
-    custom_rules = [],
-    valid = false,
-    style = "";
+    password = "";
 
-  let klass = "";
-  export { klass as class };
+  let new_pass = "";
 </script>

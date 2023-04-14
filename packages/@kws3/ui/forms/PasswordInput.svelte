@@ -12,7 +12,7 @@
 
 -->
 {#if label}
-  <label for="" class="label">Password</label>
+  <label for="" class="label">{label}</label>
 {/if}
 <p class="control has-icons-left has-icons-right">
   <input
@@ -20,6 +20,7 @@
     type={visibility ? "text" : "password"}
     {placeholder}
     {disabled} />
+  <slot />
 
   <span class="icon is-{size} is-left">
     <Icon family={icon_family} icon="lock" {size} />
@@ -37,7 +38,6 @@
         {size} />
     </span>
   {/if}
-  <slot />
 </p>
 
 <style lang="scss">
@@ -57,7 +57,7 @@
    */
   let visibility = false;
   export let has_visibility = true,
-    label = true;
+    label = "Password";
 
   /**
    * Size of the PasswordInput
