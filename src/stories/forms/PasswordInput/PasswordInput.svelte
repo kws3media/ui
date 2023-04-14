@@ -14,7 +14,7 @@
   </div>
   <div class="column">
     <div class="field">
-      <label for="" class="label">Password (with PasswordValidator)</label>
+      <label for="" class="label">PasswordInput (with custom rule)</label>
         <KwsPasswordInput
         {size}
         {color}
