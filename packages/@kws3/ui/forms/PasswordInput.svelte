@@ -31,20 +31,20 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
       {placeholder}
       {disabled} />
 
-    <span class="icon is-{size} is-left">
-      <Icon family={icon_family} icon="lock" {size} />
+    <span class="icon is-left">
+      <Icon family={icon_family} icon="lock" size={iconSizes[size]} />
     </span>
 
     {#if has_visibility_switcher}
       <span
-        class="icon is-{size} is-right visibility-btn"
+        class="icon is-right visibility-btn"
         on:click={() => {
           visibility = !visibility;
         }}>
         <Icon
           family={icon_family}
           icon={visibility ? visibility_icon.show : visibility_icon.hide}
-          {size} />
+          size={iconSizes[size]} />
       </span>
     {/if}
   </p>
@@ -127,6 +127,10 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
     console.log("value change");
     value = event.target.value;
   }
+
+  let iconSizes = {
+    large: "medium",
+  };
 
   $: type = visibility ? "text" : "password";
 
