@@ -124,7 +124,6 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   export { klass as class };
 
   function onInput(event) {
-    console.log("value change");
     value = event.target.value;
   }
 
