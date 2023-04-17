@@ -64,6 +64,7 @@ export { default as AutoComplete } from "./forms/AutoComplete.svelte";
 export { default as SearchableSelect } from "./forms/select/SearchableSelect.svelte";
 export { default as MultiSelect } from "./forms/select/MultiSelect.svelte";
 export { default as MaskedInput } from "./forms/MaskedInput.svelte";
+export { default as PasswordInput } from "./forms/PasswordInput.svelte";
 export { default as Colorpicker } from "./forms/colorpicker/Colorpicker.svelte";
 export { default as Datepicker } from "./forms/Datepicker.svelte";
 export { default as Timepicker } from "./forms/Timepicker.svelte";
