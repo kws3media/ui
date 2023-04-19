@@ -1,4 +1,4 @@
-import { Colors, BGColors, SpinnerColors, Sizes } from "./type-defs.ts";
+import { Colors, BGColors, SpinnerColors, Sizes } from "./type-defs";
 export type SearchOptions = {
   search_key: Array<string> | string;
   scoreThreshold: number;
