@@ -11,7 +11,8 @@
     },
     "resolveJsonModule": true,
     "typeRoots": ["./packages/@kws3/ui/types"],
-    "types": ["svelte"]
+    "types": ["svelte"],
+    "declaration": true
   },
   "exclude": ["node_modules"]
 }
