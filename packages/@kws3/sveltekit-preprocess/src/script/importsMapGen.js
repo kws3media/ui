@@ -94,7 +94,6 @@ export { default as RadialChart } from "./charts/RadialChart.svelte";
 
 `;
 
-// Parse the exports into an array of objects
 const exportsArray = [];
 let expls = exportsList
   .split(/;\n/)
@@ -107,7 +106,7 @@ expls.forEach((line) => {
   );
   if (match) {
     // const exportType = match[1] ? match[1].replace('{', '').replace('}', '').trim() : 'default';
-    const exportNames = match[1].split(",");
+    const exportNames = match[1].split(",").filter(Boolean);
     const filePath = match[2];
     // console.log(match)
     exportNames.forEach((name) => {
@@ -116,12 +115,12 @@ expls.forEach((line) => {
       let type = "";
       let packageType = "";
 
-      if (_name.startsWith("default")) {
-        _name = _name.replace("default as", "");
+      if (/default\s+as/.test(_name)) {
         type = "default";
       } else {
         type = "named";
       }
+      _name = _name.replace(/[\w\d]+\s+as/, "");
 
       if (_filePath.startsWith("./")) {
         _filePath = _filePath.replace("./", "");
