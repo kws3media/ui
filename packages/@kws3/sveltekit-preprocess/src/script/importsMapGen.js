@@ -97,13 +97,14 @@ export { default as RadialChart } from "./charts/RadialChart.svelte";
 // Parse the exports into an array of objects
 const exportsArray = [];
 let expls = exportsList
-  .split("\n")
+  .split(/;\n/)
   .map((line) => line.trim())
   .filter((line) => line.startsWith("export"));
 
 expls.forEach((line) => {
-  const match = /export\s+{(.*?)}\s+from\s+['"](.*?)['"];/g.exec(line);
-  // console.log(match)
+  const match = /export\s+{(.*?)}\s+from\s+['"](.*?)['"]/g.exec(
+    line.replace(/[\r\n]+/g, "")
+  );
   if (match) {
     // const exportType = match[1] ? match[1].replace('{', '').replace('}', '').trim() : 'default';
     const exportNames = match[1].split(",");
