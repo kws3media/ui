@@ -1,22 +1,32 @@
-const fs = require("fs");
+const fs = require("fs/promises");
 
-let exportsList = "";
-// Read the JavaScript file as text
-fs.readFile("../../../ui/index.js", "utf8", (err, data) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(data);
-    exportsList = data;
-    const exportsArray = [];
-    let expls = exportsList
+const index_file_url = "../../../ui/index.js";
+
+async function readIndexFile() {
+  try {
+    const data = await fs.readFile(index_file_url, { encoding: "utf8" });
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function writeExportFile() {
+  let exportsList = await readIndexFile();
+  const exportsArray = [];
+  let list =
+    typeof exportsList !== "undefined" &&
+    exportsList
       .split(/;\r\n/)
       .map((line) => line.trim())
       .filter((line) => line.startsWith("export"));
 
-    console.log(expls);
+  console.log(list);
 
-    expls.forEach((line) => {
+  let exportCount = 0;
+
+  Array.isArray(list) &&
+    list.forEach((line) => {
       const match = /export\s+{(.*?)}\s+from\s+['"](.*?)['"]/g.exec(
         line.replace(/[\r\n]+/g, "")
       );
@@ -50,16 +60,24 @@ fs.readFile("../../../ui/index.js", "utf8", (err, data) => {
             filepath: _filePath,
             packageType,
           });
+          exportCount++;
         });
       }
     });
 
-    // Write the exports array to a JSON file
-    fs.writeFileSync("./exports.json", JSON.stringify(exportsArray, null, 2));
-    console.log(exportsArray);
+  let components = {
+    meta: {
+      exports: exportCount,
+    },
+    modules: exportsArray,
+  };
 
-    console.log("JSON file generated successfully!");
-  }
-});
+  fs.writeFile("./components.json", JSON.stringify(components, null, 2));
+  console.log(exportsArray);
+
+  console.log("exports file generated successfully!");
+}
+
+writeExportFile();
 
 // Define the list of exports
