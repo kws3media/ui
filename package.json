@@ -14,7 +14,8 @@
     "list": "lerna list",
     "what_changed": "sh ./what_changed.sh",
     "lint": "eslint packages/ src/",
-    "lint:fix": "eslint --fix packages/ src/"
+    "lint:fix": "eslint --fix packages/ src/",
+    "generate:preprocess-exports": "node packages/@kws3/sveltekit-preprocess/script"
   },
   "dependencies": {
     "bulma": "^0.9.3",
