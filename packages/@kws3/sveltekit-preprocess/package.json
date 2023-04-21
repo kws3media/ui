@@ -11,5 +11,6 @@
   "keywords": [
     "SvelteKit",
     "Preprocessor"
-  ]
+  ],
+  "type": "module"
 }
