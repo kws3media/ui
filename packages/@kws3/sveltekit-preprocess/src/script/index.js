@@ -1,4 +1,4 @@
-const fs = require("fs/promises");
+import fs from "fs/promises";
 
 const index_file_url = "../../../ui/index.js";
 
@@ -57,7 +57,7 @@ async function writeExportFile() {
           exportsArray.push({
             name: _name.trim(),
             exportType: type,
-            filepath: _filePath,
+            path: _filePath,
             packageType,
           });
           exportCount++;
