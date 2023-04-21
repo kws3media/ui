@@ -14,7 +14,7 @@ export default function resolveComponentsPath(content) {
     components.forEach((component) => {
       if (modules[component] && component !== "") {
         let path =
-          modules[component].externalPackage === true
+          modules[component].packageType === "external"
             ? `"${modules[component].path}"`
             : `"${pkg.path}/${modules[component].path}"`;
 
