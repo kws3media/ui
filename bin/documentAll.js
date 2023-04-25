@@ -22,7 +22,7 @@ glob("./packages/**/*.svelte", function (err, svelteFiles) {
         });
 
         docm.on("close", (code) => {
-          if (code == 0) {
+          if (code === 0) {
             console.log(`${chalk.bold.green("✓")} ${filename}`);
           } else {
             console.log(`${chalk.bold.red("✘")} ${filename}`);
