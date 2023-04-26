@@ -110,3 +110,11 @@ function analyze(file, extensions) {
     is_svelte: !!svelte_extension,
   };
 }
+
+module.exports = {
+  resolve_aliases,
+  strip_lang_tags,
+  write,
+  scan,
+  analyze,
+};
