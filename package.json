@@ -55,6 +55,7 @@
     "pluralize": "^8.0.0",
     "prettier": "^2.3.2",
     "prettier-plugin-svelte": "^2.3.1",
+    "rimraf": "^5.0.0",
     "sass": "^1.38.1",
     "sass-loader": "^10",
     "style-loader": "^0.19.1",
@@ -62,6 +63,7 @@
     "svelte-eslint-parser": "^0.14.0",
     "svelte-loader": "^3.1.2",
     "svelte-preprocess": "^4.8.0",
-    "sveltedoc-parser": "https://github.com/ekhaled/sveltedoc-parser#integration"
+    "sveltedoc-parser": "https://github.com/ekhaled/sveltedoc-parser#integration",
+    "typescript": "^5.0.4"
   }
 }
