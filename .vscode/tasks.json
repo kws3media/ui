@@ -4,7 +4,7 @@
     {
       "label": "Document this svelte file",
       "type": "shell",
-      "command": "node bin/documentor.js ${file}",
+      "command": "node scripts/documentor/documentor.js ${file}",
       "problemMatcher": [],
       "presentation":{
         "echo": true,
@@ -18,7 +18,7 @@
     {
       "label": "Document ALL svelte files",
       "type": "shell",
-      "command": "node bin/documentAll.js",
+      "command": "node scripts/documentor/documentAll.js",
       "problemMatcher": [],
       "presentation":{
         "echo": true,
