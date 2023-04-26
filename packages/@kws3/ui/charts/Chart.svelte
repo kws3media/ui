@@ -16,20 +16,13 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
 <div class="kws-chart {klass}" bind:this={canvas} />
 
 <script>
-  import { onMount, createEventDispatcher } from "svelte";
-  import ApexCharts from "apexcharts/dist/apexcharts.esm";
+  import { createEventDispatcher, onMount } from "svelte";
   import { merge } from "./utils";
-
-  //some functions such as brush charts
-  //require ApexCharts to be globally available
-  if (window) {
-    if (!window.ApexCharts) {
-      window.ApexCharts = ApexCharts;
-    }
-  }
 
   const fire = createEventDispatcher();
   let canvas, chart;
+
+  let ApexCharts;
 
   /**
    * Chart options
@@ -91,8 +84,13 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
     "brushScrolled",
   ];
 
-  onMount(() => {
+  onMount(async () => {
+    const module = await import("apexcharts/dist/apexcharts.esm");
+    ApexCharts = module.default;
+    window.ApexCharts = ApexCharts;
+
     init();
+
     return () => {
       chart && chart.destroy();
     };
@@ -119,6 +117,12 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
 
   const init = () => {
     chart && chart.destroy();
+
+    if (typeof window !== "undefined") {
+      if (!window.ApexCharts) {
+        window.ApexCharts = ApexCharts;
+      }
+    }
 
     const newOptions = {
       chart: {
@@ -156,7 +160,7 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
 
   const optionsChanged = () => {
     if (chart) {
-      if (typeof options.chart.events != "undefined") {
+      if (typeof options.chart.events !== "undefined") {
         options.chart.events = Events;
       }
       chart.updateOptions(options, true);
