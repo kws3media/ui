@@ -24,9 +24,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "types": "types/index.d.ts",
+  "types": "index.d.ts",
   "dependencies": {
-    "apexcharts": "3.33.2",
+    "apexcharts": "3.39.2",
     "flatpickr": "^4.5.2",
     "svelte-portal": "^2.1.2",
     "text-mask-core": "^5.1.2",
