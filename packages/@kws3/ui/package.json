@@ -24,7 +24,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "types": "types/index.d.ts",
+  "types": "./generatedTypes/index.d.ts",
   "dependencies": {
     "apexcharts": "3.33.2",
     "flatpickr": "^4.5.2",
