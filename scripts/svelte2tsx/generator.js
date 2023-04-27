@@ -11,9 +11,9 @@ const svelte2tsx = require("svelte2tsx");
 
 const cwd = join(__dirname);
 const output = join(cwd, "dist");
-const input = resolve("packages/ui");
+const input = resolve("./packages/@kws3/ui/");
 
-glob("./packages/**/*.svelte", function (err, svelteFiles) {
+glob("./packages/@kws3/ui/**/*.svelte", function (err, svelteFiles) {
   if (err) {
     console.log("Error", err);
   } else {
