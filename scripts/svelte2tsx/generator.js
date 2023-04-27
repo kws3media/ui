@@ -13,10 +13,6 @@ const input = resolve("./packages/@kws3/ui/");
  * The files are written to a temporary location and those which should be kept
  * are sanitized ($lib alias resolved) and copied over to the destination folder.
  *
-//  * @param {string} input
-//  * @param {string} output
-//  * @param {Record<string, string>} alias
-//  * @param {import('./types').File[]} files
  */
 async function main() {
   const tmp = `${output}/`;
