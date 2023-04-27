@@ -5,6 +5,7 @@ const path = require("path");
 const { resolve_aliases, write } = require("../utils/helper.js");
 const { rimraf, mkdirp, copy } = require("../utils/filesystem.js");
 const chalk = require("chalk");
+const svelte2tsx = require("svelte2tsx");
 
 const folders = {
   package: path.resolve(process.cwd(), "./packages/@kws3/ui"),
@@ -47,7 +48,15 @@ const adjustAliases = function () {
   });
 };
 
-function main() {
+async function generateSvelteDts() {
+  await svelte2tsx.emitDts({
+    libRoot: folders.package,
+    svelteShimsPath: require.resolve("svelte2tsx/svelte-shims.d.ts"),
+    declarationDir: "generatedTypes",
+  });
+}
+
+async function main() {
   /**
    * rm -rf generatedTypes &&
    * mkdir -p generatedTypes &&
@@ -62,7 +71,11 @@ function main() {
     execSync(`npx tsc -p ${folders.package} --emitDeclarationOnly`, {
       stdio: "inherit",
     });
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
+
+  await generateSvelteDts();
 
   adjustAliases();
 }
