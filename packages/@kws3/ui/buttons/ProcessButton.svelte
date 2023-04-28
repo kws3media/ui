@@ -61,6 +61,11 @@
 
   const fire = createEventDispatcher();
 
+   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
   /**
    * CSS classes for the Process button
    */
@@ -71,7 +76,7 @@
     text = "Click Me",
     /**
      * Size of the Button
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SizeOptions}
      */
     size = "",
     /**
@@ -80,7 +85,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
