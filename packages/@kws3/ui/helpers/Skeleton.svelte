@@ -25,6 +25,8 @@ If this is set to `true`, the `radius` property will be ignored., Default: `fals
 {/each}
 
 <script>
+
+
   /**
    * @typedef {import('@kws3/ui/types').BGColorOptions} BGColorOptions
    */

@@ -46,9 +46,13 @@
 <script>
   import { Icon } from "@kws3/ui";
 
+   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
   /**
    * Color of marker and border
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "primary";
   /**

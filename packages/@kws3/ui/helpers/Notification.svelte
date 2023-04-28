@@ -33,9 +33,13 @@ The parent can then decide what to do with the component
   import { createEventDispatcher } from "svelte";
   const fire = createEventDispatcher();
 
+   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
   /**
    * Color of the Notification box
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "info";
 

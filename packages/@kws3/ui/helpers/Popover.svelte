@@ -80,17 +80,22 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Icon used when default slot has no content
    */
   export let icon = "info-circle";
   /**
    * Colour of the trigger icon displayed when default slot has no content
-   * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+   * @type {ColorOptions | 'grey'}
    */
   export let icon_color = "primary";
   /**
    * Size of the trigger icon displayed when default slot has no content
-   * @type {import('@kws3/ui/types').SizeOptions}
+   * @type {SizeOptions}
    */
   export let icon_size = "small";
   /**

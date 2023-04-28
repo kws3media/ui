@@ -23,9 +23,14 @@
 </div>
 
 <script>
+   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
   /**
    * Color of the Divider lines
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "",
     /**

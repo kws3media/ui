@@ -73,7 +73,7 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
      *
      * If `''` is selected, Icon will not change colour after copying
      *
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {ColorOptions}
      */
     copied_icon_color = "success";
 
