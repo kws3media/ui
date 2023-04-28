@@ -97,9 +97,7 @@ declare const __propDef: {
     events: {
         [evt: string]: CustomEvent<any>;
     };
-    /**
-       * List of tools available for user to select from
-       */ slots: {};
+    slots: {};
 };
 export {};
 //# sourceMappingURL=Canvas.svelte.d.ts.map

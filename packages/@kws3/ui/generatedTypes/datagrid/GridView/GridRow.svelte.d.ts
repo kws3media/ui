@@ -82,9 +82,7 @@ declare const __propDef: {
     } & {
         [evt: string]: CustomEvent<any>;
     };
-    /**
-         * Determines whether the row has transition effect or not
-         */ slots: {};
+    slots: {};
 };
 export {};
 //# sourceMappingURL=GridRow.svelte.d.ts.map

@@ -89,7 +89,9 @@ declare const __propDef: {
     } & {
         [evt: string]: CustomEvent<any>;
     };
-    slots: {};
+    slots: {}; /**
+         * Disables the NumberInput
+         */
 };
 export {};
 //# sourceMappingURL=NumberInput.svelte.d.ts.map
