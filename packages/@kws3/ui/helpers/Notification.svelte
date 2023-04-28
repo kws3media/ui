@@ -2,7 +2,7 @@
   @component
 
 
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'light'|'dark'} [color="info"] - Color of the Notification box, Default: `"info"`
+  @param {string} [color="info"] - Color of the Notification box, Default: `"info"`
   @param {string} [style=""] - Inline CSS for notification content, Default: `""`
   @param {boolean} [light=false] - Inverted colors for notification box and contents, Default: `false`
   @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`

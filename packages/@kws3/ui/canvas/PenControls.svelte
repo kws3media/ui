@@ -18,6 +18,11 @@
 
   ### Events
   - `toggleExpand`
+  - `setTool`
+  - `undo`
+  - `redo`
+  - `reset`
+  - `changeColor`
 
 -->
 <div
@@ -35,7 +40,7 @@
                 <button
                   type="button"
                   use:tooltip
-                  class="button is-info is-small "
+                  class="button is-info is-small"
                   data-tooltip="Tools"
                   aria-controls="tools-dropdown"
                   on:click={() => (show_tools = !show_tools)}>
@@ -73,7 +78,7 @@
             <button
               use:tooltip
               type="button"
-              class="button is-small is-warning "
+              class="button is-small is-warning"
               data-tooltip="Undo"
               on:click={() => fire("undo")}
               disabled={!can_undo}>
@@ -85,7 +90,7 @@
             <button
               use:tooltip
               type="button"
-              class="button is-small is-warning "
+              class="button is-small is-warning"
               data-tooltip="Redo"
               on:click={() => fire("redo")}
               disabled={!can_redo}>
