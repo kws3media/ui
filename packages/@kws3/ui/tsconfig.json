@@ -25,7 +25,7 @@
     "paths": {
       "@kws3/ui": ["./"],
       "@kws3/ui/*": ["./*"],
-      "@kws3/ui/types": ["./internalTypes"]
+      "@kws3/ui/types": ["./types"]
     },
     "types": ["svelte"]
   },
