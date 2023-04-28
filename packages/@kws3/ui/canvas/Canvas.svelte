@@ -181,7 +181,12 @@ value in percentage %, Default: `50`
 
   let penColor = "000000";
 
-  $: penColor = CSS && CSS.supports("color", pen_color) ? pen_color : "#000000";
+  $: penColor =
+    typeof window !== "undefined" &&
+    window.CSS &&
+    window.CSS.supports("color", pen_color)
+      ? pen_color
+      : "#000000";
   $: is_touched = can_undo;
   $: expanded, setScaleFactor();
   $: image, syncImage();
