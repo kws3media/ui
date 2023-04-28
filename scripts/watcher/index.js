@@ -1,8 +1,12 @@
 const chokidar = require("chokidar");
 
-const watcher = chokidar.watch(".", {
+const watcher = chokidar.watch("./scripts", {
   persistent: true,
 });
+
+// watcher.on("all", (event, path) => {
+//   console.log(event, path);
+// });
 
 watcher
   .on("add", (path) => console.log(`File ${path} has been added`))
