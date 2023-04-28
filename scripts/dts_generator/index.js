@@ -75,7 +75,11 @@ async function main() {
     console.log(e);
   }
 
-  await generateSvelteDts();
+  //this is not required for now.. we will need to revisit
+  //if we can watch and emit single dts files per svelte component
+  // then the plan is to move all types declarations to a separate folder
+  //and point to that folder in package.json
+  //await generateSvelteDts();
 
   adjustAliases();
 }
