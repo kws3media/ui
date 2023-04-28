@@ -49,14 +49,19 @@
   import { onDestroy, onMount } from "svelte";
   import { makeSearchEngine } from "@kws3/ui/search";
 
+   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
   /**
    * Size of the input
-   *  @type {import('@kws3/ui/types').SizeOptions} size
+   *  @type {SizeOptions}
    */
   export let size = "small";
   /**
    * Color of the input
-   * @type {import('@kws3/ui/types').ColorOptions} color
+   * @type {ColorOptions}
    */
   export let color = "";
   /**

@@ -60,6 +60,10 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
     fire("change");
   }, 300);
 
+ /**
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
   /**
    * Current selected colour (hex format only)
    *
@@ -84,7 +88,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
     disabled = false,
     /**
      * Size of the colour picker trigger
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SizeOptions}
      */
     size = "";
 

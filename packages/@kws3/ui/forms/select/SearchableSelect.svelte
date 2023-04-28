@@ -83,6 +83,11 @@ Default value: `<span>{option[search_key] || option}</span>`
   const fire = createEventDispatcher();
 
   const rootContainerId = "kws-overlay-root";
+  
+ /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
 
   /**
    * Value of the Input
@@ -113,12 +118,12 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let value_key = "id";
   /**
    * Size of the input
-   *  @type {import('@kws3/ui/types').SizeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "";
   /**
