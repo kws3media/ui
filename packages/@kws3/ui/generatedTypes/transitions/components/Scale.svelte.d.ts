@@ -13,11 +13,11 @@
  * - `<slot name="default"  />`
  */
 export default class Scale extends SvelteComponentTyped<{
+    delay?: number;
+    duration?: number;
     class?: string;
     from?: number;
     to?: number;
-    duration?: number;
-    delay?: number;
     easing?: any;
 }, {
     [evt: string]: CustomEvent<any>;
@@ -31,11 +31,11 @@ export type ScaleSlots = typeof __propDef.slots;
 import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {
+        delay?: number;
+        duration?: number;
         class?: string;
         from?: number;
         to?: number;
-        duration?: number;
-        delay?: number;
         easing?: any;
     };
     events: {

@@ -63,6 +63,7 @@ export { default as RadialChart } from "./charts/RadialChart.svelte";
 export { activateTooltips, tooltip, popover } from "./helpers/Tooltip.js";
 export { alert, confirm, prompt, default as Dialog } from "./helpers/Dialog/index.js";
 export { Notifications, Toasts, Snackbars, FloatiesStore } from "./helpers/FloatingUI/index.js";
+export { portal, default as Portal } from "svelte-portal";
 export { Pen, Eraser } from "./internal/DrawingPad.js";
 export { datepicker as DatepickerAction, timepicker as TimepickerAction } from "./forms/actions.js";
 //# sourceMappingURL=index.d.ts.map

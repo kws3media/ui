@@ -41,12 +41,12 @@
  * - `<slot name="popover"  />` - Slot containing the popover content
  */
 export default class Popover extends SvelteComponentTyped<{
+    interactive?: boolean;
+    placement?: string;
+    trigger?: string;
     icon?: string;
     icon_color?: import("../internalTypes/type-defs").Colors | "grey";
     icon_size?: import("../internalTypes/type-defs").Sizes;
-    trigger?: string;
-    placement?: string;
-    interactive?: boolean;
     hide_on_click?: boolean;
     external_target?: any;
     max_width?: string;
@@ -81,12 +81,12 @@ export type PopoverSlots = typeof __propDef.slots;
 import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {
+        interactive?: boolean;
+        placement?: string;
+        trigger?: string;
         icon?: string;
         icon_color?: import('../internalTypes').ColorOptions | 'grey';
         icon_size?: import('../internalTypes').SizeOptions;
-        trigger?: string;
-        placement?: string;
-        interactive?: boolean;
         hide_on_click?: boolean;
         external_target?: any;
         max_width?: string;

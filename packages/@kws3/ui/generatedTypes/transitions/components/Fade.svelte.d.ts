@@ -11,9 +11,9 @@
  * - `<slot name="default"  />`
  */
 export default class Fade extends SvelteComponentTyped<{
-    class?: string;
-    duration?: number;
     delay?: number;
+    duration?: number;
+    class?: string;
     easing?: any;
 }, {
     [evt: string]: CustomEvent<any>;
@@ -27,9 +27,9 @@ export type FadeSlots = typeof __propDef.slots;
 import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {
-        class?: string;
-        duration?: number;
         delay?: number;
+        duration?: number;
+        class?: string;
         easing?: any;
     };
     events: {

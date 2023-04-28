@@ -21,11 +21,11 @@
  * - `<slot name="default"  />` - Used to display content
  */
 export default class Transition extends SvelteComponentTyped<{
+    delay?: number;
+    duration?: number;
     class?: string;
     from?: number;
     to?: number;
-    duration?: number;
-    delay?: number;
     x?: number;
     y?: number;
     easing?: string;
@@ -43,11 +43,11 @@ export type TransitionSlots = typeof __propDef.slots;
 import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {
+        delay?: number;
+        duration?: number;
         class?: string;
         from?: number;
         to?: number;
-        duration?: number;
-        delay?: number;
         x?: number;
         y?: number;
         easing?: string;

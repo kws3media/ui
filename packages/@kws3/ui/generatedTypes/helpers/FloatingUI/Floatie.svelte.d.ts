@@ -17,11 +17,11 @@
  */
 export default class Floatie extends SvelteComponentTyped<{
     [x: string]: any;
+    duration?: number;
     light?: boolean;
     color?: import("../../internalTypes/type-defs").Colors;
     title?: string;
     dismissable?: boolean;
-    duration?: number;
     message?: string;
     variant?: "notification" | "toast" | "snackbar";
     persistent?: boolean;
@@ -42,11 +42,11 @@ import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
+        duration?: number;
         light?: boolean;
         color?: import("../../internalTypes/type-defs").Colors;
         title?: string;
         dismissable?: boolean;
-        duration?: number;
         message?: string;
         variant?: 'notification' | 'snackbar' | 'toast';
         persistent?: boolean;

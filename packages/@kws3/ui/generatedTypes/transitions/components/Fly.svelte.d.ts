@@ -13,9 +13,9 @@
  * - `<slot name="default"  />`
  */
 export default class Fly extends SvelteComponentTyped<{
-    class?: string;
-    duration?: number;
     delay?: number;
+    duration?: number;
+    class?: string;
     x?: number;
     y?: number;
     easing?: any;
@@ -31,9 +31,9 @@ export type FlySlots = typeof __propDef.slots;
 import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {
-        class?: string;
-        duration?: number;
         delay?: number;
+        duration?: number;
+        class?: string;
         x?: number;
         y?: number;
         easing?: any;
