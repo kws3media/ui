@@ -12,8 +12,8 @@ Used to populate the list of options in the dropdown, Default: `[]`
 this property of each object will be searched, Default: `"name"`
   @param {string} [value_key="id"] - If `options` is an array of objects,
 this property of each object will be returned as the value, Default: `"id"`
-  @param {string} [size=""] - Size of the input, Default: `""`
-  @param {string} [color=""] - Color of the input, Default: `""`
+  @param {SizeOptions} [size=] - Size of the input, Default: ``
+  @param {ColorOptions} [color=] - Color of the input, Default: ``
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {function|null} [search=null] - Async function to fetch options
@@ -83,8 +83,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   const fire = createEventDispatcher();
 
   const rootContainerId = "kws-overlay-root";
-  
- /**
+
+  /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    */

@@ -24,8 +24,8 @@ Only send this prop if you want to fetch `options` asynchronously.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {number} [score_threshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
   @param {number} [scoreThreshold=undefined] - (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `undefined`
-  @param {string} [size=""] - Size of the input, Default: `""`
-  @param {string} [color=""] - Color of the input, Default: `""`
+  @param {SizeOptions} [size=] - Size of the input, Default: ``
+  @param {ColorOptions} [color=] - Color of the input, Default: ``
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`

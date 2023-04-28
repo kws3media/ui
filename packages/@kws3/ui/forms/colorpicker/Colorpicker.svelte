@@ -9,7 +9,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
   @param {boolean} [readonly=false] - Enables read-only mode, Default: `false`
   @param {boolean} [mini=false] - Alternate mini colour picker without typeable input, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
-  @param {string} [size=""] - Size of the colour picker trigger, Default: `""`
+  @param {SizeOptions} [size=] - Size of the colour picker trigger, Default: ``
 
   ### Events
   - `change` - Triggered when color changes
@@ -60,7 +60,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
     fire("change");
   }, 300);
 
- /**
+  /**
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    */
 

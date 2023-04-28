@@ -2,8 +2,8 @@
   @component
 
 
-  @param {string} [size=""] - Size of the Icon, Default: `""`
-  @param {string} [color=""] - Color of the Icon, Default: `""`
+  @param {SizeOptions} [size=] - Size of the Icon, Default: ``
+  @param {ColorOptions | 'grey'} [color=] - Color of the Icon, Default: ``
   @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
   @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [family=""] - Icon family, can be modified globally in framework settings
 
@@ -65,7 +65,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
 <script>
   import { defaultIconFamily } from "../settings";
 
-   /**
+  /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    */

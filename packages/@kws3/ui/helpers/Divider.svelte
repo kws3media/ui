@@ -2,7 +2,7 @@
   @component
 
 
-  @param {string} [color=""] - Color of the Divider lines, Default: `""`
+  @param {ColorOptions} [color=] - Color of the Divider lines, Default: ``
   @param {boolean} [light=false] - Whether to display a lighter variant of the `color`, Default: `false`
   @param {boolean} [vertical=false] - Whether to orient the Divider vertically. Vertical Divider take up the height of their parent., Default: `false`
   @param {string|'center' | 'left' | 'right' | 'top' | 'bottom'} [alignment="center"] - Alignment of the Divider text. `top`/`left` and `bottom`/`right` are analogous for vertical Dividers, Default: `"center"`
@@ -23,7 +23,7 @@
 </div>
 
 <script>
-   /**
+  /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    */

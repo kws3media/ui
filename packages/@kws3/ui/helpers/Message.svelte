@@ -2,8 +2,8 @@
   @component
 
 
-  @param {string} [size=""] - Size of the Message, Default: `""`
-  @param {string} [color="info"] - Color of the Message box, Default: `"info"`
+  @param {SizeOptions} [size=] - Size of the Message, Default: ``
+  @param {ColorOptions | 'grey'} [color=info] - Color of the Message box, Default: `info`
   @param {string} [style=""] - Inline CSS for Message box, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for Message content, Default: `""`
   @param {string} [title_class=""] - CSS classes for Message box title, Default: `""`
@@ -68,7 +68,7 @@ The parent can then decide what to do with the component
   import { createEventDispatcher } from "svelte";
   const fire = createEventDispatcher();
 
-    /**
+  /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    */

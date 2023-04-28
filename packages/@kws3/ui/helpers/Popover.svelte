@@ -3,8 +3,8 @@
 
 
   @param {string} [icon="info-circle"] - Icon used when default slot has no content, Default: `"info-circle"`
-  @param {string} [icon_color="primary"] - Colour of the trigger icon displayed when default slot has no content, Default: `"primary"`
-  @param {string} [icon_size="small"] - Size of the trigger icon displayed when default slot has no content, Default: `"small"`
+  @param {ColorOptions | 'grey'} [icon_color=primary] - Colour of the trigger icon displayed when default slot has no content, Default: `primary`
+  @param {SizeOptions} [icon_size=small] - Size of the trigger icon displayed when default slot has no content, Default: `small`
   @param {string} [trigger="click"] - Determines the events that cause the Popover to show. Multiple event names are separated by spaces.
 
 **Examples:** `click`, `mouseenter`, `mouseenter focus`
