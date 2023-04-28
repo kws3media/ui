@@ -2,10 +2,10 @@
   @component
 
 
-  @param {'' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link' | 'dark' | 'light'} [color=""] - Color of the Divider lines, Default: `""`
+  @param {string} [color=""] - Color of the Divider lines, Default: `""`
   @param {boolean} [light=false] - Whether to display a lighter variant of the `color`, Default: `false`
   @param {boolean} [vertical=false] - Whether to orient the Divider vertically. Vertical Divider take up the height of their parent., Default: `false`
-  @param {'center' | 'left' | 'right' | 'top' | 'bottom'} [alignment="center"] - Alignment of the Divider text. `top`/`left` and `bottom`/`right` are analogous for vertical Dividers, Default: `"center"`
+  @param {string|'center' | 'left' | 'right' | 'top' | 'bottom'} [alignment="center"] - Alignment of the Divider text. `top`/`left` and `bottom`/`right` are analogous for vertical Dividers, Default: `"center"`
   @param {string} [style=""] - Inline CSS styles for the Divider, Default: `""`
   @param {string} [class=""] - CSS class for Divider, Default: `""`
 

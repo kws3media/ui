@@ -6,10 +6,10 @@
 
 This property can be bound to, to fetch the current value, Default: `false`
   @param {boolean} [disabled=false] - Disables the Toggle, Default: `false`
-  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Toggle, Default: `""`
+  @param {ColorOptions} [color=] - Color of the Toggle, Default: ``
   @param {string} [on_text=""] - Text displayed on the Toggle when ON, Default: `""`
   @param {string} [off_text=""] - Text displayed on the Toggle when OFF, Default: `""`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Toggle, Default: `""`
+  @param {SizeOptions} [size=] - Size of the Toggle, Default: ``
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [class=""] - CSS classes for the Toggle, Default: `""`
 

@@ -8,18 +8,21 @@ Where `H` is in 24hr format
 
 This property can be bound to, to fetch the selected time. Output is in the same format as input., Default: `""`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Time picker input, Default: `""`
+  @param {ColorOptions} [color=] - Colour of the Time picker input, Default: ``
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [placeholder="Select Time.."] - Placeholder text for the input, Default: `"Select Time.."`
-  @param {'primary'|'warning'|'info'|'danger'|'dark'|'light'} [ui_color="primary"] - Colour of popup time selection UI, Default: `"primary"`
+  @param {Exclude<ColorOptions, ''>} [ui_color=primary] - Colour of popup time selection UI, Default: `primary`
   @param {boolean} [time_24hr=false] - Display time selection UI in 24hr format, Default: `false`
-  @param {object} [options={}] - Extended set of options as supported by Flatpicker
   @param {any} [min_time=null] - Set earliest selectable time as string
-  **Example:** `"12:00 PM"` Default: `null`
+
+**Example:** `"01:00 PM"` or "13:00"`, Default: `null`
   @param {any} [max_time=null] - Set latest selectable time as string
-  **Example:** `"12:00 AM"` Default: `null`
+
+**Example:** `"03:00 PM"` or "15:00"`, Default: `null`
+  @param {object} [options={}] - Extended set of options as supported by Flatpicker
 
 See: https://flatpickr.js.org/options/, Default: `{}`
+  @param {boolean} [readonly=false] - Make input value read-only, Default: `false`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
 
   ### Events

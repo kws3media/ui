@@ -20,23 +20,21 @@
 <div
   class="kws-pen-input {readonly || disabled ? 'is-readonly' : ''}"
   style:width
-  style:height
->
+  style:height>
   {#if disabled || readonly}
     <img
       alt="canvasimage"
       src={image || emptyImage}
       style:width
       style:height
-      style:background-image="url({background_image})"
-      />
+      style:background-image="url({background_image})" />
   {/if}
-  <canvas bind:this={CANVAS}
+  <canvas
+    bind:this={CANVAS}
     style:width
     style:height
     style:background-image="url({background_image})"
-    style:background-color={readonly ? 'transparent':''}
-  />
+    style:background-color={readonly ? "transparent" : ""} />
 </div>
 
 <script>

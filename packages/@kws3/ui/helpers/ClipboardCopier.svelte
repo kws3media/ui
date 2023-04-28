@@ -8,7 +8,7 @@
   @param {string} [copied_icon="check"] - Icon displayed on successful copy operation, Default: `"check"`
   @param {string} [copy=""] - Text to be copied into clipboard, Default: `""`
   @param {boolean} [copied=false] - Determines if the copy operation has taken place, Default: `false`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [copied_icon_color="success"] - Colour of the `copied_icon` after a succesful copy operation
+  @param {string} [copied_icon_color="success"] - Colour of the `copied_icon` after a succesful copy operation
 
 If `''` is selected, Icon will not change colour after copying, Default: `"success"`
   @param {string} [class=""] - CSS classes for the whole component, Default: `""`

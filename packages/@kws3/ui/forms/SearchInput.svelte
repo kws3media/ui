@@ -2,8 +2,8 @@
   @component
 
 
-  @param {string|''|'small'|'medium'|'large'} [size="small"] - Size of the input, Default: `"small"`
-  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {string} [size="small"] - Size of the input, Default: `"small"`
+  @param {string} [color=""] - Color of the input, Default: `""`
   @param {string} [placeholder="Search"] - Placeholder text for the input, Default: `"Search"`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -11,7 +11,7 @@
   @param {array} [searchableKeys=[]] - array of object properties to search in., Default: `[]`
   @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
   @param {number} [score_threshold=2] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `2`
-  @param {number} [scoreThreshold=2] - (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `2`
+  @param {number} [scoreThreshold=undefined] - (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `undefined`
   @param {boolean} [word_match=false] - Whether to match against each word seperatly or whole sentence in flow., Default: `false`
   @param {string} [style=""] - Inline CSS for the input, Default: `""`
   @param {string} [class=""] - CSS classes for the input, Default: `""`
