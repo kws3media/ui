@@ -2,7 +2,7 @@
 /** @typedef {typeof __propDef.events}  ModalEvents */
 /** @typedef {typeof __propDef.slots}  ModalSlots */
 /**
- * @param {'small'|'medium'|'large'} [size="small"] - Size of the modal, Default: `"small"`
+ * @param {string} [size="small"] - Size of the modal, Default: `"small"`
  * @param {boolean} [is_active=false] - Determines whether modal is displayed or not, Default: `false`
  * @param {boolean} [closable=true] - If this is set to false, the modal cannot be closed using the UI
  *

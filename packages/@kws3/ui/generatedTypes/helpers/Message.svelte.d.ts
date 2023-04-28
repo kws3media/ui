@@ -2,8 +2,8 @@
 /** @typedef {typeof __propDef.events}  MessageEvents */
 /** @typedef {typeof __propDef.slots}  MessageSlots */
 /**
- * @param {''|'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
- * @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
+ * @param {string} [size=""] - Size of the Message, Default: `""`
+ * @param {string} [color="info"] - Color of the Message box, Default: `"info"`
  * @param {string} [style=""] - Inline CSS for Message box, Default: `""`
  * @param {string} [inner_style=""] - Inline CSS for Message content, Default: `""`
  * @param {string} [title_class=""] - CSS classes for Message box title, Default: `""`

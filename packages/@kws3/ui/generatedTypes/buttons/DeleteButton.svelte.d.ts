@@ -4,9 +4,9 @@
 /**
  * @param {string} [button_class=""] - CSS classes for the Delete button, Default: `""`
  * @param {string} [text="Delete"] - Button text, Default: `"Delete"`
- * @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+ * @param {string} [size=""] - Size of the Button, Default: `""`
  * @param {string} [icon="minus-circle"] - Name of the icon that is to be displayed in the button, Default: `"minus-circle"`
- * @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="danger"] - Color of the Button, Default: `"danger"`
+ * @param {string} [color="danger"] - Color of the Button, Default: `"danger"`
  * @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
  * @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
  * @param {string} [done_text="Deleted"] - Button text displayed after task is completed successfully, Default: `"Deleted"`

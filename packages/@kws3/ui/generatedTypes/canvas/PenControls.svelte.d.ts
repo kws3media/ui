@@ -18,6 +18,11 @@
  *
  * ### Events
  * - `toggleExpand`
+ * - `setTool`
+ * - `undo`
+ * - `redo`
+ * - `reset`
+ * - `changeColor`
  */
 export default class PenControls extends SvelteComponentTyped<{
     EXPANDED_BUTTON: any;

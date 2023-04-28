@@ -16,9 +16,9 @@
  * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
  * @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
  * @param {number} [score_threshold=5] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
- * @param {number} [scoreThreshold=5] - (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
- * @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
- * @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+ * @param {number} [scoreThreshold=undefined] - (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `undefined`
+ * @param {string} [size=""] - Size of the input, Default: `""`
+ * @param {string} [color=""] - Color of the input, Default: `""`
  * @param {string} [style=""] - Inline CSS for input container, Default: `""`
  * @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
  * @param {boolean} [disabled=false] - Disables the component, Default: `false`

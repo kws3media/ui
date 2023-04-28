@@ -4,7 +4,7 @@
 /**
  * @param {string} [width="250px"] - Canvas width, Default: `"250px"`
  * @param {string} [height="250px"] - Canvas height, Default: `"250px"`
- * @param {string | 'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
+ * @param {string |'Pen'|'Eraser'} [active_tool=""] - Default active tool, Default: `""`
  * @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
  * @param {boolean} [is_touched=false] - Determines whether canvas is touched or not, Default: `false`
  * @param {number} [pen_width=2] - `CONST` pen width, Default: `2`
@@ -23,8 +23,6 @@
  * @param {array} [actions=[]] - `CONST` List of actions toolbar, Default: `[]`
  * @param {string|'bottom'|'top'} [toolbar_placement="bottom"] - Default position of the action toolbar, Default: `"bottom"`
  * @param {object} [tools={}] - List of tools available for user to select from, Default: `{}`
- *
- * Only active when canvas is `readonly` or `disabled`, Default: `""`
  * @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
  * @param {boolean} [has_controls=true] - Determines control tools available or not, Default: `true`
  * @param {string|'start'|'center'|'end'} [control_position="center"] - `CONST` Default position of controls, Default: `"center"`
@@ -99,7 +97,9 @@ declare const __propDef: {
     events: {
         [evt: string]: CustomEvent<any>;
     };
-    slots: {};
+    /**
+       * List of tools available for user to select from
+       */ slots: {};
 };
 export {};
 //# sourceMappingURL=Canvas.svelte.d.ts.map

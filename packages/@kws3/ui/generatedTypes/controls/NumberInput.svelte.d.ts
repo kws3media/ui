@@ -2,7 +2,7 @@
 /** @typedef {typeof __propDef.events}  NumberInputEvents */
 /** @typedef {typeof __propDef.slots}  NumberInputSlots */
 /**
- * @param {''|'small'|'medium'|'large'} [size=""] - Size of the component, Default: `""`
+ * @param {SizeOptions} [size=] - Size of the component, Default: ``
  * @param {number} [value=0] - Current value
  *
  * This property can be bound to, to fetch the current value
@@ -15,11 +15,11 @@
  * @param {boolean} [fullwidth=false] - Forces the NumberInput to occupy the full width of it's container, Default: `false`
  * @param {boolean} [typeable=true] - Allows typing the value into the input, Default: `true`
  * @param {string} [minus_icon="minus"] - Name of the icon that is to be displayed in the minus button, Default: `"minus"`
- * @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_icon_color="danger"] - Color of the Minus Icon, Default: `"danger"`
- * @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [minus_button_color=""] - Color of the Minus Button, Default: `""`
+ * @param {ColorOptions} [minus_icon_color=danger] - Color of the Minus Icon, Default: `danger`
+ * @param {ColorOptions} [minus_button_color=] - Color of the Minus Button, Default: ``
  * @param {string} [plus_icon="plus"] - Name of the icon that is to be displayed in the plus button, Default: `"plus"`
- * @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_icon_color="success"] - Color of the Plus Icon, Default: `"success"`
- * @param {''|'success'|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [plus_button_color=""] - Color of the Plus Button, Default: `""`
+ * @param {ColorOptions} [plus_icon_color=success] - Color of the Plus Icon, Default: `success`
+ * @param {ColorOptions} [plus_button_color=] - Color of the Plus Button, Default: ``
  * @param {boolean} [input_only=false] - Show input without controls, Default: `false`
  * @param {boolean} [force_integer=false] - Prevent decimal numbers such as `1.5`, Default: `false`
  * @param {string} [style=""] - Inline CSS for component, Default: `""`
@@ -89,9 +89,7 @@ declare const __propDef: {
     } & {
         [evt: string]: CustomEvent<any>;
     };
-    slots: {}; /**
-         * Disables the NumberInput
-         */
+    slots: {};
 };
 export {};
 //# sourceMappingURL=NumberInput.svelte.d.ts.map

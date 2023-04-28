@@ -7,12 +7,12 @@
  * It is returned back in the `getFile()` call from `file_chosen` event, Default: `""`
  * @param {string} [message="Choose File..."] - Message displayed in uploader, Default: `"Choose File..."`
  * @param {string} [info=""] - Information / help / subtitle displayed under the uploader, Default: `""`
- * @param {''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [info_color="grey"] - Color of the information text, Default: `"grey"`
+ * @param {ColorOptions | 'grey'} [info_color=grey] - Color of the information text, Default: `grey`
  * @param {number} [max=5000000] - Maximum allowed size in bytes, Default: `5000000`
  * @param {any} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
  * @param {boolean} [disabled=false] - Disables the uploader, Default: `false`
- * @param {''|'small'|'medium'|'large'} [size=""] - Size of the File Input, Default: `""`
- * @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the File Input, Default: `""`
+ * @param {SizeOptions} [size=] - Size of the File Input, Default: ``
+ * @param {ColorOptions} [color=] - Color of the File Input, Default: ``
  * @param {string} [class=""] - CSS classes for the Uploader, Default: `""`
  *
  * ### Events

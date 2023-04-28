@@ -2,7 +2,7 @@
 /** @typedef {typeof __propDef.events}  SkeletonEvents */
 /** @typedef {typeof __propDef.slots}  SkeletonSlots */
 /**
- * @param {number} [lines=1] - Lines property, Default: `1`
+ * @param {number} [lines=1] - @typedef {import(', Default: `1`
  * @param {string} [width="100%"] - CSS string denoting width of the Skeleton
  * **Examples:** `10px` | `5rem` | `100vh`, Default: `"100%"`
  * @param {string} [height="auto"] - CSS string denoting height of the Skeleton
@@ -11,7 +11,7 @@
  * **Examples:** `10px` | `5rem`, Default: `"0px"`
  * @param {boolean} [circle=false] - Whether the Skeleton should be rendered as a circle.
  * If this is set to `true`, the `radius` property will be ignored., Default: `false`
- * @param {'' | 'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'} [color=""] - Color of the Skeleton lines, Default: `""`
+ * @param {BGColorOptions} [color=] - Color of the Skeleton lines, Default: ``
  * @param {string} [class=""] - CSS class for Skeleton, Default: `""`
  */
 export default class Skeleton extends SvelteComponentTyped<{
@@ -29,6 +29,7 @@ export default class Skeleton extends SvelteComponentTyped<{
 export type SkeletonProps = typeof __propDef.props;
 export type SkeletonEvents = typeof __propDef.events;
 export type SkeletonSlots = typeof __propDef.slots;
+export type Skeleton = any;
 import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
     props: {

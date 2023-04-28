@@ -12,15 +12,15 @@
  * this property of each object will be searched, Default: `"name"`
  * @param {string} [value_key="id"] - If `options` is an array of objects,
  * this property of each object will be returned as the value, Default: `"id"`
- * @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
- * @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+ * @param {string} [size=""] - Size of the input, Default: `""`
+ * @param {string} [color=""] - Color of the input, Default: `""`
  * @param {string} [style=""] - Inline CSS for input container, Default: `""`
  * @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
  * @param {function|null} [search=null] - Async function to fetch options
  *
  * Only send this prop if you want to fetch `options` asynchronously.
  * `options` prop will be ignored if this prop is set., Default: `null`
- * @param {'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
+ * @param {string|'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
  * Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
  * @param {boolean} [disabled=false] - Disables the component, Default: `false`
  * @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`

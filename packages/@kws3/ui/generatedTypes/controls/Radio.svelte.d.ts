@@ -5,8 +5,8 @@
  * @param {object} [value=null] - Value of radio button, Default: `null`
  * @param {string} [style=""] - Inline CSS for the Radio button, Default: `""`
  * @param {string} [label_style=""] - Inline CSS for Radio label, Default: `""`
- * @param {''|'small'|'medium'|'large'} [size=""] - Size of the Radio Button, Default: `""`
- * @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Radio button when selected, Default: `""`
+ * @param {SizeOptions} [size=] - Size of the Radio Button, Default: ``
+ * @param {ColorOptions} [color=] - Color of the Radio button when selected, Default: ``
  * @param {boolean} [inverted=false] - Inverts the Radio colour theme, Default: `false`
  * @param {boolean} [circle=false] - Circular Radio button instead of the default square, Default: `false`
  * @param {boolean} [disabled=false] - Disables Radio button, Default: `false`

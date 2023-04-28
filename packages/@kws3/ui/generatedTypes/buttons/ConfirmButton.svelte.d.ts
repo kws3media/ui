@@ -4,9 +4,9 @@
 /**
  * @param {string} [button_class=""] - CSS classes for the Confirm button, Default: `""`
  * @param {string} [text=""] - Button text, Default: `""`
- * @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
+ * @param {SizeOptions} [size=] - Size of the Button, Default: ``
  * @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
- * @param {''|'dark' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [color="primary"] - Color of the Button, Default: `"primary"`
+ * @param {ColorOptions} [color=primary] - Color of the Button, Default: `primary`
  * @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
  * @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
  * @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`

@@ -2,9 +2,9 @@
 /** @typedef {typeof __propDef.events}  LoaderEvents */
 /** @typedef {typeof __propDef.slots}  LoaderSlots */
 /**
- * @param {'grey' | 'light' | 'warning' | 'info' | 'danger' | 'primary' | 'success'} [spinner_color="grey"] - Color of the Spinner, Default: `"grey"`
- * @param {'small'|'medium'|'large'} [spinner_size="medium"] - Size of the Spinner, Default: `"medium"`
- * @param {'transparent' | 'warning' | 'info' | 'danger' | 'primary' | 'success' | 'link'} [background_color="transparent"] - Backgound color of the Spinner container, Default: `"transparent"`
+ * @param {SpinnerColorOptions} [spinner_color=grey] - Color of the Spinner, Default: `grey`
+ * @param {SizeOptions} [spinner_size=medium] - Size of the Spinner, Default: `medium`
+ * @param {BGColorOptions} [background_color=transparent] - Backgound color of the Spinner container, Default: `transparent`
  * @param {string} [background_size="medium"] - Size of the Spinner container. It can also accept css units
  *
  * **Examples:** `small` | `medium` | `large` | `halfheight` | `fullheight` | `10px` | `5rem` | `100vh`, Default: `"medium"`

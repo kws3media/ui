@@ -2,7 +2,7 @@
 /** @typedef {typeof __propDef.events}  TimelineEvents */
 /** @typedef {typeof __propDef.slots}  TimelineSlots */
 /**
- * @param {'left'|'center'|'right'} [align="left"] - Alignment of the Timeline child items, Default: `"left"`
+ * @param {string|'left'|'center'|'right'} [align="left"] - Alignment of the Timeline child items, Default: `"left"`
  * @param {string} [class=""] - CSS classes for the Timeline container, Default: `""`
  *
  * ### Slots

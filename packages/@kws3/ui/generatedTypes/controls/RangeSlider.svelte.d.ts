@@ -12,8 +12,8 @@
  * This will be overridden if `min` is higher, or `max` is lower, Default: `0`
  * @param {boolean} [output=false] - Displays the current value, Default: `false`
  * @param {boolean} [disabled=false] - Disables the Slider, Default: `false`
- * @param {''|'small'|'medium'|'large'} [size=""] - Size of the Slider, Default: `""`
- * @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Slider, Default: `""`
+ * @param {SizeOptions} [size=] - Size of the Slider, Default: ``
+ * @param {ColorOptions} [color=] - Colour of the Slider, Default: ``
  * @param {string} [style=""] - Inline CSS for the Slider, Default: `""`
  * @param {boolean} [circle=false] - Uses a round slider thumb instead of the default square, Default: `false`
  * @param {boolean} [tooltip=false] - Displays the current value of the Slider as a tooltip
@@ -23,7 +23,7 @@
  *
  * ### Events
  * - `change` - Native input change event
- * - `input` - Native input event
+ * - `input`
  */
 export default class RangeSlider extends SvelteComponentTyped<{
     style?: string;

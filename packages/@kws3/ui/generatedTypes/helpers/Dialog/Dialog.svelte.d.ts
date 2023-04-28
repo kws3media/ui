@@ -4,16 +4,16 @@
 /**
  * @param {string} [title=""] - Title text of the Dialog box, Default: `""`
  * @param {string} [help_text=""] - Additional text to provide further context to the user, Default: `""`
- * @param {'small'|'medium'|'large'} [size="small"] - Size of the Dialog box, Default: `"small"`
+ * @param {SizeOptions} [size=small] - Size of the Dialog box, Default: `small`
  * @param {string} [input_value=""] - Default value inside text input displayed on `prompt()` Dialogs, Default: `""`
  * @param {string} [icon=""] - Icon in the Dialog box, Default: `""`
- * @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [icon_color="primary"] - Color of the Icon in the Dialog box, Default: `"primary"`
- * @param {'small'|'medium'|'large'} [icon_size=""] - Size of the Icon in the Dialog box, Default: `""`
+ * @param {ColorOptions} [icon_color=primary] - Color of the Icon in the Dialog box, Default: `primary`
+ * @param {SizeOptions} [icon_size=] - Size of the Icon in the Dialog box, Default: ``
  * @param {string} [ok_button_text="Ok"] - Text to be displayed in the OK button, Default: `"Ok"`
- * @param {'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [ok_button_color="primary"] - Color of OK button, Default: `"primary"`
+ * @param {ColorOptions} [ok_button_color=primary] - Color of OK button, Default: `primary`
  * @param {string} [ok_button_icon="check"] - Icon in the OK button, Default: `"check"`
  * @param {string} [cancel_button_text="Cancel"] - Text to be displayed in the Cancel button, Default: `"Cancel"`
- * @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [cancel_button_color=""] - Color of Cancel button, Default: `""`
+ * @param {ColorOptions} [cancel_button_color=] - Color of Cancel button, Default: ``
  * @param {string} [cancel_button_icon="ban"] - Icon in the Cancel button, Default: `"ban"`
  * @param {string} [_type=""] - Determines the type of Dialog.
  *

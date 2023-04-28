@@ -2,8 +2,8 @@
 /** @typedef {typeof __propDef.events}  IconEvents */
 /** @typedef {typeof __propDef.slots}  IconSlots */
 /**
- * @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
- * @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
+ * @param {string} [size=""] - Size of the Icon, Default: `""`
+ * @param {string} [color=""] - Color of the Icon, Default: `""`
  * @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
  * @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [family=""] - Icon family, can be modified globally in framework settings
  *
