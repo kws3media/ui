@@ -1,14 +1,15 @@
-export type Colors =
-  | ""
-  | "primary"
-  | "success"
-  | "warning"
-  | "info"
-  | "danger"
-  | "dark"
-  | "light";
+export const Colors = [
+  "",
+  "primary",
+  "success",
+  "warning",
+  "info",
+  "danger",
+  "dark",
+  "light",
+] as const;
 
-export type BGColors = "" | "transparent" | "link";
-export type SpinnerColors = "" | "grey";
+export const Sizes = ["", "small", "medium", "large"] as const;
 
-export type Sizes = "" | "small" | "medium" | "large";
+export const BGColors = [...Colors, "transparent", "link"] as const;
+export const SpinnerColors = [...Colors, "grey"] as const;
