@@ -72,6 +72,8 @@ function generateJsDts() {
  * then the plan is to move all types declarations to a separate folder
  * and point to that folder in package.json
  */
+
+// eslint-disable-next-line no-unused-vars
 async function mainOld() {
   /**
    * rm -rf generatedTypes &&
