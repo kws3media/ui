@@ -9,12 +9,12 @@
   @param {object} [tools={}] - List of tools available, Default: `{}`
   @param {array} [actions=[]] - List of actions toolbar, Default: `[]`
   @param {string} [active_tool="Pen"] - Determines which tool is select, Default: `"Pen"`
-  @param {'bottom'|'top'} [toolbar_placement="bottom"] - Determines where the action tools are placed, Default: `"bottom"`
+  @param {Extract<Positions, 'bottom'|'top'>} [toolbar_placement=bottom] - Determines where the action tools are placed, Default: `bottom`
   @param {string} [default_color=""] - colorpicker's default color, Default: `""`
-  @param {string|'start'|'center'|'end'} [control_position="center"] - Default position of controls, Default: `"center"`
-  @param {boolean} [can_undo=false] - Can_undo property, Default: `false`
-  @param {boolean} [can_redo=false] - Can_redo property, Default: `false`
-  @param {boolean} [show_tools=false] - Show_tools property, Default: `false`
+  @param {Extract<Positions, 'start'|'center'|'end'>} [control_position=center] - Default position of controls, Default: `center`
+  @param {boolean} [can_undo=false] - Whether allowed to undo drawing changes or not, Default: `false`
+  @param {boolean} [can_redo=false] - Whether allowed to redo drawing changes or not, Default: `false`
+  @param {boolean} [show_tools=false] - Whether allowed to show tools or not, Default: `false`
 
   ### Events
   - `toggleExpand`
@@ -144,6 +144,11 @@
 
   const fire = createEventDispatcher();
   export let EXPANDED_BUTTON;
+
+  /**
+   * @typedef {import('@kws3/ui/types').Positions} Positions
+   */
+
   /**
    * Inline CSS for the control
    */
@@ -170,21 +175,32 @@
   export let active_tool = "Pen";
   /**
    * Determines where the action tools are placed
-   *  @type {'bottom'|'top'}
+   * @type {Extract<Positions, 'bottom'|'top'>}
    */
 
   export let toolbar_placement = "bottom";
+
   /**
    * colorpicker's default color
    */
   export let default_color = "";
   /**
    * Default position of controls
-   * @type {string|'start'|'center'|'end'}
+   * @type {Extract<Positions, 'start'|'center'|'end'>}
    */
   export let control_position = "center";
+
+  /**
+   * Whether allowed to undo drawing changes or not
+   */
   export let can_undo = false;
+  /**
+   * Whether allowed to redo drawing changes or not
+   */
   export let can_redo = false;
+  /**
+   * Whether allowed to show tools or not
+   */
   export let show_tools = false;
 
   let expanded = false;
