@@ -5,9 +5,9 @@
   @param {SizeOptions} [size=] - Size of the Icon, Default: ``
   @param {ColorOptions | 'grey'} [color=] - Color of the Icon, Default: ``
   @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
-  @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [family=""] - Icon family, can be modified globally in framework settings
+  @param {FontFamilies} [family=] - Icon family, can be modified globally in framework settings
 
-Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
+Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   @param {string} [style=""] - Inline CSS for icon container, Default: `""`
   @param {string} [inner_class=""] - CSS classes for icon, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for icon, Default: `""`
@@ -68,6 +68,8 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
+   *
    */
 
   /**
@@ -88,7 +90,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
      * Icon family, can be modified globally in framework settings
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
-     * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+     * @type {FontFamilies}
      */
     family = "",
     /**
