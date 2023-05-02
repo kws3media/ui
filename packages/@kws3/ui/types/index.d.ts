@@ -1,4 +1,10 @@
-import type { Colors, BGColors, SpinnerColors, Sizes } from "./type-defs";
+import type {
+  Colors,
+  BGColors,
+  SpinnerColors,
+  Sizes,
+  Positions,
+} from "./type-defs";
 export type SearchOptions = {
   search_key: Array<string> | string;
   scoreThreshold: number;
@@ -43,5 +49,6 @@ declare global {
 
 export type ColorOptions = (typeof Colors)[number];
 export type SizeOptions = (typeof Sizes)[number];
-export type SpinnerColorOptions = (typeof BGColors)[number];
-export type BGColorOptions = (typeof SpinnerColors)[number];
+export type SpinnerColorOptions = (typeof SpinnerColors)[number];
+export type BGColorOptions = (typeof BGColors)[number];
+export type Positions = (typeof Positions)[number];
