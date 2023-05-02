@@ -8,6 +8,15 @@ import type {
   ToastPositions,
   TippyPositions,
 } from "./type-defs";
+
+export type ColorOptions = (typeof Colors)[number];
+export type SizeOptions = (typeof Sizes)[number];
+export type SpinnerColorOptions = (typeof SpinnerColors)[number];
+export type BGColorOptions = (typeof BGColors)[number];
+export type FontFamilies = (typeof FontFamilies)[number];
+export type Positions = (typeof Positions)[number];
+export type TippyPositions = (typeof TippyPositions)[number];
+
 export type SearchOptions = {
   search_key: Array<string> | string;
   scoreThreshold: number;
@@ -38,10 +47,10 @@ export type ValidatePasswordOptions = {
 };
 
 export type SettingOptions = {
-  defaultIconFamily: string;
-  defaultToastPlacement: string;
-  defaultSnackbarPlacement: string;
-  defaultNotificationPlacement: string;
+  defaultIconFamily: FontFamilies;
+  defaultToastPlacement: TippyPositions;
+  defaultSnackbarPlacement: TippyPositions;
+  defaultNotificationPlacement: TippyPositions;
   hasTransitions: boolean;
   defaultChartColors: Array<string>;
 };
@@ -58,11 +67,3 @@ declare global {
     readonly navigator: Navigator;
   }
 }
-
-export type ColorOptions = (typeof Colors)[number];
-export type SizeOptions = (typeof Sizes)[number];
-export type SpinnerColorOptions = (typeof SpinnerColors)[number];
-export type BGColorOptions = (typeof BGColors)[number];
-export type FontFamilies = (typeof FontFamilies)[number];
-export type Positions = (typeof Positions)[number];
-export type TippyPositions = (typeof TippyPositions)[number];
