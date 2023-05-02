@@ -15,7 +15,8 @@
     "what_changed": "sh ./what_changed.sh",
     "lint": "eslint packages/ src/",
     "lint:fix": "eslint --fix packages/ src/",
-    "generatedts": "node scripts/dts_generator/index.js"
+    "generatedts": "node scripts/dts_generator/index.js",
+    "generate_dts": "node scripts/dts_generator/generator.js"
   },
   "dependencies": {
     "bulma": "^0.9.3",
