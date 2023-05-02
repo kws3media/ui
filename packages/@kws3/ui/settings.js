@@ -35,7 +35,6 @@ export {
   hasTransitions,
   defaultChartColors,
 };
- 
 
 /**
  * - `defaultIconFamily`: `"fa"` - default icon family
@@ -44,14 +43,8 @@ export {
  * - `defaultNotificationPlacement`: `"top-right"` - default placement of floating notifications
  * - `hasTransitions`: `true` - Transitions are applied
  * - `defaultChartColors`: `["#284BED", "#ED6134", "#1DAFEC", "#EDB405", "#11EDB7", "#77ED11"]` - default colors for charts
+ * @param {SettingOptions} obj
  *
- */
-
-
-
-/**
- * containing all settings
- * @param {SettingOptions} obj 
  */
 
 export function applySettings(obj) {
