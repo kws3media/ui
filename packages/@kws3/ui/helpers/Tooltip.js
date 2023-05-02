@@ -1,6 +1,10 @@
 import tippy, { delegate } from "tippy.js";
 
 /**
+ * @typedef {import('@kws3/ui/types').TippyPositions} TippyPositions
+ */
+
+/**
  * Activates tooltips via event delegation
  * @param {string} container - CSS selector of container
  * @param {object} opts - tooltip options
@@ -92,6 +96,9 @@ export let popover = createTippyAction({
   allowHTML: true,
   inertia: true,
   touch: true,
+  /**
+   * @type {TippyPositions}
+   */
   placement: "auto",
   trigger: "click",
   offset: [0, 10],
