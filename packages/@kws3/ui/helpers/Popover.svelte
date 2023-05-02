@@ -10,9 +10,9 @@
 **Examples:** `click`, `mouseenter`, `mouseenter focus`
 
 If you would like to trigger the popover programatically only, you can use `manual`., Default: `"click"`
-  @param {string} [placement="auto"] - Preferred placement of the Popover
+  @param {TippyPositions} [placement=auto] - Preferred placement of the Popover
 
-Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>, Default: `"auto"`
+Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>, Default: `auto`
   @param {boolean} [interactive=false] - Allows you to interact with the Popover content, when turned on, Default: `false`
   @param {boolean} [hide_on_click=true] - Whether the popover should hide on clicking outside of it, Default: `true`
   @param {object} [external_target=null] - Specify a target node reference to use as the Popover content
@@ -82,6 +82,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').TippyPositions} TippyPositions
    */
 
   /**
@@ -110,6 +111,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
    * Preferred placement of the Popover
    *
    * Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>
+   * @type {TippyPositions}
    */
   export let placement = "auto";
   /**

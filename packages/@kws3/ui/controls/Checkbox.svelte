@@ -13,11 +13,11 @@ Checked\Not Checked, Default: `false`
   @param {boolean} [disabled=false] - Disables the Checkbox, Default: `false`
   @param {string} [icon="check"] - The name of the icon that is to be used in the Checkbox, Default: `"check"`
   @param {string} [label_style=""] - Inline CSS for the Checkbox label, Default: `""`
-  @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [icon_family=""] - Icon family to be used
+  @param {FontFamilies} [icon_family=] - Icon family to be used
 
 Defaults to global family set via `Icon.setDefaultIconType()`
 
-Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
+Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   @param {string} [class=""] - CSS classes of the Checkbox, Default: `""`
 
   ### Events
@@ -50,6 +50,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *
    */
   /**
@@ -106,7 +107,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
      *
-     * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+     * @type {FontFamilies}
      */
     icon_family = "";
 
