@@ -1,5 +1,9 @@
 import { writable } from "svelte/store";
 
+/**
+ * @typedef {import('@kws3/ui/types').SettingOptions} SettingOptions
+ */
+
 const defaultIconFamily = writable("fa");
 const defaultToastPlacement = writable("bottom");
 const defaultSnackbarPlacement = writable("bottom-right");
@@ -31,6 +35,7 @@ export {
   hasTransitions,
   defaultChartColors,
 };
+ 
 
 /**
  * - `defaultIconFamily`: `"fa"` - default icon family
@@ -40,8 +45,15 @@ export {
  * - `hasTransitions`: `true` - Transitions are applied
  * - `defaultChartColors`: `["#284BED", "#ED6134", "#1DAFEC", "#EDB405", "#11EDB7", "#77ED11"]` - default colors for charts
  *
- * @param {*} obj containing all settings
  */
+
+
+
+/**
+ * containing all settings
+ * @param {SettingOptions} obj 
+ */
+
 export function applySettings(obj) {
   Object.entries(obj).forEach(([k, v]) => {
     SETTINGS[k] && SETTINGS[k].set(v);

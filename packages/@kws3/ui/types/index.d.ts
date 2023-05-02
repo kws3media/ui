@@ -23,6 +23,7 @@ export type SearchHelper = (
   haystack: Array<string>
 ) => Array<any>;
 
+
 export type ValidatePasswordOptions = {
   name: string;
   text: string;
@@ -32,6 +33,15 @@ export type ValidatePasswordOptions = {
   active: boolean;
   value?: string;
   negate?: boolean;
+};
+
+export type SettingOptions = {
+  defaultIconFamily: string;
+  defaultToastPlacement: string;
+  defaultSnackbarPlacement: string
+  defaultNotificationPlacement: string
+  hasTransitions: boolean;
+  defaultChartColors: Array<string>;
 };
 
 declare global {
