@@ -56,7 +56,23 @@ async function generateSvelteDts() {
   });
 }
 
-async function main() {
+function generateJsDts() {
+  try {
+    execSync(`npx tsc -p ${folders.package} --emitDeclarationOnly`, {
+      stdio: "inherit",
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+/**
+ * this is not required for now.. we will need to revisit
+ * if we can watch and emit single dts files per svelte component
+ * then the plan is to move all types declarations to a separate folder
+ * and point to that folder in package.json
+ */
+async function mainOld() {
   /**
    * rm -rf generatedTypes &&
    * mkdir -p generatedTypes &&
@@ -67,17 +83,35 @@ async function main() {
   mkdirp(folders.generatedTypes);
   copy(folders.internalTypes, folders.generatedInternalTypes);
 
-  try {
-    execSync(`npx tsc -p ${folders.package} --emitDeclarationOnly`, {
-      stdio: "inherit",
-    });
-  } catch (e) {
-    console.log(e);
-  }
+  generateJsDts();
 
   await generateSvelteDts();
-
   adjustAliases();
+}
+
+async function main() {
+  glob(
+    folders.package + "/**/*.d.ts*",
+    { ignore: [folders.package + "/types/**/*"] },
+    function (err, dtsFiles) {
+      if (err) {
+        console.log("ERROR!");
+        console.log(err);
+        return;
+      }
+      if (dtsFiles.length) {
+        //delete all dts files that have been generated
+        //these will exclude all files in "./types" folder
+        dtsFiles.forEach((p) => {
+          if (p.endsWith("d.ts") || p.endsWith("d.ts.map")) {
+            fs.rmSync(p);
+          }
+        });
+      }
+
+      generateJsDts();
+    }
+  );
 }
 
 main();
