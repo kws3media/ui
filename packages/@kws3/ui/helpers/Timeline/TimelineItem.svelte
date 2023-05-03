@@ -2,7 +2,7 @@
   @component
 
 
-  @param {string} [color="primary"] - Color of marker and border, Default: `"primary"`
+  @param {ColorOptions} [color=primary] - Color of marker and border, Default: `primary`
   @param {string} [marker_icon=""] - Any icon name accepted by the Icon component, icon will be placed inside the marker, Default: `""`
   @param {string} [marker_image=""] - Any image URL, the image will be placed inside the marker, Default: `""`
   @param {string} [class=""] - CSS classes for the TimelineItem container, Default: `""`
@@ -47,8 +47,12 @@
   import { Icon } from "@kws3/ui";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
+  /**
    * Color of marker and border
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "primary";
   /**

@@ -12,8 +12,8 @@ Used to populate the list of options in the dropdown, Default: `[]`
 this property of each object will be searched, Default: `"name"`
   @param {string} [value_key="id"] - If `options` is an array of objects,
 this property of each object will be returned as the value, Default: `"id"`
-  @param {string} [size=""] - Size of the input, Default: `""`
-  @param {string} [color=""] - Color of the input, Default: `""`
+  @param {SizeOptions} [size=] - Size of the input, Default: ``
+  @param {ColorOptions} [color=] - Color of the input, Default: ``
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {function|null} [search=null] - Async function to fetch options
@@ -85,6 +85,11 @@ Default value: `<span>{option[search_key] || option}</span>`
   const rootContainerId = "kws-overlay-root";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Value of the Input
    *
    * This property can be bound to, to fetch the current value
@@ -113,12 +118,12 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let value_key = "id";
   /**
    * Size of the input
-   *  @type {import('@kws3/ui/types').SizeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "";
   /**

@@ -70,6 +70,10 @@ value in percentage %, Default: `50`
   import { onMount } from "svelte";
 
   /**
+   * @typedef {import('@kws3/ui/types').Positions} Positions
+   */
+
+  /**
    * Canvas width
    */
   export let width = "250px";
@@ -148,7 +152,7 @@ value in percentage %, Default: `50`
   ];
   /**
    * Default position of the action toolbar
-   * @type {string|'bottom'|'top'}
+   * @type {Extract<Positions, 'bottom'|'top'>}
    */
   export let toolbar_placement = "bottom";
   /**
@@ -167,7 +171,7 @@ value in percentage %, Default: `50`
   export let has_controls = true;
   /**
    * Default position of controls
-   * @type {string|'start'|'center'|'end'}
+   * @type {Extract<Positions, 'start'|'center'|'end'>}
    */
   export const control_position = "center";
 

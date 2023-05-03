@@ -8,9 +8,9 @@
   @param {string} [copied_icon="check"] - Icon displayed on successful copy operation, Default: `"check"`
   @param {string} [copy=""] - Text to be copied into clipboard, Default: `""`
   @param {boolean} [copied=false] - Determines if the copy operation has taken place, Default: `false`
-  @param {string} [copied_icon_color="success"] - Colour of the `copied_icon` after a succesful copy operation
+  @param {ColorOptions} [copied_icon_color=success] - Colour of the `copied_icon` after a succesful copy operation
 
-If `''` is selected, Icon will not change colour after copying, Default: `"success"`
+If `''` is selected, Icon will not change colour after copying, Default: `success`
   @param {string} [class=""] - CSS classes for the whole component, Default: `""`
 
   ### Slots
@@ -73,7 +73,7 @@ If `''` is selected, Icon will not change colour after copying, Default: `"succe
      *
      * If `''` is selected, Icon will not change colour after copying
      *
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {ColorOptions}
      */
     copied_icon_color = "success";
 

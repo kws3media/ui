@@ -2,7 +2,7 @@
   @component
 
 
-  @param {string} [color="info"] - Color of the Notification box, Default: `"info"`
+  @param {ColorOptions} [color=info] - Color of the Notification box, Default: `info`
   @param {string} [style=""] - Inline CSS for notification content, Default: `""`
   @param {boolean} [light=false] - Inverted colors for notification box and contents, Default: `false`
   @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
@@ -34,8 +34,12 @@ The parent can then decide what to do with the component
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   */
+
+  /**
    * Color of the Notification box
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "info";
 
