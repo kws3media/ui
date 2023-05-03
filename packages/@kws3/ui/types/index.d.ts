@@ -18,6 +18,11 @@ export type Positions = (typeof Positions)[number];
 export type TippyPositions = (typeof TippyPositions)[number];
 export type FloatiePositions = (typeof FloatiePositions)[number];
 
+export type FloatieType = {
+  create: (opts: object) => { props: object; destroy: () => void };
+  remove: (props: object) => void;
+};
+
 export type SearchOptions = {
   search_key: Array<string> | string;
   scoreThreshold: number;

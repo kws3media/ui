@@ -3,33 +3,22 @@ export namespace FloatiesStore {
     export { remove };
     export { subscribe };
 }
-export namespace Notifications {
-    export function create_1(opts: any): {
-        props: any;
-        destroy: () => void;
-    };
-    export { create_1 as create };
-    import remove_1 = remove;
-    export { remove_1 as remove };
-}
-export namespace Toasts {
-    export function create_2(opts: any): {
-        props: any;
-        destroy: () => void;
-    };
-    export { create_2 as create };
-    import remove_2 = remove;
-    export { remove_2 as remove };
-}
-export namespace Snackbars {
-    export function create_3(opts: any): {
-        props: any;
-        destroy: () => void;
-    };
-    export { create_3 as create };
-    import remove_3 = remove;
-    export { remove_3 as remove };
-}
+/**
+ * @typedef {import("@kws3/ui/types").FloatieType} FloatieType
+ */
+/**
+ * @type {FloatieType}
+ */
+export const Notifications: FloatieType;
+/**
+ * @type {FloatieType}
+ */
+export const Toasts: FloatieType;
+/**
+ * @type {FloatieType}
+ */
+export const Snackbars: FloatieType;
+export type FloatieType = import("@kws3/ui/types").FloatieType;
 declare function create(newItem: any): {
     props: any;
     destroy: () => void;
