@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+const { posixify } = require("../utils/filesystem");
 
 const basePath = path.resolve(process.cwd(), "./packages/@kws3/ui");
 const tsconfigPath = path.join(basePath, "tsconfig.json");
@@ -14,7 +15,9 @@ const randomChars = () => {
 };
 
 function makeTempConfig(filepath) {
-  const tempPath = path.join(basePath, `tsconfig.${randomChars()}.json`);
+  const tempPath = posixify(
+    path.join(basePath, `tsconfig.${randomChars()}.json`)
+  );
   const tempConfig = {
     ...tsconfig,
     compilerOptions: {
