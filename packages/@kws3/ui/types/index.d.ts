@@ -47,12 +47,12 @@ export type ValidatePasswordOptions = {
 };
 
 export type SettingOptions = {
-  defaultIconFamily: FontFamilies;
-  defaultToastPlacement: TippyPositions;
-  defaultSnackbarPlacement: TippyPositions;
-  defaultNotificationPlacement: TippyPositions;
-  hasTransitions: boolean;
-  defaultChartColors: Array<string>;
+  defaultIconFamily?: FontFamilies;
+  defaultToastPlacement?: TippyPositions;
+  defaultSnackbarPlacement?: TippyPositions;
+  defaultNotificationPlacement?: TippyPositions;
+  hasTransitions?: boolean;
+  defaultChartColors?: Array<string>;
 };
 
 declare global {
