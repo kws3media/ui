@@ -18,6 +18,10 @@
     height = "170px",
     background_image = "",
     readonly = false,
+    /**
+     * Default position of controls
+     * @type {Extract<import('@kws3/ui/types').Positions, 'start'|'center'|'end'>}
+     */
     control_position = "center",
     disabled = false;
 </script>
