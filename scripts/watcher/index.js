@@ -8,10 +8,15 @@ const watchDir = "./packages/@kws3/ui";
 
 //generate d.ts, d.ts.map files
 const generateDts = (filepath) => {
-  const { stdout, stderr } = spawn("node", [`${scriptDir}/index.js`, filepath]);
+  if (filepath && filepath.endsWith(".js")) {
+    const { stdout, stderr } = spawn("node", [
+      `${scriptDir}/index.js`,
+      filepath,
+    ]);
 
-  stdout.on("data", (data) => console.log(`stdout: ${data}`));
-  stderr.on("data", (data) => console.error(`stderr: ${data}`));
+    stdout.on("data", (data) => console.log(`stdout: ${data}`));
+    stderr.on("data", (data) => console.error(`stderr: ${data}`));
+  }
 };
 
 //remove d.ts, d.ts.map files
