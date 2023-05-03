@@ -125,7 +125,7 @@
                 Dialog.alert("Clicked!!!")}>Try to click me!</button>
           </Message>
         </svelte:fragment>
-      </KwsPopover> This popover can only be opened and closed programatically using
+      </KwsPopover> This popover can only be opened and closed programmatically using
       the buttons below.
       <hr class="is-small" />
       <div class="is-block">
