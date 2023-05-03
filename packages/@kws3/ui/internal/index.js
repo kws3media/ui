@@ -23,8 +23,10 @@ export const IS_MAC =
   typeof window !== "undefined"
     ? "navigator" in window
       ? /mac/i.test(
+          //@ts-ignore
           window.navigator.userAgentData
-            ? window.navigator.userAgentData.platform
+            ? //@ts-ignore
+              window.navigator.userAgentData.platform
             : window.navigator.platform
         )
       : false
