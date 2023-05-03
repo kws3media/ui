@@ -83,7 +83,7 @@
   import { onMount } from "svelte";
 
   onMount(() => {
-    activateTooltips("#story-root", null);
+    activateTooltips("#story-root");
   });
 
   export let password = "",
