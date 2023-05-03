@@ -1,16 +1,16 @@
 const { execSync } = require("child_process");
+const { makeTempConfig, cleanupTempConfig } = require("./utils");
 
 const args = process.argv.slice(2);
 let input = args[0];
 
 async function generateDts() {
   try {
-    execSync(
-      `npx tsc ${input} --declaration --declarationMap --emitDeclarationOnly --allowJS`,
-      {
-        stdio: "inherit",
-      }
-    );
+    const tempConfig = makeTempConfig(input);
+    execSync(`npx tsc -p ${tempConfig}`, {
+      stdio: "inherit",
+    });
+    cleanupTempConfig(tempConfig);
   } catch (e) {
     console.log(e);
   }
