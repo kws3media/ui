@@ -63,6 +63,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *
    */
   let visibility = false;
@@ -113,7 +114,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
    *
    * Ultimately defaults to `fa`, if family is not set anywhere
    *
-   * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+   * @type {FontFamilies}
    */
   export let icon_family = "";
   /**
