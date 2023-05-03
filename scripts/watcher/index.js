@@ -4,7 +4,7 @@ const path = require("path");
 const { existsSync, rmSync } = require("fs");
 
 const scriptDir = "./scripts/dts_generator";
-const watchDir = "./packages/@kws3/ui";
+const watchDir = "./packages/@kws3/ui/**/*.js";
 
 //generate d.ts, d.ts.map files
 const generateDts = (filepath) => {
