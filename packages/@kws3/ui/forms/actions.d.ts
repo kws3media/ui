@@ -1,41 +1,9 @@
-export function datepicker(node: any, { opts, value, placeholder, klass, style, disabled, color }: {
-    opts: any;
-    value: any;
-    placeholder: any;
-    klass: any;
-    style: any;
-    disabled: any;
-    color: any;
-}): {
-    update({ opts, value, placeholder, klass, style, disabled, color }: {
-        opts: any;
-        value: any;
-        placeholder: any;
-        klass: any;
-        style: any;
-        disabled: any;
-        color: any;
-    }): void;
-    destroy(): void;
-};
-export function timepicker(node: any, { opts, value, placeholder, klass, style, disabled, color }: {
-    opts: any;
-    value: any;
-    placeholder: any;
-    klass: any;
-    style: any;
-    disabled: any;
-    color: any;
-}): {
-    update({ opts, value, placeholder, klass, style, disabled, color }: {
-        opts: any;
-        value: any;
-        placeholder: any;
-        klass: any;
-        style: any;
-        disabled: any;
-        color: any;
-    }): void;
-    destroy(): void;
-};
+/**
+ * @type {import("svelte/action").Action}
+ */
+export let datepicker: import("svelte/action").Action;
+/**
+ * @type {import("svelte/action").Action}
+ */
+export let timepicker: import("svelte/action").Action;
 //# sourceMappingURL=actions.d.ts.map
