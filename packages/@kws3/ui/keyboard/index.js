@@ -9,7 +9,7 @@ const ctrlKeys = {
 /**
  * @param {string | number} definition - can be a string like 'Enter', 'Tab' or number as keyCode, also allow combination key like 'ctrl+d', 'ctrl+alt+x'
  * @param {boolean} CommandKey - if true, in mac 'ctrl' key binding will be shift on 'command' key.
- * @returns {function} .
+ * @returns {import("svelte/action").Action} .
  */
 
 export function makeKeyDefinition(definition, CommandKey = false) {
