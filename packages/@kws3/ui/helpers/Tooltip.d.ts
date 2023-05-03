@@ -7,13 +7,13 @@
  * @param {object} opts - tooltip options
  */
 export function activateTooltips(container: string, opts?: object): void;
-export function popover(node: any, opts: any): {
-    update(_opts: any): void;
-    destroy(): void;
-};
-export function tooltip(node: any, opts: any): {
-    update(_opts: any): void;
-    destroy(): void;
-};
+/**
+ * @type {import("svelte/action").Action}
+ */
+export let popover: import("svelte/action").Action;
+/**
+ * @type {import("svelte/action").Action}
+ */
+export let tooltip: import("svelte/action").Action;
 export type TippyPositions = import('@kws3/ui/types').TippyPositions;
 //# sourceMappingURL=Tooltip.d.ts.map

@@ -88,6 +88,9 @@ function createTippyAction(defaultOpts) {
   };
 }
 
+/**
+ * @type {import("svelte/action").Action}
+ */
 export let popover = createTippyAction({
   appendTo: () => document.body,
   hideOnClick: true,
@@ -106,6 +109,9 @@ export let popover = createTippyAction({
   maxWidth: "none",
 });
 
+/**
+ * @type {import("svelte/action").Action}
+ */
 export let tooltip = createTippyAction({
   animation: "scale",
   content(el) {
