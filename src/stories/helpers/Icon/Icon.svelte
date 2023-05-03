@@ -70,7 +70,7 @@
     inner_class = "",
     inner_style = "",
     /**
-     * Color of the Icon
+     * Font family to use for Icon
      * @type {import('@kws3/ui/types').FontFamilies}
      */
     family = "";
