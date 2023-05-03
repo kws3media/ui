@@ -175,6 +175,10 @@
    */
   export let icon_size = "small";
   export let trigger = "click";
+  /**
+   * Placement of the tooltips
+   * @type {import('@kws3/ui/types').TippyPositions}
+   */
   export let placement = "auto";
   export let interactive = false;
   export let max_width = "none";
