@@ -17,12 +17,8 @@ async function generateDts() {
 }
 
 async function main() {
-  if (input) {
-    if (input.endsWith(".js")) {
-      await generateDts();
-    }
-  } else {
-    console.log("No input File!!");
+  if (input && input.endsWith(".js")) {
+    await generateDts();
   }
 }
 
