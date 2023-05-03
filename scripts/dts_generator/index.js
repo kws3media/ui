@@ -3,7 +3,10 @@ const { makeTempConfig, cleanupTempConfig } = require("./utils");
 const path = require("path");
 
 const args = process.argv.slice(2);
-let input = path.relative(process.cwd(), path.basename(args[0]));
+let input = path.relative(
+  path.resolve("./packages/@kws3/ui/"),
+  path.resolve(args[0])
+);
 
 async function generateDts() {
   const tempConfig = makeTempConfig(input);
