@@ -22,13 +22,13 @@
     duration = 3000,
     /**
      * Toast snackbar background color
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {import('@kws3/ui/types').ColorOptions}
      */
     color = "primary",
     /**
      * Position of the snackbar. `""` defaults to `bottom-right`. Can be modified globally in framework settings
      *
-     * @type {''|'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
+     * @type {import('@kws3/ui/types').FloatiePositions}
      */
     position = "bottom-right",
     /**

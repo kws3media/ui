@@ -5,7 +5,7 @@ import type {
   Sizes,
   Positions,
   FontFamilies,
-  ToastPositions,
+  FloatiePositions,
   TippyPositions,
 } from "./type-defs";
 
@@ -16,6 +16,7 @@ export type BGColorOptions = (typeof BGColors)[number];
 export type FontFamilies = (typeof FontFamilies)[number];
 export type Positions = (typeof Positions)[number];
 export type TippyPositions = (typeof TippyPositions)[number];
+export type FloatiePositions = (typeof FloatiePositions)[number];
 
 export type SearchOptions = {
   search_key: Array<string> | string;

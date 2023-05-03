@@ -29,13 +29,13 @@
     duration = 3000,
     /**
      * Toast notification background color
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {import('@kws3/ui/types').ColorOptions}
      */
     color = "primary",
     /**
      * Position of the notification. `""` defaults to `top-right`. Can be modified globally in framework settings
      *
-     * @type {''|'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
+     * @type {import('@kws3/ui/types').FloatiePositions}
      */
     position = "top-right",
     /**
