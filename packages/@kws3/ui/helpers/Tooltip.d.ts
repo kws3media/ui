@@ -4,9 +4,9 @@
 /**
  * Activates tooltips via event delegation
  * @param {string} container - CSS selector of container
- * @param {object} opts - tooltip options
+ * @param {object?} opts - tooltip options
  */
-export function activateTooltips(container: string, opts?: object): void;
+export function activateTooltips(container: string, opts?: object | null): void;
 /**
  * @type {import("svelte/action").Action}
  */
