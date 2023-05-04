@@ -1,6 +1,6 @@
-var fs = require("fs");
-var path = require("path");
-var { posixify, mkdirp, walk } = require("./filesystem.js");
+import fs from "fs";
+import path from "path";
+import { posixify, mkdirp, walk } from "./filesystem.js";
 
 /**
  * Resolves aliases
@@ -111,10 +111,4 @@ function analyze(file, extensions) {
   };
 }
 
-module.exports = {
-  resolve_aliases,
-  strip_lang_tags,
-  write,
-  scan,
-  analyze,
-};
+export { resolve_aliases, strip_lang_tags, write, scan, analyze };

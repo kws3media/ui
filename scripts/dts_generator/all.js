@@ -1,11 +1,11 @@
-const fs = require("fs");
-const glob = require("glob");
-const { execSync } = require("child_process");
-const path = require("path");
-const { resolve_aliases, write } = require("../utils/helper.js");
-const { rimraf, mkdirp, copy } = require("../utils/filesystem.js");
-const chalk = require("chalk");
-const svelte2tsx = require("svelte2tsx");
+import fs from "fs";
+import glob from "glob";
+import { execSync } from "child_process";
+import path from "path";
+import { resolve_aliases, write } from "../utils/helper.js";
+import { rimraf, mkdirp, copy } from "../utils/filesystem.js";
+import chalk from "chalk";
+import svelte2tsx from "svelte2tsx";
 
 const folders = {
   package: path.resolve(process.cwd(), "./packages/@kws3/ui"),

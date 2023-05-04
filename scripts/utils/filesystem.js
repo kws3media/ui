@@ -1,5 +1,5 @@
-var fs = require("fs");
-var path = require("path");
+import fs from "fs";
+import path from "path";
 
 /** @param {string} dir */
 function mkdirp(dir) {
@@ -112,8 +112,4 @@ function copy(source, target, opts = {}) {
   return files;
 }
 
-exports.mkdirp = mkdirp;
-exports.rimraf = rimraf;
-exports.posixify = posixify;
-exports.walk = walk;
-exports.copy = copy;
+export { mkdirp, rimraf, posixify, walk, copy };

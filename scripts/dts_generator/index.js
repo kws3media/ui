@@ -1,6 +1,6 @@
-const { execSync } = require("child_process");
-const { makeTempConfig, cleanupTempConfig } = require("./utils");
-const path = require("path");
+import { execSync } from "child_process";
+import { makeTempConfig, cleanupTempConfig } from "./utils.js";
+import path from "path";
 
 const args = process.argv.slice(2);
 let input = path.relative(

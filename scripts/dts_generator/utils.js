@@ -1,6 +1,6 @@
-const path = require("path");
-const fs = require("fs");
-const { posixify } = require("../utils/filesystem");
+import path from "path";
+import fs from "fs";
+import { posixify } from "../utils/filesystem.js";
 
 const basePath = path.resolve(process.cwd(), "./packages/@kws3/ui");
 const tsconfigPath = path.join(basePath, "tsconfig.json");
@@ -14,7 +14,7 @@ const randomChars = () => {
   return Math.random().toString(36).slice(2);
 };
 
-function makeTempConfig(filepath) {
+export function makeTempConfig(filepath) {
   const tempPath = posixify(
     path.join(basePath, `tsconfig.${randomChars()}.json`)
   );
@@ -32,10 +32,8 @@ function makeTempConfig(filepath) {
   return tempPath;
 }
 
-function cleanupTempConfig(filepath) {
+export function cleanupTempConfig(filepath) {
   if (filepath.endsWith(".json")) {
     fs.rmSync(filepath);
   }
 }
-
-module.exports = { makeTempConfig, cleanupTempConfig };
