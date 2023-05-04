@@ -2,6 +2,7 @@
   "name": "kws3-storybooks-frontend",
   "version": "2.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "npm-run-all dev:hmr",
     "dev:hmr": "concurrently \"storybook dev -p 9009 -s public\" \"node scripts/watcher/index.js\"",
@@ -45,6 +46,7 @@
     "@storybook/svelte": "7.0.8",
     "@storybook/svelte-vite": "^7.0.8",
     "@storybook/testing-library": "0.1.0",
+    "@sveltejs/vite-plugin-svelte": "^2.1.1",
     "chalk": "^4.0.0",
     "chokidar": "^3.5.3",
     "comment-parser": "^1.2.3",

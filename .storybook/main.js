@@ -22,6 +22,6 @@ export default {
   ],
   framework: "@storybook/svelte-vite",
   docs: {
-    autodocs: "tag",
+    autodocs: false,
   },
 };
