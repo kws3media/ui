@@ -1,7 +1,7 @@
-const glob = require("glob");
-const path = require("path");
-const { spawn } = require("child_process");
-const chalk = require("chalk");
+import glob from "glob";
+import path from "path";
+import { spawn } from "child_process";
+import chalk from "chalk";
 
 glob("./packages/**/*.svelte", function (err, svelteFiles) {
   if (err) {

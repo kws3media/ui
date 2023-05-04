@@ -1,7 +1,7 @@
-const chokidar = require("chokidar");
-const { spawn } = require("child_process");
-const path = require("path");
-const { existsSync, rmSync } = require("fs");
+import chokidar from "chokidar";
+import { spawn } from "child_process";
+import path from "path";
+import { existsSync, rmSync } from "fs";
 
 const scriptDir = "./scripts/dts_generator";
 const watchDir = "./packages/@kws3/ui/**/*.js";

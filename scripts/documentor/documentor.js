@@ -1,17 +1,17 @@
-const fs = require("fs");
-const prettier = require("prettier");
-const sveltedocParser = require("sveltedoc-parser");
+import fs from "fs";
+import prettier from "prettier";
+import sveltedocParser from "sveltedoc-parser";
 
 const { readFileSync, writeFileSync } = fs;
 
-args = process.argv.slice(2);
+const args = process.argv.slice(2);
 let file = args[0];
 
 try {
   checkFileIsValid(file);
 } catch (e) {
   console.log(e);
-  return;
+  process.exit();
 }
 
 function checkFileIsValid(file) {
