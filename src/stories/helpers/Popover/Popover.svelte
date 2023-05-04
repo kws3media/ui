@@ -34,9 +34,8 @@
             type="button"
             bind:this={x}
             class="button is-small"
-            on:click={() =>
-              // @ts-ignore
-              Dialog.alert("Clicked!!!")}>Try to click me!</button>
+            on:click={() => Dialog.alert("Clicked!!!")}
+            >Try to click me!</button>
         </Message>
       </svelte:fragment>
     </KwsPopover>
@@ -86,9 +85,8 @@
             <button
               type="button"
               class="button is-small"
-              on:click={() =>
-                // @ts-ignore
-                Dialog.alert("Clicked!!!")}>Try to click me!</button>
+              on:click={() => Dialog.alert("Clicked!!!")}
+              >Try to click me!</button>
           </Message>
         </svelte:fragment>
       </KwsPopover>
@@ -120,9 +118,8 @@
             <button
               type="button"
               class="button is-small"
-              on:click={() =>
-                // @ts-ignore
-                Dialog.alert("Clicked!!!")}>Try to click me!</button>
+              on:click={() => Dialog.alert("Clicked!!!")}
+              >Try to click me!</button>
           </Message>
         </svelte:fragment>
       </KwsPopover> This popover can only be opened and closed programmatically using
