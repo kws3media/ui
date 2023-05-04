@@ -95,6 +95,9 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
   let dragover = false,
     _colorpicker;
 
+  /**
+   * @type {import("svelte/action").Action}
+   */
   function colorpicker(node) {
     _colorpicker = new ColorPicker(node);
 
