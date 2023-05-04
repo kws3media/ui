@@ -11,7 +11,7 @@ module.exports = {
   logLevel: "debug",
   features: {
     legacyMdx1: true,
-    storyStoreV7: false,
+    storyStoreV7: true,
     interactionsDebugger: true,
     previewMdx2: true,
   },
@@ -44,7 +44,7 @@ module.exports = {
     };
     return config;
   },
-  framework: "@storybook/svelte-vite",
+  framework: "@storybook/svelte-webpack5",
   docs: {
     autodocs: true,
   },
