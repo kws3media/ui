@@ -23,6 +23,24 @@ export type FloatieType = {
   remove: (props: object) => void;
 };
 
+export type DialogProps = {
+  title?: string;
+  help_text?: string;
+  size?: SizeOptions;
+  input_value?: string;
+  icon?: string;
+  icon_color?: ColorOptions;
+  icon_size?: SizeOptions;
+  ok_button_text?: string;
+  ok_button_color?: ColorOptions;
+  ok_button_icon?: string;
+  cancel_button_text?: string;
+  cancel_button_color?: ColorOptions;
+  cancel_button_icon?: string;
+  _type?: string;
+  _text?: string;
+};
+
 export type SearchOptions = {
   search_key: Array<string> | string;
   scoreThreshold: number;

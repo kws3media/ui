@@ -1,5 +1,9 @@
 import { default as _Dialog } from "./Dialog.svelte";
 
+/**
+ * @typedef {import('@kws3/ui/types').DialogProps} DialogProps
+ */
+
 function createDialog(msg, props) {
   props = Object.assign(props, { _text: msg });
 
@@ -27,7 +31,7 @@ function createDialog(msg, props) {
 /**
  *
  * @param {string} msg
- * @param {object} [props={}]
+ * @param {DialogProps} [props={}]
  */
 export function alert(msg, props) {
   props = props || {};
@@ -38,7 +42,7 @@ export function alert(msg, props) {
 /**
  *
  * @param {string} msg
- * @param {object} [props={}]
+ * @param {DialogProps} [props={}]
  */
 export function prompt(msg, props) {
   props = props || {};
@@ -49,7 +53,7 @@ export function prompt(msg, props) {
 /**
  *
  * @param {string} msg
- * @param {object} [props={}]
+ * @param {DialogProps} [props={}]
  */
 export function confirm(msg, props) {
   props = props || {};

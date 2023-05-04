@@ -2,22 +2,23 @@
 /**
  *
  * @param {string} msg
- * @param {object} [props={}]
+ * @param {DialogProps} [props={}]
  */
-export function alert(msg: string, props?: object): Promise<any>;
+export function alert(msg: string, props?: DialogProps): Promise<any>;
 /**
  *
  * @param {string} msg
- * @param {object} [props={}]
+ * @param {DialogProps} [props={}]
  */
-export function prompt(msg: string, props?: object): Promise<any>;
+export function prompt(msg: string, props?: DialogProps): Promise<any>;
 /**
  *
  * @param {string} msg
- * @param {object} [props={}]
+ * @param {DialogProps} [props={}]
  */
-export function confirm(msg: string, props?: object): Promise<any>;
+export function confirm(msg: string, props?: DialogProps): Promise<any>;
 export default Dialog;
+export type DialogProps = import('@kws3/ui/types').DialogProps;
 declare class Dialog extends _Dialog {
 }
 declare namespace Dialog {
