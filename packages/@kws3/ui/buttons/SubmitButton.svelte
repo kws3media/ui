@@ -1,8 +1,9 @@
 <!--
   @component
 
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
+
+  @param {SizeOptions} [size=] - Size of the Button, Default: ``
+  @param {Exclude<ColorOptions , 'success'>} [color=primary] - Color of the Button, Default: `primary`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
   @param {string} [saved_text="Saved"] - Text displayed after submission is completed successfully, Default: `"Saved"`
   @param {string} [error_text="Failed to Save"] - Text displayed if submission is not successful, Default: `"Failed to Save"`

@@ -1,6 +1,16 @@
+/**
+ *
+ * @param {window} win
+ * @param {document} doc
+ * @returns {any}
+ */
 function initialize(win, doc) {
-  var CP,
-    instance = "__instance__",
+  /**
+   * @type {any}
+   */
+  var CP;
+
+  var instance = "__instance__",
     first = "firstChild",
     scroll_left = "scrollLeft",
     scroll_top = "scrollTop",

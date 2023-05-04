@@ -50,8 +50,8 @@ sveltedocParser
         Object.assign(
           {
             parser: "svelte",
-            plugins: ["./bin/prettier-plugin-kws3"],
-            pluginSearchDirs: ["./bin/"],
+            plugins: ["./scripts/documentor/prettier-plugin-kws3"],
+            pluginSearchDirs: ["./scripts/documentor/"],
           },
           options
         )

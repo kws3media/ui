@@ -1,9 +1,10 @@
 # KWS3 packages
 
-Currently this monorepo contains 3 packages.
+Currently this monorepo contains4 packages.
  - [KWS3 svelte3 UI components](packages/@kws3/ui/)
  - [kws-cli](packages/@kws3/kws-cli/)
  - [eslint-plugin-svelte3](packages/@kws3/eslint-plugin-svelte3/)
+ - [svetekit-preprocess](packages/@kws3/svetekit-preprocess/)
 
 
 ## Development

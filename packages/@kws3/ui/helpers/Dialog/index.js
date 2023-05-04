@@ -24,18 +24,33 @@ function createDialog(msg, props) {
   return promise;
 }
 
+/**
+ *
+ * @param {string} msg
+ * @param {object?} props
+ */
 export function alert(msg, props) {
   props = props || {};
   props._type = "alert";
   return createDialog(msg, props);
 }
 
+/**
+ *
+ * @param {string} msg
+ * @param {object?} props
+ */
 export function prompt(msg, props) {
   props = props || {};
   props._type = "prompt";
   return createDialog(msg, props);
 }
 
+/**
+ *
+ * @param {string} msg
+ * @param {object?} props
+ */
 export function confirm(msg, props) {
   props = props || {};
   props._type = "confirm";

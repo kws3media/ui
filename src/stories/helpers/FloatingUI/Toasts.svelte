@@ -18,13 +18,13 @@
     duration = 3000,
     /**
      * Toast toast background color
-     * @type {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'}
+     * @type {import('@kws3/ui/types').ColorOptions}
      */
     color = "primary",
     /**
      * Position of the toast. `""` defaults to `bottom`. Can be modified globally in framework settings
      *
-     * @type {''|'top'|'bottom'|'top-left'|'top-right'|'bottom-left'|'bottom-right'}
+     * @type {import('@kws3/ui/types').FloatiePositions}
      */
     position = "bottom",
     /**

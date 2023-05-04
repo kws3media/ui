@@ -65,9 +65,7 @@
       </p>
     </div>
     <div class="column is-6">
-      <pre
-        data-tooltip="This is a tooltip"
-        data-tippy-hideOnClick="false">
+      <pre data-tooltip="This is a tooltip" data-tippy-hideOnClick="false">
 &lt;span
   data-tooltip="This is a tooltip"
   data-tippy-hideOnClick="false"&gt;
@@ -262,6 +260,6 @@
   import { onMount } from "svelte";
 
   onMount(() => {
-    activateTooltips("#tooltip-example-container-1", null);
+    activateTooltips("#tooltip-example-container-1");
   });
 </script>

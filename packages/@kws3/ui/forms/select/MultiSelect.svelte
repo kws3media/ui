@@ -5,7 +5,7 @@
   @param {Array|?string} [value=undefined] - Value of the Input
 
 This property can be bound to, to fetch the current value, Default: `undefined`
-  @param {object} [max=null] - Maximum number of selectable items from dropdown list.
+  @param {?number} [max=null] - Maximum number of selectable items from dropdown list.
 
 Accepts a `null` value for unlimited selected items.
 Or a number value, Default: `null`
@@ -22,10 +22,10 @@ Only send this prop if you want to fetch `options` asynchronously.
 `options` prop will be ignored if this prop is set., Default: `null`
   @param {string|'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
-@param {number} [score_threshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
-  @param {number} [scoreThreshold=3] - (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
-  @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
-  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {number} [score_threshold=3] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `3`
+  @param {number} [scoreThreshold=undefined] - (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `undefined`
+  @param {SizeOptions} [size=] - Size of the input, Default: ``
+  @param {ColorOptions} [color=] - Color of the input, Default: ``
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -71,8 +71,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         <li class="tag summary-count is-{size} is-{color || 'primary'}">
           {selectedOptions.length}
         </li>
-        <li
-          class="tag is-{size} summary-text  is-{color || 'primary'} is-light">
+        <li class="tag is-{size} summary-text is-{color || 'primary'} is-light">
           Item{selectedOptions.length === 1 ? "" : "s"} selected
         </li>
       {:else}
@@ -269,12 +268,12 @@ Default value: `<span>{option[search_key] || option}</span>`
   export let scoreThreshold = score_threshold;
   /**
    * Size of the input
-   *  @type {import('@kws3/ui/types').SizeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "";
   /**
    * Color of the input
-   *  @type {import('@kws3/ui/types').ColorOptions}
+   *  @type {ColorOptions}
    */
   export let color = "";
   /**

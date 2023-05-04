@@ -1,9 +1,13 @@
 import tippy, { delegate } from "tippy.js";
 
 /**
+ * @typedef {import('@kws3/ui/types').TippyPositions} TippyPositions
+ */
+
+/**
  * Activates tooltips via event delegation
  * @param {string} container - CSS selector of container
- * @param {object} opts - tooltip options
+ * @param {object?} opts - tooltip options
  */
 export function activateTooltips(container, opts = {}) {
   let _opts = Object.assign(
@@ -84,6 +88,9 @@ function createTippyAction(defaultOpts) {
   };
 }
 
+/**
+ * @type {import("svelte/action").Action}
+ */
 export let popover = createTippyAction({
   appendTo: () => document.body,
   hideOnClick: true,
@@ -92,6 +99,9 @@ export let popover = createTippyAction({
   allowHTML: true,
   inertia: true,
   touch: true,
+  /**
+   * @type {TippyPositions}
+   */
   placement: "auto",
   trigger: "click",
   offset: [0, 10],
@@ -99,6 +109,9 @@ export let popover = createTippyAction({
   maxWidth: "none",
 });
 
+/**
+ * @type {import("svelte/action").Action}
+ */
 export let tooltip = createTippyAction({
   animation: "scale",
   content(el) {

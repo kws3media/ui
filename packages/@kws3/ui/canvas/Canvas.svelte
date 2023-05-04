@@ -4,7 +4,7 @@
 
   @param {string} [width="250px"] - Canvas width, Default: `"250px"`
   @param {string} [height="250px"] - Canvas height, Default: `"250px"`
-  @param {string | 'Pen'|'Eraser'} [active_tool="Pen"] - Default active tool, Default: `"Pen"`
+  @param {string |'Pen'|'Eraser'} [active_tool=""] - Default active tool, Default: `""`
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {boolean} [is_touched=false] - Determines whether canvas is touched or not, Default: `false`
   @param {number} [pen_width=2] - `CONST` pen width, Default: `2`
@@ -23,15 +23,12 @@ value in percentage %, Default: `50`
   @param {array} [actions=[]] - `CONST` List of actions toolbar, Default: `[]`
   @param {string|'bottom'|'top'} [toolbar_placement="bottom"] - Default position of the action toolbar, Default: `"bottom"`
   @param {object} [tools={}] - List of tools available for user to select from, Default: `{}`
-
-Only active when canvas is `readonly` or `disabled`, Default: `""`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {boolean} [has_controls=true] - Determines control tools available or not, Default: `true`
   @param {string|'start'|'center'|'end'} [control_position="center"] - `CONST` Default position of controls, Default: `"center"`
   @method `getActions()` - GetActions method
 
 -->
-
 
 <div
   class="
@@ -43,31 +40,25 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   style:--kws-peninput-height={height}
   style:--kws-peninput-width={width}
   style:transform="scale({expanded ? 1 + expand_scale * 0.01 : initial_scale})"
-  style:transform-origin="{expand_from} {expand_to}"
-  data-cy={cy}
->
-
-  <PenInput
-    {...$$props}
-    {expanded}
-    bind:DRAWING_PAD
-    on:change={onChange}
-  />
+  style:transform-origin="{expand_from}
+  {expand_to}"
+  data-cy={cy}>
+  <PenInput {...$$props} {expanded} bind:DRAWING_PAD on:change={onChange} />
 
   {#if has_controls}
-  <PenControls
-    {...$$props}
-    on:changeColor={({ detail: { color } }) => changeColor(color)}
-    on:setTool={({ detail: { tool } }) => setTool(tool)}
-    on:undo={() => undo()}
-    on:redo={() => redo()}
-    on:reset={() => reset()}
-    on:toggleExpand={() => toggleExpand()}
-    {active_tool}
-    default_color={pen_color}
-    bind:can_undo
-    bind:can_redo
-    bind:show_tools />
+    <PenControls
+      {...$$props}
+      on:changeColor={({ detail: { color } }) => changeColor(color)}
+      on:setTool={({ detail: { tool } }) => setTool(tool)}
+      on:undo={() => undo()}
+      on:redo={() => redo()}
+      on:reset={() => reset()}
+      on:toggleExpand={() => toggleExpand()}
+      {active_tool}
+      default_color={pen_color}
+      bind:can_undo
+      bind:can_redo
+      bind:show_tools />
   {/if}
 </div>
 
@@ -77,6 +68,10 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   import PenInput from "./PenInput.svelte";
   import PenControls from "./PenControls.svelte";
   import { onMount } from "svelte";
+
+  /**
+   * @typedef {import('@kws3/ui/types').Positions} Positions
+   */
 
   /**
    * Canvas width
@@ -157,7 +152,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   ];
   /**
    * Default position of the action toolbar
-   * @type {string|'bottom'|'top'}
+   * @type {Extract<Positions, 'bottom'|'top'>}
    */
   export let toolbar_placement = "bottom";
   /**
@@ -176,7 +171,7 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   export let has_controls = true;
   /**
    * Default position of controls
-   * @type {string|'start'|'center'|'end'}
+   * @type {Extract<Positions, 'start'|'center'|'end'>}
    */
   export const control_position = "center";
 
@@ -195,8 +190,6 @@ Only active when canvas is `readonly` or `disabled`, Default: `""`
   $: expanded, setScaleFactor();
   $: image, syncImage();
   $: penColor, setColor();
-
-
 
   onMount(() => {
     setTool(active_tool);

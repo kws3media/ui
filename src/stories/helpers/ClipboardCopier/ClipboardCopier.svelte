@@ -84,6 +84,6 @@
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et libero in metus blandit malesuada vitae in dolor. ";
 
   onMount(() => {
-    activateTooltips("#cc-parent", null);
+    activateTooltips("#cc-parent");
   });
 </script>

@@ -2,8 +2,8 @@
   @component
 
 
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Message, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="info"] - Color of the Message box, Default: `"info"`
+  @param {SizeOptions} [size=] - Size of the Message, Default: ``
+  @param {ColorOptions | 'grey'} [color=info] - Color of the Message box, Default: `info`
   @param {string} [style=""] - Inline CSS for Message box, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for Message content, Default: `""`
   @param {string} [title_class=""] - CSS classes for Message box title, Default: `""`
@@ -69,13 +69,18 @@ The parent can then decide what to do with the component
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * Size of the Message
-   * @type {import('@kws3/ui/types').SizeOptions}
+   * @type {SizeOptions}
    */
   export let size = "",
     /**
      * Color of the Message box
-     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     * @type {ColorOptions | 'grey'}
      */
     color = "info",
     /**
