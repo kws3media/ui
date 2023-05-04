@@ -95,6 +95,7 @@
 
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    */
 
   /**
@@ -154,10 +155,12 @@
     selectAllCheckboxColor = "primary",
     /**
      * Color of the checkbox on each row
+     * @type {Exclude<ColorOptions, 'success'>}
      */
     selectCheckboxColor = "info",
     /**
      * Size of the checkbox
+     * @type {SizeOptions}
      */
     selectCheckboxSize = "medium",
     /**
