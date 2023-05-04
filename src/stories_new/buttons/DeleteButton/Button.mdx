@@ -1,0 +1,80 @@
+import {Meta, Primary, Controls, Canvas, Story, Source} from '@storybook/blocks';
+import * as DeleteButton from "./DeleteButton.stories.js";
+import dedent from 'ts-dedent';
+
+<Meta of={DeleteButton} />
+<Canvas of={DeleteButton.Main} />
+<Controls />
+
+### Usage
+<Source
+  language="html"
+  code={
+    dedent`
+    <DeleteButton
+      {text}
+      {icon}
+      {doing_icon}
+      {done_icon}
+      {doing_text}
+      {done_text}
+      {color}
+      {size}
+      {icon_only}
+      {disabled}
+      on:erase={eraseDo}
+    />
+    <script>
+      import { DeleteButton } from '@kws3/ui';
+      export let color = "primary";
+      export let disabled = false;
+      export let size="";
+      export let icon_only = false;
+      export let text = "Delete";
+      export let icon = "minus-circle";
+      export let done_icon = "check";
+      export let done_text = "Deleted";
+      export let context = "_context_delete";
+      function eraseDo(event){
+        let { doing, done, error, context } = event.detail;
+        doing();
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after "completion_timeout"
+          done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after "completion_timeout"
+          error();
+        })
+      }
+    </script>`
+  }
+/>
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+<Source
+  language="html"
+  code={
+    dedent`
+    <script>
+      function eraseDo(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          done(() => {
+            //some callback
+          }, 500);
+        })
+        .catch(() => {
+          error(() => {
+            //some callback
+          }, 500);
+        });
+      }
+    </script>`
+  }
+/>

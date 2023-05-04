@@ -1,17 +1,18 @@
 export default {
   stories: [
-    "../src/stories/_index/index.stories.mdx",
-    "../src/stories/_index/index*.stories.*",
-    "../src/stories/_index/changelog.stories.mdx",
-    "../src/stories/index.stories.js",
-    "../src/stories/**/*.stories.*",
+    "../src/stories_new/_index/index.stories.mdx",
+    "../src/stories_new/_index/index*.stories.*",
+    "../src/stories_new/_index/changelog.stories.mdx",
+    "../src/stories_new/index.stories.js",
+    "../src/stories_new/**/*.mdx",
+    "../src/stories_new/**/*.stories.*",
   ],
   logLevel: "debug",
   features: {
-    legacyMdx1: true,
-    storyStoreV7: true,
+    //legacyMdx1: true,
+    //storyStoreV7: true,
     interactionsDebugger: true,
-    previewMdx2: true,
+    //previewMdx2: true,
   },
   addons: [
     "@storybook/addon-essentials",
@@ -22,6 +23,6 @@ export default {
   ],
   framework: "@storybook/svelte-vite",
   docs: {
-    autodocs: false,
+    autodocs: "tag",
   },
 };
