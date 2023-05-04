@@ -11,7 +11,7 @@
 **Examples:** `10px` | `5rem`, Default: `"0px"`
   @param {boolean} [circle=false] - Whether the Skeleton should be rendered as a circle.
 If this is set to `true`, the `radius` property will be ignored., Default: `false`
-  @param {BGColorOptions} [color=] - Color of the Skeleton lines, Default: ``
+  @param {ColorOptions} [color=] - Color of the Skeleton lines, Default: ``
   @param {string} [class=""] - CSS class for Skeleton, Default: `""`
 
 -->
