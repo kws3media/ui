@@ -1,11 +1,11 @@
-import Dialog from "./Dialog.svelte";
+import { default as _Dialog } from "./Dialog.svelte";
 
 function createDialog(msg, props) {
   props = Object.assign(props, { _text: msg });
 
   const promise = new Promise((fulfil) => {
     //@ts-ignore
-    const dialog = new Dialog({
+    const dialog = new _Dialog({
       target: document.body,
       props,
       intro: true,
@@ -27,7 +27,7 @@ function createDialog(msg, props) {
 /**
  *
  * @param {string} msg
- * @param {object?} props
+ * @param {object} [props={}]
  */
 export function alert(msg, props) {
   props = props || {};
@@ -38,7 +38,7 @@ export function alert(msg, props) {
 /**
  *
  * @param {string} msg
- * @param {object?} props
+ * @param {object} [props={}]
  */
 export function prompt(msg, props) {
   props = props || {};
@@ -49,7 +49,7 @@ export function prompt(msg, props) {
 /**
  *
  * @param {string} msg
- * @param {object?} props
+ * @param {object} [props={}]
  */
 export function confirm(msg, props) {
   props = props || {};
@@ -57,11 +57,10 @@ export function confirm(msg, props) {
   return createDialog(msg, props);
 }
 
-//@ts-ignore
+class Dialog extends _Dialog {}
+
 Dialog.alert = alert;
-//@ts-ignore
 Dialog.confirm = confirm;
-//@ts-ignore
 Dialog.prompt = prompt;
 
 export default Dialog;
