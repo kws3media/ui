@@ -12,7 +12,7 @@ glob("./packages/**/*.svelte", function (err, svelteFiles) {
         const filename = path.basename(f);
         console.log(`Documenting ${filename}`);
 
-        const docm = spawn("node", ["bin/documentor.js", f]);
+        const docm = spawn("node", ["scripts/documentor/documentor.js", f]);
         docm.stdout.on("data", (data) => {
           console.log(`${filename}: ${data}`);
         });
@@ -22,7 +22,7 @@ glob("./packages/**/*.svelte", function (err, svelteFiles) {
         });
 
         docm.on("close", (code) => {
-          if (code == 0) {
+          if (code === 0) {
             console.log(`${chalk.bold.green("✓")} ${filename}`);
           } else {
             console.log(`${chalk.bold.red("✘")} ${filename}`);

@@ -12,9 +12,9 @@ squeezed into small spaces, Default: `false`
   @param {object} [y_axis_options={}] - Y Axis options, see ApexCharts options for Y Axis, Default: `{}`
   @param {string} [width="100%"] - Chart width, supports CSS size strings, Default: `"100%"`
   @param {string} [height="auto"] - Chart height, supports CSS size strings, Default: `"auto"`
-  @param {array} [colors=null] - Chart colors, can be modified globally in framework settings
+  @param {array} [colors=[]] - Chart colors, can be modified globally in framework settings
 
-Send an array of colors to override the default colors, or do not send anything to use the default colors, Default: `null`
+Send an array of colors to override the default colors, or do not send anything to use the default colors, Default: `[]`
   @param {array} [captured_events=[]] - String array of event names that will be captured and fired as svelte events.
 This is to prevent unnecessary event subscriptions., Default: `[]`
   @param {string} [class=""] - CSS classes for container, Default: `""`

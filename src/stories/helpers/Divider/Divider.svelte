@@ -74,6 +74,10 @@
   export let color = "",
     light = false,
     vertical = false,
+    /**
+     * Alignment of the Divider text. `top`/`left` and `bottom`/`right` are analogous for vertical Dividers
+     * @type {Exclude<import('@kws3/ui/types').Positions, 'start'|'end'>}
+     */
     alignment = "center",
     style = "";
 

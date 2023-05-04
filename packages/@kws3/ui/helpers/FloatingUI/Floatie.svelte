@@ -6,7 +6,7 @@
   @param {string} [message=""] - Message in the notification, Default: `""`
   @param {'notification'|'snackbar'|'toast'} [variant="notification"] - variation of floating UI, Default: `"notification"`
   @param {number} [duration=3000] - Duration of the notification, Default: `3000`
-  @param {''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Toast notification background color, Default: `"primary"`
+  @param {ColorOptions} [color=primary] - Toast notification background color, Default: `primary`
   @param {boolean} [light=false] - Inverted colors for notification box and contents, Default: `false`
   @param {boolean} [dismissable=true] - Determines if notification is dismissable, Default: `true`
   @param {boolean} [persistent=false] - A persistent notification without duration, stays till dismissed, Default: `false`

@@ -14,29 +14,27 @@
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {number} [expand_scale=50] - Transform scale of the canvas on expansion, Default: `50`
   @param {object} [tools={}] - List of tools available for user to select from, Default: `{}`
-  @param {any} [DRAWING_PAD=undefined] - DRAWING_PAD property, Default: `undefined`
+  @param {HTMLElement} [DRAWING_PAD=undefined] - DRAWING_PAD property, Default: `undefined`
 
 -->
 <div
   class="kws-pen-input {readonly || disabled ? 'is-readonly' : ''}"
   style:width
-  style:height
->
+  style:height>
   {#if disabled || readonly}
     <img
       alt="canvasimage"
       src={image || emptyImage}
       style:width
       style:height
-      style:background-image="url({background_image})"
-      />
+      style:background-image="url({background_image})" />
   {/if}
-  <canvas bind:this={CANVAS}
+  <canvas
+    bind:this={CANVAS}
     style:width
     style:height
     style:background-image="url({background_image})"
-    style:background-color={readonly ? 'transparent':''}
-  />
+    style:background-color={readonly ? "transparent" : ""} />
 </div>
 
 <script>
@@ -96,6 +94,9 @@
    */
   export let tools = {};
 
+  /**
+   * @type {HTMLElement}
+   */
   export let DRAWING_PAD;
 
   let CANVAS,

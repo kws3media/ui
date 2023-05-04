@@ -69,6 +69,10 @@
     icon = "",
     inner_class = "",
     inner_style = "",
+    /**
+     * Font family to use for Icon
+     * @type {import('@kws3/ui/types').FontFamilies}
+     */
     family = "";
 
   let klass = "";

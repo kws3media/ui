@@ -1,4 +1,28 @@
-import { Colors, BGColors, SpinnerColors, Sizes } from "./type-defs.ts";
+import type {
+  Colors,
+  BGColors,
+  SpinnerColors,
+  Sizes,
+  Positions,
+  FontFamilies,
+  FloatiePositions,
+  TippyPositions,
+} from "./type-defs";
+
+export type ColorOptions = (typeof Colors)[number];
+export type SizeOptions = (typeof Sizes)[number];
+export type SpinnerColorOptions = (typeof SpinnerColors)[number];
+export type BGColorOptions = (typeof BGColors)[number];
+export type FontFamilies = (typeof FontFamilies)[number];
+export type Positions = (typeof Positions)[number];
+export type TippyPositions = (typeof TippyPositions)[number];
+export type FloatiePositions = (typeof FloatiePositions)[number];
+
+export type FloatieType = {
+  create: (opts: object) => { props: object; destroy: () => void };
+  remove: (props: object) => void;
+};
+
 export type SearchOptions = {
   search_key: Array<string> | string;
   scoreThreshold: number;
@@ -12,7 +36,10 @@ export type SearchOptions = {
   };
 };
 
-export type SearchHelper = (needle: string, haystack: array) => array;
+export type SearchHelper = (
+  needle: string,
+  haystack: Array<string>
+) => Array<any>;
 
 export type ValidatePasswordOptions = {
   name: string;
@@ -23,6 +50,15 @@ export type ValidatePasswordOptions = {
   active: boolean;
   value?: string;
   negate?: boolean;
+};
+
+export type SettingOptions = {
+  defaultIconFamily?: FontFamilies;
+  defaultToastPlacement?: TippyPositions;
+  defaultSnackbarPlacement?: TippyPositions;
+  defaultNotificationPlacement?: TippyPositions;
+  hasTransitions?: boolean;
+  defaultChartColors?: Array<string>;
 };
 
 declare global {
@@ -37,10 +73,3 @@ declare global {
     readonly navigator: Navigator;
   }
 }
-
-export type Options<T> = T;
-
-export type ColorOptions = Options<Colors>;
-export type SizeOptions = Options<Sizes>;
-export type SpinnerColorOptions = Options<Colors | SpinnerColors>;
-export type BGColorOptions = Options<Colors | BGColors>;

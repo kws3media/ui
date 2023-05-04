@@ -24,12 +24,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "types": "index.d.ts",
+  "types": "./index.d.ts",
   "dependencies": {
     "apexcharts": "3.33.2",
     "flatpickr": "^4.5.2",
     "svelte-portal": "^2.1.2",
     "text-mask-core": "^5.1.2",
     "tippy.js": "^6.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4"
   }
 }

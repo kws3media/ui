@@ -2,12 +2,12 @@
   @component
 
 
-  @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the Icon, Default: `""`
-  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the Icon, Default: `""`
+  @param {SizeOptions} [size=] - Size of the Icon, Default: ``
+  @param {ColorOptions | 'grey'} [color=] - Color of the Icon, Default: ``
   @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
-  @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [family=""] - Icon family, can be modified globally in framework settings
+  @param {FontFamilies} [family=] - Icon family, can be modified globally in framework settings
 
-Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
+Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   @param {string} [style=""] - Inline CSS for icon container, Default: `""`
   @param {string} [inner_class=""] - CSS classes for icon, Default: `""`
   @param {string} [inner_style=""] - Inline CSS for icon, Default: `""`
@@ -66,13 +66,20 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   import { defaultIconFamily } from "../settings";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
+   *
+   */
+
+  /**
    * Size of the Icon
-   *  @type {import('@kws3/ui/types').SizeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "",
     /**
      * Color of the Icon
-     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     * @type {ColorOptions | 'grey'}
      */
     color = "",
     /**
@@ -83,7 +90,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
      * Icon family, can be modified globally in framework settings
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
-     * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+     * @type {FontFamilies}
      */
     family = "",
     /**

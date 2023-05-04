@@ -2,8 +2,8 @@
   @component
 
 
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Checkbox, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Colour of the Checkbox, Default: `""`
+  @param {SizeOptions} [size=] - Size of the Checkbox, Default: ``
+  @param {Exclude<ColorOptions, 'success'>} [color=] - Colour of the Checkbox, Default: ``
   @param {string} [style=""] - Inline CSS for the Checkbox, Default: `""`
   @param {boolean} [inverted=false] - Inverts the Checkbox colour theme, Default: `false`
   @param {boolean} [circle=false] - Makes the Checkbox round, Default: `false`
@@ -13,11 +13,11 @@ Checked\Not Checked, Default: `false`
   @param {boolean} [disabled=false] - Disables the Checkbox, Default: `false`
   @param {string} [icon="check"] - The name of the icon that is to be used in the Checkbox, Default: `"check"`
   @param {string} [label_style=""] - Inline CSS for the Checkbox label, Default: `""`
-  @param {''|'fa'|'lar'|'las'|'gg'|'unicons'} [icon_family="null"] - Icon family to be used
+  @param {FontFamilies} [icon_family=] - Icon family to be used
 
 Defaults to global family set via `Icon.setDefaultIconType()`
 
-Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
+Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   @param {string} [class=""] - CSS classes of the Checkbox, Default: `""`
 
   ### Events
@@ -50,6 +50,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *
    */
   /**
@@ -106,7 +107,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `"null"`
      *
      * Ultimately defaults to `fa`, if family is not set anywhere
      *
-     * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+     * @type {FontFamilies}
      */
     icon_family = "";
 

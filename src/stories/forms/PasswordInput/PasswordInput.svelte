@@ -34,7 +34,7 @@
   import { onMount } from "svelte";
 
   onMount(() => {
-    activateTooltips("#story-root", null);
+    activateTooltips("#story-root");
   });
   /**
    * Size of the input

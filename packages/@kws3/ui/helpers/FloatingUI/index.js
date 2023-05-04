@@ -106,6 +106,13 @@ const buildInitialiser = (defaultOpts, mandatoryOpts) => {
   };
 };
 
+/**
+ * @typedef {import("@kws3/ui/types").FloatieType} FloatieType
+ */
+
+/**
+ * @type {FloatieType}
+ */
 export const Notifications = {
   create: buildInitialiser(
     {
@@ -122,6 +129,9 @@ export const Notifications = {
   remove: FloatiesStore.remove,
 };
 
+/**
+ * @type {FloatieType}
+ */
 export const Toasts = {
   create: buildInitialiser(
     {
@@ -139,6 +149,9 @@ export const Toasts = {
   remove: FloatiesStore.remove,
 };
 
+/**
+ * @type {FloatieType}
+ */
 export const Snackbars = {
   create: buildInitialiser(
     {
