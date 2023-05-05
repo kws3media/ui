@@ -76,7 +76,8 @@
     /**
      * @type {ButtonEvent}
      */
-    let { doing, done } = e.detail;
+    // eslint-disable-next-line no-unused-vars
+    let { doing, done, context } = e.detail;
     doing();
     setTimeout(() => {
       done();
