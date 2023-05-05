@@ -43,6 +43,8 @@
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').SubmitButtonEvent} SubmitButtonEvent
+   * @typedef {import('@kws3/ui/types').ButtonTracker} ButtonTracker
    */
 
   /**
@@ -61,6 +63,9 @@
     icon_only = false,
     disabled = false,
     icon = "",
+    /**
+     * @type {ButtonTracker}
+     */
     tracker = {
       saving: false,
       saved: false,
@@ -72,20 +77,27 @@
   let klass = "";
   export { klass as class };
 
+  /**
+   * @type {SubmitButtonEvent}
+   */
   let BUTTON_1 = null;
+
+  /**
+   * @type {SubmitButtonEvent}
+   */
   let BUTTON_2 = null;
 
   export function success() {
-    BUTTON_1.saving();
+    BUTTON_1 && BUTTON_1.saving();
     setTimeout(() => {
-      BUTTON_1.saved();
+      BUTTON_1 && BUTTON_1.saved();
     }, 1000);
   }
 
   export function failed() {
-    BUTTON_2.saving();
+    BUTTON_2 && BUTTON_2.saving();
     setTimeout(() => {
-      BUTTON_2.error();
+      BUTTON_2 && BUTTON_2.error();
     }, 1000);
   }
 </script>

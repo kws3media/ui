@@ -56,6 +56,7 @@
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').ButtonTracker} ButtonTracker
    */
 
   /**
@@ -98,6 +99,7 @@
     disabled = false,
     /**
      * Tracker object to be sent from outside to change the state of the button.
+     * @type {ButtonTracker}
      */
     tracker = {
       saving: false,

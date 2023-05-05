@@ -109,6 +109,26 @@ export type DrawingPadEvents = {
   };
 };
 
+export type ButtonEvent = {
+  doing: () => void;
+  done: (callback?: Function, timeout?: number) => void;
+  error: (callback?: Function, timeout?: number) => void;
+  context: any;
+};
+
+export type SubmitButtonEvent = {
+  saving: () => void;
+  saved: (callback?: Function, timeout?: number) => void;
+  error: (callback?: Function, timeout?: number) => void;
+  [key: string]: any;
+} | null;
+
+export type ButtonTracker = {
+  saving: boolean;
+  saved: boolean;
+  error: boolean;
+};
+
 declare global {
   interface Navigator {
     readonly userAgentData: {
