@@ -13,8 +13,8 @@
   @param {string} [image=""] - The Data created in the canvas by the user, Default: `""`
   @param {number} [initial_scale=1] - Initial transform scale for the canvas before expansion, Default: `1`
   @param {number} [expand_scale=50] - Transform scale of the canvas on expansion, Default: `50`
-  @param {object} [tools={}] - List of tools available for user to select from, Default: `{}`
-  @param {HTMLElement} [DRAWING_PAD=undefined] - DRAWING_PAD property, Default: `undefined`
+  @param {DrawingTools} [tools=undefined] - List of tools available for user to select from, Default: `undefined`
+  @param {DrawingPad} [DRAWING_PAD=undefined] - DRAWING_PAD property, Default: `undefined`
 
 -->
 <div
@@ -41,6 +41,10 @@
   import { DrawingPad } from "../internal";
 
   import { onMount, createEventDispatcher } from "svelte";
+  /**
+   * @typedef {import('@kws3/ui/internal/DrawingPad').DrawingPad} DrawingPad
+   * @typedef {import('@kws3/ui/types').DrawingTools} DrawingTools
+   */
 
   const fire = createEventDispatcher();
 
@@ -91,14 +95,18 @@
   export let expand_scale = 50;
   /**
    * List of tools available for user to select from
+   * @type {DrawingTools}
    */
   export let tools = {};
 
   /**
-   * @type {HTMLElement}
+   * @type {DrawingPad}
    */
   export let DRAWING_PAD;
 
+  /**
+   * @type {HTMLCanvasElement}
+   */
   let CANVAS,
     is_ready = false,
     emptyImage =
