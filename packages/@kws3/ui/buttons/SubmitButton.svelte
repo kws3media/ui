@@ -3,7 +3,7 @@
 
 
   @param {SizeOptions} [size=] - Size of the Button, Default: ``
-  @param {Exclude<ColorOptions , 'success'>} [color=primary] - Color of the Button, Default: `primary`
+  @param {ColorOptions} [color=primary] - Color of the Button, Default: `primary`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
   @param {string} [saved_text="Saved"] - Text displayed after submission is completed successfully, Default: `"Saved"`
   @param {string} [error_text="Failed to Save"] - Text displayed if submission is not successful, Default: `"Failed to Save"`
@@ -65,7 +65,7 @@
   export let size = "",
     /**
      * Color of the Button
-     * @type {Exclude<ColorOptions , 'success'>}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**

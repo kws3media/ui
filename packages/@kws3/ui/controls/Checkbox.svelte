@@ -3,7 +3,7 @@
 
 
   @param {SizeOptions} [size=] - Size of the Checkbox, Default: ``
-  @param {Exclude<ColorOptions, 'success'>} [color=] - Colour of the Checkbox, Default: ``
+  @param {ColorOptions} [color=] - Colour of the Checkbox, Default: ``
   @param {string} [style=""] - Inline CSS for the Checkbox, Default: `""`
   @param {boolean} [inverted=false] - Inverts the Checkbox colour theme, Default: `false`
   @param {boolean} [circle=false] - Makes the Checkbox round, Default: `false`
@@ -60,7 +60,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   export let size = "",
     /**
      * Colour of the Checkbox
-     * @type {Exclude<ColorOptions, 'success'>}
+     * @type {ColorOptions}
      */
     color = "",
     /**

@@ -68,15 +68,20 @@
   import { Divider as KwsDivider, Icon, Message } from "@kws3/ui";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').Positions} Positions
+   */
+
+  /**
    * Color of the Divider lines
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "",
     light = false,
     vertical = false,
     /**
      * Alignment of the Divider text. `top`/`left` and `bottom`/`right` are analogous for vertical Dividers
-     * @type {Exclude<import('@kws3/ui/types').Positions, 'start'|'end'>}
+     * @type {Positions}
      */
     alignment = "center",
     style = "";
