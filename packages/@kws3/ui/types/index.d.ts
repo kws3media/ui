@@ -79,6 +79,36 @@ export type SettingOptions = {
   defaultChartColors?: Array<string>;
 };
 
+type DrawingTool = {
+  name: string;
+  icon: string;
+  draw: (pad: DrawingPad) => void;
+};
+
+export type DrawingTools = {
+  [key: string]: DrawingTool;
+};
+
+export type DrawingPadOptions = {
+  initialScale: number;
+  penColor: string;
+  penWidth: number;
+  eraserWidth: number;
+  readonly?: boolean;
+  image?: string;
+  tools: DrawingTools;
+  expanded?: boolean;
+  expand?: number;
+};
+
+export type DrawingPadEvents = {
+  change: {
+    canUndo: boolean;
+    canRedo: boolean;
+    canvasImage: string;
+  };
+};
+
 declare global {
   interface Navigator {
     readonly userAgentData: {
