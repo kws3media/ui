@@ -24,14 +24,8 @@
 
 <script>
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
-   * @typedef {import('@kws3/ui/types').Positions} Positions
-   */
-
-  /**
    * Color of the Divider lines
-   * @type {ColorOptions}
+   * @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "",
     /**
@@ -44,7 +38,7 @@
     vertical = false,
     /**
      * Alignment of the Divider text. `top`/`left` and `bottom`/`right` are analogous for vertical Dividers
-     * @type {Positions}
+     * @type {Exclude<import('@kws3/ui/types').Positions, 'start'|'end'>}
      */
     alignment = "center",
     /**
