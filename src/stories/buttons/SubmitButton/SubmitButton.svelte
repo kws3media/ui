@@ -80,24 +80,24 @@
   /**
    * @type {SubmitButtonEvent}
    */
-  let BUTTON_1 = null;
+  let BUTTON_1;
 
   /**
    * @type {SubmitButtonEvent}
    */
-  let BUTTON_2 = null;
+  let BUTTON_2;
 
   export function success() {
-    BUTTON_1 && BUTTON_1.saving();
+    BUTTON_1.saving();
     setTimeout(() => {
-      BUTTON_1 && BUTTON_1.saved();
+      BUTTON_1.saved();
     }, 1000);
   }
 
   export function failed() {
-    BUTTON_2 && BUTTON_2.saving();
+    BUTTON_2.saving();
     setTimeout(() => {
-      BUTTON_2 && BUTTON_2.error();
+      BUTTON_2.error();
     }, 1000);
   }
 </script>

@@ -120,8 +120,7 @@ export type SubmitButtonEvent = {
   saving: () => void;
   saved: (callback?: Function, timeout?: number) => void;
   error: (callback?: Function, timeout?: number) => void;
-  [key: string]: any;
-} | null;
+};
 
 export type ButtonTracker = {
   saving: boolean;
