@@ -56,6 +56,9 @@
     expand_to = "center",
     expand_from = "center",
     expand_scale = 50,
+    /**
+     * @type {import('@kws3/ui/types').DrawingTools}
+     */
     tools = { Pen, Eraser },
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
     /**
