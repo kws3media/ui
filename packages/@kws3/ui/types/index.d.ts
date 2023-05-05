@@ -122,25 +122,6 @@ export type SubmitButtonEvent = {
   error: (callback?: Function, timeout?: number) => void;
 };
 
-interface ButtonEventFunction {
-  (callback?: Function, timeout?: number): void;
-}
-interface ButtonEvents {
-  doing: () => void;
-  done: ButtonEventFunction;
-  error: ButtonEventFunction;
-  saving: () => void;
-  saved: ButtonEventFunction;
-  context: any;
-}
-
-export type SubmitButtonEvents = Pick<
-  ButtonEvents,
-  "saving" | "saved" | "error"
->;
-
-export type ButtonEvents = Omit<ButtonEvents, "saving" | "saved">;
-
 export type ButtonTracker = {
   saving: boolean;
   saved: boolean;
