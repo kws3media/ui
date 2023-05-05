@@ -16,7 +16,7 @@
   @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
   @param {boolean} [checked=false] - Determines whether the checkbox is checked or not, Default: `false`
   @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
-  @param {Exclude<ColorOptions, 'success'>} [selectCheckboxColor=info] - Selected checkbox color, Default: `info`
+  @param {ColorOptions} [selectCheckboxColor=info] - Selected checkbox color, Default: `info`
   @param {SizeOptions} [selectCheckboxSize=medium] - selected checkbox size, Default: `medium`
   @param {function} [cellComponent()] - Custom cell component for a column
 
@@ -166,7 +166,7 @@
     selectedIds = [],
     /**
      * Selected checkbox color
-     * @type {Exclude<ColorOptions, 'success'>}
+     * @type {ColorOptions}
      */
     selectCheckboxColor = "info",
     /**

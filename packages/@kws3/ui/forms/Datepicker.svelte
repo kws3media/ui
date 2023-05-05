@@ -12,7 +12,7 @@ This property can be bound to, to fetch the selected date or date range. Output 
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {boolean} [readonly=false] - Make input value read-only, Default: `false`
   @param {string} [placeholder="Select Date.."] - Placeholder text for the input, Default: `"Select Date.."`
-  @param {Exclude<ColorOptions, ''>} [calendar_color=primary] - Colour of the Calendar, Default: `primary`
+  @param {ColorOptions} [calendar_color=primary] - Colour of the Calendar, Default: `primary`
   @param {any} [min_date=null] - Set earliest selectable date as an object or string
 
 **Example:** `"2021-06-06"` or `"(new Date('2021-01-01'))"`, Default: `null`
@@ -63,7 +63,6 @@ See: https://flatpickr.js.org/options/, Default: `{}`
 
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
-   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    */
 
   /**
@@ -97,7 +96,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let placeholder = "Select Date..";
   /**
    * Colour of the Calendar
-   * @type {Exclude<ColorOptions, ''>}
+   * @type {ColorOptions}
    */
   export let calendar_color = "primary";
   /**

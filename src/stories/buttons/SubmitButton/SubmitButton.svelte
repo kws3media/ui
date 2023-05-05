@@ -1,3 +1,23 @@
+<!--
+  @component
+
+
+  @param {ColorOptions} [color=primary] - Color of the Button, Default: `primary`
+  @param {SizeOptions} [size=] - Size of the Button, Default: ``
+  @param {string} [text="Save Changes"] - Text property, Default: `"Save Changes"`
+  @param {string} [saved_text="Saved"] - Saved_text property, Default: `"Saved"`
+  @param {string} [error_text="Failed to Save"] - Error_text property, Default: `"Failed to Save"`
+  @param {boolean} [icon_only=false] - Icon_only property, Default: `false`
+  @param {boolean} [disabled=false] - Disabled property, Default: `false`
+  @param {string} [icon=""] - Icon property, Default: `""`
+  @param {object} [tracker={}] - Tracker property, Default: `{}`
+  @param {number} [completion_timeout=600] - Completion_timeout property, Default: `600`
+  @param {number} [error_timeout=3000] - Error_timeout property, Default: `3000`
+  @param {string} [class=""] - Class property, Default: `""`
+  @method `success()` - Success method
+  @method `failed()` - Failed method
+
+-->
 <div class="columns">
   <div class="column">
     <form action="" on:submit|preventDefault={success}>
@@ -47,7 +67,7 @@
 
   /**
    * Color of the Button
-   * @type {Exclude<ColorOptions , 'success'>}
+   * @type {ColorOptions}
    */
   export let color = "primary",
     /**
