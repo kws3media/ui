@@ -189,6 +189,14 @@ function makeFunctionDoc(e, is_method = false) {
     e.params.forEach((i) => {
       props.push(i.name + (i.defaultValue ? " = " + i.defaultValue : ""));
     });
+  } else if (
+    e.type &&
+    typeof e.type.params != "undefined" &&
+    e.type.params.length
+  ) {
+    e.type.params.forEach((i) => {
+      props.push(i.name + (i.defaultValue ? " = " + i.defaultValue : ""));
+    });
   } else {
     if (typeof e.keywords != "undefined" && e.keywords.length) {
       e.keywords.forEach((i) => {
