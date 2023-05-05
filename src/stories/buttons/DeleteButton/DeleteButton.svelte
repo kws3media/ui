@@ -44,6 +44,7 @@
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').ButtonEvent} ButtonEvent
    */
 
   export let text = "Delete",
@@ -72,8 +73,10 @@
   export { klass as class };
 
   function success(e) {
-    // eslint-disable-next-line no-unused-vars
-    let { doing, done, context } = e.detail;
+    /**
+     * @type {ButtonEvent}
+     */
+    let { doing, done } = e.detail;
     doing();
     setTimeout(() => {
       done();
@@ -81,8 +84,10 @@
   }
 
   function failed(e) {
-    // eslint-disable-next-line no-unused-vars
-    let { doing, error, context } = e.detail;
+    /**
+     * @type {ButtonEvent}
+     */
+    let { doing, error } = e.detail;
     doing();
     setTimeout(() => {
       error();
