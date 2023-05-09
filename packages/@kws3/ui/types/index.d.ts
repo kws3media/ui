@@ -37,8 +37,6 @@ export type DialogProps = {
   cancel_button_text?: string;
   cancel_button_color?: ColorOptions;
   cancel_button_icon?: string;
-  _type?: string;
-  _text?: string;
 };
 
 export type SearchOptions = {

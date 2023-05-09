@@ -19,11 +19,7 @@ export function confirm(msg: string, props?: DialogProps): Promise<any>;
 declare const _default: Dialog;
 export default _default;
 export type DialogProps = import('@kws3/ui/types').DialogProps;
-/**
- * @typedef {import('@kws3/ui/types').DialogProps} DialogProps
- */
 declare class Dialog {
-    createDialog(msg: any, props: any): Promise<any>;
     /**
      *
      * @param {string} msg

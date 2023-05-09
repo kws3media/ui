@@ -4,41 +4,39 @@ import { default as _Dialog } from "./Dialog.svelte";
  * @typedef {import('@kws3/ui/types').DialogProps} DialogProps
  */
 
-class Dialog {
-  createDialog(msg, props) {
-    props = Object.assign(props, { _text: msg });
+function createDialog(msg, props) {
+  props = Object.assign(props, { _text: msg });
 
-    const promise = new Promise((fulfil) => {
-      //@ts-ignore
-      const dialog = new _Dialog({
-        target: document.body,
-        props,
-        intro: true,
-      });
-
-      //@ts-ignore
-      dialog.$on("_done", ({ detail }) => {
-        fulfil(detail);
-        //Does not outro out because of
-        //https://github.com/sveltejs/svelte/issues/4056
-        //@ts-ignore
-        dialog.$destroy();
-      });
+  const promise = new Promise((fulfil) => {
+    //@ts-ignore
+    const dialog = new _Dialog({
+      target: document.body,
+      props,
+      intro: true,
     });
 
-    return promise;
-  }
+    //@ts-ignore
+    dialog.$on("_done", ({ detail }) => {
+      fulfil(detail);
+      //Does not outro out because of
+      //https://github.com/sveltejs/svelte/issues/4056
+      //@ts-ignore
+      dialog.$destroy();
+    });
+  });
 
+  return promise;
+}
+
+class Dialog {
   /**
    *
    * @param {string} msg
    * @param {DialogProps} [props={}]
    */
 
-  alert(msg, props) {
-    props = props || {};
-    props._type = "alert";
-    return this.createDialog(msg, props);
+  alert(msg, props = {}) {
+    return createDialog(msg, { ...props, _type: "alert" });
   }
 
   /**
@@ -47,9 +45,7 @@ class Dialog {
    * @param {DialogProps} [props={}]
    */
   prompt(msg, props) {
-    props = props || {};
-    props._type = "prompt";
-    return this.createDialog(msg, props);
+    return createDialog(msg, { ...props, _type: "prompt" });
   }
 
   /**
@@ -58,9 +54,7 @@ class Dialog {
    * @param {DialogProps} [props={}]
    */
   confirm(msg, props) {
-    props = props || {};
-    props._type = "confirm";
-    return this.createDialog(msg, props);
+    return createDialog(msg, { ...props, _type: "confirm" });
   }
 }
 
