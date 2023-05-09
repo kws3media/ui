@@ -28,15 +28,44 @@ function createDialog(msg, props) {
   return promise;
 }
 
+class Dialog {
+  /**
+   *
+   * @param {string} msg
+   * @param {DialogProps} [props={}]
+   */
+
+  alert(msg, props = {}) {
+    return createDialog(msg, { ...props, _type: "alert" });
+  }
+
+  /**
+   *
+   * @param {string} msg
+   * @param {DialogProps} [props={}]
+   */
+  prompt(msg, props) {
+    return createDialog(msg, { ...props, _type: "prompt" });
+  }
+
+  /**
+   *
+   * @param {string} msg
+   * @param {DialogProps} [props={}]
+   */
+  confirm(msg, props) {
+    return createDialog(msg, { ...props, _type: "confirm" });
+  }
+}
+
 /**
  *
  * @param {string} msg
  * @param {DialogProps} [props={}]
  */
 export function alert(msg, props) {
-  props = props || {};
-  props._type = "alert";
-  return createDialog(msg, props);
+  let dialog = new Dialog();
+  return dialog.alert(msg, props);
 }
 
 /**
@@ -45,9 +74,8 @@ export function alert(msg, props) {
  * @param {DialogProps} [props={}]
  */
 export function prompt(msg, props) {
-  props = props || {};
-  props._type = "prompt";
-  return createDialog(msg, props);
+  let dialog = new Dialog();
+  return dialog.prompt(msg, props);
 }
 
 /**
@@ -56,15 +84,8 @@ export function prompt(msg, props) {
  * @param {DialogProps} [props={}]
  */
 export function confirm(msg, props) {
-  props = props || {};
-  props._type = "confirm";
-  return createDialog(msg, props);
+  let dialog = new Dialog();
+  return dialog.confirm(msg, props);
 }
 
-class Dialog extends _Dialog {}
-
-Dialog.alert = alert;
-Dialog.confirm = confirm;
-Dialog.prompt = prompt;
-
-export default Dialog;
+export default new Dialog();
