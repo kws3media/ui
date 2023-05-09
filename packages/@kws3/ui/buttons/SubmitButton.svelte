@@ -11,7 +11,7 @@
   @param {string} [cy="submit"] - data-cy attribute for cypress, Default: `"submit"`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
-  @param {object} [tracker={}] - Tracker object to be sent from outside to change the state of the button., Default: `{}`
+  @param {ButtonTracker} [tracker=undefined] - Tracker object to be sent from outside to change the state of the button., Default: `undefined`
   @param {number} [completion_timeout=600] - How long to wait before `saved` event is fired, and the UI state reverts back to normal, Default: `600`
   @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for Button container, Default: `""`

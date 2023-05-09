@@ -2,7 +2,7 @@
   @component
 
 
-  @param {number} [lines=1] - @typedef {import(', Default: `1`
+  @param {number} [lines=1] - Lines property, Default: `1`
   @param {string} [width="100%"] - CSS string denoting width of the Skeleton
 **Examples:** `10px` | `5rem` | `100vh`, Default: `"100%"`
   @param {string} [height="auto"] - CSS string denoting height of the Skeleton
