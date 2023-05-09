@@ -8,7 +8,6 @@ const map = {
 };
 
 function injector(obj) {
-  console.log(obj);
   if (typeof obj.type === "string") {
     const name = resolveName(obj.type);
     if (name in FrameworkTypes) {
