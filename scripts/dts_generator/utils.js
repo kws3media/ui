@@ -4,7 +4,6 @@ import { posixify } from "../utils/filesystem.js";
 
 const basePath = path.resolve(process.cwd(), "./packages/@kws3/ui");
 const cachePath = path.resolve(process.cwd(), "./.cache");
-//const cachePath = path.join(basePath, "/.cache");
 const tsconfigPath = path.join(basePath, "tsconfig.json");
 const tsconfigContent = fs.readFileSync(tsconfigPath).toString();
 
@@ -34,7 +33,6 @@ export function makeTempConfig(filepath) {
     files: [filepath],
     include: [],
   };
-  //console.log("tempPath", tempConfig);
   fs.writeFileSync(tempPath, JSON.stringify(tempConfig, null, 2));
 
   return tempPath;
