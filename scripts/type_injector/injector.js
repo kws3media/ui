@@ -70,16 +70,16 @@ function injector(obj) {
 function processExcludeGeneric(obj, name) {
   const matches = EXCLUDE_RE.exec(name.toString());
   if (matches) {
-    let _name = matches[1];
-    if (FrameworkTypes[_name]) {
-      let values = matches[2].replace(/["'\s+]/g, "").split("|");
-      let _values = FrameworkTypes[_name].filter(
-        (val) => !values.includes(val)
+    let type_name = matches[1];
+    if (FrameworkTypes[type_name]) {
+      let excludedTypes = matches[2].replace(/["'\s+]/g, "").split("|");
+      let types = FrameworkTypes[type_name].filter(
+        (val) => !excludedTypes.includes(val)
       );
 
       obj.kind = "union";
-      obj.type = augmentTypes(_values);
-      obj.text = augmentText(_name, _values);
+      obj.type = augmentTypes(types);
+      obj.text = augmentText(type_name, types);
       return obj;
     }
   }
@@ -88,13 +88,16 @@ function processExcludeGeneric(obj, name) {
 function processExtractGeneric(obj, name) {
   const matches = EXTRACT_RE.exec(name.toString());
   if (matches) {
-    let _name = matches[1];
-    if (FrameworkTypes[_name]) {
-      let values = matches[2].replace(/["'\s+]/g, "").split("|");
+    let type_name = matches[1];
+    if (FrameworkTypes[type_name]) {
+      let extractedTypes = matches[2].replace(/["'\s+]/g, "").split("|");
+      let types = extractedTypes.filter((val) =>
+        FrameworkTypes[type_name].includes(val)
+      );
 
       obj.kind = "union";
-      obj.type = augmentTypes(values);
-      obj.text = augmentText(_name, values);
+      obj.type = augmentTypes(types);
+      obj.text = augmentText(type_name, types);
       return obj;
     }
   }
