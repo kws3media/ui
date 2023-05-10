@@ -7,8 +7,8 @@ const map = {
   BGColorOptions: "BGColors",
 };
 
-const EXCLUDE_RE = /Exclude<\s*([^,]*),\s*([^>]*)/;
-const EXTRACT_RE = /Extract<\s*([^,]*),\s*([^>]*)/;
+const EXCLUDE_RE = /Exclude<\s*([^,]*),\s*([^>]*)>/;
+const EXTRACT_RE = /Extract<\s*([^,]*),\s*([^>]*)>/;
 
 function resolveName(name) {
   if (map[name]) {
