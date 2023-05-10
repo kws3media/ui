@@ -3,10 +3,7 @@ import { makeTempConfig, cleanupTempConfig } from "./utils.js";
 import path from "path";
 
 const args = process.argv.slice(2);
-let input = path.relative(
-  path.resolve("./packages/@kws3/ui/.cache/"),
-  path.resolve(args[0])
-);
+let input = path.relative(path.resolve("./.cache/"), path.resolve(args[0]));
 
 async function generateDts() {
   const tempConfig = makeTempConfig(input);

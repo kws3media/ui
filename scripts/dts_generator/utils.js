@@ -3,7 +3,8 @@ import fs from "fs";
 import { posixify } from "../utils/filesystem.js";
 
 const basePath = path.resolve(process.cwd(), "./packages/@kws3/ui");
-const cachePath = path.join(basePath, "/.cache");
+const cachePath = path.resolve(process.cwd(), "./.cache");
+//const cachePath = path.join(basePath, "/.cache");
 const tsconfigPath = path.join(basePath, "tsconfig.json");
 const tsconfigContent = fs.readFileSync(tsconfigPath).toString();
 
@@ -28,7 +29,7 @@ export function makeTempConfig(filepath) {
     ...tsconfig,
     compilerOptions: {
       ...tsconfig.compilerOptions,
-      baseUrl: "../",
+      baseUrl: basePath,
     },
     files: [filepath],
     include: [],
