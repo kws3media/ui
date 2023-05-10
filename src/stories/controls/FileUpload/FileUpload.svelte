@@ -69,7 +69,7 @@
      */
     color = "",
     /**
-     * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+     * @type {import('@kws3/ui/types').ExtendedColorOptions}
      */
     info_color = "grey";
 

@@ -3,7 +3,7 @@
 
 
   @param {SizeOptions} [size=] - Size of the Icon, Default: ``
-  @param {ColorOptions | 'grey'} [color=] - Color of the Icon, Default: ``
+  @param {ExtendedColorOptions} [color=] - Color of the Icon, Default: ``
   @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
   @param {FontFamilies} [family=] - Icon family, can be modified globally in framework settings
 
@@ -66,7 +66,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   import { defaultIconFamily } from "../settings";
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').ColorOptions} ExtendedColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *
@@ -79,7 +79,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   export let size = "",
     /**
      * Color of the Icon
-     * @type {ColorOptions | 'grey'}
+     * @type {ExtendedColorOptions}
      */
     color = "",
     /**

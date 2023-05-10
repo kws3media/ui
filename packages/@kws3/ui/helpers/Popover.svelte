@@ -3,7 +3,7 @@
 
 
   @param {string} [icon="info-circle"] - Icon used when default slot has no content, Default: `"info-circle"`
-  @param {ColorOptions | 'grey'} [icon_color=primary] - Colour of the trigger icon displayed when default slot has no content, Default: `primary`
+  @param {ExtendedColorOptions} [icon_color=primary] - Colour of the trigger icon displayed when default slot has no content, Default: `primary`
   @param {SizeOptions} [icon_size=small] - Size of the trigger icon displayed when default slot has no content, Default: `small`
   @param {string} [trigger="click"] - Determines the events that cause the Popover to show. Multiple event names are separated by spaces.
 
@@ -80,7 +80,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   const fire = createEventDispatcher();
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').ExtendedColorOptions} ExtendedColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    * @typedef {import('@kws3/ui/types').TippyPositions} TippyPositions
    */
@@ -91,7 +91,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   export let icon = "info-circle";
   /**
    * Colour of the trigger icon displayed when default slot has no content
-   * @type {ColorOptions | 'grey'}
+   * @type {ExtendedColorOptions}
    */
   export let icon_color = "primary";
   /**

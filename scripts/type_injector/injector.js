@@ -3,7 +3,7 @@ import * as FrameworkTypes from "./frameworkTypes.js";
 const map = {
   ColorOptions: "Colors",
   SizeOptions: "Sizes",
-  SpinnerColorOptions: "SpinnerColors",
+  ExtendedColorOptions: "ExtendedColors",
   BGColorOptions: "BGColors",
 };
 

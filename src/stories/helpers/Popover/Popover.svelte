@@ -165,7 +165,7 @@
   export let icon = "info-circle";
   /**
    * Colour of the trigger icon displayed when default slot has no content
-   * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+   * @type {import('@kws3/ui/types').ExtendedColorOptions}
    */
   export let icon_color = "grey";
   /**

@@ -1,7 +1,7 @@
 import type {
   Colors,
   BGColors,
-  SpinnerColors,
+  ExtendedColors,
   Sizes,
   Positions,
   FontFamilies,
@@ -11,7 +11,7 @@ import type {
 
 export type ColorOptions = (typeof Colors)[number];
 export type SizeOptions = (typeof Sizes)[number];
-export type SpinnerColorOptions = (typeof SpinnerColors)[number];
+export type ExtendedColorOptions = (typeof ExtendedColors)[number];
 export type BGColorOptions = (typeof BGColors)[number];
 export type FontFamilies = (typeof FontFamilies)[number];
 export type Positions = (typeof Positions)[number];
