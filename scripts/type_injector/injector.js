@@ -7,8 +7,8 @@ const map = {
   BGColorOptions: "BGColors",
 };
 
-const EXCLUDE_RE = /Exclude<\s*([^,]*),\s*([^>]*)>/;
-const EXTRACT_RE = /Extract<\s*([^,]*),\s*([^>]*)>/;
+const EXCLUDE_RE = /Exclude<\s*([^,]*),\s*([^>]*)/;
+const EXTRACT_RE = /Extract<\s*([^,]*),\s*([^>]*)/;
 
 function resolveName(name) {
   if (map[name]) {
@@ -57,8 +57,53 @@ function injector(obj) {
     }
     //if name starts with "Exclude<" process them here, use Regex above
     //if name starts with "Extract<" process them here, use Regex above
+    if (name.startsWith("Exclude<")) {
+      return processExcludeGeneric(obj, name);
+    }
+    if (name.startsWith("Extract<")) {
+      return processExtractGeneric(obj, name);
+    }
   }
   return obj;
+}
+
+function processExcludeGeneric(obj, name) {
+  const matches = EXCLUDE_RE.exec(name.toString());
+  if (matches) {
+    let _name = matches[1];
+    if (FrameworkTypes[_name]) {
+      let values = matches[2].replace(/["'\s+]/g, "").split("|");
+      let _values = FrameworkTypes[_name].filter(
+        (val) => !values.includes(val)
+      );
+
+      obj.kind = "union";
+      obj.type = augmentTypes(_values);
+      obj.text = augmentText(_name, _values);
+      console.log("Exclude", obj);
+      console.log("Values", _values);
+      console.log("Excluded", values);
+      return obj;
+    }
+  }
+}
+
+function processExtractGeneric(obj, name) {
+  const matches = EXTRACT_RE.exec(name.toString());
+  if (matches) {
+    let _name = matches[1];
+    if (FrameworkTypes[_name]) {
+      let values = matches[2].replace(/["'\s+]/g, "").split("|");
+
+      obj.kind = "union";
+      obj.type = augmentTypes(values);
+      obj.text = augmentText(_name, values);
+      console.log("Extract", obj);
+      console.log("Values", values);
+      console.log("Extracted", FrameworkTypes[_name]);
+      return obj;
+    }
+  }
 }
 
 export default injector;
