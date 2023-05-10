@@ -21,10 +21,11 @@ export const Colors = [
   "link",
 ] ;
 
+export const ExtendedColors = [...Colors, "grey"] ;
+export const BGColors = [...Colors, "transparent"] ;
+
 export const Sizes = ["", "small", "medium", "large"] ;
 
-export const BGColors = [...Colors, "transparent"] ;
-export const SpinnerColors = [...Colors, "grey"] ;
 export const Positions = [
   "top",
   "bottom",
