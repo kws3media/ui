@@ -80,9 +80,6 @@ function processExcludeGeneric(obj, name) {
       obj.kind = "union";
       obj.type = augmentTypes(_values);
       obj.text = augmentText(_name, _values);
-      console.log("Exclude", obj);
-      console.log("Values", _values);
-      console.log("Excluded", values);
       return obj;
     }
   }
@@ -98,9 +95,6 @@ function processExtractGeneric(obj, name) {
       obj.kind = "union";
       obj.type = augmentTypes(values);
       obj.text = augmentText(_name, values);
-      console.log("Extract", obj);
-      console.log("Values", values);
-      console.log("Extracted", FrameworkTypes[_name]);
       return obj;
     }
   }
