@@ -14,7 +14,7 @@
   @param {boolean} [showPerPage=true] - Determines whether to show per page options, Default: `true`
   @param {number} [maxVisiblePages=10] - Maximum number of consecutive pages to show in pagination after which a break is introduced in between them, Default: `10`
   @param {string} [entityName="entries"] - String to display total entries, Default: `"entries"`
-  @param {string} [size="small"] - Size of the pagination elements, Default: `"small"`
+  @param {SizeOptions} [size=small] - Size of the pagination elements, Default: `small`
   @param {boolean} [frame=false] - Determines whether to show pagination frame or not, Default: `false`
   @param {string} [iconRight="chevron-right"] - Right navigation icon, Default: `"chevron-right"`
   @param {string} [iconLeft="chevron-left"] - Left navigation icon, Default: `"chevron-left"`
@@ -189,6 +189,7 @@
     entityName = "entries",
     /**
      * Size of the pagination elements
+     *
      * @type {import('@kws3/ui/types').SizeOptions}
      */
     size = "small",

@@ -33,10 +33,25 @@
     selectAll = false,
     selectedIds = [],
     /**
-     * @type {Exclude<import('@kws3/ui/types').ColorOptions, 'success'>}
+     *
+     * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+     * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+     *
+     */
+    /**
+     * color of the all checkbox
+     * @type {ColorOptions}
      */
     selectAllCheckboxColor = "primary",
+    /**
+     *  color of the checkbox
+     * @type {ColorOptions}
+     */
     selectCheckboxColor = "info",
+    /**
+     * size of the all checkbox
+     * @type {SizeOptions}
+     */
     selectCheckboxSize = "medium",
     valueTransformers = {},
     classTransformers = {},

@@ -1,17 +1,17 @@
-const fs = require("fs");
-const prettier = require("prettier");
-const sveltedocParser = require("sveltedoc-parser");
+import fs from "fs";
+import prettier from "prettier";
+import sveltedocParser from "sveltedoc-parser";
 
 const { readFileSync, writeFileSync } = fs;
 
-args = process.argv.slice(2);
+const args = process.argv.slice(2);
 let file = args[0];
 
 try {
   checkFileIsValid(file);
 } catch (e) {
   console.log(e);
-  return;
+  process.exit();
 }
 
 function checkFileIsValid(file) {
@@ -50,8 +50,8 @@ sveltedocParser
         Object.assign(
           {
             parser: "svelte",
-            plugins: ["./bin/prettier-plugin-kws3"],
-            pluginSearchDirs: ["./bin/"],
+            plugins: ["./scripts/documentor/prettier-plugin-kws3"],
+            pluginSearchDirs: ["./scripts/documentor/"],
           },
           options
         )
@@ -187,6 +187,14 @@ function makeFunctionDoc(e, is_method = false) {
 
   if (typeof e.params != "undefined" && e.params.length) {
     e.params.forEach((i) => {
+      props.push(i.name + (i.defaultValue ? " = " + i.defaultValue : ""));
+    });
+  } else if (
+    e.type &&
+    typeof e.type.params != "undefined" &&
+    e.type.params.length
+  ) {
+    e.type.params.forEach((i) => {
       props.push(i.name + (i.defaultValue ? " = " + i.defaultValue : ""));
     });
   } else {

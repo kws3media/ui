@@ -11,11 +11,11 @@ This property can be bound to, to fetch the current value, Default: ``
   @param {string} [style=""] - Inline CSS for the PasswordInput, Default: `""`
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
   @param {string} [placeholder=""] - Input placeholder, Default: `""`
-  @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [icon_family=""] - Icon family to be used
+  @param {FontFamilies} [icon_family=] - Icon family to be used
 
 Defaults to global family set via `Icon.setDefaultIconType()`
 
-Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
+Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
 
 -->
@@ -63,6 +63,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *
    */
   let visibility = false;
@@ -113,7 +114,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
    *
    * Ultimately defaults to `fa`, if family is not set anywhere
    *
-   * @type {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'}
+   * @type {FontFamilies}
    */
   export let icon_family = "";
   /**

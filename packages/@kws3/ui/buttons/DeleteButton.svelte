@@ -4,9 +4,9 @@
 
   @param {string} [button_class=""] - CSS classes for the Delete button, Default: `""`
   @param {string} [text="Delete"] - Button text, Default: `"Delete"`
-  @param {string} [size=""] - Size of the Button, Default: `""`
+  @param {SizeOptions} [size=] - Size of the Button, Default: ``
   @param {string} [icon="minus-circle"] - Name of the icon that is to be displayed in the button, Default: `"minus-circle"`
-  @param {string} [color="danger"] - Color of the Button, Default: `"danger"`
+  @param {ColorOptions} [color=danger] - Color of the Button, Default: `danger`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Deleted"] - Button text displayed after task is completed successfully, Default: `"Deleted"`
@@ -61,6 +61,11 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * CSS classes for the Delete button
    */
   export let button_class = "",
@@ -70,7 +75,7 @@
     text = "Delete",
     /**
      * Size of the Button
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SizeOptions}
      */
     size = "",
     /**
@@ -79,7 +84,7 @@
     icon = "minus-circle",
     /**
      * Color of the Button
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {ColorOptions}
      */
     color = "danger",
     /**

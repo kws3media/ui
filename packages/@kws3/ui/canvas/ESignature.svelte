@@ -9,7 +9,7 @@
   @param {string} [background_image=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
-  @param {string|'start'|'center'|'end'} [control_position="center"] - Default position of controls, Default: `"center"`
+  @param {Extract<Positions, 'start'|'center'|'end'>} [control_position=center] - Default position of controls, Default: `center`
 
 -->
 <Canvas
@@ -25,10 +25,13 @@
   active_tool="Pen"
   actions={["undo", "redo", "reset"]}
   has_controls={!readonly && !disabled}
-  toolbar_placement={!readonly && !disabled ? "top" : ""} />
+  toolbar_placement={!readonly && !disabled ? "top" : undefined} />
 
 <script>
   import { Canvas, Pen } from "@kws3/ui";
+  /**
+   * @typedef {import('@kws3/ui/types').Positions} Positions
+   */
 
   /**
    * The Data created in the canvas by the user (readonly) (base64)
@@ -60,7 +63,7 @@
     disabled = false,
     /**
      * Default position of controls
-     * @type {string|'start'|'center'|'end'}
+     * @type {Extract<Positions, 'start'|'center'|'end'>}
      */
     control_position = "center";
 

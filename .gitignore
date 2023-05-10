@@ -21,3 +21,6 @@ build
 .env
 npm-debug.log
 yarn-error.log
+/packages/@kws3/ui/tsconfig.*.json
+/packages/@kws3/ui/.cache
+/.cache

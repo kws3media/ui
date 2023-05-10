@@ -21,11 +21,11 @@
   @param {number} [expand_scale=50] - Transform scale of the canvas on expansion
 value in percentage %, Default: `50`
   @param {array} [actions=[]] - `CONST` List of actions toolbar, Default: `[]`
-  @param {string|'bottom'|'top'} [toolbar_placement="bottom"] - Default position of the action toolbar, Default: `"bottom"`
+  @param {Extract<Positions, 'bottom'|'top'>} [toolbar_placement=bottom] - Default position of the action toolbar, Default: `bottom`
   @param {object} [tools={}] - List of tools available for user to select from, Default: `{}`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {boolean} [has_controls=true] - Determines control tools available or not, Default: `true`
-  @param {string|'start'|'center'|'end'} [control_position="center"] - `CONST` Default position of controls, Default: `"center"`
+  @param {Extract<Positions, 'start'|'center'|'end'>} [control_position=center] - `CONST` Default position of controls, Default: `center`
   @method `getActions()` - GetActions method
 
 -->
@@ -68,6 +68,10 @@ value in percentage %, Default: `50`
   import PenInput from "./PenInput.svelte";
   import PenControls from "./PenControls.svelte";
   import { onMount } from "svelte";
+
+  /**
+   * @typedef {import('@kws3/ui/types').Positions} Positions
+   */
 
   /**
    * Canvas width
@@ -148,7 +152,7 @@ value in percentage %, Default: `50`
   ];
   /**
    * Default position of the action toolbar
-   * @type {string|'bottom'|'top'}
+   * @type {Extract<Positions, 'bottom'|'top'>}
    */
   export let toolbar_placement = "bottom";
   /**
@@ -167,7 +171,7 @@ value in percentage %, Default: `50`
   export let has_controls = true;
   /**
    * Default position of controls
-   * @type {string|'start'|'center'|'end'}
+   * @type {Extract<Positions, 'start'|'center'|'end'>}
    */
   export const control_position = "center";
 

@@ -37,6 +37,10 @@
 </div>
 
 <script>
+  /**
+   * @typedef {import('@kws3/ui/types').Positions} Positions
+   */
+
   import { Canvas as KwsCanvas, Pen, Eraser } from "@kws3/ui";
 
   export let width = "250px",
@@ -52,9 +56,20 @@
     expand_to = "center",
     expand_from = "center",
     expand_scale = 50,
+    /**
+     * @type {import('@kws3/ui/types').DrawingTools}
+     */
     tools = { Pen, Eraser },
     actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
+    /**
+     * Default position of the action toolbar
+     * @type {Extract<Positions, 'bottom'|'top'>}
+     */
     toolbar_placement = "bottom",
+    /**
+     * Default position of controls
+     * @type {Extract<Positions, 'start'|'center'|'end'>}
+     */
     control_position = "center",
     active_tool = "Pen",
     has_controls = true,

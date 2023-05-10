@@ -2,19 +2,24 @@
   "name": "kws3-storybooks-frontend",
   "version": "2.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "npm-run-all dev:hmr",
-    "dev:hmr": "start-storybook -p 9009 -s public",
+    "dev:hmr": "concurrently \"start-storybook -p 9009 -s public\" \"node scripts/watcher/index.js\"",
     "build": "build-storybook --docs -s public -o build",
     "populate": "grunt dist",
     "build:dist": "npm-run-all -s build -s populate",
     "deploy:dist": "grunt deploy:dist",
     "bootstrap": "lerna bootstrap --hoist",
-    "publish": "lerna publish",
+    "publish:lerna": "lerna publish",
+    "publish": "npm-run-all -s generate:dts-all -s publish:lerna",
     "list": "lerna list",
     "what_changed": "sh ./what_changed.sh",
     "lint": "eslint packages/ src/",
-    "lint:fix": "eslint --fix packages/ src/"
+    "lint:fix": "eslint --fix packages/ src/",
+    "sync:frameworkTypes": "node scripts/type_injector/syncer.js",
+    "generate:dts-all": "node scripts/dts_generator/all.js",
+    "generate:dts": "node scripts/dts_generator/index.js"
   },
   "dependencies": {
     "bulma": "^0.9.3",
@@ -37,8 +42,10 @@
     "@storybook/svelte": "6.5.10",
     "@storybook/testing-library": "0.0.13",
     "chalk": "^4.0.0",
+    "chokidar": "^3.5.3",
     "comment-parser": "^1.2.3",
     "commenting": "^1.1.0",
+    "concurrently": "^8.0.1",
     "css-loader": "^0.28.7",
     "ejs": "^2.6.1",
     "eslint": "^8.9.0",
@@ -50,11 +57,12 @@
     "jest": "^23.5.0",
     "lerna": "^3.3.0",
     "moment": "^2.22.2",
-    "node-sass": "^6.0.1",
+    "node-sass": "^8.0.0",
     "npm-run-all": "^4.1.3",
     "pluralize": "^8.0.0",
     "prettier": "^2.3.2",
     "prettier-plugin-svelte": "^2.3.1",
+    "rimraf": "^5.0.0",
     "sass": "^1.38.1",
     "sass-loader": "^10",
     "style-loader": "^0.19.1",
@@ -62,6 +70,8 @@
     "svelte-eslint-parser": "^0.14.0",
     "svelte-loader": "^3.1.2",
     "svelte-preprocess": "^4.8.0",
-    "sveltedoc-parser": "https://github.com/ekhaled/sveltedoc-parser#integration"
+    "svelte2tsx": "^0.6.11",
+    "sveltedoc-parser": "github:ekhaled/sveltedoc-parser#custom",
+    "typescript": "^5.0.4"
   }
 }

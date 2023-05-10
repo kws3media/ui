@@ -4,9 +4,9 @@
 
   @param {string} [button_class=""] - CSS classes for the Process button, Default: `""`
   @param {string} [text="Click Me"] - Button text, Default: `"Click Me"`
-  @param {string} [size=""] - Size of the Button, Default: `""`
+  @param {SizeOptions} [size=] - Size of the Button, Default: ``
   @param {string} [icon="check"] - Name of the icon that is to be displayed in the button, Default: `"check"`
-  @param {string} [color="primary"] - Color of the Button, Default: `"primary"`
+  @param {ColorOptions} [color=primary] - Color of the Button, Default: `primary`
   @param {string} [cy=""] - data-cy attribute for cypress, Default: `""`
   @param {string} [done_icon="check"] - Name of the icon displayed after task is completed successfully, Default: `"check"`
   @param {string} [done_text="Done"] - Button text displayed after task is completed successfully, Default: `"Done"`
@@ -62,6 +62,11 @@
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
+  /**
    * CSS classes for the Process button
    */
   export let button_class = "",
@@ -71,7 +76,7 @@
     text = "Click Me",
     /**
      * Size of the Button
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SizeOptions}
      */
     size = "",
     /**
@@ -80,7 +85,7 @@
     icon = "check",
     /**
      * Color of the Button
-     * @type {import('@kws3/ui/types').ColorOptions}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
