@@ -7,17 +7,8 @@ const map = {
   BGColorOptions: "BGColors",
 };
 
-function injector(obj) {
-  if (typeof obj.type === "string") {
-    const name = resolveName(obj.type);
-    if (name in FrameworkTypes) {
-      obj.kind = "union";
-      obj.type = augmentTypes(FrameworkTypes[name]);
-      obj.text = augmentText(obj.text, FrameworkTypes[name]);
-    }
-  }
-  return obj;
-}
+const EXCLUDE_RE = /Exclude<\s*([^,]*),\s*([^>]*)>/;
+const EXTRACT_RE = /Extract<\s*([^,]*),\s*([^>]*)>/;
 
 function resolveName(name) {
   if (map[name]) {
@@ -48,6 +39,26 @@ function augmentTypes(t) {
   });
 
   return out;
+}
+
+function processPlainName(obj, name) {
+  obj.kind = "union";
+  obj.type = augmentTypes(FrameworkTypes[name]);
+  obj.text = augmentText(obj.text, FrameworkTypes[name]);
+
+  return obj;
+}
+
+function injector(obj) {
+  if (typeof obj.type === "string") {
+    const name = resolveName(obj.type);
+    if (name in FrameworkTypes) {
+      return processPlainName(obj, name);
+    }
+    //if name starts with "Exclude<" process them here, use Regex above
+    //if name starts with "Extract<" process them here, use Regex above
+  }
+  return obj;
 }
 
 export default injector;
