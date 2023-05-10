@@ -21,11 +21,12 @@
     // go to js file when using IDE functions like
     // "Go to Definition" in VSCode
     "declarationMap": true,
-    "baseUrl": ".",
+    "baseUrl": "../",
     "paths": {
       "@kws3/ui": ["./"],
       "@kws3/ui/*": ["./*"],
-      "@kws3/ui/types": ["./types"]
+      "@kws3/ui/types": ["../types"],
+      "@kws3/ui/.cache": ["./.cache"]
     },
     "types": ["svelte"]
   },

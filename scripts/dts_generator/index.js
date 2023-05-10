@@ -17,7 +17,7 @@ async function generateDts() {
   } catch (e) {
     console.log(e);
   }
-  cleanupTempConfig(tempConfig);
+  //cleanupTempConfig(tempConfig);
 }
 
 async function main() {
