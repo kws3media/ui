@@ -28,8 +28,9 @@ export function makeTempConfig(filepath) {
     ...tsconfig,
     compilerOptions: {
       ...tsconfig.compilerOptions,
+      baseUrl: "../",
     },
-    files: [filepath], //[basePath + "/" + filepath],
+    files: [filepath],
     include: [],
   };
   //console.log("tempPath", tempConfig);
