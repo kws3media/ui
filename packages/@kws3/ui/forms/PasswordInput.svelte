@@ -32,7 +32,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
       {disabled} />
 
     <span class="icon is-left">
-      <Icon family={icon_family} icon="lock" size={iconSizes[size]} color="dark" />
+      <Icon family={icon_family} icon="lock" size={iconSizes[size]} />
     </span>
 
     {#if has_visibility_switcher}
