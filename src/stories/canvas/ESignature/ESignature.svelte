@@ -7,12 +7,7 @@
       {background_image}
       {readonly}
       {disabled}
-      {control_position} 
-      {expand_from}
-      {expand_to}
-      {actions}
-      {expand_scale}
-      />
+      {control_position} />
   </div>
 </div>
 
@@ -28,14 +23,5 @@
      * @type {Extract<import('@kws3/ui/types').Positions, 'start'|'center'|'end'>}
      */
     control_position = "center",
-    disabled = false,
-    expand_from = "center",
-    expand_to = "center",
-    expand_scale = 50,
-    actions = [
-    "undo",
-    "redo",
-    "reset",
-    "expand",
-    ]; 
+    disabled = false;
 </script>
