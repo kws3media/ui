@@ -1,6 +1,16 @@
-export default (function (win, doc) {
-  var CP,
-    instance = "__instance__",
+/**
+ *
+ * @param {window} win
+ * @param {document} doc
+ * @returns {any}
+ */
+function initialize(win, doc) {
+  /**
+   * @type {any}
+   */
+  var CP;
+
+  var instance = "__instance__",
     first = "firstChild",
     scroll_left = "scrollLeft",
     scroll_top = "scrollTop",
@@ -619,4 +629,8 @@ export default (function (win, doc) {
       return $;
     })
   );
-})(window, document);
+}
+
+export default typeof window !== "undefined"
+  ? initialize(window, document)
+  : function () {};

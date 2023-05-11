@@ -1,8 +1,9 @@
 <!--
   @component
 
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the Button, Default: `""`
-  @param {''|'primary'|'warning'|'info'|'danger'|'dark'|'light'} [color="primary"] - Color of the Button, Default: `"primary"`
+
+  @param {SizeOptions} [size=] - Size of the Button, Default: ``
+  @param {ColorOptions} [color=primary] - Color of the Button, Default: `primary`
   @param {string} [text="Save Changes"] - Button text, Default: `"Save Changes"`
   @param {string} [saved_text="Saved"] - Text displayed after submission is completed successfully, Default: `"Saved"`
   @param {string} [error_text="Failed to Save"] - Text displayed if submission is not successful, Default: `"Failed to Save"`
@@ -10,7 +11,7 @@
   @param {string} [cy="submit"] - data-cy attribute for cypress, Default: `"submit"`
   @param {boolean} [icon_only=false] - Removes text, and text space in the button, Default: `false`
   @param {boolean} [disabled=false] - Disables the button when `true`, Default: `false`
-  @param {object} [tracker={}] - Tracker object to be sent from outside to change the state of the button., Default: `{}`
+  @param {ButtonTracker} [tracker=undefined] - Tracker object to be sent from outside to change the state of the button., Default: `undefined`
   @param {number} [completion_timeout=600] - How long to wait before `saved` event is fired, and the UI state reverts back to normal, Default: `600`
   @param {number} [error_timeout=3000] - How long to wait before `error` event is fired, and the UI state reverts back to normal, Default: `3000`
   @param {string} [class=""] - CSS classes for Button container, Default: `""`
@@ -55,6 +56,7 @@
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').ButtonTracker} ButtonTracker
    */
 
   /**
@@ -64,7 +66,7 @@
   export let size = "",
     /**
      * Color of the Button
-     * @type {Exclude<ColorOptions , 'success'>}
+     * @type {ColorOptions}
      */
     color = "primary",
     /**
@@ -97,6 +99,7 @@
     disabled = false,
     /**
      * Tracker object to be sent from outside to change the state of the button.
+     * @type {ButtonTracker}
      */
     tracker = {
       saving: false,

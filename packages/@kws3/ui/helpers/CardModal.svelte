@@ -3,7 +3,7 @@
 
 
   @param {string} [title=""] - Title of the modal, Default: `""`
-  @param {'small'|'medium'|'large'} [size="small"] - Size of the modal, Default: `"small"`
+  @param {SizeOptions} [size=small] - Size of the modal, Default: `small`
   @param {boolean} [is_active=false] - Determines whether modal is displayed or not, Default: `false`
   @param {boolean} [closable=true] - If this is set to false, the modal cannot be closed using the UI
 
@@ -110,6 +110,11 @@ Only visible when the
 <script>
   import { fade, scale } from "svelte/transition";
   import { hasTransitions } from "../settings";
+
+  /**
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   */
+
   /**
    * Title of the modal
    * @type {string}
@@ -117,7 +122,7 @@ Only visible when the
   export let title = "",
     /**
      * Size of the modal
-     * @type {import('@kws3/ui/types').SizeOptions}
+     * @type {SizeOptions}
      */
     size = "small",
     /**

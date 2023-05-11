@@ -25,7 +25,6 @@
     if (useNative) {
       alert("This is an alert");
     } else {
-      // @ts-ignore
       KwsDialog.alert("This is an alert", $$props);
     }
   }
@@ -35,7 +34,6 @@
     if (useNative) {
       agreed = confirm("Agree with everything?");
     } else {
-      // @ts-ignore
       agreed = await KwsDialog.confirm("Agree with everything?", $$props);
     }
 
@@ -47,7 +45,6 @@
     if (useNative) {
       age = prompt("How old are you?");
     } else {
-      // @ts-ignore
       age = await KwsDialog.prompt("How old are you?", $$props);
     }
 

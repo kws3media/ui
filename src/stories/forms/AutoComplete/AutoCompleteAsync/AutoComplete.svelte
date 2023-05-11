@@ -37,7 +37,7 @@
   import { characters_string_only, fetchCharacters } from "../data.js";
 
   onMount(() => {
-    activateTooltips("#ss_container", null);
+    activateTooltips("#ss_container");
   });
 
   /**

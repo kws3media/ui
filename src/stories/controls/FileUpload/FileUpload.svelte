@@ -253,6 +253,9 @@
     disabled = false,
     size = "",
     color = "",
+    /**
+     * @type {import('@kws3/ui/types').ExtendedColorOptions}
+     */
     info_color = "grey",
     multiple = false,
     accept = "*",

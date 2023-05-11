@@ -15,9 +15,10 @@ Only send this prop if you want to fetch `options` asynchronously.
   @param {string|'fuzzy'|'strict'} [search_strategy="fuzzy"] - Filtered options to be displayed strictly based on search text or perform a fuzzy match.
 Fuzzy match will not work if `search` function is set, as the backend service is meant to do the matching., Default: `"fuzzy"`
   @param {boolean} [highlighted_results=true] - Whether to show the highlighted or plain results in the dropdown., Default: `true`
-  @param {number} [scoreThreshold=5] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
-  @param {string|''|'small'|'medium'|'large'} [size=""] - Size of the input, Default: `""`
-  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the input, Default: `""`
+  @param {number} [score_threshold=5] - Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `5`
+  @param {number} [scoreThreshold=undefined] - (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches., Default: `undefined`
+  @param {SizeOptions} [size=] - Size of the input, Default: ``
+  @param {ColorOptions} [color=] - Color of the input, Default: ``
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
@@ -183,15 +184,20 @@ Default value: `<span>{option.label}</span>`
    * Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
    * @type {number}
    */
-  export let scoreThreshold = 5;
+  export let score_threshold = 5;
+  /**
+   * (deprecated) Score threshold for fuzzy search strategy, setting high score gives more fuzzy matches.
+   * @type {number}
+   */
+  export let scoreThreshold = score_threshold;
   /**
    * Size of the input
-   *  @type {import('@kws3/ui/types').SizeOptions}
+   *  @type {SizeOptions}
    */
   export let size = "";
   /**
    * Color of the input
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "";
   /**

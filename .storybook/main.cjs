@@ -37,6 +37,10 @@ module.exports = {
       (r) => r.loader && r.loader.includes("svelte-loader")
     );
     svelteLoader.options.preprocess = autoPreprocess({});
+    svelteLoader.options.onwarn = (warning, handler) => {
+      if (warning.code === "a11y-click-events-have-key-events") return;
+      handler(warning);
+    };
     config.resolve.modules.push(path.resolve("./packages"));
     config.resolve.alias = {
       ["~"]: path.resolve(__dirname + "/../src"),

@@ -7,12 +7,12 @@
 It is returned back in the `getFile()` call from `file_chosen` event, Default: `""`
   @param {string} [message="Choose File..."] - Message displayed in uploader, Default: `"Choose File..."`
   @param {string} [info=""] - Information / help / subtitle displayed under the uploader, Default: `""`
-  @param {''|'grey'|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [info_color="grey"] - Color of the information text, Default: `"grey"`
+  @param {ExtendedColorOptions} [info_color=grey] - Color of the information text, Default: `grey`
   @param {number} [max=5000000] - Maximum allowed size in bytes, Default: `5000000`
   @param {string | array} [allowed=*] - Allowed file types - accepts the string `"*"`, or an array of file type suffixes, Default: `*`
   @param {boolean} [disabled=false] - Disables the uploader, Default: `false`
-  @param {''|'small'|'medium'|'large'} [size=""] - Size of the File Input, Default: `""`
-  @param {''|'primary'|'warning'|'success'|'info'|'danger'|'dark'|'light'} [color=""] - Color of the File Input, Default: `""`
+  @param {SizeOptions} [size=] - Size of the File Input, Default: ``
+  @param {ColorOptions} [color=] - Color of the File Input, Default: ``
   @param {string} [class=""] - CSS classes for the Uploader, Default: `""`
   @param {boolean} [multiple=false] - Disables the multiple file uploader, Default: `false`
   @param {function} [preparer()] - Cloud Upload preparer
@@ -121,6 +121,7 @@ The following functions are returned in `event.detail`:
   /**
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').ExtendedColorOptions} ExtendedColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    *
    */
@@ -145,7 +146,7 @@ The following functions are returned in `event.detail`:
     info = "",
     /**
      * Color of the information text
-     * @type {ColorOptions | 'grey'}
+     * @type {ExtendedColorOptions}
      */
     info_color = "grey",
     /**

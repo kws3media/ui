@@ -1,5 +1,7 @@
 export { scrollIntoActiveElement } from "./scrollIntoActiveElement";
 export { fuzzy } from "./fuzzy.js";
+export { default as UndoManager } from "./UndoManager";
+export { DrawingPad, Pen, Eraser } from "./DrawingPad";
 
 /**
  * Detect whether a user has pressed Enter.
@@ -18,10 +20,14 @@ export function isEscKey(e) {
 }
 
 export const IS_MAC =
-  "navigator" in window
-    ? /mac/i.test(
-        window.navigator.userAgentData
-          ? window.navigator.userAgentData.platform
-          : window.navigator.platform
-      )
+  typeof window !== "undefined"
+    ? "navigator" in window
+      ? /mac/i.test(
+          //@ts-ignore
+          window.navigator.userAgentData
+            ? //@ts-ignore
+              window.navigator.userAgentData.platform
+            : window.navigator.platform
+        )
+      : false
     : false;

@@ -253,6 +253,18 @@ $kws-slider-output-radius: $radius !default;
             }
           }
         }
+
+        &.is-thumb-#{$name} {
+          &::-webkit-slider-thumb {
+            background: $color !important;
+          }
+          &::-moz-range-thumb {
+            background: $color !important;
+          }
+          &::-ms-thumb {
+            background: $color !important;
+          }
+        }
       }
     }
   }

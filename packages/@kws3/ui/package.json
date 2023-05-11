@@ -1,6 +1,6 @@
 {
   "name": "@kws3/ui",
-  "version": "2.0.1",
+  "version": "2.0.5",
   "description": "UI components for use with Svelte v3 applications.",
   "main": "index.js",
   "svelte": "index.js",
@@ -24,12 +24,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "types": "types/index.d.ts",
+  "types": "./index.d.ts",
   "dependencies": {
     "apexcharts": "3.33.2",
     "flatpickr": "^4.5.2",
     "svelte-portal": "^2.1.2",
     "text-mask-core": "^5.1.2",
     "tippy.js": "^6.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4"
   }
 }

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
+    "allowJs": true,
     "checkJs": true,
     "strict": true,
     "noImplicitAny": false,
@@ -10,8 +11,9 @@
       "@kws3/*": ["./packages/@kws3/*"]
     },
     "resolveJsonModule": true,
-    "typeRoots": ["./packages/@kws3/ui/types"],
-    "types": ["svelte"]
+    "typeRoots": ["./packages/@kws3/ui"],
+    "types": ["svelte"],
+    "declaration": true
   },
   "exclude": ["node_modules"]
 }

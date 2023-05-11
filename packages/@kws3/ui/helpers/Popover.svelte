@@ -3,16 +3,16 @@
 
 
   @param {string} [icon="info-circle"] - Icon used when default slot has no content, Default: `"info-circle"`
-  @param {string|''|'primary'|'success'|'warning'|'info'|'danger'|'dark'|'light'} [icon_color="primary"] - Colour of the trigger icon displayed when default slot has no content, Default: `"primary"`
-  @param {string|''|'small'|'medium'|'large'} [icon_size="small"] - Size of the trigger icon displayed when default slot has no content, Default: `"small"`
+  @param {ExtendedColorOptions} [icon_color=primary] - Colour of the trigger icon displayed when default slot has no content, Default: `primary`
+  @param {SizeOptions} [icon_size=small] - Size of the trigger icon displayed when default slot has no content, Default: `small`
   @param {string} [trigger="click"] - Determines the events that cause the Popover to show. Multiple event names are separated by spaces.
 
 **Examples:** `click`, `mouseenter`, `mouseenter focus`
 
 If you would like to trigger the popover programatically only, you can use `manual`., Default: `"click"`
-  @param {string} [placement="auto"] - Preferred placement of the Popover
+  @param {TippyPositions} [placement=auto] - Preferred placement of the Popover
 
-Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>, Default: `"auto"`
+Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>, Default: `auto`
   @param {boolean} [interactive=false] - Allows you to interact with the Popover content, when turned on, Default: `false`
   @param {boolean} [hide_on_click=true] - Whether the popover should hide on clicking outside of it, Default: `true`
   @param {object} [external_target=null] - Specify a target node reference to use as the Popover content
@@ -80,17 +80,23 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   const fire = createEventDispatcher();
 
   /**
+   * @typedef {import('@kws3/ui/types').ExtendedColorOptions} ExtendedColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').TippyPositions} TippyPositions
+   */
+
+  /**
    * Icon used when default slot has no content
    */
   export let icon = "info-circle";
   /**
    * Colour of the trigger icon displayed when default slot has no content
-   * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+   * @type {ExtendedColorOptions}
    */
   export let icon_color = "primary";
   /**
    * Size of the trigger icon displayed when default slot has no content
-   * @type {import('@kws3/ui/types').SizeOptions}
+   * @type {SizeOptions}
    */
   export let icon_size = "small";
   /**
@@ -105,6 +111,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
    * Preferred placement of the Popover
    *
    * Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>
+   * @type {TippyPositions}
    */
   export let placement = "auto";
   /**
