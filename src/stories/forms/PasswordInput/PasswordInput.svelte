@@ -5,7 +5,8 @@
         {size}
         {color}
         {placeholder}
-        {has_visibility_switcher}
+        {show_field_icon}
+        {show_visibility_switch}
         {disabled} />
     </div>
   </div>
@@ -17,7 +18,7 @@
           {size}
           {color}
           {placeholder}
-          {has_visibility_switcher}
+          {show_visibility_switch}
           {disabled} />
         <PasswordValidator password={new_pass} />
       </div>
@@ -47,9 +48,10 @@
      */
 
     color = "",
-    has_visibility_switcher = true,
+    show_visibility_switch = true,
     disabled = false,
-    placeholder = "Password";
+    placeholder = "Password",
+    show_field_icon= true;
 
   let new_pass = "";
 </script>
