@@ -36,7 +36,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
         on:focus={focused}
         {disabled}
         bind:value={color}
-        use:colorpicker />
+        use:colorpicker={color} />
       {#if !mini}
         <Icon icon="hashtag" class="is-left" inner_style="color:#{color}" />
       {/if}
