@@ -95,7 +95,6 @@
     "undo",
     "redo",
     "reset",
-    "expand",
     ];
 
     let tools = { Pen };
