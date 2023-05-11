@@ -45,7 +45,6 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
       </span>
     {/if}
    
-
     {#if show_visibility_switch}
       <span
         class="icon is-right visibility-btn"
@@ -55,7 +54,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
         <Icon
           family={visibility_switch_icon_family}
           color={visibility ? visibility_switch_on_color : visibility_switch_off_color}
-          icon={visibility ? visibility_icon.show : visibility_icon.hide}
+          icon={visibility ? visibility_switch_on_icon : visibility_switch_off_icon}
           size={iconSizes[size]} />
       </span>
     {/if}
@@ -77,8 +76,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *
-   */
-  
+   */ 
   let visibility = false;
   
    /**
@@ -191,8 +189,8 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
 
   $: type = visibility ? "text" : "password";
 
-  $: visibility_icon = {
-    show: visibility_switch_icon_family === "material" ? "visibility" : visibility_switch_on_icon,
-    hide: visibility_switch_icon_family === "material" ? "visibility-off" : visibility_switch_off_icon,
-  };
+  // $: visibility_icon = {
+  //   show: visibility_switch_icon_family === "material" ? "visibility" : visibility_switch_on_icon,
+  //   hide: visibility_switch_icon_family === "material" ? "visibility-off" : visibility_switch_off_icon,
+  // };
 </script>
