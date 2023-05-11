@@ -22,8 +22,11 @@
   {disabled}
   {control_position}
   {tools}
+  {expand_from}
+  {expand_to}
+  {expand_scale}
   active_tool="Pen"
-  actions={["undo", "redo", "reset"]}
+  {actions}
   has_controls={!readonly && !disabled}
   toolbar_placement={!readonly && !disabled ? "top" : undefined} />
 
@@ -62,10 +65,32 @@
      */
     disabled = false,
     /**
+     * The direction from which the canvas should expand.
+     * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+     */
+    expand_from = "center",
+    /**
+     * The direction to which the canvas should expand.
+     * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+     */
+    expand_to = "center",
+    /**
+     * Transform scale of the canvas on expansion
+     * value in percentage %
+     */
+    expand_scale = 50,
+    /**
      * Default position of controls
      * @type {Extract<Positions, 'start'|'center'|'end'>}
      */
-    control_position = "center";
+    control_position = "center",
+
+    actions = [
+    "undo",
+    "redo",
+    "reset",
+    "expand",
+    ];
 
   let tools = { Pen };
 </script>
