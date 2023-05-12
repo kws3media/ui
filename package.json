@@ -7,7 +7,7 @@
     "dev": "npm-run-all dev:hmr",
     "dev:hmr": "concurrently \"start-storybook -p 9009 -s public\" \"node scripts/watcher/index.js\"",
     "build": "build-storybook --docs -s public -o build",
-    "populate": "grunt dist",
+    "populate": "grunt --gruntfile Gruntfile.cjs dist",
     "build:dist": "npm-run-all -s build -s populate",
     "deploy:dist": "grunt deploy:dist",
     "bootstrap": "lerna bootstrap --hoist",
