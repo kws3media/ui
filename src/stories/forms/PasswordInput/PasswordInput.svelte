@@ -5,7 +5,15 @@
         {size}
         {color}
         {placeholder}
-        {has_visibility_switcher}
+        {show_field_icon}
+        {field_icon}
+        {field_icon_family}
+        {show_visibility_switch}
+        {visibility_switch_icon_family}
+        {visibility_switch_on_icon}
+        {visibility_switch_off_icon}
+        {visibility_switch_on_color}
+        {visibility_switch_off_color}
         {disabled} />
     </div>
   </div>
@@ -17,7 +25,15 @@
           {size}
           {color}
           {placeholder}
-          {has_visibility_switcher}
+          {show_field_icon}
+          {field_icon}
+          {field_icon_family}
+          {show_visibility_switch}
+          {visibility_switch_icon_family}
+          {visibility_switch_on_icon}
+          {visibility_switch_off_icon}
+          {visibility_switch_on_color}
+          {visibility_switch_off_color}
           {disabled} />
         <PasswordValidator password={new_pass} />
       </div>
@@ -47,9 +63,33 @@
      */
 
     color = "",
-    has_visibility_switcher = true,
     disabled = false,
-    placeholder = "Password";
+    placeholder = "Password",
+    show_field_icon = true,
+    field_icon = "lock",
+    /**
+     * Color of the input
+     * @type {import('@kws3/ui/types').FontFamilies}
+     */
+    field_icon_family = "fa",
+    show_visibility_switch = true,
+    /**
+     * Color of the input
+     * @type {import('@kws3/ui/types').FontFamilies}
+     */
+    visibility_switch_icon_family = "fa",
+    visibility_switch_on_icon = "eye",
+    visibility_switch_off_icon = "eye-slash",
+    /**
+     * Color of the input
+     * @type {import('@kws3/ui/types').ExtendedColorOptions}
+     */
+    visibility_switch_on_color = "grey",
+    /**
+     * Color of the input
+     * @type {import('@kws3/ui/types').ExtendedColorOptions}
+     */
+    visibility_switch_off_color = "grey";
 
   let new_pass = "";
 </script>

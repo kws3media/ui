@@ -66,7 +66,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   import { defaultIconFamily } from "../settings";
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ExtendedColorOptions
+   * @typedef {import('@kws3/ui/types').ExtendedColorOptions} ExtendedColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *

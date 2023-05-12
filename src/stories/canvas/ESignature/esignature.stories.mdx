@@ -19,7 +19,15 @@ export let args = {
   background_image: "",
   readonly: false,
   disabled: false,
-  control_position: "center"
+  control_position: "center",
+  expand_from:"center",
+  expand_to:"center",
+  expand_scale:50,
+  actions:[
+    "undo",
+    "redo",
+    "reset",
+  ] 
 };
 
 <Version />
@@ -78,6 +86,10 @@ export let args = {
       {height}
       {readonly}
       {disabled}
+      {expand_from}
+      {expand_to}
+      {expand_scale}
+      {actions}
     />
     
   <script>
@@ -89,7 +101,14 @@ export let args = {
       disabled = false,
       image = "",
       is_touched = false;
-    
+      expand_from = "center",  
+      expand_to = "center",
+      expand_scale = 50,
+      actions = [
+        "undo",
+        "redo",
+        "reset",
+      ];  
   </script>
   `}
 />
