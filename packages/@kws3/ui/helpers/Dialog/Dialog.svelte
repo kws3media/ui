@@ -2,7 +2,8 @@
   @component
 
 
-  @param {string} [title=""] - Title text of the Dialog box, Default: `""`
+  @param {string} [title=""] - Title text of the Dialog box.
+Will default to `Alert`, `Confirm` or `Prompt` depending on the dialog type, Default: `""`
   @param {string} [help_text=""] - Additional text to provide further context to the user, Default: `""`
   @param {SizeOptions} [size=small] - Size of the Dialog box, Default: `small`
   @param {string} [input_value=""] - Default value inside text input displayed on `prompt()` Dialogs, Default: `""`
@@ -99,7 +100,8 @@ For internal use only - not part of config object, Default: `""`
    */
 
   /**
-   * Title text of the Dialog box
+   * Title text of the Dialog box.
+   * Will default to `Alert`, `Confirm` or `Prompt` depending on the dialog type
    * @type {string}
    */
   export let title = "",

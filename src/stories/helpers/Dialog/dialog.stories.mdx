@@ -1,8 +1,7 @@
 import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from '@storybook/addon-docs';
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
-import { Dialog } from "@kws3/ui";
-import DialogDecorator from "./Dialog.svelte";
+import Dialog from "./Dialog.svelte";
 import { action } from '@storybook/addon-actions';
 
 export let args={
@@ -12,7 +11,11 @@ export let args={
   input_value: "",
   icon: "",
   icon_color : "primary",
-  icon_size:""
+  icon_size:"",
+  ok_button_text: "Ok",
+  ok_button_icon: "check",
+  cancel_button_text: "Cancel",
+  cancel_button_icon: "ban"
 };
 
 
@@ -22,36 +25,11 @@ export let args={
   title="Helpers/Dialog"
   component={Dialog}
   args={args}
-  argTypes={{
-    title:{},
-    help_text:{},
-    size:{
-      control: {type: "select"},
-    },
-    input_value:{},
-    icon:{},
-    icon_color: {
-      control: { type: "select"}
-    },
-    icon_size: {
-      control: { type: "select"}
-    },
-    ok_button_text:{},
-    ok_button_color: {
-      control: { type: "select"}
-    },
-    ok_button_icon:{},
-    cancel_button_text:{},
-    cancel_button_color: {
-      control: { type: "select"}
-    },
-    cancel_button_icon:{}
-  }}
 />
 
 <Description markdown={dedent`
 # Dialog
-## Message components for showing alerts.
+## Dialog components for showing modal alerts.
 `}/>
 
 <Canvas>
@@ -60,7 +38,7 @@ export let args={
   args={args}
   >
   {(args) => ({
-    Component: DialogDecorator,
+    Component: Dialog,
     props: args,
   })}
   </Story>
