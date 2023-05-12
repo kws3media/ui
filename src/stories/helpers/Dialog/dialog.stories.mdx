@@ -25,6 +25,23 @@ export let args={
   title="Helpers/Dialog"
   component={Dialog}
   args={args}
+  argTypes={{
+    size:{
+      control: {type: "select"},
+    },
+    icon_color: {
+      control: { type: "select"}
+    },
+    icon_size: {
+      control: { type: "select"}
+    },
+    ok_button_color: {
+      control: { type: "select"}
+    },
+    cancel_button_color: {
+      control: { type: "select"}
+    },
+  }}
 />
 
 <Description markdown={dedent`
