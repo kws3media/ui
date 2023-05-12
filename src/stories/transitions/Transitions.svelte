@@ -9,7 +9,7 @@
 </div>
 <div style="height:100px">
   {#if show_transition}
-    <div class="columns">
+    <div class="columns is-marginless">
       <div class="column is-3">
         <KwsTransition
           type="fly"
