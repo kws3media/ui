@@ -301,5 +301,6 @@ export let Eraser = {
     instance.context.lineTo(instance.currentPos.x, instance.currentPos.y);
     instance.context.stroke();
     instance.context.globalCompositeOperation = "destination-out";
+    instance.lastPos = instance.currentPos;
   },
 };
