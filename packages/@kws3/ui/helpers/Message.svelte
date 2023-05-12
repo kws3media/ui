@@ -10,7 +10,7 @@
   @param {string} [inner_class=""] - CSS classes for Message content, Default: `""`
   @param {string} [title=""] - Title of the message box
 
-Having content here will display the title bar and content, even if has_title is false, Default: `""`
+Having content here will display the title bar and content, even if `has_title` is set to false, Default: `""`
   @param {boolean} [has_title=false] - Determines whether to show title bar when no title content is present, Default: `false`
   @param {boolean} [dismissable=false] - Determines whether close button is displayed or not, Default: `false`
   @param {boolean} [active=true] - Determines whether the whole component is being displayed or not, Default: `true`
@@ -106,7 +106,7 @@ The parent can then decide what to do with the component
     /**
      * Title of the message box
      *
-     * Having content here will display the title bar and content, even if has_title is false
+     * Having content here will display the title bar and content, even if `has_title` is set to false
      * @type {string}
      */
     title = "",
