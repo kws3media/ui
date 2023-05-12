@@ -2,7 +2,7 @@
   @component
 
 
-  @param {boolean} [show_field_icon=true] - wheter to show field icon or not, Default: `true`
+  @param {boolean} [show_field_icon=true] - whether to show field icon or not, Default: `true`
   @param {string} [field_icon="lock"] - field icon name, Default: `"lock"`
   @param {FontFamilies} [field_icon_family=fa] - Icon family to be used
 
@@ -30,7 +30,13 @@ This property can be bound to, to fetch the current value, Default: ``
   @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
 
   ### Events
+  - `focus`
+  - `blur`
+  - `change`
   - `input`
+  - `keyup`
+  - `keydown`
+  - `paste`
 
 -->
 
@@ -42,7 +48,13 @@ This property can be bound to, to fetch the current value, Default: ``
       {style}
       bind:value
       class="input is-{size} is-{color} {klass} {style}"
+      on:focus
+      on:blur
+      on:change
       on:input
+      on:keyup
+      on:keydown
+      on:paste
       {placeholder}
       {disabled} />
     {#if show_field_icon}
@@ -95,7 +107,7 @@ This property can be bound to, to fetch the current value, Default: ``
   let PASSWORD_INPUT;
 
   /**
-   * wheter to show field icon or not
+   * whether to show field icon or not
    * @type {boolean}
    */
   export let show_field_icon = true;
@@ -209,10 +221,4 @@ This property can be bound to, to fetch the current value, Default: ``
       PASSWORD_INPUT.type = visibility ? "text" : "password";
     }
   }
-
-  // $: visibility_icon = {
-  //   show: visibility_switch_icon_family === "material" ? "visibility" : visibility_switch_on_icon,
-  //   hide: visibility_switch_icon_family === "material" ? "visibility-off" : visibility_switch_off_icon,
-  // };
-  // on:input={(event) => onInput(event)}
 </script>
