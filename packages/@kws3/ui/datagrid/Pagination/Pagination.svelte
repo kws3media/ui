@@ -5,20 +5,20 @@
   @param {object} [meta={}] - Object containing `total`, `count`, `limit` and `offset` values
 
 **DEPRECATED**: Use `total`, `count`, `limit` and `offset`  props instead, Default: `{}`
-  @param {number} [limit=0] - How many items are meant to be per page, Default: `0`
-  @param {number} [count=0] - How many items are actually in this page, Default: `0`
+  @param {number} [limit=0] - Number of items to be displayed per page, Default: `0`
+  @param {number} [count=0] - Number of items being displayed in this page, Default: `0`
   @param {number} [total=0] - Total number of items available, Default: `0`
   @param {number} [offset=0] - Offset of the first item in this page, Default: `0`
   @param {boolean} [showTotal=true] - Determines whether to show total or not, Default: `true`
-  @param {boolean} [showCurrent=true] - Determines whether to show current page details, Default: `true`
-  @param {boolean} [showPerPage=true] - Determines whether to show per page options, Default: `true`
+  @param {boolean} [showCurrent=true] - Determines whether to display a breakdown of the range of items currently being displayed in a page, Default: `true`
+  @param {boolean} [showPerPage=true] - Determines whether to display the UI that allows user to choose the number of items to be displayed per page, Default: `true`
   @param {number} [maxVisiblePages=10] - Maximum number of consecutive pages to show in pagination after which a break is introduced in between them, Default: `10`
   @param {string} [entityName="entries"] - String to display total entries, Default: `"entries"`
   @param {SizeOptions} [size=small] - Size of the pagination elements, Default: `small`
   @param {boolean} [frame=false] - Determines whether to show pagination frame or not, Default: `false`
   @param {string} [iconRight="chevron-right"] - Right navigation icon, Default: `"chevron-right"`
   @param {string} [iconLeft="chevron-left"] - Left navigation icon, Default: `"chevron-left"`
-  @param {array} [perPageOptions=[]] - Displays the options for how many items to show per page, Default: `[]`
+  @param {array} [perPageOptions=[]] - Available options given to the user, to choose the number of items displayed per page, Default: `[]`
   @method `goto(targetPage)` - Go to an arbitrary page number
   @method `prev()` - Go to the previous page
   @method `next()` - Go to the next page
@@ -152,11 +152,11 @@
       offset: 0,
     },
     /**
-     * How many items are meant to be per page
+     * Number of items to be displayed per page
      */
     limit = 0,
     /**
-     * How many items are actually in this page
+     * Number of items being displayed in this page
      */
     count = 0,
     /**
@@ -172,11 +172,11 @@
      */
     showTotal = true,
     /**
-     * Determines whether to show current page details
+     * Determines whether to display a breakdown of the range of items currently being displayed in a page
      */
     showCurrent = true,
     /**
-     * Determines whether to show per page options
+     * Determines whether to display the UI that allows user to choose the number of items to be displayed per page
      */
     showPerPage = true,
     /**
@@ -206,7 +206,7 @@
      */
     iconLeft = "chevron-left",
     /**
-     * Displays the options for how many items to show per page
+     * Available options given to the user, to choose the number of items displayed per page
      */
     perPageOptions = [20, 50, 100, 150, 200, 250];
 
