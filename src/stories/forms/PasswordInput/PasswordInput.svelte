@@ -2,6 +2,7 @@
   <div class="column">
     <div class="field">
       <KwsPasswordInput
+        {name}
         {size}
         {color}
         {placeholder}
@@ -22,6 +23,7 @@
       <div class="control">
         <KwsPasswordInput
           bind:value={new_pass}
+          {name}
           {size}
           {color}
           {placeholder}
@@ -61,8 +63,8 @@
      * Color of the input
      * @type {import('@kws3/ui/types').ColorOptions}
      */
-
     color = "",
+    name = "",
     disabled = false,
     placeholder = "Password",
     show_field_icon = true,

@@ -27,6 +27,7 @@ This property can be bound to, to fetch the current value, Default: ``
   @param {string} [style=""] - Inline CSS for the PasswordInput, Default: `""`
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
   @param {string} [placeholder=""] - Input placeholder, Default: `""`
+  @param {string} [name="password"] - Input HTML name, Default: `"password"`
   @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
 
   ### Events
@@ -41,8 +42,12 @@ This property can be bound to, to fetch the current value, Default: ``
 -->
 
 <div class="field is-marginless">
-  <p class="control has-icons-left has-icons-right is-marginless">
+  <p
+    class="control is-marginless"
+    class:has-icons-left={show_field_icon}
+    class:has-icons-right={show_visibility_switch}>
     <input
+      {name}
       type="password"
       bind:this={PASSWORD_INPUT}
       {style}
@@ -198,6 +203,11 @@ This property can be bound to, to fetch the current value, Default: ``
    * @type {string}
    */
   export let placeholder = "";
+  /**
+   * Input HTML name
+   * @type {string}
+   */
+  export let name = "password";
 
   /**
    * CSS classes of the PasswordInput
