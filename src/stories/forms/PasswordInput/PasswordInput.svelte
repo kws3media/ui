@@ -71,7 +71,7 @@
     name = "",
     disabled = false,
     required = false,
-    autocomplete = "off",
+    autocomplete = "on",
     placeholder = "Password",
     show_field_icon = true,
     field_icon = "lock",

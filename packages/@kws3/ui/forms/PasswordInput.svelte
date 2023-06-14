@@ -27,7 +27,7 @@ This property can be bound to, to fetch the current value, Default: ``
   @param {string} [style=""] - Inline CSS for the PasswordInput, Default: `""`
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
   @param {boolean} [required=false] - Whether Input is required or not, Default: `false`
-  @param {string} [autocomplete="off"] - Whether autocompletion turned off or on, Default: `"off"`
+  @param {string} [autocomplete="on"] - Whether autocompletion turned off or on, Default: `"on"`
   @param {string} [placeholder=""] - Input placeholder, Default: `""`
   @param {string} [name="password"] - Input HTML name, Default: `"password"`
   @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
@@ -211,7 +211,7 @@ This property can be bound to, to fetch the current value, Default: ``
    * Whether autocompletion turned off or on
    * @type {string}
    */
-  export let autocomplete = "off";
+  export let autocomplete = "on";
   /**
    * Input placeholder
    * @type {string}
