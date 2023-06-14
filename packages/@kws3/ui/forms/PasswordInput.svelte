@@ -26,6 +26,8 @@ This property can be bound to, to fetch the current value, Default: ``
   @param {ColorOptions} [color=] - Colour of the PasswordInput, Default: ``
   @param {string} [style=""] - Inline CSS for the PasswordInput, Default: `""`
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
+  @param {boolean} [required=false] - Whether Input is required or not, Default: `false`
+  @param {string} [autocomplete="off"] - Whether autocompletion turned off or on, Default: `"off"`
   @param {string} [placeholder=""] - Input placeholder, Default: `""`
   @param {string} [name="password"] - Input HTML name, Default: `"password"`
   @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
@@ -52,6 +54,8 @@ This property can be bound to, to fetch the current value, Default: ``
       bind:this={PASSWORD_INPUT}
       {style}
       bind:value
+      {autocomplete}
+      {required}
       class="input is-{size} is-{color} {klass} {style}"
       on:focus
       on:blur
@@ -198,6 +202,16 @@ This property can be bound to, to fetch the current value, Default: ``
    * @type {boolean}
    */
   export let disabled = false;
+  /**
+   * Whether Input is required or not
+   * @type {boolean}
+   */
+  export let required = false;
+  /**
+   * Whether autocompletion turned off or on
+   * @type {string}
+   */
+  export let autocomplete = "off";
   /**
    * Input placeholder
    * @type {string}

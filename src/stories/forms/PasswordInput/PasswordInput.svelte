@@ -15,6 +15,8 @@
         {visibility_switch_off_icon}
         {visibility_switch_on_color}
         {visibility_switch_off_color}
+        {required}
+        {autocomplete}
         {disabled} />
     </div>
   </div>
@@ -36,6 +38,8 @@
           {visibility_switch_off_icon}
           {visibility_switch_on_color}
           {visibility_switch_off_color}
+          {required}
+          {autocomplete}
           {disabled} />
         <PasswordValidator password={new_pass} />
       </div>
@@ -66,6 +70,8 @@
     color = "",
     name = "",
     disabled = false,
+    required = false,
+    autocomplete = "off",
     placeholder = "Password",
     show_field_icon = true,
     field_icon = "lock",
