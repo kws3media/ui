@@ -14,6 +14,7 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   @param {boolean} [disabled=false] - Disables the NumberInput, Default: `false`
   @param {boolean} [fullwidth=false] - Forces the NumberInput to occupy the full width of it's container, Default: `false`
   @param {boolean} [typeable=true] - Allows typing the value into the input, Default: `true`
+  @param {string} [input_class=""] - Adds a css class to the input field, Default: `""`
   @param {string} [minus_icon="minus"] - Name of the icon that is to be displayed in the minus button, Default: `"minus"`
   @param {ColorOptions} [minus_icon_color=danger] - Color of the Minus Icon, Default: `danger`
   @param {ColorOptions} [minus_button_color=] - Color of the Minus Button, Default: ``
@@ -35,8 +36,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   <input
     {style}
     data-testid="input"
-    class="input has-text-centered {klass} is-{size} is-{value < min ||
-    value > max
+    class="input has-text-centered {klass} {input_class} is-{size} is-{value <
+      min || value > max
       ? 'danger'
       : ''}"
     type="number"
@@ -67,8 +68,10 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
     </div>
     <div class="control is-{fullwidth ? 'expanded' : 'narrow'}">
       <input
+        style="z-index:1"
         data-testid="input"
-        class="input has-text-centered is-{size} is-{value < min || value > max
+        class="input has-text-centered {input_class} is-{size} is-{value <
+          min || value > max
           ? 'danger'
           : ''}"
         type="number"
@@ -172,6 +175,10 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
      * Allows typing the value into the input
      */
     typeable = true,
+    /**
+     * Adds a css class to the input field
+     */
+    input_class = "",
     /**
      * Name of the icon that is to be displayed in the minus button
      */
