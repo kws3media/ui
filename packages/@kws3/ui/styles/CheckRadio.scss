@@ -130,10 +130,16 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
     }
   }
 
-  input[type="checkbox"]:disabled + .kws-checkbox-label,
-  input[type="radio"]:disabled + .kws-checkbox-label,
   input[type="checkbox"]:disabled ~ .icon,
   input[type="radio"]:disabled ~ .icon {
+    opacity: 0;
+    cursor: not-allowed;
+  }
+
+  input[type="checkbox"]:disabled + .kws-checkbox-label,
+  input[type="radio"]:disabled + .kws-checkbox-label,
+  input[type="checkbox"]:checked:disabled ~ .icon,
+  input[type="radio"]:checked:disabled ~ .icon {
     opacity: 0.5;
     cursor: not-allowed;
   }
