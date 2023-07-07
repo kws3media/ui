@@ -144,8 +144,10 @@ while more items are loading
 
   // whenever `items` changes, invalidate the current heightmap
   $: items, viewport_height, item_height, mounted, refresh();
+  $: items, reset();
 
   async function refresh() {
+    console.log("refresh");
     if (!mounted) return;
     const scrollTop = viewport.scrollTop;
     await tick(); // wait until the DOM is up to date
@@ -172,6 +174,7 @@ while more items are loading
 
   async function handle_scroll() {
     const scrollTop = viewport.scrollTop;
+    console.log("handle scroll", scrollTop);
     const old_start = start;
     for (let v = 0; v < rows.length; v += 1) {
       height_map[start + v] = item_height || rows[v].offsetHeight;
@@ -183,6 +186,7 @@ while more items are loading
       if (y + row_height > scrollTop) {
         start = i;
         top = y - row_height * padding_threshold;
+        console.log("set top", top);
         break;
       }
       y += row_height;
@@ -234,4 +238,18 @@ while more items are loading
     rows = contents.getElementsByClassName("row");
     mounted = true;
   });
+
+  function reset() {
+    if (!mounted) return;
+    item_height = null;
+    start = 0;
+    end = 0;
+    items_count = 0;
+    top = 0;
+    bottom = 0;
+    average_height;
+    padStart = 0;
+    padEnd = 0;
+    items_count = 0;
+  }
 </script>
