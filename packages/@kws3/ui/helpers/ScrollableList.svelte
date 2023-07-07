@@ -31,7 +31,9 @@ while more items are loading
     on:resize={resize}>
     <div
       bind:this={contents}
-      style="padding-top: {top}px; padding-bottom: {bottom}px;">
+      style="padding-top: {start === 0
+        ? 0
+        : top}px; padding-bottom: {bottom}px;">
       {#each visible as item (item.index)}
         <div class="row">
           <!--Default slot for list view items-->
