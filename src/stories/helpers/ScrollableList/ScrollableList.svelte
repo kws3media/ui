@@ -27,23 +27,6 @@
     </div>
   </div>
 </div>
-<div class="columns">
-  <div class="column">
-    <button
-      type="button"
-      on:click={() => {
-        _items = [];
-      }}>Empty</button>
-    <button
-      type="button"
-      on:click={() => {
-        _items = new Array(100)
-          // @ts-ignore
-          .fill()
-          .map(() => records[Math.floor(Math.random() * records.length)]);
-      }}>Fill</button>
-  </div>
-</div>
 
 <script>
   import { createEventDispatcher } from "svelte";
@@ -81,7 +64,6 @@
   };
 
   const lastItemsRendered = ({ detail }) => {
-    console.log("last items rendered", detail);
     loadMore();
     fire("end", detail);
   };
