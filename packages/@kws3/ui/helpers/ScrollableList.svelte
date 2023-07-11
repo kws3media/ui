@@ -238,7 +238,7 @@ while more items are loading
 
   function reset() {
     if (!mounted) return;
-    if (!items.length) {
+    if (!items.length || items.length < items_count) {
       item_height = null;
       start = 0;
       end = 0;
