@@ -22,6 +22,17 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
 </span>
 
 <style>
+  .fa-lg {
+    font-size: 1.33333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+  }
+  .fa-2x {
+    font-size: 2em;
+  }
+  .fa-3x {
+    font-size: 3em;
+  }
   .icon .gg {
     transform: scale(0.75);
   }
