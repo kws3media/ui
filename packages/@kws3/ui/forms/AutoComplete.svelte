@@ -22,6 +22,7 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {string} [style=""] - Inline CSS for input container, Default: `""`
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
+  @param {PopperStrategies} [popper_strategy=absolute] - Placement strategy used by Popperjs, see popperjs docs, Default: `absolute`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
 Can be a DOM element or a `string` with the CSS selector of the element.
 
