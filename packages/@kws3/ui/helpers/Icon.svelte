@@ -128,7 +128,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
     internal_size,
     usedFamily;
 
-  $: inner_icon = family === "material" ? icon : "";
+  $: inner_icon = usedFamily === "material" ? icon : "";
   $: {
     usedFamily = family !== "" ? family : globalFamily ? globalFamily : "fa";
 
