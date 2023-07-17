@@ -31,7 +31,9 @@ while more items are loading
     on:resize={resize}>
     <div
       bind:this={contents}
-      style="padding-top: {top}px; padding-bottom: {bottom}px;">
+      style="padding-top: {start === 0
+        ? 0
+        : top}px; padding-bottom: {bottom}px;">
       {#each visible as item (item.index)}
         <div class="row">
           <!--Default slot for list view items-->
@@ -142,6 +144,7 @@ while more items are loading
 
   // whenever `items` changes, invalidate the current heightmap
   $: items, viewport_height, item_height, mounted, refresh();
+  $: items, reset();
 
   async function refresh() {
     if (!mounted) return;
@@ -232,4 +235,19 @@ while more items are loading
     rows = contents.getElementsByClassName("row");
     mounted = true;
   });
+
+  function reset() {
+    if (!mounted) return;
+    if (!items.length || items.length < items_count) {
+      item_height = null;
+      start = 0;
+      end = 0;
+      items_count = 0;
+      top = 0;
+      bottom = 0;
+      average_height;
+      padStart = 0;
+      padEnd = 0;
+    }
+  }
 </script>

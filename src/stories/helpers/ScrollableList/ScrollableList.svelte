@@ -64,7 +64,6 @@
   };
 
   const lastItemsRendered = ({ detail }) => {
-    console.log("last items rendered", detail);
     loadMore();
     fire("end", detail);
   };
