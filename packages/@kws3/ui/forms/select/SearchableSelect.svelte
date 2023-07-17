@@ -62,6 +62,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {remove_all_tip}
   async_search_prompt={value ? "Backspace to clear" : async_search_prompt}
   {no_options_msg}
+  {popper_strategy}
   {dropdown_portal}
   on:change={change}
   on:blur={blur}
@@ -87,6 +88,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').PopperStrategies} PopperStrategies
    */
 
   /**
@@ -169,6 +171,11 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Tooltip text for the Clear selection button
    */
   export let remove_all_tip = "Clear Selection";
+  /**
+   * Placement strategy used by Popperjs, see popperjs docs
+   * @type {PopperStrategies}
+   */
+  export let popper_strategy = "absolute";
   /**
    * Where to render the dropdown list.
    * Can be a DOM element or a `string` with the CSS selector of the element.

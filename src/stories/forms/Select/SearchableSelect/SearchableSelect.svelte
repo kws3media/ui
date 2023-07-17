@@ -19,6 +19,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {popper_strategy}
         {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
@@ -47,6 +48,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {popper_strategy}
         {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
@@ -90,6 +92,7 @@
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",
     placeholder = "Choose a Brand...",
+    popper_strategy = "absolute",
     selected_brand = "", // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
     selected_brand_string = "BlackBerry";

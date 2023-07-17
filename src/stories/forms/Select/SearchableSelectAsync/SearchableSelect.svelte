@@ -18,6 +18,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {popper_strategy}
         {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
@@ -45,6 +46,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {popper_strategy}
         {selected_icon}
         {no_options_msg}
         {remove_all_tip} />
@@ -91,6 +93,7 @@
     readonly = false,
     search_key = "name",
     value_key = "id",
+    popper_strategy = "absolute",
     selected_icon = "check",
     no_options_msg = "No matching options",
     remove_all_tip = "Remove all",

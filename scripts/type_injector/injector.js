@@ -5,6 +5,7 @@ const map = {
   SizeOptions: "Sizes",
   ExtendedColorOptions: "ExtendedColors",
   BGColorOptions: "BGColors",
+  PopperStrategiesOptions: "PopperStrategies",
 };
 
 const EXCLUDE_RE = /Exclude<\s*([^,]*),\s*([^>]*)>/;

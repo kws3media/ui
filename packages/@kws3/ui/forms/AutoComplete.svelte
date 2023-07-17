@@ -139,6 +139,7 @@ Default value: `<span>{option.label}</span>`
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').PopperStrategies} PopperStrategies
    */
 
   /**
@@ -212,6 +213,12 @@ Default value: `<span>{option.label}</span>`
    * Disables the component
    */
   export let disabled = false;
+
+  /**
+   * Placement strategy used by Popperjs, see popperjs docs
+   * @type {PopperStrategies}
+   */
+  export let popper_strategy = "absolute";
 
   /**
    * Where to render the dropdown list.
@@ -330,7 +337,7 @@ Default value: `<span>{option.label}</span>`
 
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
-      strategy: "fixed",
+      strategy: popper_strategy,
       placement: "bottom-start",
       // @ts-ignore
       modifiers: [sameWidthPopperModifier],

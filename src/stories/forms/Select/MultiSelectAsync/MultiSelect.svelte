@@ -19,6 +19,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {popper_strategy}
         {summary_mode}
         {selected_icon}
         {no_options_msg}
@@ -50,6 +51,7 @@
         class={klass}
         {disabled}
         {readonly}
+        {popper_strategy}
         {summary_mode}
         {selected_icon}
         {no_options_msg}
@@ -99,6 +101,7 @@
     remove_all_tip = "Remove all",
     remove_btn_tip = "Remove",
     placeholder = "Choose a Brand...",
+    popper_strategy = "absolute",
     summary_mode = false,
     selected_brand = [
       { id: 3, name: "Xiaomi" },

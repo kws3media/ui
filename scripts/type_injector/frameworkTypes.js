@@ -73,3 +73,5 @@ export const TippyPositions = [
   "auto-start",
   "auto-end",
 ] ;
+
+export const PopperStrategies = ["fixed", "absolute"] ;

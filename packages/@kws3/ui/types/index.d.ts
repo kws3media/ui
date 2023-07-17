@@ -7,6 +7,7 @@ import type {
   FontFamilies,
   FloatiePositions,
   TippyPositions,
+  PopperStrategies,
 } from "./type-defs";
 
 export type ColorOptions = (typeof Colors)[number];
@@ -17,6 +18,7 @@ export type FontFamilies = (typeof FontFamilies)[number];
 export type Positions = (typeof Positions)[number];
 export type TippyPositions = (typeof TippyPositions)[number];
 export type FloatiePositions = (typeof FloatiePositions)[number];
+export type PopperStrategies = (typeof PopperStrategies)[number];
 
 export type FloatieType = {
   create: (opts: object) => { props: object; destroy: () => void };

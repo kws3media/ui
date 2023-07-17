@@ -202,6 +202,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').PopperStrategies} PopperStrategies
    */
 
   /**
@@ -292,6 +293,11 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Icon used to mark selected items in dropdown list
    */
   export let selected_icon = "check";
+  /**
+   * Placement strategy used by Popperjs, see popperjs docs
+   * @type {PopperStrategies}
+   */
+  export let popper_strategy = "absolute";
   /**
    * Shows only the number of items selected, instead of listing all the selected items in the input.
    */
@@ -524,7 +530,7 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   onMount(() => {
     POPPER = createPopper(el, dropdown, {
-      strategy: "fixed",
+      strategy: popper_strategy,
       placement: "bottom-start",
       // @ts-ignore
       modifiers: [sameWidthPopperModifier],
