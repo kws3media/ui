@@ -151,8 +151,11 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
       case "material":
         familyClass = "material-icons material-symbols-outlined ";
         break;
-      default:
+      case "fa":
         familyClass = "fa fa-";
+        break;
+      default:
+        familyClass = usedFamily + "-";
         break;
     }
   }
