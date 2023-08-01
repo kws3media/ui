@@ -9,11 +9,14 @@
   @param {string} [background_image=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
-  @param {string} [expand_from="center"] - The direction to which the canvas should expand, Default: `"center"`
-  @param {string} [expand_to="center"] - The direction to which the canvas should expand, Default: `"center"`
-  @param {number} [expand_scale=50] - Transform scale of the canvas on expansion, Default: `50`
-  @param {array} [actions=[]] - `CONST` List of actions toolbar, Default: `[]`
+  @param {string} [expand_from="center"] - The direction from which the canvas should expand.
+'top', 'bottom', 'left', 'right', 'center' and also 'n%', Default: `"center"`
+  @param {string} [expand_to="center"] - The direction to which the canvas should expand.
+'top', 'bottom', 'left', 'right', 'center' and also 'n%', Default: `"center"`
+  @param {number} [expand_scale=50] - Transform scale of the canvas on expansion
+value in percentage %, Default: `50`
   @param {Extract<Positions, 'start'|'center'|'end'>} [control_position=center] - Default position of controls, Default: `center`
+  @param {array} [actions=[]] - List of actions toolbar, Default: `[]`
 
 -->
 <Canvas
@@ -91,11 +94,7 @@
     /**
      * List of actions toolbar
      */
-    actions = [
-    "undo",
-    "redo",
-    "reset",
-    ];
+    actions = ["undo", "redo", "reset"];
 
-    let tools = { Pen };
+  let tools = { Pen };
 </script>
