@@ -116,6 +116,13 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
   };
 
   const init = () => {
+    if (!ApexCharts) {
+      // `init()` was probably called from reactive functions instead of `onMount`.
+      // All those calls can be ignored, because when `onMount` calls it,
+      // it will have the latest data and config
+      return;
+    }
+
     chart && chart.destroy();
 
     if (typeof window !== "undefined") {
