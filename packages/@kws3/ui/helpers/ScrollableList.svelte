@@ -54,7 +54,9 @@ while more items are loading
     bind:offsetHeight={viewport_height}>
     <div
       bind:this={contents}
-      style="padding-top: {top}px; padding-bottom: {bottom}px;">
+      style="padding-top: {start === 0
+        ? 0
+        : top}px; padding-bottom: {bottom}px;">
       {#each visible as item (item.index)}
         <div class="row">
           <!--Default slot for list view items-->
@@ -148,7 +150,7 @@ while more items are loading
 
   async function refresh() {
     if (!mounted) return;
-    const scrollTop = viewport.scrollTop;
+    const { scrollTop } = viewport;
     await tick(); // wait until the DOM is up to date
     let content_height = top - scrollTop;
     let i = start;
@@ -172,7 +174,7 @@ while more items are loading
   }
 
   async function handle_scroll() {
-    const scrollTop = viewport.scrollTop;
+    const { scrollTop } = viewport;
     const old_start = start;
     for (let v = 0; v < rows.length; v += 1) {
       height_map[start + v] = item_height || rows[v].offsetHeight;
@@ -183,7 +185,10 @@ while more items are loading
       const row_height = height_map[i] || average_height;
       if (y + row_height > scrollTop) {
         start = i;
-        top = y - row_height * padding_threshold;
+        top =
+          y > row_height * padding_threshold
+            ? y - row_height * padding_threshold
+            : y;
         break;
       }
       y += row_height;
