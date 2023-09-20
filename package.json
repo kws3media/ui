@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@kws3/eslint-plugin-svelte3": "^1.0.1",
-    "@ota-meshi/eslint-plugin-svelte": "^0.28.0",
+    "eslint-plugin-svelte": "^2.33.0",
     "@storybook/addon-actions": "6.5.10",
     "@storybook/addon-backgrounds": "6.5.10",
     "@storybook/addon-docs": "6.5.10",
