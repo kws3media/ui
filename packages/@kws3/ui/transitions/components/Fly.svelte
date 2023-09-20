@@ -15,7 +15,7 @@
 -->
 <div
   class="transible {klass}"
-  in:fly={{
+  in:fly|global={{
     x: x || 0,
     y: y || 0,
     duration: duration || 300,

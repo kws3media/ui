@@ -13,7 +13,7 @@
 -->
 <div
   class="transible {klass}"
-  in:slide={{
+  in:slide|global={{
     duration: duration || 300,
     delay: delay || 0,
     easing: getEasing(easing),
