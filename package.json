@@ -70,8 +70,8 @@
     "svelte-eslint-parser": "^0.14.0",
     "svelte-loader": "^3.1.2",
     "svelte-preprocess": "^4.8.0",
-    "svelte2tsx": "^0.6.11",
-    "sveltedoc-parser": "github:ekhaled/sveltedoc-parser#custom",
-    "typescript": "^5.0.4"
+    "sveltedoc-parser": "https://github.com/ekhaled/sveltedoc-parser#integration",
+    "promis": "^1.1.4",
+    "microevent": "https://github.com/ekhaled/microevent.js.git"
   }
 }
