@@ -19,7 +19,7 @@
   ],
   "peerDependencies": {
     "eslint": "^7.0.0 || ^8.0.0-0",
-    "svelte": "^3.46.4",
+    "svelte": "^3.46.4 || ^4.0.0",
     "svelte-eslint-parser": "^0.14.0"
   }
 }
