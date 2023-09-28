@@ -20,6 +20,7 @@ export default {
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
     "@storybook/addon-svelte-csf",
+    "@storybook/addon-controls",
   ],
   framework: "@storybook/svelte-vite",
   docs: {
