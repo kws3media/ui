@@ -3,7 +3,6 @@ import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import Sync from './Sync.svelte';
 
-
 <Version />
 
 <Meta
@@ -44,36 +43,37 @@ args={{}}
     <p>To enable this:</p>
     <ol>
       <li>
-        Ensure a unique id is provided for each chart in <code
-          >options.chart</code>
+        Ensure a unique id is provided for each chart in <code>options.chart</code>
       </li>
       <li>
-        Ensure a shared group name is provided for every linked chart in <code
-          >options.chart</code>
+        Ensure a shared group name is provided for every linked chart in <code>options.chart</code>
       </li>
     </ol>
     <p>See example code below.</p>
   </div>
 </div>
-
-#### Example code
-```jsx
-<LineChart options={{
-    chart:{
-      id:"chart1",
-      group:"Sales" //this has to be same for all linked charts
-    }
-  }}
-  data={dataSet1}
-  ...
-/>
-<AreaChart options={{
-    chart:{
-      id:"chart2",
-      group:"Sales" //this has to be same for all linked charts
-    }
-  }} 
-  data={dataSet2}
-  ...
-/>
-```
+<div class="columns">
+  <div class="column">
+  #### Example code
+  ```jsx
+  <LineChart options={{
+      chart:{
+        id:"chart1",
+        group:"Sales" //this has to be same for all linked charts
+      }
+    }}
+    data={dataSet1}
+    ...
+  />
+  <AreaChart options={{
+      chart:{
+        id:"chart2",
+        group:"Sales" //this has to be same for all linked charts
+      }
+    }} 
+    data={dataSet2}
+    ...
+  />
+  ```
+  </div>
+</div>
