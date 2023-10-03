@@ -1,64 +1,15 @@
-import {Meta, Controls, Canvas, Story, Source, ArgsTable, Description} from '@storybook/blocks';
+import {Meta, Primary, Controls, Canvas, Story, Source, Description} from '@storybook/blocks';
+import * as ButtonStories from "./Button.stories.js";
 import dedent from 'ts-dedent';
-import Version from '~/version.mdx';
-import { ProcessButton as Button } from '@kws3/ui';
-import { action } from '@storybook/addon-actions';
-import ProcessButtonDecorator from "./ProcessButton.svelte";
-import playInteractions from "./processButton.play.js";
-
-export let args={
-  class: "",
-  button_class: "",
-  text: "Click Me",
-  icon: "check",
-  icon_only: false,
-  done_text: "Done",
-  done_icon: "check",
-  disabled: false,
-  cy: "",
-  context: "_context_process",
-  size: "",
-  color: "primary",
-  completion_timeout: 600,
-  error_timeout: 3000,
-};
-
-
-<Version />
-
-<Meta
-  title="Buttons/Process Button"
-  component={Button}
-  args={args}
-  argTypes={{
-    color: {
-      control: 'select'
-    },
-    size: {
-      control: 'select'
-    }
-  }}
-/>
 
 <Description markdown={dedent`
 # ProcessButton
 ## Process Button with properties.
 `}/>
 
-<Canvas>
-  <Story
-  name="Process Button"
-  args={args}
-  play={playInteractions}
-  >
-  {(args) => ({
-    Component: ProcessButtonDecorator,
-    props: args
-  })}
-  </Story>
-</Canvas>
-
-<ArgsTable story="Process Button" />
+<Meta of={ButtonStories} />
+<Canvas of={ButtonStories.Main} />
+<Controls />
 
 ### Usage
 <Source

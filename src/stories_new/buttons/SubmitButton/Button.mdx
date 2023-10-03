@@ -1,0 +1,40 @@
+import {Meta, Primary, Controls, Canvas, Story, Source, Description} from '@storybook/blocks';
+import * as ButtonStories from "./Button.stories.js";
+import dedent from 'ts-dedent';
+
+<Description markdown={dedent`
+# SubmitButton
+## Submit Button with built-in confirmation.
+`}/>
+
+<Meta of={ButtonStories} />
+<Canvas of={ButtonStories.Main} />
+<Controls />
+
+### Usage
+<Source
+  language="javascript"
+  code={
+    dedent`<form on:submit|preventDefault={save}>
+      <SubmitButton bind:this={BUTTON_STATE} />
+    </form>
+    <script>
+      import { SubmitButton } from '@kws3/buttons';
+      let BUTTON_STATE;
+      function save(e){
+        BUTTON_STATE.saving();
+        somepromise.then((r) => {
+          BUTTON_STATE.saved(() => {
+            //some callback function
+          }, 1000);
+        })
+        .catch((r) => {
+          BUTTON_STATE.error(() => {
+            //some callback function
+          }, 1000);
+        })
+      }
+    </script>
+    `
+  }
+/>
