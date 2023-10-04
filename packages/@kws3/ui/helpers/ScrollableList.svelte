@@ -3,6 +3,7 @@
 
 
   @param {array} [items=[]] - Array of items, Default: `[]`
+  @param {object} [iteration_key=null] - Iteration key - by default it uses the index of the array inside the keyed each block, Default: `null`
   @param {string} [height="100%"] - Height of the wrapper, CSS String, Default: `"100%"`
   @param {number | null} [item_height=null] - Height of each list item. If not set, height will be calculated automatically based on each item's offsetHeight, Default: `null`
   @param {number} [start=0] - First item index rendered inside viewport - readonly, Default: `0`
@@ -90,6 +91,10 @@ while more items are loading
    */
   export let items = [],
     /**
+     * Iteration key - by default it uses the index of the array inside the keyed each block
+     */
+    iteration_key = null,
+    /**
      * Height of the wrapper, CSS String
      */
     height = "100%",
@@ -140,9 +145,10 @@ while more items are loading
 
   $: padStart = start > padding_threshold ? start - padding_threshold : start;
   $: padEnd = end + padding_threshold;
-  $: visible = items
-    .slice(padStart, padEnd)
-    .map((data, i) => ({ index: i + padStart, data }));
+  $: visible = items.slice(padStart, padEnd).map((data, i) => ({
+    index: iteration_key ? data[iteration_key] : i + padStart,
+    data,
+  }));
 
   // whenever `items` changes, invalidate the current heightmap
   $: items, viewport_height, item_height, mounted, refresh();
