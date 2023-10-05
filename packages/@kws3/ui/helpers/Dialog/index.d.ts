@@ -1,4 +1,4 @@
-/// <reference types="svelte/types/runtime/ambient" />
+/// <reference types="svelte" />
 /**
  *
  * @param {string} msg

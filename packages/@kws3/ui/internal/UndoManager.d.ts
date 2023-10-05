@@ -4,11 +4,11 @@ declare class UndoManager {
     index: number;
     isExecuting: boolean;
     callback: any;
-    execute(command: any, action: any): UndoManager;
-    add(command: any): UndoManager;
+    execute(command: any, action: any): this;
+    add(command: any): this;
     setCallback(callbackFunc: any): void;
-    undo(): UndoManager;
-    redo(): UndoManager;
+    undo(): this;
+    redo(): this;
     clear(): void;
     hasUndo(): boolean;
     hasRedo(): boolean;

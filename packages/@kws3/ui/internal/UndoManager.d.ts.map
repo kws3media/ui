@@ -1,1 +1,1 @@
-{"version":3,"file":"UndoManager.d.ts","sourceRoot":"","sources":["UndoManager.js"],"names":[],"mappings":";AAAA;IAEI,gBAAkB;IAClB,cAAe;IACf,qBAAwB;IACxB,cAAoB;IAGtB,gDAQC;IAED,+BAcC;IAED,qCAEC;IAED,oBAWC;IAED,oBAWC;IAED,cAOC;IACD,mBAEC;IACD,mBAEC;IACD,qBAEC;CACF"}
+{"version":3,"file":"UndoManager.d.ts","sourceRoot":"","sources":["UndoManager.js"],"names":[],"mappings":";AAAA;IAEI,gBAAkB;IAClB,cAAe;IACf,qBAAwB;IACxB,cAAoB;IAGtB,yCAQC;IAED,wBAcC;IAED,qCAEC;IAED,aAWC;IAED,aAWC;IAED,cAOC;IACD,mBAEC;IACD,mBAEC;IACD,qBAEC;CACF"}

@@ -1,3 +1,4 @@
+/// <reference types="svelte" />
 /**
  * - `defaultIconFamily`: `"fa"` - default icon family
  * - `defaultToastPlacement`: `"bottom"` - default placement of toast notifications

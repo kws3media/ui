@@ -1,3 +1,4 @@
+/// <reference types="svelte" />
 export function makeForms(items: any): any[] | {
     formData: import("svelte/store").Writable<any>;
     errors: import("svelte/store").Readable<any>;
