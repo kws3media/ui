@@ -1,0 +1,51 @@
+import {Meta, Story, Source} from '@storybook/blocks';
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import * as Stories from "./WithCustomTool.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+
+### Canvas with custom drawing tool Circle
+
+
+**Example:** 
+
+```html
+
+  <Canvas
+    bind:image
+    active_tool="Circle"
+    {width}
+    {tools}
+  />
+    
+<script>
+  import { Canvas, Eraser } from "@kws3/ui";
+
+  export let image;
+
+  let Circle = {
+    name: "Circle",
+    icon: "circle-o",
+    draw: (instance) => {
+      const x = instance.currentPos.x;
+      const y = instance.currentPos.y;
+      const radius = 50;
+
+      instance.context.beginPath();
+      instance.context.arc(x, y, radius, 0, 2 * Math.PI);
+      instance.context.stroke();
+      instance.context.globalCompositeOperation = "source-over";
+    },
+  };
+
+
+  export let width = "350px",
+    height='250px';
+
+    let tools = {Circle, Eraser};
+</script>
+```
