@@ -1,4 +1,4 @@
-import {Meta, Story, Source} from '@storybook/blocks';
+import {Meta, Story, Source, Canvas} from '@storybook/blocks';
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
 import * as Stories from "./WithBGImage.stories.js";
@@ -6,8 +6,10 @@ import * as Stories from "./WithBGImage.stories.js";
 <Version />
 
 <Meta of={Stories} />
+<Canvas of={Stories.Main} />
 
 ### Canvas with background image Example
+
 
 **Example:**
 
