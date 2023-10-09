@@ -1,0 +1,28 @@
+import { Meta, Story } from "@storybook/blocks";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import Currency from "./Currency.svelte";
+
+<Version />
+
+<Meta title="Utils/2. Examples/Currency" />
+
+### currency
+
+The `currency` function is used to return a number in a currency format.
+
+**Parameter:**
+`Number`
+
+**Example:**
+
+```js
+import { currency } from "@kws3/ui/utils";
+currency(number);
+```
+
+<Story name="Currency" args={{}}>
+  {(args) => ({
+    Component: Currency,
+  })}
+</Story>
