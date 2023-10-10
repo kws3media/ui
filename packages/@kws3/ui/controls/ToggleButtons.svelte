@@ -12,6 +12,7 @@ This property can be bound to, to fetch the current value, Default: `null`
 - `value`: Value of the button
 - `subtitle`: Optional subtitle
 - `icon`: Optional Icon to display
+- `count`: Optional number to display on top right
 - `active_class`: Custom class to apply when button is active
 - `inactive_class`: Custom class to apply when button is inactive
 
@@ -50,9 +51,10 @@ This property can be bound to, to fetch the current value, Default: `null`
           {/if}
           <span class="is-block">{option.name}</span>
           {#if option.subtitle}
-            <span
-              style="font-size: 0.7em; display: block; margin-top: -0.3em; opacity: 0.7;"
-              >{option.subtitle}</span>
+            <span class="option-subtitle">{option.subtitle}</span>
+          {/if}
+          {#if option.count}
+            <span class="count">{option.count}</span>
           {/if}
         </span>
       </button>
@@ -61,7 +63,7 @@ This property can be bound to, to fetch the current value, Default: `null`
 </div>
 
 <style lang="scss">
-  .toggle-buttons {
+  .kws-toggle-buttons {
     .button,
     .button:focus {
       :global(.icon) {
@@ -70,6 +72,31 @@ This property can be bound to, to fetch the current value, Default: `null`
       box-shadow: none;
       &.is-active {
         box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3) inset !important;
+      }
+    }
+    .button {
+      position: relative;
+      .option-subtitle {
+        font-size: 0.7em;
+        display: block;
+        margin-top: -0.3em;
+        opacity: 0.7;
+      }
+      .count {
+        position: absolute;
+        font-weight: 600;
+        font-size: 0.8em;
+        border-radius: 999px;
+        padding: 0.15em 0.2em;
+        min-width: 1.8em;
+        min-height: 1.5em;
+        top: -0.75em;
+        right: 0.2em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #ca0303;
+        color: #fff;
       }
     }
   }
@@ -102,6 +129,7 @@ This property can be bound to, to fetch the current value, Default: `null`
      * - `value`: Value of the button
      * - `subtitle`: Optional subtitle
      * - `icon`: Optional Icon to display
+     * - `count`: Optional number to display on top right
      * - `active_class`: Custom class to apply when button is active
      * - `inactive_class`: Custom class to apply when button is inactive
      *
