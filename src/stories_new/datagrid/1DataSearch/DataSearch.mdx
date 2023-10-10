@@ -1,0 +1,35 @@
+import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { action } from '@storybook/addon-actions';
+import DataSearchDecorator from "./DataSearch.svelte";
+import * as Stories from "./DataSearch.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+<Description markdown={dedent`
+# DataSearch
+## DataSearch component in datagrid.
+`}/>
+
+<Canvas of={Stories.Main} />
+<Controls />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { DataSearch } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import '@kws3/ui/styles/DataSearch.scss';`
+  }
+/>
