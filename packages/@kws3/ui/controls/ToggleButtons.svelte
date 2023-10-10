@@ -129,6 +129,7 @@ This property can be bound to, to fetch the current value, Default: `null`
      * - `value`: Value of the button
      * - `subtitle`: Optional subtitle
      * - `icon`: Optional Icon to display
+     * - `count`: Optional number to display on top right
      * - `active_class`: Custom class to apply when button is active
      * - `inactive_class`: Custom class to apply when button is inactive
      *
