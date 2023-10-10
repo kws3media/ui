@@ -1,11 +1,10 @@
 import { Meta, Story } from "@storybook/blocks";
-import dedent from "ts-dedent";
+import dedent from 'ts-dedent';
 import Version from "~/version.mdx";
-import Capitalize from "./Capitalize.svelte";
+import * as Stories from "./Capitalize.stories.js";
 
 <Version />
-
-<Meta title="Utils/2. Examples/CapitaliseFirstLetter" />
+<Meta of={Stories} />
 
 ### capitaliseFirstLetter
 
@@ -20,9 +19,4 @@ The `capitaliseFirstLetter` function converts the first character of a string to
 import { capitaliseFirstLetter } from "@kws3/ui/utils";
 capitaliseFirstLetter(string);
 ```
-
-<Story name="CapitaliseFirstLetter" args={{}}>
-  {(args) => ({
-    Component: Capitalize,
-  })}
-</Story>
+<Story of={Stories.Main} />

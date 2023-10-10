@@ -1,11 +1,12 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import Currency from "./Currency.svelte";
+import * as Stories from "./Currency.stories.js";
+
 
 <Version />
 
-<Meta title="Utils/2. Examples/Currency" />
+<Meta of={Stories} />
 
 ### currency
 
@@ -21,8 +22,4 @@ import { currency } from "@kws3/ui/utils";
 currency(number);
 ```
 
-<Story name="Currency" args={{}}>
-  {(args) => ({
-    Component: Currency,
-  })}
-</Story>
+<Story of={Stories.Main} />

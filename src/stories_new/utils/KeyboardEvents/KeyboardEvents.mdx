@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import KeyboardEvents from "./KeyboardEvents.svelte";
+import * as Stories from "./KeyboardEvents.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/KeyboardEvents/1. Pre-defined Events" />
+<Meta of={Stories} />
 
 ### keyboard events
 
@@ -32,8 +32,4 @@ The `keyboard` package is used to trigger events based on certain key strokes.
 </script>
 ```
 
-<Story name="1. Pre-defined Events" args={{}}>
-  {(args) => ({
-    Component: KeyboardEvents,
-  })}
-</Story>
+<Story of={Stories.Main} />

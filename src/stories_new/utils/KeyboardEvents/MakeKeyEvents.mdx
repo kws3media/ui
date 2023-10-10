@@ -1,11 +1,11 @@
-import { Meta, Story } from "@storybook/addon-svelte-csf";
+import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import MakeKeyEvent from "./MakeKeyEvent.svelte";
+import * as Stories from "./MakeKeyEvents.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/KeyboardEvents/2. Create Key Events" />
+<Meta of={Stories} />
 
 ### makeKeyDefinition
 
@@ -41,8 +41,4 @@ const save = makeKeyDefinition(keyCombination)
 </script>
 ```
 
-<Story name="2. Create Key Events" args={{}}>
-  {(args) => ({
-    Component: MakeKeyEvent,
-  })}
-</Story>
+<Story of={Stories.Main} />

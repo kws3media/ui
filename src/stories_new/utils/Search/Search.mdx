@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import Search from "./Search.svelte";
+import * as Stories from "./Search.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/Search" />
+<Meta of={Stories} />
 
 ### makeSearchEngine
 
@@ -61,8 +61,4 @@ Function take params, needle : `type: String` and haystack : `type: Array`.
 </script>
 ```
 
-<Story name="Search" args={{}}>
-  {(args) => ({
-    Component: Search,
-  })}
-</Story>
+<Story of={Stories.Main} />

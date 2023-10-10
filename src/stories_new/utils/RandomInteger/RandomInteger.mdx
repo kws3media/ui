@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import RandomInteger from "./RandomInteger.svelte";
+import * as Stories from "./RandomInteger.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/RandomInteger" />
+<Meta of={Stories} />
 
 ## randomIntegerFromInterval
 
@@ -23,8 +23,4 @@ import { randomIntegerFromInterval } from "@kws3/ui/utils";
 randomIntegerFromInterval(min, max);
 ```
 
-<Story name="RandomInteger" args={{}}>
-  {(args) => ({
-    Component: RandomInteger,
-  })}
-</Story>
+<Story of={Stories.Main} />

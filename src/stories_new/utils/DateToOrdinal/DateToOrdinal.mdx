@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import DateToOrdinal from "./DateToOrdinal.svelte";
+import * as Stories from "./DateToOrdinal.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/DateToOrdinal" />
+<Meta of={Stories} />
 
 ### DateToOrdinal
 
@@ -21,8 +21,4 @@ import { dateToOrdinal } from "@kws3/ui/utils";
 dateToOrdinal(number);
 ```
 
-<Story name="DateToOrdinal" args={{}}>
-  {(args) => ({
-    Component: DateToOrdinal,
-  })}
-</Story>
+<Story of={Stories.Main} />

@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import Debounce from "./Debounce.svelte";
+import * as Stories from "./Debounce.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/Debounce" />
+<Meta of={Stories} />
 
 ### debounce
 
@@ -24,8 +24,4 @@ The `Debounce` method Returns a function, that, as long as it continues to be in
 </script>
 ```
 
-<Story name="Debounce" args={{}}>
-  {(args) => ({
-    Component: Debounce,
-  })}
-</Story>
+<Story of={Stories.Main} />

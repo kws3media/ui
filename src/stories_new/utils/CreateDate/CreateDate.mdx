@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import CreateDate from "./CreateDate.svelte";
+import * as Stories from "./CreateDate.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/CreateDate" />
+<Meta of={Stories} />
 
 ### createDate
 
@@ -21,8 +21,4 @@ import { createDate } from "@kws3/ui/utils";
 createDate("2022-01-01");
 ```
 
-<Story name="CreateDate" args={{}}>
-  {(args) => ({
-    Component: CreateDate,
-  })}
-</Story>
+<Story of={Stories.Main} />

@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import RandomPercent from "./RandomPercent.svelte";
+import * as Stories from "./RandomPercent.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/RandomPercent" />
+<Meta of={Stories} />
 
 ## randomPercent
 
@@ -25,8 +25,4 @@ randomPercent(min);
 randomPercent();
 ```
 
-<Story name="RandomPercent" args={{}}>
-  {(args) => ({
-    Component: RandomPercent,
-  })}
-</Story>
+<Story of={Stories.Main} />

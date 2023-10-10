@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import Truncate from "./Truncate.svelte";
+import * as Stories from "./Truncate.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/Truncate" />
+<Meta of={Stories} />
 
 ### Truncate
 
@@ -23,8 +23,4 @@ truncate(text, 10);
 
 **Example:**
 
-<Story name="Truncate" args={{}}>
-  {(args) => ({
-    Component: Truncate,
-  })}
-</Story>
+<Story of={Stories.Main} />

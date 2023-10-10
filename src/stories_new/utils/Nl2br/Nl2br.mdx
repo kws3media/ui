@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import Nl2br from "./Nl2br.svelte";
+import * as Stories from "./Nl2br.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/Nl2br" />
+<Meta of={Stories} />
 
 ### nl2br
 
@@ -21,8 +21,4 @@ nl2br(text);
 
 **Example:**
 
-<Story name="Nl2br" args={{}}>
-  {(args) => ({
-    Component: Nl2br,
-  })}
-</Story>
+<Story of={Stories.Main} />

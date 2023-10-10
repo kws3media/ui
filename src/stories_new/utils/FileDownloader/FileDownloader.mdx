@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import FileDownloader from "./FileDownloader.svelte";
+import * as Stories from "./FileDownloader.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/FileDownloader" />
+<Meta of={Stories} />
 
 ### fileDownloader
 
@@ -22,8 +22,4 @@ fileDownloader(data, filename);
 
 **Example:**
 
-<Story name="FileDownloader" args={{}}>
-  {(args) => ({
-    Component: FileDownloader,
-  })}
-</Story>
+<Story of={Stories.Main} />

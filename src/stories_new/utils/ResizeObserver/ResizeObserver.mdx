@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import ResizeObserver from "./ResizeObserver.svelte";
+import * as Stories from "./ResizeObserver.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/ResizeObserver" />
+<Meta of={Stories} />
 
 ### ResizeObserver
 
@@ -23,8 +23,4 @@ The `resizeObserver` is used to handle window resizing.
 </script>
 ```
 
-<Story name="ResizeObserver" args={{}}>
-  {(args) => ({
-    Component: ResizeObserver,
-  })}
-</Story>
+<Story of={Stories.Main} />

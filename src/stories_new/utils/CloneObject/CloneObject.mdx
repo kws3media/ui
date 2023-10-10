@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import CloneObject from "./CloneObject.svelte";
+import * as Stories from "./CloneObject.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/CloneObject" />
+<Meta of={Stories} />
 
 ### CloneObject
 
@@ -26,8 +26,4 @@ $: clone = cloneObject(obj);
 
 **Example:**
 
-<Story name="CloneObject" args={{}}>
-  {(args) => ({
-    Component: CloneObject,
-  })}
-</Story>
+<Story of={Stories.Main} />

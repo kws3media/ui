@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/blocks";
 import dedent from "ts-dedent";
 import Version from "~/version.mdx";
-import rAF from "./rAF.svelte";
+import * as Stories from "./rAF.stories.js";
 
 <Version />
 
-<Meta title="Utils/2. Examples/RAF" />
+<Meta of={Stories} />
 
 ### rAF
 
@@ -42,8 +42,4 @@ The `rAF` method tells the browser that you wish to perform an animation and req
 
 **Example:**
 
-<Story name="RAF" args={{}}>
-  {(args) => ({
-    Component: rAF,
-  })}
-</Story>
+<Story of={Stories.Main} />
