@@ -16,7 +16,7 @@
 <div
   class="transible {klass}"
   style="transform:translate3d(0,0,0)"
-  in:scale={{
+  in:scale|global={{
     // @ts-ignore
     from: from || 0.5,
     to: to || 1,
