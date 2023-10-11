@@ -1,5 +1,5 @@
-import Decorator from "./Transitions.svelte";
 import { Transition } from "@kws3/ui";
+import TransitionDecorator from "./Transitions.svelte";
 
 let args = {
   x: 0,
@@ -16,13 +16,19 @@ let args = {
 
 export default {
   title: "Standalone/Transitions",
+  parameters: {
+    layout: "fullscreen",
+  },
   component: Transition,
+  decorators: [() => TransitionDecorator],
   args: args,
-  argTypes: {},
+  argTypes: {
+    type: { control: "select", options: ["fly", "fade", "scale", "slide"] },
+  },
 };
 
 export const Main = {
-  name: "Transitions",
+  name: "Preview",
+  component: Transition,
   args: args,
-  argTypes: {},
 };
