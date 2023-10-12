@@ -19,9 +19,11 @@ export default {
     "@storybook/addon-actions",
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
-    "@storybook/addon-controls",
   ],
-  framework: "@storybook/svelte-vite",
+  framework: {
+    name: "@storybook/svelte-vite",
+    options: {},
+  },
   docs: {
     autodocs: "tag",
   },
