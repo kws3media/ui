@@ -10,6 +10,7 @@
   @param {number} [end=0] - Last item index rendered inside viewport - readonly, Default: `0`
   @param {number} [end_threshold=10] - `end` event will be fired when the list reaches this many items before the end of the list., Default: `10`
   @param {number} [padding_threshold=5] - render 'n' number of items on outside the viewport (top and bottom) to avoid visible glitches on scrolling., Default: `5`
+  @param {number} [mutation_threshold=5] - Number of items that can be spliced in or out, before the scroll position resets, helpful for adding/removing list items in-place, Default: `5`
   @param {string} [style=""] - Inline CSS for scroller container, Default: `""`
   @param {string} [class=""] - CSS classes for scroller container, Default: `""`
 
@@ -81,9 +82,8 @@ while more items are loading
 </style>
 
 <script>
-  import { onMount, tick } from "svelte";
-  import { createEventDispatcher } from "svelte";
-  import { resizeObserver, hasResizeObserver } from "@kws3/ui/resizeObserver";
+  import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
+  import { createEventDispatcher, onMount, tick } from "svelte";
 
   const fire = createEventDispatcher();
   /**
@@ -119,6 +119,10 @@ while more items are loading
      *  render 'n' number of items on outside the viewport (top and bottom) to avoid visible glitches on scrolling.
      */
     padding_threshold = 5,
+    /**
+     * Number of items that can be spliced in or out, before the scroll position resets, helpful for adding/removing list items in-place
+     */
+    mutation_threshold = 5,
     /**
      * Inline CSS for scroller container
      */
@@ -191,15 +195,16 @@ while more items are loading
       const row_height = height_map[i] || average_height;
       if (y + row_height > scrollTop) {
         start = i;
-        top =
-          y > row_height * padding_threshold
-            ? y - row_height * padding_threshold
-            : y;
+        let rhpt = row_height * padding_threshold;
+        let diff = y - rhpt;
+        top = y > rhpt && diff > i ? diff : y;
         break;
       }
       y += row_height;
       i += 1;
     }
+    i = 0;
+    y = 0;
     while (i < items.length) {
       y += height_map[i] || average_height;
       i += 1;
@@ -210,6 +215,7 @@ while more items are loading
     average_height = y / end;
     while (i < items.length) height_map[i++] = average_height;
     bottom = remaining * average_height;
+
     // prevent jumping if we scrolled up into unknown territory
     if (start < old_start) {
       await tick();
@@ -249,7 +255,11 @@ while more items are loading
 
   function reset() {
     if (!mounted) return;
-    if (!items.length || items.length < items_count) {
+    if (
+      !items.length ||
+      (items.length < items_count &&
+        items_count - items.length > mutation_threshold)
+    ) {
       item_height = null;
       start = 0;
       end = 0;
