@@ -1,4 +1,4 @@
-import ButtonDecorator from "./Button.svelte";
+import ButtonDecorator from "./DeleteButton.svelte";
 
 let args = {
   class: "",

@@ -7,7 +7,7 @@ import * as Stories from "./Transitions.stories.js";
 
 <Version />
 
-<Meta of={Stories} />
+<Meta of={Stories} parameters={{ previewTabs: { 'canvas': { hidden: true }}}} />
 
 <Description markdown={dedent`
 # Transitions
@@ -16,7 +16,7 @@ import * as Stories from "./Transitions.stories.js";
 
 <Canvas of={Stories.Main} name="Preview" />
 
-<Controls name="Preview" />
+<Controls of={Stories.Main} />
 
 ### Usage
 ##### Import the component:

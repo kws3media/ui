@@ -14,23 +14,28 @@ let args = {
   class: "",
 };
 
+// const withLocale = ({ args }) => {
+//   return TransitionDecorator;
+// };
+
 export default {
   title: "Standalone/Transitions",
   name: "Transitions",
   parameters: {
     layout: "fullscreen",
+    docs: {},
+    canvas: { hidden: true },
   },
   component: Transition,
   decorators: [() => TransitionDecorator],
   args: args,
   argTypes: {
-    type: { control: "select", options: ["fly", "fade", "scale", "slide"] },
+    type: { control: "select" },
   },
 };
 
 export const Main = {
   name: "Preview",
   component: Transition,
-  decorators: [() => TransitionDecorator],
   args: args,
 };

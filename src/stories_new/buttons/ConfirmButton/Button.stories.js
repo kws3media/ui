@@ -1,4 +1,4 @@
-import ButtonDecorator from "./Button.svelte";
+import ButtonDecorator from "./ConfirmButton.svelte";
 
 let args = {
   class: "",
@@ -19,7 +19,7 @@ let args = {
 };
 
 export default {
-  title: "Buttons/Confirm Button",
+  title: "Buttons/ConfirmButton",
   component: ButtonDecorator,
   args: args,
   argTypes: {},
