@@ -26,6 +26,7 @@ export default {
 };
 
 export const Main = {
+  name: "Preview",
   args: args,
   argTypes: {},
 };

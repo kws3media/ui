@@ -16,6 +16,7 @@ let args = {
 
 export default {
   title: "Standalone/Transitions",
+  name: "Transitions",
   parameters: {
     layout: "fullscreen",
   },
@@ -30,5 +31,6 @@ export default {
 export const Main = {
   name: "Preview",
   component: Transition,
+  decorators: [() => TransitionDecorator],
   args: args,
 };
