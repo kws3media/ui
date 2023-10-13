@@ -18,6 +18,7 @@ export { default as TimelineHeader } from "./helpers/Timeline/TimelineHeader.sve
 export { default as Nl2br } from "./helpers/Nl2br.svelte";
 export { default as ClipboardCopier } from "./helpers/ClipboardCopier.svelte";
 export { default as ScrollableList } from "./helpers/ScrollableList.svelte";
+export { default as InfiniteList } from "./helpers/InfiniteList.svelte";
 export {
   alert,
   confirm,
