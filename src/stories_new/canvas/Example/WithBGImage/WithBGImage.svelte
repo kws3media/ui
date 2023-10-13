@@ -34,13 +34,9 @@
 
 <script>
   import { Canvas as KwsCanvas, Pen, Eraser} from "@kws3/ui";
-
   export let image;
-
-
   export let width = "350px",
     height='250px',
     background_image = "/images/canvas_bg.png";
-
     let tools = {Pen, Eraser};
 </script>
