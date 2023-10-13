@@ -5,9 +5,12 @@
   @param {array} [items=[]] - Array of items, Default: `[]`
   @param {object} [iteration_key=null] - Iteration key - by default it uses the index of the array inside the keyed each block, Default: `null`
   @param {string} [height="100%"] - Height of the wrapper, CSS String, Default: `"100%"`
-  @param {number} [end_offset=150] - `end` event will be fired when the scroll position reaches this many pixels from the end of the list., Default: `150`
+  @param {number} [end_offset=400] - `end` event will be fired when the scroll position reaches this many pixels from the end of the list., Default: `400`
   @param {string} [style=""] - Inline CSS for scroller container, Default: `""`
   @param {string} [class=""] - CSS classes for scroller container, Default: `""`
+
+  ### Events
+  - `end` - Fired when the scroll position reaches `end_offset` pixels from the end of the list.
 
   ### Slots
   - `<slot name="default" {item} {index} />` - Default slot for list view items
@@ -115,6 +118,9 @@ while more items are loading
     // fire on:end event if we scrolled past the end_offset
     if (offset <= end_offset) {
       if (!fired) {
+        /**
+         * Fired when the scroll position reaches `end_offset` pixels from the end of the list.
+         */
         fire("end");
       }
       fired = true;
