@@ -1,0 +1,51 @@
+import { Story, Meta, Source, Description, Canvas, Controls  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { Checkbox } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import { expect } from '@storybook/jest';
+import { within, userEvent, waitFor } from '@storybook/testing-library';
+import * as Stories from "./Checkbox.stories.js";
+
+<Version />
+
+<Description markdown={dedent`
+# Checkbox
+## Custom checkbox control
+`}/>
+
+<Meta of={Stories} />
+<Canvas of={Stories.Main} />
+<Controls />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Checkbox } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import '@kws3/ui/styles/CheckRadio.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+    $kws-theme-colors: $colors;
+    $kws-checkradio-default-check-color: $text;
+    $kws-checkradio-default-check-color-invert: findColorInvert($kws-checkradio-default-check-color);
+    $kws-checkradio-default-border-color: #dbdbdb;
+    $kws-checkradio-focus-box-shadow-size: $input-focus-box-shadow-size;
+    $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color;
+    `
+  }
+/>
