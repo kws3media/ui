@@ -1,0 +1,57 @@
+import {
+  Story,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+  Controls,
+} from "@storybook/blocks";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import * as Stories from "./TimePicker.stories";
+
+<Version />
+
+<Description
+  markdown={dedent`
+# Timepicker
+## Timepicker component that allows you to select time.
+`}
+/>
+
+<Meta of={Stories} />
+<Canvas of={Stories.Main} />
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  language="javascript"
+  code={dedent`import { Timepicker } from '@kws3/ui';`}
+/>
+
+#### Import the SCSS:
+
+<div class="notification is-warning">
+  <strong>Note:</strong> <em>Need to import flatpicker SCSS file first</em>
+</div>
+<Source
+  language="javascript"
+  code={dedent`
+    @import 'flatpickr/dist/flatpickr';
+    @import '@kws3/ui/styles/Timepicker.scss';`}
+/>
+
+#### SCSS customization variables with default values:
+
+<Source
+  language="css"
+  code={dedent`
+      $kws-theme-colors: $colors;
+      $kws-timepicker-background: $background;
+      $kws-timepicker-text: $text;
+    `}
+/>

@@ -1,4 +1,4 @@
-import Decorator from "./FileUpload.svelte";
+import FileUploadDecorator from "./FileUpload.svelte";
 import { FileUpload } from "@kws3/ui";
 
 let args = {
@@ -28,7 +28,7 @@ let argTypes = {
 export default {
   title: "Forms/Controls/FileUpload",
   component: FileUpload,
-  decorators: [() => Decorator],
+  decorators: [() => FileUploadDecorator],
   args: args,
   argTypes: argTypes,
 };

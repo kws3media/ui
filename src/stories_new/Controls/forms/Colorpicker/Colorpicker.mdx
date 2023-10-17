@@ -1,0 +1,54 @@
+import { Story, Controls, Meta, Source, Description, Canvas  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { action } from '@storybook/addon-actions';
+import * as Stories from "./Colorpicker.stories";
+
+<Version />
+
+<Description markdown={dedent`
+# Colorpicker
+## Colorpicker component that allows you to select a colour.
+`}/>
+
+<Meta of={Stories} />
+<Canvas of={Stories.Main} />
+<Controls />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Colorpicker } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import '@kws3/ui/styles/Colorpicker.scss';`
+  }
+/>
+
+<div class="notification is-info is-light">
+  This component supports HTML5 drag and drop.
+
+  Use `event.dataTransfer.setData('text', <new_color>)` on the draggable element.
+  Then once you drop the draggable element into this component, it picks up the data from the `text` value.
+
+  **Example:**
+  <Source
+    language="jsx"
+    code ={
+    dedent`<div
+      style="background:#bada55"
+      draggable="true"
+      on:dragstart={(e) => {
+        e.dataTransfer.setData("text", "bada55");
+      }}>
+      #bada55
+    </div>`
+  } />
+</div>
