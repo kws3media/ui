@@ -43,5 +43,5 @@ export const Main = {
   args: args,
   argTypes: argTypes,
   props: args,
-  //play: playInteractions,
+  play: playInteractions,
 };

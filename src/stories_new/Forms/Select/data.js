@@ -1,4 +1,4 @@
-import { sleep } from "../../../../utils.js";
+import { sleep } from "../../../utils";
 
 export let brands = [
   { id: 1, name: "Acer" },

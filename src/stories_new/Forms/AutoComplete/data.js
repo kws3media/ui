@@ -1,4 +1,4 @@
-import { sleep } from "../../../../utils.js";
+import { sleep } from "../../../utils";
 
 export let characters = [
   { label: "3-D Man", value: "3-D Man" },
