@@ -1,0 +1,42 @@
+import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./Dialog.stories";
+
+
+<Version />
+
+<Description markdown={dedent`
+# Dialog
+## Message components for showing alerts.
+`}/>
+
+<Meta of={Stories} />
+<Canvas of={Stories.Main} />
+<Controls />
+
+The signature of the helper functions are almost identical to their native counterparts.
+
+The main differences are:
+ 1. They return a `Promise`. The `Promise` fulfils with the same values as the native functions.
+ 2. They accept an extra argument with a configuration object
+
+Valid values for the configuration object are in the table above.
+
+
+### Usage
+<Source
+  language='javascript'
+  code={ dedent`
+  import { Dialog } from '@kws3/ui';
+  //---
+  //alert example
+  let alert_done = await Dialog.alert('This is an alert', {title: "someTitle"});
+  //---
+  //confirm example
+  let accepted = await Dialog.confirm("Agree with everything?", {ok_button_text: "Yes", cancel_button_text: "No"})
+  //---
+  //prompt example
+  let age = await Dialog.prompt("How old are you?");
+  `}
+/>
