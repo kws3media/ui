@@ -1,0 +1,17 @@
+import { Meta, Story } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./3TooltipExamplesInit.stories";
+
+<Version />
+
+<Meta of={Stories} />
+
+### Variations
+You can also initialise multiple variations of tooltips within the same app.
+Each variation either needs a common parent, or a different target selector.
+
+Each variation's initialisation options will determine how the tooltips look and behave.
+**Examples:**
+
+<Story of={Stories.Main} />
