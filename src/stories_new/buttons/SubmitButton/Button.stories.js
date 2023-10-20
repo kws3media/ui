@@ -21,9 +21,13 @@ export default {
   component: ButtonDecorator,
   args: args,
   argTypes: {},
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {
+  name: "Preview",
   args: args,
   argTypes: {},
 };

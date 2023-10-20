@@ -1,4 +1,4 @@
-<div class="columns">
+<div class="columns m-3">
   <div class="column">
     <form action="" on:submit|preventDefault={success}>
       <KwsButton

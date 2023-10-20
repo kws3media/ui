@@ -1,4 +1,4 @@
-<div class="columns">
+<div class="columns m-3">
   <div class="column">
     <KwsButton
       {text}
