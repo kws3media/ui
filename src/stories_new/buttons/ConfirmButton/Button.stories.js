@@ -1,5 +1,6 @@
 import { ConfirmButton } from "@kws3/ui";
 import ButtonDecorator from "./ConfirmButton.svelte";
+import playInteractions from "./Button.play.js";
 
 let args = {
   class: "",
@@ -38,13 +39,15 @@ export default {
   },
 };
 
-export const Main = {
+const Template = (args) => ({
   name: "Preview",
-  args: args,
-  argTypes: {},
+  Component: ButtonDecorator,
   props: args,
+  args: args,
+});
+
+export const Main = {
+  play: playInteractions,
+  templates: [() => Template],
   decorators: [() => ButtonDecorator],
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
 };
