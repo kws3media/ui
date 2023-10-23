@@ -19,6 +19,8 @@ export default {
     "@storybook/addon-actions",
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
+    "@storybook/addon-links",
+    "@storybook/preset-svelte",
   ],
   framework: {
     name: "@storybook/svelte-vite",
