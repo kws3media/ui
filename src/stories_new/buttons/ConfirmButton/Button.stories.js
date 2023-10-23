@@ -1,3 +1,4 @@
+import { ConfirmButton } from "@kws3/ui";
 import ButtonDecorator from "./ConfirmButton.svelte";
 
 let args = {
@@ -18,11 +19,20 @@ let args = {
   error_timeout: 3000,
 };
 
+let argTypes = {
+  color: {
+    control: "select",
+  },
+  size: {
+    control: "select",
+  },
+};
+
 export default {
   title: "Buttons/ConfirmButton",
-  component: ButtonDecorator,
+  component: ConfirmButton,
   args: args,
-  argTypes: {},
+  argTypes: argTypes,
   parameters: {
     layout: "fullscreen",
   },
@@ -32,4 +42,9 @@ export const Main = {
   name: "Preview",
   args: args,
   argTypes: {},
+  props: args,
+  decorators: [() => ButtonDecorator],
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+  },
 };

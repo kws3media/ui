@@ -1,3 +1,4 @@
+import { ProcessButton } from "@kws3/ui";
 import ButtonDecorator from "./ProcessButton.svelte";
 
 let args = {
@@ -17,11 +18,20 @@ let args = {
   error_timeout: 3000,
 };
 
+let argTypes = {
+  color: {
+    control: "select",
+  },
+  size: {
+    control: "select",
+  },
+};
+
 export default {
   title: "Buttons/Process Button",
-  component: ButtonDecorator,
+  component: ProcessButton,
   args: args,
-  argTypes: {},
+  argTypes: argTypes,
   parameters: {
     layout: "fullscreen",
   },
@@ -30,5 +40,6 @@ export default {
 export const Main = {
   name: "Preview",
   args: args,
-  argTypes: {},
+  argTypes: argTypes,
+  decorators: [() => ButtonDecorator],
 };
