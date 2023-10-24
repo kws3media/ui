@@ -1,6 +1,9 @@
 $kws-theme-colors: $colors !default;
 $kws-datepicker-background: $scheme-main-ter !default;
 $kws-datepicker-text: $text !default;
+$kws-datepicker-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+  0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
+$kws-datepicker-radius: 0px !default;
 
 .flatpickr-calendar {
   $inRangeBg: lighten($kws-datepicker-text, 55);
@@ -8,9 +11,20 @@ $kws-datepicker-text: $text !default;
     $inRangeBg: darken($kws-datepicker-text, 55);
   }
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+  box-shadow: $kws-datepicker-shadow;
   background: $kws-datepicker-background;
   color: $kws-datepicker-text;
+
+  border-radius: $kws-datepicker-radius;
+  .flatpickr-months {
+    border-radius: $kws-datepicker-radius $kws-datepicker-radius 0 0;
+    .flatpickr-month {
+      border-radius: $kws-datepicker-radius $kws-datepicker-radius 0 0;
+    }
+  }
+  .flatpickr-innerContainer {
+    border-radius: 0 0 $kws-datepicker-radius $kws-datepicker-radius;
+  }
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
@@ -94,6 +108,24 @@ $kws-datepicker-text: $text !default;
           color: $color-dark;
         }
       }
+
+      .flatpickr-day.inRange,
+      .flatpickr-day.prevMonthDay.inRange,
+      .flatpickr-day.nextMonthDay.inRange,
+      .flatpickr-day.today.inRange,
+      .flatpickr-day.prevMonthDay.today.inRange,
+      .flatpickr-day.nextMonthDay.today.inRange {
+        color: $color-dark;
+        background: $color-light;
+        border-color: $color-light;
+        box-shadow: -5px 0 0 $color-light, 5px 0 0 $color-light;
+      }
+      .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
+      .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
+      .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
+        box-shadow: -10px 0 0 $color;
+      }
+
       .flatpickr-innerContainer {
         border-bottom: 1px solid $color;
       }
