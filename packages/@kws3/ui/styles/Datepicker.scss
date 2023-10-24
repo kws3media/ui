@@ -3,6 +3,7 @@ $kws-datepicker-background: $scheme-main-ter !default;
 $kws-datepicker-text: $text !default;
 $kws-datepicker-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
   0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
+$kws-datepicker-radius: 0px !default;
 
 .flatpickr-calendar {
   $inRangeBg: lighten($kws-datepicker-text, 55);
@@ -13,6 +14,17 @@ $kws-datepicker-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
   box-shadow: $kws-datepicker-shadow;
   background: $kws-datepicker-background;
   color: $kws-datepicker-text;
+
+  border-radius: $kws-datepicker-radius;
+  .flatpickr-months {
+    border-radius: $kws-datepicker-radius $kws-datepicker-radius 0 0;
+    .flatpickr-month {
+      border-radius: $kws-datepicker-radius $kws-datepicker-radius 0 0;
+    }
+  }
+  .flatpickr-innerContainer {
+    border-radius: 0 0 $kws-datepicker-radius $kws-datepicker-radius;
+  }
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
