@@ -1,6 +1,8 @@
 $kws-theme-colors: $colors !default;
 $kws-datepicker-background: $scheme-main-ter !default;
 $kws-datepicker-text: $text !default;
+$kws-datepicker-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+  0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
 
 .flatpickr-calendar {
   $inRangeBg: lighten($kws-datepicker-text, 55);
@@ -8,7 +10,7 @@ $kws-datepicker-text: $text !default;
     $inRangeBg: darken($kws-datepicker-text, 55);
   }
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+  box-shadow: $kws-datepicker-shadow;
   background: $kws-datepicker-background;
   color: $kws-datepicker-text;
 
