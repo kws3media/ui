@@ -37,3 +37,4 @@ export const Main = (args) => ({
 Main.args = {
   ...args,
 };
+Main.tags = ["isHidden"];

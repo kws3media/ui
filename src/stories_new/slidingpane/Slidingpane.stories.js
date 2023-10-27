@@ -23,6 +23,7 @@ export default {
 
 export const Main = {
   name: "Preview",
+  tags: ["isHidden"],
   component: SlidingPane,
   args: args,
   argTypes: {},
