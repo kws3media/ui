@@ -1,12 +1,12 @@
 import Decorator from "./DataSort.svelte";
-import { DataSort } from '@kws3/ui';
+import { DataSort } from "@kws3/ui";
 
 let args = {
-  options : [
-    {"name": "ID Newest First", "value": "id DESC"},
-    {"name": "ID Oldest First", "value": "id ASC"}
+  options: [
+    { name: "ID Newest First", value: "id DESC" },
+    { name: "ID Oldest First", value: "id ASC" },
   ],
-  sort_by : ""
+  sort_by: "",
 };
 
 export default {
@@ -17,6 +17,7 @@ export default {
 };
 
 export const Main = {
+  tags: ["isHidden"],
   args: args,
   component: Decorator,
   argTypes: {},

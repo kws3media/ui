@@ -1,25 +1,25 @@
 import Decorator from "./DataSearch.svelte";
-import { DataSearch } from '@kws3/ui';
+import { DataSearch } from "@kws3/ui";
 
-let args={
-  hasSearch : true,
-  hasFilters : false,
-  placeholder : "Search",
-  filters : {
-      "role": [
-          {"name": "Administrator","id": "A"},
-          {"name": "User","id": "U"}
-      ],
-      "status": [
-          {"name": "Active", "id": 1},
-          {"name": "Disabled","id": 0}
-      ]
+let args = {
+  hasSearch: true,
+  hasFilters: false,
+  placeholder: "Search",
+  filters: {
+    role: [
+      { name: "Administrator", id: "A" },
+      { name: "User", id: "U" },
+    ],
+    status: [
+      { name: "Active", id: 1 },
+      { name: "Disabled", id: 0 },
+    ],
   },
-  q : "",
-  filter_in_use_class : "is-in-use",
-  filter_not_in_use_class : "is-not-in-use",
-  filterComponent : null,
-  filter_label_map : {}
+  q: "",
+  filter_in_use_class: "is-in-use",
+  filter_not_in_use_class: "is-not-in-use",
+  filterComponent: null,
+  filter_label_map: {},
 };
 
 export default {
@@ -30,6 +30,7 @@ export default {
 };
 
 export const Main = {
+  tags: ["isHidden"],
   component: Decorator,
   args: args,
   argTypes: {},

@@ -31,6 +31,7 @@ export default {
 };
 
 export const Main = {
+  tags: ["isHidden"],
   component: Decorator,
   args: args,
   argTypes: {},
