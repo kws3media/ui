@@ -47,6 +47,7 @@ const Template = (args) => ({
 });
 
 export const Main = {
+  tags: ["isHidden"],
   play: playInteractions,
   templates: [() => Template],
   decorators: [() => ButtonDecorator],
