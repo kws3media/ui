@@ -6,7 +6,7 @@ let args = {
   background_image: "",
   readonly: false,
   disabled: false,
-  control_position: "center"
+  control_position: "center",
 };
 
 export default {
@@ -17,6 +17,8 @@ export default {
 };
 
 export const Main = {
+  name: "Preview",
+  tags: ["isHidden"],
   args: args,
   argTypes: {},
 };

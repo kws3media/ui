@@ -14,9 +14,9 @@ let args = {
   image: "",
   initial_scale: 1,
   expand_to: "center",
-  expand_from :"center",
+  expand_from: "center",
   expand_scale: 50,
-  tools: {Pen, Eraser},
+  tools: { Pen, Eraser },
   actions: ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
   toolbar_placement: "bottom",
   control_position: "center",
@@ -32,6 +32,8 @@ export default {
 };
 
 export const Main = {
+  name: "Preview",
+  tags: ["isHidden"],
   args: args,
   argTypes: {},
 };
