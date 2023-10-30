@@ -26,6 +26,9 @@ export default {
   args: args,
   argTypes: {},
   props: args,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {
