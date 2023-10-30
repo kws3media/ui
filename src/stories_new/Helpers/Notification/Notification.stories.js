@@ -22,6 +22,9 @@ export default {
   decorators: [() => NotificationDecorator],
   args: args,
   argTypes: argTypes,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {

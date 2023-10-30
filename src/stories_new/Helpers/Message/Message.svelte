@@ -1,19 +1,21 @@
-<KwsMessage
-  {size}
-  {color}
-  class={klass}
-  {style}
-  {inner_class}
-  {inner_style}
-  {title_class}
-  {title}
-  {has_title}
-  {dismissable}
-  {active}
-  on:dismiss>
-  <h1>This is a Heading</h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-</KwsMessage>
+<div class="p-5">
+  <KwsMessage
+    {size}
+    {color}
+    class={klass}
+    {style}
+    {inner_class}
+    {inner_style}
+    {title_class}
+    {title}
+    {has_title}
+    {dismissable}
+    {active}
+    on:dismiss>
+    <h1>This is a Heading</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  </KwsMessage>
+</div>
 
 <script>
   import { Message as KwsMessage } from "@kws3/ui";

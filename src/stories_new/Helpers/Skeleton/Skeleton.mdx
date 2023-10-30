@@ -1,4 +1,4 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Story, Meta, Controls, Source, Description, Canvas, Primary  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Skeleton.stories";
@@ -11,7 +11,7 @@ import * as Stories from "./Skeleton.stories";
 `}/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Primary of={Stories.Main} />
 <Controls />
 
 

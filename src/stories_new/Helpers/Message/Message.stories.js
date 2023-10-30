@@ -30,6 +30,9 @@ export default {
   decorators: [() => MessageDecorator],
   args: args,
   argTypes: argTypes,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {

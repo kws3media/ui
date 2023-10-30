@@ -11,6 +11,9 @@ export default {
   component: Nl2br,
   args: args,
   argTypes: argTypes,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export const Main = {

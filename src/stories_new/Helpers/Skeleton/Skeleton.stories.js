@@ -17,6 +17,9 @@ export default {
   component: Skeleton,
   args: args,
   argTypes: argTypes,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {
