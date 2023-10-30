@@ -1,23 +1,18 @@
 import { Timepicker } from "@kws3/ui";
 
 let args = {
-  class: {},
-  style: {},
-  label_style: {},
-  color: {
-    control: { type: "select" },
-  },
-  size: {
-    control: { type: "select" },
-  },
-  inverted: {},
-  circle: {},
-  checked: {},
-  disabled: {},
-  icon: {},
-  icon_family: {
-    control: { type: "select" },
-  },
+  value: "",
+  style: "",
+  class: "",
+  placeholder: "Select Time..",
+  disabled: false,
+  time_24hr: false,
+  min_time: "",
+  max_time: "",
+  options: {},
+  ui_color: "primary",
+  color: "",
+  readonly: false,
 };
 
 let argTypes = {
@@ -35,6 +30,9 @@ export default {
   component: Timepicker,
   args: args,
   argTypes: argTypes,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export const Main = {
