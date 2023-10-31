@@ -1,15 +1,12 @@
 import { addons } from "@storybook/addons";
 import { create } from "@storybook/theming/create";
+import kwsTheme from "./kwsTheme";
 
 addons.setConfig({
   // isFullscreen: true,
   // showNav: false,
   // showPanel: true,
-  theme: create({
-    base: "light",
-    brandTitle: "UI | v3 | KWS3 Media",
-    brandImage: "https://kws3.media/assets/images/logo.png",
-  }),
+  theme: kwsTheme,
   // panelPosition: 'right',
   // sidebarAnimations: true,
   // enableShortcuts: true,
