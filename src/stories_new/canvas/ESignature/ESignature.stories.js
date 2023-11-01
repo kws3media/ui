@@ -1,4 +1,5 @@
 import Decorator from "./ESignature.svelte";
+import { ESignature } from "@kws3/ui";
 
 let args = {
   width: "520px",
@@ -11,7 +12,7 @@ let args = {
 
 export default {
   title: "Canvas/ESignature",
-  component: Decorator,
+  component: ESignature,
   args: args,
   argTypes: {},
 };
@@ -21,4 +22,5 @@ export const Main = {
   tags: ["isHidden"],
   args: args,
   argTypes: {},
+  decorators: [(_, { args }) => ({ Component: Decorator, props: args })],
 };

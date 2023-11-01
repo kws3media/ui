@@ -1,5 +1,5 @@
 import Decorator from "./Canvas.svelte";
-import { Pen, Eraser } from "@kws3/ui";
+import { Canvas, Pen, Eraser } from "@kws3/ui";
 
 let args = {
   width: "400px",
@@ -26,7 +26,7 @@ let args = {
 
 export default {
   title: "Canvas/Canvas",
-  component: Decorator,
+  component: Canvas,
   args: args,
   argTypes: {},
 };
@@ -36,4 +36,5 @@ export const Main = {
   tags: ["isHidden"],
   args: args,
   argTypes: {},
+  decorators: [(_, { args }) => ({ Component: Decorator, props: args })],
 };
