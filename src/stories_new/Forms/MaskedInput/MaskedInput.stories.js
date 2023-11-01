@@ -25,8 +25,6 @@ export default {
 export const Main = {
   name: "Preview",
   tags: ["isHidden"],
-  args: args,
-  argTypes: argTypes,
   props: args,
   decorators: [
     (_, { args }) => ({ Component: MaskedInputDecorator, props: args }),

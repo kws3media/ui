@@ -40,7 +40,7 @@ let argTypes = {
 export default {
   title: "Helpers/Dialog",
   component: Dialog,
-  decorators: [() => DialogDecorator],
+  decorators: [(_, { args }) => ({ Component: DialogDecorator, props: args })],
   args: args,
   argTypes: argTypes,
 };

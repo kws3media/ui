@@ -16,7 +16,9 @@ let argTypes = {};
 export default {
   title: "Helpers/ActionSheet",
   component: ActionSheet,
-  decorators: [() => ActionSheetDecorator],
+  decorators: [
+    (_, { args }) => ({ Component: ActionSheetDecorator, props: args }),
+  ],
   args: args,
   argTypes: argTypes,
   parameters: {

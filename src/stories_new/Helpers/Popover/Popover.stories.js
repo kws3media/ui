@@ -27,7 +27,7 @@ let argTypes = {
 export default {
   title: "Helpers/Popover/1. Popover Component",
   component: Popover,
-  decorators: [() => PopoverDecorator],
+  decorators: [(_, { args }) => ({ Component: PopoverDecorator, props: args })],
   args: args,
   argTypes: argTypes,
 };

@@ -18,7 +18,9 @@ let argTypes = {};
 export default {
   title: "Helpers/ScrollableList",
   component: ScrollableList,
-  decorators: [() => ScrollableListDecorator],
+  decorators: [
+    (_, { args }) => ({ Component: ScrollableListDecorator, props: args }),
+  ],
   args: args,
   argTypes: argTypes,
 };

@@ -15,7 +15,7 @@ let argTypes = {
 export default {
   title: "Helpers/Timeline/Timeline Full Example",
   component: Timeline,
-  decorators: [() => FullDecorator],
+  decorators: [(_, { args }) => ({ Component: FullDecorator, props: args })],
   args: args,
   argTypes: argTypes,
 };

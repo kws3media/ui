@@ -27,7 +27,7 @@ let argTypes = {
 export default {
   title: "Helpers/Message",
   component: Message,
-  decorators: [() => MessageDecorator],
+  decorators: [(_, { args }) => ({ Component: MessageDecorator, props: args })],
   args: args,
   argTypes: argTypes,
   parameters: {

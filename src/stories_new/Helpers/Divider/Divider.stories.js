@@ -22,7 +22,7 @@ let argTypes = {
 export default {
   title: "Helpers/Divider",
   component: Divider,
-  decorators: [() => DividerDecorator],
+  decorators: [(_, { args }) => ({ Component: DividerDecorator, props: args })],
   args: args,
   argTypes: argTypes,
   parameters: {

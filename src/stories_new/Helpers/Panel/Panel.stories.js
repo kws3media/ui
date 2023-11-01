@@ -23,7 +23,7 @@ let argTypes = {};
 export default {
   title: "Helpers/Panel",
   component: Panel,
-  decorators: [() => PanelDecorator],
+  decorators: [(_, { args }) => ({ Component: PanelDecorator, props: args })],
   args: args,
   argTypes: argTypes,
   parameters: {

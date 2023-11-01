@@ -14,7 +14,7 @@ let argTypes = {
 export default {
   title: "Helpers/Timeline/TimelineHeader",
   component: TimelineHeader,
-  decorators: [() => HeaderDecorator],
+  decorators: [(_, { args }) => ({ Component: HeaderDecorator, props: args })],
   args: args,
   argTypes: argTypes,
 };

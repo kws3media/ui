@@ -19,7 +19,9 @@ let argTypes = {
 export default {
   title: "Helpers/Notification",
   component: Notification,
-  decorators: [() => NotificationDecorator],
+  decorators: [
+    (_, { args }) => ({ Component: NotificationDecorator, props: args }),
+  ],
   args: args,
   argTypes: argTypes,
   parameters: {

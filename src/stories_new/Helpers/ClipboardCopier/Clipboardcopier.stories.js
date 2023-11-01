@@ -21,7 +21,9 @@ let argTypes = {
 export default {
   title: "Helpers/ClipboardCopier",
   component: ClipboardCopier,
-  decorators: [() => ClipboardCopierDecorator],
+  decorators: [
+    (_, { args }) => ({ Component: ClipboardCopierDecorator, props: args }),
+  ],
   args: args,
   argTypes: argTypes,
 };

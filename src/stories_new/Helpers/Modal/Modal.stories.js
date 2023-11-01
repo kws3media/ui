@@ -25,7 +25,7 @@ let argTypes = {
 export default {
   title: "Helpers/Modal/Modal",
   component: Modal,
-  decorators: [() => ModalDecorator],
+  decorators: [(_, { args }) => ({ Component: ModalDecorator, props: args })],
   args: args,
   argTypes: argTypes,
 };

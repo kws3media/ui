@@ -20,7 +20,9 @@ let argTypes = {};
 export default {
   title: "Helpers/Modal/CardModal",
   component: CardModal,
-  decorators: [() => CardModalDecorator],
+  decorators: [
+    (_, { args }) => ({ Component: CardModalDecorator, props: args }),
+  ],
   args: args,
   argTypes: argTypes,
 };

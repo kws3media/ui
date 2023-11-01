@@ -27,7 +27,7 @@ let argTypes = {
 export default {
   title: "Helpers/Icon",
   component: Icon,
-  decorators: [() => IconDecorator],
+  decorators: [(_, { args }) => ({ Component: IconDecorator, props: args })],
   args: args,
   argTypes: argTypes,
 };
