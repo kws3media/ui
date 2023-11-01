@@ -19,6 +19,6 @@ export default {
 export const Main = {
   tags: ["isHidden"],
   args: args,
-  component: Decorator,
   argTypes: {},
+  decorators: [(_, { args }) => ({ Component: Decorator, props: args })],
 };

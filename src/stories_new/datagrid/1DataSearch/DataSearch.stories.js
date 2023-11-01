@@ -27,11 +27,14 @@ export default {
   component: DataSearch,
   args: args,
   argTypes: {},
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export const Main = {
   tags: ["isHidden"],
-  component: Decorator,
   args: args,
   argTypes: {},
+  decorators: [(_, { args }) => ({ Component: Decorator, props: args })],
 };
