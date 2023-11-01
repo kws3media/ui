@@ -13,7 +13,7 @@ let args = {
 export default {
   title: "Standalone/SlidingPane/SlidingPane",
   component: SlidingPane,
-  decorators: [() => Decorator, () => SlidingPane],
+  decorators: [(_, { args }) => ({ Component: Decorator, props: args })],
   args: args,
   argTypes: {},
   parameters: {
@@ -24,7 +24,6 @@ export default {
 export const Main = {
   name: "Preview",
   tags: ["isHidden"],
-  component: SlidingPane,
   args: args,
   argTypes: {},
 };

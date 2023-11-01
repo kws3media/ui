@@ -1,4 +1,4 @@
-//import { Transition } from "@kws3/ui";
+import { Transition } from "@kws3/ui";
 import TransitionDecorator from "./Transitions.svelte";
 //import { withActions } from "@storybook/addon-actions/decorator";
 
@@ -21,8 +21,10 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  component: TransitionDecorator,
-  //decorators: [withActions],
+  component: Transition,
+  decorators: [
+    (_, { args }) => ({ Component: TransitionDecorator, props: args }),
+  ],
   args: args,
   argTypes: {
     type: { control: "select" },
@@ -30,7 +32,6 @@ export default {
 };
 
 export const Main = (args) => ({
-  Component: TransitionDecorator,
   props: args,
 });
 
