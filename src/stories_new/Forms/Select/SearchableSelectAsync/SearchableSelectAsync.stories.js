@@ -27,7 +27,6 @@ let argTypes = {
 export default {
   title: "Forms/Select/SearchableSelect (Async)",
   component: SearchableSelect,
-  decorators: [() => SearchableSelectDecorator],
   args: args,
   argTypes: argTypes,
   play: playInteractions,
@@ -40,4 +39,7 @@ export const Main = {
   argTypes: argTypes,
   props: args,
   play: playInteractions,
+  decorators: [
+    (_, { args }) => ({ Component: SearchableSelectDecorator, props: args }),
+  ],
 };

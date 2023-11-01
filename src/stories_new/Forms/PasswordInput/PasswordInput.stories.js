@@ -16,7 +16,6 @@ let argTypes = {};
 export default {
   title: "Forms/PasswordInput",
   component: PasswordInput,
-  decorators: [() => PasswordInputDecorator],
   args: args,
   argTypes: argTypes,
 };
@@ -27,4 +26,7 @@ export const Main = {
   args: args,
   argTypes: argTypes,
   props: args,
+  decorators: [
+    (_, { args }) => ({ Component: PasswordInputDecorator, props: args }),
+  ],
 };

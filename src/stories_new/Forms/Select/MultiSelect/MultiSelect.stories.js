@@ -39,7 +39,6 @@ let argTypes = {
 export default {
   title: "Forms/Select/MultiSelect",
   component: MultiSelect,
-  decorators: [() => MultiSelectDecorator],
   args: args,
   argTypes: argTypes,
   play: playInteractions,
@@ -52,4 +51,7 @@ export const Main = {
   argTypes: argTypes,
   props: args,
   play: playInteractions,
+  decorators: [
+    (_, { args }) => ({ Component: MultiSelectDecorator, props: args }),
+  ],
 };

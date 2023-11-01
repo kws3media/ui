@@ -19,7 +19,6 @@ let argTypes = {};
 export default {
   title: "Forms/PasswordValidator",
   component: PasswordValidator,
-  decorators: [() => PasswordValidatorDecorator],
   args: args,
   argTypes: argTypes,
 };
@@ -30,4 +29,7 @@ export const Main = {
   args: args,
   argTypes: argTypes,
   props: args,
+  decorators: [
+    (_, { args }) => ({ Component: PasswordValidatorDecorator, props: args }),
+  ],
 };

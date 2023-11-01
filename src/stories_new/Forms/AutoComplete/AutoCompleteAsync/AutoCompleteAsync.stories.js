@@ -32,7 +32,6 @@ let argTypes = {
 export default {
   title: "Forms/AutoComplete/AutoComplete (Async)",
   component: AutoComplete,
-  decorators: [() => AutoCompleteDecorator],
   args: args,
   argTypes: argTypes,
 };
@@ -44,4 +43,7 @@ export const Main = {
   argTypes: argTypes,
   props: args,
   play: playInteractions,
+  decorators: [
+    (_, { args }) => ({ Component: AutoCompleteDecorator, props: args }),
+  ],
 };

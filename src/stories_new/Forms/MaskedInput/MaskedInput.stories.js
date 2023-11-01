@@ -18,7 +18,6 @@ let argTypes = {};
 export default {
   title: "Forms/MaskedInput",
   component: MaskedInput,
-  decorators: [() => MaskedInputDecorator],
   args: args,
   argTypes: argTypes,
 };
@@ -29,4 +28,7 @@ export const Main = {
   args: args,
   argTypes: argTypes,
   props: args,
+  decorators: [
+    (_, { args }) => ({ Component: MaskedInputDecorator, props: args }),
+  ],
 };

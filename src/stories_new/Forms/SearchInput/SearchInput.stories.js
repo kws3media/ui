@@ -33,7 +33,6 @@ let argTypes = {
 export default {
   title: "Forms/SearchInput",
   component: SearchInput,
-  decorators: [() => SearchInputDecorator],
   args: args,
   argTypes: argTypes,
   play: playInteractions,
@@ -46,4 +45,7 @@ export const Main = {
   argTypes: argTypes,
   props: args,
   play: playInteractions,
+  decorators: [
+    (_, { args }) => ({ Component: SearchInputDecorator, props: args }),
+  ],
 };
