@@ -12,7 +12,6 @@ let argTypes = {};
 export default {
   title: "Forms/Controls/ToggleControl",
   component: ToggleControl,
-  decorators: [() => ToggleControlDecorator],
   args: args,
   argTypes: argTypes,
 };
@@ -23,4 +22,7 @@ export const Main = {
   args: args,
   argTypes: argTypes,
   props: args,
+  decorators: [
+    (_, { args }) => ({ Component: ToggleControlDecorator, props: args }),
+  ],
 };

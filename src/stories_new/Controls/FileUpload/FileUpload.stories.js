@@ -28,15 +28,15 @@ let argTypes = {
 export default {
   title: "Forms/Controls/FileUpload",
   component: FileUpload,
-  decorators: [() => FileUploadDecorator],
   args: args,
   argTypes: argTypes,
+  props: args,
 };
 
 export const Main = {
   name: "Preview",
   tags: ["isHidden"],
-  args: args,
-  argTypes: argTypes,
-  props: args,
+  decorators: [
+    (_, { args }) => ({ Component: FileUploadDecorator, props: args }),
+  ],
 };
