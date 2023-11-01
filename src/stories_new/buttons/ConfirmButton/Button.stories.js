@@ -36,19 +36,27 @@ export default {
   argTypes: argTypes,
   parameters: {
     layout: "fullscreen",
+    // docs: {
+    //   source: {
+    //     type: "dynamic",
+    //     excludeDecorators: true,
+    //   },
+    // },
   },
+  template: "<ConfirmButton />",
 };
 
-const Template = (args) => ({
-  name: "Preview",
-  Component: ButtonDecorator,
-  props: args,
-  args: args,
-});
-
 export const Main = {
+  name: "Preview",
   tags: ["isHidden"],
   play: playInteractions,
-  templates: [() => Template],
-  decorators: [() => ButtonDecorator],
+  props: args,
+  decorators: [(_, { args }) => ({ Component: ButtonDecorator, props: args })],
+  // decorators: [
+  //   () => ({
+  //     Component: ButtonDecorator,
+  //     props: args,
+  //   }),
+  // ],
+  //template: [() => ButtonDecorator],
 };

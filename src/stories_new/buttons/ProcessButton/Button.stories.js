@@ -42,5 +42,5 @@ export const Main = {
   tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
-  decorators: [() => ButtonDecorator],
+  decorators: [(_, { args }) => ({ Component: ButtonDecorator, props: args })],
 };

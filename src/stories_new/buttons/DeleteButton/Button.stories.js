@@ -41,6 +41,6 @@ export const Main = {
   name: "Preview",
   tags: ["isHidden"],
   args: args,
-  decorators: [() => ButtonDecorator],
+  decorators: [(_, { args }) => ({ Component: ButtonDecorator, props: args })],
   argTypes: argTypes,
 };
