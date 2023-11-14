@@ -4,7 +4,7 @@ import playInteractions from "./multiselect.play.js";
 import {
   Colors,
   Sizes,
-} from "../../../../scripts/type_injector/frameworkTypes";
+} from "../../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   value: [],
