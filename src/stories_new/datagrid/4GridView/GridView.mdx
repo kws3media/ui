@@ -1,18 +1,14 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
-import { GridView } from '@kws3/ui';
-import { action } from '@storybook/addon-actions';
 import * as Stories from "./GridView.stories.js";
 
 <Version />
 
 <Meta of={Stories} />
 
-<Description markdown={dedent`
 # GridView
 ## GridView component in datagrid.
-`}/>
 
 <Canvas of={Stories.Main} />
 

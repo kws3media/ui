@@ -20,7 +20,6 @@ export default {
   },
   addons: [
     "@storybook/addon-essentials",
-    "@storybook/addon-svelte-csf",
     "@storybook/addon-actions",
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",

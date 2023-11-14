@@ -1,4 +1,4 @@
-import { Story, Meta, Source, Description, Canvas, Controls  } from "@storybook/blocks";
+import { Meta, Source, Canvas, Controls  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import { TileView } from '@kws3/ui';
@@ -9,10 +9,8 @@ import * as Stories from "./TileView.stories.js";
 
 <Meta of={Stories} />
 
-<Description markdown={dedent`
 # TileView
 ## TileView component in datagrid.
-`}/>
 
 <Canvas of={Stories.Main} />
 
