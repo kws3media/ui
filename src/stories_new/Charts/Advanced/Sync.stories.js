@@ -1,4 +1,4 @@
-import Sync from "./Drill.svelte";
+import Sync from "./Sync.svelte";
 
 let args = {};
 let argTypes = {};

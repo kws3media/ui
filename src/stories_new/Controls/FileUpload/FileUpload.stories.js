@@ -1,5 +1,9 @@
 import FileUploadDecorator from "./FileUpload.svelte";
 import { FileUpload } from "@kws3/ui";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   info: "",
@@ -16,12 +20,15 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
   size: {
     control: "select",
+    options: Sizes,
   },
   info_color: {
     control: "select",
+    options: Colors,
   },
 };
 

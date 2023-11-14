@@ -8,6 +8,7 @@ let args = {
 let argTypes = {
   align: {
     control: "select",
+    options: ["left", "center", "right"],
   },
 };
 

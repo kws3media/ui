@@ -1,14 +1,12 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Portal.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Portal
 ## Component for rendering outside the DOM of parent component
-`}/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />

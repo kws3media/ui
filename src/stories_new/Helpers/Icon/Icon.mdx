@@ -1,9 +1,7 @@
 import {
-  Story,
   Meta,
   Controls,
   Source,
-  Description,
   Canvas,
 } from "@storybook/blocks";
 import dedent from "ts-dedent";
@@ -12,16 +10,11 @@ import * as Stories from "./Icon.stories";
 
 <Version />
 
-
-<Description
-  markdown={dedent`
 # Icon
 ## An Icon component to display supported icons.
-`}
-/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
 ### fontawesome.io

@@ -1,8 +1,6 @@
-import { Story, Meta, Controls, Source, Canvas, Title  } from "@storybook/blocks";
+import { Meta, Controls, Source, Canvas, Title  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
-import { Transition } from "@kws3/ui";
-import { action } from '@storybook/addon-actions';
 import * as TransitionStories from "./Transitions.stories";
 
 <Version />
@@ -13,8 +11,8 @@ import * as TransitionStories from "./Transitions.stories";
 
 ## A set of components to declaratively use Svelte transitions
 
-<Canvas name="Preview" />
-<Controls name="Preview" />
+<Canvas />
+<Controls />
 
 ### Usage
 ##### Import the component:
@@ -24,8 +22,8 @@ import * as TransitionStories from "./Transitions.stories";
 />
 
 ### Examples
-<div class="columns">
-  <div class="column">
+<div className="columns">
+  <div className="column">
     Fly
     <Source
       language='jsx'
@@ -38,7 +36,7 @@ import * as TransitionStories from "./Transitions.stories";
         />`}
     />
   </div>
-  <div class="column">
+  <div className="column">
     Fade
     <Source
       language='jsx'
@@ -50,7 +48,7 @@ import * as TransitionStories from "./Transitions.stories";
       `}
     />
   </div>
-  <div class="column">
+  <div className="column">
     Slide
     <Source
       language='jsx'
@@ -62,7 +60,7 @@ import * as TransitionStories from "./Transitions.stories";
       `}
     />
   </div>
-  <div class="column">
+  <div className="column">
     Scale
     <Source
       language='jsx'

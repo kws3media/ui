@@ -1,4 +1,8 @@
 import { RangeSlider } from "@kws3/ui";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   min: 0,
@@ -18,9 +22,11 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    optons: Colors,
   },
   size: {
     control: "select",
+    options: Sizes,
   },
 };
 

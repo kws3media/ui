@@ -1,4 +1,5 @@
 import { Colorpicker } from "@kws3/ui";
+import { Sizes } from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   color: "000000",
@@ -11,6 +12,7 @@ let args = {
 let argTypes = {
   size: {
     control: "select",
+    options: Sizes,
   },
 };
 

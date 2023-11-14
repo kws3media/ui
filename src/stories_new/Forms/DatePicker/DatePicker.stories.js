@@ -1,4 +1,5 @@
 import { Datepicker } from "@kws3/ui";
+import { Colors } from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   value: "",
@@ -20,9 +21,11 @@ let args = {
 let argTypes = {
   calendar_color: {
     control: { type: "select" },
+    options: Colors,
   },
   color: {
     control: { type: "select" },
+    options: Colors,
   },
   range_mode: {},
 };

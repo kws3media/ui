@@ -1,22 +1,20 @@
-import { Story, Controls, Meta, Source, Description, Canvas  } from "@storybook/blocks";
+import { Controls, Meta, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./MultiSelect.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # MultiSelect
 ## A select component that allows you to search and select multiple items by typing into it.
-`}/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
-<div class="notification is-primary is-light">
-  <div class="columns">
-    <div class="column">
+<div className="notification is-primary is-light">
+  <div className="columns">
+    <div className="column">
       <h3>Input format <code>options</code></h3>
       <p>Can send either an array of strings, or an array of objects.</p>
       <p>Always ensure the shape of the array items are consistent.</p>
@@ -27,7 +25,7 @@ import * as Stories from "./MultiSelect.stories";
       <h3>Output format <code>value</code></h3>
       <p>The output in <code>value</code> will always be an array, even if a single item is selected.</p>
     </div>
-    <div class="column">
+    <div className="column">
     <h3>Customising dropdown text items</h3>
     <p>See documentation for default slot.</p>
     <h4>Example:</h4>

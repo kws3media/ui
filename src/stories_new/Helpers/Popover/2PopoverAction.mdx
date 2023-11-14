@@ -1,4 +1,4 @@
-import { Story, Meta  } from "@storybook/blocks";
+import { Meta  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 
@@ -11,8 +11,8 @@ import Version from '~/version.mdx';
 ### Usage via Svelte actions
 Popovers can also initialised using Svelte actions, instead of using the component.  
 
-<div class="columns">
-  <div class="column">
+<div className="columns">
+  <div className="column">
 
 The action accepts an object of parameters.  
 The most important of which is `content`.  
@@ -23,7 +23,7 @@ When a string is provided, the string will be displayed as the popover content.
 For a list of other supported parameters, see: https://atomiks.github.io/tippyjs/v6/all-props/
 
   </div>
-  <div class="column">
+  <div className="column">
 
 ```html
 <div use:popover={{content: popoverContent}}>
@@ -47,8 +47,8 @@ For a list of other supported parameters, see: https://atomiks.github.io/tippyjs
 Parameters can be sent during action initialisation, or as `data-tippy-*` attributes.  
 The following examples are functionally identical:
 
-<div class="columns">
-  <div class="column">
+<div className="columns">
+  <div className="column">
 
 ```html
 <div 
@@ -63,7 +63,7 @@ The following examples are functionally identical:
 ```
 
   </div>
-  <div class="column">
+  <div className="column">
 
 ```html
 <div 

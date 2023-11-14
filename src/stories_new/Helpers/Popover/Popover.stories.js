@@ -1,5 +1,10 @@
 import { Popover } from "@kws3/ui";
 import PopoverDecorator from "./Popover.svelte";
+import {
+  Colors,
+  Sizes,
+  TippyPositions,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   icon: "info-circle",
@@ -18,9 +23,15 @@ let argTypes = {
   icon: {},
   icon_color: {
     control: { type: "select" },
+    options: Colors,
   },
   icon_size: {
     control: { type: "select" },
+    options: Sizes,
+  },
+  placement: {
+    control: { type: "select" },
+    options: TippyPositions,
   },
 };
 

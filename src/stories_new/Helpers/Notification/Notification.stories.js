@@ -1,5 +1,6 @@
 import { Notification } from "@kws3/ui";
 import NotificationDecorator from "./Notification.svelte";
+import { Colors } from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   color: "info",
@@ -13,6 +14,7 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
 };
 

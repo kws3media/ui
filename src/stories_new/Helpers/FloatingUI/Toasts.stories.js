@@ -1,4 +1,8 @@
 import Toasts from "./Toasts.svelte";
+import {
+  Colors,
+  FloatiePositions,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   message: "I am a toast, butter me!...",
@@ -12,9 +16,11 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
   position: {
     control: "select",
+    options: FloatiePositions,
   },
 };
 

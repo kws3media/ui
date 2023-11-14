@@ -1,17 +1,15 @@
-import { Story, Meta, Source, Description, Canvas, Controls  } from "@storybook/blocks";
+import { Meta, Source, Canvas, Controls  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./FileUpload.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # FileUpload
 ## Custom file upload control
-`}/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
 ### Usage

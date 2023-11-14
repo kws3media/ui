@@ -1,5 +1,9 @@
 import { Message } from "@kws3/ui";
 import MessageDecorator from "./Message.svelte";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   size: "",
@@ -18,9 +22,11 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
   size: {
     control: "select",
+    options: Sizes,
   },
 };
 

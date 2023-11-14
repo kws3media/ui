@@ -1,9 +1,7 @@
 import {
-  Story,
   Meta,
   Controls,
   Source,
-  Description,
   Canvas,
 } from "@storybook/blocks";
 import dedent from "ts-dedent";
@@ -13,12 +11,8 @@ import * as Stories from "./ScrollableList.stories";
 
 <Version />
 
-<Description
-  markdown={dedent`
 # ScrollableList
 ## ScrollableList component that efficiently displays large amounts of data
-`}
-/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />

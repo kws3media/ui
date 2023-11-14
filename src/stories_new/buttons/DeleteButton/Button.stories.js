@@ -1,5 +1,9 @@
 import { DeleteButton } from "@kws3/ui";
 import ButtonDecorator from "./DeleteButton.svelte";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   class: "",
@@ -21,9 +25,11 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
   size: {
     control: "select",
+    options: Sizes,
   },
 };
 

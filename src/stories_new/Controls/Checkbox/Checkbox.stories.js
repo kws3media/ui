@@ -1,4 +1,8 @@
 import { Checkbox } from "@kws3/ui";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   class: "",
@@ -20,9 +24,11 @@ let argTypes = {
   label_style: {},
   color: {
     control: { type: "select" },
+    options: Colors,
   },
   size: {
     control: { type: "select" },
+    options: Sizes,
   },
   inverted: {},
   circle: {},

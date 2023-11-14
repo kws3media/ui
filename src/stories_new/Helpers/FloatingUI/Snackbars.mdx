@@ -1,21 +1,19 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Snackbars.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Snackbars
 ## Snackbars components for showing floating alerts.
-`}/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
-<div class="columns">
-  <div class="column is-6">
+<div className="columns">
+  <div className="column is-6">
   ### Usage
   ```js
   import { Snackbars } from '@kws3/ui';
@@ -40,7 +38,7 @@ import * as Stories from "./Snackbars.stories";
   //where `props` is the from the output of Snackbars.create()
   ```
   </div>
-  <div class="column is-6">
+  <div className="column is-6">
     ### Usage with custom buttons
     `buttons` accept an array of objects or array of strings
     If objects are used, the shape is:
@@ -65,7 +63,7 @@ import * as Stories from "./Snackbars.stories";
         ]
       });
     ```
-    <div class="notification is-info is-light">
+    <div className="notification is-info is-light">
       All button clicks will close the Snackbar.<br></br>
       If there is a custom click handler, Snackbar will close after running the click handler.
     </div>

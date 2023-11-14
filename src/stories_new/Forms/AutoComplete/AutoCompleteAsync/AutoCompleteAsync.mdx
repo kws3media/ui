@@ -1,9 +1,7 @@
 import {
-  Story,
   Controls,
   Meta,
   Source,
-  Description,
   Canvas,
 } from "@storybook/blocks";
 import dedent from "ts-dedent";
@@ -12,19 +10,16 @@ import * as Stories from "./AutoCompleteAsync.stories";
 
 <Version />
 
-<Description
-  markdown={dedent`
 # AutoComplete (Async)
 ## An Input component that supports auto complete tips.
-`}/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
-<div class="notification is-primary is-light">
-  <div class="columns">
-    <div class="column">
+<div className="notification is-primary is-light">
+  <div className="columns">
+    <div className="column">
       <h3>
         Input format <code>options</code>
       </h3>
@@ -36,7 +31,7 @@ import * as Stories from "./AutoCompleteAsync.stories";
       <p>Note: <code>option.label</code> contains matched characters wrapped inside <code>&lt;span class="h"&gt;</code> tags. </p>
       <p>Note: Highlighted results can be turned off by setting <code>highlighted_results</code> property to <code>false</code></p>
     </div>
-    <div class="column">
+    <div className="column">
       <h3>Customising dropdown text items</h3>
       <p>See documentation for default slot.</p>
       <h4>Example:</h4>

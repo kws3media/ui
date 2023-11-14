@@ -1,5 +1,6 @@
 import { TimelineItem } from "@kws3/ui";
 import ItemDecorator from "./TimelineItem.svelte";
+import { Colors } from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   marker_icon: null,
@@ -10,6 +11,7 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
 };
 

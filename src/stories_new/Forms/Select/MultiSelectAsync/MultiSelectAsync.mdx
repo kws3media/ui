@@ -1,17 +1,15 @@
-import { Story, Controls, Meta, Source, Description, Canvas  } from "@storybook/blocks";
+import { Controls, Meta, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./MultiSelectAsync.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # MultiSelect (Async)
 ## Example of Async loading options.
-`}/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
 <div class="notification is-primary is-light">

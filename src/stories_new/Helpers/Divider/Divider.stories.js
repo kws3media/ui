@@ -1,5 +1,9 @@
 import { Divider } from "@kws3/ui";
 import DividerDecorator from "./Divider.svelte";
+import {
+  Colors,
+  Positions,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   color: "",
@@ -13,9 +17,11 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
   alignment: {
     control: "select",
+    options: Positions,
   },
 };
 

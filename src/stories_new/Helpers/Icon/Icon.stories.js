@@ -1,5 +1,10 @@
 import { Icon } from "@kws3/ui";
 import IconDecorator from "./Icon.svelte";
+import {
+  Colors,
+  Sizes,
+  FontFamilies,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   family: "",
@@ -15,12 +20,15 @@ let args = {
 let argTypes = {
   color: {
     control: { type: "select" },
+    options: Colors,
   },
   size: {
     control: { type: "select" },
+    options: Sizes,
   },
   family: {
     control: { type: "select" },
+    options: FontFamilies,
   },
 };
 

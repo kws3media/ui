@@ -1,15 +1,13 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import {  Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Nl2br.stories";
 
 <Version />
 
-<Description markdown={dedent`
-  # Nl2br
-  ## Insert line breaks where newlines occur in the string
-  This component provides a XSS-safe way of outputting multiline text.
-`}/>
+# Nl2br
+## Insert line breaks where newlines occur in the string This component provides a XSS-safe way of outputting multiline text.
+
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />

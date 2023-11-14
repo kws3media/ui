@@ -1,4 +1,8 @@
 import { Loader } from "@kws3/ui";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   spinner_color: "grey",
@@ -14,12 +18,15 @@ let args = {
 let argTypes = {
   spinner_color: {
     control: "select",
+    options: Colors,
   },
   spinner_size: {
     control: "select",
+    options: Sizes,
   },
   background_color: {
     control: "select",
+    options: Colors,
   },
 };
 

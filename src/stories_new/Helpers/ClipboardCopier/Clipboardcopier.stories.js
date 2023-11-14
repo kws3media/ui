@@ -1,5 +1,6 @@
 import { ClipboardCopier } from "@kws3/ui";
 import ClipboardCopierDecorator from "./ClipboardCopier.svelte";
+import { Colors } from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   copied_icon_color: "success",
@@ -15,16 +16,7 @@ let args = {
 let argTypes = {
   copied_icon_color: {
     control: { type: "select" },
-    // options: [
-    //   "",
-    //   "primary",
-    //   "success",
-    //   "warning",
-    //   "info",
-    //   "danger",
-    //   "dark",
-    //   "light",
-    // ],
+    options: Colors,
   },
 };
 

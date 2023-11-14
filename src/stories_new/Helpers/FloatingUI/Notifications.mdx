@@ -1,21 +1,19 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Notifications.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Notifications
 ## Notifications components for showing floating alerts.
-`}/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
-<div class="columns">
-<div class="column is-6">
+<div className="columns">
+<div className="column is-6">
 
 ### Usage
 ```js
@@ -47,7 +45,7 @@ Notifications.remove(props);
 ```
 
 </div>
-<div class="column is-6">
+<div className="column is-6">
 
 ### Usage with custom component
 ```js

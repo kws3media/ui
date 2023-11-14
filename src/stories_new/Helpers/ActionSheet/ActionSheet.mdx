@@ -1,14 +1,12 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Story, Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./ActionSheet.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # ActionSheet
 ## ActionSheet components for showing popups.
-`}/>
 
 <Meta of={Stories} />
 <Story of={Stories.Main} />

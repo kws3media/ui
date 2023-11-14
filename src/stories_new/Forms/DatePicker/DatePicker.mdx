@@ -1,9 +1,7 @@
 import {
-  Story,
   Controls,
   Meta,
   Source,
-  Description,
   Canvas,
 } from "@storybook/blocks";
 import dedent from "ts-dedent";
@@ -13,15 +11,11 @@ import * as Stories from "./DatePicker.stories";
 
 <Version />
 
-<Description
-  markdown={dedent`
 # Datepicker
 ## Datepicker component that allows you to select date.
-`}
-/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
 ### Usage

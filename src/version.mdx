@@ -9,11 +9,15 @@ export function ctc(e){
     copied = true;
     const target = document.querySelector('#npm-command-copier');
     const classes = ("is-success").split(" ");
+    // @ts-ignore
     target.value = "✅ Copied!";
+    // @ts-ignore
     classes.forEach((c) => target.classList.add(c));
     setTimeout(() => {
+      // @ts-ignore
       target.value = cmd;
       copied = false;
+      // @ts-ignore
       classes.forEach((c) => target.classList.remove(c));
     }, 1000);
   }
@@ -22,7 +26,7 @@ export function ctc(e){
 <div className="page-top-right-artifacts box">
   <div className="artifact-item-block">
     <a className="artifact-item" href="https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui" target="_blank">
-      <span class="icon-text">
+      <span className="icon-text">
         <span className="icon">
           <i className="fa fa-github"></i>
         </span>

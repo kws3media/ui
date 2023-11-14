@@ -1,4 +1,8 @@
 import { Toggle } from "@kws3/ui";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   on: false,
@@ -14,9 +18,11 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
   size: {
     control: "select",
+    options: Sizes,
   },
 };
 

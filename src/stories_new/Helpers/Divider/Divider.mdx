@@ -1,18 +1,16 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Divider.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Divider
 ## Component to display a horizontal or vertical divider with optional text.
-`}/>
 
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
 

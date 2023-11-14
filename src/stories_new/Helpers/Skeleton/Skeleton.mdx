@@ -1,17 +1,15 @@
-import { Story, Meta, Controls, Source, Description, Canvas, Primary  } from "@storybook/blocks";
+import { Meta, Controls, Source, Description, Canvas, Primary  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Skeleton.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Skeleton
 ## Component to display a loading status as a skeleton of the content to load.
-`}/>
 
 <Meta of={Stories} />
-<Primary of={Stories.Main} />
+<Primary />
 <Controls />
 
 

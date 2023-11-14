@@ -1,4 +1,4 @@
-import { Story, Meta, Source, Description, Canvas, Controls  } from "@storybook/blocks";
+import { Meta, Source, Canvas, Controls  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import { action } from '@storybook/addon-actions';
@@ -6,10 +6,8 @@ import * as Stories from "./Radio.stories.js";
 
 <Version />
 
-<Description markdown={dedent`
 # Radio
 ## Custom Radio control
-`}/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />

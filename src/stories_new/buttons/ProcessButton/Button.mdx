@@ -1,16 +1,15 @@
-import {Meta, Primary, Controls, Canvas, Story, Source, Description} from '@storybook/blocks';
+import {Meta, Controls, Canvas, Source} from '@storybook/blocks';
 import * as ButtonStories from "./Button.stories.js";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 
 <Version />
-<Description markdown={dedent`
+
 # ProcessButton
 ## Process Button with properties.
-`}/>
 
 <Meta of={ButtonStories} />
-<Canvas of={ButtonStories.Main} />
+<Canvas />
 <Controls />
 
 ### Usage

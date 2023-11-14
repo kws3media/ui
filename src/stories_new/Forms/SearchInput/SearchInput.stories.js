@@ -2,6 +2,10 @@ import { SearchInput } from "@kws3/ui";
 import { products_reviews } from "./data.js";
 import SearchInputDecorator from "./SearchInput.svelte";
 import playInteractions from "./searchinput.play.js";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   style: "",
@@ -21,9 +25,11 @@ let args = {
 let argTypes = {
   color: {
     control: { type: "select" },
+    options: Colors,
   },
   size: {
     control: { type: "select" },
+    optons: Sizes,
   },
   search_strategy: {
     control: { type: "select" },

@@ -12,20 +12,16 @@ import * as Stories from "./SearchableSelect.stories";
 
 <Version />
 
-<Description
-  markdown={dedent`
 # SearchableSelect
 ## A select component that allows you to search by typing into it.
-`}
-/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
-<div class="notification is-primary is-light">
-  <div class="columns">
-    <div class="column">
+<div className="notification is-primary is-light">
+  <div className="columns">
+    <div className="column">
       <h3>
         Input format <code>options</code>
       </h3>
@@ -41,7 +37,7 @@ import * as Stories from "./SearchableSelect.stories";
       </p>
       <p>See supported data formats in example story above.</p>
     </div>
-    <div class="column">
+    <div className="column">
       <h3>Customising dropdown text items</h3>
       <p>See documentation for default slot.</p>
       <h4>Example:</h4>

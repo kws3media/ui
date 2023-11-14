@@ -1,16 +1,14 @@
-import { Story, Controls, Meta, Source, Description, Canvas  } from "@storybook/blocks";
+import { Controls, Meta, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./MaskedInput.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # MaskedInput
-`}/>
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
 ### Usage

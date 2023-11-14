@@ -1,14 +1,12 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Popover.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Popover
 ## Display contextual popovers
-`}/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />
@@ -21,8 +19,8 @@ import * as Stories from "./Popover.stories";
   code={ dedent`import { Popover } from '@kws3/ui';`}
 />
 
-<div class="columns is-multiline">
-  <div class="column is-4">
+<div className="columns is-multiline">
+  <div className="column is-4">
 
 #### Default
 ```html
@@ -40,7 +38,7 @@ import {Popover} from '@kws3/ui';
 ```
 
   </div>
-  <div class="column is-4">
+  <div className="column is-4">
 
 #### Component in `popover` slot
 ```html
@@ -63,7 +61,7 @@ import {
 ```
 
   </div>
-  <div class="column is-4">
+  <div className="column is-4">
 
 #### Usage of `external_target`
 ```html
@@ -85,7 +83,7 @@ let aNode;
 ```
 
   </div>
-  <div class="column is-4">
+  <div className="column is-4">
 
 #### Manual Control
 ```html
@@ -112,7 +110,7 @@ function hidePopover(e){
 ```
 
   </div>
-  <div class="column is-4">
+  <div className="column is-4">
 
 #### Events
 ```html

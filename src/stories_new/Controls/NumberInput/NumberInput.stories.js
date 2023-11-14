@@ -1,5 +1,9 @@
 import { NumberInput } from "@kws3/ui";
 import playInteractions from "./NumberInput.play";
+import {
+  Colors,
+  Sizes,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   class: "",
@@ -25,20 +29,25 @@ let args = {
 let argTypes = {
   size: {
     control: "select",
+    options: Sizes,
   },
   minus_icon: {},
   minus_icon_color: {
     control: "select",
+    options: Colors,
   },
   minus_button_color: {
     control: "select",
+    options: Colors,
   },
   plus_icon: {},
   plus_icon_color: {
     control: "select",
+    options: Colors,
   },
   plus_button_color: {
     control: "select",
+    options: Colors,
   },
 };
 

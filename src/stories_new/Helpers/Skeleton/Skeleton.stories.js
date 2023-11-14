@@ -1,4 +1,5 @@
 import { Skeleton } from "@kws3/ui";
+import { Colors } from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   class: "",
@@ -10,7 +11,12 @@ let args = {
   color: "primary",
 };
 
-let argTypes = {};
+let argTypes = {
+  color: {
+    control: "select",
+    options: Colors,
+  },
+};
 
 export default {
   title: "Helpers/Skeleton",

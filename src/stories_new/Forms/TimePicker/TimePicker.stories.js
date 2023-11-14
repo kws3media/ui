@@ -1,4 +1,5 @@
 import { Timepicker } from "@kws3/ui";
+import { Colors } from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   value: "",
@@ -18,9 +19,11 @@ let args = {
 let argTypes = {
   ui_color: {
     control: { type: "select" },
+    options: Colors,
   },
   color: {
     control: { type: "select" },
+    options: Colors,
   },
   time_24hr: {},
 };

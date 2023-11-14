@@ -1,5 +1,4 @@
 import {
-  Story,
   Controls,
   Meta,
   Source,
@@ -12,20 +11,17 @@ import * as Stories from "./SearchInput.stories";
 
 <Version />
 
-<Description
-  markdown={dedent`
 # SearchInput
 ## An Input component that supports search on multiple properties.
-`}
-/>
+
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas />
 <Controls />
 
-<div class="notification is-primary is-light">
-  <div class="columns">
-    <div class="column">
+<div className="notification is-primary is-light">
+  <div className="columns">
+    <div className="column">
       <h3>
         Input format <code>options</code>
       </h3>

@@ -1,6 +1,10 @@
 import { MultiSelect } from "@kws3/ui";
 import MultiSelectDecorator from "./MultiSelect.svelte";
 import playInteractions from "./multiselect.play.js";
+import {
+  Colors,
+  Sizes,
+} from "../../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   value: [],
@@ -25,9 +29,11 @@ let args = {
 let argTypes = {
   color: {
     control: { type: "select" },
+    options: Colors,
   },
   size: {
     control: { type: "select" },
+    options: Sizes,
   },
 };
 

@@ -1,4 +1,8 @@
 import Notifications from "./Notifications.svelte";
+import {
+  Colors,
+  FloatiePositions,
+} from "../../../../scripts/type_injector/frameworkTypes";
 
 let args = {
   title: "Heading",
@@ -15,9 +19,11 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
+    options: Colors,
   },
   position: {
     control: "select",
+    options: FloatiePositions,
   },
 };
 
