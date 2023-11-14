@@ -23,18 +23,18 @@ import * as Stories from "./SearchableSelectAsync.stories";
       <h3>
         Async filter function <code>search</code>
       </h3>
-      <p>
+      <div>
         This function is called when the user types in the search field.
         It is passed the search string and should return a promise that
         resolves to an array of options.
-      </p>
-      <p>
+      </div>
+      <div>
         This function is not called every keydown while the user is typing.
         It is called only when user finishes typing.
-      </p>
-      <p>
+      </div>
+      <div>
         Note: 
-      </p>
+      </div>
       <ul>
         <li>Only send this prop if you want to fetch <code>options</code> asynchronously.</li>
         <li><code>options</code> prop will be ignored if this prop is set.</li>
