@@ -1,4 +1,4 @@
-import { Story, Meta, Controls, Source, Description, Canvas, Primary, Title, Subtitle  } from "@storybook/blocks";
+import { Story, Meta, Controls, Source, Canvas, Title  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import { Transition } from "@kws3/ui";
@@ -7,17 +7,14 @@ import * as TransitionStories from "./Transitions.stories";
 
 <Version />
 
-<Meta of={TransitionStories} parameters={{ previewTabs: { 'canvas': { hidden: true }}}} />
+<Meta of={TransitionStories} />
 
 <Title />
 
-<Description markdown={dedent`
 ## A set of components to declaratively use Svelte transitions
-`}/>
 
-<Primary of={TransitionStories.Main}/>
-
-<Controls of={TransitionStories.Main} />
+<Canvas name="Preview" />
+<Controls name="Preview" />
 
 ### Usage
 ##### Import the component:

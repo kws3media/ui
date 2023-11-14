@@ -31,11 +31,9 @@ export default {
   },
 };
 
-export const Main = (args) => ({
-  props: args,
-});
-
-Main.args = {
-  ...args,
+export const Main = {
+  name: "Preview",
+  tags: ["isHidden"],
+  args: args,
+  argTypes: {},
 };
-Main.tags = ["isHidden"];

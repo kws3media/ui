@@ -1,25 +1,13 @@
-import { Meta, Story, Source, Description, Canvas, Controls } from "@storybook/blocks";
+import { Meta, Story, Source, Canvas, Controls } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import { action } from '@storybook/addon-actions';
 import * as Stories from "./Slidingpane.stories.js";
-import Decorator from "./Slidingpane.svelte";
-
-export let args = {
-  active : false,
-  class : "",
-  style : "",
-  v_center : true,
-  h_center : true,
-  track_height : true
-};
 
 <Version />
 
-<Description markdown={dedent`
 # Sliding Panes
 ## Sliding panes component for Svelte applications
-`}/>
 
 <Meta of={Stories} name="SlidingPane" />
 <Canvas name="Preview" />
