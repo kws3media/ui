@@ -1,0 +1,91 @@
+import { Meta, Story, Controls, Canvas, Primary } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./Brush.stories.js";
+
+
+<Version />
+
+### Brush Charts
+It's possible to link 2 charts so that one chart will act as a brush for the other.
+
+<Meta of={Stories} />
+<Canvas />
+
+
+<div className="content">
+  <p>In this example, the smaller chart acts as a brush chart for the larger chart above.</p>
+  <p>See annotated example code below.</p>
+</div>
+
+<div className="columns">
+<div className="column">
+
+```jsx
+//Large chart on top
+
+<LineChart 
+  options={{
+    chart: {
+      id: "itemsChart", //ensure unique id
+      toolbar: { //this allows panning large chart
+        autoSelected: "pan",
+        show: false,
+      },
+      zoom: { 
+        // panning doesn't work unless "zoom" is enabled
+        enabled: true,
+      },
+    },
+    xaxis: {
+      decimalsInFloat: 0,
+      tickAmount: 5,
+      // if not using timeseries data, 
+      // set `type` to "numeric"
+      type: "numeric",
+    },
+  }}
+  {data}
+/>
+```
+
+</div>
+<div className="column">
+
+```jsx
+//Small chart below large chart
+
+<BarChart options={{
+    chart: {
+      id: "brush", //ensure unique id
+      brush: { //enable brushing on `traget`
+        target: "itemsChart",
+        enabled: true,
+      },
+      selection: { 
+        //preselect part of chart on load
+        enabled: true,
+        xaxis: {
+          min: 50,
+          max: 100,
+        },
+      },
+    },
+    xaxis: {
+      // if not using timeseries data, 
+      // set `type` to "numeric"
+      type: "numeric",
+      //hide axis labels on brush chart
+      labels: { show: false },
+    },
+    yaxis: {
+      tickAmount: 2,
+    },
+  }}
+  {data}
+  ...
+/>
+```
+
+</div>
+</div>

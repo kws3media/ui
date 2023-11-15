@@ -1,0 +1,76 @@
+import { Meta, Story, Source, Canvas, Controls } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./Slidingpane.stories.js";
+
+<Version />
+
+# Sliding Panes
+## Sliding panes component for Svelte applications
+
+<Meta of={Stories} />
+<Canvas />
+<Controls />
+
+### Usage 
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { SlidingPane, SlidingPaneSet } from '@kws3/ui';`}
+/>
+
+##### Import the SCSS:
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/SlidingPane.scss';`}
+/>
+
+##### Example
+<Source
+  language='html'
+  code={ dedent`
+      <SlidingPaneSet style="height:{pane_height}px">
+        <SlidingPane
+          active={steps[active_index].key == "step_one"}
+          {v_center}
+          {h_center}
+          {track_height}
+          class={klass}
+          on:heightChange={heightChange}>
+          <p>1st Slide</p>
+        </SlidingPane>
+        <SlidingPane
+          active={steps[active_index].key == "step_two"}
+          {v_center}
+          {h_center}
+          {track_height}
+          class={klass}
+          on:heightChange={heightChange}>
+          <p>2nd Slide</p>
+        </SlidingPane>
+      </SlidingPaneSet>
+      <script>
+        import { SlidingPane, SlidingPaneSet } from "@kws3/ui";
+        export let pane_height = 150,
+          style = "",
+          v_center = true,
+          h_center = true,
+          track_height = false,
+          steps = [
+            { key: "step_one", name: "Step One" },
+            { key: "step_two", name: "Step Two" }
+          ],
+          active_index = 0;
+        export function changeStep(i) {
+          let max = steps.length;
+          let _index = Math.max(0, Math.min(active_index + i, max - 1));
+          active_index = _index;
+        }
+        function heightChange(event) {
+          pane_height = event.detail.height;
+        }
+        let klass = "";
+        export { klass as class };
+      </script>
+  `}
+/>
