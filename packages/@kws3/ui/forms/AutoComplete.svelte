@@ -100,7 +100,7 @@ Default value: `<span>{option.label}</span>`
               Default value: `<span>{option.label}</span>`
             -->
             <slot {option}>
-              <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+              <!-- eslint-disable-next-line svelte/no-at-html-tags -->
               {@html option.label}
             </slot>
           </li>

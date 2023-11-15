@@ -23,7 +23,7 @@
         color="primary"
         light={true}
         class="p-0 px-4 py-2 m-0 mb-2 is-italic">
-        <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html review}
       </Notification>
     {/each}
@@ -35,7 +35,7 @@
         color="warning"
         light={true}
         class="p-0 px-4 py-2 m-0 mb-2 is-italic">
-        <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html complain}
       </Notification>
     {/each}

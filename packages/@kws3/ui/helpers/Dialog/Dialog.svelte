@@ -37,7 +37,7 @@ For internal use only - not part of config object, Default: `""`
       {/if}
       <div class="column">
         <div>
-          <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           <span class="is-block">{@html _text}</span>
           {#if _type === "prompt"}
             <div class="field" style="margin-top:0.5rem;">

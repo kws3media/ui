@@ -48,7 +48,7 @@ This will not work if there is no title area
       <div class="level is-mobile">
         <div class="level-left">
           <div class="level-item">
-            <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             <h2 class="subtitle">{@html title}</h2>
           </div>
         </div>
@@ -74,7 +74,7 @@ This will not work if there is no title area
             </div>
           {/if}
           <div class="level-item">
-            <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             <h2 class="subtitle is-6">{@html subtitle}</h2>
           </div>
           <span class="collapsor level-item">

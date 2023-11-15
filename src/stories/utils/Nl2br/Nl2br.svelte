@@ -7,7 +7,7 @@
     <div class="column is-6">
       <h2 class="subtitle is-5">Text after html break</h2>
       <div>
-        <!-- eslint-disable-next-line @ota-meshi/svelte/no-at-html-tags -->
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html nl2br(text)}
       </div>
     </div>
