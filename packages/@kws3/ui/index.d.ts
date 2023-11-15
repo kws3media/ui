@@ -16,6 +16,7 @@ export { default as TimelineHeader } from "./helpers/Timeline/TimelineHeader.sve
 export { default as Nl2br } from "./helpers/Nl2br.svelte";
 export { default as ClipboardCopier } from "./helpers/ClipboardCopier.svelte";
 export { default as ScrollableList } from "./helpers/ScrollableList.svelte";
+export { default as InfiniteList } from "./helpers/InfiniteList.svelte";
 export { default as FloatingUIOutput } from "./helpers/FloatingUI/FloatingUIOutput.svelte";
 export { default as Floatie } from "./helpers/FloatingUI/Floatie.svelte";
 export { default as ConfirmButton } from "./buttons/ConfirmButton.svelte";
