@@ -49,6 +49,9 @@ export default {
   decorators: [(_, { args }) => ({ Component: DialogDecorator, props: args })],
   args: args,
   argTypes: argTypes,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {
