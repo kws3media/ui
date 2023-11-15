@@ -19,8 +19,8 @@ import * as Stories from "./Example.stories.js";
 
 ```html
 {#if data}
-  <div class="columns">
-    <div class="column">
+  <div className="columns">
+    <div className="column">
       <DataSearch
         {hasSearch}
         {hasFilters}
@@ -37,8 +37,8 @@ import * as Stories from "./Example.stories.js";
     </div>
   </div>
 
-  <div class="columns">
-    <div class="column">      
+  <div className="columns">
+    <div className="column">      
       <GridView
         {iteration_key}
         {data}
@@ -61,8 +61,8 @@ import * as Stories from "./Example.stories.js";
   </div>
 
   {#if has_pagination}
-    <div class="columns">
-      <div class="column">
+    <div className="columns">
+      <div className="column">
         <Pagination {meta} {perPageOptions} on:paginate={paginate} />
       </div>
     </div>

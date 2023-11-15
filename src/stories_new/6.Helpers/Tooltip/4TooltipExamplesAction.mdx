@@ -11,15 +11,15 @@ import Version from '~/version.mdx';
 ### Tooltip Action
 If you do not have a lot of tooltips in your app, you can use the `tooltip` action to sprinkle tooltips on selected nodes.
 
-<div class="notification is-warning">
+<div className="notification is-warning">
 Tooltip Action does not use event delegation. <br/>Therefore, it can affect performance if there are a large number of tooltips.<br/><br/>
 The recommended way is to use tooltips via event delegation, see: <a href="/docs/helpers-tooltips-1-overview--page">Tooltip Overview</a>
 </div>
 
 
 
-<div class="columns">
-  <div class="column">
+<div className="columns">
+  <div className="column">
 
 The action accepts an object of parameters.
 
@@ -30,7 +30,7 @@ However, you can also send a string as a parameter to the action.
 And that will be used instead of the attribute value.
 
   </div>
-  <div class="column">
+  <div className="column">
 
 ```html
 <!--send content as parameter-->
@@ -56,8 +56,8 @@ And that will be used instead of the attribute value.
 Parameters can be sent during action initialisation, or as `data-tippy-*` attributes.
 The following examples are functionally indentical:
 
-<div class="columns">
-  <div class="column">
+<div className="columns">
+  <div className="column">
 
 ```html
 <div
@@ -71,7 +71,7 @@ The following examples are functionally indentical:
 ```
 
   </div>
-  <div class="column">
+  <div className="column">
 
 ```html
 <div
