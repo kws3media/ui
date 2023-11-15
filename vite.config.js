@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       "@kws3": path.resolve(__dirname, "./packages/@kws3"),
       "~": path.resolve(__dirname, "./src"),
+      "@scripts": path.resolve(__dirname, "./scripts"),
     },
   },
   plugins: [svelte()],
