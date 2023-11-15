@@ -1,0 +1,21 @@
+{
+  "records" : [
+    { "username": "user1", "name": "Jhon", "surname": "Doe", "role": "A", "status" : "1" },
+    { "username": "user2", "name": "James", "surname": "Bond", "role": "U", "status" : "1" },
+    { "username": "user3", "name": "Tony", "surname": "Starks", "role": "U", "status" : "1" },
+    { "username": "user4", "name": "Captain", "surname": "America", "role": "U", "status" : "1" },
+    { "username": "user5", "name": "Natasha", "surname": "Romanoff", "role": "U", "status" : "1" },
+    { "username": "user6", "name": "Julie", "surname": "Doe", "role": "U", "status" : "1" },
+    { "username": "user7", "name": "Nick", "surname": "Fury", "role": "A", "status" : "1" },
+    { "username": "user8", "name": "Peter", "surname": "Parker", "role": "U", "status" : "1" },
+    { "username": "user9", "name": "Robert", "surname": "Bruce", "role": "U", "status" : "1" },
+    { "username": "user10", "name": "Thor", "surname": "Odinson", "role": "U", "status" : "1" },
+    { "username": "user11", "name": "Emma", "surname": "Frost", "role": "U", "status" : "1" },
+    { "username": "user13", "name": "Stephen", "surname": "Strange", "role": "U", "status" : "1" },
+    { "username": "user14", "name": "Thanos", "surname": "Titan", "role": "A", "status" : "0" },
+    { "username": "user15", "name": "Eddie", "surname": "Brock", "role": "U", "status" : "1" },
+    { "username": "user16", "name": "Bruce", "surname": "Banner", "role": "U", "status" : "1" },
+    { "username": "user17", "name": "Clint", "surname": "Barton", "role": "U", "status" : "1" },
+    { "username": "user18", "name": "Steve", "surname": "Rogers", "role": "U", "status" : "1" }
+  ]
+}
