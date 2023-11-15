@@ -34,8 +34,8 @@
   import { Icon } from "@kws3/ui";
   import { onMount } from "svelte";
 
-  let value = 0;
-  let min = 1,
+  let value = "";
+  export let min = 1,
     max = 100;
 
   onMount(() => {
@@ -43,6 +43,6 @@
   });
 
   function regenerate() {
-    value = Number(randomPercent(min, max));
+    value = randomPercent(Number(min), Number(max));
   }
 </script>
