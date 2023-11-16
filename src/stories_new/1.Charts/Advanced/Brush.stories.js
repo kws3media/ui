@@ -9,14 +9,6 @@ export default {
   args: args,
   argTypes: {},
   props: args,
-  parameters: {
-    layout: "fullscreen",
-    docs: {
-      canvas: {
-        sourceState: "none",
-      },
-    },
-  },
 };
 
 export const Main = {

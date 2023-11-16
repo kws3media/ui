@@ -1,5 +1,4 @@
-import { Meta, Story, Controls, Canvas, Primary } from "@storybook/blocks";
-import dedent from 'ts-dedent';
+import { Meta, Story } from "@storybook/blocks";
 import Version from '~/version.mdx';
 import * as Stories from "./Brush.stories.js";
 
@@ -10,12 +9,12 @@ import * as Stories from "./Brush.stories.js";
 It's possible to link 2 charts so that one chart will act as a brush for the other.
 
 <Meta of={Stories} />
-<Canvas />
+<Story />
 
 
 <div className="content">
-  <p>In this example, the smaller chart acts as a brush chart for the larger chart above.</p>
-  <p>See annotated example code below.</p>
+  <div>In this example, the smaller chart acts as a brush chart for the larger chart above.</div>
+  <div>See annotated example code below.</div>
 </div>
 
 <div className="columns">

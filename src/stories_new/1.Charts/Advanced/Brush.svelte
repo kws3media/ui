@@ -13,7 +13,7 @@
   {data}
   {labels}
   {sets}
-  {width}
+  width="99%"
   height={height2} />
 
 <script>
