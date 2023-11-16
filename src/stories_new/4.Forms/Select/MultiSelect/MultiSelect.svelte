@@ -103,7 +103,7 @@
     summary_mode = false,
     selected_brand = [
       { id: 111, name: "Xiaomi" },
-      { id: 5, name: "Oppo" },
+      { id: 72, name: "Oppo" },
     ], // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
     selected_brand_string = ["BlackBerry", "Xiaomi"];
