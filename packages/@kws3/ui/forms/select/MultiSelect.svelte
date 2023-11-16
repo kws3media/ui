@@ -552,20 +552,16 @@ Default value: `<span>{option[search_key] || option}</span>`
       value = single ? null : [];
     }
 
-    if (asyncMode) {
-      // initally on async mode options are empty
-      // so we need to fill selectedOptions with value if value is avaliable
-      options = value ? [...(single ? [value] : [...value])] : [];
-      searching = false;
-      tick().then(() => {
-        normaliseOptions();
-        value = normaliseArraysToObjects(options).map((v) => v[used_value_key]);
-        if (single && Array.isArray(value)) {
-          value = value[0];
-        }
-        fillSelectedOptions();
-      });
-    }
+    options = value ? [...(single ? [value] : [...value])] : [];
+    searching = false;
+    tick().then(() => {
+      normaliseOptions();
+      value = normaliseArraysToObjects(options).map((v) => v[used_value_key]);
+      if (single && Array.isArray(value)) {
+        value = value[0];
+      }
+      fillSelectedOptions();
+    });
 
     return () => {
       POPPER.destroy();
