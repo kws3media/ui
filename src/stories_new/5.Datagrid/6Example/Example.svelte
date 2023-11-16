@@ -178,33 +178,34 @@
   $: has_pagination = original_data.length > limit;
 
   function search({ detail }) {
-    var data_from_json = response.records;
-    var search_vals = detail.split("~");
-    var input_field = search_vals[0];
-    input_field = input_field.trim();
-    var filtered = original_data;
-    if (input_field) {
-      filtered = data_from_json.filter(function (item) {
+    const data_from_json = response.records;
+    const search_vals = detail.split("~");
+    const input_field = search_vals[0].trim();
+    let filtered = original_data;
+
+    if (input_field || search_vals.length > 1) {
+      const inputFieldLower = input_field.toLowerCase();
+      filtered = data_from_json.filter((item) => {
+        const nameMatch = item.name.toLowerCase().includes(inputFieldLower);
+        const surnameMatch = item.surname
+          .toLowerCase()
+          .includes(inputFieldLower);
+
         return (
-          item.name.toLowerCase().includes(input_field.toLowerCase()) ||
-          item.surname.toLowerCase().includes(input_field.toLowerCase())
+          (input_field && (nameMatch || surnameMatch)) ||
+          (search_vals.length > 1 &&
+            search_vals.slice(1).every((dd) => {
+              const [key, value] = dd.split(":");
+              return item[key] === value;
+            }))
         );
       });
     }
-    //Dropdown searches
-    if (search_vals.length > 1) {
-      for (var i = 1; i < search_vals.length; i++) {
-        var dd_field = search_vals[i].split(":");
-        var key = dd_field[0];
-        var filter_data = filtered.length > 0 ? filtered : data_from_json;
-        filtered = filter_data.filter(function (item) {
-          console.log(item[key], dd_field[1]);
-          return item[key] === dd_field[1];
-        });
-      }
-    }
+
     q = input_field + "~";
     original_data = filtered;
+    page_number = 1;
+    meta.offset = detail.offset;
     meta.total = original_data.length;
   }
 
@@ -214,8 +215,10 @@
     meta.total = original_data.length;
   }
 
-  function switchView() {
+  function switchView({ detail }) {
     is_tile_view = !is_tile_view;
+    page_number = 1;
+    meta.offset = detail.offset;
   }
 
   function paginate({ detail }) {
