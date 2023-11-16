@@ -3,7 +3,10 @@ import Decorator from "./WithBGImage.svelte";
 export default {
   title: "Canvas/Examples/With Background Image",
   component: Decorator,
-  args: {},
+  args: {
+    pen_width: 2,
+    eraser_width: 2,
+  },
   argTypes: {},
 };
 

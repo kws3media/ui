@@ -5,7 +5,7 @@ let args = {
   width: "400px",
   height: "200px",
   pen_width: 2,
-  eraser_width: 6,
+  eraser_width: 2,
   pen_color: "#ff0000",
   background_image: "",
   readonly: false,

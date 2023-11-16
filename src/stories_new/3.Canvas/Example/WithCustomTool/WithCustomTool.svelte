@@ -6,7 +6,8 @@
       active_tool="Circle"
       {width}
       {tools}
-     />
+      {pen_width}
+      {eraser_width} />
   </div>
   <div class="column has-text-centered">
     <label for="" class="label">Output</label>
@@ -16,23 +17,24 @@
         src={image}
         {width}
         {height}
-        style:border="1px solid #b5b5b5;"/>
+        style:border="1px solid #b5b5b5;" />
     {/if}
   </div>
 </div>
 
-
-<style lang='scss'>
-  :global(.kws-canvas-wrapper .kws-pen-input canvas){
-      background-repeat: repeat;
-      background-size: cover;
-    }
+<style lang="scss">
+  :global(.kws-canvas-wrapper .kws-pen-input canvas) {
+    background-repeat: repeat;
+    background-size: cover;
+  }
 </style>
 
 <script>
-  import { Canvas as KwsCanvas, Eraser} from "@kws3/ui";
+  import { Canvas as KwsCanvas, Eraser } from "@kws3/ui";
 
-  export let image;
+  export let image,
+    pen_width = 2,
+    eraser_width = 2;
 
   let Circle = {
     name: "Circle",
@@ -49,9 +51,8 @@
     },
   };
 
-
   export let width = "350px",
-    height='250px';
+    height = "250px";
 
-    let tools = {Circle, Eraser};
+  let tools = { Circle, Eraser };
 </script>
