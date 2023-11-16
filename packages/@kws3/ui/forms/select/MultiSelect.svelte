@@ -564,7 +564,6 @@ Default value: `<span>{option[search_key] || option}</span>`
           value = value[0];
         }
         fillSelectedOptions();
-        clearDropDownResults();
       });
     }
 
