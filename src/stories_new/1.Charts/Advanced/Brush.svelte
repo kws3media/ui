@@ -15,11 +15,13 @@
       {labels}
       {sets}
       height={height2} />
+  {:else}
+    <Skeleton height="80px" />
   {/if}
 {/if}
 
 <script>
-  import { LineChart, BarChart } from "@kws3/ui";
+  import { LineChart, BarChart, Skeleton } from "@kws3/ui";
   import { onMount } from "svelte";
 
   let componentVisible = false;
@@ -76,6 +78,6 @@
   onMount(() => {
     setTimeout(() => {
       componentVisible = true;
-    }, 3000);
+    }, 1000);
   });
 </script>
