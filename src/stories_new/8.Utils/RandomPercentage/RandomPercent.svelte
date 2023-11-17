@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column is-8">
     <pre>
-      Random Integer within the range: {value}
+      Random percentage within the range: {value}
     </pre>
   </div>
   <div class="column is-4">

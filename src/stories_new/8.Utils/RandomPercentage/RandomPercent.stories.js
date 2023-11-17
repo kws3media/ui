@@ -6,6 +6,13 @@ export default {
   component: Decorator,
   args: {},
   argTypes: {},
+  parameters: {
+    docs: {
+      source: {
+        code: null,
+      },
+    },
+  },
 };
 
 export const Main = {
