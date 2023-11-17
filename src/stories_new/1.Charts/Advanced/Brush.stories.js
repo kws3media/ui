@@ -9,6 +9,14 @@ export default {
   args: args,
   argTypes: {},
   props: args,
+  parameters: {
+    layout: "fullscreen",
+    docs: {
+      source: {
+        code: null,
+      },
+    },
+  },
 };
 
 export const Main = {

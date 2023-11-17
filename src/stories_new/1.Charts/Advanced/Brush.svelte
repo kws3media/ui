@@ -1,26 +1,30 @@
-<LineChart
-  options={options1}
-  {colors}
-  {data}
-  {labels}
-  {sets}
-  {width}
-  height={height1} />
+{#if data.length}
+  <LineChart
+    options={options1}
+    {colors}
+    {data}
+    {labels}
+    {sets}
+    height={height1} />
 
-<BarChart
-  options={options2}
-  {colors}
-  {data}
-  {labels}
-  {sets}
-  width="99%"
-  height={height2} />
+  {#if componentVisible}
+    <BarChart
+      options={options2}
+      {colors}
+      {data}
+      {labels}
+      {sets}
+      height={height2} />
+  {/if}
+{/if}
 
 <script>
   import { LineChart, BarChart } from "@kws3/ui";
+  import { onMount } from "svelte";
+
+  let componentVisible = false;
 
   export let colors = null,
-    width = "100%",
     height1 = "250",
     height2 = "100",
     options1 = {
@@ -63,7 +67,15 @@
         tickAmount: 2,
       },
     },
-    data = [...Array(200)].map(() => (Math.random() * 200) | 0),
-    labels = [...Array(200).keys()],
-    sets = ["Value"];
+    data = [...Array(200)]
+      .map(() => (Math.random() * 200) | 0)
+      .filter((num) => num !== 0),
+    labels = data.map((_, index) => index),
+    sets = data.map((value, index) => index);
+
+  onMount(() => {
+    setTimeout(() => {
+      componentVisible = true;
+    }, 3000);
+  });
 </script>
