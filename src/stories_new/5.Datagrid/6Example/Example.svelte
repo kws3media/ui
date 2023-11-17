@@ -178,26 +178,43 @@
   $: has_pagination = original_data.length > limit;
 
   function search({ detail }) {
+    page_number = 1;
+    meta.offset = detail.offset;
     const data_from_json = response.records;
+    console.log(detail);
     const search_vals = detail.split("~");
     const input_field = search_vals[0].trim();
     let filtered = original_data;
 
-    if (input_field || search_vals.length > 1) {
-      const inputFieldLower = input_field.toLowerCase();
-      filtered = data_from_json.filter((item) => {
-        const nameMatch = item.name.toLowerCase().includes(inputFieldLower);
-        const surnameMatch = item.surname
-          .toLowerCase()
-          .includes(inputFieldLower);
+    if (input_field) {
+      filtered = data_from_json.filter(function (item) {
+        return (
+          item.name.toLowerCase().includes(input_field.toLowerCase()) ||
+          item.surname.toLowerCase().includes(input_field.toLowerCase())
+        );
+      });
+    }
+
+    if (search_vals.length > 1) {
+      let _role = search_vals[1];
+      var role_field =
+        typeof search_vals[1] !== "undefined" ? _role.split(":") : [];
+      let _status = search_vals[2];
+      var sts_field = typeof _status !== "undefined" ? _status.split(":") : [];
+      var filter_data = data_from_json;
+      if (input_field) {
+        filter_data = filtered;
+      }
+      filtered = filter_data.filter(function (item) {
+        const statusValue =
+          typeof sts_field[1] !== "undefined"
+            ? Number(sts_field[1])
+            : sts_field[1];
+        const roleValue = role_field[1];
 
         return (
-          (input_field && (nameMatch || surnameMatch)) ||
-          (search_vals.length > 1 &&
-            search_vals.slice(1).every((dd) => {
-              const [key, value] = dd.split(":");
-              return item[key] === value;
-            }))
+          (!(_status !== undefined) || item["status"] === statusValue) &&
+          (!(_role !== undefined) || item["role"] === roleValue)
         );
       });
     }
