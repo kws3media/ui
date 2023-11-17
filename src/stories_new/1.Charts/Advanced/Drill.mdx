@@ -10,20 +10,20 @@ It is possible to construct drilldown charts by leveraging chart events to trigg
 <Meta of={Stories} />
 <Story of={Stories.Main} />
 
-<div class="content">
-  <p>
+<div className="content">
+  <div>
     In this example, we leverage the <code>dataPointSelection</code> event on the first chart, to trigger a new chart.
-  </p>
-  <p>
+  </div>
+  <div>
     The fancy sliding animation is not a feature of the chart library. It's a custom effect added simply using CSS classes, all leveraging the <code>dataPointSelection</code> event.
-  </p>
-  <p>
+  </div>
+  <div>
     See annotated and simplified example code below.
-  </p>
+  </div>
 </div>
 
-<div class="columns">
-<div class="column">
+<div className="columns">
+<div className="column">
 
 ```jsx
 //Main bar chart
@@ -51,7 +51,7 @@ It is possible to construct drilldown charts by leveraging chart events to trigg
 ```
 
 </div>
-<div class="column">
+<div className="column">
 
 ```jsx
 //Drilled down pie chart
