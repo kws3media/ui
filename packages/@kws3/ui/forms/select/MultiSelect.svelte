@@ -30,6 +30,7 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {boolean} [readonly=false] - Marks component as read-only, Default: `false`
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [selected_icon="check"] - Icon used to mark selected items in dropdown list, Default: `"check"`
+  @param {PopperStrategies} [popper_strategy=absolute] - Placement strategy used by Popperjs, see popperjs docs, Default: `absolute`
   @param {boolean} [summary_mode=false] - Shows only the number of items selected, instead of listing all the selected items in the input., Default: `false`
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
   @param {string} [async_search_prompt="Start typing to search..."] - Message to display in dropdown when async search can be performed, Default: `"Start typing to search..."`
@@ -463,7 +464,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     ) {
       activeOption = filteredOptions[0];
     } else {
-      if (allow_fuzzy_match) {
+      if (asyncMode || allow_fuzzy_match) {
         activeOption = filteredOptions.find((opts) =>
           matchesValue(activeOption, opts)
         );
@@ -550,18 +551,29 @@ Default value: `<span>{option[search_key] || option}</span>`
     //normalize value for single versus multiselect
     if (value === null || typeof value == "undefined") {
       value = single ? null : [];
-    }
-
-    options = value ? [...(single ? [value] : [...value])] : [];
-    searching = false;
-    tick().then(() => {
-      normaliseOptions();
-      value = normaliseArraysToObjects(options).map((v) => v[used_value_key]);
-      if (single && Array.isArray(value)) {
-        value = value[0];
+    } else {
+      if (asyncMode) {
+        // initally on async mode options are empty
+        // so we need to fill selectedOptions with value if value is avaliable
+        options = value ? [...(single ? [value] : [...value])] : [];
+        searching = false;
+        tick().then(() => {
+          normaliseOptions();
+          value = normaliseArraysToObjects(options).map(
+            (v) => v[used_value_key]
+          );
+          if (single && Array.isArray(value)) {
+            value = value[0];
+          }
+          fillSelectedOptions();
+          clearDropDownResults();
+        });
+      } else {
+        value = single
+          ? value
+          : normaliseArraysToObjects(value).map((v) => v[used_value_key]);
       }
-      fillSelectedOptions();
-    });
+    }
 
     return () => {
       POPPER.destroy();
