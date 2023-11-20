@@ -105,7 +105,7 @@
       { id: 72, name: "Oppo" },
     ], // single , also work with { id: 10, name: "Blackberry" }
     //selected_brand_multi = "", // max item null, not works if string given. should work?
-    selected_brand_string = ["Blackberry"];
+    selected_brand_string = ["Blackerry"];
 
   const fetchObjBrandsHelper = async function (filter) {
     return await fetchObjBrands(filter, search_key);
