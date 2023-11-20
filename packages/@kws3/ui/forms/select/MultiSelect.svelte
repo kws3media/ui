@@ -470,7 +470,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     ) {
       activeOption = filteredOptions[0];
     } else {
-      if (allow_fuzzy_match) {
+      if (asyncMode || allow_fuzzy_match) {
         activeOption = filteredOptions.find((opts) =>
           matchesValue(activeOption, opts)
         );
