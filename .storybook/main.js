@@ -26,6 +26,8 @@ export default {
     "@storybook/addon-links",
     "@storybook/preset-svelte",
     "@storybook/addon-controls",
+    "@storybook/theming",
+    "@storybook/blocks",
   ],
   svelteOptions: {
     preprocess: sveltePreprocess(),
