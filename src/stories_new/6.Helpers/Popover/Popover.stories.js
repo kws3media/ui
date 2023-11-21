@@ -17,6 +17,7 @@ let args = {
   max_width: "none",
   style: "",
   class: "",
+  hide_on_click: false,
 };
 
 let argTypes = {

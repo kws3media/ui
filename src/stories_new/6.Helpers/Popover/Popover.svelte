@@ -1,90 +1,40 @@
-<div class="columns">
-  <div class="column">
-    <KwsPopover
-      on:opening={({ detail }) => {
-        console.log("opening", detail);
-      }}
-      on:open={({ detail }) => {
-        x.focus();
-        console.log("open", detail);
-      }}
-      on:closing={({ detail }) => {
-        console.log("closing", detail);
-      }}
-      on:close={({ detail }) => {
-        console.log("close", detail);
-      }}
-      on:trigger={({ detail }) => {
-        console.log("trigger", detail);
-      }}
-      class={klass}
-      {icon}
-      {icon_color}
-      {icon_size}
-      {style}
-      {trigger}
-      {placement}
-      {interactive}
-      {max_width}>
-      <svelte:fragment slot="popover">
-        <Message>
-          Make <code>interactive: true</code> and you can click the button below
-          <br /><br />
-          <button
-            type="button"
-            bind:this={x}
-            class="button is-small"
-            on:click={() =>
-              // @ts-ignore
-              Dialog.alert("Clicked!!!")}>Try to click me!</button>
-        </Message>
-      </svelte:fragment>
-    </KwsPopover>
-  </div>
-  <div class="column">
-    <KwsPopover
-      class={klass}
-      {icon}
-      {icon_color}
-      {icon_size}
-      {style}
-      {trigger}
-      {placement}
-      {interactive}
-      {max_width}
-      external_target={notif}>
-      <svelte:fragment slot="popover">
-        <Message>
-          Make <code>interactive: true</code> and you can click the button below
-          <br /><br />
-          <button
-            type="button"
-            class="button is-small"
-            on:click={() =>
-              // @ts-ignore
-              Dialog.alert("Clicked!!!")}>Try to click me!</button>
-        </Message>
-      </svelte:fragment>
-    </KwsPopover>
-  </div>
-  <div class="column">
-    <p>
-      A paragraph of text with a
+{#if rendered}
+  <div class="columns">
+    <div class="column">
       <KwsPopover
+        on:opening={({ detail }) => {
+          console.log("opening", detail);
+        }}
+        on:open={({ detail }) => {
+          x.focus();
+          console.log("open", detail);
+        }}
+        on:closing={({ detail }) => {
+          console.log("closing", detail);
+        }}
+        on:close={({ detail }) => {
+          console.log("close", detail);
+        }}
+        on:trigger={({ detail }) => {
+          console.log("trigger", detail);
+        }}
         class={klass}
+        {icon}
+        {icon_color}
+        {icon_size}
         {style}
         {trigger}
         {placement}
         {interactive}
         {max_width}>
-        <em style="text-decoration:underline;">popover trigger</em>
         <svelte:fragment slot="popover">
-          <Message color="danger">
+          <Message>
             Make <code>interactive: true</code> and you can click the button
             below
             <br /><br />
             <button
               type="button"
+              bind:this={x}
               class="button is-small"
               on:click={() =>
                 // @ts-ignore
@@ -92,26 +42,19 @@
           </Message>
         </svelte:fragment>
       </KwsPopover>
-      within it.
-    </p>
-  </div>
-</div>
-
-<div class="columns is-centered">
-  <div class="column is-narrow">
-    <Message color="light">
+    </div>
+    <div class="column">
       <KwsPopover
-        bind:this={manual_popover}
         class={klass}
         {icon}
         {icon_color}
         {icon_size}
         {style}
-        trigger="manual"
-        hide_on_click={false}
+        {trigger}
         {placement}
         {interactive}
-        {max_width}>
+        {max_width}
+        external_target={notif}>
         <svelte:fragment slot="popover">
           <Message>
             Make <code>interactive: true</code> and you can click the button
@@ -125,36 +68,97 @@
                 Dialog.alert("Clicked!!!")}>Try to click me!</button>
           </Message>
         </svelte:fragment>
-      </KwsPopover> This popover can only be opened and closed programmatically using
-      the buttons below.
-      <hr class="is-small" />
-      <div class="is-block">
-        <div class="field is-grouped is-grouped-right">
-          <div class="control">
-            <button
-              type="button"
-              class="button is-small"
-              on:click={() => {
-                manual_popover.open();
-              }}>
-              Open
-            </button>
-          </div>
-          <div class="control">
-            <button
-              type="button"
-              class="button is-small"
-              on:click={() => {
-                manual_popover.close();
-              }}>
-              Close
-            </button>
+      </KwsPopover>
+    </div>
+    <div class="column">
+      <p>
+        A paragraph of text with a
+        <KwsPopover
+          class={klass}
+          {style}
+          {trigger}
+          {placement}
+          {interactive}
+          {max_width}>
+          <em style="text-decoration:underline;">popover trigger</em>
+          <svelte:fragment slot="popover">
+            <Message color="danger">
+              Make <code>interactive: true</code> and you can click the button
+              below
+              <br /><br />
+              <button
+                type="button"
+                class="button is-small"
+                on:click={() =>
+                  // @ts-ignore
+                  Dialog.alert("Clicked!!!")}>Try to click me!</button>
+            </Message>
+          </svelte:fragment>
+        </KwsPopover>
+        within it.
+      </p>
+    </div>
+  </div>
+
+  <div class="columns is-centered">
+    <div class="column is-narrow">
+      <Message color="light">
+        <KwsPopover
+          bind:this={manual_popover}
+          class={klass}
+          {icon}
+          {icon_color}
+          {icon_size}
+          {style}
+          trigger="manual"
+          hide_on_click={false}
+          {placement}
+          {interactive}
+          {max_width}>
+          <svelte:fragment slot="popover">
+            <Message>
+              Make <code>interactive: true</code> and you can click the button
+              below
+              <br /><br />
+              <button
+                type="button"
+                class="button is-small"
+                on:click={() =>
+                  // @ts-ignore
+                  Dialog.alert("Clicked!!!")}>Try to click me!</button>
+            </Message>
+          </svelte:fragment>
+        </KwsPopover> This popover can only be opened and closed programmatically
+        using the buttons below.
+        <hr class="is-small" />
+        <div class="is-block">
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <button
+                type="button"
+                class="button is-small"
+                on:click={() => {
+                  manual_popover.open();
+                }}>
+                Open
+              </button>
+            </div>
+            <div class="control">
+              <button
+                type="button"
+                class="button is-small"
+                on:click={() => {
+                  manual_popover.close();
+                }}>
+                Close
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </Message>
+      </Message>
+    </div>
   </div>
-</div>
+{/if}
 
 <div bind:this={notif}>
   <Notification>This is an <code>external_target</code></Notification>
@@ -187,6 +191,8 @@
   export let interactive = false;
   export let max_width = "none";
   export let style = "";
+  export let external_target = null;
+  export let hide_on_click = false;
 
   let klass = "";
   export { klass as class };
@@ -195,4 +201,20 @@
   let x;
 
   let notif;
+
+  let rendered = true;
+
+  $: interactive,
+    placement,
+    max_width,
+    external_target,
+    hide_on_click,
+    varChanged();
+
+  function varChanged() {
+    rendered = false;
+    setTimeout(() => {
+      rendered = true;
+    }, 500);
+  }
 </script>
