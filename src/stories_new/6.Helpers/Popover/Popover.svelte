@@ -209,6 +209,7 @@
     max_width,
     external_target,
     hide_on_click,
+    trigger,
     varChanged();
 
   function varChanged() {
