@@ -196,26 +196,39 @@
     }
 
     if (search_vals.length > 1) {
-      let _role = search_vals[1];
-      var role_field =
-        typeof search_vals[1] !== "undefined" ? _role.split(":") : [];
-      let _status = search_vals[2];
-      var sts_field = typeof _status !== "undefined" ? _status.split(":") : [];
+      console.log("search_vals", search_vals);
+      let role_field = "";
+      let sts_field = "";
+      let serachString = "";
+      for (const val of search_vals) {
+        if (val.startsWith("role:")) {
+          serachString += "R";
+          role_field = val.split(":")[1];
+        } else if (val.startsWith("status:")) {
+          serachString += "S";
+          sts_field = val.split(":")[1];
+        }
+      }
+      console.log(serachString);
       var filter_data = data_from_json;
       if (input_field) {
         filter_data = filtered;
       }
-      filtered = filter_data.filter(function (item) {
-        const statusValue =
-          typeof sts_field[1] !== "undefined"
-            ? Number(sts_field[1])
-            : sts_field[1];
-        const roleValue = role_field[1];
+      const statusValue =
+        typeof sts_field !== "undefined" ? Number(sts_field) : sts_field;
+      const roleValue =
+        typeof role_field !== "undefined" ? role_field : role_field;
 
-        return (
-          (!(_status !== undefined) || item["status"] === statusValue) &&
-          (!(_role !== undefined) || item["role"] === roleValue)
-        );
+      filtered = filter_data.filter(function (item) {
+        if (serachString === "RS") {
+          return item["status"] === statusValue && item["role"] === roleValue;
+        }
+        if (serachString === "S") {
+          return item["status"] === statusValue;
+        }
+        if (serachString === "R") {
+          return item["role"] === roleValue;
+        }
       });
     }
 
@@ -232,10 +245,10 @@
     meta.total = original_data.length;
   }
 
-  function switchView({ detail }) {
+  function switchView() {
     is_tile_view = !is_tile_view;
     page_number = 1;
-    meta.offset = detail.offset;
+    meta.offset = 5;
   }
 
   function paginate({ detail }) {

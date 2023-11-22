@@ -14,7 +14,8 @@
       {data}
       {labels}
       {sets}
-      height={height2} />
+      height={height2}
+      width="99.5%" />
   {:else}
     <Skeleton height="80px" />
   {/if}
