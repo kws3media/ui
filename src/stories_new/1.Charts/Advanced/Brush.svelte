@@ -8,7 +8,7 @@
     height={height1} />
 
   {#if componentVisible}
-    <AreaChart
+    <BarChart
       options={options2}
       {colors}
       {data}
@@ -21,7 +21,7 @@
 {/if}
 
 <script>
-  import { LineChart, Skeleton, AreaChart } from "@kws3/ui";
+  import { LineChart, Skeleton, BarChart } from "@kws3/ui";
   import { onMount } from "svelte";
 
   let componentVisible = false;
@@ -68,6 +68,16 @@
       },
       yaxis: {
         tickAmount: 2,
+        labels: {
+          offsetX: 10,
+          show: true,
+        },
+        axisBorder: {
+          show: false,
+        },
+        title: {
+          offsetX: 0,
+        },
       },
       colors: ["#008FFB"],
     },
