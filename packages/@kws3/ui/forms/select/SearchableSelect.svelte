@@ -27,6 +27,7 @@ Fuzzy match will not work if `search` function is set, as the backend service is
   @param {string} [no_options_msg="No matching options"] - Message to display when no matching options are found, Default: `"No matching options"`
   @param {string} [async_search_prompt="Start typing to search..."] - Message to display in dropdown when async search can be performed, Default: `"Start typing to search..."`
   @param {string} [remove_all_tip="Clear Selection"] - Tooltip text for the Clear selection button, Default: `"Clear Selection"`
+  @param {PopperStrategies} [popper_strategy=absolute] - Placement strategy used by Popperjs, see popperjs docs, Default: `absolute`
   @param {HTMLElement|string} [dropdown_portal=undefined] - Where to render the dropdown list.
 Can be a DOM element or a `string` with the CSS selector of the element.
 
@@ -62,6 +63,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   {remove_all_tip}
   async_search_prompt={value ? "Backspace to clear" : async_search_prompt}
   {no_options_msg}
+  {popper_strategy}
   {dropdown_portal}
   on:change={change}
   on:blur={blur}
@@ -87,6 +89,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').PopperStrategies} PopperStrategies
    */
 
   /**
@@ -169,6 +172,11 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Tooltip text for the Clear selection button
    */
   export let remove_all_tip = "Clear Selection";
+  /**
+   * Placement strategy used by Popperjs, see popperjs docs
+   * @type {PopperStrategies}
+   */
+  export let popper_strategy = "absolute";
   /**
    * Where to render the dropdown list.
    * Can be a DOM element or a `string` with the CSS selector of the element.
