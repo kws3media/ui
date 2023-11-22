@@ -181,7 +181,6 @@
     page_number = 1;
     meta.offset = detail.offset;
     const data_from_json = response.records;
-    console.log(detail);
     const search_vals = detail.split("~");
     const input_field = search_vals[0].trim();
     let filtered = original_data;
@@ -196,7 +195,6 @@
     }
 
     if (search_vals.length > 1) {
-      console.log("search_vals", search_vals);
       let role_field = "";
       let sts_field = "";
       let serachString = "";
@@ -209,7 +207,7 @@
           sts_field = val.split(":")[1];
         }
       }
-      console.log(serachString);
+
       var filter_data = data_from_json;
       if (input_field) {
         filter_data = filtered;
