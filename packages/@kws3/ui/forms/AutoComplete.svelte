@@ -413,7 +413,11 @@ Default value: `<span>{option.label}</span>`
       });
     } else {
       active_option = "";
-      searching = true;
+      if (event.key === `Tab`) {
+        searching = false;
+      } else {
+        searching = true;
+      }
     }
   }
 
