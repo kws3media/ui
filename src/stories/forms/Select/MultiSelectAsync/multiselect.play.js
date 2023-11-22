@@ -22,7 +22,7 @@ export default async ({ args, canvasElement }) => {
   //Focus on Multi-select
   await userEvent.click(inputs[0]);
 
-  userEvent.type(inputs[0], "l", { delay: 100 });
+  userEvent.type(inputs[0], "l", { delay: 200 });
   await sleep(1000);
 
   const options = document.querySelectorAll("ul.options"),
@@ -43,7 +43,7 @@ export default async ({ args, canvasElement }) => {
   //Select items by using Enter key
   await sleep(300);
 
-  await userEvent.type(inputs[0], "ap", { delay: 100 });
+  await userEvent.type(inputs[0], "ap", { delay: 200 });
   await sleep(1000);
 
   await fireEvent.mouseEnter(items[0]);
@@ -64,7 +64,7 @@ export default async ({ args, canvasElement }) => {
   //Select item by mouse click on item
   await sleep(300);
 
-  await userEvent.type(inputs[0], "hu", { delay: 100 });
+  await userEvent.type(inputs[0], "hu", { delay: 200 });
   await sleep(1000);
 
   await userEvent.click(items[0]);
@@ -75,7 +75,7 @@ export default async ({ args, canvasElement }) => {
   //Deselect item by mouse click on item
   await sleep(300);
 
-  await userEvent.type(inputs[0], "hu", { delay: 100 });
+  await userEvent.type(inputs[0], "hu", { delay: 200 });
   await sleep(1000);
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toEqual(2);
@@ -83,7 +83,7 @@ export default async ({ args, canvasElement }) => {
   //show 'No matching options' message when no matching items found
   await sleep(300);
   inputs[0].value = "";
-  await userEvent.type(inputs[0], "exe", { delay: 100 });
+  await userEvent.type(inputs[0], "exe", { delay: 200 });
   await sleep(1000);
   await expect(getNodeText(items[0]).trim()).toEqual("No matching options");
 
@@ -94,9 +94,9 @@ export default async ({ args, canvasElement }) => {
 
   //Clear input using Escape key
   await sleep(300);
-  await userEvent.type(inputs[0], "bl", { delay: 100 });
+  await userEvent.type(inputs[0], "bl", { delay: 200 });
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
-  await userEvent.type(inputs[0], "nok", { delay: 100 });
+  await userEvent.type(inputs[0], "nok", { delay: 200 });
   await fireEvent.keyDown(inputs[0], { key: "Escape" });
   await expect(Number(tags.length)).toBe(2);
   await expect(getNodeText(tags[0]).substring(0, 3).toLowerCase()).toBe("opp");
@@ -112,7 +112,7 @@ export default async ({ args, canvasElement }) => {
   // //Select item using ArrowUp and Enter key
   await sleep(300);
 
-  await userEvent.type(inputs[0], "o", { delay: 100 });
+  await userEvent.type(inputs[0], "o", { delay: 200 });
   await sleep(1000);
   await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowUp" });
@@ -121,7 +121,7 @@ export default async ({ args, canvasElement }) => {
 
   //Select item using ArrowDown key & Mouse click
   await sleep(300);
-  await userEvent.type(inputs[0], "o", { delay: 100 });
+  await userEvent.type(inputs[0], "o", { delay: 200 });
   await sleep(1000);
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
   await fireEvent.keyDown(inputs[0], { key: "ArrowDown" });
