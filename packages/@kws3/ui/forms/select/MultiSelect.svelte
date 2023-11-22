@@ -735,6 +735,10 @@ Default value: `<span>{option[search_key] || option}</span>`
         searching = true;
       }
     } else {
+      if (event.key === `Tab`) {
+        searching = false;
+        return;
+      }
       //for a single select
       //if a value is already selected,
       //ignore keys other than navigation, enter and backspace
