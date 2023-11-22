@@ -1,6 +1,8 @@
 # UNRELEASED
-  - Bug Fix `MultiSelect` - output raw value object initially (if given) instead of `value_key` format .
-  - Bug Fix `SearchableSelect` and `MultiSelect` (Async) -  add class active on most matched item when options appears in dropdown.
+  - `MultiSelect` - fixed issue where raw object were initially outputted (if provided).
+  - `SearchableSelect and `MultiSelect` (Async): resolved issue with the 'active' class not attaching to the most matched item in dropdown options.
+  - `SearchableSelect` - improved behavior, ensuring the tab key correctly loses focus.
+  - `AutoComplete` - dropdown now closes on loss of focus triggered by the tab key.
 
 
 # 2.3.1
