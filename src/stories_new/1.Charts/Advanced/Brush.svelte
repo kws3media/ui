@@ -57,8 +57,8 @@
         selection: {
           enabled: true,
           xaxis: {
-            min: 50,
-            max: 100,
+            min: 10,
+            max: 40,
           },
         },
       },
@@ -70,11 +70,11 @@
         tickAmount: 2,
       },
     },
-    data = [...Array(200)]
-      .map(() => (Math.random() * 200) | 0)
+    data = [...Array(100)]
+      .map(() => (Math.random() * 100) | 0)
       .filter((num) => num !== 0),
     labels = data.map((_, index) => index),
-    sets = data.map((value, index) => index);
+    sets = ["Value"];
 
   onMount(() => {
     setTimeout(() => {
