@@ -49,7 +49,7 @@ export default {
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
+  //tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,
