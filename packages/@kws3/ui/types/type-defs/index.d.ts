@@ -7,12 +7,14 @@ export const Colors = [
   "danger",
   "dark",
   "light",
+  "link",
 ] as const;
+
+export const ExtendedColors = [...Colors, "grey"] as const;
+export const BGColors = [...Colors, "transparent"] as const;
 
 export const Sizes = ["", "small", "medium", "large"] as const;
 
-export const BGColors = [...Colors, "transparent", "link"] as const;
-export const SpinnerColors = [...Colors, "grey"] as const;
 export const Positions = [
   "top",
   "bottom",
@@ -60,3 +62,5 @@ export const TippyPositions = [
   "auto-start",
   "auto-end",
 ] as const;
+
+export const PopperStrategies = ["fixed", "absolute"] as const;
