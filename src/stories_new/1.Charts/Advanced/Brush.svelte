@@ -8,21 +8,20 @@
     height={height1} />
 
   {#if componentVisible}
-    <BarChart
+    <AreaChart
       options={options2}
       {colors}
       {data}
       {labels}
       {sets}
-      height={height2}
-      width="99.5%" />
+      height={height2} />
   {:else}
     <Skeleton height="80px" />
   {/if}
 {/if}
 
 <script>
-  import { LineChart, BarChart, Skeleton } from "@kws3/ui";
+  import { LineChart, Skeleton, AreaChart } from "@kws3/ui";
   import { onMount } from "svelte";
 
   let componentVisible = false;
@@ -46,6 +45,7 @@
         tickAmount: 5,
         type: "numeric",
       },
+      colors: ["#546E7A"],
     },
     options2 = {
       chart: {
@@ -69,9 +69,10 @@
       yaxis: {
         tickAmount: 2,
       },
+      colors: ["#008FFB"],
     },
-    data = [...Array(100)]
-      .map(() => (Math.random() * 100) | 0)
+    data = [...Array(200)]
+      .map(() => (Math.random() * 200) | 0)
       .filter((num) => num !== 0),
     labels = data.map((_, index) => index),
     sets = ["Value"];
