@@ -38,12 +38,11 @@ export default {
   component: SearchInput,
   args: args,
   argTypes: argTypes,
-  play: playInteractions,
 };
 
 export const Main = {
-  name: "Preview",
-  tags: ["isHidden"],
+  name: "Canvas",
+  //tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

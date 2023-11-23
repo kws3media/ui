@@ -37,8 +37,8 @@ export default {
 };
 
 export const Main = {
-  name: "Preview",
-  tags: ["isHidden"],
+  name: "Canvas",
+  //tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,
