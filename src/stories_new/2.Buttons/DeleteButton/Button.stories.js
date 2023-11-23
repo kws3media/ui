@@ -1,5 +1,6 @@
 import { DeleteButton } from "@kws3/ui";
 import ButtonDecorator from "./DeleteButton.svelte";
+import playInteractions from "./Button.play.js";
 import { Colors, Sizes } from "@scripts/type_injector/frameworkTypes";
 
 let args = {
@@ -41,8 +42,9 @@ export default {
 };
 
 export const Main = {
-  name: "Preview",
-  tags: ["isHidden"],
+  name: "Canvas",
+  //tags: ["isHidden"],
+  play: playInteractions,
   args: args,
   decorators: [(_, { args }) => ({ Component: ButtonDecorator, props: args })],
   argTypes: argTypes,

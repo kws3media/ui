@@ -30,13 +30,13 @@ export default async ({ args, canvasElement }) => {
     () => {
       expect(successButton.innerText).toBe("Deleted");
     },
-    { timeout: 2000 }
+    { timeout: 2000 },
   );
   await waitFor(
     () => {
       expect(successButton.innerText).toBe("Delete Me");
     },
-    { timeout: 600 }
+    { timeout: 600 },
   );
 
   //click on the fail button
@@ -47,12 +47,12 @@ export default async ({ args, canvasElement }) => {
     () => {
       expect(failButton.innerText).toBe("Failed");
     },
-    { timeout: 2000 }
+    { timeout: 2000 },
   );
   await waitFor(
     () => {
       expect(failButton.innerText).toBe("Delete Me");
     },
-    { timeout: 3000 }
+    { timeout: 3000 },
   );
 };

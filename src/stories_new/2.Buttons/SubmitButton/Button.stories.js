@@ -1,5 +1,6 @@
 import { SubmitButton } from "@kws3/ui";
 import ButtonDecorator from "./SubmitButton.svelte";
+import playInteractions from "./Button.play.js";
 import { Colors, Sizes } from "@scripts/type_injector/frameworkTypes";
 
 let args = {
@@ -40,8 +41,9 @@ export default {
 };
 
 export const Main = {
-  name: "Preview",
-  tags: ["isHidden"],
+  name: "Canvas",
+  //tags: ["isHidden"],
+  play: playInteractions,
   args: args,
   argTypes: argTypes,
   decorators: [(_, { args }) => ({ Component: ButtonDecorator, props: args })],

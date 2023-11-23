@@ -50,16 +50,9 @@ export default {
 };
 
 export const Main = {
-  name: "Preview",
-  tags: ["isHidden"],
+  name: "Canvas",
+  //tags: ["isHidden"],
   play: playInteractions,
   props: args,
   decorators: [(_, { args }) => ({ Component: ButtonDecorator, props: args })],
-  // decorators: [
-  //   () => ({
-  //     Component: ButtonDecorator,
-  //     props: args,
-  //   }),
-  // ],
-  //template: [() => ButtonDecorator],
 };
