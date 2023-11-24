@@ -470,7 +470,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     ) {
       activeOption = filteredOptions[0];
     } else {
-      if (allow_fuzzy_match) {
+      if (asyncMode || allow_fuzzy_match) {
         activeOption = filteredOptions.find((opts) =>
           matchesValue(activeOption, opts)
         );
@@ -557,22 +557,28 @@ Default value: `<span>{option[search_key] || option}</span>`
     //normalize value for single versus multiselect
     if (value === null || typeof value == "undefined") {
       value = single ? null : [];
-    }
-
-    if (asyncMode) {
-      // initally on async mode options are empty
-      // so we need to fill selectedOptions with value if value is avaliable
-      options = value ? [...(single ? [value] : [...value])] : [];
-      searching = false;
-      tick().then(() => {
-        normaliseOptions();
-        value = normaliseArraysToObjects(options).map((v) => v[used_value_key]);
-        if (single && Array.isArray(value)) {
-          value = value[0];
-        }
-        fillSelectedOptions();
-        clearDropDownResults();
-      });
+    } else {
+      if (asyncMode) {
+        // initally on async mode options are empty
+        // so we need to fill selectedOptions with value if value is avaliable
+        options = value ? [...(single ? [value] : [...value])] : [];
+        searching = false;
+        tick().then(() => {
+          normaliseOptions();
+          value = normaliseArraysToObjects(options).map(
+            (v) => v[used_value_key]
+          );
+          if (single && Array.isArray(value)) {
+            value = value[0];
+          }
+          fillSelectedOptions();
+          clearDropDownResults();
+        });
+      } else {
+        value = single
+          ? value
+          : normaliseArraysToObjects(value).map((v) => v[used_value_key]);
+      }
     }
 
     return () => {
@@ -729,6 +735,10 @@ Default value: `<span>{option[search_key] || option}</span>`
         searching = true;
       }
     } else {
+      if (event.key === `Tab`) {
+        searching = false;
+        return;
+      }
       //for a single select
       //if a value is already selected,
       //ignore keys other than navigation, enter and backspace
