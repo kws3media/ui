@@ -6,7 +6,7 @@ const allRules = [noDateStringArg, noDatalistScaffold, noRawtext];
 
 const configs = {
   base: {
-    plugins: ["@kws3/svelte3"],
+    plugins: ["@kws3/svelte4"],
     overrides: [
       {
         files: ["*.svelte"],

@@ -16,7 +16,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:svelte/recommended",
-    "plugin:@kws3/svelte3/base"
+    "plugin:@kws3/svelte4/base"
   ],
   "overrides": [
     {
