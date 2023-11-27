@@ -39,7 +39,7 @@
     "svelte/comment-directive": "error",
     "svelte/system": "error",
     "svelte/button-has-type": "error",
-    "@kws3/svelte3/no-date-string-arg": "error",
-    "@kws3/svelte3/no-datalist-scaffold": "error"
+    "@kws3/svelte4/no-date-string-arg": "error",
+    "@kws3/svelte4/no-datalist-scaffold": "error"
   }
 }
