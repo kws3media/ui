@@ -36,7 +36,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
         on:focus={focused}
         {disabled}
         bind:value={color}
-        use:colorpicker />
+        use:colorpicker={color} />
       {#if !mini}
         <Icon icon="hashtag" class="is-left" inner_style="color:#{color}" />
       {/if}
@@ -95,6 +95,9 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
   let dragover = false,
     _colorpicker;
 
+  /**
+   * @type {import("svelte/action").Action}
+   */
   function colorpicker(node) {
     _colorpicker = new ColorPicker(node);
 

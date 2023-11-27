@@ -2,7 +2,7 @@
   @component
 
 
-  @param {number} [lines=1] - @typedef {import(', Default: `1`
+  @param {number} [lines=1] - Lines property, Default: `1`
   @param {string} [width="100%"] - CSS string denoting width of the Skeleton
 **Examples:** `10px` | `5rem` | `100vh`, Default: `"100%"`
   @param {string} [height="auto"] - CSS string denoting height of the Skeleton
@@ -11,7 +11,7 @@
 **Examples:** `10px` | `5rem`, Default: `"0px"`
   @param {boolean} [circle=false] - Whether the Skeleton should be rendered as a circle.
 If this is set to `true`, the `radius` property will be ignored., Default: `false`
-  @param {BGColorOptions} [color=] - Color of the Skeleton lines, Default: ``
+  @param {ColorOptions} [color=] - Color of the Skeleton lines, Default: ``
   @param {string} [class=""] - CSS class for Skeleton, Default: `""`
 
 -->
@@ -26,7 +26,7 @@ If this is set to `true`, the `radius` property will be ignored., Default: `fals
 
 <script>
   /**
-   * @typedef {import('@kws3/ui/types').BGColorOptions} BGColorOptions
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    */
   export let /**
      * Number of lines of text to display.
@@ -54,7 +54,7 @@ If this is set to `true`, the `radius` property will be ignored., Default: `fals
     circle = false,
     /**
      * Color of the Skeleton lines
-     * @type {BGColorOptions}
+     * @type {ColorOptions}
      */
     color = "";
 

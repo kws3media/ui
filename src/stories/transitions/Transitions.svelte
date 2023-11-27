@@ -7,58 +7,60 @@
     </div>
   </div>
 </div>
-{#if show_transition}
-  <div class="columns">
-    <div class="column is-3">
-      <KwsTransition
-        type="fly"
-        {duration}
-        {x}
-        {y}
-        class={klass}
-        {transition}
-        {delay}
-        {easing}>
-        <Message color="info">Fly</Message>
-      </KwsTransition>
+<div style="height:100px">
+  {#if show_transition}
+    <div class="columns is-marginless">
+      <div class="column is-3">
+        <KwsTransition
+          type="fly"
+          {duration}
+          {x}
+          {y}
+          class={klass}
+          {transition}
+          {delay}
+          {easing}>
+          <Message color="info">Fly</Message>
+        </KwsTransition>
+      </div>
+      <div class="column is-3">
+        <KwsTransition
+          type="fade"
+          {duration}
+          class={klass}
+          {transition}
+          {delay}
+          {easing}>
+          <Message color="warning">Fade</Message>
+        </KwsTransition>
+      </div>
+      <div class="column is-3">
+        <KwsTransition
+          type="slide"
+          {duration}
+          class={klass}
+          {transition}
+          {delay}
+          {easing}>
+          <Message color="primary">Slide</Message>
+        </KwsTransition>
+      </div>
+      <div class="column is-3">
+        <KwsTransition
+          type="scale"
+          {duration}
+          {from}
+          {to}
+          class={klass}
+          {transition}
+          {delay}
+          {easing}>
+          <Message color="light">Scale</Message>
+        </KwsTransition>
+      </div>
     </div>
-    <div class="column is-3">
-      <KwsTransition
-        type="fade"
-        {duration}
-        class={klass}
-        {transition}
-        {delay}
-        {easing}>
-        <Message color="warning">Fade</Message>
-      </KwsTransition>
-    </div>
-    <div class="column is-3">
-      <KwsTransition
-        type="slide"
-        {duration}
-        class={klass}
-        {transition}
-        {delay}
-        {easing}>
-        <Message color="primary">Slide</Message>
-      </KwsTransition>
-    </div>
-    <div class="column is-3">
-      <KwsTransition
-        type="scale"
-        {duration}
-        {from}
-        {to}
-        class={klass}
-        {transition}
-        {delay}
-        {easing}>
-        <Message color="light">Scale</Message>
-      </KwsTransition>
-    </div>
-  </div>
-{/if}
+  {/if}
+</div>
 
 <script>
   import { Transition as KwsTransition, Message, Checkbox } from "@kws3/ui";

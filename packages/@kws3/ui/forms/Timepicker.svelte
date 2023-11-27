@@ -11,7 +11,7 @@ This property can be bound to, to fetch the selected time. Output is in the same
   @param {ColorOptions} [color=] - Colour of the Time picker input, Default: ``
   @param {boolean} [disabled=false] - Disables the component, Default: `false`
   @param {string} [placeholder="Select Time.."] - Placeholder text for the input, Default: `"Select Time.."`
-  @param {Exclude<ColorOptions, ''>} [ui_color=primary] - Colour of popup time selection UI, Default: `primary`
+  @param {ColorOptions} [ui_color=primary] - Colour of popup time selection UI, Default: `primary`
   @param {boolean} [time_24hr=false] - Display time selection UI in 24hr format, Default: `false`
   @param {any} [min_time=null] - Set earliest selectable time as string
 
@@ -86,7 +86,7 @@ See: https://flatpickr.js.org/options/, Default: `{}`
   export let placeholder = "Select Time..";
   /**
    * Colour of popup time selection UI
-   * @type {Exclude<ColorOptions, ''>}
+   * @type {ColorOptions}
    */
   export let ui_color = "primary";
 

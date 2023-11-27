@@ -3,6 +3,7 @@ import fs from "fs";
 import { posixify } from "../utils/filesystem.js";
 
 const basePath = path.resolve(process.cwd(), "./packages/@kws3/ui");
+const cachePath = path.resolve(process.cwd(), "./.cache");
 const tsconfigPath = path.join(basePath, "tsconfig.json");
 const tsconfigContent = fs.readFileSync(tsconfigPath).toString();
 
@@ -15,18 +16,23 @@ const randomChars = () => {
 };
 
 export function makeTempConfig(filepath) {
+  if (!fs.existsSync(cachePath)) {
+    fs.mkdirSync(cachePath);
+    console.log(`Folder '${cachePath}' created successfully.`);
+  }
+
   const tempPath = posixify(
-    path.join(basePath, `tsconfig.${randomChars()}.json`)
+    path.join(cachePath, `tsconfig.${randomChars()}.json`),
   );
   const tempConfig = {
     ...tsconfig,
     compilerOptions: {
       ...tsconfig.compilerOptions,
+      baseUrl: basePath,
     },
     files: [filepath],
     include: [],
   };
-
   fs.writeFileSync(tempPath, JSON.stringify(tempConfig, null, 2));
 
   return tempPath;

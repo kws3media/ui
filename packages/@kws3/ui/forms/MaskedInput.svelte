@@ -36,7 +36,7 @@ Requires `guide` to be `true`, Default: `false`
   import {
     createTextMaskInputElement,
     conformToMask,
-  } from "text-mask-core/src";
+  } from "@kws3/text-mask-core";
   /**
    * Mask array
    *

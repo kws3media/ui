@@ -3,7 +3,7 @@
 
 
   @param {SizeOptions} [size=] - Size of the Icon, Default: ``
-  @param {ColorOptions | 'grey'} [color=] - Color of the Icon, Default: ``
+  @param {ExtendedColorOptions} [color=] - Color of the Icon, Default: ``
   @param {string} [icon=""] - The name of the icon that is to be displayed, from the relevant icon family, Default: `""`
   @param {FontFamilies} [family=] - Icon family, can be modified globally in framework settings
 
@@ -22,6 +22,17 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
 </span>
 
 <style>
+  .fa-lg {
+    font-size: 1.33333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+  }
+  .fa-2x {
+    font-size: 2em;
+  }
+  .fa-3x {
+    font-size: 3em;
+  }
   .icon .gg {
     transform: scale(0.75);
   }
@@ -66,7 +77,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   import { defaultIconFamily } from "../settings";
 
   /**
-   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').ExtendedColorOptions} ExtendedColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *
@@ -79,7 +90,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
   export let size = "",
     /**
      * Color of the Icon
-     * @type {ColorOptions | 'grey'}
+     * @type {ExtendedColorOptions}
      */
     color = "",
     /**
@@ -117,7 +128,7 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
     internal_size,
     usedFamily;
 
-  $: inner_icon = family === "material" ? icon : "";
+  $: inner_icon = usedFamily === "material" ? icon : "";
   $: {
     usedFamily = family !== "" ? family : globalFamily ? globalFamily : "fa";
 
@@ -140,8 +151,11 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: ``
       case "material":
         familyClass = "material-icons material-symbols-outlined ";
         break;
-      default:
+      case "fa":
         familyClass = "fa fa-";
+        break;
+      default:
+        familyClass = usedFamily + "-";
         break;
     }
   }

@@ -74,7 +74,7 @@ export let args={
       {size}
       {icon_only}
       {disabled}
-      on:doing={onDoing}
+      on:do={onDo}
     />
     <script>
       import { ProcessButton } from '@kws3/ui';
@@ -86,7 +86,7 @@ export let args={
       export let icon = "check";
       export let done_icon = "check";
       export let done_text = "Done";
-      function onDoing(event){
+      function onDo(event){
         let {doing, done, error} = event.detail;
         doing();
         somePromise().then(() => {

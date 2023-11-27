@@ -30,5 +30,8 @@
   "[mdx]": {
     "files.trimTrailingWhitespace": false,
     "editor.formatOnSave": false
+  },
+  "svelte.plugin.svelte.compilerWarnings": {
+    "a11y-click-events-have-key-events": "ignore"
   }
 }

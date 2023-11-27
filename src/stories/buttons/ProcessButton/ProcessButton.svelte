@@ -44,6 +44,7 @@
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').ButtonEvent} ButtonEvent
    */
 
   export let button_class = "",
@@ -72,6 +73,9 @@
   export { klass as class };
 
   function success(e) {
+    /**
+     * @type {ButtonEvent}
+     */
     let { doing, done } = e.detail;
     doing();
     setTimeout(() => {
@@ -80,6 +84,9 @@
   }
 
   function failed(e) {
+    /**
+     * @type {ButtonEvent}
+     */
     let { doing, error } = e.detail;
     doing();
     setTimeout(() => {

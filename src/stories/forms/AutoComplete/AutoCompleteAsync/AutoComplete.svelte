@@ -18,7 +18,8 @@
         {style}
         class={klass}
         {disabled}
-        {readonly} />
+        {readonly}
+        {popper_strategy} />
       Output data:
       <code>{JSON.stringify(selected_character_string, null, 2)}</code>
     </div>
@@ -56,7 +57,8 @@
     search_strategy = "fuzzy",
     highlighted_results = true,
     placeholder = "Marvel characters...",
-    selected_character_string = "Tony";
+    selected_character_string = "Tony",
+    popper_strategy = "absolute";
 
   let klass = "";
   export { klass as class };

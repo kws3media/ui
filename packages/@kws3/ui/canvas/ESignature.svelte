@@ -9,7 +9,14 @@
   @param {string} [background_image=""] - Background image for the canvas, Default: `""`
   @param {boolean} [readonly=false] - Determines whether canvas is readonly or not, Default: `false`
   @param {boolean} [disabled=false] - Determines whether canvas is disabled or not, Default: `false`
+  @param {string} [expand_from="center"] - The direction from which the canvas should expand.
+'top', 'bottom', 'left', 'right', 'center' and also 'n%', Default: `"center"`
+  @param {string} [expand_to="center"] - The direction to which the canvas should expand.
+'top', 'bottom', 'left', 'right', 'center' and also 'n%', Default: `"center"`
+  @param {number} [expand_scale=50] - Transform scale of the canvas on expansion
+value in percentage %, Default: `50`
   @param {Extract<Positions, 'start'|'center'|'end'>} [control_position=center] - Default position of controls, Default: `center`
+  @param {array} [actions=[]] - List of actions toolbar, Default: `[]`
 
 -->
 <Canvas
@@ -22,8 +29,11 @@
   {disabled}
   {control_position}
   {tools}
+  {expand_from}
+  {expand_to}
+  {expand_scale}
   active_tool="Pen"
-  actions={["undo", "redo", "reset"]}
+  {actions}
   has_controls={!readonly && !disabled}
   toolbar_placement={!readonly && !disabled ? "top" : undefined} />
 
@@ -62,10 +72,29 @@
      */
     disabled = false,
     /**
+     * The direction from which the canvas should expand.
+     * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+     */
+    expand_from = "center",
+    /**
+     * The direction to which the canvas should expand.
+     * 'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+     */
+    expand_to = "center",
+    /**
+     * Transform scale of the canvas on expansion
+     * value in percentage %
+     */
+    expand_scale = 50,
+    /**
      * Default position of controls
      * @type {Extract<Positions, 'start'|'center'|'end'>}
      */
-    control_position = "center";
+    control_position = "center",
+    /**
+     * List of actions toolbar
+     */
+    actions = ["undo", "redo", "reset"];
 
   let tools = { Pen };
 </script>

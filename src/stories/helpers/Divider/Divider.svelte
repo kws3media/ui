@@ -68,8 +68,13 @@
   import { Divider as KwsDivider, Icon, Message } from "@kws3/ui";
 
   /**
+   * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').Positions} Positions
+   */
+
+  /**
    * Color of the Divider lines
-   * @type {import('@kws3/ui/types').ColorOptions}
+   * @type {ColorOptions}
    */
   export let color = "",
     light = false,

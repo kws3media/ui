@@ -210,11 +210,7 @@ Should be used with `bind` from parent component, Default: `false`
 
   $: result = validate(password, sanitizedOptions);
 
-  $: {
-    if (result.overall) {
-      valid = true;
-    }
-  }
+  $: valid = result && result.overall;
 
   function getSanitizedCustomRules(cr) {
     return cr.map((el) => {

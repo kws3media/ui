@@ -2,7 +2,7 @@
   @component
 
 
-  @param {SpinnerColorOptions} [spinner_color=grey] - Color of the Spinner, Default: `grey`
+  @param {ExtendedColorOptions} [spinner_color=grey] - Color of the Spinner, Default: `grey`
   @param {SizeOptions} [spinner_size=medium] - Size of the Spinner, Default: `medium`
   @param {BGColorOptions} [background_color=transparent] - Backgound color of the Spinner container, Default: `transparent`
   @param {string} [background_size="medium"] - Size of the Spinner container. It can also accept css units
@@ -33,7 +33,7 @@ The overlay is absolutely positioned. Ensure that the parent container is relati
 <script>
   /**
 
-   * @typedef {import('@kws3/ui/types').SpinnerColorOptions} SpinnerColorOptions
+   * @typedef {import('@kws3/ui/types').ExtendedColorOptions} ExtendedColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    * @typedef {import('@kws3/ui/types').BGColorOptions} BGColorOptions
    *
@@ -41,7 +41,7 @@ The overlay is absolutely positioned. Ensure that the parent container is relati
   /**
    * Color of the Spinner
    * @link https://bulma.io/documentation/helpers/color-helpers/
-   * @type {SpinnerColorOptions}
+   * @type {ExtendedColorOptions}
    */
   export let spinner_color = "grey",
     /**

@@ -52,6 +52,11 @@ export let args={
 
 <ArgsTable story="Notifications" />
 
+<div class="notification is-danger is-light">
+  <b>This is not a declarative component.</b><br/>
+  <small>It can only be used programatically.</small>
+</div>
+
 <div class="columns">
 <div class="column is-6">
 
@@ -93,7 +98,7 @@ import { Notifications } from '@kws3/ui';
 import CustomComponent from "YourCustomComponent.svelte";
 
 let {props, destroy} = Notifications.create({
-  conmponent: CustomComponent,
+  component: CustomComponent,
   ...other_opts
 });
 ```

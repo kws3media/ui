@@ -2,7 +2,23 @@
   @component
 
 
-  @param {boolean} [has_visibility_switcher=true] - whether has visibility feature or not, Default: `true`
+  @param {boolean} [show_field_icon=true] - whether to show field icon or not, Default: `true`
+  @param {string} [field_icon="lock"] - field icon name, Default: `"lock"`
+  @param {FontFamilies} [field_icon_family=fa] - Icon family to be used
+
+Defaults to global family set via `Icon.setDefaultIconType()`
+
+Ultimately defaults to `fa`, if family is not set anywhere, Default: `fa`
+  @param {boolean} [show_visibility_switch=true] - whether has visibility feature or not, Default: `true`
+  @param {FontFamilies} [visibility_switch_icon_family=fa] - Icon family to be used
+
+Defaults to global family set via `Icon.setDefaultIconType()`
+
+Ultimately defaults to `fa`, if family is not set anywhere, Default: `fa`
+  @param {string} [visibility_switch_on_icon="eye"] - visibility switch on icon name, Default: `"eye"`
+  @param {string} [visibility_switch_off_icon="eye-slash"] - visibility switch off icon icon name, Default: `"eye-slash"`
+  @param {ExtendedColorOptions} [visibility_switch_on_color=grey] - visibility switch on icon color, Default: `grey`
+  @param {ExtendedColorOptions} [visibility_switch_off_color=grey] - visibility switch off icon color, Default: `grey`
   @param {?string} [value=] - Value of the Input
 
 This property can be bound to, to fetch the current value, Default: ``
@@ -10,40 +26,69 @@ This property can be bound to, to fetch the current value, Default: ``
   @param {ColorOptions} [color=] - Colour of the PasswordInput, Default: ``
   @param {string} [style=""] - Inline CSS for the PasswordInput, Default: `""`
   @param {boolean} [disabled=false] - Disables the PasswordInput, Default: `false`
+  @param {boolean} [required=false] - Whether Input is required or not, Default: `false`
+  @param {string} [autocomplete="on"] - Whether autocompletion turned off or on, Default: `"on"`
   @param {string} [placeholder=""] - Input placeholder, Default: `""`
-  @param {string|''|'fa'|'lar'|'las'|'gg'|'unicons'|'material'} [icon_family=""] - Icon family to be used
-
-Defaults to global family set via `Icon.setDefaultIconType()`
-
-Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
+  @param {string} [name="password"] - Input HTML name, Default: `"password"`
   @param {string} [class=""] - CSS classes of the PasswordInput, Default: `""`
+
+  ### Events
+  - `focus`
+  - `blur`
+  - `change`
+  - `input`
+  - `keyup`
+  - `keydown`
+  - `paste`
 
 -->
 
 <div class="field is-marginless">
-  <p class="control has-icons-left has-icons-right is-marginless">
+  <p
+    class="control is-marginless"
+    class:has-icons-left={show_field_icon}
+    class:has-icons-right={show_visibility_switch}>
     <input
-      {type}
+      {name}
+      type="password"
+      bind:this={PASSWORD_INPUT}
       {style}
-      {value}
+      bind:value
+      {autocomplete}
+      {required}
       class="input is-{size} is-{color} {klass} {style}"
-      on:input={(event) => onInput(event)}
+      on:focus
+      on:blur
+      on:change
+      on:input
+      on:keyup
+      on:keydown
+      on:paste
       {placeholder}
       {disabled} />
+    {#if show_field_icon}
+      <span class="icon is-left">
+        <Icon
+          family={field_icon_family}
+          icon={field_icon}
+          size={iconSizes[size]} />
+      </span>
+    {/if}
 
-    <span class="icon is-left">
-      <Icon family={icon_family} icon="lock" size={iconSizes[size]} />
-    </span>
-
-    {#if has_visibility_switcher}
+    {#if show_visibility_switch}
       <span
         class="icon is-right visibility-btn"
         on:click={() => {
           visibility = !visibility;
         }}>
         <Icon
-          family={icon_family}
-          icon={visibility ? visibility_icon.show : visibility_icon.hide}
+          family={visibility_switch_icon_family}
+          color={visibility
+            ? visibility_switch_on_color
+            : visibility_switch_off_color}
+          icon={visibility
+            ? visibility_switch_on_icon
+            : visibility_switch_off_icon}
           size={iconSizes[size]} />
       </span>
     {/if}
@@ -62,17 +107,72 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   /**
    *
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').ExtendedColorOptions} ExtendedColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    * @typedef {import('@kws3/ui/types').FontFamilies} FontFamilies
    *
    */
   let visibility = false;
+  let PASSWORD_INPUT;
+
+  /**
+   * whether to show field icon or not
+   * @type {boolean}
+   */
+  export let show_field_icon = true;
+
+  /**
+   * field icon name
+   * @type {string}
+   */
+  export let field_icon = "lock";
+
+  /**
+   * Icon family to be used
+   *
+   * Defaults to global family set via `Icon.setDefaultIconType()`
+   *
+   * Ultimately defaults to `fa`, if family is not set anywhere
+   *
+   * @type {FontFamilies}
+   */
+  export let field_icon_family = "fa";
 
   /**
    * whether has visibility feature or not
    * @type {boolean}
    */
-  export let has_visibility_switcher = true;
+  export let show_visibility_switch = true;
+  /**
+   * Icon family to be used
+   *
+   * Defaults to global family set via `Icon.setDefaultIconType()`
+   *
+   * Ultimately defaults to `fa`, if family is not set anywhere
+   *
+   * @type {FontFamilies}
+   */
+  export let visibility_switch_icon_family = "fa";
+  /**
+   * visibility switch on icon name
+   * @type {string}
+   */
+  export let visibility_switch_on_icon = "eye";
+  /**
+   * visibility switch off icon icon name
+   * @type {string}
+   */
+  export let visibility_switch_off_icon = "eye-slash";
+  /**
+   * visibility switch on icon color
+   * @type {ExtendedColorOptions}
+   */
+  export let visibility_switch_on_color = "grey";
+  /**
+   * visibility switch off icon color
+   * @type {ExtendedColorOptions}
+   */
+  export let visibility_switch_off_color = "grey";
 
   /**
    * Value of the Input
@@ -103,20 +203,26 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
    */
   export let disabled = false;
   /**
+   * Whether Input is required or not
+   * @type {boolean}
+   */
+  export let required = false;
+  /**
+   * Whether autocompletion turned off or on
+   * @type {string}
+   */
+  export let autocomplete = "on";
+  /**
    * Input placeholder
    * @type {string}
    */
   export let placeholder = "";
   /**
-   * Icon family to be used
-   *
-   * Defaults to global family set via `Icon.setDefaultIconType()`
-   *
-   * Ultimately defaults to `fa`, if family is not set anywhere
-   *
-   * @type {FontFamilies}
+   * Input HTML name
+   * @type {string}
    */
-  export let icon_family = "";
+  export let name = "password";
+
   /**
    * CSS classes of the PasswordInput
    * @type {string}
@@ -124,18 +230,19 @@ Ultimately defaults to `fa`, if family is not set anywhere, Default: `""`
   let klass = "";
   export { klass as class };
 
-  function onInput(event) {
-    value = event.target.value;
-  }
+  // function onInput(event) {
+  //   value = event.target.value;
+  // }
 
   let iconSizes = {
     large: "medium",
   };
 
-  $: type = visibility ? "text" : "password";
+  $: visibility, setInputType();
 
-  $: visibility_icon = {
-    show: icon_family === "material" ? "visibility" : "eye",
-    hide: icon_family === "material" ? "visibility-off" : "eye-slash",
-  };
+  function setInputType() {
+    if (PASSWORD_INPUT) {
+      PASSWORD_INPUT.type = visibility ? "text" : "password";
+    }
+  }
 </script>

@@ -18,7 +18,8 @@
         {style}
         class={klass}
         {disabled}
-        {readonly} />
+        {readonly}
+        {popper_strategy} />
       Output data:
       <code>{JSON.stringify(selected_character, null, 2)}</code>
     </div>
@@ -42,7 +43,8 @@
         {style}
         class={klass}
         {disabled}
-        {readonly} />
+        {readonly}
+        {popper_strategy} />
       Output data:
       <code>{JSON.stringify(selected_character_string, null, 2)}</code>
     </div>
@@ -82,7 +84,8 @@
     score_threshold = 5,
     placeholder = "Marvel characters...",
     selected_character = "", // single , also work with { label: "Tony Stark", value: "Tony Stark"}
-    selected_character_string = "Tony";
+    selected_character_string = "Tony",
+    popper_strategy = "absolute";
 
   let klass = "";
   export { klass as class };

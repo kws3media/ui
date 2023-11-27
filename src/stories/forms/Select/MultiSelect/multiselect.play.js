@@ -129,7 +129,7 @@ export default async ({ args, canvasElement }) => {
   //@ts-ignore
   await userEvent.click(options[0].querySelector("li.active"));
   await expect(Number(tags.length)).toBe(3);
-  await expect(getNodeText(tags[0]).trim()).toBe("BlackBerry");
+  await expect(getNodeText(tags[0]).trim()).toBe("Blackberry");
   await expect(getNodeText(tags[1]).trim()).toBe("NEC");
   await expect(getNodeText(tags[2]).trim()).toBe("Nothing");
 

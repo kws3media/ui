@@ -1,5 +1,8 @@
-// @ts-nocheck
 import UndoManager from "./UndoManager";
+
+/**
+ * @typedef {import('@kws3/ui/types').DrawingPadOptions} DrawingPadOptions
+ */
 
 var passiveSupported = false;
 
@@ -16,6 +19,11 @@ try {
 var eventOpts = passiveSupported ? { passive: false, capture: false } : false;
 
 export class DrawingPad {
+  /**
+   * DrawingPad constructor
+   * @param {{CANVAS:HTMLCanvasElement, fire:(string, object)=>void}} app
+   * @param {DrawingPadOptions} opts - Parameter description.
+   */
   constructor(app, opts) {
     this.app = app;
     this.canvas = this.app.CANVAS;
@@ -293,5 +301,6 @@ export let Eraser = {
     instance.context.lineTo(instance.currentPos.x, instance.currentPos.y);
     instance.context.stroke();
     instance.context.globalCompositeOperation = "destination-out";
+    instance.lastPos = instance.currentPos;
   },
 };

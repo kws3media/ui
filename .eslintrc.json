@@ -16,8 +16,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:svelte/recommended",
-    "plugin:@kws3/svelte3/base",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:@kws3/svelte4/base"
   ],
   "overrides": [
     {
@@ -28,14 +28,8 @@
     }
   ],
   "rules": {
-    "semi": [
-      "error",
-      "always"
-    ],
-    "eqeqeq": [
-      "error",
-      "smart"
-    ],
+    "semi": ["error", "always"],
+    "eqeqeq": ["error", "smart"],
     "svelte/no-dupe-else-if-blocks": "error",
     "svelte/no-dynamic-slot-name": "error",
     "svelte/no-not-function-handler": "error",

@@ -43,11 +43,13 @@
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
    * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
+   * @typedef {import('@kws3/ui/types').SubmitButtonEvent} SubmitButtonEvent
+   * @typedef {import('@kws3/ui/types').ButtonTracker} ButtonTracker
    */
 
   /**
    * Color of the Button
-   * @type {Exclude<ColorOptions , 'success'>}
+   * @type {ColorOptions}
    */
   export let color = "primary",
     /**
@@ -61,6 +63,9 @@
     icon_only = false,
     disabled = false,
     icon = "",
+    /**
+     * @type {ButtonTracker}
+     */
     tracker = {
       saving: false,
       saved: false,
@@ -72,8 +77,15 @@
   let klass = "";
   export { klass as class };
 
-  let BUTTON_1 = null;
-  let BUTTON_2 = null;
+  /**
+   * @type {SubmitButtonEvent}
+   */
+  let BUTTON_1;
+
+  /**
+   * @type {SubmitButtonEvent}
+   */
+  let BUTTON_2;
 
   export function success() {
     BUTTON_1.saving();

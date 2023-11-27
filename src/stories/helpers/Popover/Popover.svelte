@@ -34,9 +34,7 @@
             type="button"
             bind:this={x}
             class="button is-small"
-            on:click={() =>
-              // @ts-ignore
-              Dialog.alert("Clicked!!!")}>Try to click me!</button>
+            on:click={() => alert("Clicked!!!")}>Try to click me!</button>
         </Message>
       </svelte:fragment>
     </KwsPopover>
@@ -60,9 +58,8 @@
           <button
             type="button"
             class="button is-small"
-            on:click={() =>
-              // @ts-ignore
-              Dialog.alert("Clicked!!!")}>Try to click me!</button>
+            on:click={() => Dialog.alert("Clicked!!!")}
+            >Try to click me!</button>
         </Message>
       </svelte:fragment>
     </KwsPopover>
@@ -86,9 +83,8 @@
             <button
               type="button"
               class="button is-small"
-              on:click={() =>
-                // @ts-ignore
-                Dialog.alert("Clicked!!!")}>Try to click me!</button>
+              on:click={() => Dialog.alert("Clicked!!!")}
+              >Try to click me!</button>
           </Message>
         </svelte:fragment>
       </KwsPopover>
@@ -120,9 +116,8 @@
             <button
               type="button"
               class="button is-small"
-              on:click={() =>
-                // @ts-ignore
-                Dialog.alert("Clicked!!!")}>Try to click me!</button>
+              on:click={() => Dialog.alert("Clicked!!!")}
+              >Try to click me!</button>
           </Message>
         </svelte:fragment>
       </KwsPopover> This popover can only be opened and closed programmatically using
@@ -170,7 +165,7 @@
   export let icon = "info-circle";
   /**
    * Colour of the trigger icon displayed when default slot has no content
-   * @type {import('@kws3/ui/types').ColorOptions | 'grey'}
+   * @type {import('@kws3/ui/types').ExtendedColorOptions}
    */
   export let icon_color = "grey";
   /**

@@ -14,9 +14,9 @@
   @param {boolean} [bulk_actions=false] - Determines if selecting multiple rows and doing multiple actions is allowed, Default: `false`
   @param {boolean} [selectAll=false] - Determines if all rows are selected, Default: `false`
   @param {array} [selectedIds=[]] - List of unique IDs of all the selected rows, Default: `[]`
-  @param {Exclude<ColorOptions, 'success'>} [selectAllCheckboxColor=primary] - Colour of the `select all` checkbox, Default: `primary`
-  @param {string} [selectCheckboxColor="info"] - Color of the checkbox on each row, Default: `"info"`
-  @param {string} [selectCheckboxSize="medium"] - Size of the checkbox, Default: `"medium"`
+  @param {ColorOptions} [selectAllCheckboxColor=primary] - Colour of the `select all` checkbox, Default: `primary`
+  @param {ColorOptions} [selectCheckboxColor=info] - Color of the checkbox on each row, Default: `info`
+  @param {SizeOptions} [selectCheckboxSize=medium] - Size of the checkbox, Default: `medium`
   @param {object} [valueTransformers={}] - Contains all custom values for each column, Default: `{}`
   @param {object} [classTransformers={}] - CSS classes for each column, Default: `{}`
   @param {object} [styleTransformers={}] - CSS styles for each column, Default: `{}`
@@ -95,6 +95,7 @@
 
   /**
    * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+   * @typedef {import('@kws3/ui/types').SizeOptions} SizeOptions
    */
 
   /**
@@ -149,15 +150,17 @@
     selectedIds = [],
     /**
      * Colour of the `select all` checkbox
-     * @type {Exclude<ColorOptions, 'success'>}
+     * @type {ColorOptions}
      */
     selectAllCheckboxColor = "primary",
     /**
      * Color of the checkbox on each row
+     * @type {ColorOptions}
      */
     selectCheckboxColor = "info",
     /**
      * Size of the checkbox
+     * @type {SizeOptions}
      */
     selectCheckboxSize = "medium",
     /**

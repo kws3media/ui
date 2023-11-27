@@ -60,7 +60,7 @@
     Icon,
   } from "@kws3/ui";
 
-  export let style = "height:250px",
+  export let style = "height:210px",
     vertical = false;
 
   let klass = "";
