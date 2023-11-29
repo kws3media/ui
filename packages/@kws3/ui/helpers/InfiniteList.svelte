@@ -131,6 +131,5 @@ while more items are loading
 
   const resize = () => {
     viewport_height = viewport.offsetHeight;
-    handle_scroll();
   };
 </script>
