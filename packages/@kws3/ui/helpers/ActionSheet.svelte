@@ -23,11 +23,11 @@ If `false` , the component won't have a close button, and will not close on clic
   class="modal kws-action-sheet-outer {klass} {is_active ? 'is-active' : ''}"
   {style}>
   {#if is_active}<div
-      transition:fade={{ duration: transitionDuration }}
+      transition:fade|global={{ duration: transitionDuration }}
       class="modal-background"
       on:click={clickOutside} />
     <div
-      transition:fly={{
+      transition:fly|global={{
         duration: transitionDuration,
         y: 300,
         delay: transitionDelay,
