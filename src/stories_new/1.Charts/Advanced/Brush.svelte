@@ -8,7 +8,7 @@
     height={height1} />
 
   {#if componentVisible}
-    <BarChart
+    <AreaChart
       options={options2}
       {colors}
       {data}
@@ -21,7 +21,7 @@
 {/if}
 
 <script>
-  import { LineChart, Skeleton, BarChart } from "@kws3/ui";
+  import { LineChart, Skeleton, AreaChart } from "@kws3/ui";
   import { onMount } from "svelte";
 
   let componentVisible = false;
