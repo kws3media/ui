@@ -7,6 +7,8 @@ export const Colors = [
   "danger",
   "dark",
   "light",
+  "white",
+  "black",
   "link",
 ] as const;
 
