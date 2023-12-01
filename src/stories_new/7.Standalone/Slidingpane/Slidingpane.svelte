@@ -7,6 +7,7 @@
         style="margin: -1rem -1.3rem -0.8rem;">
         <div id="stepsHolder">
           <ul class="steps has-content-centered is-horizontal">
+            <!-- eslint-disable-next-line no-unused-vars -->
             {#each steps as step, idx}
               <li
                 class="steps-segment {active_index === idx ? 'is-active' : ''}"
