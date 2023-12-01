@@ -1,4 +1,3 @@
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   class="item"
   style="padding:15px 20px;border-bottom:1px solid #e3e3e3;"
