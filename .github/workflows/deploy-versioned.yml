@@ -26,6 +26,6 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: build/v3
+        FOLDER: build
         CLEAN: true
-        TARGET_FOLDER: docs
+        TARGET_FOLDER: docs/v3
