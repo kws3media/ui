@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "npm-run-all dev:hmr",
-    "dev:hmr": "concurrently \"storybook dev -p 9009 -s public\" \"node scripts/watcher/index.js\"",
-    "build": "storybook build --docs -s public -o build",
+    "dev:hmr": "concurrently \"storybook dev -p 9009\" \"node scripts/watcher/index.js\"",
+    "build": "storybook build --docs -o build",
     "populate": "grunt dist",
     "build:dist": "npm-run-all -s build -s populate",
     "deploy:dist": "grunt deploy:dist",
