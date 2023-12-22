@@ -15,7 +15,7 @@ jobs:
         persist-credentials: false
 
     - name: Run Build script
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: '18.18.0'
     - run: npm ci
