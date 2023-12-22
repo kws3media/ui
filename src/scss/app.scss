@@ -266,6 +266,47 @@ pre.prismjs {
     padding-right: 0.5rem;
     border-right: 1px solid #ebebeb;
   }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    &:hover {
+      .dropdown-content {
+        display: block;
+      }
+    }
+    .tags {
+      margin-bottom: 0;
+      .tag {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 0.2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 8.2rem;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #333;
+      padding: 5px 16px;
+      text-decoration: none;
+      display: block;
+      &:hover {
+        background-color: #ddd;
+      }
+      &.is-active {
+        background-color: #293a8f;
+        color: #fff !important;
+      }
+    }
+  }
 }
 
 .datagrid-example {
