@@ -1,0 +1,15 @@
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+
+/**
+ * fuzzy.js v0.1.0
+ * (c) 2016 Ben Ripkens
+ * @license: MIT
+ * @params
+ *  term : haystack
+ *  query : needle
+ *  opts: {
+ *   analyzeSubTerms,
+ *   analyzeSubTermDepth
+ *   highlighting
+ *  }
+ */
