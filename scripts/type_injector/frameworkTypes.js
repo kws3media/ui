@@ -1,3 +1,4 @@
+
 /**
  * This file is auto-generated.
  * It is used to monkey-patch stprybook doc generation for the frontend.
@@ -6,6 +7,7 @@
  *
  * To update this file, run `npm run sync:frameworkTypes`
  */
+
 
 export const Colors = [
   "",
@@ -19,12 +21,12 @@ export const Colors = [
   "white",
   "black",
   "link",
-];
+] ;
 
-export const ExtendedColors = [...Colors, "grey"];
-export const BGColors = [...Colors, "transparent"];
+export const ExtendedColors = [...Colors, "grey"] ;
+export const BGColors = [...Colors, "transparent"] ;
 
-export const Sizes = ["", "small", "medium", "large"];
+export const Sizes = ["", "small", "medium", "large"] ;
 
 export const Positions = [
   "top",
@@ -34,7 +36,7 @@ export const Positions = [
   "start",
   "center",
   "end",
-];
+] ;
 
 export const FontFamilies = [
   "",
@@ -44,7 +46,7 @@ export const FontFamilies = [
   "gg",
   "unicons",
   "material",
-];
+] ;
 
 export const FloatiePositions = [
   "",
@@ -54,7 +56,7 @@ export const FloatiePositions = [
   "top-right",
   "bottom-left",
   "bottom-right",
-];
+] ;
 
 export const TippyPositions = [
   "top",
@@ -72,6 +74,6 @@ export const TippyPositions = [
   "auto",
   "auto-start",
   "auto-end",
-];
+] ;
 
-export const PopperStrategies = ["fixed", "absolute"];
+export const PopperStrategies = ["fixed", "absolute"] ;
