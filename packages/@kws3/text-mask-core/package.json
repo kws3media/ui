@@ -1,6 +1,6 @@
 {
   "name": "@kws3/text-mask-core",
-  "version": "5.1.2",
+  "version": "5.1.3",
   "main": "index.js",
   "svelte": "index.js",
   "type": "module",
