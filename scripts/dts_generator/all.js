@@ -1,5 +1,5 @@
 import fs from "fs";
-import glob from "glob";
+import {glob} from "glob";
 import { execSync } from "child_process";
 import path from "path";
 import { resolve_aliases, write } from "../utils/helper.js";
@@ -32,18 +32,14 @@ const fixAliases = function (file, content) {
 };
 
 const adjustAliases = function () {
-  glob(folders.generatedTypes + "/**/*.d.ts", function (err, dtsFiles) {
-    if (err) {
-      console.log("Error", err);
-    } else {
-      if (dtsFiles.length) {
-        dtsFiles.forEach((f) => {
-          const source = fs.readFileSync(f, "utf8");
-          const relativePath = path.relative(folders.package, f);
-          write(f, fixAliases(relativePath, source));
-          console.log(`${chalk.bold.green("✓")} ${relativePath}`);
-        });
-      }
+  glob(folders.generatedTypes + "/**/*.d.ts").then((dtsFiles) => {
+    if (dtsFiles.length) {
+      dtsFiles.forEach((f) => {
+        const source = fs.readFileSync(f, "utf8");
+        const relativePath = path.relative(folders.package, f);
+        write(f, fixAliases(relativePath, source));
+        console.log(`${chalk.bold.green("✓")} ${relativePath}`);
+      });
     }
   });
 };
@@ -94,13 +90,9 @@ async function mainOld() {
 async function main() {
   glob(
     folders.package + "/**/*.d.ts*",
-    { ignore: [folders.package + "/types/**/*"] },
-    function (err, dtsFiles) {
-      if (err) {
-        console.log("ERROR!");
-        console.log(err);
-        return;
-      }
+    { ignore: [folders.package + "/types/**/*"] }
+  )
+    .then((dtsFiles) => {
       if (dtsFiles.length) {
         //delete all dts files that have been generated
         //these will exclude all files in "./types" folder
@@ -112,8 +104,7 @@ async function main() {
       }
 
       generateJsDts();
-    }
-  );
+    });
 }
 
 main();
