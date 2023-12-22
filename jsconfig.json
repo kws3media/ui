@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
+    //"jsx": "react",
     "module": "commonjs",
     "target": "es6",
     "allowJs": true,
     "checkJs": true,
     "strict": true,
     "noImplicitAny": false,
+    "baseUrl": ".",
     "paths": {
       "@kws3/ui": ["./packages/@kws3/ui/index"],
-      "@kws3/*": ["./packages/@kws3/*"]
+      "@kws3/*": ["./packages/@kws3/*"],
+      "~/*": ["./src/*"],
+      "@scripts/*": ["./scripts/*"],
     },
     "resolveJsonModule": true,
     "typeRoots": ["./packages/@kws3/ui"],

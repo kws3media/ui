@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/blocks";
+import Version from "~/version.mdx";
+import * as Stories from "./ResizeObserver.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+### ResizeObserver
+
+The `resizeObserver` is used to handle window resizing.
+
+**Example:**
+
+```html
+{#if hasResizeObserver}
+  <div use:resizeObserver on:resize={resizeHandler}>
+{/if}
+
+<script>
+  import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
+</script>
+```
+
+<Story of={Stories.Main} />

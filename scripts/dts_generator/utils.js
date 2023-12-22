@@ -22,7 +22,7 @@ export function makeTempConfig(filepath) {
   }
 
   const tempPath = posixify(
-    path.join(cachePath, `tsconfig.${randomChars()}.json`)
+    path.join(cachePath, `tsconfig.${randomChars()}.json`),
   );
   const tempConfig = {
     ...tsconfig,

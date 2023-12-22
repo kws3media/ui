@@ -1,0 +1,52 @@
+import { Meta, Controls, Source, Description, Canvas, Primary  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./Skeleton.stories";
+
+<Version />
+
+# Skeleton
+## Component to display a loading status as a skeleton of the content to load.
+
+<Meta of={Stories} />
+<Primary />
+<Controls />
+
+
+### Usage
+
+##### Import the component:
+<Source
+  language='javascript'
+  code={ dedent`import { Skeleton } from '@kws3/ui';`}
+/>
+
+It is possible to let this component mimic the appearance of Bulma elements if you attach an appropriate CSS class to the `class` property.
+For example:
+<Source
+  language='html'
+  code={ dedent`
+  <!--Displays like a button-->
+  <Skeleton class="button" color="primary" />
+  <!--Displays like a input-->
+  <Skeleton class="input" />
+  <!--Displays like a box-->
+  <Skeleton class="box" />
+  `}
+/>
+
+##### Import the CSS:
+<Source
+  language='javascript'
+  code={ dedent`@import '@kws3/ui/styles/Skeleton.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws-theme-colors: $colors;
+    $kws-skeleton-color: lighten($text, 60%);
+    $kws-skeleton-hilight-color: lighten($text, 65%);
+  `}
+/>

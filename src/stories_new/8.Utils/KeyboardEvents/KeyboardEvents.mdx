@@ -1,0 +1,34 @@
+import { Meta, Story } from "@storybook/blocks";
+import Version from "~/version.mdx";
+import * as Stories from "./KeyboardEvents.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+### keyboard events
+
+The `keyboard` package is used to trigger events based on certain key strokes.
+
+**Available Events:**
+`enter`, `tab`, `escape`, `space`, `leftarrow`, `rightarrow`, `downarrow`, `uparrow`, `backspace`, `del`
+
+**Usage Example:**
+
+```html
+<input use:event={customEvent} />
+```
+
+**Example:**
+
+```html
+<input type="text" use:enter={enterEvent} use:tab={tabEvent} />
+<script>
+  import { enter, tab } from "@kws3/ui/keyboard";
+  function enterEvent() {
+    console.log("Enter Pressed");
+  }
+</script>
+```
+
+<Story of={Stories.Main} />

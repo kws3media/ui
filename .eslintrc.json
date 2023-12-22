@@ -15,31 +15,34 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@ota-meshi/svelte/recommended",
-    "plugin:@kws3/svelte3/base"
+    "plugin:svelte/recommended",
+    "plugin:storybook/recommended",
+    "plugin:@kws3/svelte4/base"
   ],
   "overrides": [
     {
-      "files": ["*.svelte"],
+      "files": [
+        "*.svelte"
+      ],
       "parser": "svelte-eslint-parser"
     }
   ],
   "rules": {
     "semi": ["error", "always"],
     "eqeqeq": ["error", "smart"],
-    "@ota-meshi/svelte/no-dupe-else-if-blocks": "error",
-    "@ota-meshi/svelte/no-dynamic-slot-name": "error",
-    "@ota-meshi/svelte/no-not-function-handler": "error",
-    "@ota-meshi/svelte/no-object-in-text-mustaches": "error",
-    "@ota-meshi/svelte/valid-compile": 0,
-    "@ota-meshi/svelte/no-at-html-tags": "error",
-    "@ota-meshi/svelte/no-at-debug-tags": "error",
-    "@ota-meshi/svelte/no-unused-svelte-ignore": "error",
-    "@ota-meshi/svelte/no-inner-declarations": "error",
-    "@ota-meshi/svelte/comment-directive": "error",
-    "@ota-meshi/svelte/system": "error",
-    "@ota-meshi/svelte/button-has-type": "error",
-    "@kws3/svelte3/no-date-string-arg": "error",
-    "@kws3/svelte3/no-datalist-scaffold": "error"
+    "svelte/no-dupe-else-if-blocks": "error",
+    "svelte/no-dynamic-slot-name": "error",
+    "svelte/no-not-function-handler": "error",
+    "svelte/no-object-in-text-mustaches": "error",
+    "svelte/valid-compile": 0,
+    "svelte/no-at-html-tags": "error",
+    "svelte/no-at-debug-tags": "error",
+    "svelte/no-unused-svelte-ignore": "error",
+    "svelte/no-inner-declarations": "error",
+    "svelte/comment-directive": "error",
+    "svelte/system": "error",
+    "svelte/button-has-type": "error",
+    "@kws3/svelte4/no-date-string-arg": "error",
+    "@kws3/svelte4/no-datalist-scaffold": "error"
   }
 }

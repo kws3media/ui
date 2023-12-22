@@ -1,0 +1,24 @@
+import { Meta, Story } from "@storybook/blocks";
+import Version from "~/version.mdx";
+import * as Stories from "./Currency.stories.js";
+
+
+<Version />
+
+<Meta of={Stories} />
+
+### currency
+
+The `currency` function is used to return a number in a currency format.
+
+**Parameter:**
+`Number`
+
+**Example:**
+
+```js
+import { currency } from "@kws3/ui/utils";
+currency(number);
+```
+
+<Story of={Stories.Main} />

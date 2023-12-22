@@ -1,0 +1,24 @@
+import { Meta, Story } from "@storybook/blocks";
+import Version from "~/version.mdx";
+import * as Stories from "./FileDownloader.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+### fileDownloader
+
+The `fileDownloader` function is used to download data/stream.
+
+**Parameter:**
+data: `type : object`
+fileName: `type : string`
+
+```js
+import { fileDownloader } from "@kws3/ui/utils";
+fileDownloader(data, filename);
+```
+
+**Example:**
+
+<Story of={Stories.Main} />

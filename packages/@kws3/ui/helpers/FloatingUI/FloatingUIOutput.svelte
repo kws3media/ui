@@ -13,7 +13,7 @@
           class="kws-floatie-item has-{variant} is-{item.position}"
           id={item.id}
           animate:flip={{ easing: sineOut }}
-          transition:fly={{
+          transition:fly|global={{
             y: transitionDistance(item.position),
             duration: transitionDuration,
             easing: sineOut,

@@ -1,3 +1,4 @@
+/// <reference types="svelte" />
 export namespace FloatiesStore {
     export { create };
     export { remove };
@@ -35,7 +36,7 @@ declare const subscribe: (this: void, run: import("svelte/store").Subscriber<{
         snackbar: any[];
         toast: any[];
     };
-}>, invalidate?: (value?: {
+}>, invalidate?: import("svelte/store").Invalidator<{
     top: {
         notification: any[];
         snackbar: any[];
@@ -46,6 +47,6 @@ declare const subscribe: (this: void, run: import("svelte/store").Subscriber<{
         snackbar: any[];
         toast: any[];
     };
-}) => void) => import("svelte/store").Unsubscriber;
+}>) => import("svelte/store").Unsubscriber;
 export {};
 //# sourceMappingURL=index.d.ts.map

@@ -1,0 +1,15 @@
+import { Meta, Story } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./2TooltipExamples.stories";
+
+<Version />
+
+<Meta of={Stories} />
+
+### Data Attributes
+Once initialised, tooltips can be controlled to some extent using `data-tippy-*` attributes
+Comprehensive list of supported attributes can be found here: https://atomiks.github.io/tippyjs/v6/all-props/
+**Examples:**
+
+<Story of={Stories.Main} />

@@ -1,0 +1,23 @@
+import { Meta, Story } from "@storybook/blocks";
+import Version from "~/version.mdx";
+import * as Stories from "./DateToOrdinal.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+### DateToOrdinal
+
+The `dateToOrdinal` function converts any date to an ordinal.
+
+**Parameter:**
+`Number`
+
+**Example:**
+
+```js
+import { dateToOrdinal } from "@kws3/ui/utils";
+dateToOrdinal(number);
+```
+
+<Story of={Stories.Main} />

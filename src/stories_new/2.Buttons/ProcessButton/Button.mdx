@@ -1,0 +1,83 @@
+import {Meta, Controls, Canvas, Source} from '@storybook/blocks';
+import * as ButtonStories from "./Button.stories.js";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+
+<Version />
+
+# ProcessButton
+## Process Button with properties.
+
+<Meta of={ButtonStories} />
+<Canvas />
+<Controls />
+
+### Usage
+<Source
+  language="html"
+  code={
+    dedent`
+    <ProcessButton
+      {text}
+      {icon}
+      {done_icon}
+      {done_text}
+      {color}
+      {size}
+      {icon_only}
+      {disabled}
+      on:doing={onDoing}
+    />
+    <script>
+      import { ProcessButton } from '@kws3/ui';
+      export let color = "primary";
+      export let disabled = false;
+      export let size="";
+      export let icon_only = false;
+      export let text = "Click Me";
+      export let icon = "check";
+      export let done_icon = "check";
+      export let done_text = "Done";
+      function onDoing(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after "completion_timeout"
+          done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after "completion_timeout"
+          error();
+        })
+      }
+    </script>`
+  }
+/>
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+<Source
+  language="html"
+  code={
+    dedent`
+    <script>
+      function onDoing(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          done(() => {
+            //some callback
+          }, 500);
+        })
+        .catch(() => {
+          error(() => {
+            //some callback
+          }, 500);
+        });
+      }
+    </script>`
+  }
+/>

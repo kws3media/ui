@@ -153,7 +153,7 @@ export class DrawingPad {
       0,
       0,
       this.canvas.width,
-      this.canvas.height
+      this.canvas.height,
     );
   }
 
@@ -179,7 +179,7 @@ export class DrawingPad {
           0,
           0,
           this.canvas.width,
-          this.canvas.height
+          this.canvas.height,
         );
         if (callBackFn) {
           callBackFn();

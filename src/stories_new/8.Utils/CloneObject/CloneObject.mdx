@@ -1,0 +1,28 @@
+import { Meta, Story } from "@storybook/blocks";
+import Version from "~/version.mdx";
+import * as Stories from "./CloneObject.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+### CloneObject
+
+The `cloneObject` function is used to clone any js object.
+
+**Parameter:**
+`object`
+
+```js
+import { cloneObject } from "@kws3/ui/utils";
+let obj = {
+  title: "Mr",
+  name: "User",
+};
+
+$: clone = cloneObject(obj);
+```
+
+**Example:**
+
+<Story of={Stories.Main} />

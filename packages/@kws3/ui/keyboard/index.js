@@ -54,7 +54,8 @@ export function makeKeyDefinition(definition, CommandKey = false) {
         valid = true;
       }
 
-      if (valid) {
+      if (valid && fire) {
+        // @ts-ignore
         fire(event);
       }
     }

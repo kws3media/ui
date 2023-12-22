@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/blocks";
+import Version from "~/version.mdx";
+import * as Stories from "./RandomInteger.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+## randomIntegerFromInterval
+
+The `randomIntegerFromInterval` returns a random integer.
+
+**Parameters:** 
+
+1. min : `type: Number`
+2. max : `type: Number`
+
+#### Usage
+
+```js
+import { randomIntegerFromInterval } from "@kws3/ui/utils";
+randomIntegerFromInterval(min, max);
+```
+
+<Story of={Stories.Main} />

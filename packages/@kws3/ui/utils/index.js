@@ -143,7 +143,7 @@ export function randomIntegerFromInterval(min = 0, max = Infinity) {
  * @param {number} [max=100] - Maximum Number, Default: `100`
  */
 export function randomPercent(min = 1, max = 100) {
-  return randomIntegerFromInterval(min, max) + "%";
+  return `${randomIntegerFromInterval(min, max)}%`;
 }
 
 /**

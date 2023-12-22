@@ -1,0 +1,48 @@
+import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./Toggle.stories.js";
+
+
+<Version />
+
+<Description markdown={dedent`
+# Toggle
+## Toggle button with text supports
+`}/>
+
+<Meta of={Stories} />
+<Canvas of={Stories.Main} />
+<Controls />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { Toggle } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+<Source
+  language="javascript"
+  code={
+    dedent`@import '@kws3/ui/styles/Toggle.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-theme-colors: $colors;
+      $kws-toggle-off-bg-color: $background;
+      $kws-toggle-handle-bg-color: $white;
+      $kws-toggle-track-bg-color: $text;
+      $kws-toggle-track-bg-color-invert: findColorInvert($kws-toggle-track-bg-color);
+      $kws-toggle-border-color: $input-border-color;
+    `
+  }
+/>

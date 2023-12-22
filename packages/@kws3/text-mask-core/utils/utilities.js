@@ -40,7 +40,7 @@ export function isString(value) {
 
 export function isNumber(value) {
   return (
-    typeof value === "number" && value.length === undefined && !isNaN(value)
+    typeof value === "number" && !isNaN(value)
   );
 }
 

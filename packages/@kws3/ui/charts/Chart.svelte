@@ -16,7 +16,7 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
 <div class="kws-chart {klass}" bind:this={canvas} />
 
 <script>
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import { merge } from "./utils";
 
   const fire = createEventDispatcher();
@@ -88,12 +88,11 @@ This is to prevent unnecessary event subscriptions., Default: `[]`
     const module = await import("apexcharts/dist/apexcharts.esm");
     ApexCharts = module.default;
     window.ApexCharts = ApexCharts;
-
     init();
+  });
 
-    return () => {
-      chart && chart.destroy();
-    };
+  onDestroy(() => {
+    if (chart) chart.destroy();
   });
 
   let Events;

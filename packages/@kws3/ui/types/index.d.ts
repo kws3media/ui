@@ -56,7 +56,7 @@ export type SearchOptions = {
 
 export type SearchHelper = (
   needle: string,
-  haystack: Array<string>
+  haystack: Array<string>,
 ) => Array<any>;
 
 export type ValidatePasswordOptions = {

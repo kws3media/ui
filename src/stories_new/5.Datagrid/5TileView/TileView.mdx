@@ -1,0 +1,27 @@
+import { Meta, Source, Canvas, Controls  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { TileView } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import * as Stories from "./TileView.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+# TileView
+## TileView component in datagrid.
+
+<Canvas of={Stories.Main} />
+
+<Controls />
+
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { TileView } from '@kws3/ui';`
+  }
+/>

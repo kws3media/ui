@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/blocks";
+import Version from "~/version.mdx";
+import * as Stories from "./Truncate.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+### Truncate
+
+The `truncate` function shortens the given String to a specified length.
+
+**Parameter:**
+
+1. `string`
+2. length : `integer`
+
+```js
+import { truncate } from "@kws3/ui/utils";
+truncate(text, 10);
+```
+
+**Example:**
+
+<Story of={Stories.Main} />

@@ -1,5 +1,39 @@
 ## UNRELEASED
   - add `black` and `white` as valid color types
+  
+## 4.1.3
+  - Ensure transitions are global for `Modal`, `CardModal` and `ActionSheet` components
+  - `InfiniteList` - do not fake a scroll event on a resize event, fixes loading bugs
+
+## 4.1.2
+  - `MultiSelect` - fixed issue where raw object were initially outputted (if provided)
+  - `SearchableSelect and `MultiSelect` (Async): resolved issue with the 'active' class not attaching to the most matched item in dropdown options
+  - `SearchableSelect` - improved behavior, ensuring the `tab` key correctly loses focus
+  - `AutoComplete` - dropdown now closes on loss of focus triggered by the `tab` key
+
+## 4.1.1
+  - `DatePicker` - add support for configurable border radius
+  - `DatePicker` - add support for configurable box shadow
+  - `DatePicker` - bug fix on date range selection colors
+
+## 4.1.0
+  - New component `InfiniteList` Added
+
+## 4.0.3
+  - `ScrollableList` - bugfixes, and add support for removing items without affecting scroll position
+
+## 4.0.2
+  - `ToggleButtons` - add support for count tags, and fix css not applying
+
+## 4.0.1
+  - `ScrollableList` - add support for custom iteration key for keyed each block
+
+## 4.0.0
+  - add svelte 4 compatibility
+  
+--------------
+## UNRELEASED
+  - add `black` and `white` as valid color types
 
 ## 2.3.3
   - `InfiniteList` - do not fake a scroll event on a resize event, fixes loading bugs

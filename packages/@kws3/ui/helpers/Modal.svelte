@@ -23,11 +23,11 @@ Only programmatic closing is possible, Default: `true`
 
 <div class="modal {klass} {is_active ? 'is-active' : ''}" {style} data-cy={cy}>
   {#if is_active}<div
-      transition:fade={{ duration: transitionDuration }}
+      transition:fade|global={{ duration: transitionDuration }}
       class="modal-background"
       on:click={clickOutside} />
     <div
-      transition:scale={{
+      transition:scale|global={{
         duration: transitionDuration,
         // @ts-ignore
         from: 0.8,

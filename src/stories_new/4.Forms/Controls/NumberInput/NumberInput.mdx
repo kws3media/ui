@@ -1,0 +1,22 @@
+import { Meta, Source, Canvas, Controls  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./NumberInput.stories.js";
+
+<Version />
+
+# NumberInput
+## Custom clickable number input
+
+<Meta of={Stories} />
+<Canvas />
+<Controls />
+
+### Usage
+#### Import the component:
+<Source
+  language="javascript"
+  code={
+    dedent`import { NumberInput } from '@kws3/ui';`
+  }
+/>

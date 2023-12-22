@@ -75,7 +75,7 @@ function processExcludeGeneric(obj, name) {
     if (FrameworkTypes[type_name]) {
       let excludedTypes = matches[2].replace(/["'\s+]/g, "").split("|");
       let types = FrameworkTypes[type_name].filter(
-        (val) => !excludedTypes.includes(val)
+        (val) => !excludedTypes.includes(val),
       );
 
       obj.kind = "union";
@@ -93,7 +93,7 @@ function processExtractGeneric(obj, name) {
     if (FrameworkTypes[type_name]) {
       let extractedTypes = matches[2].replace(/["'\s+]/g, "").split("|");
       let types = extractedTypes.filter((val) =>
-        FrameworkTypes[type_name].includes(val)
+        FrameworkTypes[type_name].includes(val),
       );
 
       obj.kind = "union";
