@@ -4,9 +4,9 @@ import sveltePreprocess from "svelte-preprocess";
 
 export default {
   stories: [
-    "../src/stories_new/_index/index.stories.mdx",
-    "../src/stories_new/_index/index*.stories.*",
-    "../src/stories_new/_index/changelog.stories.mdx",
+    "../src/stories_new/_index/index.mdx",
+    "../src/stories_new/_index/index*.*",
+    "../src/stories_new/_index/changelog.mdx",
     "../src/stories_new/index.stories.js",
     "../src/stories_new/**/*.mdx",
     "../src/stories_new/**/*.stories.*",
