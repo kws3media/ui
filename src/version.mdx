@@ -6,7 +6,7 @@ export const versions = {
   v4 : {name: "v4.x.x", description:"Compatible with Svelte 4", link:"https://ui.kws3.media/v4/"}
   };
 export let selectedVersion = pkg.version;
-export const cmd = "npm i -D @kws3/ui@" + selectedVersion;
+export const cmd = "npm i -D @kws3/ui@^" + selectedVersion;
 export let copied = false;
 export function ctc(e){
   e && e.currentTarget && e.currentTarget.blur();
