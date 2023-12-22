@@ -1,8 +1,9 @@
 name: Build and Deploy
 on:
+  deployment:
   push:
-    branches:
-      - storybook-upgrade
+    tags:
+      - '@kws3/ui@4*'
 jobs:
   deploy:
     name: Setup build and deploy
@@ -16,7 +17,7 @@ jobs:
     - name: Run Build script
       uses: actions/setup-node@v1
       with:
-        node-version: '16.6.1'
+        node-version: '18.18.0'
     - run: npm ci
     - run: npx lerna bootstrap --hoist --no-ci
     - run: npm run build:dist
@@ -28,4 +29,4 @@ jobs:
         BRANCH: gh-pages
         FOLDER: build
         CLEAN: true
-        TARGET_FOLDER: docs/v3
+        TARGET_FOLDER: docs/v4
