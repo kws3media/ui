@@ -1,5 +1,12 @@
 import pkg from '../packages/@kws3/ui/package.json';
 
+export const versions = {
+  [pkg.version] : "https://ui.kws3.media/", 
+  v2 : "https://ui.kws3.media/v2/", 
+  v3 : "https://ui.kws3.media/v3/", 
+  v4 : "https://ui.kws3.media/v4/"
+  };
+export let selectedVersion = pkg.version;
 export const cmd = "npm i -D @kws3/ui";
 export let copied = false;
 export function ctc(e){
@@ -9,27 +16,51 @@ export function ctc(e){
     copied = true;
     const target = document.querySelector('#npm-command-copier');
     const classes = ("is-success").split(" ");
+    // @ts-ignore
     target.value = "✅ Copied!";
+    // @ts-ignore
     classes.forEach((c) => target.classList.add(c));
     setTimeout(() => {
+      // @ts-ignore
       target.value = cmd;
       copied = false;
+      // @ts-ignore
       classes.forEach((c) => target.classList.remove(c));
     }, 1000);
   }
+}
+export function handleVersionChange(version){
+  selectedVersion = version;
 }
 
 <div className="page-top-right-artifacts box">
   <div className="artifact-item-block">
     <a className="artifact-item" href="https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui" target="_blank">
-      <span class="icon-text">
+      <span className="icon-text">
         <span className="icon">
           <i className="fa fa-github"></i>
         </span>
         <span>Github</span>
       </span>
     </a>
+
+  <div className="dropdown">
     <span className="artifact-item tags has-addons"><span className="tag">Version</span><span className="tag is-primary">{pkg.version}</span></span>
+    <div className="dropdown-content">  
+      {Object.keys(versions).map((key) => (
+        <a
+          key={key}
+          href={versions[key]}
+          target="_blank"
+          className={`dropdown-item ${key === selectedVersion ? 'is-active' : ''}`}
+          onClick={() => handleVersionChange(key)}
+        >
+          {key}
+        </a>
+      ))}
+    </div>
+</div>
+
   </div>
   
   <div className="artifact-item-block is-hidden-mobile">
