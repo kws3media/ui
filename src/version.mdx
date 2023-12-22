@@ -45,13 +45,17 @@ export function handleVersionChange(version){
     </a>
 
   <div className="dropdown">
-    <span className="artifact-item tags has-addons"><span className="tag">Version</span><span className="tag is-primary">{pkg.version}</span></span>
+    <div className="dropdown-trigger">
+      <span className="artifact-item tags has-addons">
+        <span className="tag">Version</span><span className="tag is-primary">{pkg.version}</span>
+      </span>
+    </div>
+    
     <div className="dropdown-content">  
       {Object.keys(versions).map((key) => (
         <a
           key={key}
           href={versions[key]}
-          target="_blank"
           className={`dropdown-item ${key === selectedVersion ? 'is-active' : ''}`}
           onClick={() => handleVersionChange(key)}
         >
