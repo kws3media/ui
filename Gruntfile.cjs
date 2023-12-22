@@ -16,15 +16,15 @@ module.exports = function (grunt) {
         overwrite: true,
         replacements: [
           {
-            from: "<title>Storybook</title>",
+            from: "<title>@storybook/cli - Storybook</title>",
             to: "<title>UI | KWS3 Media</title>",
           },
           {
-            from: "<title>Webpack App</title>",
+            from: "<title>@storybook/cli - Storybook</title>",
             to: "<title>UI | KWS3 Media</title>",
           },
           {
-            from: '<link rel="shortcut icon" href="favicon.ico?v=1" />',
+            from: '<link rel="icon" type="image/svg+xml" href="./favicon.svg" />',
             to:
               '<link rel="shortcut icon" href="favicon.png?v=' +
               "<%= gitinfo.local.branch.current.shortSHA %>" +
