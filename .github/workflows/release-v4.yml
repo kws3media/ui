@@ -3,7 +3,7 @@ on:
   deployment:
   push:
     tags:
-      - '@kws3/ui@3*'
+      - '@kws3/ui@4*'
 jobs:
   deploy:
     name: Setup build and deploy
