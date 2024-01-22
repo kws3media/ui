@@ -28,7 +28,7 @@
 -->
 {#if transition}
   <tr
-    in:fly={{ x: 20, delay: 25 * row_index }}
+    in:fly|global={{ x: 20, delay: 25 * row_index }}
     on:click|stopPropagation={rowClick}
     class:is-selected={activated && visualActivationOnClick}
     class:is-checked={checked}>
