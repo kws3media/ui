@@ -2,7 +2,7 @@ import { fuzzy } from "../internal";
 
 /**
  * @typedef {import('@kws3/ui/types').SearchOptions} SearchOptions - contains search options and fuzzy lib options
- * @typedef {import('@kws3/ui/types').SearchHelper} SearchHelper - returned search helper function which take unction take params `needle` and `haystack`.
+ * @typedef {import('@kws3/ui/types').SearchHelper} SearchHelper - returned search helper function which take function take params `needle` and `haystack`.
  */
 
 /**
@@ -45,7 +45,7 @@ export function makeSearchEngine(opts) {
     let calculatedLimit = maxScore - scoreThreshold;
 
     OPTS = OPTS.filter(
-      (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0)
+      (r) => r.score > (calculatedLimit > 0 ? calculatedLimit : 0),
     );
     return OPTS.map((i) => i.original);
   };
