@@ -162,3 +162,34 @@ export function fileDownloader(data, fileName = "file_name") {
   a.click();
   window.URL.revokeObjectURL(url);
 }
+
+/**
+ * Scales `value` between `inputRange` and `outputRange`
+ * @param {number} value
+ * @param {[number, number]} inputRange
+ * @param {[number, number]} outputRange
+ * @returns {number}
+ */
+export function scale(value, inputRange, outputRange) {
+  return (
+    ((value - inputRange[0]) * (outputRange[1] - outputRange[0])) /
+      (inputRange[1] - inputRange[0]) +
+    outputRange[0]
+  );
+}
+
+/**
+ * Returns a function that can scale a `value` between
+ * `inputRange` and `outputRange`
+ * @param {[number, number]} inputRange
+ * @param {[number, number]} outputRange
+ * @returns {function}
+ */
+export function createScaler(inputRange, outputRange) {
+  /**
+   * @param {number} value
+   */
+  return function (value) {
+    return scale(value, inputRange, outputRange);
+  };
+}

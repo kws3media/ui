@@ -70,6 +70,22 @@ export function randomPercent(min?: number, max?: number): string;
  */
 export function fileDownloader(data?: any, fileName?: string): void;
 /**
+ * Scales `value` between `inputRange` and `outputRange`
+ * @param {number} value
+ * @param {[number, number]} inputRange
+ * @param {[number, number]} outputRange
+ * @returns {number}
+ */
+export function scale(value: number, inputRange: [number, number], outputRange: [number, number]): number;
+/**
+ * Returns a function that can scale a `value` between
+ * `inputRange` and `outputRange`
+ * @param {[number, number]} inputRange
+ * @param {[number, number]} outputRange
+ * @returns {function}
+ */
+export function createScaler(inputRange: [number, number], outputRange: [number, number]): Function;
+/**
  * Request an animation before the next repaint.
  * @param {function} [callback=function(){}] - callback function
  */
