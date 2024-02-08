@@ -104,28 +104,32 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
         }
       }
     }
-    &.is-striped tbody {
-      tr:not(.is-selected):nth-child(odd) td.is-sticky-column {
-        background: $kws-gridview-background;
-      }
-      tr:not(.is-selected):nth-child(even) td.is-sticky-column {
-        background: $kws-gridview-striped-row-background;
-      }
-      tr.is-selected {
-        background-color: transparent;
-        td {
-          background: $kws-gridview-active-row-background;
-          color: $kws-gridview-active-row-color;
+    &.is-striped {
+      tbody {
+        tr:not(.is-selected):nth-child(odd) td.is-sticky-column {
+          background: $kws-gridview-background;
+        }
+        tr:not(.is-selected):nth-child(even) td.is-sticky-column {
+          background: $kws-gridview-striped-row-background;
+        }
+        tr.is-selected {
+          background-color: transparent;
+          td {
+            background: $kws-gridview-active-row-background;
+            color: $kws-gridview-active-row-color;
+          }
         }
       }
       &.is-hoverable {
-        tr:not(.is-selected):not(.is-checked):hover {
-          td.is-sticky-column {
-            background-color: $kws-gridview-hover-background-color;
-          }
-          &:nth-child(even) {
+        tbody {
+          tr:not(.is-selected):not(.is-checked):hover {
             td.is-sticky-column {
-              background-color: $kws-gridview-even-row-hover-background-color;
+              background-color: $kws-gridview-hover-background-color;
+            }
+            &:nth-child(even) {
+              td.is-sticky-column {
+                background-color: $kws-gridview-even-row-hover-background-color;
+              }
             }
           }
         }
