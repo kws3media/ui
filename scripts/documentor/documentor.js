@@ -19,7 +19,7 @@ function checkFileIsValid(file) {
     extension = parts.pop();
   if (extension.toLowerCase() != "svelte") {
     throw new Error(
-      "Only svelte files can be documented, this is a " + extension + " file"
+      "Only svelte files can be documented, this is a " + extension + " file",
     );
   }
 }
@@ -45,19 +45,21 @@ sveltedocParser
 
     //format using custom plugin
     prettier.resolveConfig(configFile).then((options) => {
-      let formatted = prettier.format(
-        source,
-        Object.assign(
-          {
-            parser: "svelte",
-            plugins: ["./scripts/documentor/prettier-plugin-kws3"],
-            pluginSearchDirs: ["./scripts/documentor/"],
-          },
-          options
+      prettier
+        .format(
+          source,
+          Object.assign(
+            {
+              parser: "svelte",
+              plugins: ["./scripts/documentor/prettier-plugin-kws3/plugin.js"],
+              pluginSearchDirs: ["./scripts/documentor/"],
+            },
+            options,
+          ),
         )
-      );
-
-      writeFileSync(file, formatted);
+        .then((formatted) => {
+          writeFileSync(file, formatted);
+        });
     });
   })
   .catch((e) => {
@@ -164,7 +166,7 @@ function fillData(doc, is_static) {
               ("{" + type + "}") +
               (" [" + d.name + "=" + defaultValue + "]") +
               (" - " + description) +
-              (", Default: `" + defaultValue + "`")
+              (", Default: `" + defaultValue + "`"),
           );
       }
     });
