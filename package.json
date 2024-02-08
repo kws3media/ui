@@ -78,7 +78,7 @@
     "sass": "^1.68.0",
     "storybook": "^7.6.6",
     "style-loader": "^3.3.3",
-    "svelte": "^4.0.0",
+    "svelte": "^4.2.10",
     "svelte-eslint-parser": "^0.14.0",
     "svelte-preprocess": "^4.8.0",
     "svelte2tsx": "^0.6.11",
