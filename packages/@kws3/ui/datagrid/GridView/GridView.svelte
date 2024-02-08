@@ -34,9 +34,11 @@
 -->
 
 <table
-  class="table is-fullwidth {is_striped ? 'is-striped' : ''} {is_narrow
-    ? 'is-narrow'
-    : ''} {clickableRows ? 'is-hoverable' : ''} is-bordered {klass}">
+  class="table kws-grid-view is-fullwidth {is_striped
+    ? 'is-striped'
+    : ''} {is_narrow ? 'is-narrow' : ''} {clickableRows
+    ? 'is-hoverable'
+    : ''} is-bordered {klass}">
   <thead>
     <tr>
       {#if bulk_actions}
