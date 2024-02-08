@@ -32,59 +32,58 @@
   - `_forwardEvent`
 
 -->
-<div class="data-table" data-cy="data-table">
-  <table
-    class="table is-fullwidth {is_striped ? 'is-striped' : ''} {is_narrow
-      ? 'is-narrow'
-      : ''} {clickableRows ? 'is-hoverable' : ''} is-bordered {klass}">
-    <thead>
-      <tr>
-        {#if bulk_actions}
-          <th width="30">
-            <Checkbox
-              size="medium"
-              color={selectAllCheckboxColor}
-              style="margin:0;"
-              inverted={true}
-              bind:checked={selectAll}
-              on:change={changed} />
-          </th>
+
+<table
+  class="table is-fullwidth {is_striped ? 'is-striped' : ''} {is_narrow
+    ? 'is-narrow'
+    : ''} {clickableRows ? 'is-hoverable' : ''} is-bordered {klass}">
+  <thead>
+    <tr>
+      {#if bulk_actions}
+        <th style="width:30px">
+          <Checkbox
+            size="medium"
+            color={selectAllCheckboxColor}
+            style="margin:0;"
+            inverted={true}
+            bind:checked={selectAll}
+            on:change={changed} />
+        </th>
+      {/if}
+      {#each column_keys as column}
+        {#if isVisible(column)}
+          <th>{columns[column]}</th>
         {/if}
-        {#each column_keys as column}
-          {#if isVisible(column)}
-            <th>{columns[column]}</th>
-          {/if}
-        {/each}
-      </tr>
-    </thead>
-    <tbody data-cy="grid-view-tbody">
-      {#each data as row, row_index (row[iteration_key])}
-        <svelte:component
-          this={mainRowComponent}
-          on:rowClick
-          on:rowSelectChecked
-          on:_forwardEvent
-          {row_index}
-          {transition}
-          {column_keys}
-          {clickableRows}
-          {visualActivationOnClick}
-          {isVisible}
-          {transforms}
-          {classNames}
-          {styles}
-          {cellComponent}
-          {row}
-          {bulk_actions}
-          {activatedId}
-          {selectedIds}
-          {selectCheckboxColor}
-          {selectCheckboxSize}
-          checked={selectAll} />
       {/each}
-    </tbody>
-  </table>
-</div>
+    </tr>
+  </thead>
+  <tbody data-cy="grid-view-tbody">
+    {#each data as row, row_index (row[iteration_key])}
+      <svelte:component
+        this={mainRowComponent}
+        on:rowClick
+        on:rowSelectChecked
+        on:_forwardEvent
+        {row_index}
+        {transition}
+        {column_keys}
+        {clickableRows}
+        {visualActivationOnClick}
+        {isVisible}
+        {transforms}
+        {classNames}
+        {styles}
+        {cellComponent}
+        {row}
+        {bulk_actions}
+        {activatedId}
+        {selectedIds}
+        {selectCheckboxColor}
+        {selectCheckboxSize}
+        checked={selectAll} />
+    {/each}
+  </tbody>
+</table>
 
 <script>
   import GridRow from "./GridRow.svelte";
