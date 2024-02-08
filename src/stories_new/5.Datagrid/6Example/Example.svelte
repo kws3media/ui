@@ -144,7 +144,13 @@
      * @type {Exclude<import('@kws3/ui/types').ColorOptions, 'success'>}
      */
     selectAllCheckboxColor = "primary",
+    /**
+     * @type import('@kws3/ui/types').ColorOptions
+     */
     selectCheckboxColor = "info",
+    /**
+     * @type import('@kws3/ui/types').SizeOptions
+     */
     selectCheckboxSize = "medium",
     classTransformers = {},
     styleTransformers = {},
@@ -261,11 +267,11 @@
     var val = sort_val[1];
     if (val === "DESC") {
       original_data = original_data.sort(
-        (a, b) => Number(b[key]) - Number(a[key])
+        (a, b) => Number(b[key]) - Number(a[key]),
       );
     } else {
       original_data = original_data.sort(
-        (a, b) => Number(a[key]) - Number(b[key])
+        (a, b) => Number(a[key]) - Number(b[key]),
       );
     }
   }
