@@ -1,4 +1,5 @@
 <KwsGridView
+  on:rowClick={rowClicked}
   {iteration_key}
   {data}
   {columns}
@@ -10,6 +11,7 @@
   {selectAll}
   {selectedIds}
   {selectAllCheckboxColor}
+  {activatedId}
   {selectCheckboxColor}
   {selectCheckboxSize}
   {valueTransformers}
@@ -32,11 +34,18 @@
     bulk_actions = false,
     selectAll = false,
     selectedIds = [],
+    activatedId = null,
     /**
      * @type {Exclude<import('@kws3/ui/types').ColorOptions, 'success'>}
      */
     selectAllCheckboxColor = "primary",
+    /**
+     * @type import('@kws3/ui/types').ColorOptions
+     */
     selectCheckboxColor = "info",
+    /**
+     * @type import('@kws3/ui/types').SizeOptions
+     */
     selectCheckboxSize = "medium",
     valueTransformers = {},
     classTransformers = {},
@@ -46,4 +55,8 @@
 
   let klass = "";
   export { klass as class };
+
+  function rowClicked({ detail: { row } }) {
+    activatedId = row.id;
+  }
 </script>
