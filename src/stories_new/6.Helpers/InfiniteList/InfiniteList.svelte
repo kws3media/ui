@@ -56,6 +56,9 @@
   };
 
   const lastItemsRendered = ({ detail }) => {
+    if (_items.length >= 200) {
+      return;
+    }
     loadMore();
     fire("end", detail);
   };
