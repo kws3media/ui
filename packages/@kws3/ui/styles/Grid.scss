@@ -7,6 +7,13 @@ $kws-gridview-tag-margin: 0 0.125rem 0.125rem 0 !default;
 $kws-gridview-icon-size: 1.5em !default;
 $kws-gridview-checked-row-background: $info-light !default;
 
+$kws-gridview-active-row-background: $table-row-active-background-color !default;
+$kws-gridview-active-row-color: $table-row-active-color !default;
+
+$kws-gridview-background: $table-background-color !default;
+$kws-gridview-striped-row-background: $table-striped-row-even-background-color !default;
+$kws-gridview-sticky-column-border-color: $border !default;
+
 .table.kws-grid-view {
   box-shadow: $kws-gridview-box-shadow;
   th {
@@ -67,6 +74,88 @@ $kws-gridview-checked-row-background: $info-light !default;
     td,
     th {
       padding: 0.25rem 0.4rem;
+    }
+  }
+}
+
+.data-table {
+  overflow: auto;
+}
+.kws-sticky-columns-table-wrapper {
+  position: relative;
+
+  .data-table {
+    margin-bottom: 1.5rem;
+    .table {
+      margin-bottom: 0;
+    }
+  }
+
+  .data-table .table {
+    &.is-striped tbody {
+      tr:not(.is-selected):nth-child(odd) td.is-sticky-column {
+        background: $kws-gridview-background;
+      }
+      tr:not(.is-selected):nth-child(even) td.is-sticky-column {
+        background: $kws-gridview-striped-row-background;
+      }
+      tr.is-selected {
+        background-color: transparent;
+        td {
+          background: $kws-gridview-active-row-background;
+          color: $kws-gridview-active-row-color;
+        }
+      }
+    }
+    td,
+    th {
+      &.is-sticky-column {
+        position: sticky;
+        &:first-child {
+          left: 0;
+        }
+      }
+    }
+    &.is-bordered {
+      td.is-sticky-column,
+      th.is-sticky-column {
+        box-shadow: inset -1px 0 0 $kws-gridview-sticky-column-border-color;
+        border-left-width: 0;
+        border-right-width: 0;
+      }
+    }
+    &.has-sticky-columns {
+      margin-bottom: 0px;
+    }
+  }
+
+  .fake-shadow-contraint {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 15px;
+    overflow: hidden;
+    .fake-inner-shadow {
+      position: absolute;
+      top: 0;
+      right: -1px;
+      height: 100%;
+      width: 1px;
+      box-shadow:
+        0 0 6px 0 #000,
+        0 0 9px 0 #000,
+        0 0 15px 0 #000;
+    }
+
+    &.left {
+      right: auto;
+      left: 0;
+      .fake-inner-shadow {
+        right: auto;
+        left: -1px;
+      }
     }
   }
 }
