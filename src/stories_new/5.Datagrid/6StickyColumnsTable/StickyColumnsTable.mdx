@@ -36,4 +36,8 @@ This component requires Grid.css to work
   }
 />
 
-##### See GridView for SCSS customization variables
+See GridView for SCSS customization variables
+
+This component expects a `table.table` in it's slot.  
+Each column that you want to be fixed on scroll, has to have a class of `is-sticky-column`. And has to have a CSS `left` value.  
+This has to be attached to all `<td>` and `<th>` elements in that column.
