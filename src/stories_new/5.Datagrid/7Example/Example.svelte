@@ -47,52 +47,44 @@
   </div>
   <DataSort {options} {sort_by} on:sort={sort} />
 
-  <div class="columns">
-    <div class="column">
-      {#if is_tile_view}
-        <TileView
-          {iteration_key}
-          {data}
-          {transition}
-          {tileItemComponent}
-          {per_row}
-          {columns}
-          {clickableRows}
-          {valueTransformers}
-          {classTransformers}
-          {styleTransformers}
-          {visibilityMap} />
-      {:else}
-        <div>
-          <GridView
-            {iteration_key}
-            {data}
-            {columns}
-            {transition}
-            {is_striped}
-            {clickableRows}
-            {bulk_actions}
-            {selectAll}
-            {selectedIds}
-            {selectAllCheckboxColor}
-            {selectCheckboxColor}
-            {selectCheckboxSize}
-            {valueTransformers}
-            {classTransformers}
-            {styleTransformers}
-            {visibilityMap}
-            {cellComponentMap} />
-        </div>
-      {/if}
-    </div>
-  </div>
+  {#if is_tile_view}
+    <TileView
+      {iteration_key}
+      {data}
+      {transition}
+      {tileItemComponent}
+      {per_row}
+      {columns}
+      {clickableRows}
+      {valueTransformers}
+      {classTransformers}
+      {styleTransformers}
+      {visibilityMap} />
+  {:else}
+    <StickyColumnsTableWrapper>
+      <GridView
+        {iteration_key}
+        {data}
+        {columns}
+        {transition}
+        {is_striped}
+        {clickableRows}
+        {bulk_actions}
+        {selectAll}
+        {selectedIds}
+        {selectAllCheckboxColor}
+        {selectCheckboxColor}
+        {selectCheckboxSize}
+        {valueTransformers}
+        {classTransformers}
+        {styleTransformers}
+        {visibilityMap}
+        {cellComponentMap} />
+    </StickyColumnsTableWrapper>
+  {/if}
 
   {#if has_pagination}
-    <div class="columns">
-      <div class="column">
-        <Pagination {...meta} {perPageOptions} on:paginate={paginate} />
-      </div>
-    </div>
+    <Pagination {...meta} {perPageOptions} on:paginate={paginate} />
   {/if}
 {/if}
 
@@ -109,6 +101,7 @@
     Toggle,
     ToggleControl,
     Loader,
+    StickyColumnsTableWrapper,
   } from "@kws3/ui";
   import { response } from "./users.js";
 
