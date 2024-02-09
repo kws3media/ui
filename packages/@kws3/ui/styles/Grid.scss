@@ -86,6 +86,7 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
 }
 .kws-sticky-columns-table-wrapper {
   position: relative;
+  box-shadow: $kws-gridview-box-shadow;
 
   .data-table {
     margin-bottom: 1.5rem;
