@@ -6,8 +6,10 @@
   @param {object} [iteration_key=null] - Iteration key - by default it uses the index of the array inside the keyed each block, Default: `null`
   @param {string} [height="100%"] - Height of the wrapper, CSS String, Default: `"100%"`
   @param {number} [end_offset=400] - `end` event will be fired when the scroll position reaches this many pixels from the end of the list., Default: `400`
-  @param {string} [style=""] - Inline CSS for scroller container, Default: `""`
-  @param {string} [class=""] - CSS classes for scroller container, Default: `""`
+  @param {string} [style=""] - Inline CSS for component container, Default: `""`
+  @param {string} [class=""] - CSS classes for component container, Default: `""`
+  @param {string} [inner_class=""] - CSS classes for inner scroller container, Default: `""`
+  @method `relayout()` - Relayout method
 
   ### Events
   - `end` - Fired when the scroll position reaches `end_offset` pixels from the end of the list.
@@ -26,7 +28,7 @@ while more items are loading
     use:resizeObserver
     on:resize={resize}>
     <div
-      class="kws-infinite-list-inner"
+      class="kws-infinite-list-inner {inner_class}"
       on:scroll={handle_scroll}
       bind:this={contents}>
       {#each visible as item (item.index)}
@@ -57,7 +59,7 @@ while more items are loading
     style="height:{height};{style}"
     bind:offsetHeight={viewportHeight}>
     <div
-      class="kws-infinite-list-inner"
+      class="kws-infinite-list-inner {inner_class}"
       on:scroll={handle_scroll}
       bind:this={contents}>
       {#each visible as item (item.index)}
@@ -152,15 +154,20 @@ while more items are loading
      */
     end_offset = 400,
     /**
-     * Inline CSS for scroller container
+     * Inline CSS for component container
      */
     style = "";
 
   /**
-   * CSS classes for scroller container
+   * CSS classes for component container
    */
   let klass = "";
   export { klass as class };
+
+  /**
+   * CSS classes for inner scroller container
+   */
+  export let inner_class = "";
 
   // local state
   let viewport,
