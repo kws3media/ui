@@ -63,7 +63,7 @@
           {styleTransformers}
           {visibilityMap} />
       {:else}
-        <div class="data-table-wrapper">
+        <div>
           <GridView
             {iteration_key}
             {data}
@@ -96,9 +96,8 @@
   {/if}
 {/if}
 
-<!--<div class="">
-  {#if is_searching}Searching...{/if}
-</div>-->
+<hr />
+
 <script>
   import { onMount } from "svelte";
   import {
@@ -134,7 +133,7 @@
     filter_label_map = {},
     sort_by = "",
     iteration_key = "id",
-    transition = false,
+    transition = true,
     is_striped = true,
     clickableRows = false,
     bulk_actions = false,
