@@ -6,6 +6,8 @@ let args = {
   class: "",
   end_offset: 400,
   style: "",
+  inner_class: "",
+  linear_scroll_shadow: false,
 };
 
 let argTypes = {};

@@ -7,8 +7,9 @@
   @param {string} [height="100%"] - Height of the wrapper, CSS String, Default: `"100%"`
   @param {number} [end_offset=400] - `end` event will be fired when the scroll position reaches this many pixels from the end of the list., Default: `400`
   @param {string} [style=""] - Inline CSS for component container, Default: `""`
-  @param {string} [class=""] - CSS classes for component container, Default: `""`
   @param {string} [inner_class=""] - CSS classes for inner scroller container, Default: `""`
+  @param {boolean} [linear_scroll_shadow=false] - Modify the look of scroll shadows from radial to linear, Default: `false`
+  @param {string} [class=""] - CSS classes for component container, Default: `""`
   @method `relayout()` - Relayout method
 
   ### Events
@@ -24,6 +25,7 @@ while more items are loading
   <div
     bind:this={viewport}
     class="kws-infinite-list with-resize-observer {klass}"
+    class:linear_scroll_shadow
     style="height:{height};{style}"
     use:resizeObserver
     on:resize={resize}>
@@ -56,6 +58,7 @@ while more items are loading
   <div
     bind:this={viewport}
     class="kws-infinite-list {klass}"
+    class:linear_scroll_shadow
     style="height:{height};{style}"
     bind:offsetHeight={viewportHeight}>
     <div
@@ -110,14 +113,15 @@ while more items are loading
   .fake-shadow-contraint .fake-inner-shadow {
     position: absolute;
     left: 0;
-    top: -1px;
+    top: 0;
     width: 100%;
-    height: 1px;
-    box-shadow:
-      0 0 6px 0 #000,
-      0 0 12px 0 #000,
-      0 0 18px 0 #000,
-      0 0 20px 0 #000;
+    height: 100%;
+    background: radial-gradient(
+        farthest-side at 50% 0,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      center top;
   }
 
   .fake-shadow-contraint.bottom {
@@ -127,7 +131,23 @@ while more items are loading
 
   .fake-shadow-contraint.bottom .fake-inner-shadow {
     top: auto;
-    bottom: -1px;
+    bottom: 0;
+    background: radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      center bottom;
+  }
+
+  .linear_scroll_shadow .fake-shadow-contraint .fake-inner-shadow {
+    height: 1px;
+    box-shadow:
+      0 0 6px 0 #000,
+      0 0 12px 0 #000,
+      0 0 18px 0 #000,
+      0 0 20px 0 #000;
+    background: none;
   }
 </style>
 
@@ -156,18 +176,21 @@ while more items are loading
     /**
      * Inline CSS for component container
      */
-    style = "";
+    style = "",
+    /**
+     * CSS classes for inner scroller container
+     */
+    inner_class = "",
+    /**
+     * Modify the look of scroll shadows from radial to linear
+     */
+    linear_scroll_shadow = false;
 
   /**
    * CSS classes for component container
    */
   let klass = "";
   export { klass as class };
-
-  /**
-   * CSS classes for inner scroller container
-   */
-  export let inner_class = "";
 
   // local state
   let viewport,

@@ -11,6 +11,8 @@
         {style}
         {height}
         {end_offset}
+        {inner_class}
+        {linear_scroll_shadow}
         on:end={(e) => lastItemsRendered(e)}>
         <span slot="default" let:item let:index
           ><TargetComponent {item} {index} on:rowClick={rowClicked} /></span>
@@ -35,7 +37,9 @@
 
   export let height = "600",
     end_offset = 400,
-    style = "";
+    style = "",
+    inner_class = "",
+    linear_scroll_shadow = false;
 
   let klass = "";
   export { klass as class };
