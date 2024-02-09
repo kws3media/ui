@@ -139,6 +139,7 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
     th {
       &.is-sticky-column {
         position: sticky;
+        z-index: 2;
         &:first-child {
           left: 0;
         }
