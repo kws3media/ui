@@ -28,7 +28,6 @@
 -->
 {#if transition}
   <tr
-    in:fly|global={{ x: 20, delay: 25 * row_index }}
     on:click|stopPropagation={rowClick}
     class:is-selected={activated && visualActivationOnClick}
     class:is-checked={checked}>
@@ -38,13 +37,15 @@
         on:click={(e) => {
           clickableRows && e.stopImmediatePropagation();
         }}>
-        <Checkbox
-          size={selectCheckboxSize}
-          color={selectCheckboxColor}
-          style="margin:0;"
-          inverted={false}
-          bind:checked
-          on:change={changed} />
+        <div in:fly|global={{ x: 20, delay: 25 * row_index }}>
+          <Checkbox
+            size={selectCheckboxSize}
+            color={selectCheckboxColor}
+            style="margin:0;"
+            inverted={false}
+            bind:checked
+            on:change={changed} />
+        </div>
       </td>
     {/if}
     {#each column_keys as column}
@@ -56,7 +57,9 @@
           {row}
           {transforms}
           {classNames}
-          {styles} />
+          {styles}
+          {row_index}
+          {transition} />
       {/if}
     {/each}
   </tr>
@@ -67,13 +70,15 @@
     class:is-checked={checked}>
     {#if bulk_actions}
       <td style="vertical-align:middle;">
-        <Checkbox
-          size={selectCheckboxSize}
-          color={selectCheckboxColor}
-          style="margin:0;"
-          inverted={false}
-          bind:checked
-          on:change={changed} />
+        <div>
+          <Checkbox
+            size={selectCheckboxSize}
+            color={selectCheckboxColor}
+            style="margin:0;"
+            inverted={false}
+            bind:checked
+            on:change={changed} />
+        </div>
       </td>
     {/if}
     {#each column_keys as column}

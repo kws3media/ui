@@ -11,11 +11,14 @@
 -->
 
 <td class={classNames(column, row)} style={styles(column, row)}>
-  <!--  eslint-disable-next-line svelte/no-at-html-tags -->
-  {@html transforms(column, row)}
+  <Transition {transition} x={20} delay={20 * row_index}>
+    <!--  eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html transforms(column, row)}
+  </Transition>
 </td>
 
 <script>
+  import { Transition } from "@kws3/ui";
   /**
    * Name of the column in the DB
    */
@@ -38,5 +41,7 @@
      * Finds CSS styles for the column
      * @type {object}
      */
-    styles = {};
+    styles = {},
+    row_index = 0,
+    transition = false;
 </script>
