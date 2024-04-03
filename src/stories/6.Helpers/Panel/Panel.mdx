@@ -1,0 +1,34 @@
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./Panel.stories";
+
+<Version />
+
+<Meta of={Stories} />
+<Canvas of={Stories.Main} />
+<Controls />
+
+### Usage
+##### Import the component:
+<Source
+  code={ dedent`import { Panel } from '@kws3/ui';`}
+/>
+
+##### Import the CSS:
+<Source
+  code={ dedent`@import '@kws3/ui/styles/Panel.scss';`}
+/>
+
+##### SCSS customization variables with default values:
+<Source
+  language='css'
+  code={ dedent`
+    $kws-panel-background: $scheme-main;
+    $kws-panel-box-shadow: $card-shadow;
+    $kws-panel-title-color: $text;
+    $kws-panel-title-weight: 700;
+    $kws-panel-caret-open-color: #888;
+    $kws-panel-caret-closed-color: #00a4d8;
+  `}
+/>

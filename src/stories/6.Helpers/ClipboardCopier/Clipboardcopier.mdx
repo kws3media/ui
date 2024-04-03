@@ -1,0 +1,19 @@
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./Clipboardcopier.stories";
+
+<Version />
+
+# ClipboardCopier
+## Copies configurable text to clipboard on click
+
+<Meta of={Stories} />
+<Canvas />
+<Controls />
+
+### Usage
+#### Import the component
+<Source
+  code={ dedent`import { ClipboardCopier } from '@kws3/ui';`}
+/>

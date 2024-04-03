@@ -1,0 +1,70 @@
+import {
+  Story,
+  Meta,
+  Source,
+  Canvas,
+  Controls
+} from "@storybook/blocks";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import * as Stories from "./InfiniteList.stories";
+
+<Version />
+
+# InfiniteList
+## InfiniteList component that fires an event when the end of the list is reached, so you can load more list items
+#### Much simpler than ScrollableList, as it does not do any list virtualisation to reduce DOM Nodes
+
+<Meta of={Stories} />
+<Canvas of={Stories.Main} />
+<Controls />
+
+### Usage
+
+##### Import the component:
+
+<Source
+  code={dedent`import { InfiniteList } from '@kws3/ui';`}
+/>
+
+<div class="columns">
+<div class="column">
+<p>Normal Usage Example:
+<br/>You can define the <code>let</code> variables on main component</p>
+
+```jsx
+<InfiniteList
+  {items}
+  {end_offset}
+  on:end={endReached}
+  let:item
+  let:index
+>
+  <ListItem {item} {index} />
+</InfiniteList>
+```
+
+</div>
+<div class="column">
+<p>Usage with loader slot Example:
+<br/>You have to define the <code>let</code> variables in a slot wrapper</p>
+
+```jsx
+<InfiniteList
+  {items}
+  {end_offset}
+  on:end={endReached}
+>
+  <span
+    slot="default"
+    let:item
+    let:index
+  >
+    <ListItem {item} {index} />
+  </span>
+  <span slot="loader">Loading...</span>
+</InfiniteList>
+```
+
+</div>
+</div>

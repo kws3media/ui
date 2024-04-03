@@ -1,0 +1,20 @@
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./Message.stories";
+
+
+<Version />
+
+# Message
+## Message components for showing alerts.
+
+<Meta of={Stories} />
+<Canvas />
+<Controls />
+
+
+### Usage
+<Source
+  code={ dedent`import { Message } from '@kws3/ui';`}
+/>

@@ -1,0 +1,52 @@
+import {
+  Controls,
+  Meta,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/blocks";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import * as Stories from "./SearchInput.stories";
+
+<Version />
+
+# SearchInput
+## An Input component that supports search on multiple properties.
+
+
+<Meta of={Stories} />
+<Canvas />
+<Controls />
+
+<div className="notification is-primary is-light">
+  <div className="columns">
+    <div className="column">
+      <h3>
+        Input format <code>options</code>
+      </h3>
+      <p>
+        Should be an array of objects with matched property as
+        <code>searchableKeys[keyword]</code>.<br></br>Always ensure the shape of
+        the array items are consistent.
+      </p>
+      <p>See supported data formats in example story above.</p>
+      <p>
+        Note: <code>option[keyword]</code> contains matched characters wrapped
+        inside <code>&lt;span class="h"&gt;</code> tags.{" "}
+      </p>
+      <p>
+        Note: Highlighted results can be turned off by setting{" "}
+        <code>highlighted_results</code> property to <code>false</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={dedent`import { SearchInput } from '@kws3/ui';`}
+/>

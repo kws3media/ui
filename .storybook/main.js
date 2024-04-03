@@ -1,22 +1,17 @@
-//import { mergeConfig } from "vite";
-import path from "path";
 import sveltePreprocess from "svelte-preprocess";
 
 export default {
   stories: [
-    "../src/stories_new/_index/index.mdx",
-    "../src/stories_new/_index/index*.*",
-    "../src/stories_new/_index/changelog.mdx",
-    "../src/stories_new/index.stories.js",
-    "../src/stories_new/**/*.mdx",
-    "../src/stories_new/**/*.stories.*",
+    "../src/stories/_index/index.mdx",
+    "../src/stories/_index/index*.*",
+    "../src/stories/_index/changelog.mdx",
+    "../src/stories/index.stories.js",
+    "../src/stories/**/*.mdx",
+    "../src/stories/**/*.@(mdx|stories.*)",
   ],
   logLevel: "debug",
   features: {
-    //legacyMdx1: true,
-    //storyStoreV7: true,
     interactionsDebugger: true,
-    //previewMdx2: true,
   },
   addons: [
     "@storybook/addon-essentials",
@@ -28,6 +23,7 @@ export default {
     "@storybook/addon-controls",
     "@storybook/theming",
     "@storybook/blocks",
+    "@storybook/addon-mdx-gfm",
   ],
   svelteOptions: {
     preprocess: sveltePreprocess(),

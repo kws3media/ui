@@ -1,0 +1,76 @@
+import { Meta, Controls, Source, Canvas, Title  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as TransitionStories from "./Transitions.stories";
+
+<Version />
+
+<Meta of={TransitionStories} />
+
+<Title />
+
+## A set of components to declaratively use Svelte transitions
+
+<Canvas />
+<Controls />
+
+### Usage
+##### Import the component:
+<Source
+  code={ dedent`import { Transition } from '@kws3/ui';`}
+/>
+
+### Examples
+<div className="columns">
+  <div className="column">
+    Fly
+    <Source
+      language='jsx'
+      code={ dedent`
+        <Transition
+          type="fly"
+          duration="{300}"
+          x="{0}"
+          y="{20}"
+        />`}
+    />
+  </div>
+  <div className="column">
+    Fade
+    <Source
+      language='jsx'
+      code={ dedent`
+        <Transition
+          type="fade"
+          duration="{300}"
+        />
+      `}
+    />
+  </div>
+  <div className="column">
+    Slide
+    <Source
+      language='jsx'
+      code={ dedent`
+        <Transition
+          type="slide"
+          duration="{300}"
+        />
+      `}
+    />
+  </div>
+  <div className="column">
+    Scale
+    <Source
+      language='jsx'
+      code={ dedent`
+        <Transition
+          type="scale"
+          duration="{300}"
+          from="{0.5}"
+          to="{1}"
+        />
+      `}
+    />
+  </div>
+</div>

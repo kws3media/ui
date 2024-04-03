@@ -1,0 +1,41 @@
+import { Meta, Controls, Source, Canvas  } from "@storybook/blocks";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import * as Stories from "./StickyColumnsTable.stories.js";
+
+<Version />
+
+<Meta of={Stories} />
+
+# StickyColumnsTableWrapper
+## StickyColumnsTableWrapper component in datagrid.
+
+#### Display a table where a variable number of columns could stick to the left,if the table width exceeds the width of the viewport.
+
+#### Additionally, a shadow is displayed when there are parts of the table hidden by the scrollable area.
+
+<Canvas of={Stories.Main} />
+
+<Controls />
+
+### Usage
+#### Import the component:
+<Source
+  code={
+    dedent`import { StickyColumnsTableWrapper } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+This component requires Grid.css to work
+<Source
+  code={
+    dedent`@import '@kws3/ui/styles/Grid.scss';`
+  }
+/>
+
+See GridView for SCSS customization variables
+
+This component expects a `table.table` in it's slot.  
+Each column that you want to be fixed on scroll, has to have a class of `is-sticky-column`. And has to have a CSS `left` value.  
+This has to be attached to all `<td>` and `<th>` elements in that column.
