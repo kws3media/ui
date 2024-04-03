@@ -1,0 +1,26 @@
+import { Meta, Story } from "@storybook/addon-svelte-csf";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import FileDownloader from "./FileDownloader.svelte";
+import * as FileDownloaderStories from './fileDownloader.stories';
+
+<Version />
+
+<Meta of={FileDownloaderStories} />
+
+### fileDownloader
+
+The `fileDownloader` function is used to download data/stream.
+
+**Parameter:**
+data: `type : object`
+fileName: `type : string`
+
+```js
+import { fileDownloader } from "@kws3/ui/utils";
+fileDownloader(data, filename);
+```
+
+**Example:**
+
+<Story of={FileDownloaderStories.FileDownloader} />

@@ -1,0 +1,32 @@
+import { Meta, Source  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+
+<Version />
+
+<Meta title="Welcome" parameters={{ previewTabs: { 'canvas': { hidden: true }}}} />
+
+<div class="main has-text-centered">
+  <img width="200" src="https://kws3.media/assets/images/logo.png" style={{margin:'10px 0'}} alt="logo" />
+
+  <h1 class="title">Welcome to UI Elements from KWS3 Media</h1>
+
+  <p>
+    Use the navigation panel on the left to browse all the components.<br /><br />
+  </p>
+
+  <p>
+    <em>This is a work in progress, documentation and examples are being added
+    all the time. <br />If you find anything that needs changing, get in
+    touch!</em>
+  </p>
+
+  <div class="message is-warning">
+    <div class="message-body">
+      <p>
+        This refers to Svelte v4 components.
+        <br />For components compatible with Svelte v3 please go to: <a href="https://ui.kws3.media/v3">https://ui.kws3.media/v3</a>
+      </p>
+    </div>
+  </div>
+</div>

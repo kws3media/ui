@@ -1,0 +1,41 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { ClipboardCopier } from "@kws3/ui";
+import ClipboardCopierDecorator from "./ClipboardCopier.svelte";
+import { action } from '@storybook/addon-actions';
+import * as ClipboardcopierStories from './clipboardcopier.stories';
+
+export let args={
+  copied_icon_color:"success",
+  copied_text : "Copied!",
+  copied_icon : "check",
+  text : "Copy to clipboard",
+  icon : "copy",
+  copy : "This text will be copied to clipboard",
+  copied : false,
+  class : ""
+};
+
+<Version />
+
+<Meta of={ClipboardcopierStories} />
+
+<Description
+  markdown={dedent`
+# ClipboardCopier
+## Copies configurable text to clipboard on click
+`}
+/>
+
+<Canvas>
+  <Story of={ClipboardcopierStories.ClipboardCopier} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component
+
+<Source language="javascript" code={ dedent`import { ClipboardCopier } from '@kws3/ui';`} />

@@ -1,0 +1,72 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { Colorpicker } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import * as ColorpickerStories from './colorpicker.stories';
+
+export let args={
+  color : "000000",
+  typeable : true,
+  readonly : false,
+  mini : false,
+  disabled : false
+};
+
+<Version />
+
+<Meta of={ColorpickerStories} />
+
+<Description
+  markdown={dedent`
+# Colorpicker
+## Colorpicker component that allows you to select a colour.
+`}
+/>
+
+<Canvas>
+  <Story of={ColorpickerStories.Colorpicker} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={
+    dedent`import { Colorpicker } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+
+<Source
+  code={
+    dedent`@import '@kws3/ui/styles/Colorpicker.scss';`
+  }
+/>
+
+<div class="notification is-info is-light">
+  This component supports HTML5 drag and drop.
+
+  Use `event.dataTransfer.setData('text', <new_color>)` on the draggable element.
+  Then once you drop the draggable element into this component, it picks up the data from the `text` value.
+
+  **Example:**
+
+  <Source
+    language="jsx"
+    code={
+    dedent`<div
+      style="background:#bada55"
+      draggable="true"
+      on:dragstart={(e) => {
+        e.dataTransfer.setData("text", "bada55");
+      }}>
+      #bada55
+    </div>`
+  }
+  />
+</div>

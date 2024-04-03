@@ -1,0 +1,98 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { GridView } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import GridViewDecorator from "./GridView.svelte";
+import * as GridviewStories from './gridview.stories';
+
+export let args={
+  iteration_key : "id",
+  data : [
+    {
+        "id": 2,
+        "username": "user2",
+        "name": "User",
+        "surname": "Two",
+        "role": "U"      
+    },
+    {
+        "id": 1,
+        "username": "user1",
+        "name": "User",
+        "surname": "One",
+        "role": "A"
+    }
+  ],
+  columns : {
+    "id": "ID",
+    "name": "Name",
+    "surname": "Surname"
+  },
+  transition : false,
+  class: '',
+  is_striped : true,
+  is_narrow : false,
+  clickableRows : false,
+  bulk_actions : false,
+  selectAll : false,
+  selectedIds : [],
+  selectAllCheckboxColor : "primary",
+  selectCheckboxColor : "info",
+  selectCheckboxSize : "medium",
+  valueTransformers : {},
+  classTransformers : {},
+  styleTransformers : {},
+  visibilityMap : {},
+  cellComponentMap : {}
+};
+
+<Version />
+
+<Meta of={GridviewStories} />
+
+<Description
+  markdown={dedent`
+# GridView
+## GridView component in datagrid.
+`}
+/>
+
+<Canvas>
+  <Story of={GridviewStories.GridView} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={
+    dedent`import { GridView } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+
+<Source
+  code={
+    dedent`@import '@kws3/ui/styles/Grid.scss';`
+  }
+/>
+
+##### SCSS customization variables with default values:
+
+<Source
+  language="css"
+  code={ dedent`
+    $kws-gridview-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
+      0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+    $kws-gridview-th-background: $table-background-color;
+    $kws-gridview-th-color: $text;
+    $kws-gridview-tag-margin: 0 0.125rem 0.125rem 0;
+    $kws-gridview-icon-size: 1.5em;
+    $kws-gridview-checked-row-background: $primary-light;
+  `}
+/>

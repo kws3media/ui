@@ -1,0 +1,70 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { Radio } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import * as RadioStories from './radio.stories';
+
+export let args={
+  value : null,
+  class : "",
+  style : "",
+  label_style : "",
+  size : "",
+  color : "",
+  inverted : false,
+  circle : false,
+  disabled : false,
+  group : null
+};
+
+<Version />
+
+<Meta of={RadioStories} />
+
+<Description
+  markdown={dedent`
+# Radio
+## Custom Radio control
+`}
+/>
+
+<Canvas>
+  <Story of={RadioStories.Radio} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={
+    dedent`import { Radio } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+
+<Source
+  code={
+    dedent`@import '@kws3/ui/styles/CheckRadio.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+
+<Source
+  language="css"
+  code={
+    dedent`
+    $kws-theme-colors: $colors;
+    $kws-checkradio-default-check-color: $text;
+    $kws-checkradio-default-check-color-invert: findColorInvert($kws-checkradio-default-check-color);
+    $kws-checkradio-default-border-color: #dbdbdb;
+    $kws-checkradio-focus-box-shadow-size: $input-focus-box-shadow-size;
+    $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color;
+    `
+  }
+/>

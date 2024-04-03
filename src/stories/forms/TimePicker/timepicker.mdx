@@ -1,0 +1,76 @@
+import {
+  Story,
+  Preview,
+  Meta,
+  ArgsTable,
+  Source,
+  Description,
+  Canvas,
+} from "@storybook/addon-svelte-csf";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import { Timepicker } from "@kws3/ui";
+import M from "../../helpers/Message/Message.svelte";
+import { action } from "@storybook/addon-actions";
+import * as TimepickerStories from './timepicker.stories';
+
+export let args = {
+  value: "",
+  style: "",
+  class: "",
+  placeholder: "Select Time..",
+  disabled: false,
+  time_24hr: false,
+  min_time: "",
+  max_time: "",
+  options: {},
+  ui_color: "primary",
+  color: "",
+  readonly: false,
+};
+
+<Version />
+
+<Meta of={TimepickerStories} />
+
+<Description
+  markdown={dedent`
+# Timepicker
+## Timepicker component that allows you to select time.
+`}
+/>
+
+<Canvas>
+  <Story of={TimepickerStories.Timepicker} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source language="javascript" code={dedent`import { Timepicker } from '@kws3/ui';`} />
+
+#### Import the SCSS:
+
+<div class="notification is-warning">
+  <strong>Note:</strong> <em>Need to import flatpicker SCSS file first</em>
+</div>
+
+<Source
+  code={dedent`
+    @import 'flatpickr/dist/flatpickr';
+    @import '@kws3/ui/styles/Timepicker.scss';`}
+/>
+
+#### SCSS customization variables with default values:
+
+<Source
+  language="css"
+  code={dedent`
+      $kws-theme-colors: $colors;
+      $kws-timepicker-background: $background;
+      $kws-timepicker-text: $text;
+    `}
+/>

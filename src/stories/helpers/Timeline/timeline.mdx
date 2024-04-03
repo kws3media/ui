@@ -1,0 +1,50 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { Timeline } from "@kws3/ui";
+import { action } from '@storybook/addon-actions';
+import * as TimelineStories from './timeline.stories';
+
+export let args={
+  align : 'left',
+  class: ""
+}
+
+<Version />
+
+<Meta of={TimelineStories} />
+
+<Description
+  markdown={dedent`
+# Timeline
+## A Timeline component.
+This component acts as a holder for the <a href="/docs/helpers-timeline-timelineitem--timeline-item">TimelineItem</a> and <a href="/docs/helpers-timeline-timelineheader--timeline-header">TimelineHeader</a> components.
+`}
+/>
+
+<Canvas>
+  <Story of={TimelineStories.Timeline} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+##### Import the component:
+
+<Source language="javascript" code={ dedent`import { Timeline } from '@kws3/ui';`} />
+
+##### Import the CSS:
+
+<Source language="javascript" code={ dedent`@import '@kws3/ui/styles/Timeline.scss';`} />
+
+##### SCSS customization variables with default values:
+
+<Source
+  language="css"
+  code={ dedent`
+    $kws-theme-colors: $colors;
+    $kws-timeline-default-color: $grey;
+    $kws-timeline-default-color-invert: $light;
+  `}
+/>

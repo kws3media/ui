@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/addon-svelte-csf";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import Capitalize from "./Capitalize.svelte";
+import * as CapitalizeStories from './capitalize.stories';
+
+<Version />
+
+<Meta of={CapitalizeStories} />
+
+### capitaliseFirstLetter
+
+The `capitaliseFirstLetter` function converts the first character of a string to uppercase.
+
+**Parameter:**
+`string`
+
+**Example:**
+
+```js
+import { capitaliseFirstLetter } from "@kws3/ui/utils";
+capitaliseFirstLetter(string);
+```
+
+<Story of={CapitalizeStories.CapitaliseFirstLetter} />

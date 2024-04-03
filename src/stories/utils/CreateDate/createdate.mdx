@@ -1,0 +1,25 @@
+import { Meta, Story } from "@storybook/addon-svelte-csf";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import CreateDate from "./CreateDate.svelte";
+import * as CreatedateStories from './createdate.stories';
+
+<Version />
+
+<Meta of={CreatedateStories} />
+
+### createDate
+
+The `createDate` function makes mysql dates work in safari.
+
+**Parameter:**
+Date(`string`)
+
+**Example:**
+
+```js
+import { createDate } from "@kws3/ui/utils";
+createDate("2022-01-01");
+```
+
+<Story of={CreatedateStories.CreateDate} />

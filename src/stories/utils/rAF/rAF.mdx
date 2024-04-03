@@ -1,0 +1,46 @@
+import { Meta, Story } from "@storybook/addon-svelte-csf";
+import dedent from "ts-dedent";
+import Version from "~/version.mdx";
+import rAF from "./rAF.svelte";
+import * as RAfStories from './rAF.stories';
+
+<Version />
+
+<Meta of={RAfStories} />
+
+### rAF
+
+The `rAF` method tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint. The method takes a callback as an argument to be invoked before the repaint.
+
+**Parameter:**
+`call back function`
+
+```html
+<div id="animatedDiv" />
+
+<script>
+  import { rAF } from "@kws3/ui/utils";
+
+  let globalID;
+
+  function repeatOften() {
+    var div = document.getElementById("animatedDiv");
+    div.innerHTML += `<div class="orange"></div>`;
+    globalID = rAF(repeatOften);
+  }
+  
+  globalID = rAF(repeatOften);
+
+  function start() {
+    globalID = rAF(repeatOften);
+  }
+
+  function stop() {
+    cancelAnimationFrame(globalID);
+  }
+</script>
+```
+
+**Example:**
+
+<Story of={RAfStories.Raf} />

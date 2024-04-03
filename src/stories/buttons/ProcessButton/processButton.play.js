@@ -1,5 +1,4 @@
-import { expect } from "@storybook/jest";
-import { within, userEvent, waitFor } from "@storybook/testing-library";
+import { expect, within, userEvent, waitFor } from "@storybook/test";
 
 // eslint-disable-next-line no-unused-vars
 export default async ({ args, canvasElement }) => {
@@ -16,13 +15,13 @@ export default async ({ args, canvasElement }) => {
     () => {
       expect(successButton.innerText).toBe("Done");
     },
-    { timeout: 2000 }
+    { timeout: 2000 },
   );
   await waitFor(
     () => {
       expect(successButton.innerText).toBe("Click Me");
     },
-    { timeout: 600 }
+    { timeout: 600 },
   );
 
   //click on the fail button
@@ -32,12 +31,12 @@ export default async ({ args, canvasElement }) => {
     () => {
       expect(failButton.innerText).toBe("Failed");
     },
-    { timeout: 2000 }
+    { timeout: 2000 },
   );
   await waitFor(
     () => {
       expect(failButton.innerText).toBe("Click Me");
     },
-    { timeout: 3000 }
+    { timeout: 3000 },
   );
 };

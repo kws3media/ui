@@ -1,5 +1,5 @@
-import { expect } from "@storybook/jest";
 import {
+  expect,
   within,
   userEvent,
   // eslint-disable-next-line no-unused-vars
@@ -7,7 +7,7 @@ import {
   // eslint-disable-next-line no-unused-vars
   getNodeText,
   fireEvent,
-} from "@storybook/testing-library";
+} from "@storybook/test";
 import { sleep } from "../../../../utils";
 
 // eslint-disable-next-line no-unused-vars
@@ -34,13 +34,13 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
   await expect(Number(items.length)).toBe(3);
   await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe(
-    "clint barton"
+    "clint barton",
   );
   await expect(HTMLtoString(items[1].innerHTML).toLowerCase()).toBe(
-    "tony stark"
+    "tony stark",
   );
   await expect(HTMLtoString(items[2].innerHTML).toLowerCase()).toBe(
-    "steve rogers"
+    "steve rogers",
   );
 
   // on enter options should be empty
@@ -54,7 +54,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(300);
   await expect(Number(items.length)).toBe(4);
   await expect(HTMLtoString(items[3].innerHTML).toLowerCase()).toBe(
-    "bruce banner"
+    "bruce banner",
   );
 
   await sleep(300);
@@ -74,7 +74,7 @@ export default async ({ args, canvasElement }) => {
   await userEvent.type(inputs[0], "tn", { delay: 100 });
   await sleep(300);
   await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe(
-    "ancient one"
+    "ancient one",
   );
   await sleep(300);
   await fireEvent.keyDown(inputs[0], { key: "Enter" });

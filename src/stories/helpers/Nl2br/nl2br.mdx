@@ -1,0 +1,34 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { Nl2br } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import * as Nl2BrStories from './nl2br.stories';
+
+export let args={
+  text : "This is a sample text\nAnd this is new line"
+};
+
+<Version />
+
+<Meta of={Nl2BrStories} />
+
+<Description
+  markdown={dedent`
+  # Nl2br
+  ## Insert line breaks where newlines occur in the string
+  This component provides a XSS-safe way of outputting multiline text.
+`}
+/>
+
+<Canvas>
+  <Story of={Nl2BrStories.Nl2Br} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+### Import the component:
+
+<Source language="javascript" code={ dedent`import { Nl2br } from '@kws3/ui';`} />

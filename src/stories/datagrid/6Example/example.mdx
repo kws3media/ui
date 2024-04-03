@@ -1,0 +1,169 @@
+import { Meta, Story, Canvas } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import ExampleDatagrid from './Example.svelte';
+import * as ExampleStories from './example.stories';
+
+<Version />
+
+<Meta of={ExampleStories} />
+
+# Datagrid
+
+## This shows an example of all datagrid components work together.
+
+<Canvas>
+  <Story of={ExampleStories.Example} />
+</Canvas>
+
+#### Import below SCSS for DataSort styles
+
+```js
+@import '@kws3/ui/styles/DataSort.scss';
+```
+
+#### Example usage of datagrid components
+
+```html
+{#if data}
+  <div class="columns">
+    <div class="column">
+      <DataSearch
+        {hasSearch}
+        {hasFilters}
+        {placeholder}
+        {filters}
+        {q}
+        {filter_in_use_class}
+        {filter_not_in_use_class}
+        {filterComponent}
+        {filter_label_map}
+        on:search={search}
+        on:resetSearch={resetSearch} />
+      <DataSort {options} {sort_by} on:sort={sort} />
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column">      
+      <GridView
+        {iteration_key}
+        {data}
+        {columns}
+        {transition}
+        {is_striped}
+        {clickableRows}
+        {bulk_actions}
+        {selectAll}
+        {selectedIds}
+        {selectAllCheckboxColor}
+        {selectCheckboxColor}
+        {selectCheckboxSize}
+        {valueTransformers}
+        {classTransformers}
+        {styleTransformers}
+        {visibilityMap}
+        {cellComponentMap} />      
+    </div>
+  </div>
+
+  {#if has_pagination}
+    <div class="columns">
+      <div class="column">
+        <Pagination {meta} {perPageOptions} on:paginate={paginate} />
+      </div>
+    </div>
+  {/if}
+{/if}
+
+<script>
+  import {
+    DataSearch,
+    DataSort,
+    GridView,
+    TileView,
+    Pagination
+  } from "@kws3/ui";
+  import { response } from "./users.js";
+
+  let hasSearch = true,
+    hasFilters = true,
+    placeholder = "Search by name or surname",
+    filters = response.filters,
+    options = response.options,
+    data = [],
+    columns = {
+      id: "ID",
+      name: "Name",
+      surname: "Surname",
+      role: "Role",
+      status: "Status",
+    },
+    meta = response.meta,
+    q = "",
+    filter_in_use_class = "is-in-use",
+    filter_not_in_use_class = "is-not-in-use",
+    filterComponent = null,
+    filter_label_map = {},
+    sort_by = "",
+    iteration_key = "id",
+    transition = false,
+    is_striped = true,
+    clickableRows = false,
+    bulk_actions = false,
+    selectAll = false,
+    selectedIds = [],
+    selectAllCheckboxColor = "primary",
+    selectCheckboxColor = "info",
+    selectCheckboxSize = "medium",
+    classTransformers = {},
+    styleTransformers = {},
+    visibilityMap = {},
+    cellComponentMap = {},
+    tileItemComponent = null,
+    per_row = 3,
+    perPageOptions = [5];
+
+  let is_loading = false;
+  let original_data = response.records;
+  let is_tile_view = false;
+  let limit = meta.limit;
+  let page_number = 1;
+
+  let valueTransformers = {
+    role(v, row) {
+      switch (row.role) {
+        case "A":
+          return "Administrator";
+          break;
+        case "U":
+          return "User";
+          break;
+      }
+    },
+    status(v, row) {
+      return v == 1 ? "Active" : "Inactive";
+    },
+  };
+
+  $: data = original_data.slice((page_number - 1) * limit, page_number * limit);
+  $: has_pagination = original_data.length > limit;
+
+  function search({ detail }) {
+    //Write functionality for custom search
+  }
+
+  function resetSearch() {
+    //Write functionality for custom reset search
+  }  
+
+  function paginate({ detail }) {
+    //Write functionality for custom paginate
+  }
+
+  function sort({ detail }) {
+    //Write functionality for custom sort
+  }
+</script>
+
+```

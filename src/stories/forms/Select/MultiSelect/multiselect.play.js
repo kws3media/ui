@@ -1,12 +1,12 @@
-import { expect } from "@storybook/jest";
 import {
+  expect,
   within,
   userEvent,
   // eslint-disable-next-line no-unused-vars
   waitFor,
   getNodeText,
   fireEvent,
-} from "@storybook/testing-library";
+} from "@storybook/test";
 import { sleep } from "../../../../utils";
 
 // eslint-disable-next-line no-unused-vars
@@ -34,7 +34,7 @@ export default async ({ args, canvasElement }) => {
   await userEvent.click(items[0]);
   await expect(Number(tags.length)).toEqual(1);
   await expect(getNodeText(items[0]).trim()).toEqual(
-    getNodeText(tags[0]).trim()
+    getNodeText(tags[0]).trim(),
   );
 
   //Select items by using Enter key
@@ -43,7 +43,7 @@ export default async ({ args, canvasElement }) => {
   await fireEvent.keyDown(inputs[0], { key: "Enter" });
   await expect(Number(tags.length)).toEqual(2);
   await expect(getNodeText(items[3]).trim()).toEqual(
-    getNodeText(tags[1]).trim()
+    getNodeText(tags[1]).trim(),
   );
 
   //Deselct item by Backspace key
@@ -61,7 +61,7 @@ export default async ({ args, canvasElement }) => {
   await userEvent.click(items[4]);
   await expect(Number(tags.length)).toEqual(1);
   await expect(getNodeText(items[4]).trim()).toEqual(
-    getNodeText(tags[0]).trim()
+    getNodeText(tags[0]).trim(),
   );
 
   //Deselect item by mouse click on item

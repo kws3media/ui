@@ -1,0 +1,56 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { NumberInput } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import playInteractions from './numberinput.play.js';
+import * as NumberinputStories from './numberinput.stories';
+
+export let args={
+  class:"",
+  style:"",
+  input : null,
+  value : 0,
+  step : 1,
+  min : 0,
+  max : 100,
+  disabled : false,
+  fullwidth : false,
+  typeable: true,
+  input_class: "",
+  minus_icon : "minus",
+  minus_icon_color : "danger",
+  minus_button_color : "",
+  plus_icon : "plus",
+  plus_icon_color : "success",
+  plus_button_color : "",
+  input_only : false,
+  force_integer : false
+};
+
+<Version />
+
+<Meta of={NumberinputStories} />
+
+<Description
+  markdown={dedent`
+# NumberInput
+## Custom clickable number input
+`}
+/>
+
+<Canvas>
+  <Story of={NumberinputStories.NumberInput} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={
+    dedent`import { NumberInput } from '@kws3/ui';`
+  }
+/>

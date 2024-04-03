@@ -1,0 +1,40 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { Modal } from "@kws3/ui";
+import ModalDecorator from "./Modal.svelte";
+import { action } from '@storybook/addon-actions';
+import * as ModalStories from './modal.stories';
+
+export let args={
+  size : "small",
+  class : "",
+  style : "",
+  inner_class : "",
+  inner_style : "",
+  is_active : false,
+  closable:true,
+  close_on_click_outside : false,
+  cy : ""
+};
+
+<Version />
+
+<Meta of={ModalStories} />
+
+<Description
+  markdown={dedent`
+# Modal
+## Modal components for showing popups.
+`}
+/>
+
+<Canvas>
+  <Story of={ModalStories.Modal} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+<Source language="javascript" code={ dedent`import { Modal } from '@kws3/ui';`} />

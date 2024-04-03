@@ -1,5 +1,5 @@
-import { expect } from "@storybook/jest";
 import {
+  expect,
   within,
   userEvent,
   // eslint-disable-next-line no-unused-vars
@@ -7,7 +7,7 @@ import {
   // eslint-disable-next-line no-unused-vars
   getNodeText,
   fireEvent,
-} from "@storybook/testing-library";
+} from "@storybook/test";
 import { sleep } from "../../../../utils";
 
 // eslint-disable-next-line no-unused-vars
@@ -34,7 +34,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(1200);
   await expect(Number(items.length)).toBe(1);
   await expect(HTMLtoString(items[0].innerHTML).toLowerCase()).toBe(
-    "tony stark"
+    "tony stark",
   );
 
   // on enter options should be empty
@@ -49,7 +49,7 @@ export default async ({ args, canvasElement }) => {
   await sleep(1200);
   await expect(Number(items.length)).toBe(2);
   await expect(HTMLtoString(items[1].innerHTML).toLowerCase()).toBe(
-    "steve rogers"
+    "steve rogers",
   );
 
   await sleep(300);

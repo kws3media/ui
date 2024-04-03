@@ -1,0 +1,80 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { MaskedInput } from '@kws3/ui';
+import MaskedInputDecorator from './MaskedInput.svelte';
+import { action } from '@storybook/addon-actions';
+import * as MaskedInputStories from './maskedInput.stories';
+
+export let args={
+  mask:[],
+  placeholder_char:"_",
+  guide : true,
+  guide_when_empty : false,
+  guide_on_output : false,
+  keep_char_positions : false,
+  placeholder : "",
+  class : "",
+  value : ""
+};
+
+<Version />
+
+<Meta of={MaskedInputStories} />
+
+<Description
+  markdown={dedent`
+# MaskedInput
+`}
+/>
+
+<Canvas>
+  <Story of={MaskedInputStories.MaskedInput} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={
+    dedent`import { MaskedInput } from '@kws3/ui';`
+  }
+/>
+
+### Mask array examples
+
+<Source
+  language="jsx"
+  code={
+    dedent`
+    <!-- US Phone number -->
+    <MaskedInput
+      mask={[
+        "(", /[1-9]/, /\d/, /\d/, ")", " ",
+        /\d/, /\d/, /\d/, "-",
+        /\d/, /\d/, /\d/, /\d/
+      ]}
+    />
+    <!-- Credit card -->
+    <MaskedInput
+      mask={[
+        /\d/, /\d/, /\d/, /\d/, " ",
+        /\d/, /\d/, /\d/, /\d/, " ",
+        /\d/, /\d/, /\d/, /\d/, " ",
+        /\d/, /\d/, /\d/, /\d/
+      ]}
+    />
+    <!-- dd/mm/YYYY -->
+    <MaskedInput
+      mask={[
+        /\d/, /\d/, "/",
+        /\d/, /\d/, "/",
+        /[1-2]/, /\d/, /\d/, /\d/
+      ]}
+    />
+    `
+  }
+/>

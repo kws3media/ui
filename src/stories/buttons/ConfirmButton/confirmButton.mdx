@@ -1,0 +1,123 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { ConfirmButton as Button } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import ConfirmButtonDecorator from "./ConfirmButton.svelte";
+import playInteractions from "./confirmButton.play.js";
+import * as ConfirmButtonStories from './confirmButton.stories';
+
+export let args={
+  class: "",
+  button_class: "",
+  text: "Click Me",
+  icon: "check",
+  icon_only: false,
+  done_text: "Done",
+  done_icon: "check",
+  disabled: false,
+  cy: "",
+  context: "_context_confirm",
+  should_confirm: true,
+  size: "",
+  color: "primary",
+  completion_timeout: 600,
+  error_timeout: 3000,
+};
+
+<Version />
+
+<Meta of={ConfirmButtonStories} />
+
+<Description
+  markdown={dedent`
+# ConfirmButton
+## Confirm Button with built-in confirmation.
+`}
+/>
+
+<Canvas>
+  <Story of={ConfirmButtonStories.ConfirmButton} />
+</Canvas>
+
+<Controls />
+
+### Example source code
+
+<Source language="html" code={ dedent`<ConfirmButton text="Do It?" color="primary" size="small" icon_only="true" disabled="false" />`} />
+
+### Usage Example
+
+<Source
+  language="html"
+  code={
+    dedent`
+    <ConfirmButton
+      {color}
+      {disabled}
+      {size}
+      {icon_only}
+      {text}
+      {icon}
+      {doing_icon}
+      {done_icon}
+      {doing_text}
+      {done_text}
+      on:do={confirmDo}
+    />
+    <script>
+      import { ConfirmButton } from '@kws3/buttons';
+      export let color = "primary";
+      export let disabled = false;
+      export let size = "";
+      export let icon_only = false;
+      export let text = "Do it?";
+      export let icon = "minus-circle";
+      export let doing_icon = "hourglass";
+      export let done_icon = "check";
+      export let doing_text = "Doing";
+      export let done_text = "Done";
+      function confirmDo(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          //set visual state to Done
+          //it will autmatically revert back to
+          //normal state after "completion_timeout"
+          done();
+        })
+        .catch(() => {
+          //set visual state to Error
+          //it will autmatically revert back to
+          //normal state after "completion_timeout"
+          error();
+        });        
+      }
+    </script>`
+  }
+/>
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+
+<Source
+  language="html"
+  code={
+    dedent`
+    <script>
+      function confirmDo(event){
+        let {doing, done, error} = event.detail;
+        doing();
+        somePromise().then(() => {
+          done(() => {
+            //some callback
+          }, 500);
+        })
+        .catch(() => {
+          error(() => {
+            //some callback
+          }, 500);
+        });
+      }
+    </script>`
+  }
+/>

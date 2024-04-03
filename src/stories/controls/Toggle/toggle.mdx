@@ -1,0 +1,68 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { Toggle } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import * as ToggleStories from './toggle.stories';
+
+export let args={
+  on : false,
+  disabled : false,
+  color : "",
+  class : "",
+  on_text : "",
+  off_text : "",
+  size : "",
+  cy : ""
+};
+
+<Version />
+
+<Meta of={ToggleStories} />
+
+<Description
+  markdown={dedent`
+# Toggle
+## Toggle button with text supports
+`}
+/>
+
+<Canvas>
+  <Story of={ToggleStories.Toggle} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={
+    dedent`import { Toggle } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+
+<Source
+  code={
+    dedent`@import '@kws3/ui/styles/Toggle.scss';`
+  }
+/>
+
+#### SCSS customization variables with default values:
+
+<Source
+  language="css"
+  code={
+    dedent`
+      $kws-theme-colors: $colors;
+      $kws-toggle-off-bg-color: $background;
+      $kws-toggle-handle-bg-color: $white;
+      $kws-toggle-track-bg-color: $text;
+      $kws-toggle-track-bg-color-invert: findColorInvert($kws-toggle-track-bg-color);
+      $kws-toggle-border-color: $input-border-color;
+    `
+  }
+/>

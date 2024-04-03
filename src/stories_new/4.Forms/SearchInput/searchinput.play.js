@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
-import { expect } from "@storybook/jest";
 import {
+  expect,
   within,
   // eslint-disable-next-line no-unused-vars
   userEvent,
@@ -10,7 +10,7 @@ import {
   getNodeText,
   // eslint-disable-next-line no-unused-vars
   fireEvent,
-} from "@storybook/testing-library";
+} from "@storybook/test";
 
 // eslint-disable-next-line no-unused-vars
 export default async ({ args, canvasElement }) => {

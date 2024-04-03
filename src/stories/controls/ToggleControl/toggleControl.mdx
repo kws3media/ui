@@ -1,0 +1,82 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { ToggleControl } from '@kws3/ui';
+import ToggleControlDecorator from './ToggleControl.svelte';
+import { action } from '@storybook/addon-actions';
+import * as ToggleControlStories from './toggleControl.stories';
+
+export let args={
+  class : "",
+  style : "",
+  cy : ""
+};
+
+<Version />
+
+<Meta of={ToggleControlStories} />
+
+<Description
+  markdown={dedent`
+# ToggleControl
+## To be used when using Toggle within a form
+#### To be used with &lt;Toggle&gt; & &lt;ToggleButtons&gt; components, so that they can be lined up with a &lt;label class="label"&gt; in existing forms.
+#### It is a wrapper component with no functionality of it's own.
+`}
+/>
+
+<Canvas>
+  <Story of={ToggleControlStories.ToggleControl} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={
+    dedent`import { ToggleControl  } from '@kws3/ui';`
+  }
+/>
+
+#### Example with `<Toggle>`
+
+<Source
+  language="jsx"
+  code={
+    dedent`
+    <ToggleControl>
+      <label for="some-primary-text" class="label">
+        Primary Label
+        <small class="is-block help">Some secondary Text</small>
+      </label>
+      <Toggle  />
+    </ToggleControl>
+    `
+  }
+/>
+
+#### Example with `<ToggleButtons>`
+
+<Source
+  language="jsx"
+  code={
+    dedent`
+    <ToggleControl>
+      <label for="some-secondary-text" class="label">
+        Secondary Label
+        <small class="is-block help">Some secondary Text</small>
+      </label>
+      <ToggleButtons
+        options='{[
+          {"name": "Yes", "value": 1},
+          {"name": "No", "value": 0},
+          {"name": "Maybe", "value": null}
+        ]}'
+      />
+    </ToggleControl>
+    `
+  }
+/>

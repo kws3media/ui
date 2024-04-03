@@ -1,6 +1,4 @@
-import { expect } from "@storybook/jest";
-// eslint-disable-next-line no-unused-vars
-import { within, userEvent, waitFor } from "@storybook/testing-library";
+import { expect, within, userEvent, waitFor } from "@storybook/test";
 
 // eslint-disable-next-line no-unused-vars
 export default async ({ args, canvasElement }) => {

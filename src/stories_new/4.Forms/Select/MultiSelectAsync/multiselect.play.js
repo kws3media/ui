@@ -1,12 +1,12 @@
-import { expect } from "@storybook/jest";
 import {
+  expect,
   within,
   userEvent,
   // eslint-disable-next-line no-unused-vars
   waitFor,
   getNodeText,
   fireEvent,
-} from "@storybook/testing-library";
+} from "@storybook/test";
 import { sleep } from "../../../../utils";
 
 // eslint-disable-next-line no-unused-vars

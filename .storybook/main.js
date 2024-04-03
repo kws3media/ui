@@ -9,7 +9,7 @@ export default {
     "../src/stories_new/_index/changelog.mdx",
     "../src/stories_new/index.stories.js",
     "../src/stories_new/**/*.mdx",
-    "../src/stories_new/**/*.stories.*",
+    "../src/stories_new/**/*.@(mdx|stories.*)"
   ],
   logLevel: "debug",
   features: {
@@ -28,6 +28,7 @@ export default {
     "@storybook/addon-controls",
     "@storybook/theming",
     "@storybook/blocks",
+    "@storybook/addon-mdx-gfm"
   ],
   svelteOptions: {
     preprocess: sveltePreprocess(),

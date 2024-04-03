@@ -1,0 +1,50 @@
+import { Story, Preview, Meta, ArgsTable, Source, Description, Canvas  } from "@storybook/addon-svelte-csf";
+import dedent from 'ts-dedent';
+import Version from '~/version.mdx';
+import { DataSort } from '@kws3/ui';
+import { action } from '@storybook/addon-actions';
+import DataSortDecorator from "./DataSort.svelte";
+import * as DatasortStories from './datasort.stories';
+
+export let args={  
+  options : [
+    {"name": "ID Newest First", "value": "id DESC"},
+    {"name": "ID Oldest First", "value": "id ASC"}
+  ],
+  sort_by : ""
+};
+
+<Version />
+
+<Meta of={DatasortStories} />
+
+<Description
+  markdown={dedent`
+# DataSort
+## DataSort component in datagrid.
+`}
+/>
+
+<Canvas>
+  <Story of={DatasortStories.DataSort} />
+</Canvas>
+
+<Controls />
+
+### Usage
+
+#### Import the component:
+
+<Source
+  code={
+    dedent`import { DataSort } from '@kws3/ui';`
+  }
+/>
+
+#### Import the SCSS:
+
+<Source
+  code={
+    dedent`@import '@kws3/ui/styles/DataSort.scss';`
+  }
+/>
