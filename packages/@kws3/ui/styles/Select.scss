@@ -1,23 +1,33 @@
-@use "sass:list";
-@use "bulma/sass/utilities/initial-variables" as iv;
+@use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
 
-$kws-theme-colors: $colors !default;
-$kws-select-radius: iv.$radius !default;
-$kws-select-focus-border-color: $input-focus-border-color !default;
-$kws-select-focus-box-shadow-size: $input-focus-box-shadow-size !default;
-$kws-select-focus-box-shadow-color: $input-focus-box-shadow-color !default;
-$kws-select-disabled-background-color: $input-disabled-background-color !default;
-$kws-select-disabled-border-color: $input-disabled-border-color !default;
-$kws-select-disabled-color: $input-disabled-color !default;
-$kws-select-selecting-color: dv.$primary-invert !default;
-$kws-select-selecting-background: dv.$primary !default;
-$kws-select-selected-color: dv.$primary-dark !default;
-$kws-select-selected-background: dv.$primary-light !default;
-$kws-select-options-background: dv.$scheme-main-ter !default;
+$kws-theme-colors: dv.$colors !default;
+$kws-select-radius: #{cv.getVar("radius")} !default;
+$kws-select-focus-border-color: hsl(
+  #{cv.getVar("input-focus-h")},
+  #{cv.getVar("input-focus-s")},
+  #{cv.getVar("input-focus-l")}
+) !default;
+$kws-select-focus-box-shadow-size: #{cv.getVar("input-focus-shadow-size")} !default;
+$kws-select-focus-box-shadow-color: hsl(
+  #{cv.getVar("input-focus-h")},
+  #{cv.getVar("input-focus-s")},
+  #{cv.getVar("input-focus-l")},
+  #{cv.getVar("input-focus-shadow-alpha")}
+) !default;
+$kws-select-disabled-background-color: #{cv.getVar(
+    "input-disabled-background-color"
+  )} !default;
+$kws-select-disabled-border-color: #{cv.getVar("input-disabled-border-color")} !default;
+$kws-select-disabled-color: #{cv.getVar("input-disabled-color")} !default;
+$kws-select-selecting-color: #{cv.getVar("primary-invert")} !default;
+$kws-select-selecting-background: #{cv.getVar("primary")} !default;
+$kws-select-selected-color: #{cv.getVar("primary-dark")} !default;
+$kws-select-selected-background: #{cv.getVar("primary-light")} !default;
+$kws-select-options-background: #{cv.getVar("scheme-main-ter")} !default;
 
 $__modal-z: 41 !default;
-@if $modal-z {
+@if variable-exists("modal-z") {
   $__modal-z: $modal-z;
 }
 
@@ -57,6 +67,7 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
       margin-bottom: -0.25rem;
       margin-left: -0.25rem;
       margin-right: 0.25rem;
+      gap: 0;
       .tag.is-small {
         font-size: 0.6rem;
         .delete.is-small {
@@ -188,25 +199,27 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
 }
 
 @each $name, $pair in $kws-theme-colors {
-  $color: list.nth($pair, 1);
-  $color-invert: list.nth($pair, 2);
-  $color-light: findLightColor($color);
-  $color-dark: findDarkColor($color);
   .kws-searchableselect {
     &.is-#{$name} {
-      border-color: $color;
+      border-color: cv.getVar($name);
       &:focus-within {
-        box-shadow: $input-focus-box-shadow-size bulmaRgba($color, 0.25);
+        box-shadow: $kws-select-focus-box-shadow-size
+          hsla(
+            cv.getVar($name, "", "-h"),
+            cv.getVar($name, "", "-s"),
+            cv.getVar($name, "", "-l"),
+            cv.getVar("input-focus-shadow-alpha")
+          );
       }
       ul.options {
         li {
           &.selected {
-            color: $color-dark;
-            background: $color-light;
+            color: cv.getVar($name, "", "-dark");
+            background: cv.getVar($name, "", "-light");
           }
           &.active {
-            color: $color-invert;
-            background: $color;
+            color: cv.getVar($name, "", "-invert");
+            background: cv.getVar($name);
           }
         }
       }
