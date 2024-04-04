@@ -7,7 +7,7 @@ let args = {
   size: "",
   color: "",
   disabled: false,
-  has_visibility_switcher: true,
+  show_visibility_switch: true,
   placeholder: "Password",
 };
 
