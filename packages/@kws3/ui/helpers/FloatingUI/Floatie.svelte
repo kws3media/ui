@@ -46,7 +46,7 @@
         <button type="button" class="delete" on:click={destroy} />
       {/if}
       {#if title}
-        <h4 class="title is-5 is-marginless">{title}</h4>
+        <h4 class="title is-5 marginless">{title}</h4>
       {/if}
 
       <!-- eslint-disable-next-line svelte/no-at-html-tags -->

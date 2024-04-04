@@ -43,9 +43,9 @@ This property can be bound to, to fetch the current value, Default: ``
 
 -->
 
-<div class="field is-marginless">
+<div class="field marginless">
   <p
-    class="control is-marginless"
+    class="control marginless"
     class:has-icons-left={show_field_icon}
     class:has-icons-right={show_visibility_switch}>
     <input

@@ -111,7 +111,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     <button
       type="button"
       style="border: none;"
-      class="button is-paddingless delete is-medium is-loading" />
+      class="button delete paddingless is-small is-loading" />
   {:else if !readonly && !disabled}
     <button
       type="button"
@@ -190,7 +190,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     fn: ({ state }) => {
       state.styles.popper.width = `${Math.max(
         200,
-        state.rects.reference.width
+        state.rects.reference.width,
       )}px`;
     },
     effect: ({ state }) => {
@@ -385,8 +385,8 @@ Default value: `<span>{option[search_key] || option}</span>`
       ? true
       : false
     : value && value.length
-    ? true
-    : false;
+      ? true
+      : false;
   $: _placeholder = hasValue ? "" : placeholder;
 
   //ensure search_key and value_key are no empty strings
@@ -464,7 +464,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       (activeOption &&
         searching &&
         !filteredOptions.some(
-          (fo) => fo[used_value_key] === activeOption[used_value_key]
+          (fo) => fo[used_value_key] === activeOption[used_value_key],
         )) ||
       (!activeOption && searchText)
     ) {
@@ -472,7 +472,7 @@ Default value: `<span>{option[search_key] || option}</span>`
     } else {
       if (asyncMode || allow_fuzzy_match) {
         activeOption = filteredOptions.find((opts) =>
-          matchesValue(activeOption, opts)
+          matchesValue(activeOption, opts),
         );
       }
     }
@@ -481,7 +481,7 @@ Default value: `<span>{option[search_key] || option}</span>`
   function fillSelectedOptions() {
     if (single) {
       selectedOptions = normalisedOptions.filter(
-        (v) => `${v[used_value_key]}` === `${value}`
+        (v) => `${v[used_value_key]}` === `${value}`,
       );
     } else {
       let _normalisedOptions = asyncMode
@@ -489,7 +489,9 @@ Default value: `<span>{option[search_key] || option}</span>`
             //de-dupe by `used_value_key` when in asyncMode
             (value, idx, self) =>
               idx ===
-              self.findIndex((v) => v[used_value_key] === value[used_value_key])
+              self.findIndex(
+                (v) => v[used_value_key] === value[used_value_key],
+              ),
           )
         : normalisedOptions;
 
@@ -497,13 +499,13 @@ Default value: `<span>{option[search_key] || option}</span>`
         .filter(
           (v) =>
             Array.isArray(value) &&
-            value.some((vl) => `${v[used_value_key]}` === `${vl}`)
+            value.some((vl) => `${v[used_value_key]}` === `${vl}`),
         )
         .sort(
           (a, b) =>
             // tweak for 'value is nullable' type error
             (value ? value.indexOf(a[used_value_key]) : 0) -
-            (value ? value.indexOf(b[used_value_key]) : 0)
+            (value ? value.indexOf(b[used_value_key]) : 0),
         );
     }
 
@@ -566,7 +568,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         tick().then(() => {
           normaliseOptions();
           value = normaliseArraysToObjects(options).map(
-            (v) => v[used_value_key]
+            (v) => v[used_value_key],
           );
           if (single && Array.isArray(value)) {
             value = value[0];
@@ -614,7 +616,7 @@ Default value: `<span>{option[search_key] || option}</span>`
         //Do not filter invalid options, as they are async and might not be invalid
         //but ensure they are unique
         value = [...(value ? value : []), token[used_value_key]].filter(
-          (v, i, a) => a.indexOf(v) === i
+          (v, i, a) => a.indexOf(v) === i,
         );
       } else {
         //attach to value array while filtering out invalid values

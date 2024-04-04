@@ -42,12 +42,12 @@ This property can be bound to, to fetch the current value, Default: `null`
           ? 'is-active ' +
             (option.active_class ? option.active_class : active_class)
           : option.inactive_class
-          ? option.inactive_class
-          : inactive_class}"
+            ? option.inactive_class
+            : inactive_class}"
         style="height:auto">
         <span>
           {#if option.icon}
-            <Icon icon={option.icon} size="small" class="is-marginless" />
+            <Icon icon={option.icon} size="small" class="marginless" />
           {/if}
           <span class="is-block">{option.name}</span>
           {#if option.subtitle}
