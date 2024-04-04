@@ -1,6 +1,9 @@
-$kws-panel-background: $scheme-main !default;
-$kws-panel-box-shadow: $card-shadow !default;
-$kws-panel-title-color: $text !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+
+$kws-panel-heading-background: #{cv.getVar("scheme-main-ter")} !default;
+$kws-panel-background: #{cv.getVar("scheme-main")} !default;
+$kws-panel-box-shadow: #{cv.getVar("panel-shadow")} !default;
+$kws-panel-title-color: #{cv.getVar("scheme-invert-bis")} !default;
 $kws-panel-title-weight: 700 !default;
 $kws-panel-caret-open-color: #888 !default;
 $kws-panel-caret-closed-color: #00a4d8 !default;
@@ -14,6 +17,7 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
     border-top: none;
     border-left: none;
     border-right: none;
+    background-color: $kws-panel-heading-background;
     .subtitle {
       font-weight: $kws-panel-title-weight;
       color: $kws-panel-title-color;
@@ -41,7 +45,9 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
     display: none;
   }
   .collapsor .icon-i {
-    transition: transform 0.4s, color 0.4s;
+    transition:
+      transform 0.4s,
+      color 0.4s;
     transform: rotate(-90deg);
     color: $kws-panel-caret-open-color;
 

@@ -3,24 +3,46 @@ $info: #1dafec;
 $primary: #293b8f;
 $danger: #da2128;
 $success: #07ae4d;
-$warning:#d6cf66;
-
+$warning: #d6cf66;
+$link: #1a77ba;
 
 $dark: #16233e;
 
 $background: #f6f6f7;
 
-//Link colors
-$link:#1a77ba;
-
-//other vars
-$title-color:$primary;
-$title-weight:300;
-$subtitle-weight:300;
-
-
 //easings
-$easeOutQuad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
-$easeOutSine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
-$easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
-$easeOutCustom: cubic-bezier(0.100, 0.820, 0.250, 1.000);
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$easeOutCustom: cubic-bezier(0.1, 0.82, 0.25, 1);
+
+// Override global Sass variables from the /utilities folder
+@forward "bulma/sass/utilities" with (
+  //Primary colors
+  $info: $info,
+  $primary: $primary,
+  $danger: $danger,
+  $success: $success,
+  $warning: $warning,
+  $link: $link,
+  $dark: $dark,
+  $background: $background
+);
+
+// Override Sass variables from the /form folder
+@forward "bulma/sass/form";
+
+// Import the components you need
+@forward "bulma/sass/base";
+@forward "bulma/sass/components";
+@forward "bulma/sass/elements" with (
+  $title-color: $primary,
+  $title-weight: 300,
+  $subtitle-weight: 300
+);
+@forward "bulma/sass/grid";
+@forward "bulma/sass/layout";
+@forward "bulma/sass/helpers";
+
+// Import the themes so that all CSS variables have a value
+@forward "bulma/sass/themes";

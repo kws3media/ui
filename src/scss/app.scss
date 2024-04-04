@@ -1,17 +1,18 @@
 @use "sass:meta";
-@use "_variables" as *;
+@use "_variables" as dv;
 
-//bulma itself
-@use "bulma/bulma";
 //@import "_steps.sass";
 
+//Tooltip
+@use "../../packages/@kws3/ui/styles/Tooltip.scss";
+// //helpers - Panel
+@use "../../packages/@kws3/ui/styles/Panel.scss";
 // //searchable select
 @use "../../packages/@kws3/ui/styles/Select.scss";
+
 /*
 // //auto complete
-@import "../../packages/@kws3/ui/styles/AutoComplete.scss";
-// //helpers - Panel
-@import "../../packages/@kws3/ui/styles/Panel.scss";
+@use "../../packages/@kws3/ui/styles/AutoComplete.scss";
 // //helpers - Loader
 @import "../../packages/@kws3/ui/styles/Loader.scss";
 // //helpers - Skeleton
@@ -49,9 +50,6 @@
 
 //Pagination
 @import "../../packages/@kws3/ui/styles/Pagination.scss";
-
-//Tooltip
-@import "../../packages/@kws3/ui/styles/Tooltip.scss";
 
 //Canvas
 @import "../../packages/@kws3/ui/styles/Canvas.scss";
@@ -227,7 +225,7 @@ pre.prismjs {
   position: absolute;
   margin: 0 !important;
   padding: 0.75rem;
-  border-radius: 0 0 $radius $radius;
+  border-radius: 0 0 dv.$radius dv.$radius;
   background: linear-gradient(180deg, #f4f4f4 0%, #f6f9fc 4%, #fcfdfd 35%);
   top: -4rem;
   right: 0;
@@ -290,7 +288,7 @@ pre.prismjs {
 
 .datagrid-example {
   .box.is-selected {
-    background-color: $primary;
+    background-color: dv.$primary;
     color: #fff;
   }
 }
@@ -300,8 +298,4 @@ pre.prismjs {
     color: currentColor;
     background: transparent;
   }
-}
-
-.css-jspizm {
-  padding: 30px 20px;
 }
