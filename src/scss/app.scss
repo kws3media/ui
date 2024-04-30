@@ -13,12 +13,12 @@
 @use "../../packages/@kws3/ui/styles/AutoComplete.scss";
 // //helpers - Loader
 @use "../../packages/@kws3/ui/styles/Loader.scss";
+// //helpers - Skeleton
+//@use "../../packages/@kws3/ui/styles/Skeleton.scss";
+// //helpers - Divider
+@use "../../packages/@kws3/ui/styles/Divider.scss";
 
 /*
-// //helpers - Skeleton
-@import "../../packages/@kws3/ui/styles/Skeleton.scss";
-// //helpers - Divider
-@import "../../packages/@kws3/ui/styles/Divider.scss";
 // //Buttons - Toggle
 @import "../../packages/@kws3/ui/styles/Toggle.scss";
 // CheckRadio

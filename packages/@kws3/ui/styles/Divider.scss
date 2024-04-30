@@ -1,6 +1,9 @@
-$kws-theme-colors: $colors !default;
-$kws-divider-color: $border !default;
-$kws-divider-font-size: $size-7 !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+
+$kws-theme-colors: dv.$colors !default;
+$kws-divider-color: #{cv.getVar("border")} !default;
+$kws-divider-font-size: cv.getVar("size-smal") !default;
 $kws-divider-gap: 0.25rem !default;
 $kws-divider-margin: 1rem !default;
 
@@ -9,9 +12,9 @@ $kws-divider-margin: 1rem !default;
   display: flex;
   align-items: center;
   text-transform: uppercase;
-  color: $grey;
+  color: cv.getVar("grey");
   font-size: $kws-divider-font-size;
-  font-weight: $weight-semibold;
+  font-weight: cv.getVar("weight-semibold");
   letter-spacing: 0.5px;
   margin: $kws-divider-margin 0;
   width: 100%;
