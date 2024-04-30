@@ -20,15 +20,15 @@ let args = {
 
 let argTypes = {
   color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   size: {
-    control: { type: "select" },
+    control: "select",
     options: Sizes,
   },
   search_strategy: {
-    control: { type: "select" },
+    control: "select",
     options: ["fuzzy", "strict"],
   },
 };
