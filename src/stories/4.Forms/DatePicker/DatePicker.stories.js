@@ -20,11 +20,11 @@ let args = {
 
 let argTypes = {
   calendar_color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   range_mode: {},

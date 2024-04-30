@@ -23,15 +23,15 @@ let args = {
 let argTypes = {
   icon: {},
   icon_color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   icon_size: {
-    control: { type: "select" },
+    control: "select",
     options: Sizes,
   },
   placement: {
-    control: { type: "select" },
+    control: "select",
     options: TippyPositions,
   },
 };

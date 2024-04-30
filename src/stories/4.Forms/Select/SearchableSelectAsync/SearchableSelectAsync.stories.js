@@ -17,10 +17,14 @@ let args = {
 
 let argTypes = {
   color: {
-    control: { type: "select" },
+    control: "select",
   },
   size: {
-    control: { type: "select" },
+    control: "select",
+  },
+  search_strategy: {
+    control: "select",
+    options: ["fuzzy", "strict"],
   },
 };
 

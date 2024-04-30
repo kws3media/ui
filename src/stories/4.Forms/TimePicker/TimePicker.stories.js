@@ -18,11 +18,11 @@ let args = {
 
 let argTypes = {
   ui_color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   time_24hr: {},
