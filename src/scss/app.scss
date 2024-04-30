@@ -11,11 +11,10 @@
 @use "../../packages/@kws3/ui/styles/Select.scss";
 // //auto complete
 @use "../../packages/@kws3/ui/styles/AutoComplete.scss";
+// //helpers - Loader
+@use "../../packages/@kws3/ui/styles/Loader.scss";
 
 /*
-
-// //helpers - Loader
-@import "../../packages/@kws3/ui/styles/Loader.scss";
 // //helpers - Skeleton
 @import "../../packages/@kws3/ui/styles/Skeleton.scss";
 // //helpers - Divider

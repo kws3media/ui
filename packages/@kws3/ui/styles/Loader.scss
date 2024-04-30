@@ -1,4 +1,7 @@
-$kws-theme-colors: $colors !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+
+$kws-theme-colors: dv.$colors !default;
 $kws-loader-width: 2rem !default;
 $kws-loader-height: 2rem !default;
 $kws-loader-width-medium: ($kws-loader-width * 1.5) !default;
@@ -7,7 +10,18 @@ $kws-loader-width-large: ($kws-loader-width * 3) !default;
 $kws-loader-height-large: ($kws-loader-height * 3) !default;
 $kws-loader-color: #ccc !default;
 $kws-loader-overlay-background: rgba(0, 0, 0, 0.15) !default;
-
+@mixin loader {
+  animation: spinAround 0.5s infinite linear;
+  border: 2px solid hsl(0, 0%, 86%);
+  border-radius: 9999px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
 .kws-loader {
   .hero-body {
     position: relative;
