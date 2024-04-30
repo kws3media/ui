@@ -15,12 +15,14 @@
 @use "../../packages/@kws3/ui/styles/Loader.scss";
 // //helpers - Skeleton
 //@use "../../packages/@kws3/ui/styles/Skeleton.scss";
+
 // //helpers - Divider
 @use "../../packages/@kws3/ui/styles/Divider.scss";
+// //Buttons - Toggle
+@use "../../packages/@kws3/ui/styles/Toggle.scss";
 
 /*
-// //Buttons - Toggle
-@import "../../packages/@kws3/ui/styles/Toggle.scss";
+
 // CheckRadio
 @import "../../packages/@kws3/ui/styles/CheckRadio.scss";
 // FileUpload
