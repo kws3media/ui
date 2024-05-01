@@ -1,6 +1,9 @@
-$kws-actionsheet-background: $background !default;
-$kws-actionsheet-box-shadow: $card-shadow !default;
-$kws-actionsheet-box-radius: $radius !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/mixins" as mx;
+
+$kws-actionsheet-background: #{cv.getVar("background")} !default;
+$kws-actionsheet-box-shadow: #{cv.getVar("card-shadow")} !default;
+$kws-actionsheet-box-radius: #{cv.getVar("radius")} !default;
 
 .kws-action-sheet-outer {
   display: flex;
@@ -28,7 +31,7 @@ $kws-actionsheet-box-radius: $radius !default;
   padding: 1.25em 1.5em;
   overflow-x: auto;
 }
-@include mobile {
+@include mx.mobile {
   .kws-action-sheet {
     left: 0;
     max-width: 100%;

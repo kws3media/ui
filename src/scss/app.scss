@@ -35,16 +35,12 @@
 @use "../../packages/@kws3/ui/styles/Datepicker.scss";
 // Timepicker
 @use "../../packages/@kws3/ui/styles/Timepicker.scss";
-/*
-
-
-
 // Colorpicker
-@import "../../packages/@kws3/ui/styles/Colorpicker.scss";
-
+@use "../../packages/@kws3/ui/styles/Colorpicker.scss";
 //ActionSheet
-@import "../../packages/@kws3/ui/styles/ActionSheet.scss";
+@use "../../packages/@kws3/ui/styles/ActionSheet.scss";
 
+/*
 // FloatingUI
 @import "../../packages/@kws3/ui/styles/FloatingUI.scss";
 
