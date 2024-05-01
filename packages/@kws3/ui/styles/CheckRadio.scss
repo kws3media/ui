@@ -1,12 +1,18 @@
-$kws-theme-colors: $colors !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
 
-$kws-checkradio-default-check-color: $text !default;
+$kws-theme-colors: dv.$colors !default;
+$kws-checkradio-default-check-color: #{cv.getVar("text")} !default;
 $kws-checkradio-default-check-color-invert: findColorInvert(
   $kws-checkradio-default-check-color
 ) !default;
 $kws-checkradio-default-border-color: #dbdbdb !default;
-$kws-checkradio-focus-box-shadow-size: $input-focus-box-shadow-size !default;
-$kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
+$kws-checkradio-focus-box-shadow-size: #{cv.getVar(
+    "input-focus-box-shadow-size"
+  )} !default;
+$kws-checkradio-focus-box-shadow-color: #{cv.getVar(
+    "input-focus-box-shadow-color"
+  )} !default;
 
 .kws-checkbox {
   position: relative;
@@ -146,8 +152,12 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
-
+    $color-invert: null;
+    @if length($pair) >= 2 {
+      $color-invert: nth($pair, 2);
+    } @else {
+      $color-invert: nth($pair, 1);
+    }
     &.is-#{$name} input[type="checkbox"]:checked + .kws-checkbox-label {
       &:after {
         border-color: $color;
