@@ -20,7 +20,7 @@ $kws-slider-output-radius: #{cv.getVar("radius")} !default;
 @use "sass:math";
 
 @mixin slider-size($size) {
-  $track-height: math.div($size, $kws-slider-thumb-to-track-ratio);
+  $track-height: $size / $kws-slider-thumb-to-track-ratio;
   $thumb-size: $size;
 
   min-height: calc((#{$size} + 2px) * 1.25);
@@ -50,7 +50,7 @@ $kws-slider-output-radius: #{cv.getVar("radius")} !default;
     margin-top: 0;
   }
   &::-webkit-slider-thumb {
-    margin-top: -(math.div($thumb-size, 4));
+    margin-top: -($thumb-size / 4);
   }
 }
 
