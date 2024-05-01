@@ -1,18 +1,23 @@
-$kws-theme-colors: $colors !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
 
-$kws-fileupload-bg-color: $input-background-color !default;
-$kws-fileupload-border-color: $input-border-color !default;
-$kws-fileupload-shadow: $input-shadow !default;
-$kws-fileupload-radius: $radius !default;
-$kws-fileupload-text-color: $text !default;
-$kws-fileupload-disabled-bg-color: $input-disabled-background-color !default;
-$kws-fileupload-disabled-border-color: $input-disabled-border-color !default;
-
-$kws-fileupload-progress-bg-color: $success-light !default;
-$kws-fileupload-progress-text-color: $success-dark !default;
+$kws-theme-colors: dv.$colors !default;
+$kws-fileupload-bg-color: #{cv.getVar("background-white")} !default;
+$kws-fileupload-border-color: #{cv.getVar("border")} !default;
+$kws-fileupload-shadow: #{cv.getVar("shadow-s")} !default;
+$kws-fileupload-radius: #{cv.getVar("radius")} !default;
+$kws-fileupload-text-color: #{cv.getVar("text")} !default;
+$kws-fileupload-disabled-bg-color: #{cv.getVar(
+    "input-disabled-background-color"
+  )} !default;
+$kws-fileupload-disabled-border-color: #{cv.getVar(
+    "input-disabled-border-color"
+  )} !default;
+$kws-fileupload-progress-bg-color: #{cv.getVar("success-light")} !default;
+$kws-fileupload-progress-text-color: #{cv.getVar("success-dark")} !default;
 $kws-fileupload-progress-anim-easing: linear !default;
-@if (variable-exists($easeOutCustom)) {
-  $kws-fileupload-progress-anim-easing: $easeOutCustom !default;
+@if (variable-exists(#{cv.getVar("easeOutCustom")})) {
+  $kws-fileupload-progress-anim-easing: #{cv.getVar("easeOutCustom")} !default;
 }
 
 .kws-file-upload {
@@ -110,7 +115,12 @@ $kws-fileupload-progress-anim-easing: linear !default;
   }
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
+    $color-invert: null;
+    @if length($pair) >= 2 {
+      $color-invert: nth($pair, 2);
+    } @else {
+      $color-invert: nth($pair, 1);
+    }
     $color-light: findLightColor($color);
     $color-dark: findDarkColor($color);
     &.is-#{$name} {
