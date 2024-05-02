@@ -1,19 +1,24 @@
+@use "bulma/sass/utilities/initial-variables" as iv;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/mixins" as mx;
+
 .sorting-filters {
   font-weight: bold;
   margin-top: -1.55rem;
   margin-bottom: 1.5rem;
   .control {
-    background: $input-border-color;
+    background: cv.getVar("border");
     margin: 0 !important;
     padding: 0.2rem 0;
     &:first-child {
       padding-left: calc(0.625rem - 1px);
-      border-radius: 0 0 0 $radius-large;
-      background: darken($input-border-color, 5%);
+      border-radius: 0 0 0 #{cv.getVar("radius-medium")};
+      background: darken(dv.$border, 5%);
       padding-right: calc(0.625rem - 1px);
     }
     &:last-child {
-      border-radius: 0 0 $radius-large 0;
+      border-radius: 0 0 #{cv.getVar("radius-medium")} 0;
     }
   }
   .select {
@@ -23,7 +28,7 @@
       padding-bottom: 0.2rem;
       border: none;
       background: transparent;
-      color: $primary;
+      color: #{cv.getVar("primary")};
       height: auto;
       font-weight: bold;
       &:focus,
@@ -36,12 +41,12 @@
       }
     }
     &::after {
-      border-color: $primary;
+      border-color: #{cv.getVar("primary")};
     }
   }
 }
 
-@include mobile {
+@include mx.mobile {
   .sorting-filters {
     margin-top: 0rem;
     .field {
@@ -49,10 +54,14 @@
     }
     .control {
       &:first-child {
-        border-radius: $radius-large 0 0 $radius-large;
+        border-radius: #{cv.getVar("radius-large")} 0 0 #{cv.getVar(
+            "radius-large"
+          )};
       }
       &:last-child {
-        border-radius: 0 $radius-large $radius-large 0;
+        border-radius: 0 #{cv.getVar("radius-large")} #{cv.getVar(
+            "radius-large"
+          )} 0;
         flex-grow: 1;
         flex-shrink: 1;
         .select {

@@ -76,9 +76,7 @@ $kws-gridview-even-row-hover-background-color: #{cv.getVar(
     background-color: $kws-gridview-checked-row-background !important;
     td {
       background-color: $kws-gridview-checked-row-background !important;
-      color: fn.bulmaFindColorInvert(
-        $kws-gridview-checked-row-background
-      ) !important;
+      color: fn.bulmaFindColorInvert($kws-gridview-th-color) !important;
     }
   }
 
