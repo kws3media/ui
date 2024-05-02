@@ -1,19 +1,21 @@
-<KwsPagination
-  {meta}
-  {limit}
-  {total}
-  {count}
-  {offset}
-  {showTotal}
-  {showCurrent}
-  {showPerPage}
-  {maxVisiblePages}
-  {entityName}
-  {size}
-  {frame}
-  {iconRight}
-  {iconLeft}
-  {perPageOptions} />
+<div class="py-6 px-5">
+  <KwsPagination
+    {meta}
+    {limit}
+    {total}
+    {count}
+    {offset}
+    {showTotal}
+    {showCurrent}
+    {showPerPage}
+    {maxVisiblePages}
+    {entityName}
+    {size}
+    {frame}
+    {iconRight}
+    {iconLeft}
+    {perPageOptions} />
+</div>
 
 <script>
   import { Pagination as KwsPagination } from "@kws3/ui";
