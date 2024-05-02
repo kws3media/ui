@@ -53,10 +53,8 @@
 @use "../../packages/@kws3/ui/styles/DataSort.scss";
 //DataSearch
 @use "../../packages/@kws3/ui/styles/DataSearch.scss";
-/*
 //Charts
-@import "../../packages/@kws3/ui/styles/Chart.scss";
-//*/
+@use "../../packages/@kws3/ui/styles/Chart.scss";
 
 //fontAwesome
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
