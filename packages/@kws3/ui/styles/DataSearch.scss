@@ -1,8 +1,12 @@
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/mixins" as mx;
+
 .kws-grid-search {
   .is-not-in-use {
   }
   .is-in-use {
-    border-color: transparentize($success, 0.5);
+    border-color: transparentize(dv.$success, 0.5);
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.23) !important;
     z-index: 2;
   }
@@ -16,7 +20,7 @@
   }
 }
 
-@include mobile {
+@include mx.mobile {
   .kws-grid-search {
     .field.outer-level-field {
       flex-wrap: wrap;
@@ -26,8 +30,8 @@
       .main-search {
         width: 100%;
         .input {
-          border-bottom-right-radius: $radius !important;
-          border-top-right-radius: $radius !important;
+          border-bottom-right-radius: #{cv.getVar("radius")} !important;
+          border-top-right-radius: #{cv.getVar("radius")} !important;
         }
       }
       .search-control {
