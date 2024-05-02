@@ -1,6 +1,11 @@
-$kws-theme-colors: $colors !default;
-$kws-timeline-default-color: $grey !default;
-$kws-timeline-default-color-invert: $light !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/initial-variables" as iv;
+@use "bulma/sass/utilities/functions" as fn;
+
+$kws-theme-colors: dv.$colors !default;
+$kws-timeline-default-color: #{cv.getVar("grey")} !default;
+$kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
 
 @mixin right-aligned-timeline-item {
   flex-direction: row-reverse;
@@ -76,8 +81,9 @@ $kws-timeline-default-color-invert: $light !default;
     img {
       max-width: 100%;
       max-height: 100%;
-      border-radius: $radius;
-      box-shadow: 0 0.125rem 0.1875rem rgba(10, 10, 10, 0.1),
+      border-radius: iv.$radius;
+      box-shadow:
+        0 0.125rem 0.1875rem rgba(10, 10, 10, 0.1),
         0 0 0 0.0625rem rgba(10, 10, 10, 0.1);
     }
   }
@@ -95,7 +101,7 @@ $kws-timeline-default-color-invert: $light !default;
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
+    $color-invert: fn.bulmaFindColorInvert($color); //nth($pair, 2);
     &.is-#{$name} {
       .kws-timeline-marker {
         border-color: $color;
