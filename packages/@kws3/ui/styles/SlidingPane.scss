@@ -12,7 +12,7 @@
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transition:
-      transform 0.4s #{cv.getVar("easeOutCustom")},
+      transform 0.4s cv.getVar("easing"),
       opacity 0.1s;
     transform-origin: left top;
     .sliding-pane-inner {

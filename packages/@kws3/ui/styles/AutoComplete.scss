@@ -1,5 +1,6 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/functions" as fn;
 
 $kws-theme-colors: dv.$colors !default;
 $kws-autocomplete-radius: #{cv.getVar("radius")} !default;
@@ -112,14 +113,9 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
 
 @each $name, $pair in $kws-theme-colors {
   $color: nth($pair, 1);
-  $color-invert: null;
-  @if length($pair) >= 2 {
-    $color-invert: nth($pair, 2);
-  } @else {
-    $color-invert: nth($pair, 1);
-  }
-  $color-light: findLightColor($color);
-  $color-dark: findDarkColor($color);
+  $color-invert: fn.bulmaFindColorInvert($color);
+  $color-light: fn.bulmaFindLightColor($color);
+  $color-dark: fn.bulmaFindDarkColor($color);
   .kws-autocomplete {
     &.is-#{$name} {
       border-color: $color;

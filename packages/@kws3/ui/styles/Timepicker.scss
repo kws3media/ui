@@ -54,15 +54,9 @@ $kws-timepicker-text: #{cv.getVar("text")} !default;
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    $color-invert: null;
-    @if length($pair) >= 2 {
-      $color-invert: nth($pair, 2);
-    } @else {
-      $color-invert: nth($pair, 1);
-    }
-    $color-light: findLightColor($color);
-    $color-dark: findDarkColor($color);
-
+    $color-invert: fn.bulmaFindColorInvert($color);
+    $color-light: fn.bulmaFindLightColor($color);
+    $color-dark: fn.bulmaFindDarkColor($color);
     //invert on darkmode by checking color luminance
     @if ($isDarkMode) {
       $color-dark: findLightColor($color);

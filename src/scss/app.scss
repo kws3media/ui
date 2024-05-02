@@ -25,9 +25,9 @@
 // FileUpload
 @use "../../packages/@kws3/ui/styles/FileUpload.scss";
 // sliding panes
-//@use "../../packages/@kws3/ui/styles/SlidingPane.scss";
+@use "../../packages/@kws3/ui/styles/SlidingPane.scss";
 // RangeSlider
-//@use "../../packages/@kws3/ui/styles/RangeSlider.scss";
+@use "../../packages/@kws3/ui/styles/RangeSlider.scss";
 
 // Flatpickr
 @use "../../node_modules/flatpickr/dist/flatpickr";
@@ -39,11 +39,10 @@
 @use "../../packages/@kws3/ui/styles/Colorpicker.scss";
 //ActionSheet
 @use "../../packages/@kws3/ui/styles/ActionSheet.scss";
+// FloatingUI
+@use "../../packages/@kws3/ui/styles/FloatingUI.scss";
 
 /*
-// FloatingUI
-@import "../../packages/@kws3/ui/styles/FloatingUI.scss";
-
 //Pagination
 @import "../../packages/@kws3/ui/styles/Pagination.scss";
 

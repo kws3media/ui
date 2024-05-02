@@ -1,5 +1,6 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/functions" as fn;
 
 $kws-theme-colors: dv.$colors !default;
 $kws-fileupload-bg-color: #{cv.getVar("background-white")} !default;
@@ -115,14 +116,9 @@ $kws-fileupload-progress-anim-easing: linear !default;
   }
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    $color-invert: null;
-    @if length($pair) >= 2 {
-      $color-invert: nth($pair, 2);
-    } @else {
-      $color-invert: nth($pair, 1);
-    }
-    $color-light: findLightColor($color);
-    $color-dark: findDarkColor($color);
+    $color-invert: fn.bulmaFindColorInvert($color);
+    $color-light: fn.bulmaFindLightColor($color);
+    $color-dark: fn.bulmaFindDarkColor($color);
     &.is-#{$name} {
       .file-upload-inner {
         border-color: $color;

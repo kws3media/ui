@@ -10,13 +10,13 @@ let args = {
   style: "",
   label_style: "",
   size: "",
-  color: "",
+  color: "primary",
   inverted: false,
   circle: false,
   checked: true,
   disabled: false,
   icon: "check",
-  icon_family: null,
+  icon_family: "fa",
 };
 
 let argTypes = {
