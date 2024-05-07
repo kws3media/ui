@@ -8,12 +8,13 @@ $kws-checkradio-default-check-color-invert: findColorInvert(
   $kws-checkradio-default-check-color
 ) !default;
 $kws-checkradio-default-border-color: #dbdbdb !default;
-$kws-checkradio-focus-box-shadow-size: #{cv.getVar(
-    "input-focus-box-shadow-size"
-  )} !default;
-$kws-checkradio-focus-box-shadow-color: #{cv.getVar(
-    "input-focus-box-shadow-color"
-  )} !default;
+$kws-checkradio-focus-box-shadow-size: #{cv.getVar("input-focus-shadow-size")} !default;
+$kws-checkradio-focus-box-shadow-color: hsl(
+  #{cv.getVar("input-focus-h")},
+  #{cv.getVar("input-focus-s")},
+  #{cv.getVar("input-focus-l")},
+  #{cv.getVar("input-focus-shadow-alpha")}
+) !default;
 
 .kws-checkbox {
   position: relative;
@@ -216,7 +217,12 @@ $kws-checkradio-focus-box-shadow-color: #{cv.getVar(
     &.is-#{$name} input[type="radio"]:active + .kws-checkbox-label {
       &:before {
         box-shadow: $kws-checkradio-focus-box-shadow-size
-          bulmaRgba($color, 0.25);
+          hsla(
+            cv.getVar($name, "", "-h"),
+            cv.getVar($name, "", "-s"),
+            cv.getVar($name, "", "-l"),
+            cv.getVar("input-focus-shadow-alpha")
+          );
       }
     }
   }
