@@ -13,7 +13,7 @@ let args = {
   color: "primary",
   inverted: false,
   circle: false,
-  checked: true,
+  checked: false,
   disabled: false,
   icon: "check",
   icon_family: "fa",

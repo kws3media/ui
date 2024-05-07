@@ -8,12 +8,12 @@ $kws-checkradio-default-check-color-invert: findColorInvert(
   $kws-checkradio-default-check-color
 ) !default;
 $kws-checkradio-default-border-color: #dbdbdb !default;
-$kws-checkradio-focus-box-shadow-size: #{cv.getVar("input-focus-shadow-size")} !default;
-$kws-checkradio-focus-box-shadow-color: hsl(
-  #{cv.getVar("input-focus-h")},
-  #{cv.getVar("input-focus-s")},
-  #{cv.getVar("input-focus-l")},
-  #{cv.getVar("input-focus-shadow-alpha")}
+$kws-checkradio-focus-box-shadow-size: #{cv.getVar("focus-shadow-size")} !default;
+$kws-checkradio-focus-box-shadow-color: hsla(
+  #{cv.getVar("focus-h")},
+  #{cv.getVar("focus-s")},
+  #{cv.getVar("focus-l")},
+  #{cv.getVar("focus-shadow-alpha")}
 ) !default;
 
 .kws-checkbox {
@@ -218,10 +218,10 @@ $kws-checkradio-focus-box-shadow-color: hsl(
       &:before {
         box-shadow: $kws-checkradio-focus-box-shadow-size
           hsla(
-            cv.getVar($name, "", "-h"),
-            cv.getVar($name, "", "-s"),
-            cv.getVar($name, "", "-l"),
-            cv.getVar("input-focus-shadow-alpha")
+            #{cv.getVar($name, "", "-h")},
+            #{cv.getVar($name, "", "-s")},
+            #{cv.getVar($name, "", "-l")},
+            #{cv.getVar("focus-shadow-alpha")}
           );
       }
     }
