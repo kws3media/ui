@@ -8,7 +8,7 @@ let args = {
   height: "auto",
   radius: "0px",
   circle: false,
-  color: "primary",
+  color: "",
 };
 
 let argTypes = {
@@ -24,7 +24,7 @@ export default {
   args: args,
   argTypes: argTypes,
   parameters: {
-    layout: "fullscreen",
+    layout: "padded",
   },
 };
 
