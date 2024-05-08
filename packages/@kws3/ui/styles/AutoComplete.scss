@@ -4,7 +4,7 @@
 
 $kws-theme-colors: dv.$colors !default;
 $kws-autocomplete-radius: #{cv.getVar("radius")} !default;
-$kws-autocomplete-border-color: #{cv.getVar("input-border-color")} !default;
+$kws-autocomplete-border-color: #{cv.getVar("border")} !default;
 $kws-autocomplete-box-shadow:
   0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
   0 0px 0 1px rgb(10 10 10 / 2%) !default;
