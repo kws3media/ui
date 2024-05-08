@@ -8,7 +8,7 @@ $kws-toggle-track-bg-color: #{cv.getVar("text")} !default;
 $kws-toggle-track-bg-color-invert: findColorInvert(
   $kws-toggle-track-bg-color
 ) !default;
-$kws-toggle-border-color: #{cv.getVar("input-border-color")} !default;
+$kws-toggle-border-color: #{cv.getVar("grey-lighter")} !default;
 
 $kws-theme-colors: dv.$colors !default;
 
