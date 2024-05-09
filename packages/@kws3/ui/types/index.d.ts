@@ -110,10 +110,12 @@ export type DrawingPadEvents = {
 };
 
 export type ButtonEvent = {
-  doing: () => void;
-  done: (callback?: Function, timeout?: number) => void;
-  error: (callback?: Function, timeout?: number) => void;
-  context: any;
+  detail: {
+    doing: () => void;
+    done: (callback?: Function, timeout?: number) => void;
+    error: (callback?: Function, timeout?: number) => void;
+    context?: any;
+  };
 };
 
 export type SubmitButtonEvent = {
