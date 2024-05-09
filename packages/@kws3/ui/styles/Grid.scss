@@ -27,6 +27,7 @@ $kws-gridview-hover-background-color: #{cv.getVar(
 $kws-gridview-even-row-hover-background-color: #{cv.getVar(
     "table-striped-row-even-hover-background-color"
   )} !default;
+$kws-gridView-cell-border-color: #{cv.getVar("table-cell-border-color")} !default;
 
 .table.kws-grid-view {
   box-shadow: $kws-gridview-box-shadow;
@@ -72,11 +73,18 @@ $kws-gridview-even-row-hover-background-color: #{cv.getVar(
     }
   }
 
+  tr.is-selected {
+    td {
+      color: currentColor !important;
+      //border-color: $kws-gridView-cell-border-color !important;
+    }
+  }
+
   tr.is-checked {
     background-color: $kws-gridview-checked-row-background !important;
     td {
       background-color: $kws-gridview-checked-row-background !important;
-      color: fn.bulmaFindColorInvert($kws-gridview-th-color) !important;
+      color: $kws-gridview-th-color !important;
     }
   }
 
