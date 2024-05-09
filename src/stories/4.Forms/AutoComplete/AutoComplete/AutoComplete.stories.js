@@ -39,11 +39,14 @@ export default {
   args: args,
   argTypes: argTypes,
   play: playInteractions,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {
   name: "Canvas",
-  //tags: ["isHidden"],
+  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

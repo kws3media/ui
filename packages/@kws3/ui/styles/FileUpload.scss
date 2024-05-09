@@ -8,12 +8,8 @@ $kws-fileupload-border-color: #{cv.getVar("border")} !default;
 $kws-fileupload-shadow: #{cv.getVar("shadow-s")} !default;
 $kws-fileupload-radius: #{cv.getVar("radius")} !default;
 $kws-fileupload-text-color: #{cv.getVar("text")} !default;
-$kws-fileupload-disabled-bg-color: #{cv.getVar(
-    "input-disabled-background-color"
-  )} !default;
-$kws-fileupload-disabled-border-color: #{cv.getVar(
-    "input-disabled-border-color"
-  )} !default;
+$kws-fileupload-disabled-bg-color: #{cv.getVar("background")} !default;
+$kws-fileupload-disabled-border-color: #{cv.getVar("background")} !default;
 $kws-fileupload-progress-bg-color: #{cv.getVar("success-light")} !default;
 $kws-fileupload-progress-text-color: #{cv.getVar("success-dark")} !default;
 $kws-fileupload-progress-anim-easing: linear !default;

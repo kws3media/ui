@@ -9,12 +9,12 @@ $kws-autocomplete-box-shadow:
   0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
   0 0px 0 1px rgb(10 10 10 / 2%) !default;
 $kws-autocomplete-focus-border-color: #{cv.getVar("input-focus-border-color")} !default;
-$kws-autocomplete-focus-box-shadow-size: #{cv.getVar("input-focus-shadow-size")} !default;
+$kws-autocomplete-focus-box-shadow-size: #{cv.getVar("focus-shadow-size")} !default;
 $kws-autocomplete-focus-box-shadow-color: hsl(
-  #{cv.getVar("input-focus-h")},
-  #{cv.getVar("input-focus-s")},
-  #{cv.getVar("input-focus-l")},
-  #{cv.getVar("input-focus-shadow-alpha")}
+  #{cv.getVar("focus-h")},
+  #{cv.getVar("focus-s")},
+  #{cv.getVar("focus-l")},
+  #{cv.getVar("focus-shadow-alpha")}
 ) !default;
 $kws-autocomplete-disabled-background-color: #{cv.getVar(
     "input-disabled-background-color"
