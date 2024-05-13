@@ -1,13 +1,19 @@
-$kws-theme-colors: $colors !default;
-$kws-datepicker-background: $scheme-main-ter !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/functions" as fn;
+
+$text: dv.$text !default;
+$kws-theme-colors: dv.$colors !default;
+$kws-datepicker-background: #{cv.getVar("scheme-main-ter")} !default;
 $kws-datepicker-text: $text !default;
-$kws-datepicker-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+$kws-datepicker-shadow:
+  0 2px 5px rgba(0, 0, 0, 0.3),
   0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
 $kws-datepicker-radius: 0px !default;
 
 .flatpickr-calendar {
   $inRangeBg: lighten($kws-datepicker-text, 55);
-  @if (colorLuminance($kws-datepicker-text) > 0.55) {
+  @if (fn.bulmaColorLuminance($kws-datepicker-text) > 0.55) {
     $inRangeBg: darken($kws-datepicker-text, 55);
   }
 
@@ -28,9 +34,9 @@ $kws-datepicker-radius: 0px !default;
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
-    $color-light: findLightColor($color);
-    $color-dark: findDarkColor($color);
+    $color-invert: fn.bulmaFindColorInvert($color);
+    $color-light: fn.bulmaFindLightColor($color);
+    $color-dark: fn.bulmaFindDarkColor($color);
     &.is-#{$name} {
       &.arrowTop:before,
       &.arrowTop:after {
@@ -118,7 +124,9 @@ $kws-datepicker-radius: 0px !default;
         color: $color-dark;
         background: $color-light;
         border-color: $color-light;
-        box-shadow: -5px 0 0 $color-light, 5px 0 0 $color-light;
+        box-shadow:
+          -5px 0 0 $color-light,
+          5px 0 0 $color-light;
       }
       .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
       .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
@@ -145,7 +153,9 @@ $kws-datepicker-radius: 0px !default;
     }
 
     &.inRange {
-      box-shadow: -5px 0 0 $inRangeBg, 5px 0 0 $inRangeBg;
+      box-shadow:
+        -5px 0 0 $inRangeBg,
+        5px 0 0 $inRangeBg;
     }
 
     &.inRange,

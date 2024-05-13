@@ -1,4 +1,9 @@
-$kws-theme-colors: $colors !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/functions" as fn;
+
+$kws-theme-colors: dv.$colors !default;
+$text: dv.$text !default;
 $kws-skeleton-color: lighten($text, 60%) !default;
 $kws-skeleton-hilight-color: lighten($text, 65%) !default;
 
@@ -19,13 +24,14 @@ $kws-skeleton-hilight-color: lighten($text, 65%) !default;
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    $color-light: findLightColor($color);
+    $color-light: fn.bulmaFindLightColor($color);
+    $color-dark: darken($color-light, 10%);
     &.is-#{$name} {
       background-color: $color-light;
       background-image: linear-gradient(
         90deg,
         $color-light,
-        darken($color-light, 10%),
+        $color-dark,
         $color-light
       );
     }

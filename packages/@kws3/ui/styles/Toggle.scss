@@ -1,5 +1,6 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/functions" as fn;
 
 $kws-toggle-off-bg-color: #{cv.getVar("background")} !default;
 $kws-toggle-handle-bg-color: #{cv.getVar("white")} !default;
@@ -7,7 +8,7 @@ $kws-toggle-track-bg-color: #{cv.getVar("text")} !default;
 $kws-toggle-track-bg-color-invert: findColorInvert(
   $kws-toggle-track-bg-color
 ) !default;
-$kws-toggle-border-color: #{cv.getVar("input-border-color")} !default;
+$kws-toggle-border-color: #{cv.getVar("border")} !default;
 
 $kws-theme-colors: dv.$colors !default;
 
@@ -71,14 +72,10 @@ $kws-theme-colors: dv.$colors !default;
       transform: translate3d(1.785em, 0, 0);
     }
     @each $name, $pair in $kws-theme-colors {
-      @debug "Name: #{$name}, Pair: #{$pair}, NTH #{length($pair)}";
       $color: nth($pair, 1);
-      $color-invert: null;
-      @if length($pair) >= 2 {
-        $color-invert: nth($pair, 2);
-      } @else {
-        $color-invert: nth($pair, 1);
-      }
+      $color-invert: fn.bulmaFindColorInvert($color);
+      $color-light: fn.bulmaFindLightColor($color);
+      $color-dark: fn.bulmaFindDarkColor($color);
       &.is-#{$name} {
         .track {
           border-color: $color;

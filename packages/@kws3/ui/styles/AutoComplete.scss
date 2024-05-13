@@ -1,19 +1,21 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/functions" as fn;
 
 $kws-theme-colors: dv.$colors !default;
 $kws-autocomplete-radius: #{cv.getVar("radius")} !default;
-$kws-autocomplete-border-color: #{cv.getVar("input-border-color")} !default;
+$kws-autocomplete-border-color: #{cv.getVar("border")} !default;
 $kws-autocomplete-box-shadow:
   0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
   0 0px 0 1px rgb(10 10 10 / 2%) !default;
 $kws-autocomplete-focus-border-color: #{cv.getVar("input-focus-border-color")} !default;
-$kws-autocomplete-focus-box-shadow-size: #{cv.getVar(
-    "input-focus-box-shadow-size"
-  )} !default;
-$kws-autocomplete-focus-box-shadow-color: #{cv.getVar(
-    "input-focus-box-shadow-color"
-  )} !default;
+$kws-autocomplete-focus-box-shadow-size: #{cv.getVar("focus-shadow-size")} !default;
+$kws-autocomplete-focus-box-shadow-color: hsl(
+  #{cv.getVar("focus-h")},
+  #{cv.getVar("focus-s")},
+  #{cv.getVar("focus-l")},
+  #{cv.getVar("focus-shadow-alpha")}
+) !default;
 $kws-autocomplete-disabled-background-color: #{cv.getVar(
     "input-disabled-background-color"
   )} !default;
@@ -112,20 +114,20 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
 
 @each $name, $pair in $kws-theme-colors {
   $color: nth($pair, 1);
-  $color-invert: null;
-  @if length($pair) >= 2 {
-    $color-invert: nth($pair, 2);
-  } @else {
-    $color-invert: nth($pair, 1);
-  }
-  $color-light: findLightColor($color);
-  $color-dark: findDarkColor($color);
+  $color-invert: fn.bulmaFindColorInvert($color);
+  $color-light: fn.bulmaFindLightColor($color);
+  $color-dark: fn.bulmaFindDarkColor($color);
   .kws-autocomplete {
     &.is-#{$name} {
       border-color: $color;
       &:focus-within {
-        box-shadow: #{cv.getVar("input-focus-box-shadow-size")}
-          bulmaRgba($color, 0.25);
+        box-shadow: $kws-autocomplete-focus-box-shadow-size
+          hsla(
+            cv.getVar($name, "", "-h"),
+            cv.getVar($name, "", "-s"),
+            cv.getVar($name, "", "-l"),
+            cv.getVar("input-focus-shadow-alpha")
+          );
       }
       ul.options {
         li {

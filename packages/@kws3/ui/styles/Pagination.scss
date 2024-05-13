@@ -1,22 +1,26 @@
-$kws-pagination-item-color: $text !default;
-$kws-pagination-item-background: $scheme-main !default;
-$kws-pagination-item-border: 1px solid $border !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/mixins" as mx;
+
+$kws-pagination-item-color: #{cv.getVar("text")} !default;
+$kws-pagination-item-background: #{cv.getVar("scheme-main")} !default;
+$kws-pagination-item-border: 1px solid #{cv.getVar("border")} !default;
 $kws-pagination-item-hover-color: $kws-pagination-item-color !default;
 $kws-pagination-item-hover-border: $kws-pagination-item-border !default;
-$kws-pagination-item-disabled-background: $scheme-main-ter !default;
-$kws-pagination-item-disabled-color: $grey !default;
-$kws-pagination-item-ellipsis-background: $scheme-main-ter !default;
-$kws-pagination-item-ellipsis-border-color: $scheme-main-ter !default;
-$kws-pagination-item-active-background: $success !default;
+$kws-pagination-item-disabled-background: #{cv.getVar("scheme-main-ter")} !default;
+$kws-pagination-item-disabled-color: #{cv.getVar("grey")} !default;
+$kws-pagination-item-ellipsis-background: #{cv.getVar("scheme-main-ter")} !default;
+$kws-pagination-item-ellipsis-border-color: #{cv.getVar("scheme-main-ter")} !default;
+$kws-pagination-item-active-background: #{cv.getVar("success")} !default;
 $kws-pagination-item-active-color: findColorInvert(
   $kws-pagination-item-active-background
 ) !default;
 
-$kws-pagination-frame-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
+$kws-pagination-frame-box-shadow:
+  0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
   0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
 $kws-pagination-frame-background: linear-gradient(
-  $scheme-main,
-  $scheme-main-ter
+  cv.getVar("scheme-main"),
+  cv.getVar("scheme-main-ter")
 ) !default;
 
 .pagination {
@@ -75,7 +79,7 @@ $kws-pagination-frame-background: linear-gradient(
   background: $kws-pagination-frame-background;
 }
 
-@include mobile {
+@include mx.mobile {
   .pagination_frame {
     .level {
       display: flex;

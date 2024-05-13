@@ -1,18 +1,24 @@
-$kws-theme-colors: $colors !default;
-$kws-timepicker-background: $background !default;
-$kws-timepicker-text: $text !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/functions" as fn;
+
+$kws-theme-colors: dv.$colors !default;
+$kws-timepicker-background: #{cv.getVar("background")} !default;
+$kws-timepicker-text: #{cv.getVar("text")} !default;
 
 .flatpickr-calendar.hasTime.noCalendar {
   $isDarkMode: false;
-  $lum: colorLuminance($kws-timepicker-text);
+  $lum: fn.bulmaColorLuminance($kws-timepicker-text);
   @if ($lum > 0.55) {
     $isDarkMode: true;
   }
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.3),
+    0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
   background: $kws-timepicker-background;
   color: $kws-timepicker-text;
-  border-radius: $radius;
+  border-radius: #{cv.getVar("radius")};
 
   .flatpickr-time {
     border: none;
@@ -28,13 +34,13 @@ $kws-timepicker-text: $text !default;
       }
     }
     .flatpickr-am-pm {
-      border-radius: 0 $radius $radius 0;
+      border-radius: 0 #{cv.getVar("radius")} #{cv.getVar("radius")} 0;
     }
     .numInputWrapper {
       &:first-child {
-        border-radius: $radius 0 0 $radius;
+        border-radius: #{cv.getVar("radius")} 0 0 #{cv.getVar("radius")};
         .numInput {
-          border-radius: $radius 0 0 $radius;
+          border-radius: #{cv.getVar("radius")} 0 0 #{cv.getVar("radius")};
         }
       }
       &:hover {
@@ -48,10 +54,9 @@ $kws-timepicker-text: $text !default;
 
   @each $name, $pair in $kws-theme-colors {
     $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
-    $color-light: findLightColor($color);
-    $color-dark: findDarkColor($color);
-
+    $color-invert: fn.bulmaFindColorInvert($color);
+    $color-light: fn.bulmaFindLightColor($color);
+    $color-dark: fn.bulmaFindDarkColor($color);
     //invert on darkmode by checking color luminance
     @if ($isDarkMode) {
       $color-dark: findLightColor($color);

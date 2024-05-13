@@ -1,5 +1,6 @@
 import Decorator from "./Pagination.svelte";
 import { Pagination } from "@kws3/ui";
+import { Sizes } from "@scripts/type_injector/frameworkTypes";
 
 let args = {
   meta: {},
@@ -19,6 +20,13 @@ let args = {
   perPageOptions: [20, 50, 100, 150, 200, 250],
 };
 
+let argTypes = {
+  size: {
+    control: "select",
+    options: Sizes,
+  },
+};
+
 export default {
   title: "Datagrid/Pagination",
   component: Pagination,
@@ -27,12 +35,12 @@ export default {
     canvas: { hidden: true },
   },
   args: args,
-  argTypes: {},
+  argTypes: argTypes,
 };
 
 export const Main = {
   tags: ["isHidden"],
   args: args,
-  argTypes: {},
+  argTypes: argTypes,
   decorators: [(_, { args }) => ({ Component: Decorator, props: args })],
 };

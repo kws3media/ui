@@ -1,5 +1,6 @@
 import Decorator from "./GridView.svelte";
 import { GridView } from "@kws3/ui";
+import { Colors, Sizes } from "@scripts/type_injector/frameworkTypes";
 
 let args = {
   iteration_key: "id",
@@ -63,16 +64,34 @@ let args = {
   cellComponentMap: {},
 };
 
+let argTypes = {
+  selectAllCheckboxColor: {
+    control: "select",
+    options: Colors,
+  },
+  selectCheckboxColor: {
+    control: "select",
+    options: Colors,
+  },
+  selectCheckboxSize: {
+    control: "select",
+    options: Sizes,
+  },
+};
+
 export default {
   title: "Datagrid/GridView",
   component: GridView,
   args: args,
-  argTypes: {},
+  argTypes: argTypes,
+  parameters: {
+    layout: "padded",
+  },
 };
 
 export const Main = {
   tags: ["isHidden"],
   args: args,
-  argTypes: {},
+  argTypes: argTypes,
   decorators: [(_, { args }) => ({ Component: Decorator, props: args })],
 };

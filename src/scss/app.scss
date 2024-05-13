@@ -14,63 +14,48 @@
 // //helpers - Loader
 @use "../../packages/@kws3/ui/styles/Loader.scss";
 // //helpers - Skeleton
-//@use "../../packages/@kws3/ui/styles/Skeleton.scss";
+@use "../../packages/@kws3/ui/styles/Skeleton.scss";
 
 // //helpers - Divider
 @use "../../packages/@kws3/ui/styles/Divider.scss";
 // //Buttons - Toggle
 @use "../../packages/@kws3/ui/styles/Toggle.scss";
-
-/*
-
 // CheckRadio
-@import "../../packages/@kws3/ui/styles/CheckRadio.scss";
+@use "../../packages/@kws3/ui/styles/CheckRadio.scss";
 // FileUpload
-@import "../../packages/@kws3/ui/styles/FileUpload.scss";
+@use "../../packages/@kws3/ui/styles/FileUpload.scss";
 // sliding panes
-@import "../../packages/@kws3/ui/styles/SlidingPane.scss";
+@use "../../packages/@kws3/ui/styles/SlidingPane.scss";
 // RangeSlider
-@import "../../packages/@kws3/ui/styles/RangeSlider.scss";
+@use "../../packages/@kws3/ui/styles/RangeSlider.scss";
 
 // Flatpickr
-@import "../../node_modules/flatpickr/dist/flatpickr";
-
+@use "../../node_modules/flatpickr/dist/flatpickr";
 // Datepicker
-@import "../../packages/@kws3/ui/styles/Datepicker.scss";
-
+@use "../../packages/@kws3/ui/styles/Datepicker.scss";
 // Timepicker
-@import "../../packages/@kws3/ui/styles/Timepicker.scss";
-
+@use "../../packages/@kws3/ui/styles/Timepicker.scss";
 // Colorpicker
-@import "../../packages/@kws3/ui/styles/Colorpicker.scss";
-
+@use "../../packages/@kws3/ui/styles/Colorpicker.scss";
 //ActionSheet
-@import "../../packages/@kws3/ui/styles/ActionSheet.scss";
-
+@use "../../packages/@kws3/ui/styles/ActionSheet.scss";
 // FloatingUI
-@import "../../packages/@kws3/ui/styles/FloatingUI.scss";
-
+@use "../../packages/@kws3/ui/styles/FloatingUI.scss";
 //Pagination
-@import "../../packages/@kws3/ui/styles/Pagination.scss";
-
+@use "../../packages/@kws3/ui/styles/Pagination.scss";
 //Canvas
-@import "../../packages/@kws3/ui/styles/Canvas.scss";
-
+@use "../../packages/@kws3/ui/styles/Canvas.scss";
 //Timeline
-@import "../../packages/@kws3/ui/styles/Timeline.scss";
-
+@use "../../packages/@kws3/ui/styles/Timeline.scss";
 //Grid
-@import "../../packages/@kws3/ui/styles/Grid.scss";
-
+@use "../../packages/@kws3/ui/styles/Grid.scss";
 //DataSort
-@import "../../packages/@kws3/ui/styles/DataSort.scss";
-
+@use "../../packages/@kws3/ui/styles/DataSort.scss";
 //DataSearch
-@import "../../packages/@kws3/ui/styles/DataSearch.scss";
-
+@use "../../packages/@kws3/ui/styles/DataSearch.scss";
 //Charts
-@import "../../packages/@kws3/ui/styles/Chart.scss";
-//*/
+@use "../../packages/@kws3/ui/styles/Chart.scss";
+
 //fontAwesome
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 //css.gg

@@ -1,5 +1,7 @@
-$kws-chart-tooltip-background-color: $scheme-main !default;
-$kws-chart-tooltip-foreground-color: $scheme-invert-ter !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+
+$kws-chart-tooltip-background-color: #{cv.getVar("scheme-main")} !default;
+$kws-chart-tooltip-foreground-color: #{cv.getVar("scheme-invert-ter")} !default;
 
 .kws-chart {
   .apexcharts-tooltip {

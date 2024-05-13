@@ -8,7 +8,7 @@
 -->
 
 <div class="sorting-filters">
-  <div class="field is-grouped">
+  <div class="field is-grouped is-gapless">
     <div class="control">
       <small>Sort By:</small>
     </div>
