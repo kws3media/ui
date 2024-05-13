@@ -1,35 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--suppress HtmlUnknownTarget -->
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Storybook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="utf-8" />
-  <title>Storybook</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-bold-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
 
-  <link rel="prefetch" href="./sb-common-assets/nunito-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="prefetch" href="./sb-common-assets/nunito-sans-italic.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="prefetch" href="./sb-common-assets/nunito-sans-bold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="prefetch" href="./sb-common-assets/nunito-sans-bold-italic.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
+    <script>
+      window.CONFIG_TYPE = 'PRODUCTION';
+      window.LOGLEVEL = 'debug';
+      window.FRAMEWORK_OPTIONS = {};
+      window.CHANNEL_OPTIONS = {};
+      window.FEATURES = {"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":true,"interactionsDebugger":true};
+      window.STORIES = [{"titlePrefix":"","directory":"./src/stories/_index","files":"index.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/stories\\/_index\\/index\\.mdx)$"},{"titlePrefix":"","directory":"./src/stories/_index","files":"index*.*","importPathMatcher":"^\\.[\\\\/](?:src\\/stories\\/_index\\/index[^/]*?\\.[^/]*?\\/?)$"},{"titlePrefix":"","directory":"./src/stories/_index","files":"changelog.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/stories\\/_index\\/changelog\\.mdx)$"},{"titlePrefix":"","directory":"./src/stories","files":"index.stories.js?v=e3c45d2","importPathMatcher":"^\\.[\\\\/](?:src\\/stories\\/index\\.stories\\.js)$"},{"titlePrefix":"","directory":"./src/stories","files":"**/*.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./src/stories","files":"**/*.@(mdx|stories.*)","importPathMatcher":"^\\.[\\\\/](?:src\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.(mdx|stories\\.(?!\\.{0,1}(?:\\/|$))(?=.)[^/]*?))$"}];
+      window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":true};
+      window.TAGS_OPTIONS = {"dev-only":{"excludeFromDocsStories":true},"docs-only":{"excludeFromSidebar":true},"test-only":{"excludeFromSidebar":true,"excludeFromDocsStories":true}};
 
-  <script>
-    window.CONFIG_TYPE = 'PRODUCTION';
-    window.LOGLEVEL = 'debug';
-    window.FRAMEWORK_OPTIONS = {};
-    window.CHANNEL_OPTIONS = {};
-    window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":false,"interactionsDebugger":true};
-    window.STORIES = [{"titlePrefix":"","directory":"./src/stories_new/_index","files":"index.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/stories_new\\/_index\\/index\\.mdx)$"},{"titlePrefix":"","directory":"./src/stories_new/_index","files":"index*.*","importPathMatcher":"^\\.[\\\\/](?:src\\/stories_new\\/_index\\/index[^/]*?\\.[^/]*?\\/?)$"},{"titlePrefix":"","directory":"./src/stories_new/_index","files":"changelog.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/stories_new\\/_index\\/changelog\\.mdx)$"},{"titlePrefix":"","directory":"./src/stories_new","files":"index.stories.js?v=e21174f","importPathMatcher":"^\\.[\\\\/](?:src\\/stories_new\\/index\\.stories\\.js)$"},{"titlePrefix":"","directory":"./src/stories_new","files":"**/*.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/stories_new(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./src/stories_new","files":"**/*.stories.*","importPathMatcher":"^\\.[\\\\/](?:src\\/stories_new(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.[^/]*?\\/?)$"}];
-    window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":true};
+      
 
-    
-
-    // We do this so that "module && module.hot" etc. in Storybook source code
-    // doesn't fail (it will simply be disabled)
-    window.module = undefined;
-    window.global = window;
-  </script>
-  <base target="_parent" />
+      // We do this so that "module && module.hot" etc. in Storybook source code
+      // doesn't fail (it will simply be disabled)
+      window.module = undefined;
+      window.global = window;
+    </script>
+    <base target="_parent" />
 
 <style>
   /* While we aren't showing the main block yet, but still preparing, we want everything the user
@@ -93,8 +117,17 @@
     left: 0;
     right: 0;
     padding: 20px;
-    font-family: 'Nunito Sans', -apple-system, '.SFNSText-Regular', 'San Francisco',
-      BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family:
+      'Nunito Sans',
+      -apple-system,
+      '.SFNSText-Regular',
+      'San Francisco',
+      BlinkMacSystemFont,
+      'Segoe UI',
+      'Helvetica Neue',
+      Helvetica,
+      Arial,
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow: auto;
   }
@@ -288,7 +321,9 @@
 
   .sb-argstableBlock-body {
     border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 1px, rgba(0, 0, 0, 0.065) 0 0 0 1px;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0 1px 3px 1px,
+      rgba(0, 0, 0, 0.065) 0 0 0 1px;
   }
   .sb-argstableBlock-body tr {
     background: transparent;
@@ -361,11 +396,11 @@
 <script>
   window.global = window;
 </script>
-  <script type="module" crossorigin src="./assets/iframe-b83abd24.js?v=e21174f"></script>
-</head>
+    <script type="module" crossorigin src="./assets/iframe-88f54f4e.js?v=e3c45d2"></script>
+  </head>
 
-<body>
-  <div class="sb-preparing-story sb-wrapper">
+  <body>
+    <div class="sb-preparing-story sb-wrapper">
   <div class="sb-loader"></div>
 </div>
 
@@ -453,10 +488,9 @@
   <pre class="sb-errordisplay_code"><code id="error-stack"></code></pre>
 </div>
 
-  <div id="storybook-root"></div>
-  <div id="storybook-docs"></div>
-  
-  
-</body>
-
+    <div id="storybook-root"></div>
+    <div id="storybook-docs"></div>
+    
+    
+  </body>
 </html>
