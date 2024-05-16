@@ -4,8 +4,8 @@
 
 $kws-theme-colors: dv.$colors !default;
 $text: dv.$text !default;
-$kws-skeleton-color: lighten($text, 60%) !default;
-$kws-skeleton-hilight-color: lighten($text, 65%) !default;
+$kws-skeleton-color: fn.bulmaLighten(dv.$text, 60%) !default;
+$kws-skeleton-hilight-color: fn.bulmaLighten(dv.$text, 65%) !default;
 
 .kws-skeleton {
   width: 100%;

@@ -2,19 +2,18 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$text: dv.$text !default;
 $kws-theme-colors: dv.$colors !default;
 $kws-datepicker-background: #{cv.getVar("scheme-main-ter")} !default;
-$kws-datepicker-text: $text !default;
+$kws-datepicker-text: dv.$text !default;
 $kws-datepicker-shadow:
   0 2px 5px rgba(0, 0, 0, 0.3),
   0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
 $kws-datepicker-radius: 0px !default;
 
 .flatpickr-calendar {
-  $inRangeBg: lighten($kws-datepicker-text, 55);
+  $inRangeBg: fn.bulmaLighten($kws-datepicker-text, 55);
   @if (fn.bulmaColorLuminance($kws-datepicker-text) > 0.55) {
-    $inRangeBg: darken($kws-datepicker-text, 55);
+    $inRangeBg: fn.bulmaDarken($kws-datepicker-text, 55);
   }
 
   box-shadow: $kws-datepicker-shadow;
