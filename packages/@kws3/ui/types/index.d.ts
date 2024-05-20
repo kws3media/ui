@@ -130,6 +130,31 @@ export type ButtonTracker = {
   error: boolean;
 };
 
+export type FormMakerConfig = {
+  data: { [key: string]: any };
+  validators?: { [key: string]: function | function[] };
+  strictMode?: boolean;
+};
+
+export type FormMakerReturn = {
+  formData: import("svelte/store").Writable<any>;
+  errors: import("svelte/store").Readable<any>;
+  touched: import("svelte/store").Readable<any>;
+  isValid: import("svelte/store").Readable<boolean>;
+  isTouched: import("svelte/store").Readable<any>;
+  tracker: import("svelte/store").Writable<{
+    saving: boolean;
+    saved: boolean;
+    error: boolean;
+  }>;
+  update: (newData: { [key: string]: any }) => void;
+  reset: (e?: Event | null) => void;
+  setValidators: (newValidators: FormMakerConfig["validators"]) => void;
+};
+
+export type MakeForms = ((items: FormMakerConfig) => FormMakerReturnType) &
+  ((items: FormMakerConfig[]) => FormMakerReturnType[]);
+
 declare global {
   interface Navigator {
     readonly userAgentData: {
