@@ -1,3 +1,4 @@
+import type { Readable, Writable } from "svelte/store";
 import type {
   Colors,
   BGColors,
@@ -137,12 +138,12 @@ export type FormMakerConfig = {
 };
 
 export type FormMakerReturn = {
-  formData: import("svelte/store").Writable<any>;
-  errors: import("svelte/store").Readable<any>;
-  touched: import("svelte/store").Readable<any>;
-  isValid: import("svelte/store").Readable<boolean>;
-  isTouched: import("svelte/store").Readable<any>;
-  tracker: import("svelte/store").Writable<{
+  formData: Writable<any>;
+  errors: Readable<any>;
+  touched: Readable<any>;
+  isValid: Readable<boolean>;
+  isTouched: Readable<any>;
+  tracker: Writable<{
     saving: boolean;
     saved: boolean;
     error: boolean;
