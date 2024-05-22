@@ -133,7 +133,7 @@ export type ButtonTracker = {
 
 export type FormMakerConfig<T = Record<string, any>> = {
   data: T;
-  validators?: { [key: string]: function | function[] };
+  validators?: { [key: string]: Function | Function[] };
   strictMode?: boolean;
 };
 
