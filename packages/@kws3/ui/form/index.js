@@ -131,7 +131,7 @@ const formMaker = (config) => {
   });
 
   const isValid = derived(errors, ($errors) =>
-    Object.values($errors).every((v) => v === ""),
+    Object.values($errors).every((v) => v === "")
   );
 
   /** @param {{ [key: string]: any }} newData */

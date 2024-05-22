@@ -21,6 +21,7 @@ export function nl2br(input = "") {
 
 /**
  * Clone an Object.
+ * @type {import("@kws3/ui/types").CloneObject}
  * @param {object} [obj={}] - Object to be cloned, Default: `{}`
  */
 export function cloneObject(obj) {

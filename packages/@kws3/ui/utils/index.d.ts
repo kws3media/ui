@@ -9,11 +9,7 @@ export function truncate(str?: string, len?: number): string;
  * @param {string} [input=""] - String to be checked, Default: `""`
  */
 export function nl2br(input?: string): string;
-/**
- * Clone an Object.
- * @param {object} [obj={}] - Object to be cloned, Default: `{}`
- */
-export function cloneObject(obj?: object): any;
+export function cloneObject<T>(obj: T): T;
 /**
  * Returns a function, that, as long as it continues to be invoked, will not
  * be triggered. The function will be called after it stops being called for
