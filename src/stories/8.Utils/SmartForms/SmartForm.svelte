@@ -38,35 +38,12 @@
 <script>
   import { makeForms, notEmpty, withMsg } from "@kws3/ui/form";
 
-  /**
-   * Form Object
-   * @type {Object}
-   */
   let form;
-  /**
-   * FormData
-   * @type {Object}
-   */
   let data;
-  /**
-   * Form Field Errors
-   * @type {Object}
-   */
   let errors;
-  /**
-   * Form field Validity
-   * @type {Object}
-   */
   let isValid;
-  /**
-   * Form Field is touched/untouched
-   * @type {Object}
-   */
   let isTouched;
-  /**
-   * Form
-   * @type {Object}
-   */
+
   let validators = {
     email: withMsg("Email should not be empty", notEmpty),
     password: withMsg("Password should not be empty", notEmpty),
@@ -82,10 +59,7 @@
       },
       validators,
     });
-    data = form.formData;
-    errors = form.errors;
-    isValid = form.isValid;
-    isTouched = form.isTouched;
+    ({ formData: data, errors, isValid, isTouched } = form);
   }
 
   function save() {
