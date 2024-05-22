@@ -57,7 +57,7 @@ export type SearchOptions = {
 
 export type SearchHelper = (
   needle: string,
-  haystack: Array<string>,
+  haystack: Array<string>
 ) => Array<any>;
 
 export type ValidatePasswordOptions = {
@@ -131,30 +131,33 @@ export type ButtonTracker = {
   error: boolean;
 };
 
-export type FormMakerConfig = {
-  data: { [key: string]: any };
+export type FormMakerConfig<T = Record<string, any>> = {
+  data: T;
   validators?: { [key: string]: function | function[] };
   strictMode?: boolean;
 };
 
-export type FormMakerReturn = {
-  formData: Writable<any>;
-  errors: Readable<any>;
-  touched: Readable<any>;
-  isValid: Readable<boolean>;
-  isTouched: Readable<any>;
-  tracker: Writable<{
-    saving: boolean;
-    saved: boolean;
-    error: boolean;
-  }>;
+export type FormMakerReturnType<T> = {
+  formData: import("svelte/store").Writable<T>;
+  errors: import("svelte/store").Readable<{ [K in keyof T]: boolean }>;
+  touched: import("svelte/store").Readable<{ [K in keyof T]: boolean }>;
+  isValid: import("svelte/store").Readable<boolean>;
+  isTouched: import("svelte/store").Readable<any>;
+  tracker: import("svelte/store").Writable<ButtonTracker>;
   update: (newData: { [key: string]: any }) => void;
   reset: (e?: Event | null) => void;
   setValidators: (newValidators: FormMakerConfig["validators"]) => void;
 };
 
-export type MakeForms = ((items: FormMakerConfig) => FormMakerReturnType) &
-  ((items: FormMakerConfig[]) => FormMakerReturnType[]);
+export type CloneObject = <T>(obj: T) => T;
+
+// Overloads
+export declare function MakeForms<T extends Record<string, any>>(
+  items: FormMakerConfig<T>
+): FormMakerReturnType<T>;
+export declare function MakeForms<T extends Record<string, any>>(
+  items: FormMakerConfig<T>[]
+): FormMakerReturnType<T>[];
 
 declare global {
   interface Navigator {
