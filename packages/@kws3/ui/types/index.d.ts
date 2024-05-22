@@ -1,3 +1,4 @@
+import type { Readable, Writable } from "svelte/store";
 import type {
   Colors,
   BGColors,
@@ -129,6 +130,34 @@ export type ButtonTracker = {
   saved: boolean;
   error: boolean;
 };
+
+export type FormMakerConfig<T = Record<string, any>> = {
+  data: T;
+  validators?: { [key: string]: Function | Function[] };
+  strictMode?: boolean;
+};
+
+export type FormMakerReturnType<T> = {
+  formData: import("svelte/store").Writable<T>;
+  errors: import("svelte/store").Readable<{ [K in keyof T]: string }>;
+  touched: import("svelte/store").Readable<{ [K in keyof T]: boolean }>;
+  isValid: import("svelte/store").Readable<boolean>;
+  isTouched: import("svelte/store").Readable<boolean>;
+  tracker: import("svelte/store").Writable<ButtonTracker>;
+  update: (newData: { [key: string]: any }) => void;
+  reset: (e?: Event | null) => void;
+  setValidators: (newValidators: FormMakerConfig["validators"]) => void;
+};
+
+export type CloneObject = <T>(obj: T) => T;
+
+// Overloads
+export declare function MakeForms<T extends Record<string, any>>(
+  items: FormMakerConfig<T>,
+): FormMakerReturnType<T>;
+export declare function MakeForms<T extends Record<string, any>>(
+  items: FormMakerConfig<T>[],
+): FormMakerReturnType<T>[];
 
 declare global {
   interface Navigator {

@@ -1,19 +1,20 @@
-import { cloneObject } from "../utils/index";
+import { cloneObject } from "@kws3/ui/utils";
 import { derived, get, writable } from "svelte/store";
 
+/** @type {import("@kws3/ui/types").MakeForms} */
+// @ts-ignore
 const makeForms = (items) => {
-  var res = Array.isArray(items);
-  if (!res) {
+  if (Array.isArray(items)) {
+    return items.map((item) => formMaker(item));
+  } else {
     return formMaker(items);
   }
-
-  let ret = [];
-  if (items.length) {
-    items.forEach((item) => ret.push(formMaker(item)));
-  }
-  return ret;
 };
 
+/**
+ * @param {import("@kws3/ui/types").FormMakerConfig} config
+ * @returns
+ */
 const formMaker = (config) => {
   let data = config.data || {};
   let validators = config.validators || {};
@@ -32,6 +33,12 @@ const formMaker = (config) => {
     let fields = Object.keys($formData);
     let res = fields.reduce((o, v) => ((o[v] = false), o), {});
 
+    /**
+     * @param {string} field
+     * @param {{ [x: string]: any }} oldData
+     * @param {{ [x: string]: any }} newData
+     * @returns
+     */
     let compare = (field, oldData, newData) => {
       if (Array.isArray(newData[field])) {
         if (
@@ -81,6 +88,11 @@ const formMaker = (config) => {
   const errors = derived(formData, ($formData, set) => {
     let fields = Object.keys(validators) || [];
     let res = fields.reduce((o, v) => ((o[v] = ""), o), {});
+    /**
+     * @param {string} field
+     * @param {function | function[]} validator
+     * @returns
+     */
     let validate = (field, validator) => {
       let message = "";
       if (validator || typeof validator !== "undefined") {
@@ -122,17 +134,20 @@ const formMaker = (config) => {
     Object.values($errors).every((v) => v === "")
   );
 
+  /** @param {{ [key: string]: any }} newData */
   function update(newData) {
     data = newData;
     reset();
   }
 
+  /** @param {import("@kws3/ui/types").FormMakerConfig["validators"]} newValidators */
   function setValidators(newValidators) {
     validators = newValidators;
     formData.set(get(formData));
   }
 
-  function reset(e) {
+  /** @param {Event | null} e */
+  function reset(e = null) {
     e && e.preventDefault();
     formData.set(cloneObject(data));
     tracker.set(cloneObject(tracker_data));
@@ -151,10 +166,25 @@ const formMaker = (config) => {
   };
 };
 
+/**
+ * @param {string} v
+ * @returns
+ */
 const notEmpty = (v) => v && v.trim() !== "";
 
+/**
+ * @param {string} v
+ * @returns
+ */
 const noDigits = (v) => !/\d/.test(v);
 
-const withMsg = (msg, fn) => (v, otherFields) => fn(v, otherFields) ? "" : msg;
+/**
+ * @param {string} msg
+ * @param {function} fn
+ * @returns
+ */
+const withMsg =
+  (msg, fn) => (/** @type {any} */ v, /** @type {object} */ otherFields) =>
+    fn(v, otherFields) ? "" : msg;
 
-export { makeForms, notEmpty, noDigits, withMsg };
+export { makeForms, noDigits, notEmpty, withMsg };
