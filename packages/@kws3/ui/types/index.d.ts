@@ -57,7 +57,7 @@ export type SearchOptions = {
 
 export type SearchHelper = (
   needle: string,
-  haystack: Array<string>
+  haystack: Array<string>,
 ) => Array<any>;
 
 export type ValidatePasswordOptions = {
@@ -139,10 +139,10 @@ export type FormMakerConfig<T = Record<string, any>> = {
 
 export type FormMakerReturnType<T> = {
   formData: import("svelte/store").Writable<T>;
-  errors: import("svelte/store").Readable<{ [K in keyof T]: boolean }>;
+  errors: import("svelte/store").Readable<{ [K in keyof T]: string }>;
   touched: import("svelte/store").Readable<{ [K in keyof T]: boolean }>;
   isValid: import("svelte/store").Readable<boolean>;
-  isTouched: import("svelte/store").Readable<any>;
+  isTouched: import("svelte/store").Readable<boolean>;
   tracker: import("svelte/store").Writable<ButtonTracker>;
   update: (newData: { [key: string]: any }) => void;
   reset: (e?: Event | null) => void;
@@ -153,10 +153,10 @@ export type CloneObject = <T>(obj: T) => T;
 
 // Overloads
 export declare function MakeForms<T extends Record<string, any>>(
-  items: FormMakerConfig<T>
+  items: FormMakerConfig<T>,
 ): FormMakerReturnType<T>;
 export declare function MakeForms<T extends Record<string, any>>(
-  items: FormMakerConfig<T>[]
+  items: FormMakerConfig<T>[],
 ): FormMakerReturnType<T>[];
 
 declare global {
