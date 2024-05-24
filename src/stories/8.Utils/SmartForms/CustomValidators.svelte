@@ -64,10 +64,7 @@
       },
       validators,
     });
-    data = form.formData;
-    errors = form.errors;
-    isValid = form.isValid;
-    isTouched = form.isTouched;
+    ({ formData: data, errors, isValid, isTouched } = form);
   }
 
   function save() {
