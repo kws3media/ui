@@ -43,35 +43,12 @@
    * @type {Function}
    */
   let isPasswordConfirmed = (v, { password }) => v && v === password;
-  /**
-   * Form Object
-   * @type {Object}
-   */
+
   let form;
-  /**
-   * FormData
-   * @type {Object}
-   */
   let data;
-  /**
-   * Form Field Errors
-   * @type {Object}
-   */
   let errors;
-  /**
-   * Form field Validity
-   * @type {Object}
-   */
   let isValid;
-  /**
-   * Form Field is touched/untouched
-   * @type {Object}
-   */
   let isTouched;
-  /**
-   * Form
-   * @type {Object}
-   */
   let validators = {
     password: withMsg("Password should not be empty", notEmpty),
     confirm_password: withMsg("Password is not confirm", isPasswordConfirmed),
@@ -87,10 +64,7 @@
       },
       validators,
     });
-    data = form.formData;
-    errors = form.errors;
-    isValid = form.isValid;
-    isTouched = form.isTouched;
+    ({ formData: data, errors, isValid, isTouched } = form);
   }
 
   function save() {
