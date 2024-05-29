@@ -131,22 +131,39 @@ export type ButtonTracker = {
   error: boolean;
 };
 
+export type FormMakerValidators = { [key: string]: Function | Function[] };
+
+export type FormMakerReturnFormData = import("svelte/store").Writable<T>;
+
+export type FormMakerReturnErrors = import("svelte/store").Readable<{
+  [K in keyof T]: string;
+}>;
+
+export type FormMakerReturnTouched = import("svelte/store").Readable<{
+  [K in keyof T]: boolean;
+}>;
+
+export type FormMakerReturnIsValid = import("svelte/store").Readable<boolean>;
+export type FormMakerReturnIsTouched = import("svelte/store").Readable<boolean>;
+export type FormMakerReturnTracker =
+  import("svelte/store").Writable<ButtonTracker>;
+
 export type FormMakerConfig<T = Record<string, any>> = {
   data: T;
-  validators?: { [key: string]: Function | Function[] };
+  validators?: FormMakerValidators;
   strictMode?: boolean;
 };
 
-export type FormMakerReturnType<T> = {
-  formData: import("svelte/store").Writable<T>;
-  errors: import("svelte/store").Readable<{ [K in keyof T]: string }>;
-  touched: import("svelte/store").Readable<{ [K in keyof T]: boolean }>;
-  isValid: import("svelte/store").Readable<boolean>;
-  isTouched: import("svelte/store").Readable<boolean>;
-  tracker: import("svelte/store").Writable<ButtonTracker>;
+export type FormMakerReturn<T> = {
+  formData: FormMakerReturnFormData;
+  errors: FormMakerReturnErrors;
+  touched: FormMakerReturnTouched;
+  isValid: FormMakerReturnIsValid;
+  isTouched: FormMakerReturnIsTouched;
+  tracker: FormMakerReturnTracker;
   update: (newData: { [key: string]: any }) => void;
   reset: (e?: Event | null) => void;
-  setValidators: (newValidators: FormMakerConfig["validators"]) => void;
+  setValidators: (newValidators: FormMakerValidators) => void;
 };
 
 export type CloneObject = <T>(obj: T) => T;
@@ -154,10 +171,10 @@ export type CloneObject = <T>(obj: T) => T;
 // Overloads
 export declare function MakeForms<T extends Record<string, any>>(
   items: FormMakerConfig<T>,
-): FormMakerReturnType<T>;
+): FormMakerReturn<T>;
 export declare function MakeForms<T extends Record<string, any>>(
   items: FormMakerConfig<T>[],
-): FormMakerReturnType<T>[];
+): FormMakerReturn<T>[];
 
 declare global {
   interface Navigator {
