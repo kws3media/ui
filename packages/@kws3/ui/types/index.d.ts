@@ -133,13 +133,13 @@ export type ButtonTracker = {
 
 export type FormMakerValidators = { [key: string]: Function | Function[] };
 
-export type FormMakerReturnFormData = import("svelte/store").Writable<T>;
+export type FormMakerReturnFormData<T> = import("svelte/store").Writable<T>;
 
-export type FormMakerReturnErrors = import("svelte/store").Readable<{
+export type FormMakerReturnErrors<T> = import("svelte/store").Readable<{
   [K in keyof T]: string;
 }>;
 
-export type FormMakerReturnTouched = import("svelte/store").Readable<{
+export type FormMakerReturnTouched<T> = import("svelte/store").Readable<{
   [K in keyof T]: boolean;
 }>;
 
@@ -155,9 +155,9 @@ export type FormMakerConfig<T = Record<string, any>> = {
 };
 
 export type FormMakerReturn<T> = {
-  formData: FormMakerReturnFormData;
-  errors: FormMakerReturnErrors;
-  touched: FormMakerReturnTouched;
+  formData: FormMakerReturnFormData<T>;
+  errors: FormMakerReturnErrors<T>;
+  touched: FormMakerReturnTouched<T>;
   isValid: FormMakerReturnIsValid;
   isTouched: FormMakerReturnIsTouched;
   tracker: FormMakerReturnTracker;
