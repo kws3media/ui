@@ -2,7 +2,7 @@
   @component
 
 
-  @param {object} [value=null] - Value of radio button, Default: `null`
+  @param {any} [value=null] - Value of radio button, Default: `null`
   @param {string} [style=""] - Inline CSS for the Radio button, Default: `""`
   @param {string} [label_style=""] - Inline CSS for Radio label, Default: `""`
   @param {SizeOptions} [size=] - Size of the Radio Button, Default: ``
@@ -46,6 +46,7 @@ See: https://svelte.dev/docs#bind_group, Default: `null`
    */
   /**
    * Value of radio button
+   * @type {any}
    */
   export let value = null,
     /**
