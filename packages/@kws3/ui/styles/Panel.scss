@@ -1,6 +1,6 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 
-$kws-panel-heading-background: #{cv.getVar("scheme-main-ter")} !default;
+$kws-panel-heading-background: #{cv.getVar("scheme-main-bis")} !default;
 $kws-panel-background: #{cv.getVar("scheme-main")} !default;
 $kws-panel-box-shadow: #{cv.getVar("panel-shadow")} !default;
 $kws-panel-title-color: #{cv.getVar("scheme-invert-bis")} !default;
