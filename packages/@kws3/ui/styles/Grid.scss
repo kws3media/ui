@@ -73,13 +73,6 @@ $kws-gridView-cell-border-color: #{cv.getVar("table-cell-border-color")} !defaul
     }
   }
 
-  tr.is-selected {
-    td {
-      color: currentColor !important;
-      //border-color: $kws-gridView-cell-border-color !important;
-    }
-  }
-
   tr.is-checked {
     background-color: $kws-gridview-checked-row-background !important;
     td {
