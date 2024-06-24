@@ -7,6 +7,9 @@
   font-weight: bold;
   margin-top: -1.55rem;
   margin-bottom: 1.5rem;
+  .field {
+    gap: 0;
+  }
   .control {
     background: cv.getVar("border");
     margin: 0 !important;
