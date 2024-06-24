@@ -3,6 +3,17 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/mixins" as mx;
 
+$border-radius: cv.getVar("radius-medium") !default;
+$background: cv.getVar("border") !default;
+$label-background: hsla(
+  cv.getVar("scheme-h"),
+  cv.getVar("scheme-s"),
+  90%,
+  1
+) !default;
+$dropdown-text-color: cv.getVar("primary") !default;
+$dropdown-marker-color: cv.getVar("primary") !default;
+
 .sorting-filters {
   font-weight: bold;
   margin-top: -1.55rem;
@@ -11,17 +22,17 @@
     gap: 0;
   }
   .control {
-    background: cv.getVar("border");
+    background: $background;
     margin: 0 !important;
     padding: 0.2rem 0;
     &:first-child {
       padding-left: calc(0.625rem - 1px);
-      border-radius: 0 0 0 #{cv.getVar("radius-medium")};
-      background: darken(dv.$border, 5%);
+      border-radius: 0 0 0 $border-radius;
+      background: $label-background;
       padding-right: calc(0.625rem - 1px);
     }
     &:last-child {
-      border-radius: 0 0 #{cv.getVar("radius-medium")} 0;
+      border-radius: 0 0 $border-radius 0;
     }
   }
   .select {
@@ -31,7 +42,7 @@
       padding-bottom: 0.2rem;
       border: none;
       background: transparent;
-      color: #{cv.getVar("primary")};
+      color: $dropdown-text-color;
       height: auto;
       font-weight: bold;
       &:focus,
@@ -44,7 +55,7 @@
       }
     }
     &::after {
-      border-color: #{cv.getVar("primary")};
+      border-color: $dropdown-marker-color;
     }
   }
 }
@@ -57,14 +68,10 @@
     }
     .control {
       &:first-child {
-        border-radius: #{cv.getVar("radius-large")} 0 0 #{cv.getVar(
-            "radius-large"
-          )};
+        border-radius: $border-radius 0 0 $border-radius;
       }
       &:last-child {
-        border-radius: 0 #{cv.getVar("radius-large")} #{cv.getVar(
-            "radius-large"
-          )} 0;
+        border-radius: 0 $border-radius $border-radius 0;
         flex-grow: 1;
         flex-shrink: 1;
         .select {
