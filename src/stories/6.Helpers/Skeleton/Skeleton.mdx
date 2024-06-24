@@ -34,17 +34,16 @@ For example:
   `}
 />
 
-##### Import the CSS:
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={ dedent`@import '@kws3/ui/styles/Skeleton.scss';`}
-/>
-
-##### SCSS customization variables with default values:
-<Source
-  language='css'
-  code={ dedent`
-    $kws-theme-colors: $colors;
-    $kws-skeleton-color: lighten($text, 60%);
-    $kws-skeleton-hilight-color: lighten($text, 65%);
-  `}
+  code={
+    dedent`
+    @use '@kws3/ui/styles/DataSort.scss' with (
+      $theme-colors: $colors !default;
+      $color: cv.getVar("text-90");
+      $hilight-color: cv.getVar("text-100") !default;
+    );
+    `
+  }
 />

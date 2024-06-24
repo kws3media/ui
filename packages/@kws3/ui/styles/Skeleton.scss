@@ -1,38 +1,30 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
-@use "bulma/sass/utilities/functions" as fn;
 
-$kws-theme-colors: dv.$colors !default;
-$text: dv.$text !default;
-$kws-skeleton-color: fn.bulmaLighten(dv.$text, 60%) !default;
-$kws-skeleton-hilight-color: fn.bulmaLighten(dv.$text, 65%) !default;
+$theme-colors: dv.$colors !default;
+$color: cv.getVar("text-90");
+$hilight-color: cv.getVar("text-100") !default;
 
 .kws-skeleton {
   width: 100%;
   line-height: 1;
   display: inline-block;
-  background-color: $kws-skeleton-color;
-  background-image: linear-gradient(
-    90deg,
-    $kws-skeleton-color,
-    $kws-skeleton-hilight-color,
-    $kws-skeleton-color
-  );
+  background-color: $color;
+  background-image: linear-gradient(90deg, $color, $hilight-color, $color);
   background-size: 200px 100%;
   background-repeat: no-repeat;
   animation: kws-skeleton-shine 1.2s infinite;
 
-  @each $name, $pair in $kws-theme-colors {
-    $color: nth($pair, 1);
-    $color-light: fn.bulmaFindLightColor($color);
-    $color-dark: darken($color-light, 10%);
+  @each $name, $pair in $theme-colors {
+    $_color-light: cv.getVar($name, "", "-90");
+    $_color-dark: cv.getVar($name, "", "-60");
     &.is-#{$name} {
-      background-color: $color-light;
+      background-color: $_color-light;
       background-image: linear-gradient(
         90deg,
-        $color-light,
-        $color-dark,
-        $color-light
+        $_color-light,
+        $_color-dark,
+        $_color-light
       );
     }
   }
@@ -42,7 +34,7 @@ $kws-skeleton-hilight-color: fn.bulmaLighten(dv.$text, 65%) !default;
     background-image: linear-gradient(
       90deg,
       transparent,
-      transparentize($kws-skeleton-hilight-color, 0.6),
+      cv.getVar("text-90"),
       transparent
     );
   }
