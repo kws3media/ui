@@ -54,7 +54,7 @@ $dropdown-marker-color: cv.getVar("primary") !default;
         width: 100%;
       }
     }
-    &::after {
+    &:not(.is-multiple):not(.is-loading)::after {
       border-color: $dropdown-marker-color;
       top: 40%;
     }
