@@ -41,6 +41,7 @@ $dropdown-marker-color: cv.getVar("primary") !default;
       padding-top: 0.2rem;
       padding-bottom: 0.2rem;
       border: none;
+      box-shadow: none;
       background: transparent;
       color: $dropdown-text-color;
       height: auto;
