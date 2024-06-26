@@ -22,8 +22,8 @@
     "generate:dts": "node scripts/dts_generator/index.js"
   },
   "dependencies": {
-    "bulma": "^1.0.1",
     "@storybook/test": "^8.0.5",
+    "bulma": "^1.0.1",
     "global": "^4.4.0"
   },
   "devDependencies": {
