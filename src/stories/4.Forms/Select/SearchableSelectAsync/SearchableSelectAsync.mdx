@@ -83,7 +83,7 @@ import * as Stories from "./SearchableSelectAsync.stories";
 #### Import the SCSS:
 
 <Source
-  code={dedent`@import '@kws3/ui/styles/Select.scss';`}
+  code={dedent`@use '@kws3/ui/styles/Select.scss';`}
 />
 
 #### SCSS customization variables with default values:
@@ -91,19 +91,21 @@ import * as Stories from "./SearchableSelectAsync.stories";
 <Source
   language="css"
   code={dedent`
-      $kws-theme-colors: $colors;
-      $kws-select-radius: $radius;
-      $kws-select-focus-border-color: $input-focus-border-color;
-      $kws-select-focus-box-shadow-size: $input-focus-box-shadow-size;
-      $kws-select-focus-box-shadow-color: $input-focus-box-shadow-color;
-      $kws-select-disabled-background-color: $input-disabled-background-color;
-      $kws-select-disabled-border-color: $input-disabled-border-color;
-      $kws-select-disabled-color: $input-disabled-color;
-      $kws-select-selecting-color: $primary-invert;
-      $kws-select-selecting-background: $primary;
-      $kws-select-selected-color: $primary-dark;
-      $kws-select-selected-background: $primary-light;
-      $kws-select-options-background: $scheme-main-ter;
-      $kws-select-options-z-index: $modal-z + 1;
+      @use '@kws3/ui/styles/Select.scss with(
+        $colors: dv.$colors !default;
+        $radius: cv.getVar("radius") !default;
+        $focus-border-color: hsl(cv.getVar("input-focus-h"),cv.getVar("input-focus-s"),cv.getVar("input-focus-l")) !default;
+        $focus-box-shadow-size: cv.getVar("input-focus-shadow-size") !default;
+        $focus-box-shadow-color: hsl(cv.getVar("input-focus-h"),cv.getVar("input-focus-s"),cv.getVar("input-focus-l"),cv.getVar("input-focus-shadow-alpha")) !default;
+        $disabled-background-color: cv.getVar("input-disabled-background-color") !default;
+        $disabled-border-color: cv.getVar("input-disabled-border-color") !default;
+        $disabled-color: cv.getVar("input-disabled-color") !default;
+        $selecting-color: cv.getVar("primary-invert") !default;
+        $selecting-background: cv.getVar("primary") !default;
+        $selected-color: cv.getVar("primary-dark") !default;
+        $selected-background: cv.getVar("primary-light") !default;
+        $options-background: cv.getVar("scheme-main-ter") !default;
+        $__modal-z: 41 !default;
+      )
     `}
 />
