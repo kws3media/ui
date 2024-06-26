@@ -42,9 +42,6 @@ export default {
   decorators: [(_, { args }) => ({ Component: PopoverDecorator, props: args })],
   args: args,
   argTypes: argTypes,
-  parameters: {
-    layout: "fullscreen",
-  },
 };
 
 export const Main = {

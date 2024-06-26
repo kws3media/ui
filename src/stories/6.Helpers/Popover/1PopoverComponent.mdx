@@ -82,7 +82,7 @@ let aNode;
 ```
 
   </div>
-  <div className="column is-4">
+  <div className="column is-6">
 
 #### Manual Control
 ```html
@@ -109,7 +109,7 @@ function hidePopover(e){
 ```
 
   </div>
-  <div className="column is-4">
+  <div className="column is-6">
 
 #### Events
 ```html
@@ -145,19 +145,18 @@ import {Popover} from '@kws3/ui';
   </div>
 </div>
 
-##### Import the CSS:
-This requires css from `Tooltip` component.
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={ dedent`@import '@kws3/ui/styles/Tooltip.scss';`}
-/>
-
-##### SCSS customization variables with default values:
-<Source
-  language='css'
-  code={ dedent`
-    $kws-popover-background-color: $background;
-    $kws-popover-foreground-color: $text;
-    $kws-popover-arrow-color: $background;
-    $kws-popover-radius: $kws-tt-radius;
-  `}
+  code={
+    dedent`
+    @use '@kws3/ui/styles/Tooltip.scss' with (
+      $popover-background: cv.getVar("background"),
+      $popover-color: cv.getVar("text"),
+      $popover-arrow-color: cv.getVar("background"),
+      $popover-shadow: 0 5px 10px -5px hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4),
+      $popover-radius: cv.getVar("radius-small")
+    );
+    `
+  }
 />

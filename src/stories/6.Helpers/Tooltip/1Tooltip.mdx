@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/blocks";
+import { Meta, Source } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 
@@ -49,14 +49,18 @@ Default values of the options object:
 
 #### Import the SCSS:
 _Default values shown as example_
-```css
-@use '@kws3/ui/styles/Tooltip.scss' with(
-  $theme-colors: dv.$colors,
-  $background: cv.getVar("scheme-invert"),
-  $color: cv.getVar("text-invert"),
-  $arrow-size: 8px,
-  $padding: 0.5rem,
-  $radius: cv.getVar("radius-small"),
-  $shadow: 0 5px 10px -5px hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4)
-);
-```
+<Source
+  code={
+    dedent`
+    @use '@kws3/ui/styles/Tooltip.scss' with (
+      $theme-colors: $colors,
+      $background: cv.getVar("scheme-invert"),
+      $color: cv.getVar("text-invert"),
+      $arrow-size: 8px,
+      $padding: 0.5rem,
+      $radius: cv.getVar("radius-small"),
+      $shadow: 0 5px 10px -5px hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4)
+    );
+    `
+  }
+/>
