@@ -1,17 +1,18 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
 
-$kws-theme-colors: dv.$colors !default;
-$kws-tt-background-color: #{cv.getVar("scheme-invert-ter")} !default;
-$kws-tt-foreground-color: #{cv.getVar("scheme-main")} !default;
-$kws-tt-arrow-size: 8px !default;
-$kws-tt-padding: 0.5rem !default;
-$kws-tt-radius: #{cv.getVar("radius-small")} !default;
-$kws-tt-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.4) !default;
-$kws-popover-background-color: #{cv.getVar("background")} !default;
-$kws-popover-foreground-color: #{cv.getVar("text")} !default;
-$kws-popover-arrow-color: #{cv.getVar("background")} !default;
-$kws-popover-radius: $kws-tt-radius !default;
+$theme-colors: dv.$colors !default;
+$background: cv.getVar("scheme-invert") !default;
+$color: cv.getVar("text-invert") !default;
+$arrow-size: 8px !default;
+$padding: 0.5rem !default;
+$radius: cv.getVar("radius-small") !default;
+$shadow: 0 5px 10px -5px hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4) !default;
+$popover-background: cv.getVar("background") !default;
+$popover-color: cv.getVar("text") !default;
+$popover-arrow-color: cv.getVar("background") !default;
+$popover-shadow: $shadow !default;
+$popover-radius: $radius !default;
 
 .tippy-iOS {
   cursor: pointer !important;
@@ -24,9 +25,9 @@ $kws-popover-radius: $kws-tt-radius !default;
 
 .tippy-arrow {
   & {
-    width: $kws-tt-arrow-size;
-    height: $kws-tt-arrow-size;
-    color: $kws-tt-background-color;
+    width: $arrow-size;
+    height: $arrow-size;
+    color: $background;
   }
 
   &::before {
@@ -38,7 +39,7 @@ $kws-popover-radius: $kws-tt-radius !default;
 }
 .tippy-content {
   position: relative;
-  padding: $kws-tt-padding;
+  padding: $padding;
   z-index: 1;
 }
 
@@ -64,14 +65,14 @@ $kws-popover-radius: $kws-tt-radius !default;
   }
 
   position: relative;
-  background-color: $kws-tt-background-color;
-  color: $kws-tt-foreground-color;
-  border-radius: $kws-tt-radius;
+  background-color: $background;
+  color: $color;
+  border-radius: $radius;
   outline: 0;
-  box-shadow: $kws-tt-shadow;
+  box-shadow: $shadow;
   transition-property: transform, visibility, opacity;
 
-  @each $name, $pair in $kws-theme-colors {
+  @each $name, $pair in $theme-colors {
     &[data-theme~="#{$name}"] {
       color: cv.getVar($name, "", "-invert");
       background-color: cv.getVar($name);
@@ -90,11 +91,12 @@ $kws-popover-radius: $kws-tt-radius !default;
 
   &[data-theme~="popover"] {
     font-size: 1rem;
-    border-radius: $kws-popover-radius;
-    color: $kws-popover-foreground-color;
-    background-color: $kws-popover-background-color;
+    border-radius: $popover-radius;
+    color: $popover-color;
+    background-color: $popover-background;
+    box-shadow: $popover-shadow;
     .tippy-arrow {
-      color: $kws-popover-arrow-color;
+      color: $popover-arrow-color;
     }
     .tippy-content {
       padding: 0;

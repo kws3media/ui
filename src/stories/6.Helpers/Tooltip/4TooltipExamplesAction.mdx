@@ -87,9 +87,16 @@ The following examples are functionally indentical:
   </div>
 </div>
 
-### Do not forget to Import the CSS:
-This also requires css from `Tooltip` component.
-
-```js
-@import '@kws3/ui/styles/Tooltip.scss';
+### Do not forget to Import the SCSS:
+_Default values shown as example_
+```css
+@use '@kws3/ui/styles/Tooltip.scss' with(
+  $theme-colors: dv.$colors,
+  $background: cv.getVar("scheme-invert"),
+  $color: cv.getVar("text-invert"),
+  $arrow-size: 8px,
+  $padding: 0.5rem,
+  $radius: cv.getVar("radius-small"),
+  $shadow: 0 5px 10px -5px hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4)
+);
 ```

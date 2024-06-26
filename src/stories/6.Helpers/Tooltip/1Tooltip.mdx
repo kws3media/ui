@@ -47,18 +47,16 @@ Default values of the options object:
 }
 ```
 
-#### Import the CSS:
-```js
-@import '@kws3/ui/styles/Tooltip.scss';
-```
-
-##### SCSS customization variables with default values:
+#### Import the SCSS:
+_Default values shown as example_
 ```css
-$kws-theme-colors: $colors;
-$kws-tt-background-color: $scheme-invert-ter;
-$kws-tt-foreground-color: $scheme-main;
-$kws-tt-arrow-size: 8px;
-$kws-tt-padding: 0.5rem;
-$kws-tt-radius: $radius-small;
-$kws-tt-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.65);
+@use '@kws3/ui/styles/Tooltip.scss' with(
+  $theme-colors: dv.$colors,
+  $background: cv.getVar("scheme-invert"),
+  $color: cv.getVar("text-invert"),
+  $arrow-size: 8px,
+  $padding: 0.5rem,
+  $radius: cv.getVar("radius-small"),
+  $shadow: 0 5px 10px -5px hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4)
+);
 ```
