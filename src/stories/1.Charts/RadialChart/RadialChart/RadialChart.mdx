@@ -20,21 +20,14 @@ import * as Stories from "./RadialChart.stories.js";
 />
 
 #### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={
-    dedent`@use '@kws3/ui/styles/Chart.scss';`
-  }
-/>
-
-#### SCSS customization variables with default values:
-<Source
-  language="css"
   code={
     dedent`
-      @use '@kws3/ui/styles/Chart.scss' with (
-        $background-color: cv.getVar("scheme-main") !default;
-        $foreground-color: cv.getVar("scheme-invert-ter") !default;
-      );
+    @use '@kws3/ui/styles/Chart.scss' with (
+      $background-color: cv.getVar("scheme-main"),
+      $foreground-color: cv.getVar("text")
+    );
     `
   }
 />
