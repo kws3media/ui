@@ -1,5 +1,5 @@
 import { Skeleton } from "@kws3/ui";
-import { Colors } from "@scripts/type_injector/frameworkTypes";
+import { ExtendedColors } from "@scripts/type_injector/frameworkTypes";
 
 let args = {
   class: "",
@@ -14,7 +14,7 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
-    options: Colors,
+    options: ExtendedColors,
   },
 };
 

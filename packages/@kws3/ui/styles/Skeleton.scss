@@ -2,8 +2,18 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 
 $theme-colors: dv.$colors !default;
-$color: cv.getVar("text-90");
-$hilight-color: cv.getVar("text-100") !default;
+$color: hsla(
+  cv.getVar("text-h"),
+  cv.getVar("text-s"),
+  cv.getVar("text-weak-l"),
+  0.1
+) !default;
+$hilight-color: hsla(
+  cv.getVar("text-h"),
+  cv.getVar("text-s"),
+  cv.getVar("text-80-l"),
+  0.2
+) !default;
 
 .kws-skeleton {
   width: 100%;
