@@ -2,7 +2,7 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$colors: dv.$colors !default;
+$theme-colors: dv.$colors !default;
 $bg-color: cv.getVar("background-white") !default;
 $border-color: cv.getVar("border") !default;
 $shadow: cv.getVar("shadow-s") !default;
@@ -110,7 +110,7 @@ $progress-anim-easing: linear !default;
       opacity: 0;
     }
   }
-  @each $name, $pair in $colors {
+  @each $name, $pair in $theme-colors {
     $color: nth($pair, 1);
     $color-invert: fn.bulmaFindColorInvert($color);
     $color-light: fn.bulmaFindLightColor($color);
@@ -153,7 +153,7 @@ $progress-anim-easing: linear !default;
         box-shadow: none;
       }
     }
-    @each $name, $pair in $colors {
+    @each $name, $pair in $theme-colors {
       $color: nth($pair, 1);
       &.is-#{$name} {
         .icon {

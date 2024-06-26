@@ -2,7 +2,7 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$colors: dv.$colors !default;
+$theme-colors: dv.$colors !default;
 $default-check-color: cv.getVar("text") !default;
 $default-check-color-invert: findColorInvert($default-check-color) !default;
 $default-border-color: #dbdbdb !default;
@@ -149,7 +149,7 @@ $focus-box-shadow-color: hsla(
     cursor: not-allowed;
   }
 
-  @each $name, $pair in $colors {
+  @each $name, $pair in $theme-colors {
     $color: nth($pair, 1);
     $color-invert: fn.bulmaFindColorInvert($color);
     $color-light: fn.bulmaFindLightColor($color);

@@ -2,7 +2,7 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$colors: dv.$colors !default;
+$theme-colors: dv.$colors !default;
 $radius: cv.getVar("radius") !default;
 $track-background: cv.getVar("grey-lighter") !default;
 $track-radius: cv.getVar("radius") !default;
@@ -227,7 +227,7 @@ $output-radius: cv.getVar("radius") !default;
       &.is-large {
         @include slider-size(cv.getVar("size-large"));
       }
-      @each $name, $pair in $colors {
+      @each $name, $pair in $theme-colors {
         $color: nth($pair, 1);
         $color-invert: fn.bulmaFindColorInvert($color);
         $color-light: fn.bulmaFindLightColor($color);

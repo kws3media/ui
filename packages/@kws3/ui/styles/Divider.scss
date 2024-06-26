@@ -1,7 +1,7 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
 
-$colors: dv.$colors !default;
+$theme-colors: dv.$colors !default;
 $color: cv.getVar("border") !default;
 $font-size: cv.getVar("size-smal") !default;
 $gap: 0.25rem !default;
@@ -86,7 +86,7 @@ $margin: 1rem !default;
     }
   }
 
-  @each $name, $pair in $colors {
+  @each $name, $pair in $theme-colors {
     $color: nth($pair, 1);
     $color-light: findLightColor($color);
     &.is-#{$name} {

@@ -33,7 +33,7 @@ import * as Stories from "./Checkbox.stories.js";
   code={
     dedent`
     @use '@kws3/ui/styles/CheckRadio.scss' with (
-      $colors: dv.$colors !default;
+      $theme-colors: dv.$colors !default;
       $default-check-color: cv.getVar("text") !default;
       $default-check-color-invert: findColorInvert($default-check-color) !default;
       $default-border-color: #dbdbdb !default;

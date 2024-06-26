@@ -2,7 +2,7 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$colors: dv.$colors !default;
+$theme-colors: dv.$colors !default;
 $item-width: 25rem !default;
 
 .kws-floatie-output {
@@ -118,7 +118,7 @@ $item-width: 25rem !default;
       }
     }
 
-    @each $name, $pair in $colors {
+    @each $name, $pair in $theme-colors {
       $color: nth($pair, 1);
       $color-invert: fn.bulmaFindColorInvert($color);
       $color-light: fn.bulmaFindLightColor($color);
@@ -148,7 +148,7 @@ $item-width: 25rem !default;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    @each $name, $pair in $colors {
+    @each $name, $pair in $theme-colors {
       $color: nth($pair, 1);
       $color-invert: fn.bulmaFindColorInvert($color);
       $color-light: fn.bulmaFindLightColor($color);

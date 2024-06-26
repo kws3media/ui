@@ -89,7 +89,7 @@ const closeMyself = () => fire("destroy", $$props);
   language='css'
   code={ dedent`
     @use '@kws3/ui/styles/FloatingUI.scss with(
-      $colors: dv.$colors !default;
+      $theme-colors: dv.$colors !default;
       $item-width: 25rem !default;
     );
   `}

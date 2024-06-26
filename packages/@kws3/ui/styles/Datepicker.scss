@@ -2,7 +2,7 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$colors: dv.$colors !default;
+$theme-colors: dv.$colors !default;
 $background: cv.getVar("scheme-main-ter") !default;
 $text: dv.$text !default;
 $shadow:
@@ -31,7 +31,7 @@ $radius: 0px !default;
     border-radius: 0 0 $radius $radius;
   }
 
-  @each $name, $pair in $colors {
+  @each $name, $pair in $theme-colors {
     $color: nth($pair, 1);
     $color-invert: fn.bulmaFindColorInvert($color);
     $color-light: fn.bulmaFindLightColor($color);

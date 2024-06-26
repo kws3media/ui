@@ -1,7 +1,7 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/mixins" as mx;
 
-$colors: dv.$colors !default;
+$theme-colors: dv.$colors !default;
 $width: 2rem !default;
 $height: 2rem !default;
 $width-medium: ($width * 1.5) !default;
@@ -24,7 +24,7 @@ $overlay-background: rgba(0, 0, 0, 0.15) !default;
       top: calc(50% - (#{$height} / 2));
     }
 
-    @each $name, $pair in $colors {
+    @each $name, $pair in $theme-colors {
       $color: nth($pair, 1);
       &.is-#{$name} {
         &:after {

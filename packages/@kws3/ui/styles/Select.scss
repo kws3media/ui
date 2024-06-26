@@ -1,7 +1,7 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
 
-$colors: dv.$colors !default;
+$theme-colors: dv.$colors !default;
 $radius: cv.getVar("radius") !default;
 $focus-border-color: hsl(
   cv.getVar("input-focus-h"),
@@ -197,7 +197,7 @@ $options-z-index: $__modal-z + 1 !default;
   }
 }
 
-@each $name, $pair in $colors {
+@each $name, $pair in $theme-colors {
   .kws-searchableselect {
     &.is-#{$name} {
       border-color: cv.getVar($name);
