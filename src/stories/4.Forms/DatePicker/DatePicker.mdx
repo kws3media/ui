@@ -28,13 +28,13 @@ import * as Stories from "./DatePicker.stories";
 
 #### Import the SCSS:
 
-<div class="notification is-warning">
+<div className="notification is-warning">
   <strong>Note:</strong> <em>Need to import flatpicker SCSS file first</em>
 </div>
 <Source
   code={dedent`
-    @import 'flatpickr/dist/flatpickr';
-    @import '@kws3/ui/styles/Datepicker.scss';`}
+    @use 'flatpickr/dist/flatpickr';
+    @use '@kws3/ui/styles/Datepicker.scss';`}
 />
 
 #### SCSS customization variables with default values:
@@ -42,9 +42,11 @@ import * as Stories from "./DatePicker.stories";
 <Source
   language="css"
   code={dedent`
-      $kws-theme-colors: $colors;
-      $kws-datepicker-background: $scheme-main-ter;
-      $kws-datepicker-text: $text;
+      @use '@kws3/ui/styles/Datepicker.scss' with (
+        $colors: dv.$colors !default;
+        $background: cv.getVar("scheme-main-ter") !default;
+        $text: dv.$text !default;
+      );
     `}
 />
 
@@ -69,8 +71,8 @@ These two properties expect an array to be sent to them.
 
 To enable specific dates, use `enable_dates`. To disable specific dates, use `disable_dates`.
 
-<div class="columns">
-  <div class="column">
+<div className="columns">
+  <div className="column">
 
 The array can contain a list of dates, in string or object formats.
 **Example:**
@@ -89,7 +91,7 @@ The array can contain a list of dates, in string or object formats.
 />
 
   </div>
-  <div class="column">
+  <div className="column">
 
 The array can contain a list of date ranges.
 **Example:**
@@ -113,7 +115,7 @@ The array can contain a list of date ranges.
 />
 
   </div>
-  <div class="column">
+  <div className="column">
 
 The array can also contain a function to dynamically determine the date.
 **Example:**

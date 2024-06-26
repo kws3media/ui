@@ -1,11 +1,11 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
 
-$kws-theme-colors: dv.$colors !default;
-$kws-divider-color: #{cv.getVar("border")} !default;
-$kws-divider-font-size: cv.getVar("size-smal") !default;
-$kws-divider-gap: 0.25rem !default;
-$kws-divider-margin: 1rem !default;
+$colors: dv.$colors !default;
+$color: cv.getVar("border") !default;
+$font-size: cv.getVar("size-smal") !default;
+$gap: 0.25rem !default;
+$margin: 1rem !default;
 
 .kws-divider {
   position: relative;
@@ -13,10 +13,10 @@ $kws-divider-margin: 1rem !default;
   align-items: center;
   text-transform: uppercase;
   color: cv.getVar("grey");
-  font-size: $kws-divider-font-size;
+  font-size: $font-size;
   font-weight: cv.getVar("weight-semibold");
   letter-spacing: 0.5px;
-  margin: $kws-divider-margin 0;
+  margin: $margin 0;
   width: 100%;
 
   &::after,
@@ -25,20 +25,20 @@ $kws-divider-margin: 1rem !default;
     display: block;
     flex: 1;
     height: 1px;
-    background-color: $kws-divider-color;
+    background-color: $color;
   }
 
   &:not(.is-right),
   &:not(.is-bottom) {
     &::after {
-      margin-left: $kws-divider-gap;
+      margin-left: $gap;
     }
   }
 
   &:not(.is-left),
   &:not(.is-top) {
     &::before {
-      margin-right: $kws-divider-gap;
+      margin-right: $gap;
     }
   }
 
@@ -58,7 +58,7 @@ $kws-divider-margin: 1rem !default;
 
   &.is-vertical {
     flex-direction: column;
-    margin: 0 $kws-divider-margin;
+    margin: 0 $margin;
     height: 100%;
     width: auto;
 
@@ -70,12 +70,12 @@ $kws-divider-margin: 1rem !default;
 
     &::after {
       margin-left: 0;
-      margin-top: $kws-divider-gap;
+      margin-top: $gap;
     }
 
     &::before {
       margin-right: 0;
-      margin-bottom: $kws-divider-gap;
+      margin-bottom: $gap;
     }
   }
 
@@ -86,7 +86,7 @@ $kws-divider-margin: 1rem !default;
     }
   }
 
-  @each $name, $pair in $kws-theme-colors {
+  @each $name, $pair in $colors {
     $color: nth($pair, 1);
     $color-light: findLightColor($color);
     &.is-#{$name} {

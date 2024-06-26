@@ -22,7 +22,7 @@ import * as Stories from "./FileUpload.stories";
 
 ##### Import the SCSS:
 <Source
-  code={ dedent`@import '@kws3/ui/styles/FileUpload.scss';`}
+  code={ dedent`@use '@kws3/ui/styles/FileUpload.scss';`}
 />
 
 #### SCSS customization variables with default values:
@@ -30,17 +30,19 @@ import * as Stories from "./FileUpload.stories";
   language="css"
   code={
     dedent`
-      $kws-theme-colors: $colors;
-      $kws-fileupload-bg-color: $input-background-color;
-      $kws-fileupload-border-color: $input-border-color;
-      $kws-fileupload-shadow: $input-shadow;
-      $kws-fileupload-radius: $radius;
-      $kws-fileupload-text-color: $text;
-      $kws-fileupload-disabled-bg-color: $input-disabled-background-color;
-      $kws-fileupload-disabled-border-color: $input-disabled-border-color;
-      $kws-fileupload-progress-bg-color: $success-light;
-      $kws-fileupload-progress-text-color: $success-dark;
-      $kws-fileupload-progress-anim-easing: $easeOutCustom;
+      @use '@kws3/ui/styles/FileUpload.scss with(
+        $colors: dv.$colors !default;
+        $bg-color: cv.getVar("background-white") !default;
+        $border-color: cv.getVar("border") !default;
+        $shadow: cv.getVar("shadow-s") !default;
+        $radius: cv.getVar("radius") !default;
+        $text-color: cv.getVar("text") !default;
+        $disabled-bg-color: cv.getVar("white-ter") !default;
+        $disabled-border-color: cv.getVar("white-ter") !default;
+        $progress-bg-color: cv.getVar("success-light") !default;
+        $progress-text-color: cv.getVar("success-dark") !default;
+        $progress-anim-easing: linear !default;
+      );
     `
   }
 />

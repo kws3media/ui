@@ -30,8 +30,8 @@
       .main-search {
         width: 100%;
         .input {
-          border-bottom-right-radius: #{cv.getVar("radius")} !important;
-          border-top-right-radius: #{cv.getVar("radius")} !important;
+          border-bottom-right-radius: cv.getVar("radius") !important;
+          border-top-right-radius: cv.getVar("radius") !important;
         }
       }
       .search-control {

@@ -73,14 +73,16 @@ import * as Stories from "./Snackbars.stories";
 
 ##### Import the CSS:
 <Source
-  code={ dedent`@import 'path/to/node_modules/@kws3/ui/styles/FloatingUI.scss';`}
+  code={ dedent`@use '@kws3/ui/styles/FloatingUI.scss';`}
 />
 
 ##### SCSS customization variables with default values:
 <Source
   language='css'
   code={ dedent`
-    $kws-theme-colors: $colors;
-    $kws3-floating-item-width: 30rem;
+    @use '@kws3/ui/styles/FloatingUI.scss with(
+      $colors: dv.$colors !default;
+      $item-width: 25rem !default;
+    );
   `}
 />

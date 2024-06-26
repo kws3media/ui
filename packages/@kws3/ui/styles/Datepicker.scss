@@ -2,36 +2,36 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$kws-theme-colors: dv.$colors !default;
-$kws-datepicker-background: #{cv.getVar("scheme-main-ter")} !default;
-$kws-datepicker-text: dv.$text !default;
-$kws-datepicker-shadow:
+$colors: dv.$colors !default;
+$background: cv.getVar("scheme-main-ter") !default;
+$text: dv.$text !default;
+$shadow:
   0 2px 5px rgba(0, 0, 0, 0.3),
   0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
-$kws-datepicker-radius: 0px !default;
+$radius: 0px !default;
 
 .flatpickr-calendar {
-  $inRangeBg: fn.bulmaLighten($kws-datepicker-text, 55);
-  @if (fn.bulmaColorLuminance($kws-datepicker-text) > 0.55) {
-    $inRangeBg: fn.bulmaDarken($kws-datepicker-text, 55);
+  $inRangeBg: fn.bulmaLighten($text, 55);
+  @if (fn.bulmaColorLuminance($text) > 0.55) {
+    $inRangeBg: fn.bulmaDarken($text, 55);
   }
 
-  box-shadow: $kws-datepicker-shadow;
-  background: $kws-datepicker-background;
-  color: $kws-datepicker-text;
+  box-shadow: $shadow;
+  background: $background;
+  color: $text;
 
-  border-radius: $kws-datepicker-radius;
+  border-radius: $radius;
   .flatpickr-months {
-    border-radius: $kws-datepicker-radius $kws-datepicker-radius 0 0;
+    border-radius: $radius $radius 0 0;
     .flatpickr-month {
-      border-radius: $kws-datepicker-radius $kws-datepicker-radius 0 0;
+      border-radius: $radius $radius 0 0;
     }
   }
   .flatpickr-innerContainer {
-    border-radius: 0 0 $kws-datepicker-radius $kws-datepicker-radius;
+    border-radius: 0 0 $radius $radius;
   }
 
-  @each $name, $pair in $kws-theme-colors {
+  @each $name, $pair in $colors {
     $color: nth($pair, 1);
     $color-invert: fn.bulmaFindColorInvert($color);
     $color-light: fn.bulmaFindLightColor($color);
@@ -140,7 +140,7 @@ $kws-datepicker-radius: 0px !default;
   }
 
   .flatpickr-day {
-    color: $kws-datepicker-text;
+    color: $text;
     &.flatpickr-disabled,
     &.flatpickr-disabled:hover,
     &.prevMonthDay,
@@ -148,7 +148,7 @@ $kws-datepicker-radius: 0px !default;
     &.notAllowed,
     &.notAllowed.prevMonthDay,
     &.notAllowed.nextMonthDay {
-      color: transparentize($kws-datepicker-text, 0.7);
+      color: transparentize($text, 0.7);
     }
 
     &.inRange {

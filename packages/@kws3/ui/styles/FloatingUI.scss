@@ -2,8 +2,8 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$kws-theme-colors: dv.$colors !default;
-$kws3-floating-item-width: 25rem !default;
+$colors: dv.$colors !default;
+$item-width: 25rem !default;
 
 .kws-floatie-output {
   position: fixed;
@@ -29,8 +29,8 @@ $kws3-floating-item-width: 25rem !default;
   transform: translate3d(0, 0, 0);
   pointer-events: none;
   margin-bottom: 1rem;
-  max-width: $kws3-floating-item-width;
-  min-width: $kws3-floating-item-width;
+  max-width: $item-width;
+  min-width: $item-width;
   &.has-toast {
     max-width: 100%;
     width: fit-content;
@@ -118,7 +118,7 @@ $kws3-floating-item-width: 25rem !default;
       }
     }
 
-    @each $name, $pair in $kws-theme-colors {
+    @each $name, $pair in $colors {
       $color: nth($pair, 1);
       $color-invert: fn.bulmaFindColorInvert($color);
       $color-light: fn.bulmaFindLightColor($color);
@@ -148,7 +148,7 @@ $kws3-floating-item-width: 25rem !default;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    @each $name, $pair in $kws-theme-colors {
+    @each $name, $pair in $colors {
       $color: nth($pair, 1);
       $color-invert: fn.bulmaFindColorInvert($color);
       $color-light: fn.bulmaFindLightColor($color);
