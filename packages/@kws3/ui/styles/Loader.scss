@@ -1,30 +1,30 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/mixins" as mx;
 
-$kws-theme-colors: dv.$colors !default;
-$kws-loader-width: 2rem !default;
-$kws-loader-height: 2rem !default;
-$kws-loader-width-medium: ($kws-loader-width * 1.5) !default;
-$kws-loader-height-medium: ($kws-loader-height * 1.5) !default;
-$kws-loader-width-large: ($kws-loader-width * 3) !default;
-$kws-loader-height-large: ($kws-loader-height * 3) !default;
-$kws-loader-color: #ccc !default;
-$kws-loader-overlay-background: rgba(0, 0, 0, 0.15) !default;
+$colors: dv.$colors !default;
+$width: 2rem !default;
+$height: 2rem !default;
+$width-medium: ($width * 1.5) !default;
+$height-medium: ($height * 1.5) !default;
+$width-large: ($width * 3) !default;
+$height-large: ($height * 3) !default;
+$color: #ccc !default;
+$overlay-background: rgba(0, 0, 0, 0.15) !default;
 .kws-loader {
   .hero-body {
     position: relative;
     &:after {
       @include mx.loader();
-      border-left-color: $kws-loader-color;
-      border-bottom-color: $kws-loader-color;
+      border-left-color: $color;
+      border-bottom-color: $color;
       position: absolute !important;
-      width: $kws-loader-width;
-      height: $kws-loader-height;
-      left: calc(50% - (#{$kws-loader-width} / 2));
-      top: calc(50% - (#{$kws-loader-height} / 2));
+      width: $width;
+      height: $height;
+      left: calc(50% - (#{$width} / 2));
+      top: calc(50% - (#{$height} / 2));
     }
 
-    @each $name, $pair in $kws-theme-colors {
+    @each $name, $pair in $colors {
       $color: nth($pair, 1);
       &.is-#{$name} {
         &:after {
@@ -36,19 +36,19 @@ $kws-loader-overlay-background: rgba(0, 0, 0, 0.15) !default;
 
     &.is-medium {
       &:after {
-        width: $kws-loader-width-medium;
-        height: $kws-loader-height-medium;
-        left: calc(50% - (#{$kws-loader-width-medium} / 2));
-        top: calc(50% - (#{$kws-loader-height-medium} / 2));
+        width: $width-medium;
+        height: $height-medium;
+        left: calc(50% - (#{$width-medium} / 2));
+        top: calc(50% - (#{$height-medium} / 2));
       }
     }
 
     &.is-large {
       &:after {
-        width: $kws-loader-width-large;
-        height: $kws-loader-height-large;
-        left: calc(50% - (#{$kws-loader-width-large} / 2));
-        top: calc(50% - (#{$kws-loader-height-large} / 2));
+        width: $width-large;
+        height: $height-large;
+        left: calc(50% - (#{$width-large} / 2));
+        top: calc(50% - (#{$height-large} / 2));
       }
     }
   }
@@ -61,7 +61,7 @@ $kws-loader-overlay-background: rgba(0, 0, 0, 0.15) !default;
     height: 100%;
     width: 100%;
     position: relative;
-    background: $kws-loader-overlay-background;
+    background: $overlay-background;
     z-index: 3;
     .hero-body {
       padding: 0;
