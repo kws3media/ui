@@ -1,11 +1,10 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
-@use "bulma/sass/utilities/functions" as fn;
 
 $theme-colors: dv.$colors !default;
-$default-check-color: cv.getVar("text") !default;
-$default-check-color-invert: findColorInvert($default-check-color) !default;
-$default-border-color: #dbdbdb !default;
+$check-color: cv.getVar("text") !default;
+$check-color-invert: cv.getVar("text-invert") !default;
+$border-color: cv.getVar("text") !default;
 $focus-box-shadow-size: cv.getVar("focus-shadow-size") !default;
 $focus-box-shadow-color: hsla(
   cv.getVar("focus-h"),
@@ -33,7 +32,7 @@ $focus-box-shadow-color: hsla(
     top: 0.25em;
     left: 0;
     font-size: 1em;
-    color: $default-check-color;
+    color: $check-color;
     opacity: 0;
     display: inline-flex;
     align-items: center;
@@ -56,7 +55,7 @@ $focus-box-shadow-color: hsla(
       content: "";
     }
     &:before {
-      border: 0.05em solid $default-border-color;
+      border: 0.05em solid $border-color;
       width: 1em;
       height: 1em;
       top: 0.25em;
@@ -80,7 +79,7 @@ $focus-box-shadow-color: hsla(
   }
   input[type="checkbox"]:checked + .kws-checkbox-label {
     &:after {
-      border: 0.1em solid $default-check-color;
+      border: 0.1em solid $check-color;
       border-top: 0;
       border-left: 0;
     }
@@ -92,36 +91,36 @@ $focus-box-shadow-color: hsla(
     &:after {
       transform: none;
       border: 0.25em solid #fff;
-      background: $default-check-color;
+      background: $check-color;
       width: 1em;
       height: 1em;
       top: 0.25em;
       left: 0;
       border-radius: 0.14em;
-      box-shadow: 0 0 0 0.05em $default-border-color;
+      box-shadow: 0 0 0 0.05em $border-color;
       display: inline-block;
     }
   }
 
   &.is-inverted input[type="checkbox"]:checked + .kws-checkbox-label {
     &:before {
-      background: $default-check-color;
+      background: $check-color;
     }
     &:after {
-      border-color: $default-check-color-invert;
+      border-color: $check-color-invert;
     }
   }
   &.is-inverted input[type="checkbox"]:checked ~ .icon {
-    color: $default-check-color-invert;
+    color: $check-color-invert;
   }
 
   &.is-inverted input[type="radio"]:checked + .kws-checkbox-label {
     &:before {
-      background: $default-check-color;
+      background: $check-color;
     }
     &:after {
-      background-color: $default-check-color-invert;
-      border-color: $default-check-color;
+      background-color: $check-color-invert;
+      border-color: $check-color;
       box-shadow: none;
     }
   }
@@ -150,10 +149,10 @@ $focus-box-shadow-color: hsla(
   }
 
   @each $name, $pair in $theme-colors {
-    $color: nth($pair, 1);
-    $color-invert: fn.bulmaFindColorInvert($color);
-    $color-light: fn.bulmaFindLightColor($color);
-    $color-dark: fn.bulmaFindDarkColor($color);
+    $color: cv.getVar($name);
+    $color-invert: cv.getVar($name, "", "-invert");
+    $color-light: cv.getVar($name, "", "-light");
+    $color-dark: cv.getVar($name, "", "-dark");
     &.is-#{$name} input[type="checkbox"]:checked + .kws-checkbox-label {
       &:after {
         border-color: $color;

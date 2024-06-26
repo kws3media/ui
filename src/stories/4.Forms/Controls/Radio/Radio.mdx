@@ -22,25 +22,21 @@ import * as Stories from "./Radio.stories.js";
 />
 
 #### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={
-    dedent`@use '@kws3/ui/styles/CheckRadio.scss';`
-  }
-/>
-
-#### SCSS customization variables with default values:
-<Source
-  language="css"
-  code={
-    dedent`
-    @use '@kws3/ui/styles/CheckRadio.scss' with(
-      $theme-colors: dv.$colors !default;
-      $default-check-color: cv.getVar("text") !default;
-      $default-check-color-invert: findColorInvert($default-check-color) !default;
-      $default-border-color: #dbdbdb !default;
-      $focus-box-shadow-size: cv.getVar("focus-shadow-size") !default;
-      $focus-box-shadow-color: hsla(cv.getVar("focus-h"),cv.getVar("focus-s"),cv.getVar("focus-l"),cv.getVar("focus-shadow-alpha")) !default;
-    );
-    `
-  }
+  code={dedent`
+      @use '@kws3/ui/styles/CheckRadio.scss' with (
+        $theme-colors: dv.$colors,
+        $check-color: cv.getVar("text"),
+        $check-color-invert: cv.getVar("text-invert"),
+        $border-color: cv.getVar("text"),
+        $focus-box-shadow-size: cv.getVar("focus-shadow-size"),
+        $focus-box-shadow-color: hsla(
+          cv.getVar("focus-h"),
+          cv.getVar("focus-s"),
+          cv.getVar("focus-l"),
+          cv.getVar("focus-shadow-alpha")
+        ),
+      );
+    `}
 />
