@@ -65,38 +65,32 @@ import * as Stories from "./AutoComplete.stories.js";
 />
 
 #### Import the SCSS:
-
+_Default values shown as example_
 <Source
-  code={dedent`@use '@kws3/ui/styles/AutoComplete.scss';`}
-/>
-
-#### SCSS customization variables with default values:
-
-<Source
-  language="css"
   code={dedent`
       @use '@kws3/ui/styles/AutoComplete.scss' with (
-        $theme-colors: dv.$colors !default;
-        $radius: cv.getVar("radius") !default;
-        $border-color: cv.getVar("border") !default;
-        $box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%) !default;
-        $focus-border-color: cv.getVar("input-focus-border-color") !default;
-        $focus-box-shadow-size: cv.getVar("focus-shadow-size") !default;
+        $theme-colors: dv.$colors,
+        $radius: cv.getVar("radius"),
+        $border-color: cv.getVar("border"),
+        $box-shadow: cv.getVar("shadow"),
+        $focus-border-color: cv.getVar("input-focus-border-color"),
+        $focus-box-shadow-size: cv.getVar("focus-shadow-size"),
         $focus-box-shadow-color: hsl(
           cv.getVar("focus-h"),
           cv.getVar("focus-s"),
           cv.getVar("focus-l"),
           cv.getVar("focus-shadow-alpha")
-        ) !default;
-        $disabled-background-color: cv.getVar("input-disabled-background-color") !default;
-        $disabled-border-color: cv.getVar("input-disabled-border-color") !default;
-        $disabled-color: cv.getVar("input-disabled-color") !default;
-        $selecting-color: cv.getVar("primary-invert") !default;
-        $selecting-background: cv.getVar("primary") !default;
-        $text-matches-color: currentColor !default;
-        $text-matches-background: transparent !default;
-        $text-matches-font-weight: cv.getVar("weight-bold") !default;
-        $options-background: cv.getVar("scheme-main-ter") !default;
+        ),
+        $disabled-background-color: cv.getVar("input-disabled-background-color"),
+        $disabled-border-color: cv.getVar("input-disabled-border-color"),
+        $disabled-color: cv.getVar("input-disabled-color"),
+        $selecting-color: cv.getVar("primary-invert"),
+        $selecting-background: cv.getVar("primary"),
+        $text-matches-color: currentColor,
+        $text-matches-background: transparent,
+        $text-matches-font-weight: cv.getVar("weight-bold"),
+        $options-background: cv.getVar("scheme-main-ter"),
+        $__modal-z: 41,
       );
     `}
 />

@@ -1,13 +1,10 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
-@use "bulma/sass/utilities/functions" as fn;
 
 $theme-colors: dv.$colors !default;
 $radius: cv.getVar("radius") !default;
 $border-color: cv.getVar("border") !default;
-$box-shadow:
-  0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
-  0 0px 0 1px rgb(10 10 10 / 2%) !default;
+$box-shadow: cv.getVar("shadow") !default;
 $focus-border-color: cv.getVar("input-focus-border-color") !default;
 $focus-box-shadow-size: cv.getVar("focus-shadow-size") !default;
 $focus-box-shadow-color: hsl(
@@ -110,10 +107,10 @@ $options-z-index: $__modal-z + 1 !default;
 }
 
 @each $name, $pair in $theme-colors {
-  $color: nth($pair, 1);
-  $color-invert: fn.bulmaFindColorInvert($color);
-  $color-light: fn.bulmaFindLightColor($color);
-  $color-dark: fn.bulmaFindDarkColor($color);
+  $color: cv.getVar($name);
+  $color-invert: cv.getVar($name, "", "-invert");
+  $color-light: cv.getVar($name, "", "-light");
+  $color-dark: cv.getVar($name, "", "-dark");
   .kws-autocomplete {
     &.is-#{$name} {
       border-color: $color;
