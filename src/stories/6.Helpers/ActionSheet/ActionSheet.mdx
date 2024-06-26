@@ -21,7 +21,7 @@ import * as Stories from "./ActionSheet.stories";
 #### Import the SCSS:
 <Source
   code={
-    dedent`@import '@kws3/ui/styles/ActionSheet.scss';`
+    dedent`@use '@kws3/ui/styles/ActionSheet.scss';`
   }
 />
 
@@ -30,9 +30,9 @@ import * as Stories from "./ActionSheet.stories";
   language='css'
   code={ dedent`
     @use '@kws3/ui/styles/ActionSheet.scss' with (
-      $kws-actionsheet-background: #{cv.getVar("background")} !default;
-      $kws-actionsheet-box-shadow: #{cv.getVar("card-shadow")} !default;
-      $kws-actionsheet-box-radius: #{cv.getVar("radius")} !default;
+      $background: cv.getVar("background") !default;
+      $box-shadow: cv.getVar("shadow") !default;
+      $box-radius: cv.getVar("radius") !default;
     );
   `}
 />

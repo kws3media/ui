@@ -67,7 +67,7 @@ import * as Stories from "./AutoComplete.stories.js";
 #### Import the SCSS:
 
 <Source
-  code={dedent`@import '@kws3/ui/styles/AutoComplete.scss';`}
+  code={dedent`@use '@kws3/ui/styles/AutoComplete.scss';`}
 />
 
 #### SCSS customization variables with default values:
@@ -75,34 +75,28 @@ import * as Stories from "./AutoComplete.stories.js";
 <Source
   language="css"
   code={dedent`
-    @use '@kws3/ui/styles/AutoComplete.scss' with (
-        $kws-theme-colors: dv.$colors !default;
-        $kws-autocomplete-radius: #{cv.getVar("radius")} !default;
-        $kws-autocomplete-border-color: #{cv.getVar("border")} !default;
-        $kws-autocomplete-box-shadow:
-          0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
-          0 0px 0 1px rgb(10 10 10 / 2%) !default;
-        $kws-autocomplete-focus-border-color: #{cv.getVar("input-focus-border-color")} !default;
-        $kws-autocomplete-focus-box-shadow-size: #{cv.getVar("focus-shadow-size")} !default;
-        $kws-autocomplete-focus-box-shadow-color: hsl(
-          #{cv.getVar("focus-h")},
-          #{cv.getVar("focus-s")},
-          #{cv.getVar("focus-l")},
-          #{cv.getVar("focus-shadow-alpha")}
+      @use '@kws3/ui/styles/AutoComplete.scss' with (
+        $theme-colors: dv.$colors !default;
+        $radius: cv.getVar("radius") !default;
+        $border-color: cv.getVar("border") !default;
+        $box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%) !default;
+        $focus-border-color: cv.getVar("input-focus-border-color") !default;
+        $focus-box-shadow-size: cv.getVar("focus-shadow-size") !default;
+        $focus-box-shadow-color: hsl(
+          cv.getVar("focus-h"),
+          cv.getVar("focus-s"),
+          cv.getVar("focus-l"),
+          cv.getVar("focus-shadow-alpha")
         ) !default;
-        $kws-autocomplete-disabled-background-color: #{cv.getVar(
-            "input-disabled-background-color"
-          )} !default;
-        $kws-autocomplete-disabled-border-color: #{cv.getVar(
-            "input-disabled-border-color"
-          )} !default;
-        $kws-autocomplete-disabled-color: #{cv.getVar("input-disabled-color")} !default;
-        $kws-autocomplete-selecting-color: #{cv.getVar("primary-invert")} !default;
-        $kws-autocomplete-selecting-background: #{cv.getVar("primary")} !default;
-        $kws-autocomplete-text-matches-color: currentColor !default;
-        $kws-autocomplete-text-matches-background: transparent !default;
-        $kws-autocomplete-text-matches-font-weight: #{cv.getVar("weight-bold")} !default;
-        $kws-autocomplete-options-background: #{cv.getVar("scheme-main-ter")} !default;
+        $disabled-background-color: cv.getVar("input-disabled-background-color") !default;
+        $disabled-border-color: cv.getVar("input-disabled-border-color") !default;
+        $disabled-color: cv.getVar("input-disabled-color") !default;
+        $selecting-color: cv.getVar("primary-invert") !default;
+        $selecting-background: cv.getVar("primary") !default;
+        $text-matches-color: currentColor !default;
+        $text-matches-background: transparent !default;
+        $text-matches-font-weight: cv.getVar("weight-bold") !default;
+        $options-background: cv.getVar("scheme-main-ter") !default;
       );
     `}
 />
