@@ -1,26 +1,26 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 
-$kws-panel-heading-background: #{cv.getVar("scheme-main-bis")} !default;
-$kws-panel-background: #{cv.getVar("scheme-main")} !default;
-$kws-panel-box-shadow: #{cv.getVar("panel-shadow")} !default;
-$kws-panel-title-color: #{cv.getVar("scheme-invert-bis")} !default;
-$kws-panel-title-weight: 700 !default;
-$kws-panel-caret-open-color: #888 !default;
-$kws-panel-caret-closed-color: #00a4d8 !default;
+$heading-background: cv.getVar("scheme-main-bis") !default;
+$background: cv.getVar("scheme-main") !default;
+$box-shadow: cv.getVar("panel-shadow") !default;
+$title-color: cv.getVar("scheme-invert-bis") !default;
+$title-weight: 700 !default;
+$caret-open-color: #888 !default;
+$caret-closed-color: #00a4d8 !default;
 
 .panel {
-  background: $kws-panel-background;
+  background: $background;
   border-radius: none;
   border: none;
-  box-shadow: $kws-panel-box-shadow;
+  box-shadow: $box-shadow;
   .panel-heading {
     border-top: none;
     border-left: none;
     border-right: none;
-    background-color: $kws-panel-heading-background;
+    background-color: $heading-background;
     .subtitle {
-      font-weight: $kws-panel-title-weight;
-      color: $kws-panel-title-color;
+      font-weight: $title-weight;
+      color: $title-color;
     }
     .level {
       .level-right {
@@ -49,7 +49,7 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
       transform 0.4s,
       color 0.4s;
     transform: rotate(-90deg);
-    color: $kws-panel-caret-open-color;
+    color: $caret-open-color;
 
     font-size: 1.5em;
     line-height: 0.9em;
@@ -62,7 +62,7 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
 
   &.collapsed .collapsor .icon-i {
     transform: rotate(90deg) translate(5px, 0);
-    color: $kws-panel-caret-closed-color;
+    color: $caret-closed-color;
   }
 
   &.collapsible .panel-content-outer {

@@ -1,14 +1,12 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Story, Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Timelinefull.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Timeline Full Example
 ## Contains combined usage of Timeline, TimelineItem and TimelineHeader components.
-`}/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />
@@ -60,15 +58,17 @@ import * as Stories from "./Timelinefull.stories";
 
 ##### Import the CSS:
 <Source
-  code={ dedent`@import '@kws3/ui/styles/Timeline.scss';`}
+  code={ dedent`@use '@kws3/ui/styles/Timeline.scss';`}
 />
 
 ##### SCSS customization variables with default values:
 <Source
   language='css'
   code={ dedent`
-    $kws-theme-colors: $colors;
-    $kws-timeline-default-color: $grey;
-    $kws-timeline-default-color-invert: $light;
+    @use '@kws3/ui/styles/Timeline.scss' with(
+      $theme-colors: dv.$colors !default;
+      $default-color: cv.getVar("grey") !default;
+      $default-color-invert: cv.getVar("light") !default;
+    );
   `}
 />

@@ -2,28 +2,28 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$kws-theme-colors: dv.$colors !default;
-$kws-fileupload-bg-color: #{cv.getVar("background-white")} !default;
-$kws-fileupload-border-color: #{cv.getVar("border")} !default;
-$kws-fileupload-shadow: #{cv.getVar("shadow-s")} !default;
-$kws-fileupload-radius: #{cv.getVar("radius")} !default;
-$kws-fileupload-text-color: #{cv.getVar("text")} !default;
-$kws-fileupload-disabled-bg-color: #{cv.getVar("white-ter")} !default;
-$kws-fileupload-disabled-border-color: #{cv.getVar("white-ter")} !default;
-$kws-fileupload-progress-bg-color: #{cv.getVar("success-light")} !default;
-$kws-fileupload-progress-text-color: #{cv.getVar("success-dark")} !default;
-$kws-fileupload-progress-anim-easing: linear !default;
-@if (variable-exists(#{cv.getVar("easeOutCustom")})) {
-  $kws-fileupload-progress-anim-easing: #{cv.getVar("easeOutCustom")} !default;
+$theme-colors: dv.$colors !default;
+$bg-color: cv.getVar("background-white") !default;
+$border-color: cv.getVar("border") !default;
+$shadow: cv.getVar("shadow-s") !default;
+$radius: cv.getVar("radius") !default;
+$text-color: cv.getVar("text") !default;
+$disabled-bg-color: cv.getVar("white-ter") !default;
+$disabled-border-color: cv.getVar("white-ter") !default;
+$progress-bg-color: cv.getVar("success-light") !default;
+$progress-text-color: cv.getVar("success-dark") !default;
+$progress-anim-easing: linear !default;
+@if (variable-exists(cv.getVar("easeOutCustom"))) {
+  $progress-anim-easing: cv.getVar("easeOutCustom") !default;
 }
 
 .kws-file-upload {
   width: 100%;
   .file-upload-inner {
     position: relative;
-    background: $kws-fileupload-bg-color;
-    border: 1px solid $kws-fileupload-border-color;
-    border-radius: $kws-fileupload-radius;
+    background: $bg-color;
+    border: 1px solid $border-color;
+    border-radius: $radius;
     max-width: 100%;
     height: 2.5rem;
     .file {
@@ -33,7 +33,7 @@ $kws-fileupload-progress-anim-easing: linear !default;
       left: 0;
       top: 0;
       right: 2rem;
-      box-shadow: $kws-fileupload-shadow;
+      box-shadow: $shadow;
       .filename,
       .upload-progress,
       .progress-caption {
@@ -58,17 +58,17 @@ $kws-fileupload-progress-anim-easing: linear !default;
           width: 100%;
           height: 100%;
           .bar {
-            border-radius: $kws-fileupload-radius 0 0 $kws-fileupload-radius;
+            border-radius: $radius 0 0 $radius;
             position: relative;
             height: 100%;
-            background: $kws-fileupload-progress-bg-color;
-            transition: width 0.3s $kws-fileupload-progress-anim-easing;
+            background: $progress-bg-color;
+            transition: width 0.3s $progress-anim-easing;
           }
         }
       }
       .progress-caption {
         text-shadow: none;
-        color: $kws-fileupload-progress-text-color;
+        color: $progress-text-color;
       }
       .filename {
         span {
@@ -79,9 +79,9 @@ $kws-fileupload-progress-anim-easing: linear !default;
       }
     }
     .up-icon {
-      border-radius: 0 $kws-fileupload-radius $kws-fileupload-radius 0;
-      background: $kws-fileupload-border-color;
-      color: $kws-fileupload-text-color;
+      border-radius: 0 $radius $radius 0;
+      background: $border-color;
+      color: $text-color;
       padding: 0.5rem 0;
       width: 2rem;
       text-align: center;
@@ -97,8 +97,8 @@ $kws-fileupload-progress-anim-easing: linear !default;
       }
       .loader {
         margin: 0.2rem auto;
-        border-left-color: $kws-fileupload-text-color;
-        border-bottom-color: $kws-fileupload-text-color;
+        border-left-color: $text-color;
+        border-bottom-color: $text-color;
       }
     }
     input[type="file"] {
@@ -110,7 +110,7 @@ $kws-fileupload-progress-anim-easing: linear !default;
       opacity: 0;
     }
   }
-  @each $name, $pair in $kws-theme-colors {
+  @each $name, $pair in $theme-colors {
     $color: nth($pair, 1);
     $color-invert: fn.bulmaFindColorInvert($color);
     $color-light: fn.bulmaFindLightColor($color);
@@ -142,18 +142,18 @@ $kws-fileupload-progress-anim-easing: linear !default;
   &.is-disabled {
     opacity: 0.6;
     .file-upload-inner {
-      background: $kws-fileupload-disabled-bg-color;
-      border-color: $kws-fileupload-disabled-border-color;
-      color: $kws-fileupload-text-color;
+      background: $disabled-bg-color;
+      border-color: $disabled-border-color;
+      color: $text-color;
       .up-icon {
         text-shadow: none;
-        background: $kws-fileupload-disabled-bg-color;
+        background: $disabled-bg-color;
       }
       .file {
         box-shadow: none;
       }
     }
-    @each $name, $pair in $kws-theme-colors {
+    @each $name, $pair in $theme-colors {
       $color: nth($pair, 1);
       &.is-#{$name} {
         .icon {

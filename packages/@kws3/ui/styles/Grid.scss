@@ -7,10 +7,8 @@ $th-color: cv.getVar("text") !default;
 $tag-margin: 0 0.125rem 0.125rem 0 !default;
 $icon-size: 1.5em !default;
 $checked-row-background: cv.getVar("info-light") !default;
-
 $active-row-background: cv.getVar("table-row-active-background-color") !default;
 $active-row-color: cv.getVar("table-row-active-color") !default;
-
 $background: cv.getVar("table-background-color") !default;
 $striped-row-background: cv.getVar(
   "table-striped-row-even-background-color"
@@ -19,12 +17,11 @@ $sticky-column-border-color: cv.getVar("border") !default;
 $sticky-column-active-row-border-color: cv.getVar(
   "table-row-active-color"
 ) !default;
-
 $hover-background-color: cv.getVar("table-row-hover-background-color") !default;
 $even-row-hover-background-color: cv.getVar(
   "table-striped-row-even-hover-background-color"
 ) !default;
-$kws-gridView-cell-border-color: cv.getVar("table-cell-border-color") !default;
+$cell-border-color: cv.getVar("table-cell-border-color") !default;
 
 .table.kws-grid-view {
   box-shadow: $box-shadow;

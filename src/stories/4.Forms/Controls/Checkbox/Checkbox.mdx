@@ -23,7 +23,7 @@ import * as Stories from "./Checkbox.stories.js";
 #### Import the SCSS:
 <Source
   code={
-    dedent`@import '@kws3/ui/styles/CheckRadio.scss';`
+    dedent`@use '@kws3/ui/styles/CheckRadio.scss';`
   }
 />
 
@@ -32,12 +32,19 @@ import * as Stories from "./Checkbox.stories.js";
   language="css"
   code={
     dedent`
-    $kws-theme-colors: $colors;
-    $kws-checkradio-default-check-color: $text;
-    $kws-checkradio-default-check-color-invert: findColorInvert($kws-checkradio-default-check-color);
-    $kws-checkradio-default-border-color: #dbdbdb;
-    $kws-checkradio-focus-box-shadow-size: $input-focus-box-shadow-size;
-    $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color;
+    @use '@kws3/ui/styles/CheckRadio.scss' with (
+      $theme-colors: dv.$colors !default;
+      $default-check-color: cv.getVar("text") !default;
+      $default-check-color-invert: findColorInvert($default-check-color) !default;
+      $default-border-color: #dbdbdb !default;
+      $focus-box-shadow-size: cv.getVar("focus-shadow-size") !default;
+      $focus-box-shadow-color: hsla(
+        cv.getVar("focus-h"),
+        cv.getVar("focus-s"),
+        cv.getVar("focus-l"),
+        cv.getVar("focus-shadow-alpha")
+      ) !default;
+    );
     `
   }
 />

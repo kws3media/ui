@@ -18,7 +18,7 @@ import * as Stories from "./GridView.stories.js";
 #### Import the component:
 <Source
   code={
-    dedent`import { GridView } from '@kws3/ui';`
+    dedent`use { GridView } from '@kws3/ui';`
   }
 />
 
@@ -44,7 +44,7 @@ _Default values shown as example_
       $even-row-hover-background-color: cv.getVar(
           "table-striped-row-even-hover-background-color"
         )};
-      $kws-gridView-cell-border-color: cv.getVar("table-cell-border-color");
+      $cell-border-color: cv.getVar("table-cell-border-color");
     );
     `}
 />

@@ -26,17 +26,19 @@ import * as Stories from "./Divider.stories";
 
 ##### Import the CSS:
 <Source
-  code={ dedent`@import '@kws3/ui/styles/Divider.scss';`}
+  code={ dedent`@use '@kws3/ui/styles/Divider.scss';`}
 />
 
 ##### SCSS customization variables with default values:
 <Source
   language='css'
   code={ dedent`
-    $kws-theme-colors: $colors;
-    $kws-divider-color: $border;
-    $kws-divider-font-size: $size-7;
-    $kws-divider-gap: 0.25em;
-    $kws-divider-margin: 1.25rem;
+    @use '@kws3/ui/styles/Divider.scss' with (
+      $theme-colors: dv.$colors !default;
+      $color: cv.getVar("border") !default;
+      $font-size: cv.getVar("size-smal") !default;
+      $gap: 0.25rem !default;
+      $margin: 1rem !default;
+    );
   `}
 />

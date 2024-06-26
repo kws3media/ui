@@ -3,18 +3,18 @@
 @use "bulma/sass/utilities/initial-variables" as iv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$kws-theme-colors: dv.$colors !default;
-$kws-timeline-default-color: #{cv.getVar("grey")} !default;
-$kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
+$theme-colors: dv.$colors !default;
+$default-color: cv.getVar("grey") !default;
+$default-color-invert: cv.getVar("light") !default;
 
 @mixin right-aligned-timeline-item {
   flex-direction: row-reverse;
-  .kws-timeline-marker {
+  .marker {
     right: 0;
     left: auto;
     transform: translateX(50%);
   }
-  .kws-timeline-content {
+  .content {
     text-align: right;
     padding-left: 0;
     padding-right: 1.75rem;
@@ -25,7 +25,7 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
   }
 }
 
-.kws-timeline-item {
+.item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,11 +37,11 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
   &:last-child {
     padding-bottom: 0;
   }
-  .kws-timeline-marker {
+  .marker {
     position: absolute;
     left: 0;
-    background: $kws-timeline-default-color;
-    border: 1px solid $kws-timeline-default-color;
+    background: $default-color;
+    border: 1px solid $default-color;
     border-radius: 100%;
     transform: translateX(-50%);
     display: flex;
@@ -54,10 +54,10 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
       min-width: 1rem;
       padding: 0;
       border-width: 4px;
-      background: $kws-timeline-default-color-invert;
+      background: $default-color-invert;
     }
     .icon {
-      color: $kws-timeline-default-color-invert;
+      color: $default-color-invert;
       width: 16px;
       height: 16px;
       font-size: 0.75rem !important;
@@ -69,12 +69,12 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
       }
     }
   }
-  .kws-timeline-content {
+  .content {
     padding-left: 1.75rem;
     flex-grow: 1;
     flex-shrink: 1;
   }
-  .kws-timeline-image {
+  .image {
     flex-grow: 0;
     flex-shrink: 0;
     width: 32px;
@@ -90,7 +90,7 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
 
   &:before {
     content: "";
-    background-color: $kws-timeline-default-color;
+    background-color: $default-color;
     display: block;
     width: 1px;
     height: 100%;
@@ -99,11 +99,11 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
     top: 0;
   }
 
-  @each $name, $pair in $kws-theme-colors {
+  @each $name, $pair in $theme-colors {
     $color: nth($pair, 1);
     $color-invert: fn.bulmaFindColorInvert($color); //nth($pair, 2);
     &.is-#{$name} {
-      .kws-timeline-marker {
+      .marker {
         border-color: $color;
         background-color: $color;
         &:empty {
@@ -120,13 +120,13 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
   }
 }
 
-.kws-timeline-header {
+.header {
   width: 4em;
   min-width: 4em;
   word-wrap: normal;
   text-align: center;
   transform: translateX(-25px);
-  + .kws-timeline-header {
+  + .header {
     padding-top: 0.5rem;
   }
 }
@@ -139,7 +139,7 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
   flex-direction: column;
 
   &.is-center {
-    .kws-timeline-item {
+    .item {
       width: 50%;
       align-self: flex-end;
       flex-direction: row;
@@ -148,7 +148,7 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
         @include right-aligned-timeline-item;
       }
     }
-    .kws-timeline-header {
+    .header {
       width: 100%;
       transform: none;
     }
@@ -157,12 +157,12 @@ $kws-timeline-default-color-invert: #{cv.getVar("light")} !default;
   &.is-right {
     justify-content: flex-end;
     align-items: flex-end;
-    .kws-timeline-item {
+    .item {
       width: 100%;
       align-self: flex-end;
       @include right-aligned-timeline-item;
     }
-    .kws-timeline-header {
+    .header {
       transform: translateX(25px);
       width: 100%;
       text-align: right;

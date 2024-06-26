@@ -21,21 +21,23 @@ import * as Stories from "./Loader.stories";
 
 ##### Import the CSS:
 <Source
-  code={ dedent`@import '@kws3/ui/styles/Loader.scss';`}
+  code={ dedent`@use '@kws3/ui/styles/Loader.scss';`}
 />
 
 ##### SCSS customization variables with default values:
 <Source
   language='css'
   code={ dedent`
-    $kws-theme-colors: $colors;
-    $kws-loader-width: 2rem;
-    $kws-loader-height: 2rem;
-    $kws-loader-width-medium: ($kws-loader-width * 1.5);
-    $kws-loader-height-medium: ($kws-loader-height * 1.5);
-    $kws-loader-width-large: ($kws-loader-width * 3);
-    $kws-loader-height-large: ($kws-loader-height * 3);
-    $kws-loader-color: #ccc;
-    $kws-loader-overlay-background: rgba(0,0,0,0.15);
+    @use '@kws3/ui/styles/Loader.scss' with(
+      $theme-colors: dv.$colors !default;
+      $width: 2rem !default;
+      $height: 2rem !default;
+      $width-medium: ($width * 1.5) !default;
+      $height-medium: ($height * 1.5) !default;
+      $width-large: ($width * 3) !default;
+      $height-large: ($height * 3) !default;
+      $color: #ccc !default;
+      $overlay-background: rgba(0, 0, 0, 0.15) !default;
+    );
   `}
 />

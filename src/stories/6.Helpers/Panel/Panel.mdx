@@ -17,18 +17,21 @@ import * as Stories from "./Panel.stories";
 
 ##### Import the CSS:
 <Source
-  code={ dedent`@import '@kws3/ui/styles/Panel.scss';`}
+  code={ dedent`@use '@kws3/ui/styles/Panel.scss';`}
 />
 
 ##### SCSS customization variables with default values:
 <Source
   language='css'
   code={ dedent`
-    $kws-panel-background: $scheme-main;
-    $kws-panel-box-shadow: $card-shadow;
-    $kws-panel-title-color: $text;
-    $kws-panel-title-weight: 700;
-    $kws-panel-caret-open-color: #888;
-    $kws-panel-caret-closed-color: #00a4d8;
+    @use '@kws3/ui/styles/Panel.scss' with(
+      $heading-background: cv.getVar("scheme-main-bis") !default;
+      $background: cv.getVar("scheme-main") !default;
+      $box-shadow: cv.getVar("panel-shadow") !default;
+      $title-color: cv.getVar("scheme-invert-bis") !default;
+      $title-weight: 700 !default;
+      $caret-open-color: #888 !default;
+      $caret-closed-color: #00a4d8 !default;
+    );
   `}
 />
