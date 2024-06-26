@@ -15,10 +15,42 @@ $hilight-color: cv.getVar("text-100") !default;
   background-repeat: no-repeat;
   animation: kws-skeleton-shine 1.2s infinite;
 
+  &.input {
+    background-color: hsl(
+      cv.getVar("input-h"),
+      cv.getVar("input-s"),
+      calc(
+        cv.getVar("input-background-l") + cv.getVar("input-background-l-delta")
+      )
+    );
+    background-image: linear-gradient(
+      90deg,
+      hsla(
+        cv.getVar("input-h"),
+        cv.getVar("input-s"),
+        cv.getVar("input-color-l"),
+        0.1
+      ),
+      hsla(
+        cv.getVar("input-h"),
+        cv.getVar("input-s"),
+        cv.getVar("input-color-l"),
+        0.2
+      ),
+      hsla(
+        cv.getVar("input-h"),
+        cv.getVar("input-s"),
+        cv.getVar("input-color-l"),
+        0.1
+      )
+    );
+  }
+
   @each $name, $pair in $theme-colors {
     $_color-light: cv.getVar($name, "", "-90");
     $_color-dark: cv.getVar($name, "", "-60");
-    &.is-#{$name} {
+    &.is-#{$name},
+    &.is-#{$name}.input {
       background-color: $_color-light;
       background-image: linear-gradient(
         90deg,
