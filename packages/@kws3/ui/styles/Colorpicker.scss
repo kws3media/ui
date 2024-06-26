@@ -1,3 +1,27 @@
+@use "bulma/sass/utilities/css-variables" as cv;
+
+$picker-shadow: cv.getVar("shadow") !default;
+$picker-border-color: cv.getVar("border") !default;
+$preview-shadow:
+  0 0.125rem 0.1875rem
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.1
+    ),
+  0 0 0 0.0625rem
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.1
+    ) !default;
+$preview-radius: cv.getVar("radius-small") !default;
+$icon-shadow: 0 0.0625rem 0.0625rem
+  hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4) !default;
+$dragover-hilight-color: cv.getVar("success-soft") !default;
+
 .color-picker,
 .color-picker:before,
 .color-picker:after,
@@ -18,10 +42,8 @@
     font: inherit;
   }
   .color-picker-control {
-    border: 1px solid #000;
-    -webkit-box-shadow: 0.0625rem 0.3125rem 0.625rem rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0.0625rem 0.3125rem 0.625rem rgba(0, 0, 0, 0.5);
-    box-shadow: 0.0625rem 0.3125rem 0.625rem rgba(0, 0, 0, 0.5);
+    border: 1px solid $picker-border-color;
+    box-shadow: $picker-shadow;
     *,
     *:before,
     *:after {
@@ -147,7 +169,7 @@
   }
 }
 
-.color-picker-wrapper {
+.kws-color-picker {
   position: relative;
   .color-preview {
     height: 1.5rem;
@@ -157,8 +179,7 @@
     top: 0.5rem;
     right: 0.5rem;
     z-index: 4;
-    box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
-      0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+    box-shadow: $preview-shadow;
     &.is-small {
       height: 0.95rem;
       width: 0.95rem;
@@ -180,6 +201,7 @@
       top: 0.5rem;
       height: 1.5rem;
       width: 1.5rem;
+      border-radius: $preview-radius;
       &.is-small {
         height: 0.95rem;
         width: 0.95rem;
@@ -195,7 +217,7 @@
     }
   }
   i {
-    text-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.4);
+    text-shadow: $icon-shadow;
   }
   input.readonly {
     pointer-events: none;
@@ -219,6 +241,6 @@
     }
   }
   .dragover input {
-    background: #bdd2b9;
+    background: $dragover-hilight-color;
   }
 }

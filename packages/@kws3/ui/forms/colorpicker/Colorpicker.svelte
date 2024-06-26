@@ -15,7 +15,7 @@ This property can be bound to, to fetch the current colour, Default: `"000000"`
   - `change` - Triggered when color changes
 
 -->
-<div class="color-picker-wrapper">
+<div class="kws-color-picker">
   <div class="field">
     <div
       class="control {mini ? 'mini' : 'has-icons-left'} {dragover &&
