@@ -1,15 +1,12 @@
-import {Meta, Primary, Controls, Canvas, Story, Source, Description} from '@storybook/blocks';
+import {Meta, Primary, Controls, Canvas, Story, Source, Title} from '@storybook/blocks';
 import * as Stories from "./ESignature.stories.js";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 
 <Version />
-<Description
-  markdown={dedent`
-# ESignature
+<Title />
 ## ESignature component for taking user pen input.
-`}
-/>
+
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />
@@ -24,7 +21,7 @@ import Version from '~/version.mdx';
 ##### Import the CSS:
 
 <Source
-  code={dedent`@import '@kws3/ui/styles/Canvas.scss';`}
+  code={dedent`@use '@kws3/ui/styles/Canvas.scss';`}
 />
 
 ### Usage Example
