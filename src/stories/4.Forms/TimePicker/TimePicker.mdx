@@ -32,8 +32,8 @@ import * as Stories from "./TimePicker.stories";
 </div>
 <Source
   code={dedent`
-    @import 'flatpickr/dist/flatpickr';
-    @import '@kws3/ui/styles/Timepicker.scss';`}
+    @use 'flatpickr/dist/flatpickr';
+    @use '@kws3/ui/styles/Timepicker.scss';`}
 />
 
 #### SCSS customization variables with default values:
@@ -41,8 +41,10 @@ import * as Stories from "./TimePicker.stories";
 <Source
   language="css"
   code={dedent`
-      $kws-theme-colors: $colors;
-      $kws-timepicker-background: $background;
-      $kws-timepicker-text: $text;
+      @use '@kws3/ui/styles/Timepicker.scss' with(
+        $theme-colors: dv.$colors !default;
+        $background: cv.getVar("background") !default;
+        $text: cv.getVar("text") !default;
+      );
     `}
 />

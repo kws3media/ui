@@ -2,17 +2,14 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 @use "bulma/sass/utilities/functions" as fn;
 
-$kws-toggle-off-bg-color: #{cv.getVar("background")} !default;
-$kws-toggle-handle-bg-color: #{cv.getVar("white")} !default;
-$kws-toggle-track-bg-color: #{cv.getVar("text")} !default;
-$kws-toggle-track-bg-color-invert: findColorInvert(
-  $kws-toggle-track-bg-color
-) !default;
-$kws-toggle-border-color: #{cv.getVar("border")} !default;
+$off-bg-color: cv.getVar("background") !default;
+$handle-bg-color: cv.getVar("white") !default;
+$track-bg-color: cv.getVar("text") !default;
+$track-bg-color-invert: findColorInvert($track-bg-color) !default;
+$border-color: cv.getVar("border") !default;
+$theme-colors: dv.$colors !default;
 
-$kws-theme-colors: dv.$colors !default;
-
-.kws-toggle-button {
+.button {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -27,9 +24,9 @@ $kws-theme-colors: dv.$colors !default;
     align-items: center;
     width: 3.93em;
     height: 2.21em;
-    border: solid 2px $kws-toggle-border-color;
+    border: solid 2px $border-color;
     border-radius: 1.428em;
-    background-color: $kws-toggle-off-bg-color;
+    background-color: $off-bg-color;
     content: " ";
     cursor: pointer;
     .toggle-text {
@@ -42,7 +39,7 @@ $kws-theme-colors: dv.$colors !default;
       text-align: right;
       user-select: none;
       margin: 0 0.5em;
-      color: findColorInvert($kws-toggle-off-bg-color);
+      color: findColorInvert($off-bg-color);
     }
     .handle {
       transition: transform 0.3s cubic-bezier(0, 1.1, 1, 1.1);
@@ -51,7 +48,7 @@ $kws-theme-colors: dv.$colors !default;
       width: 1.928em;
       height: 1.928em;
       border-radius: 1.928em;
-      background-color: $kws-toggle-handle-bg-color;
+      background-color: $handle-bg-color;
       box-shadow:
         0 2px 7px rgba(0, 0, 0, 0.35),
         0 1px 1px rgba(0, 0, 0, 0.15);
@@ -59,19 +56,19 @@ $kws-theme-colors: dv.$colors !default;
   }
   &.on {
     .track {
-      border-color: $kws-toggle-track-bg-color;
-      background-color: $kws-toggle-track-bg-color;
+      border-color: $track-bg-color;
+      background-color: $track-bg-color;
       .toggle-text {
         left: 10%;
         right: auto;
         text-align: left;
-        color: $kws-toggle-track-bg-color-invert;
+        color: $track-bg-color-invert;
       }
     }
     .handle {
       transform: translate3d(1.785em, 0, 0);
     }
-    @each $name, $pair in $kws-theme-colors {
+    @each $name, $pair in $theme-colors {
       $color: nth($pair, 1);
       $color-invert: fn.bulmaFindColorInvert($color);
       $color-light: fn.bulmaFindLightColor($color);
