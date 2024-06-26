@@ -1,5 +1,4 @@
 @use "bulma/sass/utilities/css-variables" as cv;
-@use "bulma/sass/utilities/initial-variables" as iv;
 
 :root {
   --kws-peninput-height: 350px;
@@ -24,7 +23,7 @@
     position: absolute;
     width: 100%;
     min-height: var(--kws-peninput-controls-height);
-    background: transparentize(iv.$grey-light, 0.5);
+    background: cv.getVar("grey-lighter");
     padding: 0.25rem;
     margin: 0 auto;
     .control {
@@ -60,9 +59,9 @@
     &.expanded {
       z-index: 999;
       position: relative;
-      box-shadow: cv.getVar("card-shadow");
+      box-shadow: cv.getVar("shadow");
       .kws-pen-controls {
-        background: iv.$grey-lighter;
+        background: cv.getVar("grey-lighter");
       }
     }
   }
