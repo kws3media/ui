@@ -29,15 +29,15 @@ import * as Stories from "./Loader.stories";
   language='css'
   code={ dedent`
     @use '@kws3/ui/styles/Loader.scss' with(
-      $theme-colors: dv.$colors !default;
-      $width: 2rem !default;
-      $height: 2rem !default;
-      $width-medium: ($width * 1.5) !default;
-      $height-medium: ($height * 1.5) !default;
-      $width-large: ($width * 3) !default;
-      $height-large: ($height * 3) !default;
-      $color: #ccc !default;
-      $overlay-background: rgba(0, 0, 0, 0.15) !default;
+      $theme-colors: dv.$colors,
+      $width: 2rem,
+      $height: 2rem,
+      $width-medium: ($width * 1.5),
+      $height-medium: ($height * 1.5),
+      $width-large: ($width * 3),
+      $height-large: ($height * 3),
+      $color: cv.getVar("text"),
+      $overlay-background: rgba(0, 0, 0, 0.15),
     );
   `}
 />

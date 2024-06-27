@@ -1,4 +1,5 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/mixins" as mx;
 
 $theme-colors: dv.$colors !default;
@@ -8,8 +9,9 @@ $width-medium: ($width * 1.5) !default;
 $height-medium: ($height * 1.5) !default;
 $width-large: ($width * 3) !default;
 $height-large: ($height * 3) !default;
-$color: #ccc !default;
+$color: cv.getVar("text") !default;
 $overlay-background: rgba(0, 0, 0, 0.15) !default;
+
 .kws-loader {
   .hero-body {
     position: relative;
@@ -25,7 +27,7 @@ $overlay-background: rgba(0, 0, 0, 0.15) !default;
     }
 
     @each $name, $pair in $theme-colors {
-      $color: nth($pair, 1);
+      $color: cv.getVar($name);
       &.is-#{$name} {
         &:after {
           border-left-color: $color !important;
