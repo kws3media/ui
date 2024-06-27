@@ -26,8 +26,8 @@ $radius: cv.getVar("radius-small") !default;
   @each $name, $pair in $theme-colors {
     $color: cv.getVar($name);
     $color-invert: cv.getVar($name, "", "-invert");
-    $color-light: cv.getVar($name, "", "-light");
-    $color-dark: cv.getVar($name, "", "-dark");
+    $color-light: cv.getVar($name, "", "-soft");
+    $color-dark: cv.getVar($name, "", "-bold");
     &.is-#{$name} {
       &.arrowTop:before,
       &.arrowTop:after {

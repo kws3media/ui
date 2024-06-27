@@ -3,22 +3,16 @@
 @use "bulma/sass/utilities/functions" as fn;
 
 $theme-colors: dv.$colors !default;
-$background: cv.getVar("background") !default;
+$background: cv.getVar("scheme-main-ter") !default;
 $text: cv.getVar("text") !default;
+$shadow: cv.getVar("shadow") !default;
+$radius: cv.getVar("radius") !default;
 
 .flatpickr-calendar.hasTime.noCalendar {
-  $isDarkMode: false;
-  $lum: fn.bulmaColorLuminance($text);
-  @if ($lum > 0.55) {
-    $isDarkMode: true;
-  }
-
-  box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.3),
-    0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow;
   background: $background;
   color: $text;
-  border-radius: #{cv.getVar("radius")};
+  border-radius: $radius;
 
   .flatpickr-time {
     border: none;
@@ -34,13 +28,13 @@ $text: cv.getVar("text") !default;
       }
     }
     .flatpickr-am-pm {
-      border-radius: 0 #{cv.getVar("radius")} #{cv.getVar("radius")} 0;
+      border-radius: 0 $radius $radius 0;
     }
     .numInputWrapper {
       &:first-child {
-        border-radius: #{cv.getVar("radius")} 0 0 #{cv.getVar("radius")};
+        border-radius: $radius 0 0 $radius;
         .numInput {
-          border-radius: #{cv.getVar("radius")} 0 0 #{cv.getVar("radius")};
+          border-radius: $radius 0 0 $radius;
         }
       }
       &:hover {
@@ -53,15 +47,10 @@ $text: cv.getVar("text") !default;
   }
 
   @each $name, $pair in $theme-colors {
-    $color: nth($pair, 1);
-    $color-invert: fn.bulmaFindColorInvert($color);
-    $color-light: fn.bulmaFindLightColor($color);
-    $color-dark: fn.bulmaFindDarkColor($color);
-    //invert on darkmode by checking color luminance
-    @if ($isDarkMode) {
-      $color-dark: findLightColor($color);
-      $color-light: findDarkColor($color);
-    }
+    $color: cv.getVar($name);
+    $color-invert: cv.getVar($name, "", "-invert");
+    $color-light: cv.getVar($name, "", "-soft");
+    $color-dark: cv.getVar($name, "", "-bold");
 
     &.is-#{$name} {
       border: 1px solid $color;
