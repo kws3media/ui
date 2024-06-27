@@ -16,8 +16,8 @@
    * @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "success",
-    marker_image = null,
-    marker_icon = null;
+    marker_image = "",
+    marker_icon = "";
 
   let klass = "";
   export { klass as class };

@@ -1,16 +1,10 @@
 import { TimelineHeader } from "@kws3/ui";
 import HeaderDecorator from "./TimelineHeader.svelte";
 let args = {
-  align: "left",
   class: "",
 };
 
-let argTypes = {
-  align: {
-    control: "select",
-    options: ["left", "center", "right"],
-  },
-};
+let argTypes = {};
 
 export default {
   title: "Helpers/Timeline/TimelineHeader",

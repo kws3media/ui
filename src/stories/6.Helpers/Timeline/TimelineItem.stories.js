@@ -3,8 +3,8 @@ import ItemDecorator from "./TimelineItem.svelte";
 import { Colors } from "@scripts/type_injector/frameworkTypes";
 
 let args = {
-  marker_icon: null,
-  marker_image: null,
+  marker_icon: "",
+  marker_image: "",
   color: "",
 };
 
