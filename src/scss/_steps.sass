@@ -1,6 +1,10 @@
-$steps-default-color: $grey-lighter !default
-$steps-completed-color: $success !default
-$steps-active-color: $primary !default
+@use "_variables" as dv
+@use "bulma/sass/utilities/mixins" as bulma_mixins
+@use "bulma/sass/utilities/css-variables" as cv
+
+$steps-default-color: dv.$grey-lighter !default
+$steps-completed-color: dv.$success !default
+$steps-active-color: dv.$primary !default
 $steps-horizontal-min-width: 10em !default
 $steps-vertical-min-height: 4em !default
 $steps-marker-size: 2 !default
@@ -11,14 +15,14 @@ $steps-thin-divider-size: 1px !default
 $steps-thin-marker-size: .8em !default
 
 =steps-horizontal
-  +tablet
+  +bulma_mixins.tablet
     &:not(.is-vertical)
       @content
   &.is-horizontal
     @content
 
 =steps-vertical
-  +mobile
+  +bulma_mixins.mobile
     &:not(.is-horizontal)
       @content
   &.is-vertical
@@ -37,7 +41,7 @@ $steps-thin-marker-size: .8em !default
     @content
 
 .steps
-  +block
+  +bulma_mixins.block
 
   .steps-segment
     position: relative
@@ -94,7 +98,7 @@ $steps-thin-marker-size: .8em !default
     align-items: center
     display: flex
     border-radius: 50%
-    font-weight: $weight-bold
+    font-weight: dv.$weight-bold
     justify-content: center
     // Position & z-index are needed to put it above the divider
     position: relative
@@ -185,16 +189,16 @@ $steps-thin-marker-size: .8em !default
             right: calc(-50% + #{calc($size * $steps-marker-size / 2) + $steps-gap-size})
 
 .steps
-  +steps-size($size-normal)
+  +steps-size(dv.$size-normal)
 
 .steps.is-small
-  +steps-size($size-small)
+  +steps-size(dv.$size-small)
 
 .steps.is-medium
-  +steps-size($size-medium)
+  +steps-size(dv.$size-medium)
 
 .steps.is-large
-  +steps-size($size-large)
+  +steps-size(dv.$size-large)
 
 
 // Divider Default Colors
@@ -240,9 +244,9 @@ $steps-thin-marker-size: .8em !default
   border-color: $steps-default-color
 
 // Override marker color per step
-@each $name, $pair in $colors
-  $color: nth($pair, 1)
-  $color-invert: nth($pair, 2)
+@each $name, $pair in dv.$colors
+  $color: #{cv.getVar($name)}
+  $color-invert: #{cv.getVar($name, "", "invert")}
   .steps:not(.is-hollow) .steps-marker:not(.is-hollow)
     &.is-#{$name}
       background-color: $color !important
