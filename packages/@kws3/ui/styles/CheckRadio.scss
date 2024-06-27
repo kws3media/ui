@@ -214,10 +214,10 @@ $focus-box-shadow-color: hsla(
       &:before {
         box-shadow: $focus-box-shadow-size
           hsla(
-            #{cv.getVar($name, "", "-h")},
-            #{cv.getVar($name, "", "-s")},
-            #{cv.getVar($name, "", "-l")},
-            #{cv.getVar("focus-shadow-alpha")}
+            cv.getVar($name, "", "-h"),
+            cv.getVar($name, "", "-s"),
+            cv.getVar($name, "", "-l"),
+            cv.getVar("focus-shadow-alpha")
           );
       }
     }

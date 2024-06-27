@@ -245,8 +245,8 @@ $steps-thin-marker-size: .8em !default
 
 // Override marker color per step
 @each $name, $pair in dv.$colors
-  $color: #{cv.getVar($name)}
-  $color-invert: #{cv.getVar($name, "", "invert")}
+  $color: cv.getVar($name)
+  $color-invert: cv.getVar($name, "", "invert")
   .steps:not(.is-hollow) .steps-marker:not(.is-hollow)
     &.is-#{$name}
       background-color: $color !important
