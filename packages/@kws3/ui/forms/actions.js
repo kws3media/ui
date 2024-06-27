@@ -4,7 +4,7 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
   return function (
     node,
     // eslint-disable-next-line no-unused-vars
-    { opts, value, placeholder, klass, style, disabled, color }
+    { opts, value, placeholder, klass, style, disabled, color },
   ) {
     const _opts = {};
 
@@ -47,7 +47,7 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
         node.dispatchEvent(
           new CustomEvent(name, {
             detail: [selectedDates, dateStr, instance],
-          })
+          }),
         );
       };
     }
@@ -121,7 +121,7 @@ export let datepicker = createFlatpickrAction(
     dateFormat: "Y-m-d",
   },
   ["onOpen", "onClose", "onMonthChange", "onYearChange", "onReady"],
-  "date"
+  "date",
 );
 
 /**
@@ -136,5 +136,5 @@ export let timepicker = createFlatpickrAction(
     noCalendar: true,
   },
   ["onOpen", "onClose", "onReady"],
-  "time"
+  "time",
 );

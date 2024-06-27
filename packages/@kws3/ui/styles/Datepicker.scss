@@ -1,21 +1,13 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
-@use "bulma/sass/utilities/functions" as fn;
 
 $theme-colors: dv.$colors !default;
 $background: cv.getVar("scheme-main-ter") !default;
-$text: dv.$text !default;
-$shadow:
-  0 2px 5px rgba(0, 0, 0, 0.3),
-  0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
-$radius: 0px !default;
+$text: cv.getVar("text") !default;
+$shadow: cv.getVar("shadow") !default;
+$radius: cv.getVar("radius-small") !default;
 
 .flatpickr-calendar {
-  $inRangeBg: fn.bulmaLighten($text, 55);
-  @if (fn.bulmaColorLuminance($text) > 0.55) {
-    $inRangeBg: fn.bulmaDarken($text, 55);
-  }
-
   box-shadow: $shadow;
   background: $background;
   color: $text;
@@ -32,10 +24,10 @@ $radius: 0px !default;
   }
 
   @each $name, $pair in $theme-colors {
-    $color: nth($pair, 1);
-    $color-invert: fn.bulmaFindColorInvert($color);
-    $color-light: fn.bulmaFindLightColor($color);
-    $color-dark: fn.bulmaFindDarkColor($color);
+    $color: cv.getVar($name);
+    $color-invert: cv.getVar($name, "", "-invert");
+    $color-light: cv.getVar($name, "", "-light");
+    $color-dark: cv.getVar($name, "", "-dark");
     &.is-#{$name} {
       &.arrowTop:before,
       &.arrowTop:after {
@@ -148,13 +140,25 @@ $radius: 0px !default;
     &.notAllowed,
     &.notAllowed.prevMonthDay,
     &.notAllowed.nextMonthDay {
-      color: transparentize($text, 0.7);
+      color: hsla(
+        cv.getVar("text-h"),
+        cv.getVar("text-s"),
+        cv.getVar("text-l"),
+        0.6
+      );
+    }
+
+    &.startRange,
+    &.endRange {
+      background-color: cv.getVar("text");
+      border-color: cv.getVar("text");
+      color: cv.getVar("text-invert");
     }
 
     &.inRange {
       box-shadow:
-        -5px 0 0 $inRangeBg,
-        5px 0 0 $inRangeBg;
+        -5px 0 0 cv.getVar("text-weak"),
+        5px 0 0 cv.getVar("text-weak");
     }
 
     &.inRange,
@@ -169,8 +173,9 @@ $radius: 0px !default;
     &:focus,
     &.prevMonthDay:focus,
     &.nextMonthDay:focus {
-      background: $inRangeBg;
-      border-color: $inRangeBg;
+      background: cv.getVar("text-weak");
+      border-color: cv.getVar("text-weak");
+      color: cv.getVar("text-invert");
     }
   }
 }

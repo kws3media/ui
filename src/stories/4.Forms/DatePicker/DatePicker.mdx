@@ -29,23 +29,23 @@ import * as Stories from "./DatePicker.stories";
 #### Import the SCSS:
 
 <div className="notification is-warning">
-  <strong>Note:</strong> <em>Need to import flatpicker SCSS file first</em>
+  <strong>Note:</strong> <em> Need to import flatpicker SCSS file first</em>
 </div>
 <Source
   code={dedent`
-    @use 'flatpickr/dist/flatpickr';
-    @use '@kws3/ui/styles/Datepicker.scss';`}
+    @use 'flatpickr/dist/flatpickr';`}
 />
 
-#### SCSS customization variables with default values:
-
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  language="css"
   code={dedent`
       @use '@kws3/ui/styles/Datepicker.scss' with (
-        $theme-colors: dv.$colors !default;
-        $background: cv.getVar("scheme-main-ter") !default;
-        $text: dv.$text !default;
+        $theme-colors: dv.$colors,
+        $background: cv.getVar("scheme-main-ter"),
+        $text: cv.getVar("text"),
+        $shadow: cv.getVar("shadow"),
+        $radius: cv.getVar("radius-small"),
       );
     `}
 />
