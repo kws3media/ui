@@ -40,18 +40,63 @@ Toasts.remove(props);
 ```
 
 
-##### Import the CSS:
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={ dedent`@use '@kws3/ui/styles/FloatingUI.scss';`}
-/>
-
-##### SCSS customization variables with default values:
-<Source
-  language='css'
   code={ dedent`
-    @use '@kws3/ui/styles/FloatingUI.scss with(
-      $theme-colors: dv.$colors !default;
-      $item-width: 25rem !default;
+    @use '@kws3/ui/styles/FloatingUI.scss' with(
+      $theme-colors: dv.$colors,
+      $item-width: 25rem,
+      $progressbar-radius: 0 cv.getVar("radius") cv.getVar("radius")
+        cv.getVar("radius"),
+      $notification-radius: cv.getVar("radius"),
+      $notification-shadow:
+        0 1px 4px
+          hsla(
+            cv.getVar("shadow-h"),
+            cv.getVar("shadow-s"),
+            cv.getVar("shadow-l"),
+            0.12
+          ),
+        0 0 6px
+          hsla(
+            cv.getVar("shadow-h"),
+            cv.getVar("shadow-s"),
+            cv.getVar("shadow-l"),
+            0.04
+          ),
+      $snackbar-radius: cv.getVar("radius"),
+      $snackbar-shadow:
+        0 1px 4px
+          hsla(
+            cv.getVar("shadow-h"),
+            cv.getVar("shadow-s"),
+            cv.getVar("shadow-l"),
+            0.12
+          ),
+        0 0 6px
+          hsla(
+            cv.getVar("shadow-h"),
+            cv.getVar("shadow-s"),
+            cv.getVar("shadow-l"),
+            0.04
+          ),
+      $toast-radius: 1.5em,
+      $toast-shadow:
+        0 1px 4px
+          hsla(
+            cv.getVar("shadow-h"),
+            cv.getVar("shadow-s"),
+            cv.getVar("shadow-l"),
+            0.12
+          ),
+        0 0 6px
+          hsla(
+            cv.getVar("shadow-h"),
+            cv.getVar("shadow-s"),
+            cv.getVar("shadow-l"),
+            0.04
+          ),
     );
   `}
 />
