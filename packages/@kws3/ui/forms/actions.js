@@ -112,7 +112,19 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
 }
 
 /**
- * @type {import("svelte/action").Action}
+ * @typedef {import("svelte/action").Action<HTMLElement, {
+ * opts:object,
+ * value:string,
+ * placeholder:string,
+ * klass:string,
+ * style:string,
+ * disabled:boolean,
+ * color:string
+ * }>} FlatpickerAction
+*/
+
+/**
+ * @type {FlatpickerAction}
  */
 export let datepicker = createFlatpickrAction(
   {
@@ -125,8 +137,8 @@ export let datepicker = createFlatpickrAction(
 );
 
 /**
- * @type {import("svelte/action").Action}
- */
+ * @type {FlatpickerAction}
+*/
 export let timepicker = createFlatpickrAction(
   {
     altInput: true,
