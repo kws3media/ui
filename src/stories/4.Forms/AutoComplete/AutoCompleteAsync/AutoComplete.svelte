@@ -1,5 +1,5 @@
 <div id="ss_container">
-  <div class="columns">
+  <div class="columns px-5 pb-2 pt-5">
     <div class="column is-6">
       <Panel title="Input data" collapsible collapsed>
         <pre>{JSON.stringify(characters_string_only, null, 1)}</pre>

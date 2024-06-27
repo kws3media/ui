@@ -38,6 +38,9 @@ export default {
   component: AutoComplete,
   args: args,
   argTypes: argTypes,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {
