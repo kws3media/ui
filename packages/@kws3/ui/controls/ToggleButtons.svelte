@@ -43,8 +43,7 @@ This property can be bound to, to fetch the current value, Default: `null`
             (option.active_class ? option.active_class : active_class)
           : option.inactive_class
             ? option.inactive_class
-            : inactive_class}"
-        style="height:auto">
+            : inactive_class}">
         <span>
           {#if option.icon}
             <Icon icon={option.icon} size="small" class="marginless" />
@@ -61,46 +60,6 @@ This property can be bound to, to fetch the current value, Default: `null`
     </div>
   {/each}
 </div>
-
-<style lang="scss">
-  .kws-toggle-buttons {
-    .button,
-    .button:focus {
-      :global(.icon) {
-        margin: 0;
-      }
-      box-shadow: none;
-      &.is-active {
-        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3) inset !important;
-      }
-    }
-    .button {
-      position: relative;
-      .option-subtitle {
-        font-size: 0.7em;
-        display: block;
-        margin-top: -0.3em;
-        opacity: 0.7;
-      }
-      .count {
-        position: absolute;
-        font-weight: 600;
-        font-size: 0.8em;
-        border-radius: 999px;
-        padding: 0.15em 0.2em;
-        min-width: 1.8em;
-        min-height: 1.5em;
-        top: -0.75em;
-        right: 0.2em;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: #ca0303;
-        color: #fff;
-      }
-    }
-  }
-</style>
 
 <script>
   import { createEventDispatcher } from "svelte";
@@ -151,7 +110,7 @@ This property can be bound to, to fetch the current value, Default: `null`
     /**
      * CSS classes to apply when a button is inactive (not pressed)
      */
-    inactive_class = "is-outlined",
+    inactive_class = "",
     /**
      * Size of the Toggle Buttons
      * @type {SizeOptions}
