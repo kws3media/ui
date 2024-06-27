@@ -87,8 +87,8 @@ $margin: 1rem !default;
   }
 
   @each $name, $pair in $theme-colors {
-    $color: nth($pair, 1);
-    $color-light: findLightColor($color);
+    $color: cv.getVar($name);
+    $color-light: cv.getVar($name, "", "-light");
     &.is-#{$name} {
       &::after,
       &::before {

@@ -31,14 +31,13 @@ import * as Stories from "./Divider.stories";
 
 ##### SCSS customization variables with default values:
 <Source
-  language='css'
   code={ dedent`
     @use '@kws3/ui/styles/Divider.scss' with (
-      $theme-colors: dv.$colors !default;
-      $color: cv.getVar("border") !default;
-      $font-size: cv.getVar("size-smal") !default;
-      $gap: 0.25rem !default;
-      $margin: 1rem !default;
+      $theme-colors: dv.$colors !default,
+      $color: cv.getVar("border") !default,
+      $font-size: cv.getVar("size-smal") !default,
+      $gap: 0.25rem !default,
+      $margin: 1rem !default
     );
   `}
 />
