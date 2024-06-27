@@ -4,24 +4,24 @@
 
 $theme-colors: dv.$colors !default;
 $radius: cv.getVar("radius") !default;
-$track-background: cv.getVar("grey-lighter") !default;
+$track-background: cv.getVar("border") !default;
 $track-radius: cv.getVar("radius") !default;
-$track-border: 0px solid cv.getVar("grey") !default;
-$track-shadow: 0px 0px 0px cv.getVar("grey") !default;
-$thumb-background: cv.getVar("white") !default;
-$thumb-radius: cv.getVar("radius") !default;
-$thumb-border: 1px solid cv.getVar("grey-light") !default;
+$track-border: 0px solid cv.getVar("border") !default;
+$track-shadow: cv.getVar("input-shadow") !default;
+$thumb-background: cv.getVar("text-invert") !default;
+$thumb-radius: cv.getVar("radius-small") !default;
+$thumb-border: 1px solid cv.getVar("border") !default;
 $thumb-shadow: none !default;
 $thumb-to-track-ratio: 2 !default;
 $output-width: 3rem !default;
-$output-background: cv.getVar("grey-dark") !default;
-$output-color: cv.getVar("white") !default;
-$output-radius: cv.getVar("radius") !default;
+$output-background: cv.getVar("scheme-invert-ter") !default;
+$output-color: cv.getVar("text-invert") !default;
+$output-radius: cv.getVar("radius-small") !default;
 
 @use "sass:math";
 
 @mixin slider-size($size) {
-  $track-height: $size / $thumb-to-track-ratio;
+  $track-height: calc($size / $thumb-to-track-ratio);
   $thumb-size: $size;
 
   min-height: calc((#{$size} + 2px) * 1.25);
@@ -51,7 +51,7 @@ $output-radius: cv.getVar("radius") !default;
     margin-top: 0;
   }
   &::-webkit-slider-thumb {
-    margin-top: -($thumb-size / 4);
+    margin-top: calc($thumb-size / 4 * -1);
   }
 }
 
@@ -121,6 +121,7 @@ $output-radius: cv.getVar("radius") !default;
           position: absolute;
           left: 0;
           top: -1.8rem;
+          margin: 0;
         }
       }
 
@@ -146,11 +147,11 @@ $output-radius: cv.getVar("radius") !default;
         border: $track-border;
       }
       &::-ms-fill-lower {
-        background: cv.getVar("grey-lighter");
+        background: $track-background;
         border-radius: $radius;
       }
       &::-ms-fill-upper {
-        background: cv.getVar("grey-lighter");
+        background: $track-background;
         border-radius: $radius;
       }
       &::-webkit-slider-thumb {
@@ -228,10 +229,10 @@ $output-radius: cv.getVar("radius") !default;
         @include slider-size(cv.getVar("size-large"));
       }
       @each $name, $pair in $theme-colors {
-        $color: nth($pair, 1);
-        $color-invert: fn.bulmaFindColorInvert($color);
-        $color-light: fn.bulmaFindLightColor($color);
-        $color-dark: fn.bulmaFindDarkColor($color);
+        $color: cv.getVar($name);
+        $color-invert: cv.getVar($name, "", "-invert");
+        $color-light: cv.getVar($name, "", "-light");
+        $color-dark: cv.getVar($name, "", "-dark");
         &.is-#{$name} {
           &::-moz-range-track {
             background: $color !important;

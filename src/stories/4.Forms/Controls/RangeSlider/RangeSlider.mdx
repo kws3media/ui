@@ -11,7 +11,7 @@ import * as Stories from "./RangeSlider.stories.js";
 
 
 <Meta of={Stories} />
-<Canvas of={Stories.Main} />
+<Canvas of={Stories.Main} layout="padded" />
 <Controls />
 
 ### Usage
@@ -35,21 +35,21 @@ import * as Stories from "./RangeSlider.stories.js";
   code={
     dedent`
       @use '@kws3/ui/styles/RangeSlider.scss' with(
-        $theme-colors: dv.$colors !default;
-        $radius: cv.getVar("radius") !default;
-        $track-background: cv.getVar("grey-lighter") !default;
-        $track-radius: cv.getVar("radius") !default;
-        $track-border: 0px solid cv.getVar("grey") !default;
-        $track-shadow: 0px 0px 0px cv.getVar("grey") !default;
-        $thumb-background: cv.getVar("white") !default;
-        $thumb-radius: cv.getVar("radius") !default;
-        $thumb-border: 1px solid cv.getVar("grey-light") !default;
-        $thumb-shadow: none !default;
-        $thumb-to-track-ratio: 2 !default;
-        $output-width: 3rem !default;
-        $output-background: cv.getVar("grey-dark") !default;
-        $output-color: cv.getVar("white") !default;
-        $output-radius: cv.getVar("radius") !default;
+        $theme-colors: dv.$colors,
+        $radius: cv.getVar("radius"),
+        $track-background: cv.getVar("border"),
+        $track-radius: cv.getVar("radius"),
+        $track-border: 0px solid cv.getVar("border"),
+        $track-shadow: cv.getVar("input-shadow"),
+        $thumb-background: cv.getVar("text-invert"),
+        $thumb-radius: cv.getVar("radius-small"),
+        $thumb-border: 1px solid cv.getVar("border"),
+        $thumb-shadow: none,
+        $thumb-to-track-ratio: 2,
+        $output-width: 3rem,
+        $output-background: cv.getVar("scheme-invert-ter"),
+        $output-color: cv.getVar("text-invert"),
+        $output-radius: cv.getVar("radius-small"),
       );
     `
   }
