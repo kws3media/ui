@@ -219,6 +219,9 @@ pre.prismjs {
   z-index: 2;
   display: flex;
   flex-direction: column;
+  span {
+    font-size: 0.75rem;
+  }
   .artifact-item-block {
     display: flex;
     flex-direction: row;
