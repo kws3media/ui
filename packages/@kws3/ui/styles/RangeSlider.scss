@@ -1,6 +1,5 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
-@use "bulma/sass/utilities/functions" as fn;
 
 $theme-colors: dv.$colors !default;
 $radius: cv.getVar("radius") !default;
