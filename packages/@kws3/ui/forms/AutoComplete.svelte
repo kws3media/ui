@@ -65,7 +65,7 @@ Default value: `<span>{option.label}</span>`
     <button
       type="button"
       style="border: none;"
-      class="button paddingless delete is-medium is-loading" />
+      class="button delete paddingless is-small is-loading" />
   {/if}
   {#if rootContainer}
     <div
