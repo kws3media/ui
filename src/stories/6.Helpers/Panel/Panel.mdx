@@ -15,23 +15,20 @@ import * as Stories from "./Panel.stories";
   code={ dedent`import { Panel } from '@kws3/ui';`}
 />
 
-##### Import the CSS:
-<Source
-  code={ dedent`@use '@kws3/ui/styles/Panel.scss';`}
-/>
-
-##### SCSS customization variables with default values:
+#### Import the SCSS:
+_Default values shown as example_
 <Source
   language='css'
   code={ dedent`
     @use '@kws3/ui/styles/Panel.scss' with(
-      $heading-background: cv.getVar("scheme-main-bis") !default;
-      $background: cv.getVar("scheme-main") !default;
-      $box-shadow: cv.getVar("panel-shadow") !default;
-      $title-color: cv.getVar("scheme-invert-bis") !default;
-      $title-weight: 700 !default;
-      $caret-open-color: #888 !default;
-      $caret-closed-color: #00a4d8 !default;
+      $heading-background: cv.getVar("scheme-main-bis"),
+      $background: cv.getVar("scheme-main"),
+      $box-shadow: cv.getVar("shadow"),
+      $color: cv.getVar("text"),
+      $title-color: cv.getVar("text"),
+      $title-weight: 700,
+      $caret-open-color: cv.getVar("text"),
+      $caret-closed-color: cv.getVar("link"),
     );
   `}
 />

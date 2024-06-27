@@ -2,11 +2,12 @@
 
 $heading-background: cv.getVar("scheme-main-bis") !default;
 $background: cv.getVar("scheme-main") !default;
-$box-shadow: cv.getVar("panel-shadow") !default;
-$title-color: cv.getVar("scheme-invert-bis") !default;
-$title-weight: 700 !default;
-$caret-open-color: #888 !default;
-$caret-closed-color: #00a4d8 !default;
+$box-shadow: cv.getVar("shadow") !default;
+$color: cv.getVar("text") !default;
+$title-color: cv.getVar("text") !default;
+$title-weight: 600 !default;
+$caret-open-color: cv.getVar("text") !default;
+$caret-closed-color: cv.getVar("link") !default;
 
 .panel {
   background: $background;
@@ -35,6 +36,7 @@ $caret-closed-color: #00a4d8 !default;
     border: none;
     padding: 0.9375rem 1.25rem 1.25rem 1.25rem;
     display: block;
+    color: $color;
   }
 
   &.collapsible .panel-heading {
