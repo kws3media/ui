@@ -27,7 +27,7 @@ $overlay-background: rgba(0, 0, 0, 0.15) !default;
     }
 
     @each $name, $pair in $theme-colors {
-      $color: nth($pair, 1);
+      $color: cv.getVar($name);
       &.is-#{$name} {
         &:after {
           border-left-color: $color !important;
