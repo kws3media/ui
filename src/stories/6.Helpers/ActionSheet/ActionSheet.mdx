@@ -14,27 +14,22 @@ import * as Stories from "./ActionSheet.stories";
 <Controls />
 
 ### Usage
+#### Import the component:
 <Source
   code={ dedent`import { ActionSheet } from '@kws3/ui';`}
 />
 
 #### Import the SCSS:
+_Default values shown as example_
 <Source
   code={
-    dedent`@use '@kws3/ui/styles/ActionSheet.scss';`
+    dedent`
+      @use '@kws3/ui/styles/ActionSheet.scss' with(
+        $background: cv.getVar("background"),
+        $box-shadow: cv.getVar("shadow"),
+        $box-radius: cv.getVar("radius")
+      );`
   }
-/>
-
-##### SCSS customization variables with default values:
-<Source
-  language='css'
-  code={ dedent`
-    @use '@kws3/ui/styles/ActionSheet.scss' with (
-      $background: cv.getVar("background") !default;
-      $box-shadow: cv.getVar("shadow") !default;
-      $box-radius: cv.getVar("radius") !default;
-    );
-  `}
 />
 
 ### Example
