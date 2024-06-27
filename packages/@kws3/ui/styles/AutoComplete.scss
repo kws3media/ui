@@ -78,10 +78,10 @@ $options-z-index: $__modal-z + 1 !default;
     border: 1px solid $border-color;
     box-shadow: $box-shadow;
     position: relative;
+    border-radius: 0 0 $radius $radius;
     z-index: 4;
     &[data-popper-placement="top"] {
       border-radius: $radius $radius 0 0;
-      box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.4);
     }
     &.hidden {
       display: none;
