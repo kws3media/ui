@@ -1,21 +1,20 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
-@use "bulma/sass/utilities/functions" as fn;
 
-$off-bg-color: cv.getVar("background") !default;
-$handle-bg-color: cv.getVar("white") !default;
-$track-bg-color: cv.getVar("text") !default;
-$track-bg-color-invert: findColorInvert($track-bg-color) !default;
-$border-color: cv.getVar("border") !default;
 $theme-colors: dv.$colors !default;
+$off-bg-color: cv.getVar("background") !default;
+$handle-bg-color: cv.getVar("text-invert") !default;
+$track-bg-color: cv.getVar("text") !default;
+$track-bg-color-invert: cv.getVar("text-invert") !default;
+$border-color: cv.getVar("border") !default;
 
-.button {
+.kws-toggle-button {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   pointer-events: auto;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font-size: 0.9rem;
+  font-size: cv.getVar("size-normal");
   .track {
     transition:
       background-color 0.3s,
@@ -39,7 +38,7 @@ $theme-colors: dv.$colors !default;
       text-align: right;
       user-select: none;
       margin: 0 0.5em;
-      color: findColorInvert($off-bg-color);
+      color: $track-bg-color;
     }
     .handle {
       transition: transform 0.3s cubic-bezier(0, 1.1, 1, 1.1);
@@ -69,10 +68,8 @@ $theme-colors: dv.$colors !default;
       transform: translate3d(1.785em, 0, 0);
     }
     @each $name, $pair in $theme-colors {
-      $color: nth($pair, 1);
-      $color-invert: fn.bulmaFindColorInvert($color);
-      $color-light: fn.bulmaFindLightColor($color);
-      $color-dark: fn.bulmaFindDarkColor($color);
+      $color: cv.getVar($name);
+      $color-invert: cv.getVar($name, "", "-invert");
       &.is-#{$name} {
         .track {
           border-color: $color;
@@ -85,12 +82,12 @@ $theme-colors: dv.$colors !default;
     }
   }
   &.is-small {
-    font-size: 0.75rem;
+    font-size: cv.getVar("size-small");
   }
   &.is-medium {
-    font-size: 1rem;
+    font-size: cv.getVar("size-medium");
   }
   &.is-large {
-    font-size: 1.25rem;
+    font-size: cv.getVar("size-large");
   }
 }
