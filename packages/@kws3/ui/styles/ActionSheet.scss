@@ -22,6 +22,7 @@ $box-radius: cv.getVar("radius") !default;
   bottom: 0;
   width: 100%;
   max-height: 90%;
+  min-height: -moz-fit-content;
   min-height: fit-content;
   max-width: 650px;
   margin: 0 auto;
