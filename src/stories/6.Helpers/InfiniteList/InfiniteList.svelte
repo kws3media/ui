@@ -18,7 +18,7 @@
           ><TargetComponent {item} {index} on:rowClick={rowClicked} /></span>
         <div slot="loader" class="has-text-centered">
           {#if loading}
-            <span class="button is-text is-large is-loading" style="" />
+            <span class="button is-ghost is-large is-loading" style="" />
           {/if}
         </div>
       </KwsInfiniteList>
