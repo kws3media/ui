@@ -23,21 +23,16 @@ import * as Stories from "./Divider.stories";
 
 <div className="notification is-light is-info">Use <code>m-*</code> helper classes from Bulma to precisely control the spacing around the divider.</div>
 
-
-##### Import the CSS:
-<Source
-  code={ dedent`@use '@kws3/ui/styles/Divider.scss';`}
-/>
-
-##### SCSS customization variables with default values:
+#### Import the SCSS:
+_Default values shown as example_
 <Source
   code={ dedent`
     @use '@kws3/ui/styles/Divider.scss' with (
-      $theme-colors: dv.$colors !default,
-      $color: cv.getVar("border") !default,
-      $font-size: cv.getVar("size-smal") !default,
-      $gap: 0.25rem !default,
-      $margin: 1rem !default
+      $theme-colors: dv.$colors,
+      $color: cv.getVar("border"),
+      $font-size: cv.getVar("size-small"),
+      $gap: 0.25rem,
+      $margin: 1rem
     );
   `}
 />
