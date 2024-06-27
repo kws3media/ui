@@ -1,43 +1,29 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
-@use "bulma/sass/utilities/functions" as fn;
 
 $theme-colors: dv.$colors !default;
-$bg-color: cv.getVar("background-white") !default;
-$border-color: cv.getVar("border") !default;
-$shadow: cv.getVar("shadow-s") !default;
-$radius: cv.getVar("radius") !default;
-$text-color: cv.getVar("text") !default;
-$disabled-bg-color: cv.getVar("white-ter") !default;
-$disabled-border-color: cv.getVar("white-ter") !default;
 $progress-bg-color: cv.getVar("success-light") !default;
 $progress-text-color: cv.getVar("success-dark") !default;
-$progress-anim-easing: linear !default;
-@if (variable-exists(cv.getVar("easeOutCustom"))) {
-  $progress-anim-easing: cv.getVar("easeOutCustom") !default;
-}
+$progress-easing: linear !default;
 
 .kws-file-upload {
   width: 100%;
   .file-upload-inner {
     position: relative;
-    background: $bg-color;
-    border: 1px solid $border-color;
-    border-radius: $radius;
     max-width: 100%;
-    height: 2.5rem;
-    .file {
+    height: cv.getVar("control-height");
+    .file-target {
       overflow: hidden;
       height: 100%;
       position: absolute;
       left: 0;
       top: 0;
       right: 2rem;
-      box-shadow: $shadow;
-      .filename,
+      .file-name,
       .upload-progress,
       .progress-caption {
-        padding: 0.7rem 0.5rem;
+        padding: cv.getVar("control-padding-horizontal")
+          cv.getVar("control-padding-vertical");
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -58,11 +44,12 @@ $progress-anim-easing: linear !default;
           width: 100%;
           height: 100%;
           .bar {
-            border-radius: $radius 0 0 $radius;
+            border-radius: cv.getVar("input-radius") 0 0
+              cv.getVar("input-radius");
             position: relative;
             height: 100%;
             background: $progress-bg-color;
-            transition: width 0.3s $progress-anim-easing;
+            transition: width 0.3s $progress-easing;
           }
         }
       }
@@ -79,9 +66,9 @@ $progress-anim-easing: linear !default;
       }
     }
     .up-icon {
-      border-radius: 0 $radius $radius 0;
-      background: $border-color;
-      color: $text-color;
+      border-radius: 0 cv.getVar("input-radius") cv.getVar("input-radius") 0;
+      background: cv.getVar("border");
+      color: cv.getVar("text");
       padding: 0.5rem 0;
       width: 2rem;
       text-align: center;
@@ -94,11 +81,12 @@ $progress-anim-easing: linear !default;
       justify-content: center;
       .icon {
         height: 1.4rem;
+        font-size: 1em;
       }
       .loader {
         margin: 0.2rem auto;
-        border-left-color: $text-color;
-        border-bottom-color: $text-color;
+        border-left-color: cv.getVar("text");
+        border-bottom-color: cv.getVar("text");
       }
     }
     input[type="file"] {
@@ -111,13 +99,12 @@ $progress-anim-easing: linear !default;
     }
   }
   @each $name, $pair in $theme-colors {
-    $color: nth($pair, 1);
-    $color-invert: fn.bulmaFindColorInvert($color);
-    $color-light: fn.bulmaFindLightColor($color);
-    $color-dark: fn.bulmaFindDarkColor($color);
+    $color: cv.getVar($name);
+    $color-invert: cv.getVar($name, "", "-invert");
+    $color-light: cv.getVar($name, "", "-light");
+    $color-dark: cv.getVar($name, "", "-dark");
     &.is-#{$name} {
       .file-upload-inner {
-        border-color: $color;
         .up-icon {
           background: $color;
           color: $color-invert;
@@ -142,19 +129,19 @@ $progress-anim-easing: linear !default;
   &.is-disabled {
     opacity: 0.6;
     .file-upload-inner {
-      background: $disabled-bg-color;
-      border-color: $disabled-border-color;
-      color: $text-color;
+      background: cv.getVar("input-disabled-background-color");
+      border-color: cv.getVar("input-disabled-border-color");
+      color: cv.getVar("input-disabled-color");
       .up-icon {
         text-shadow: none;
-        background: $disabled-bg-color;
+        background: cv.getVar("input-disabled-background-color");
       }
       .file {
         box-shadow: none;
       }
     }
     @each $name, $pair in $theme-colors {
-      $color: nth($pair, 1);
+      $color: cv.getVar($name);
       &.is-#{$name} {
         .icon {
           color: $color;
@@ -168,27 +155,24 @@ $progress-anim-easing: linear !default;
   }
 
   &.is-small {
-    .file-upload-inner {
-      font-size: 0.75rem;
-      height: 2rem;
+    .file-target {
+      right: 1.75rem;
     }
     .up-icon {
       width: 1.75rem;
     }
   }
   &.is-medium {
-    .file-upload-inner {
-      font-size: 1.25rem;
-      height: 3rem;
+    .file-target {
+      right: 2.5rem;
     }
     .up-icon {
       width: 2.5rem;
     }
   }
   &.is-large {
-    .file-upload-inner {
-      font-size: 1.5rem;
-      height: 3.5rem;
+    .file-target {
+      right: 3rem;
     }
     .up-icon {
       width: 3rem;

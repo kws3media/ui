@@ -32,7 +32,10 @@ The following functions are returned in `event.detail`:
   class="kws-file-upload {klass} is-{color} is-{size} is-{_error
     ? 'danger'
     : ''} {disabled ? 'is-disabled' : ''} {_is_finished ? 'is-success' : ''}">
-  <div class="file-upload-inner">
+  <div
+    class="file-upload-inner input is-{color} is-{size} is-{_error
+      ? 'danger'
+      : ''}">
     <div class="up-icon">
       {#if _is_uploading}
         <span class="loader" />
@@ -42,7 +45,7 @@ The following functions are returned in `event.detail`:
         <Icon size="" icon="upload" class="fa-lg" />
       {/if}
     </div>
-    <div class="file">
+    <div class="file-target">
       {#if _is_uploading}
         <div class="upload-progress">
           <div class="progress-inner">
@@ -51,9 +54,9 @@ The following functions are returned in `event.detail`:
         </div>
         <div class="progress-caption">{_progress}% - Uploading...</div>
       {:else if _is_finished}
-        <div class="filename">Upload complete!</div>
+        <div class="file-name">Upload complete!</div>
       {:else}
-        <div class="filename"><span>{_filename}</span></div>
+        <div class="file-name"><span>{_filename}</span></div>
       {/if}
     </div>
     <input
