@@ -1,4 +1,6 @@
 /**
+ * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+ *
  * @typedef {import("svelte/action").Action<HTMLElement, {
  * opts:object,
  * value:string,
@@ -6,7 +8,7 @@
  * klass:string,
  * style:string,
  * disabled:boolean,
- * color:string
+ * color: ColorOptions
  * }>} FlatpickerAction
 */
 /**
@@ -17,6 +19,7 @@ export let datepicker: FlatpickerAction;
  * @type {FlatpickerAction}
 */
 export let timepicker: FlatpickerAction;
+export type ColorOptions = import('@kws3/ui/types').ColorOptions;
 export type FlatpickerAction = import("svelte/action").Action<HTMLElement, {
     opts: object;
     value: string;
@@ -24,6 +27,6 @@ export type FlatpickerAction = import("svelte/action").Action<HTMLElement, {
     klass: string;
     style: string;
     disabled: boolean;
-    color: string;
+    color: ColorOptions;
 }>;
 //# sourceMappingURL=actions.d.ts.map
