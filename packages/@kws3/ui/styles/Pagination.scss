@@ -6,16 +6,30 @@ $item-background: cv.getVar("scheme-main") !default;
 $item-border: 1px solid cv.getVar("border") !default;
 $item-hover-color: $item-color !default;
 $item-hover-border: $item-border !default;
-$item-disabled-background: cv.getVar("scheme-main-ter") !default;
-$item-disabled-color: cv.getVar("grey") !default;
-$item-ellipsis-background: cv.getVar("scheme-main-ter") !default;
-$item-ellipsis-border-color: cv.getVar("scheme-main-ter") !default;
+$item-disabled-background: cv.getVar(
+  "pagination-disabled-background-color"
+) !default;
+$item-disabled-color: cv.getVar("pagination-disabled-color") !default;
+$item-ellipsis-background: transparent !default;
+$item-ellipsis-border-color: transparent !default;
 $item-active-background: cv.getVar("success") !default;
-$item-active-color: findColorInvert($item-active-background) !default;
+$item-active-color: cv.getVar("success-invert") !default;
 
 $frame-box-shadow:
-  0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
-  0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
+  0 0.125rem 0.1875rem
+    rgba(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.1
+    ),
+  0 0 0 0.0625rem
+    rgba(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.1
+    ) !default;
 $frame-background: linear-gradient(
   cv.getVar("scheme-main"),
   cv.getVar("scheme-main-ter")
@@ -80,11 +94,17 @@ $frame-background: linear-gradient(
 @include mx.mobile {
   .pagination_frame {
     .level {
-      display: flex;
-      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
       .level-right {
-        margin-top: 0.75rem;
-        flex-basis: 100%;
+        margin-top: 0;
+      }
+      .level-left {
+        .level-item {
+          .pagination {
+            flex-direction: column;
+          }
+        }
       }
     }
     .pagination-showing {
