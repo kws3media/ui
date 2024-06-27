@@ -29,12 +29,6 @@ This property can be bound to, to fetch the current value, Default: `false`
   </div>
 </div>
 
-<style lang="scss">
-  .disabled {
-    opacity: 0.5;
-  }
-</style>
-
 <script>
   import { createEventDispatcher } from "svelte";
 

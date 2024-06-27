@@ -21,24 +21,18 @@ import * as Stories from "./Toggle.stories.js";
 />
 
 #### Import the SCSS:
-<Source
-  code={
-    dedent`@use '@kws3/ui/styles/Toggle.scss';`
-  }
-/>
-
-#### SCSS customization variables with default values:
+_Default values shown as example_
 <Source
   language="css"
   code={
     dedent`
       @use '@kws3/ui/styles/Toggle.scss' with(
-        $off-bg-color: cv.getVar("background") !default;
-        $handle-bg-color: cv.getVar("white") !default;
-        $track-bg-color: cv.getVar("text") !default;
-        $track-bg-color-invert: findColorInvert($track-bg-color) !default;
-        $border-color: cv.getVar("border") !default;
-        $theme-colors: dv.$colors !default;
+        $theme-colors: dv.$colors,
+        $off-bg-color: cv.getVar("border-weak"),
+        $handle-bg-color: cv.getVar("text-invert"),
+        $track-bg-color: cv.getVar("text"),
+        $track-bg-color-invert: cv.getVar("text-invert"),
+        $border-color: cv.getVar("border"),
       );
     `
   }

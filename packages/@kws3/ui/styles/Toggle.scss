@@ -2,7 +2,7 @@
 @use "bulma/sass/utilities/derived-variables" as dv;
 
 $theme-colors: dv.$colors !default;
-$off-bg-color: cv.getVar("background") !default;
+$off-bg-color: cv.getVar("border-weak") !default;
 $handle-bg-color: cv.getVar("text-invert") !default;
 $track-bg-color: cv.getVar("text") !default;
 $track-bg-color-invert: cv.getVar("text-invert") !default;
@@ -15,15 +15,18 @@ $border-color: cv.getVar("border") !default;
   pointer-events: auto;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-size: cv.getVar("size-normal");
+  &.disabled {
+    opacity: 0.5;
+  }
   .track {
     transition:
       background-color 0.3s,
       border 0.3s;
     display: inline-flex;
     align-items: center;
-    width: 3.93em;
-    height: 2.21em;
-    border: solid 2px $border-color;
+    width: 4.2em;
+    height: 2.5em;
+    border: solid 1px $border-color;
     border-radius: 1.428em;
     background-color: $off-bg-color;
     content: " ";
@@ -44,9 +47,9 @@ $border-color: cv.getVar("border") !default;
       transition: transform 0.3s cubic-bezier(0, 1.1, 1, 1.1);
       position: absolute;
       display: block;
-      width: 1.928em;
-      height: 1.928em;
-      border-radius: 1.928em;
+      width: 2.18em;
+      height: 2.18em;
+      border-radius: 2.18em;
       background-color: $handle-bg-color;
       box-shadow:
         0 2px 7px rgba(0, 0, 0, 0.35),
@@ -65,7 +68,7 @@ $border-color: cv.getVar("border") !default;
       }
     }
     .handle {
-      transform: translate3d(1.785em, 0, 0);
+      transform: translate3d(1.9em, 0, 0);
     }
     @each $name, $pair in $theme-colors {
       $color: cv.getVar($name);
