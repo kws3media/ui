@@ -12,7 +12,7 @@
         class=""
         on_text="Grid"
         off_text="Tile"
-        size="medium" />
+        size="" />
     </ToggleControl>
   </div>
 </div>
