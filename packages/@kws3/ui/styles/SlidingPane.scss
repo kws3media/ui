@@ -1,5 +1,7 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 
+$easing: cv.getVar("easing") !default;
+
 .sliding-pane-set {
   position: relative;
   overflow: hidden;
@@ -12,7 +14,7 @@
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transition:
-      transform 0.4s cv.getVar("easing"),
+      transform 0.4s $easing,
       opacity 0.1s;
     transform-origin: left top;
     .sliding-pane-inner {

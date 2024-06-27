@@ -18,9 +18,14 @@ import * as Stories from "./Slidingpane.stories.js";
   code={ dedent`import { SlidingPane, SlidingPaneSet } from '@kws3/ui';`}
 />
 
-##### Import the SCSS:
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={ dedent`@import '@kws3/ui/styles/SlidingPane.scss';`}
+  code={ dedent`
+    @use '@kws3/ui/styles/SlidingPane.scss' with(
+      $easing: cv.getVar("easing"),
+    );
+  `}
 />
 
 ##### Example

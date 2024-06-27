@@ -4,7 +4,7 @@
   <small slot="below">Rejoice in merriment</small>
   <img
     slot="thumbnail"
-    src="https://bulma.io/images/placeholders/64x64.png"
+    src="https://bulma.io/assets/images/placeholders/64x64.png"
     alt="" />
 </KwsTimelineItem>
 
@@ -15,8 +15,8 @@
    * @type {import('@kws3/ui/types').ColorOptions}
    */
   export let color = "",
-    marker_image = null,
-    marker_icon = null;
+    marker_image = "",
+    marker_icon = "";
 
   let klass = "";
   export { klass as class };

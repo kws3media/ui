@@ -1,16 +1,8 @@
 import { Timeline } from "@kws3/ui";
 
-let args = {
-  align: "left",
-  class: "",
-};
+let args = {};
 
-let argTypes = {
-  align: {
-    control: "select",
-    options: ["left", "center", "right"],
-  },
-};
+let argTypes = {};
 
 export default {
   title: "Helpers/Timeline/Timeline",

@@ -20,19 +20,17 @@ import * as Stories from "./Timeline.stories";
   code={ dedent`import { Timeline } from '@kws3/ui';`}
 />
 
-##### Import the CSS:
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={ dedent`@use '@kws3/ui/styles/Timeline.scss';`}
-/>
-
-##### SCSS customization variables with default values:
-<Source
-  language='css'
   code={ dedent`
     @use '@kws3/ui/styles/Timeline.scss' with(
-      $theme-colors: dv.$colors !default;
-      $default-color: cv.getVar("grey") !default;
-      $default-color-invert: cv.getVar("light") !default;
+      $theme-colors: dv.$colors,
+      $color: cv.getVar("text"),
+      $color-invert: cv.getVar("text-invert"),
+      $color-light: cv.getVar("text-weak"),
+      $image-radius: cv.getVar("radius-small"),
+      $image-shadow: cv.getVar("shadow"),
     );
   `}
 />

@@ -19,7 +19,7 @@
         <code>TimelineItem</code></small>
       <img
         slot="thumbnail"
-        src="https://bulma.io/images/placeholders/64x64.png"
+        src="https://bulma.io/assets/images/placeholders/64x64.png"
         alt="" />
     </KwsTimelineItem>
     <KwsTimelineHeader
@@ -27,7 +27,7 @@
     <KwsTimelineItem color="success">The year 2023 started</KwsTimelineItem>
     <KwsTimelineItem
       color="danger"
-      marker_image="https://bulma.io/images/placeholders/64x64.png">
+      marker_image="https://bulma.io/assets/images/placeholders/64x64.png">
       Nothing happened
       <small slot="below"
         >but we filled <code>marker_image</code> prop in

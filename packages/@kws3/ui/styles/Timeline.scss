@@ -1,23 +1,28 @@
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
-@use "bulma/sass/utilities/initial-variables" as iv;
-@use "bulma/sass/utilities/functions" as fn;
 
 $theme-colors: dv.$colors !default;
-$default-color: cv.getVar("grey") !default;
-$default-color-invert: cv.getVar("light") !default;
+$color: cv.getVar("text") !default;
+$color-invert: cv.getVar("text-invert") !default;
+$color-light: cv.getVar("text-weak") !default;
+$image-radius: cv.getVar("radius-small") !default;
+$image-shadow: cv.getVar("shadow") !default;
 
 @mixin right-aligned-timeline-item {
   flex-direction: row-reverse;
-  .marker {
+  .kws-timeline-marker {
     right: 0;
     left: auto;
     transform: translateX(50%);
   }
-  .content {
+  .kws-timeline-content {
     text-align: right;
     padding-left: 0;
     padding-right: 1.75rem;
+  }
+  .kws-timeline-image {
+    margin-left: 0;
+    margin-right: 0.25rem;
   }
   &:before {
     right: -0.5px;
@@ -25,7 +30,7 @@ $default-color-invert: cv.getVar("light") !default;
   }
 }
 
-.item {
+.kws-timeline-item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,11 +42,11 @@ $default-color-invert: cv.getVar("light") !default;
   &:last-child {
     padding-bottom: 0;
   }
-  .marker {
+  .kws-timeline-marker {
     position: absolute;
     left: 0;
-    background: $default-color;
-    border: 1px solid $default-color;
+    background: $color;
+    border: 1px solid $color;
     border-radius: 100%;
     transform: translateX(-50%);
     display: flex;
@@ -54,10 +59,10 @@ $default-color-invert: cv.getVar("light") !default;
       min-width: 1rem;
       padding: 0;
       border-width: 4px;
-      background: $default-color-invert;
+      background: $color-invert;
     }
     .icon {
-      color: $default-color-invert;
+      color: $color-invert;
       width: 16px;
       height: 16px;
       font-size: 0.75rem !important;
@@ -69,28 +74,31 @@ $default-color-invert: cv.getVar("light") !default;
       }
     }
   }
-  .content {
+  .kws-timeline-content {
     padding-left: 1.75rem;
     flex-grow: 1;
     flex-shrink: 1;
+    .above-description,
+    .below-description {
+      color: $color-light;
+    }
   }
-  .image {
+  .kws-timeline-image {
     flex-grow: 0;
     flex-shrink: 0;
     width: 32px;
+    margin-left: 0.25rem;
     img {
       max-width: 100%;
       max-height: 100%;
-      border-radius: iv.$radius;
-      box-shadow:
-        0 0.125rem 0.1875rem rgba(10, 10, 10, 0.1),
-        0 0 0 0.0625rem rgba(10, 10, 10, 0.1);
+      border-radius: $image-radius;
+      box-shadow: $image-shadow;
     }
   }
 
   &:before {
     content: "";
-    background-color: $default-color;
+    background-color: $color;
     display: block;
     width: 1px;
     height: 100%;
@@ -100,10 +108,10 @@ $default-color-invert: cv.getVar("light") !default;
   }
 
   @each $name, $pair in $theme-colors {
-    $color: nth($pair, 1);
-    $color-invert: fn.bulmaFindColorInvert($color); //nth($pair, 2);
+    $color: cv.getVar($name);
+    $color-invert: cv.getVar($name, "", "-invert");
     &.is-#{$name} {
-      .marker {
+      .kws-timeline-marker {
         border-color: $color;
         background-color: $color;
         &:empty {
@@ -120,13 +128,13 @@ $default-color-invert: cv.getVar("light") !default;
   }
 }
 
-.header {
+.kws-timeline-header {
   width: 4em;
   min-width: 4em;
   word-wrap: normal;
   text-align: center;
   transform: translateX(-25px);
-  + .header {
+  + .kws-timeline-header {
     padding-top: 0.5rem;
   }
 }
@@ -139,7 +147,7 @@ $default-color-invert: cv.getVar("light") !default;
   flex-direction: column;
 
   &.is-center {
-    .item {
+    .kws-timeline-item {
       width: 50%;
       align-self: flex-end;
       flex-direction: row;
@@ -148,7 +156,7 @@ $default-color-invert: cv.getVar("light") !default;
         @include right-aligned-timeline-item;
       }
     }
-    .header {
+    .kws-timeline-header {
       width: 100%;
       transform: none;
     }
@@ -157,12 +165,12 @@ $default-color-invert: cv.getVar("light") !default;
   &.is-right {
     justify-content: flex-end;
     align-items: flex-end;
-    .item {
+    .kws-timeline-item {
       width: 100%;
       align-self: flex-end;
       @include right-aligned-timeline-item;
     }
-    .header {
+    .kws-timeline-header {
       transform: translateX(25px);
       width: 100%;
       text-align: right;
