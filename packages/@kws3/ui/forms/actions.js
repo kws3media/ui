@@ -112,6 +112,8 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
 }
 
 /**
+ * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+ *
  * @typedef {import("svelte/action").Action<HTMLElement, {
  * opts:object,
  * value:string,
@@ -119,7 +121,7 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
  * klass:string,
  * style:string,
  * disabled:boolean,
- * color:string
+ * color: ColorOptions
  * }>} FlatpickerAction
 */
 
