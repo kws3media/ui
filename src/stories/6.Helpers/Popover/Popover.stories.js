@@ -42,6 +42,7 @@ export default {
   decorators: [(_, { args }) => ({ Component: PopoverDecorator, props: args })],
   args: args,
   argTypes: argTypes,
+  tags: ["isHidden"],
 };
 
 export const Main = {
