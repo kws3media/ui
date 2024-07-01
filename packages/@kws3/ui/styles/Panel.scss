@@ -25,6 +25,7 @@ $caret-closed-color: cv.getVar("link") !default;
     }
     .level {
       .level-right {
+        flex-direction: row;
         .level-item {
           margin-right: 0;
           margin-left: 0.5rem;
