@@ -1,6 +1,6 @@
 {
   "name": "@kws3/ui",
-  "version": "4.4.0-alpha.4",
+  "version": "4.5.0-beta.1",
   "description": "UI components for use with Svelte v3 applications.",
   "main": "index.js",
   "svelte": "index.js",
