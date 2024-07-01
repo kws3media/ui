@@ -1,3 +1,65 @@
+@use "sass:meta";
+@use "_variables" as dv;
+
+//@import "_steps.sass";
+
+//Tooltip
+@use "../../packages/@kws3/ui/styles/Tooltip.scss";
+// //helpers - Panel
+@use "../../packages/@kws3/ui/styles/Panel.scss";
+// //searchable select
+@use "../../packages/@kws3/ui/styles/Select.scss";
+// //auto complete
+@use "../../packages/@kws3/ui/styles/AutoComplete.scss";
+// //helpers - Loader
+@use "../../packages/@kws3/ui/styles/Loader.scss";
+// //helpers - Skeleton
+@use "../../packages/@kws3/ui/styles/Skeleton.scss";
+
+// //helpers - Divider
+@use "../../packages/@kws3/ui/styles/Divider.scss";
+// Toggle
+@use "../../packages/@kws3/ui/styles/Toggle.scss";
+// ToggleButtons
+@use "../../packages/@kws3/ui/styles/ToggleButtons.scss";
+// CheckRadio
+@use "../../packages/@kws3/ui/styles/CheckRadio.scss";
+// FileUpload
+@use "../../packages/@kws3/ui/styles/FileUpload.scss";
+// sliding panes
+@use "../../packages/@kws3/ui/styles/SlidingPane.scss";
+// RangeSlider
+@use "../../packages/@kws3/ui/styles/RangeSlider.scss";
+
+// Flatpickr
+@use "../../node_modules/flatpickr/dist/flatpickr";
+// Datepicker
+@use "../../packages/@kws3/ui/styles/Datepicker.scss";
+// Timepicker
+@use "../../packages/@kws3/ui/styles/Timepicker.scss";
+// Colorpicker
+@use "../../packages/@kws3/ui/styles/Colorpicker.scss";
+//ActionSheet
+@use "../../packages/@kws3/ui/styles/ActionSheet.scss";
+// FloatingUI
+@use "../../packages/@kws3/ui/styles/FloatingUI.scss";
+//Pagination
+@use "../../packages/@kws3/ui/styles/Pagination.scss";
+//Canvas
+@use "../../packages/@kws3/ui/styles/Canvas.scss";
+//Timeline
+@use "../../packages/@kws3/ui/styles/Timeline.scss";
+//Grid
+@use "../../packages/@kws3/ui/styles/Grid.scss";
+//DataSort
+@use "../../packages/@kws3/ui/styles/DataSort.scss";
+//DataSearch
+@use "../../packages/@kws3/ui/styles/DataSearch.scss";
+//Charts
+@use "../../packages/@kws3/ui/styles/Chart.scss";
+
+@use "_steps";
+
 //fontAwesome
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 //css.gg
@@ -9,13 +71,6 @@
 //material icons
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
 
-//bulma vars and utils
-@import "../../node_modules/bulma/sass/utilities/initial-variables";
-//our vars (overriding bulma vars)
-@import "_variables";
-//bulma itself
-@import "../../node_modules/bulma/bulma";
-@import "_steps.sass";
 html {
   overflow-x: scroll;
 }
@@ -115,92 +170,6 @@ pre.prismjs {
 //@import "../../node_modules/prismjs/themes/prism-tomorrow.css";
 /* SCSS for stories */
 
-// /*------------------*/
-
-// //Transitions
-// @import '../../packages/@kws3/transitions/styles.scss';
-// //searchable select
-@import "../../packages/@kws3/ui/styles/Select.scss";
-// //auto complete
-@import "../../packages/@kws3/ui/styles/AutoComplete.scss";
-// //helpers - Panel
-@import "../../packages/@kws3/ui/styles/Panel.scss";
-// //helpers - Loader
-@import "../../packages/@kws3/ui/styles/Loader.scss";
-// //helpers - Skeleton
-@import "../../packages/@kws3/ui/styles/Skeleton.scss";
-// //helpers - Divider
-@import "../../packages/@kws3/ui/styles/Divider.scss";
-// //helpers - Modal
-// @import '../../packages/@kws3/helpers/components/Modal/styles.scss';
-
-// //Calendar
-// @import '../../packages/@kws3/calendar/styles.scss';
-// //grid
-// @import '../../packages/@kws3/datagrid/components/GridView/styles.scss';
-// //pagination
-// @import '../../packages/@kws3/datagrid/components/Pagination/styles.scss';
-// //colorpicker
-// @import '../../packages/@kws3/colorpicker/styles.scss';
-// //Buttons - Toggle
-@import "../../packages/@kws3/ui/styles/Toggle.scss";
-// @import '../../packages/@kws3/controls/components/ToggleButtons/styles.scss';
-// @import '../../packages/@kws3/controls/components/ToggleControl/styles.scss';
-
-// CheckRadio
-@import "../../packages/@kws3/ui/styles/CheckRadio.scss";
-
-// FileUpload
-@import "../../packages/@kws3/ui/styles/FileUpload.scss";
-
-// sliding panes
-@import "../../packages/@kws3/ui/styles/SlidingPane.scss";
-
-// RangeSlider
-@import "../../packages/@kws3/ui/styles/RangeSlider.scss";
-
-// Flatpickr
-@import "../../node_modules/flatpickr/dist/flatpickr";
-
-// Datepicker
-@import "../../packages/@kws3/ui/styles/Datepicker.scss";
-
-// Timepicker
-@import "../../packages/@kws3/ui/styles/Timepicker.scss";
-
-// Colorpicker
-@import "../../packages/@kws3/ui/styles/Colorpicker.scss";
-
-//ActionSheet
-@import "../../packages/@kws3/ui/styles/ActionSheet.scss";
-
-// FloatingUI
-@import "../../packages/@kws3/ui/styles/FloatingUI.scss";
-
-//Pagination
-@import "../../packages/@kws3/ui/styles/Pagination.scss";
-
-//Tooltip
-@import "../../packages/@kws3/ui/styles/Tooltip.scss";
-
-//Canvas
-@import "../../packages/@kws3/ui/styles/Canvas.scss";
-
-//Timeline
-@import "../../packages/@kws3/ui/styles/Timeline.scss";
-
-//Grid
-@import "../../packages/@kws3/ui/styles/Grid.scss";
-
-//DataSort
-@import "../../packages/@kws3/ui/styles/DataSort.scss";
-
-//DataSearch
-@import "../../packages/@kws3/ui/styles/DataSearch.scss";
-
-//Charts
-@import "../../packages/@kws3/ui/styles/Chart.scss";
-
 .theme-kws-light {
   color: #4a4a4a;
   background-color: #ffffff;
@@ -247,13 +216,16 @@ pre.prismjs {
   position: absolute;
   margin: 0 !important;
   padding: 0.75rem;
-  border-radius: 0 0 $radius $radius;
+  border-radius: 0 0 dv.$radius dv.$radius;
   background: linear-gradient(180deg, #f4f4f4 0%, #f6f9fc 4%, #fcfdfd 35%);
   top: -4rem;
   right: 0;
   z-index: 2;
   display: flex;
   flex-direction: column;
+  span {
+    font-size: 0.75rem;
+  }
   .artifact-item-block {
     display: flex;
     flex-direction: row;
@@ -310,7 +282,7 @@ pre.prismjs {
 
 .datagrid-example {
   .box.is-selected {
-    background-color: $primary;
+    background-color: dv.$primary;
     color: #fff;
   }
 }
@@ -320,8 +292,4 @@ pre.prismjs {
     color: currentColor;
     background: transparent;
   }
-}
-
-.css-jspizm {
-  padding: 30px 20px;
 }

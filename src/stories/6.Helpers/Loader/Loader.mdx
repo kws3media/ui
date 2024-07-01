@@ -1,15 +1,12 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Story, Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Loader.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Loader
 ## Graphic to display a loading status to users.
-`}/>
-
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />
@@ -24,21 +21,22 @@ import * as Stories from "./Loader.stories";
 
 ##### Import the CSS:
 <Source
-  code={ dedent`@import '@kws3/ui/styles/Loader.scss';`}
+  code={ dedent`@use '@kws3/ui/styles/Loader.scss';`}
 />
 
 ##### SCSS customization variables with default values:
 <Source
-  language='css'
   code={ dedent`
-    $kws-theme-colors: $colors;
-    $kws-loader-width: 2rem;
-    $kws-loader-height: 2rem;
-    $kws-loader-width-medium: ($kws-loader-width * 1.5);
-    $kws-loader-height-medium: ($kws-loader-height * 1.5);
-    $kws-loader-width-large: ($kws-loader-width * 3);
-    $kws-loader-height-large: ($kws-loader-height * 3);
-    $kws-loader-color: #ccc;
-    $kws-loader-overlay-background: rgba(0,0,0,0.15);
+    @use '@kws3/ui/styles/Loader.scss' with(
+      $theme-colors: dv.$colors,
+      $width: 2rem,
+      $height: 2rem,
+      $width-medium: ($width * 1.5),
+      $height-medium: ($height * 1.5),
+      $width-large: ($width * 3),
+      $height-large: ($height * 3),
+      $color: cv.getVar("text"),
+      $overlay-background: rgba(0, 0, 0, 0.15),
+    );
   `}
 />

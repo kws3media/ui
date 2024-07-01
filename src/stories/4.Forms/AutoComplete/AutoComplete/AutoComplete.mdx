@@ -65,32 +65,32 @@ import * as Stories from "./AutoComplete.stories.js";
 />
 
 #### Import the SCSS:
-
+_Default values shown as example_
 <Source
-  code={dedent`@import '@kws3/ui/styles/AutoComplete.scss';`}
-/>
-
-#### SCSS customization variables with default values:
-
-<Source
-  language="css"
   code={dedent`
-      $kws-theme-colors: $colors !default;
-      $kws-autocomplete-radius: $radius !default;
-      $kws-autocomplete-border-color: $input-border-color !default;
-      $kws-autocomplete-box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
-        0 0px 0 1px rgb(10 10 10 / 2%) !default;
-      $kws-autocomplete-focus-border-color: $input-focus-border-color !default;
-      $kws-autocomplete-focus-box-shadow-size: $input-focus-box-shadow-size !default;
-      $kws-autocomplete-focus-box-shadow-color: $input-focus-box-shadow-color !default;
-      $kws-autocomplete-disabled-background-color: $input-disabled-background-color !default;
-      $kws-autocomplete-disabled-border-color: $input-disabled-border-color !default;
-      $kws-autocomplete-disabled-color: $input-disabled-color !default;
-      $kws-autocomplete-selecting-color: $primary-invert !default;
-      $kws-autocomplete-selecting-background: $primary !default;
-      $kws-autocomplete-text-matches-color: currentColor !default;
-      $kws-autocomplete-text-matches-background: transparent !default;
-      $kws-autocomplete-text-matches-font-weight: $weight-bold !default;
-      $kws-autocomplete-options-background: $scheme-main-ter !default;
+      @use '@kws3/ui/styles/AutoComplete.scss' with (
+        $theme-colors: dv.$colors,
+        $radius: cv.getVar("radius"),
+        $border-color: cv.getVar("border"),
+        $box-shadow: cv.getVar("shadow"),
+        $focus-border-color: cv.getVar("input-focus-border-color"),
+        $focus-box-shadow-size: cv.getVar("focus-shadow-size"),
+        $focus-box-shadow-color: hsl(
+          cv.getVar("focus-h"),
+          cv.getVar("focus-s"),
+          cv.getVar("focus-l"),
+          cv.getVar("focus-shadow-alpha")
+        ),
+        $disabled-background-color: cv.getVar("input-disabled-background-color"),
+        $disabled-border-color: cv.getVar("input-disabled-border-color"),
+        $disabled-color: cv.getVar("input-disabled-color"),
+        $selecting-color: cv.getVar("primary-invert"),
+        $selecting-background: cv.getVar("primary"),
+        $text-matches-color: currentColor,
+        $text-matches-background: transparent,
+        $text-matches-font-weight: cv.getVar("weight-bold"),
+        $options-background: cv.getVar("scheme-main-ter"),
+        $__modal-z: 41,
+      );
     `}
 />

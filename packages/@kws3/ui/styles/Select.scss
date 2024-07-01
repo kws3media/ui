@@ -1,23 +1,37 @@
-$kws-theme-colors: $colors !default;
-$kws-select-radius: $radius !default;
-$kws-select-focus-border-color: $input-focus-border-color !default;
-$kws-select-focus-box-shadow-size: $input-focus-box-shadow-size !default;
-$kws-select-focus-box-shadow-color: $input-focus-box-shadow-color !default;
-$kws-select-disabled-background-color: $input-disabled-background-color !default;
-$kws-select-disabled-border-color: $input-disabled-border-color !default;
-$kws-select-disabled-color: $input-disabled-color !default;
-$kws-select-selecting-color: $primary-invert !default;
-$kws-select-selecting-background: $primary !default;
-$kws-select-selected-color: $primary-dark !default;
-$kws-select-selected-background: $primary-light !default;
-$kws-select-options-background: $scheme-main-ter !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+
+$theme-colors: dv.$colors !default;
+$radius: cv.getVar("radius") !default;
+$focus-border-color: hsl(
+  cv.getVar("input-focus-h"),
+  cv.getVar("input-focus-s"),
+  cv.getVar("input-focus-l")
+) !default;
+$focus-box-shadow-size: cv.getVar("input-focus-shadow-size") !default;
+$focus-box-shadow-color: hsl(
+  cv.getVar("input-focus-h"),
+  cv.getVar("input-focus-s"),
+  cv.getVar("input-focus-l"),
+  cv.getVar("input-focus-shadow-alpha")
+) !default;
+$disabled-background-color: cv.getVar(
+  "input-disabled-background-color"
+) !default;
+$disabled-border-color: cv.getVar("input-disabled-border-color") !default;
+$disabled-color: cv.getVar("input-disabled-color") !default;
+$selecting-color: cv.getVar("primary-invert") !default;
+$selecting-background: cv.getVar("primary") !default;
+$selected-color: cv.getVar("primary-dark") !default;
+$selected-background: cv.getVar("primary-light") !default;
+$options-background: cv.getVar("scheme-main-ter") !default;
 
 $__modal-z: 41 !default;
-@if $modal-z {
+@if variable-exists("modal-z") {
   $__modal-z: $modal-z;
 }
 
-$kws-select-options-z-index: $__modal-z + 1 !default;
+$options-z-index: $__modal-z + 1 !default;
 
 .kws-searchableselect {
   position: relative;
@@ -29,14 +43,13 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
   padding-top: calc(0.4em - 1px);
   padding-bottom: calc(0.4em - 1px);
   &:focus-within {
-    border-color: $kws-select-focus-border-color;
-    box-shadow: $kws-select-focus-box-shadow-size
-      $kws-select-focus-box-shadow-color;
+    border-color: $focus-border-color;
+    box-shadow: $focus-box-shadow-size $focus-box-shadow-color;
   }
   &.is-disabled {
-    background-color: $kws-select-disabled-background-color;
-    border-color: $kws-select-disabled-border-color;
-    color: $kws-select-disabled-color;
+    background-color: $disabled-background-color;
+    border-color: $disabled-border-color;
+    color: $disabled-color;
     cursor: not-allowed;
   }
   &.is-readonly {
@@ -53,6 +66,7 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
       margin-bottom: -0.25rem;
       margin-left: -0.25rem;
       margin-right: 0.25rem;
+      gap: 0;
       .tag.is-small {
         font-size: 0.6rem;
         .delete.is-small {
@@ -95,14 +109,14 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
     max-height: 50vh;
     padding: 0;
     cursor: pointer;
-    border-radius: 0 0 $kws-select-radius $kws-select-radius;
+    border-radius: 0 0 $radius $radius;
     overflow: auto;
-    background: $kws-select-options-background;
+    background: $options-background;
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 4;
     &[data-popper-placement="top"] {
-      border-radius: $kws-select-radius $kws-select-radius 0 0;
+      border-radius: $radius $radius 0 0;
       box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.4);
     }
     &.hidden {
@@ -141,16 +155,16 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
         }
       }
       &.selected {
-        color: $kws-select-selected-color;
-        background: $kws-select-selected-background;
+        color: $selected-color;
+        background: $selected-background;
         .kws-selected-icon {
           display: inline-flex;
         }
       }
       &.active {
         // keyboard focused item
-        color: $kws-select-selecting-color;
-        background: $kws-select-selecting-background;
+        color: $selecting-color;
+        background: $selecting-background;
       }
     }
 
@@ -183,26 +197,28 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
   }
 }
 
-@each $name, $pair in $kws-theme-colors {
-  $color: nth($pair, 1);
-  $color-invert: nth($pair, 2);
-  $color-light: findLightColor($color);
-  $color-dark: findDarkColor($color);
+@each $name, $pair in $theme-colors {
   .kws-searchableselect {
     &.is-#{$name} {
-      border-color: $color;
+      border-color: cv.getVar($name);
       &:focus-within {
-        box-shadow: $input-focus-box-shadow-size bulmaRgba($color, 0.25);
+        box-shadow: $focus-box-shadow-size
+          hsla(
+            cv.getVar($name, "", "-h"),
+            cv.getVar($name, "", "-s"),
+            cv.getVar($name, "", "-l"),
+            cv.getVar("input-focus-shadow-alpha")
+          );
       }
       ul.options {
         li {
           &.selected {
-            color: $color-dark;
-            background: $color-light;
+            color: cv.getVar($name, "", "-dark");
+            background: cv.getVar($name, "", "-light");
           }
           &.active {
-            color: $color-invert;
-            background: $color;
+            color: cv.getVar($name, "", "-invert");
+            background: cv.getVar($name);
           }
         }
       }
@@ -213,6 +229,6 @@ $kws-select-options-z-index: $__modal-z + 1 !default;
 #kws-overlay-root {
   .kws-searchableselect {
     position: absolute;
-    z-index: $kws-select-options-z-index;
+    z-index: $options-z-index;
   }
 }

@@ -65,7 +65,7 @@ Default value: `<span>{option.label}</span>`
     <button
       type="button"
       style="border: none;"
-      class="button is-paddingless delete is-medium is-loading" />
+      class="button delete paddingless is-small is-loading" />
   {/if}
   {#if rootContainer}
     <div
@@ -127,7 +127,7 @@ Default value: `<span>{option.label}</span>`
     fn: ({ state }) => {
       state.styles.popper.width = `${Math.max(
         200,
-        state.rects.reference.width
+        state.rects.reference.width,
       )}px`;
     },
     effect: ({ state }) => {
@@ -454,25 +454,25 @@ Default value: `<span>{option.label}</span>`
 
   const normaliseArraysToObjects = (arr) =>
     [...arr].map((item) =>
-      typeof item === "object" ? item : { label: item, value: item }
+      typeof item === "object" ? item : { label: item, value: item },
     );
 
   const highlightMatches = (options, filters) => {
     if (!filters.length) return options;
     // join all filter parts and split into chars and filter out duplicates
     let common_chars = [...filters.join("")].filter(
-      (v, i, self) => self.indexOf(v) === i
+      (v, i, self) => self.indexOf(v) === i,
     );
     let pattern = new RegExp(
       `[${common_chars.join("").replace(/\\/g, "&#92;")}]`,
-      "gi"
+      "gi",
     );
     return options.map((item) => {
       return {
         ...item,
         label: item.value.replace(
           pattern,
-          (match) => `<span class="h">${match}</span>`
+          (match) => `<span class="h">${match}</span>`,
         ),
       };
     });

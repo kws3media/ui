@@ -19,7 +19,7 @@
 -->
 <div
   class="
-  field has-addons is-marginless
+  field has-addons marginless
   {readonly ? 'is-readonly' : ''}
   {disabled ? 'is-disabled' : ''}
   ">

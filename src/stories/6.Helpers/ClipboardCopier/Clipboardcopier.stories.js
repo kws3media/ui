@@ -15,7 +15,7 @@ let args = {
 
 let argTypes = {
   copied_icon_color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
 };

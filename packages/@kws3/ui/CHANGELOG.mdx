@@ -1,3 +1,20 @@
+# 4.5.0 <span className="has-text-danger">[BREAKING]</span>
+  - This version requires Bulma v1
+  - Supports bulma dark mode
+  - All SCSS files are now modular, so you need to use `@use` instead of `@import`
+  - All SCSS variable names have been updated. Now they do not start with `$kws-` and are more generic. This is due to using modular SCSS
+  - All SCSS variables now have default Bulma css variables as default values, so most of the time an override will not be required, and it will just work according to the active theme
+  - `ToggleButtons` component now has it's own SCSS file that needs to be imported
+  - Default `inactive_class` has changed in `ToggleButtons` component
+  - Some internal class names in `FileUpload` component have changed
+  - Some internal class names in `TimelineItem` component have changed
+  - `Colorpicker` component's wrapper class name has changed
+  - All instances of `is-marginless` css class has been replaced with `marginless`, as this is how new Bulma v1 supports it
+  - All instances of `is-paddingless` css class has been replaced with `paddingless`, as this is how new Bulma v1 supports it
+  - Fix `datepicker` and `timepicker` action return types
+  - Fix utility `cloneObject` type signature
+  - Add `transparent` to `ExtendedColors` type
+
 ## 4.3.5
   - Fix Radio component value type
 

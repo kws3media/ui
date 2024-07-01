@@ -21,10 +21,33 @@ import * as Stories from "./Colorpicker.stories";
 />
 
 #### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={
-    dedent`@import '@kws3/ui/styles/Colorpicker.scss';`
-  }
+  code={dedent`
+      @use '@kws3/ui/styles/Colorpicker.scss' with (
+        $picker-shadow: cv.getVar("shadow"),
+        $picker-border-color: cv.getVar("border"),
+        $preview-shadow:
+          0 0.125rem 0.1875rem
+            hsla(
+              cv.getVar("shadow-h"),
+              cv.getVar("shadow-s"),
+              cv.getVar("shadow-l"),
+              0.1
+            ),
+          0 0 0 0.0625rem
+            hsla(
+              cv.getVar("shadow-h"),
+              cv.getVar("shadow-s"),
+              cv.getVar("shadow-l"),
+              0.1
+            ),
+        $preview-radius: cv.getVar("radius-small"),
+        $icon-shadow: 0 0.0625rem 0.0625rem
+          hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4),
+        $dragover-hilight-color: cv.getVar("success-soft"),
+      );
+    `}
 />
 
 <div class="notification is-info is-light">

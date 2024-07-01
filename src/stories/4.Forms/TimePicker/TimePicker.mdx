@@ -19,30 +19,26 @@ import * as Stories from "./TimePicker.stories";
 
 ### Usage
 
-#### Import the component:
-
-<Source
-  code={dedent`import { Timepicker } from '@kws3/ui';`}
-/>
-
 #### Import the SCSS:
 
 <div className="notification is-warning">
-  <strong>Note:</strong> <em>Need to import flatpicker SCSS file first</em>
+  <strong>Note:</strong> <em> Need to import flatpicker SCSS file first</em>
 </div>
 <Source
   code={dedent`
-    @import 'flatpickr/dist/flatpickr';
-    @import '@kws3/ui/styles/Timepicker.scss';`}
+    @use 'flatpickr/dist/flatpickr';`}
 />
 
-#### SCSS customization variables with default values:
-
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  language="css"
   code={dedent`
-      $kws-theme-colors: $colors;
-      $kws-timepicker-background: $background;
-      $kws-timepicker-text: $text;
+      @use '@kws3/ui/styles/Timepicker.scss' with (
+        $theme-colors: dv.$colors,
+        $background: cv.getVar("scheme-main-ter"),
+        $text: cv.getVar("text"),
+        $shadow: cv.getVar("shadow"),
+        $radius: cv.getVar("radius"),
+      );
     `}
 />

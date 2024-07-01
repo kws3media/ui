@@ -5,9 +5,7 @@ import * as Stories from "./PieChart.stories.js";
 
 <Version />
 
-<Description markdown={dedent`
 # Pie Chart
-`}/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />
@@ -24,17 +22,18 @@ import * as Stories from "./PieChart.stories.js";
 #### Import the SCSS:
 <Source
   code={
-    dedent`@import '@kws3/ui/styles/Chart.scss';`
+    dedent`@use '@kws3/ui/styles/Chart.scss';`
   }
 />
 
 #### SCSS customization variables with default values:
 <Source
-  language="css"
   code={
     dedent`
-      $kws-chart-tooltip-background-color: $scheme-main;
-      $kws-chart-tooltip-foreground-color: $scheme-invert-ter;
+      @use '@kws3/ui/styles/Chart.scss' with (
+        $background-color: cv.getVar("scheme-main") !default;
+        $foreground-color: cv.getVar("scheme-invert-ter") !default;
+      );
     `
   }
 />

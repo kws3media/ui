@@ -1,14 +1,14 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Story, Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./ToggleButtons.stories";
 
 <Version />
 
-<Description markdown={dedent`
+
 # ToggleButtons
-## Segmented ToggleButtons Buttons
-`}/>
+## Segmented Toggle Buttons
+
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />
@@ -23,9 +23,15 @@ import * as Stories from "./ToggleButtons.stories";
 />
 
 #### Import the SCSS:
+_Default values shown as example_
 <Source
   code={
-    dedent`@import '@kws3/ui/styles/Toggle.scss';`
+    dedent`
+      @use '@kws3/ui/styles/ToggleButtons.scss' with(
+        $count-background: cv.getVar("danger"),
+        $count-color: cv.getVar("danger-invert"),
+      );
+    `
   }
 />
 

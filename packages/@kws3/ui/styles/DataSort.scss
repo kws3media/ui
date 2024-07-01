@@ -1,19 +1,38 @@
+@use "bulma/sass/utilities/initial-variables" as iv;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/mixins" as mx;
+
+$border-radius: cv.getVar("radius-medium") !default;
+$background: cv.getVar("border") !default;
+$label-background: hsla(
+  cv.getVar("scheme-h"),
+  cv.getVar("scheme-s"),
+  calc(cv.getVar("border-l") - 5%),
+  1
+) !default;
+$dropdown-text-color: cv.getVar("primary") !default;
+$dropdown-marker-color: cv.getVar("primary") !default;
+
 .sorting-filters {
   font-weight: bold;
   margin-top: -1.55rem;
   margin-bottom: 1.5rem;
+  .field {
+    gap: 0;
+  }
   .control {
-    background: $input-border-color;
+    background: $background;
     margin: 0 !important;
     padding: 0.2rem 0;
     &:first-child {
       padding-left: calc(0.625rem - 1px);
-      border-radius: 0 0 0 $radius-large;
-      background: darken($input-border-color, 5%);
+      border-radius: 0 0 0 $border-radius;
+      background: $label-background;
       padding-right: calc(0.625rem - 1px);
     }
     &:last-child {
-      border-radius: 0 0 $radius-large 0;
+      border-radius: 0 0 $border-radius 0;
     }
   }
   .select {
@@ -22,8 +41,9 @@
       padding-top: 0.2rem;
       padding-bottom: 0.2rem;
       border: none;
+      box-shadow: none;
       background: transparent;
-      color: $primary;
+      color: $dropdown-text-color;
       height: auto;
       font-weight: bold;
       &:focus,
@@ -35,13 +55,14 @@
         width: 100%;
       }
     }
-    &::after {
-      border-color: $primary;
+    &:not(.is-multiple):not(.is-loading)::after {
+      border-color: $dropdown-marker-color;
+      top: 40%;
     }
   }
 }
 
-@include mobile {
+@include mx.mobile {
   .sorting-filters {
     margin-top: 0rem;
     .field {
@@ -49,10 +70,10 @@
     }
     .control {
       &:first-child {
-        border-radius: $radius-large 0 0 $radius-large;
+        border-radius: $border-radius 0 0 $border-radius;
       }
       &:last-child {
-        border-radius: 0 $radius-large $radius-large 0;
+        border-radius: 0 $border-radius $border-radius 0;
         flex-grow: 1;
         flex-shrink: 1;
         .select {

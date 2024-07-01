@@ -15,7 +15,7 @@
   </div>
   <div class="column second">
     {#if showPie}
-      <h2 class="title is-5 has-text-centered is-marginless">{activeKey}</h2>
+      <h2 class="title is-5 has-text-centered marginless">{activeKey}</h2>
       <PieChart {height} options={options2} data={pieData} labels={pieLabels} />
     {/if}
   </div>

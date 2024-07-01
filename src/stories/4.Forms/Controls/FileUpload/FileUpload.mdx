@@ -20,29 +20,17 @@ import * as Stories from "./FileUpload.stories";
   }
 />
 
-##### Import the SCSS:
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={ dedent`@import '@kws3/ui/styles/FileUpload.scss';`}
-/>
-
-#### SCSS customization variables with default values:
-<Source
-  language="css"
-  code={
-    dedent`
-      $kws-theme-colors: $colors;
-      $kws-fileupload-bg-color: $input-background-color;
-      $kws-fileupload-border-color: $input-border-color;
-      $kws-fileupload-shadow: $input-shadow;
-      $kws-fileupload-radius: $radius;
-      $kws-fileupload-text-color: $text;
-      $kws-fileupload-disabled-bg-color: $input-disabled-background-color;
-      $kws-fileupload-disabled-border-color: $input-disabled-border-color;
-      $kws-fileupload-progress-bg-color: $success-light;
-      $kws-fileupload-progress-text-color: $success-dark;
-      $kws-fileupload-progress-anim-easing: $easeOutCustom;
-    `
-  }
+  code={dedent`
+      @use '@kws3/ui/styles/FileUpload.scss' with (
+        $theme-colors: dv.$colors,
+        $progress-bg-color: cv.getVar("success-light"),
+        $progress-text-color: cv.getVar("success-dark"),
+        $progress-easing: linear,
+      );
+    `}
 />
 
 #### Example:

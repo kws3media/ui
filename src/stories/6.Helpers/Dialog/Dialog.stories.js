@@ -16,28 +16,28 @@ let argTypes = {
   title: {},
   help_text: {},
   size: {
-    control: { type: "select" },
+    control: "select",
     options: Sizes,
   },
   input_value: {},
   icon: {},
   icon_color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   icon_size: {
-    control: { type: "select" },
+    control: "select",
     options: Sizes,
   },
   ok_button_text: {},
   ok_button_color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   ok_button_icon: {},
   cancel_button_text: {},
   cancel_button_color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   cancel_button_icon: {},

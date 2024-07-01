@@ -1,10 +1,10 @@
-<div class="field is-grouped is-marginless" style="align-items:center;">
+<div class="field is-grouped marginless" style="align-items:center;">
   <div class="control">
     <Icon icon="car" size="medium" />
   </div>
   <div class="control is-expanded">
     {#if title}
-      <h4 class="title is-5 is-marginless">{title}</h4>
+      <h4 class="title is-5 marginless">{title}</h4>
     {/if}
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     <p>{@html message}</p>

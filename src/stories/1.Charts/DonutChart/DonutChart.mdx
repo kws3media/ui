@@ -5,9 +5,7 @@ import * as Stories from "./DonutChart.stories.js";
 
 <Version />
 
-<Description markdown={dedent`
 # Donut Chart
-`}/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />
@@ -22,19 +20,14 @@ import * as Stories from "./DonutChart.stories.js";
 />
 
 #### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={
-    dedent`@import '@kws3/ui/styles/Chart.scss';`
-  }
-/>
-
-#### SCSS customization variables with default values:
-<Source
-  language="css"
   code={
     dedent`
-      $kws-chart-tooltip-background-color: $scheme-main;
-      $kws-chart-tooltip-foreground-color: $scheme-invert-ter;
+    @use '@kws3/ui/styles/Chart.scss' with (
+      $background-color: cv.getVar("scheme-main"),
+      $foreground-color: cv.getVar("text")
+    );
     `
   }
 />

@@ -24,31 +24,23 @@ import * as Stories from "./Pagination.stories.js";
 />
 
 #### Import the SCSS:
+_Default values shown as example_
 <Source
   code={
-    dedent`@import '@kws3/ui/styles/Pagination.scss';`
+    dedent`
+      @use '@kws3/ui/styles/Pagination.scss' with(
+        $item-color: cv.getVar("text"),
+        $item-background: cv.getVar("scheme-main"),
+        $item-border: 1px solid cv.getVar("border"),
+        $item-hover-color: $item-color,
+        $item-hover-border: $item-border,
+        $item-disabled-background: cv.getVar("pagination-disabled-background-color"),
+        $item-disabled-color: cv.getVar("pagination-disabled-color"),
+        $item-ellipsis-background: transparent,
+        $item-ellipsis-border-color: transparent,
+        $item-active-background: cv.getVar("success"),
+        $item-active-color: cv.getVar("success-invert"),
+      );
+    `
   }
-/>
-
-##### SCSS customization variables with default values:
-<Source
-  language='css'
-  code={ dedent`
-    $kws-pagination-item-color: $text;
-    $kws-pagination-item-background: $scheme-main;
-    $kws-pagination-item-border: 1px solid $border;
-    $kws-pagination-item-hover-color: $kws-pagination-item-color;
-    $kws-pagination-item-hover-border: $kws-pagination-item-border;
-    $kws-pagination-item-disabled-background: $scheme-main-ter;
-    $kws-pagination-item-disabled-color: $grey;
-    $kws-pagination-item-ellipsis-background: $scheme-main-ter;
-    $kws-pagination-item-ellipsis-border-color: $scheme-main-ter;
-    $kws-pagination-item-active-background: $success;
-    $kws-pagination-item-active-color: findColorInvert(
-      $kws-pagination-item-active-background
-    );
-    $kws-pagination-frame-box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
-      0 0 0 0.0625rem rgba(0, 0, 0, 0.1);
-    $kws-pagination-frame-background: linear-gradient($scheme-main, $scheme-main-ter);
-  `}
 />

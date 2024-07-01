@@ -23,14 +23,14 @@
     {/if}
   </div>
   <div class="kws-timeline-content">
-    <span class="is-block has-text-grey"
+    <span class="is-block above-description"
       ><!--Optional text to be displayed above the main text--><slot
         name="above" /></span>
     <span class="is-block description">
       <!--Default slot containing the main text--><slot />
     </span>
 
-    <span class="is-block has-text-grey">
+    <span class="is-block below-description">
       <!--Optional text to be displayed below the main text--><slot
         name="below" />
     </span>

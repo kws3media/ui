@@ -4,7 +4,7 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
   return function (
     node,
     // eslint-disable-next-line no-unused-vars
-    { opts, value, placeholder, klass, style, disabled, color }
+    { opts, value, placeholder, klass, style, disabled, color },
   ) {
     const _opts = {};
 
@@ -47,7 +47,7 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
         node.dispatchEvent(
           new CustomEvent(name, {
             detail: [selectedDates, dateStr, instance],
-          })
+          }),
         );
       };
     }
@@ -112,7 +112,21 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
 }
 
 /**
- * @type {import("svelte/action").Action}
+ * @typedef {import('@kws3/ui/types').ColorOptions} ColorOptions
+ *
+ * @typedef {import("svelte/action").Action<HTMLElement, {
+ * opts:object,
+ * value:string,
+ * placeholder:string,
+ * klass:string,
+ * style:string,
+ * disabled:boolean,
+ * color: ColorOptions
+ * }>} FlatpickerAction
+*/
+
+/**
+ * @type {FlatpickerAction}
  */
 export let datepicker = createFlatpickrAction(
   {
@@ -121,12 +135,12 @@ export let datepicker = createFlatpickrAction(
     dateFormat: "Y-m-d",
   },
   ["onOpen", "onClose", "onMonthChange", "onYearChange", "onReady"],
-  "date"
+  "date",
 );
 
 /**
- * @type {import("svelte/action").Action}
- */
+ * @type {FlatpickerAction}
+*/
 export let timepicker = createFlatpickrAction(
   {
     altInput: true,
@@ -136,5 +150,5 @@ export let timepicker = createFlatpickrAction(
     noCalendar: true,
   },
   ["onOpen", "onClose", "onReady"],
-  "time"
+  "time",
 );

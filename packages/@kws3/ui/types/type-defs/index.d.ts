@@ -12,7 +12,7 @@ export const Colors = [
   "link",
 ] as const;
 
-export const ExtendedColors = [...Colors, "grey"] as const;
+export const ExtendedColors = [...Colors, "grey", "transparent"] as const;
 export const BGColors = [...Colors, "transparent"] as const;
 
 export const Sizes = ["", "small", "medium", "large"] as const;

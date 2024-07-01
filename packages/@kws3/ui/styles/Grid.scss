@@ -1,27 +1,34 @@
-$kws-gridview-box-shadow:
-  0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1),
-  0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
-$kws-gridview-th-background: $table-background-color !default;
-$kws-gridview-th-color: $text !default;
-$kws-gridview-tag-margin: 0 0.125rem 0.125rem 0 !default;
-$kws-gridview-icon-size: 1.5em !default;
-$kws-gridview-checked-row-background: $info-light !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/functions" as fn;
 
-$kws-gridview-active-row-background: $table-row-active-background-color !default;
-$kws-gridview-active-row-color: $table-row-active-color !default;
-
-$kws-gridview-background: $table-background-color !default;
-$kws-gridview-striped-row-background: $table-striped-row-even-background-color !default;
-$kws-gridview-sticky-column-border-color: $border !default;
-
-$kws-gridview-hover-background-color: $table-row-hover-background-color !default;
-$kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-background-color !default;
+$box-shadow: cv.getVar("shadow") !default;
+$th-background: cv.getVar("table-background-color") !default;
+$th-color: cv.getVar("text") !default;
+$tag-margin: 0 0.125rem 0.125rem 0 !default;
+$icon-size: 1.5em !default;
+$checked-row-background: cv.getVar("info-light") !default;
+$checked-row-color: cv.getVar("info") !default;
+$active-row-background: cv.getVar("table-row-active-background-color") !default;
+$active-row-color: cv.getVar("table-row-active-color") !default;
+$background: cv.getVar("table-background-color") !default;
+$striped-row-background: cv.getVar(
+  "table-striped-row-even-background-color"
+) !default;
+$sticky-column-border-color: cv.getVar("border") !default;
+$sticky-column-active-row-border-color: cv.getVar(
+  "table-row-active-color"
+) !default;
+$hover-background-color: cv.getVar("table-row-hover-background-color") !default;
+$even-row-hover-background-color: cv.getVar(
+  "table-striped-row-even-hover-background-color"
+) !default;
+$cell-border-color: cv.getVar("table-cell-border-color") !default;
 
 .table.kws-grid-view {
-  box-shadow: $kws-gridview-box-shadow;
+  box-shadow: $box-shadow;
   th {
-    background: $kws-gridview-th-background;
-    color: $kws-gridview-th-color;
+    background: $th-background;
+    color: $th-color;
     vertical-align: middle;
   }
   td {
@@ -46,13 +53,13 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
     }
   }
   .tag {
-    margin: $kws-gridview-tag-margin;
+    margin: $tag-margin;
   }
   td.is-icon {
     width: 25px;
     vertical-align: middle;
     .icon {
-      font-size: $kws-gridview-icon-size;
+      font-size: $icon-size;
     }
   }
   &.is-hoverable {
@@ -62,10 +69,10 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
   }
 
   tr.is-checked {
-    background-color: $kws-gridview-checked-row-background !important;
+    background-color: $checked-row-background !important;
     td {
-      background-color: $kws-gridview-checked-row-background !important;
-      color: findColorInvert($kws-gridview-checked-row-background) !important;
+      background-color: $checked-row-background !important;
+      color: $checked-row-color !important;
     }
   }
 
@@ -86,7 +93,7 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
 }
 .kws-sticky-columns-table-wrapper {
   position: relative;
-  box-shadow: $kws-gridview-box-shadow;
+  box-shadow: $box-shadow;
 
   .data-table {
     margin-bottom: 1.5rem;
@@ -100,7 +107,7 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
       tbody {
         tr:not(.is-selected):not(.is-checked):hover {
           td.is-sticky-column {
-            background-color: $kws-gridview-hover-background-color;
+            background-color: $hover-background-color;
           }
         }
       }
@@ -108,16 +115,16 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
     &.is-striped {
       tbody {
         tr:not(.is-selected):nth-child(odd) td.is-sticky-column {
-          background: $kws-gridview-background;
+          background: $background;
         }
         tr:not(.is-selected):nth-child(even) td.is-sticky-column {
-          background: $kws-gridview-striped-row-background;
+          background: $striped-row-background;
         }
         tr.is-selected {
           background-color: transparent;
           td {
-            background: $kws-gridview-active-row-background;
-            color: $kws-gridview-active-row-color;
+            background: $active-row-background;
+            color: $active-row-color;
           }
         }
       }
@@ -125,11 +132,11 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
         tbody {
           tr:not(.is-selected):not(.is-checked):hover {
             td.is-sticky-column {
-              background-color: $kws-gridview-hover-background-color;
+              background-color: $hover-background-color;
             }
             &:nth-child(even) {
               td.is-sticky-column {
-                background-color: $kws-gridview-even-row-hover-background-color;
+                background-color: $even-row-hover-background-color;
               }
             }
           }
@@ -150,9 +157,15 @@ $kws-gridview-even-row-hover-background-color: $table-striped-row-even-hover-bac
     &.is-bordered {
       td.is-sticky-column,
       th.is-sticky-column {
-        box-shadow: inset -1px 0 0 $kws-gridview-sticky-column-border-color;
+        box-shadow: inset -1px 0 0 $sticky-column-border-color;
         border-left-width: 0;
         border-right-width: 0;
+      }
+      tr.is-selected {
+        td.is-sticky-column,
+        th.is-sticky-column {
+          box-shadow: inset -1px 0 0 $sticky-column-active-row-border-color;
+        }
       }
     }
   }

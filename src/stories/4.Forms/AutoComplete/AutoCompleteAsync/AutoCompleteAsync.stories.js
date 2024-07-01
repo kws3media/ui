@@ -1,6 +1,7 @@
 import AutoCompleteDecorator from "./AutoComplete.svelte";
 import { AutoComplete } from "@kws3/ui";
 import playInteractions from "./autocomplete.play.js";
+import { Colors, Sizes } from "@scripts/type_injector/frameworkTypes";
 
 let args = {
   value: "",
@@ -19,13 +20,16 @@ let args = {
 
 let argTypes = {
   color: {
-    control: { type: "select" },
+    control: "select",
+    options: Colors,
   },
   size: {
-    control: { type: "select" },
+    control: "select",
+    options: Sizes,
   },
   search_strategy: {
-    control: { type: "select" },
+    control: "select",
+    options: ["fuzzy", "strict"],
   },
 };
 
@@ -34,6 +38,9 @@ export default {
   component: AutoComplete,
   args: args,
   argTypes: argTypes,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {

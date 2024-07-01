@@ -4,7 +4,7 @@
   on:click={() => {
     fire("rowClick", item);
   }}>
-  <div class="level is-mobile is-marginless">
+  <div class="level is-mobile marginless">
     <div class="level-left">
       <span class="name">
         Name: {item.name}
@@ -17,7 +17,7 @@
       </span>
     </div>
   </div>
-  <div class="level is-mobile is-marginless">
+  <div class="level is-mobile marginless">
     <div class="level-left">
       <span>
         Username: <b>{item.username}</b>

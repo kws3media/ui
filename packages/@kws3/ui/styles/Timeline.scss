@@ -1,6 +1,12 @@
-$kws-theme-colors: $colors !default;
-$kws-timeline-default-color: $grey !default;
-$kws-timeline-default-color-invert: $light !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+
+$theme-colors: dv.$colors !default;
+$color: cv.getVar("text") !default;
+$color-invert: cv.getVar("text-invert") !default;
+$color-light: cv.getVar("text-weak") !default;
+$image-radius: cv.getVar("radius-small") !default;
+$image-shadow: cv.getVar("shadow") !default;
 
 @mixin right-aligned-timeline-item {
   flex-direction: row-reverse;
@@ -13,6 +19,10 @@ $kws-timeline-default-color-invert: $light !default;
     text-align: right;
     padding-left: 0;
     padding-right: 1.75rem;
+  }
+  .kws-timeline-image {
+    margin-left: 0;
+    margin-right: 0.25rem;
   }
   &:before {
     right: -0.5px;
@@ -35,8 +45,8 @@ $kws-timeline-default-color-invert: $light !default;
   .kws-timeline-marker {
     position: absolute;
     left: 0;
-    background: $kws-timeline-default-color;
-    border: 1px solid $kws-timeline-default-color;
+    background: $color;
+    border: 1px solid $color;
     border-radius: 100%;
     transform: translateX(-50%);
     display: flex;
@@ -49,10 +59,10 @@ $kws-timeline-default-color-invert: $light !default;
       min-width: 1rem;
       padding: 0;
       border-width: 4px;
-      background: $kws-timeline-default-color-invert;
+      background: $color-invert;
     }
     .icon {
-      color: $kws-timeline-default-color-invert;
+      color: $color-invert;
       width: 16px;
       height: 16px;
       font-size: 0.75rem !important;
@@ -68,23 +78,27 @@ $kws-timeline-default-color-invert: $light !default;
     padding-left: 1.75rem;
     flex-grow: 1;
     flex-shrink: 1;
+    .above-description,
+    .below-description {
+      color: $color-light;
+    }
   }
   .kws-timeline-image {
     flex-grow: 0;
     flex-shrink: 0;
     width: 32px;
+    margin-left: 0.25rem;
     img {
       max-width: 100%;
       max-height: 100%;
-      border-radius: $radius;
-      box-shadow: 0 0.125rem 0.1875rem rgba(10, 10, 10, 0.1),
-        0 0 0 0.0625rem rgba(10, 10, 10, 0.1);
+      border-radius: $image-radius;
+      box-shadow: $image-shadow;
     }
   }
 
   &:before {
     content: "";
-    background-color: $kws-timeline-default-color;
+    background-color: $color;
     display: block;
     width: 1px;
     height: 100%;
@@ -93,9 +107,9 @@ $kws-timeline-default-color-invert: $light !default;
     top: 0;
   }
 
-  @each $name, $pair in $kws-theme-colors {
-    $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
+  @each $name, $pair in $theme-colors {
+    $color: cv.getVar($name);
+    $color-invert: cv.getVar($name, "", "-invert");
     &.is-#{$name} {
       .kws-timeline-marker {
         border-color: $color;

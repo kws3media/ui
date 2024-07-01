@@ -1,36 +1,33 @@
-$kws-theme-colors: $colors !default;
-$kws-datepicker-background: $scheme-main-ter !default;
-$kws-datepicker-text: $text !default;
-$kws-datepicker-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
-  0 0 0 0.0625rem rgba(0, 0, 0, 0.1) !default;
-$kws-datepicker-radius: 0px !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+
+$theme-colors: dv.$colors !default;
+$background: cv.getVar("scheme-main-ter") !default;
+$text: cv.getVar("text") !default;
+$shadow: cv.getVar("shadow") !default;
+$radius: cv.getVar("radius-small") !default;
 
 .flatpickr-calendar {
-  $inRangeBg: lighten($kws-datepicker-text, 55);
-  @if (colorLuminance($kws-datepicker-text) > 0.55) {
-    $inRangeBg: darken($kws-datepicker-text, 55);
-  }
+  box-shadow: $shadow;
+  background: $background;
+  color: $text;
 
-  box-shadow: $kws-datepicker-shadow;
-  background: $kws-datepicker-background;
-  color: $kws-datepicker-text;
-
-  border-radius: $kws-datepicker-radius;
+  border-radius: $radius;
   .flatpickr-months {
-    border-radius: $kws-datepicker-radius $kws-datepicker-radius 0 0;
+    border-radius: $radius $radius 0 0;
     .flatpickr-month {
-      border-radius: $kws-datepicker-radius $kws-datepicker-radius 0 0;
+      border-radius: $radius $radius 0 0;
     }
   }
   .flatpickr-innerContainer {
-    border-radius: 0 0 $kws-datepicker-radius $kws-datepicker-radius;
+    border-radius: 0 0 $radius $radius;
   }
 
-  @each $name, $pair in $kws-theme-colors {
-    $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
-    $color-light: findLightColor($color);
-    $color-dark: findDarkColor($color);
+  @each $name, $pair in $theme-colors {
+    $color: cv.getVar($name);
+    $color-invert: cv.getVar($name, "", "-invert");
+    $color-light: cv.getVar($name, "", "-soft");
+    $color-dark: cv.getVar($name, "", "-bold");
     &.is-#{$name} {
       &.arrowTop:before,
       &.arrowTop:after {
@@ -118,7 +115,9 @@ $kws-datepicker-radius: 0px !default;
         color: $color-dark;
         background: $color-light;
         border-color: $color-light;
-        box-shadow: -5px 0 0 $color-light, 5px 0 0 $color-light;
+        box-shadow:
+          -5px 0 0 $color-light,
+          5px 0 0 $color-light;
       }
       .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
       .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
@@ -133,7 +132,7 @@ $kws-datepicker-radius: 0px !default;
   }
 
   .flatpickr-day {
-    color: $kws-datepicker-text;
+    color: $text;
     &.flatpickr-disabled,
     &.flatpickr-disabled:hover,
     &.prevMonthDay,
@@ -141,11 +140,25 @@ $kws-datepicker-radius: 0px !default;
     &.notAllowed,
     &.notAllowed.prevMonthDay,
     &.notAllowed.nextMonthDay {
-      color: transparentize($kws-datepicker-text, 0.7);
+      color: hsla(
+        cv.getVar("text-h"),
+        cv.getVar("text-s"),
+        cv.getVar("text-l"),
+        0.6
+      );
+    }
+
+    &.startRange,
+    &.endRange {
+      background-color: cv.getVar("text");
+      border-color: cv.getVar("text");
+      color: cv.getVar("text-invert");
     }
 
     &.inRange {
-      box-shadow: -5px 0 0 $inRangeBg, 5px 0 0 $inRangeBg;
+      box-shadow:
+        -5px 0 0 cv.getVar("text-weak"),
+        5px 0 0 cv.getVar("text-weak");
     }
 
     &.inRange,
@@ -160,8 +173,9 @@ $kws-datepicker-radius: 0px !default;
     &:focus,
     &.prevMonthDay:focus,
     &.nextMonthDay:focus {
-      background: $inRangeBg;
-      border-color: $inRangeBg;
+      background: cv.getVar("text-weak");
+      border-color: cv.getVar("text-weak");
+      color: cv.getVar("text-invert");
     }
   }
 }

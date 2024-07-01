@@ -20,15 +20,15 @@ let args = {
 
 let argTypes = {
   color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   size: {
-    control: { type: "select" },
+    control: "select",
     options: Sizes,
   },
   search_strategy: {
-    control: { type: "select" },
+    control: "select",
     options: ["fuzzy", "strict"],
   },
 };
@@ -39,11 +39,14 @@ export default {
   args: args,
   argTypes: argTypes,
   play: playInteractions,
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const Main = {
   name: "Canvas",
-  //tags: ["isHidden"],
+  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

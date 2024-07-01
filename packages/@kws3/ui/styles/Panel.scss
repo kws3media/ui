@@ -1,25 +1,31 @@
-$kws-panel-background: $scheme-main !default;
-$kws-panel-box-shadow: $card-shadow !default;
-$kws-panel-title-color: $text !default;
-$kws-panel-title-weight: 700 !default;
-$kws-panel-caret-open-color: #888 !default;
-$kws-panel-caret-closed-color: #00a4d8 !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+
+$heading-background: cv.getVar("scheme-main-bis") !default;
+$background: cv.getVar("scheme-main") !default;
+$box-shadow: cv.getVar("shadow") !default;
+$color: cv.getVar("text") !default;
+$title-color: cv.getVar("text") !default;
+$title-weight: 600 !default;
+$caret-open-color: cv.getVar("text") !default;
+$caret-closed-color: cv.getVar("link") !default;
 
 .panel {
-  background: $kws-panel-background;
+  background: $background;
   border-radius: none;
   border: none;
-  box-shadow: $kws-panel-box-shadow;
+  box-shadow: $box-shadow;
   .panel-heading {
     border-top: none;
     border-left: none;
     border-right: none;
+    background-color: $heading-background;
     .subtitle {
-      font-weight: $kws-panel-title-weight;
-      color: $kws-panel-title-color;
+      font-weight: $title-weight;
+      color: $title-color;
     }
     .level {
       .level-right {
+        flex-direction: row;
         .level-item {
           margin-right: 0;
           margin-left: 0.5rem;
@@ -31,6 +37,7 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
     border: none;
     padding: 0.9375rem 1.25rem 1.25rem 1.25rem;
     display: block;
+    color: $color;
   }
 
   &.collapsible .panel-heading {
@@ -41,9 +48,11 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
     display: none;
   }
   .collapsor .icon-i {
-    transition: transform 0.4s, color 0.4s;
+    transition:
+      transform 0.4s,
+      color 0.4s;
     transform: rotate(-90deg);
-    color: $kws-panel-caret-open-color;
+    color: $caret-open-color;
 
     font-size: 1.5em;
     line-height: 0.9em;
@@ -56,7 +65,7 @@ $kws-panel-caret-closed-color: #00a4d8 !default;
 
   &.collapsed .collapsor .icon-i {
     transform: rotate(90deg) translate(5px, 0);
-    color: $kws-panel-caret-closed-color;
+    color: $caret-closed-color;
   }
 
   &.collapsible .panel-content-outer {

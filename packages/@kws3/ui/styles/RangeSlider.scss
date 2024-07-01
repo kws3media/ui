@@ -1,23 +1,26 @@
-$kws-theme-colors: $colors !default;
-$kws-slider-radius: $radius !default;
-$kws-slider-track-background: $grey-lighter !default;
-$kws-slider-track-radius: $radius !default;
-$kws-slider-track-border: 0px solid $grey !default;
-$kws-slider-track-shadow: 0px 0px 0px $grey !default;
-$kws-slider-thumb-background: $white !default;
-$kws-slider-thumb-radius: $radius !default;
-$kws-slider-thumb-border: 1px solid $grey-light !default;
-$kws-slider-thumb-shadow: none !default;
-$kws-slider-thumb-to-track-ratio: 2 !default;
-$kws-slider-output-width: 3rem !default;
-$kws-slider-output-background: $grey-dark !default;
-$kws-slider-output-color: $white !default;
-$kws-slider-output-radius: $radius !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+
+$theme-colors: dv.$colors !default;
+$radius: cv.getVar("radius") !default;
+$track-background: cv.getVar("border") !default;
+$track-radius: cv.getVar("radius") !default;
+$track-border: 0px solid cv.getVar("border") !default;
+$track-shadow: cv.getVar("input-shadow") !default;
+$thumb-background: cv.getVar("text-invert") !default;
+$thumb-radius: cv.getVar("radius-small") !default;
+$thumb-border: 1px solid cv.getVar("border") !default;
+$thumb-shadow: none !default;
+$thumb-to-track-ratio: 2 !default;
+$output-width: 3rem !default;
+$output-background: cv.getVar("scheme-invert-ter") !default;
+$output-color: cv.getVar("text-invert") !default;
+$output-radius: cv.getVar("radius-small") !default;
 
 @use "sass:math";
 
 @mixin slider-size($size) {
-  $track-height: math.div($size, $kws-slider-thumb-to-track-ratio);
+  $track-height: calc($size / $thumb-to-track-ratio);
   $thumb-size: $size;
 
   min-height: calc((#{$size} + 2px) * 1.25);
@@ -47,7 +50,7 @@ $kws-slider-output-radius: $radius !default;
     margin-top: 0;
   }
   &::-webkit-slider-thumb {
-    margin-top: -(math.div($thumb-size, 4));
+    margin-top: calc($thumb-size / 4 * -1);
   }
 }
 
@@ -81,16 +84,16 @@ $kws-slider-output-radius: $radius !default;
       &.has-output,
       &.has-output-tooltip {
         + output {
-          width: $kws-slider-output-width;
-          background: $kws-slider-output-background;
-          border-radius: $kws-slider-output-radius;
+          width: $output-width;
+          background: $output-background;
+          border-radius: $output-radius;
           padding: 0.4rem 0.8rem;
-          font-size: $size-7;
-          line-height: $size-7;
+          font-size: cv.getVar("size-7");
+          line-height: cv.getVar("size-7");
           text-align: center;
           text-overflow: ellipsis;
           white-space: nowrap;
-          color: $kws-slider-output-color;
+          color: $output-color;
           overflow: hidden;
           pointer-events: none;
           z-index: 200;
@@ -102,7 +105,7 @@ $kws-slider-output-radius: $radius !default;
       &.has-output {
         display: inline-block;
         vertical-align: middle;
-        width: calc(100% - (#{$kws-slider-output-width + 1.2rem}));
+        width: calc(100% - (#{$output-width + 1.2rem}));
 
         + output {
           display: inline-block;
@@ -117,57 +120,58 @@ $kws-slider-output-radius: $radius !default;
           position: absolute;
           left: 0;
           top: -1.8rem;
+          margin: 0;
         }
       }
 
       &::-webkit-slider-runnable-track {
         cursor: pointer;
-        box-shadow: $kws-slider-track-shadow;
-        background: $kws-slider-track-background;
-        border-radius: $kws-slider-track-radius;
-        border: $kws-slider-track-border;
+        box-shadow: $track-shadow;
+        background: $track-background;
+        border-radius: $track-radius;
+        border: $track-border;
       }
       &::-moz-range-track {
         cursor: pointer;
-        box-shadow: $kws-slider-track-shadow;
-        background: $kws-slider-track-background;
-        border-radius: $kws-slider-track-radius;
-        border: $kws-slider-track-border;
+        box-shadow: $track-shadow;
+        background: $track-background;
+        border-radius: $track-radius;
+        border: $track-border;
       }
       &::-ms-track {
         cursor: pointer;
-        box-shadow: $kws-slider-track-shadow;
-        background: $kws-slider-track-background;
-        border-radius: $kws-slider-track-radius;
-        border: $kws-slider-track-border;
+        box-shadow: $track-shadow;
+        background: $track-background;
+        border-radius: $track-radius;
+        border: $track-border;
       }
       &::-ms-fill-lower {
-        background: $grey-lighter;
-        border-radius: $kws-slider-radius;
+        background: $track-background;
+        border-radius: $radius;
       }
       &::-ms-fill-upper {
-        background: $grey-lighter;
-        border-radius: $kws-slider-radius;
+        background: $track-background;
+        border-radius: $radius;
       }
       &::-webkit-slider-thumb {
-        box-shadow: $kws-slider-thumb-shadow;
-        border: $kws-slider-thumb-border;
-        border-radius: $kws-slider-thumb-radius;
-        background: $kws-slider-thumb-background;
+        box-shadow: $thumb-shadow;
+        border: $thumb-border;
+        border-radius: $thumb-radius;
+        background: $thumb-background;
         cursor: pointer;
       }
       &::-moz-range-thumb {
-        box-shadow: $kws-slider-thumb-shadow;
-        border: $kws-slider-thumb-border;
-        border-radius: $kws-slider-thumb-radius;
-        background: $kws-slider-thumb-background;
+        box-shadow: $thumb-shadow;
+        border: $thumb-border;
+        border-radius: $thumb-radius;
+        background: $thumb-background;
         cursor: pointer;
       }
       &::-ms-thumb {
-        box-shadow: $kws-slider-thumb-shadow;
-        border: $kws-slider-thumb-border;
-        border-radius: $kws-slider-thumb-radius;
-        background: $kws-slider-thumb-background;
+        box-shadow: $thumb-shadow;
+        border: $thumb-border;
+        border-radius: $thumb-radius;
+        background: $thumb-background;
         cursor: pointer;
       }
       &::-webkit-slider-thumb {
@@ -175,13 +179,13 @@ $kws-slider-output-radius: $radius !default;
       }
       &.is-circle {
         &::-webkit-slider-thumb {
-          border-radius: $radius-rounded;
+          border-radius: cv.getVar("radius-rounded");
         }
         &::-moz-range-thumb {
-          border-radius: $radius-rounded;
+          border-radius: cv.getVar("radius-rounded");
         }
         &::-ms-thumb {
-          border-radius: $radius-rounded;
+          border-radius: cv.getVar("radius-rounded");
         }
       }
       &:active {
@@ -212,23 +216,22 @@ $kws-slider-output-radius: $radius !default;
           transform: scale(1);
         }
       }
-      @include slider-size($size-normal);
+      @include slider-size(cv.getVar("size-normal"));
 
       &.is-small {
-        @include slider-size($size-small);
+        @include slider-size(cv.getVar("size-small"));
       }
       &.is-medium {
-        @include slider-size($size-medium);
+        @include slider-size(cv.getVar("size-medium"));
       }
       &.is-large {
-        @include slider-size($size-large);
+        @include slider-size(cv.getVar("size-large"));
       }
-      @each $name, $pair in $kws-theme-colors {
-        $color: nth($pair, 1);
-        $color-invert: nth($pair, 2);
-        $color-light: findLightColor($color);
-        $color-dark: findDarkColor($color);
-
+      @each $name, $pair in $theme-colors {
+        $color: cv.getVar($name);
+        $color-invert: cv.getVar($name, "", "-invert");
+        $color-light: cv.getVar($name, "", "-light");
+        $color-dark: cv.getVar($name, "", "-dark");
         &.is-#{$name} {
           &::-moz-range-track {
             background: $color !important;

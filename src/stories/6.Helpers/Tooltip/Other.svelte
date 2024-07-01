@@ -14,8 +14,7 @@
       </p>
     </div>
     <div class="column is-6">
-      <pre
-        data-tooltip="This<br> is a<br> tooltip">
+      <pre data-tooltip="This<br> is a<br> tooltip">
 &lt;span
   data-tooltip="This&lt;br&gt;  is a&lt;br&gt; tooltip"&gt;
   hello
@@ -38,9 +37,7 @@
       </p>
     </div>
     <div class="column is-6">
-      <pre
-        data-tooltip="This is a tooltip"
-        data-tippy-trigger="click">
+      <pre data-tooltip="This is a tooltip" data-tippy-trigger="click">
 &lt;span
   data-tooltip="This is a tooltip"
   data-tippy-trigger="click"&gt;

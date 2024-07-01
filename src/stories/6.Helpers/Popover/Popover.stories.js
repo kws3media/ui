@@ -23,15 +23,15 @@ let args = {
 let argTypes = {
   icon: {},
   icon_color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   icon_size: {
-    control: { type: "select" },
+    control: "select",
     options: Sizes,
   },
   placement: {
-    control: { type: "select" },
+    control: "select",
     options: TippyPositions,
   },
 };
@@ -42,9 +42,7 @@ export default {
   decorators: [(_, { args }) => ({ Component: PopoverDecorator, props: args })],
   args: args,
   argTypes: argTypes,
-  parameters: {
-    layout: "fullscreen",
-  },
+  tags: ["isHidden"],
 };
 
 export const Main = {

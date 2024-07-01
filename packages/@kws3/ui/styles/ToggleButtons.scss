@@ -1,0 +1,50 @@
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+
+$count-background: cv.getVar("danger") !default;
+$count-color: cv.getVar("danger-invert") !default;
+
+.kws-toggle-buttons {
+  .button,
+  .button:focus {
+    .icon {
+      margin: 0;
+    }
+    box-shadow: none;
+    &.is-active {
+      box-shadow: 0 0 0.6rem
+        hsla(
+          cv.getVar("button-outer-shadow-h"),
+          cv.getVar("button-outer-shadow-s"),
+          cv.getVar("button-outer-shadow-l"),
+          0.2
+        )
+        inset !important;
+    }
+  }
+  .button {
+    position: relative;
+    .option-subtitle {
+      font-size: 0.7em;
+      display: block;
+      margin-top: -0.3em;
+      opacity: 0.7;
+    }
+    .count {
+      position: absolute;
+      font-weight: 600;
+      font-size: 0.8em;
+      border-radius: 999px;
+      padding: 0.15em 0.2em;
+      min-width: 1.8em;
+      min-height: 1.5em;
+      top: -0.75em;
+      right: 0.2em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: $count-background;
+      color: $count-color;
+    }
+  }
+}

@@ -1,27 +1,36 @@
-$kws-theme-colors: $colors !default;
-$kws-autocomplete-radius: $radius !default;
-$kws-autocomplete-border-color: $input-border-color !default;
-$kws-autocomplete-box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
-  0 0px 0 1px rgb(10 10 10 / 2%) !default;
-$kws-autocomplete-focus-border-color: $input-focus-border-color !default;
-$kws-autocomplete-focus-box-shadow-size: $input-focus-box-shadow-size !default;
-$kws-autocomplete-focus-box-shadow-color: $input-focus-box-shadow-color !default;
-$kws-autocomplete-disabled-background-color: $input-disabled-background-color !default;
-$kws-autocomplete-disabled-border-color: $input-disabled-border-color !default;
-$kws-autocomplete-disabled-color: $input-disabled-color !default;
-$kws-autocomplete-selecting-color: $primary-invert !default;
-$kws-autocomplete-selecting-background: $primary !default;
-$kws-autocomplete-text-matches-color: currentColor !default;
-$kws-autocomplete-text-matches-background: transparent !default;
-$kws-autocomplete-text-matches-font-weight: $weight-bold !default;
-$kws-autocomplete-options-background: $scheme-main-ter !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
+
+$theme-colors: dv.$colors !default;
+$radius: cv.getVar("radius") !default;
+$border-color: cv.getVar("border") !default;
+$box-shadow: cv.getVar("shadow") !default;
+$focus-border-color: cv.getVar("input-focus-border-color") !default;
+$focus-box-shadow-size: cv.getVar("focus-shadow-size") !default;
+$focus-box-shadow-color: hsl(
+  cv.getVar("focus-h"),
+  cv.getVar("focus-s"),
+  cv.getVar("focus-l"),
+  cv.getVar("focus-shadow-alpha")
+) !default;
+$disabled-background-color: cv.getVar(
+  "input-disabled-background-color"
+) !default;
+$disabled-border-color: cv.getVar("input-disabled-border-color") !default;
+$disabled-color: cv.getVar("input-disabled-color") !default;
+$selecting-color: cv.getVar("primary-invert") !default;
+$selecting-background: cv.getVar("primary") !default;
+$text-matches-color: currentColor !default;
+$text-matches-background: transparent !default;
+$text-matches-font-weight: cv.getVar("weight-bold") !default;
+$options-background: cv.getVar("scheme-main-ter") !default;
 
 $__modal-z: 41 !default;
-@if $modal-z {
+@if variable-exists("modal-z") {
   $__modal-z: $modal-z;
 }
 
-$kws-autocomplete-options-z-index: $__modal-z + 1 !default;
+$options-z-index: $__modal-z + 1 !default;
 
 .kws-autocomplete {
   position: relative;
@@ -33,14 +42,13 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
   padding-top: calc(0.4em - 1px);
   padding-bottom: calc(0.4em - 1px);
   &:focus-within {
-    border-color: $kws-autocomplete-focus-border-color;
-    box-shadow: $kws-autocomplete-focus-box-shadow-size
-      $kws-autocomplete-focus-box-shadow-color;
+    border-color: $focus-border-color;
+    box-shadow: $focus-box-shadow-size $focus-box-shadow-color;
   }
   &.is-disabled {
-    background-color: $kws-autocomplete-disabled-background-color;
-    border-color: $kws-autocomplete-disabled-border-color;
-    color: $kws-autocomplete-disabled-color;
+    background-color: $disabled-background-color;
+    border-color: $disabled-border-color;
+    color: $disabled-color;
     cursor: not-allowed;
   }
   &.is-readonly {
@@ -66,14 +74,14 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
     padding: 0;
     cursor: pointer;
     overflow: auto;
-    background: $kws-autocomplete-options-background;
-    border: 1px solid $kws-autocomplete-border-color;
-    box-shadow: $kws-autocomplete-box-shadow;
+    background: $options-background;
+    border: 1px solid $border-color;
+    box-shadow: $box-shadow;
     position: relative;
+    border-radius: 0 0 $radius $radius;
     z-index: 4;
     &[data-popper-placement="top"] {
-      border-radius: $kws-autocomplete-radius $kws-autocomplete-radius 0 0;
-      box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.4);
+      border-radius: $radius $radius 0 0;
     }
     &.hidden {
       display: none;
@@ -85,29 +93,35 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
       word-break: break-all;
       &.active {
         // keyboard focused item
-        color: $kws-autocomplete-selecting-color;
-        background: $kws-autocomplete-selecting-background;
+        color: $selecting-color;
+        background: $selecting-background;
       }
       span.h {
         // highlight text matches
-        font-weight: $kws-autocomplete-text-matches-font-weight;
-        color: $kws-autocomplete-text-matches-color;
-        background: $kws-autocomplete-text-matches-background;
+        font-weight: $text-matches-font-weight;
+        color: $text-matches-color;
+        background: $text-matches-background;
       }
     }
   }
 }
 
-@each $name, $pair in $kws-theme-colors {
-  $color: nth($pair, 1);
-  $color-invert: nth($pair, 2);
-  $color-light: findLightColor($color);
-  $color-dark: findDarkColor($color);
+@each $name, $pair in $theme-colors {
+  $color: cv.getVar($name);
+  $color-invert: cv.getVar($name, "", "-invert");
+  $color-light: cv.getVar($name, "", "-light");
+  $color-dark: cv.getVar($name, "", "-dark");
   .kws-autocomplete {
     &.is-#{$name} {
       border-color: $color;
       &:focus-within {
-        box-shadow: $input-focus-box-shadow-size bulmaRgba($color, 0.25);
+        box-shadow: $focus-box-shadow-size
+          hsla(
+            cv.getVar($name, "", "-h"),
+            cv.getVar($name, "", "-s"),
+            cv.getVar($name, "", "-l"),
+            cv.getVar("input-focus-shadow-alpha")
+          );
       }
       ul.options {
         li {
@@ -128,6 +142,6 @@ $kws-autocomplete-options-z-index: $__modal-z + 1 !default;
 #kws-overlay-root {
   .kws-autocomplete {
     position: absolute;
-    z-index: $kws-autocomplete-options-z-index;
+    z-index: $options-z-index;
   }
 }

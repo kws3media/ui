@@ -23,8 +23,22 @@ import * as Stories from "./DataSort.stories.js";
 />
 
 #### Import the SCSS:
+_Default values shown as example_
 <Source
   code={
-    dedent`@import '@kws3/ui/styles/DataSort.scss';`
+    dedent`
+    @use '@kws3/ui/styles/DataSort.scss' with (
+      $border-radius: cv.getVar("radius-medium"),
+      $background: cv.getVar("border"),
+      $label-background: hsla(
+        cv.getVar("scheme-h"),
+        cv.getVar("scheme-s"),
+        90%,
+        1
+      ),
+      $dropdown-text-color: cv.getVar("primary"),
+      $dropdown-marker-color: cv.getVar("primary"),
+    );
+    `
   }
 />

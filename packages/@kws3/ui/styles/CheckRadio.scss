@@ -1,12 +1,17 @@
-$kws-theme-colors: $colors !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
 
-$kws-checkradio-default-check-color: $text !default;
-$kws-checkradio-default-check-color-invert: findColorInvert(
-  $kws-checkradio-default-check-color
+$theme-colors: dv.$colors !default;
+$check-color: cv.getVar("text") !default;
+$check-color-invert: cv.getVar("text-invert") !default;
+$border-color: cv.getVar("text") !default;
+$focus-box-shadow-size: cv.getVar("focus-shadow-size") !default;
+$focus-box-shadow-color: hsla(
+  cv.getVar("focus-h"),
+  cv.getVar("focus-s"),
+  cv.getVar("focus-l"),
+  cv.getVar("focus-shadow-alpha")
 ) !default;
-$kws-checkradio-default-border-color: #dbdbdb !default;
-$kws-checkradio-focus-box-shadow-size: $input-focus-box-shadow-size !default;
-$kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
 
 .kws-checkbox {
   position: relative;
@@ -27,7 +32,7 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
     top: 0.25em;
     left: 0;
     font-size: 1em;
-    color: $kws-checkradio-default-check-color;
+    color: $check-color;
     opacity: 0;
     display: inline-flex;
     align-items: center;
@@ -50,7 +55,7 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
       content: "";
     }
     &:before {
-      border: 0.05em solid $kws-checkradio-default-border-color;
+      border: 0.05em solid $border-color;
       width: 1em;
       height: 1em;
       top: 0.25em;
@@ -74,7 +79,7 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
   }
   input[type="checkbox"]:checked + .kws-checkbox-label {
     &:after {
-      border: 0.1em solid $kws-checkradio-default-check-color;
+      border: 0.1em solid $check-color;
       border-top: 0;
       border-left: 0;
     }
@@ -86,36 +91,36 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
     &:after {
       transform: none;
       border: 0.25em solid #fff;
-      background: $kws-checkradio-default-check-color;
+      background: $check-color;
       width: 1em;
       height: 1em;
       top: 0.25em;
       left: 0;
       border-radius: 0.14em;
-      box-shadow: 0 0 0 0.05em $kws-checkradio-default-border-color;
+      box-shadow: 0 0 0 0.05em $border-color;
       display: inline-block;
     }
   }
 
   &.is-inverted input[type="checkbox"]:checked + .kws-checkbox-label {
     &:before {
-      background: $kws-checkradio-default-check-color;
+      background: $check-color;
     }
     &:after {
-      border-color: $kws-checkradio-default-check-color-invert;
+      border-color: $check-color-invert;
     }
   }
   &.is-inverted input[type="checkbox"]:checked ~ .icon {
-    color: $kws-checkradio-default-check-color-invert;
+    color: $check-color-invert;
   }
 
   &.is-inverted input[type="radio"]:checked + .kws-checkbox-label {
     &:before {
-      background: $kws-checkradio-default-check-color;
+      background: $check-color;
     }
     &:after {
-      background-color: $kws-checkradio-default-check-color-invert;
-      border-color: $kws-checkradio-default-check-color;
+      background-color: $check-color-invert;
+      border-color: $check-color;
       box-shadow: none;
     }
   }
@@ -125,8 +130,7 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
   input[type="checkbox"]:active + .kws-checkbox-label,
   input[type="radio"]:active + .kws-checkbox-label {
     &:before {
-      box-shadow: $kws-checkradio-focus-box-shadow-size
-        $kws-checkradio-focus-box-shadow-color;
+      box-shadow: $focus-box-shadow-size $focus-box-shadow-color;
     }
   }
 
@@ -144,10 +148,11 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
     cursor: not-allowed;
   }
 
-  @each $name, $pair in $kws-theme-colors {
-    $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
-
+  @each $name, $pair in $theme-colors {
+    $color: cv.getVar($name);
+    $color-invert: cv.getVar($name, "", "-invert");
+    $color-light: cv.getVar($name, "", "-light");
+    $color-dark: cv.getVar($name, "", "-dark");
     &.is-#{$name} input[type="checkbox"]:checked + .kws-checkbox-label {
       &:after {
         border-color: $color;
@@ -207,8 +212,13 @@ $kws-checkradio-focus-box-shadow-color: $input-focus-box-shadow-color !default;
     &.is-#{$name} input[type="checkbox"]:active + .kws-checkbox-label,
     &.is-#{$name} input[type="radio"]:active + .kws-checkbox-label {
       &:before {
-        box-shadow: $kws-checkradio-focus-box-shadow-size
-          bulmaRgba($color, 0.25);
+        box-shadow: $focus-box-shadow-size
+          hsla(
+            cv.getVar($name, "", "-h"),
+            cv.getVar($name, "", "-s"),
+            cv.getVar($name, "", "-l"),
+            cv.getVar("focus-shadow-alpha")
+          );
       }
     }
   }

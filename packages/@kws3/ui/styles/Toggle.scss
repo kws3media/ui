@@ -1,12 +1,12 @@
-$kws-toggle-off-bg-color: $background !default;
-$kws-toggle-handle-bg-color: $white !default;
-$kws-toggle-track-bg-color: $text !default;
-$kws-toggle-track-bg-color-invert: findColorInvert(
-  $kws-toggle-track-bg-color
-) !default;
-$kws-toggle-border-color: $input-border-color !default;
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/utilities/derived-variables" as dv;
 
-$kws-theme-colors: $colors !default;
+$theme-colors: dv.$colors !default;
+$off-bg-color: cv.getVar("border-weak") !default;
+$handle-bg-color: cv.getVar("text-40-invert") !default;
+$track-bg-color: cv.getVar("text") !default;
+$track-bg-color-invert: cv.getVar("text-invert") !default;
+$border-color: cv.getVar("border") !default;
 
 .kws-toggle-button {
   position: relative;
@@ -14,16 +14,21 @@ $kws-theme-colors: $colors !default;
   vertical-align: middle;
   pointer-events: auto;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font-size: 0.9rem;
+  font-size: cv.getVar("size-normal");
+  &.disabled {
+    opacity: 0.5;
+  }
   .track {
-    transition: background-color 0.3s, border 0.3s;
+    transition:
+      background-color 0.3s,
+      border 0.3s;
     display: inline-flex;
     align-items: center;
     width: 3.93em;
     height: 2.21em;
-    border: solid 2px $kws-toggle-border-color;
+    border: solid 1px $border-color;
     border-radius: 1.428em;
-    background-color: $kws-toggle-off-bg-color;
+    background-color: $off-bg-color;
     content: " ";
     cursor: pointer;
     .toggle-text {
@@ -31,12 +36,11 @@ $kws-theme-colors: $colors !default;
       flex-shrink: 0;
       font-weight: bold;
       font-size: 0.642em;
-      line-height: 1em;
       display: block;
       text-align: right;
       user-select: none;
       margin: 0 0.5em;
-      color: findColorInvert($kws-toggle-off-bg-color);
+      color: $track-bg-color;
     }
     .handle {
       transition: transform 0.3s cubic-bezier(0, 1.1, 1, 1.1);
@@ -45,27 +49,29 @@ $kws-theme-colors: $colors !default;
       width: 1.928em;
       height: 1.928em;
       border-radius: 1.928em;
-      background-color: $kws-toggle-handle-bg-color;
-      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.15);
+      background-color: $handle-bg-color;
+      box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.35),
+        0 1px 1px rgba(0, 0, 0, 0.15);
     }
   }
   &.on {
     .track {
-      border-color: $kws-toggle-track-bg-color;
-      background-color: $kws-toggle-track-bg-color;
+      border-color: $track-bg-color;
+      background-color: $track-bg-color;
       .toggle-text {
         left: 10%;
         right: auto;
         text-align: left;
-        color: $kws-toggle-track-bg-color-invert;
+        color: $track-bg-color-invert;
       }
     }
     .handle {
       transform: translate3d(1.785em, 0, 0);
     }
-    @each $name, $pair in $kws-theme-colors {
-      $color: nth($pair, 1);
-      $color-invert: nth($pair, 2);
+    @each $name, $pair in $theme-colors {
+      $color: cv.getVar($name);
+      $color-invert: cv.getVar($name, "", "-invert");
       &.is-#{$name} {
         .track {
           border-color: $color;
@@ -78,12 +84,12 @@ $kws-theme-colors: $colors !default;
     }
   }
   &.is-small {
-    font-size: 0.75rem;
+    font-size: cv.getVar("size-small");
   }
   &.is-medium {
-    font-size: 1rem;
+    font-size: cv.getVar("size-medium");
   }
   &.is-large {
-    font-size: 1.25rem;
+    font-size: cv.getVar("size-large");
   }
 }

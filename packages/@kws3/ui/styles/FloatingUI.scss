@@ -1,5 +1,58 @@
-$kws-theme-colors: $colors !default;
-$kws3-floating-item-width: 25rem !default;
+@use "bulma/sass/utilities/derived-variables" as dv;
+@use "bulma/sass/utilities/css-variables" as cv;
+
+$theme-colors: dv.$colors !default;
+$item-width: 25rem !default;
+$progressbar-radius: 0 cv.getVar("radius") cv.getVar("radius")
+  cv.getVar("radius") !default;
+$notification-radius: cv.getVar("radius") !default;
+$notification-shadow:
+  0 1px 4px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.12
+    ),
+  0 0 6px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.04
+    ) !default;
+$snackbar-radius: cv.getVar("radius") !default;
+$snackbar-shadow:
+  0 1px 4px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.12
+    ),
+  0 0 6px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.04
+    ) !default;
+$toast-radius: 1.5em !default;
+$toast-shadow:
+  0 1px 4px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.12
+    ),
+  0 0 6px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.04
+    ) !default;
 
 .kws-floatie-output {
   position: fixed;
@@ -25,8 +78,8 @@ $kws3-floating-item-width: 25rem !default;
   transform: translate3d(0, 0, 0);
   pointer-events: none;
   margin-bottom: 1rem;
-  max-width: $kws3-floating-item-width;
-  min-width: $kws3-floating-item-width;
+  max-width: $item-width;
+  min-width: $item-width;
   &.has-toast {
     max-width: 100%;
     width: fit-content;
@@ -56,7 +109,7 @@ $kws3-floating-item-width: 25rem !default;
     animation-name: floatie-progress-running;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
-    border-radius: 0 $radius $radius $radius;
+    border-radius: $progressbar-radius;
   }
   .notification {
     padding: 0.5em 0.75em;
@@ -64,7 +117,8 @@ $kws3-floating-item-width: 25rem !default;
     font-size: 1rem;
     width: 100%;
     pointer-events: auto;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+    border-radius: $notification-radius;
+    box-shadow: $notification-shadow;
     p {
       margin: 0;
     }
@@ -74,12 +128,12 @@ $kws3-floating-item-width: 25rem !default;
     position: relative;
     align-items: center;
     justify-content: space-around;
-    border-radius: $radius;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+    border-radius: $snackbar-radius;
+    box-shadow: $snackbar-shadow;
     pointer-events: auto;
     min-height: 3em;
-    background: $scheme-invert;
-    color: $scheme-main;
+    background: cv.getVar("scheme-invert");
+    color: cv.getVar("text-invert");
     font-size: 1rem;
 
     .text {
@@ -108,11 +162,11 @@ $kws3-floating-item-width: 25rem !default;
       }
     }
 
-    @each $name, $pair in $kws-theme-colors {
-      $color: nth($pair, 1);
-      $color-invert: nth($pair, 2);
-      $color-light: findLightColor($color);
-      $color-dark: findDarkColor($color);
+    @each $name, $pair in $theme-colors {
+      $color: cv.getVar($name);
+      $color-invert: cv.getVar($name, "", "-invert");
+      $color-light: cv.getVar($name, "", "-soft");
+      $color-dark: cv.getVar($name, "", "-bold");
       &.is-#{$name} {
         background: $color;
         color: $color-invert;
@@ -127,20 +181,20 @@ $kws3-floating-item-width: 25rem !default;
   .toast {
     text-align: center;
     padding: 0.5em 0.75em;
-    border-radius: 1.5em;
+    border-radius: $toast-radius;
     margin: 0;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+    box-shadow: $toast-shadow;
     pointer-events: none;
-    background: $scheme-invert;
-    color: $scheme-main;
+    background: cv.getVar("scheme-invert");
+    color: cv.getVar("text-invert");
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    @each $name, $pair in $kws-theme-colors {
-      $color: nth($pair, 1);
-      $color-invert: nth($pair, 2);
-      $color-light: findLightColor($color);
-      $color-dark: findDarkColor($color);
+    @each $name, $pair in $theme-colors {
+      $color: cv.getVar($name);
+      $color-invert: cv.getVar($name, "", "-invert");
+      $color-light: cv.getVar($name, "", "-soft");
+      $color-dark: cv.getVar($name, "", "-bold");
       &.is-#{$name} {
         background: $color;
         color: $color-invert;

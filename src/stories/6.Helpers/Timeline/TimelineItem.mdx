@@ -5,10 +5,8 @@ import * as Stories from "./TimelineItem.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # TimelineItem
 ## A TimelineItem component.
-`}/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />
@@ -20,17 +18,17 @@ import * as Stories from "./TimelineItem.stories";
   code={ dedent`import { TimelineItem } from '@kws3/ui';`}
 />
 
-##### Import the CSS:
+#### Import the SCSS:
+_Default values shown as example_
 <Source
-  code={ dedent`@import '@kws3/ui/styles/Timeline.scss';`}
-/>
-
-##### SCSS customization variables with default values:
-<Source
-  language='css'
   code={ dedent`
-    $kws-theme-colors: $colors;
-    $kws-timeline-default-color: $grey;
-    $kws-timeline-default-color-invert: $light;
+    @use '@kws3/ui/styles/Timeline.scss' with(
+      $theme-colors: dv.$colors,
+      $color: cv.getVar("text"),
+      $color-invert: cv.getVar("text-invert"),
+      $color-light: cv.getVar("text-weak"),
+      $image-radius: cv.getVar("radius-small"),
+      $image-shadow: cv.getVar("shadow"),
+    );
   `}
 />

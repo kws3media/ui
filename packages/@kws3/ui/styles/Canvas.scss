@@ -1,3 +1,5 @@
+@use "bulma/sass/utilities/css-variables" as cv;
+
 :root {
   --kws-peninput-height: 350px;
   --kws-peninput-width: 250px;
@@ -11,7 +13,7 @@
   height: var(--kws-peninput-height);
   width: var(--kws-peninput-width);
   transform: translate3d(0, 0, 0);
-  transition: transform 0.3s $easeOutCustom;
+  transition: transform 0.3s cv.getVar("easing");
   transform-origin: center center;
   will-change: transform;
   backface-visibility: hidden;
@@ -21,7 +23,7 @@
     position: absolute;
     width: 100%;
     min-height: var(--kws-peninput-controls-height);
-    background: transparentize($grey-light, 0.5);
+    background: cv.getVar("grey-lighter");
     padding: 0.25rem;
     margin: 0 auto;
     .control {
@@ -46,7 +48,7 @@
       width: 32px;
       height: 32px;
       padding: 3px;
-      background-color: $white-ter;
+      background-color: cv.getVar("white-ter");
     }
     input[type="color"]::-webkit-color-swatch-wrapper {
       padding: 0;
@@ -57,9 +59,9 @@
     &.expanded {
       z-index: 999;
       position: relative;
-      box-shadow: $card-shadow;
+      box-shadow: cv.getVar("shadow");
       .kws-pen-controls {
-        background: $grey-lighter;
+        background: cv.getVar("grey-lighter");
       }
     }
   }

@@ -1,18 +1,22 @@
 import { Checkbox } from "@kws3/ui";
-import { Colors, Sizes } from "@scripts/type_injector/frameworkTypes";
+import {
+  Colors,
+  FontFamilies,
+  Sizes,
+} from "@scripts/type_injector/frameworkTypes";
 
 let args = {
   class: "",
   style: "",
   label_style: "",
   size: "",
-  color: "",
+  color: "primary",
   inverted: false,
   circle: false,
-  checked: true,
+  checked: false,
   disabled: false,
   icon: "check",
-  icon_family: null,
+  icon_family: "fa",
 };
 
 let argTypes = {
@@ -20,11 +24,11 @@ let argTypes = {
   style: {},
   label_style: {},
   color: {
-    control: { type: "select" },
+    control: "select",
     options: Colors,
   },
   size: {
-    control: { type: "select" },
+    control: "select",
     options: Sizes,
   },
   inverted: {},
@@ -33,7 +37,8 @@ let argTypes = {
   disabled: {},
   icon: {},
   icon_family: {
-    control: { type: "select" },
+    control: "select",
+    options: FontFamilies,
   },
 };
 

@@ -19,7 +19,7 @@ let args = {
 let argTypes = {
   color: {
     control: "select",
-    optons: Colors,
+    options: Colors,
   },
   size: {
     control: "select",
