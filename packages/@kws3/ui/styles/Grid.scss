@@ -7,6 +7,7 @@ $th-color: cv.getVar("text") !default;
 $tag-margin: 0 0.125rem 0.125rem 0 !default;
 $icon-size: 1.5em !default;
 $checked-row-background: cv.getVar("info-light") !default;
+$checked-row-color: cv.getVar("info") !default;
 $active-row-background: cv.getVar("table-row-active-background-color") !default;
 $active-row-color: cv.getVar("table-row-active-color") !default;
 $background: cv.getVar("table-background-color") !default;
@@ -71,7 +72,7 @@ $cell-border-color: cv.getVar("table-cell-border-color") !default;
     background-color: $checked-row-background !important;
     td {
       background-color: $checked-row-background !important;
-      color: $th-color !important;
+      color: $checked-row-color !important;
     }
   }
 
