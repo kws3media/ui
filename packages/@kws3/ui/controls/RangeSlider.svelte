@@ -127,8 +127,8 @@ This will be overridden if `min` is higher, or `max` is lower, Default: `0`
   $: {
     let range = max - min;
     let position = ((value - min) / range) * 100;
-    let positionOffset = Math.round(position * 0.5);
-    computedStyle = `left:calc(${position}% - ${positionOffset}px`;
+    let positionOffset = Math.round(position * 0.4);
+    computedStyle = `left:calc(${position}% - ${positionOffset}px)`;
   }
 
   onMount(() => {
