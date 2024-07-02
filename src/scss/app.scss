@@ -1,5 +1,6 @@
 @use "sass:meta";
 @use "_variables" as dv;
+@use "bulma/sass/utilities/css-variables" as cv;
 
 //@import "_steps.sass";
 
@@ -58,7 +59,9 @@
 //Charts
 @use "../../packages/@kws3/ui/styles/Chart.scss";
 
-@use "_steps";
+//@use "_steps";
+
+@forward "./themes";
 
 //fontAwesome
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
@@ -73,6 +76,10 @@
 
 html {
   overflow-x: scroll;
+  body {
+    background: cv.getVar("main-content-background") !important;
+    color: cv.getVar("scheme-invert-ter") !important;
+  }
 }
 
 p {
@@ -80,6 +87,8 @@ p {
 }
 
 pre.prismjs {
+  background-color: cv.getVar("pre-background") !important;
+  color: cv.getVar("pre") !important;
   > code,
   > div {
     font-size: 1.1em;
@@ -89,7 +98,7 @@ pre.prismjs {
       display: inline;
       height: auto;
       min-width: unset;
-      background: inherit;
+      //background: inherit;
       white-space: inherit;
       line-height: inherit;
       font-size: inherit;
@@ -170,59 +179,98 @@ pre.prismjs {
 //@import "../../node_modules/prismjs/themes/prism-tomorrow.css";
 /* SCSS for stories */
 
-.theme-kws-light {
-  color: #4a4a4a;
-  background-color: #ffffff;
-  pre {
-    background-color: #f6f6f7;
-    color: #4a4a4a;
+// .theme-kws-light {
+//   color: #4a4a4a;
+//   background-color: cv.getVar("scheme-main");
+//   pre {
+//     background-color: cv.getVar("scheme-main");
+//     color: #4a4a4a;
+//   }
+// }
+
+// .theme-kws-dark {
+//   color: #f8f8f8;
+//   background-color: cv.getVar("scheme-main");
+//   .title {
+//     color: #f8f8f8;
+//   }
+//   .subtitle {
+//     color: #f8f8f8;
+//   }
+//   .sbdocs > .sb-nodocs > div {
+//     background: #f8f8f8 !important;
+//     color: #333333;
+//   }
+//   .sbdocs-wrapper {
+//     background: #333333;
+//   }
+//   .sbdocs-h1,
+//   .sbdocs-h2,
+//   .sbdocs-h3,
+//   .sbdocs-h4,
+//   .sbdocs-h5,
+//   .sbdocs-h6,
+//   strong {
+//     color: #f8f8f8;
+//   }
+//   .docblock-argstable {
+//     background: #f8f8f8;
+//   }
+// }
+
+.sbdocs-wrapper {
+  background: cv.getVar("main-content-background") !important;
+  .sbdocs-content {
+    position: relative;
+    h1,
+    h2,
+    h3,
+    table > th {
+      color: cv.getVar("scheme-invert-ter") !important;
+    }
+    .sbdocs-preview {
+      border: 1px solid
+        hsla(
+          cv.getVar("scheme-h"),
+          cv.getVar("scheme-s"),
+          cv.getVar("scheme-main-l"),
+          90
+        ) !important;
+      .sb-story {
+        background: cv.getVar("scheme-main") !important;
+      }
+    }
+    .docblock-argstable {
+      background: cv.getVar("scheme-main") !important;
+      tbody,
+      thead,
+      td,
+      th {
+        background: cv.getVar("scheme-main") !important;
+        color: cv.getVar("scheme-invert-ter") !important;
+      }
+    }
+    p {
+      color: cv.getVar("scheme-invert-ter") !important;
+    }
   }
 }
 
-.theme-kws-dark {
-  color: #f8f8f8;
-  background-color: #333333;
-  .title {
-    color: #f8f8f8;
-  }
-  .subtitle {
-    color: #f8f8f8;
-  }
-  .sbdocs > .sb-nodocs > div {
-    background: #f8f8f8 !important;
-    color: #333333;
-  }
-  .sbdocs-wrapper {
-    background: #333333;
-  }
-  .sbdocs-h1,
-  .sbdocs-h2,
-  .sbdocs-h3,
-  .sbdocs-h4,
-  .sbdocs-h5,
-  .sbdocs-h6,
-  strong {
-    color: #f8f8f8;
-  }
-  .docblock-argstable {
-    background: #f8f8f8;
-  }
-}
-
-.sbdocs-content {
-  position: relative;
-}
 .page-top-right-artifacts {
   position: absolute;
   margin: 0 !important;
   padding: 0.75rem;
   border-radius: 0 0 dv.$radius dv.$radius;
-  background: linear-gradient(180deg, #f4f4f4 0%, #f6f9fc 4%, #fcfdfd 35%);
+  //background: linear-gradient(180deg, #f4f4f4 0%, #f6f9fc 4%, #fcfdfd 35%);
+  background: cv.getVar("scheme-main") !important;
   top: -4rem;
   right: 0;
   z-index: 2;
   display: flex;
   flex-direction: column;
+  .input {
+    color: cv.getVar("black") !important;
+  }
   span {
     font-size: 0.75rem;
   }

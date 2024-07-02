@@ -1,3 +1,9 @@
+@forward "bulma/sass/utilities/functions";
+@forward "bulma/sass/utilities/initial-variables";
+
+@use "bulma/sass/utilities/initial-variables" as iv;
+@use "bulma/sass/utilities/css-variables" as cv;
+
 //Primary colors
 $info: #1dafec;
 $primary: #293b8f;
@@ -8,7 +14,11 @@ $link: #1a77ba;
 
 $dark: #16233e;
 
-$background: #f6f6f7;
+$background: cv.getVar("scheme-main");
+$radius-small: 2px;
+$radius: cv.getVar("radius");
+$radius-medium: 6px;
+$radius-large: 8px;
 
 //easings
 $easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -16,8 +26,70 @@ $easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
 $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 $easeOutCustom: cubic-bezier(0.1, 0.82, 0.25, 1);
 
+$shadow:
+  0 1px 3px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.12
+    ),
+  0 1px 2px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.24
+    );
+$shadow-high:
+  0 19px 38px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.3
+    ),
+  0 15px 12px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.22
+    );
+
+$shadow-dark:
+  0 1px 5px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.5
+    ),
+  0 5px 20px
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.3
+    );
+$shadow-high-dark:
+  0 0 19px 0
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.4
+    ),
+  0 0 35px 0
+    hsla(
+      cv.getVar("shadow-h"),
+      cv.getVar("shadow-s"),
+      cv.getVar("shadow-l"),
+      0.5
+    );
+
 // Override global Sass variables from the /utilities folder
-@forward "bulma/sass/utilities" with (
+@forward "bulma/sass/utilities/derived-variables" with (
   //Primary colors
   $info: $info,
   $primary: $primary,

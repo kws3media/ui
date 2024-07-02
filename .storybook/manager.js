@@ -14,14 +14,24 @@ addons.setConfig({
       },
     },
   },
-});
-
-// Add theme switcher
-addons.setConfig({
-  themeSwitcher: {
-    themes: [
-      { id: "light", title: "Light", theme: lightTheme },
-      { id: "dark", title: "Dark", theme: darkTheme },
+  // Add theme switcher with custom labels
+  toolbar: {
+    "storybook/themes": {
+      icon: "circlehollow",
+      items: [
+        { value: "light", right: "🌞", title: "Light mode" },
+        { value: "dark", right: "🌙", title: "Dark mode" },
+      ],
+      showName: true,
+      title: "Theme",
+    },
+  },
+  // Theme configuration
+  themes: {
+    default: "light",
+    list: [
+      { name: "light", color: "#F8F8F8", theme: lightTheme },
+      { name: "dark", color: "#333333", theme: darkTheme },
     ],
   },
 });

@@ -1,0 +1,70 @@
+@use "sass:list";
+
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "../_variables" as vars;
+@use "bulma/sass/themes/setup";
+
+// The main lightness of this theme
+$scheme-main-l: 11%;
+$background-l: 14%;
+$text-l: 71%;
+
+// The main scheme color, used to make calculations
+$scheme-main: hsl(vars.$scheme-h, vars.$scheme-s, $scheme-main-l);
+$background: hsl(vars.$scheme-h, vars.$scheme-s, $background-l);
+$text: hsl(vars.$scheme-h, vars.$scheme-s, $text-l);
+
+@mixin dark-theme {
+  @each $name, $color in vars.$colors {
+    $base: $color;
+
+    @if type-of($color == "list") {
+      $base: list.nth($color, 1);
+    }
+
+    @include cv.generate-on-scheme-colors($name, $base, $scheme-main);
+  }
+
+  @include cv.register-vars(
+    (
+      "scheme-h": 218,
+      "scheme-s": 38%,
+      "scheme-brightness": "dark",
+      "scheme-main-l": $scheme-main-l,
+      "scheme-main-bis-l": $scheme-main-l - 3%,
+      "scheme-main-ter-l": $scheme-main-l + 3%,
+
+      "scheme-invert-ter-l": 96%,
+      "scheme-invert-bis-l": 98%,
+      "scheme-invert-l": 100%,
+      "text-invert-l": 14%,
+
+      "soft-l": vars.$dark-l,
+      "bold-l": vars.$light-l,
+      "soft-invert-l": vars.$light-l,
+      "bold-invert-l": vars.$dark-l,
+      "background-l": $background-l,
+      "border-weak-l": 21%,
+      "border-l": 24%,
+      "text-weak-l": 53%,
+      "text-l": $text-l,
+      "text-strong-l": 93%,
+      "text-title-l": 100%,
+      "hover-background-l-delta": 5%,
+      "active-background-l-delta": 10%,
+      "hover-border-l-delta": 10%,
+      "active-border-l-delta": 20%,
+      "hover-color-l-delta": 5%,
+      "active-color-l-delta": 10%,
+
+      //custom variables
+      "main-content-background": hsla(218, 14%, 24%, 1),
+      //other
+      "focus-l": 10%,
+      "shadow": vars.$shadow-dark,
+      "shadow-high": vars.$shadow-high-dark,
+    )
+  );
+
+  @include cv.register-hsl("shadow", #000);
+}
