@@ -24,6 +24,7 @@ export default {
     "@storybook/theming",
     "@storybook/blocks",
     "@storybook/addon-mdx-gfm",
+    "@storybook/addon-themes",
   ],
   svelteOptions: {
     preprocess: sveltePreprocess(),

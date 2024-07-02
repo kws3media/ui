@@ -1,19 +1,9 @@
 import { addons } from "@storybook/manager-api";
-import kwsTheme from "./kwsTheme";
+import { lightTheme, darkTheme } from "./kwsTheme";
 
 addons.setConfig({
-  // isFullscreen: true,
-  // showNav: false,
-  // showPanel: true,
-  theme: kwsTheme,
-  // panelPosition: 'right',
-  // sidebarAnimations: true,
-  // enableShortcuts: true,
+  theme: lightTheme,
   isToolshown: true,
-  // theme: undefined,
-  // selectedPanel: undefined,
-  // initialActive: 'sidebar',
-  // showRoots: false,
   name: "UI | KWS3 Media",
   url: "https://kws3.media",
   hierarchyRootSeparator: /\|/,
@@ -23,5 +13,15 @@ addons.setConfig({
         return !item.tags.includes("isHidden");
       },
     },
+  },
+});
+
+// Add theme switcher
+addons.setConfig({
+  themeSwitcher: {
+    themes: [
+      { id: "light", title: "Light", theme: lightTheme },
+      { id: "dark", title: "Dark", theme: darkTheme },
+    ],
   },
 });
