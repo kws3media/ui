@@ -229,6 +229,7 @@ pre.prismjs {
       color: cv.getVar("scheme-invert-ter") !important;
     }
     .sbdocs-preview {
+      background: cv.getVar("scheme-main") !important;
       border: 1px solid
         hsla(
           cv.getVar("scheme-h"),
@@ -238,6 +239,9 @@ pre.prismjs {
         ) !important;
       .sb-story {
         background: cv.getVar("scheme-main") !important;
+      }
+      img {
+        background: cv.getVar("white") !important;
       }
     }
     .docblock-argstable {
