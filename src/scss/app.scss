@@ -59,7 +59,7 @@
 //Charts
 @use "../../packages/@kws3/ui/styles/Chart.scss";
 
-//@use "_steps";
+@use "./_steps.sass";
 
 @forward "./themes";
 
@@ -271,7 +271,8 @@ pre.prismjs {
         border: 1px solid cv.getVar("border");
       }
     }
-    p {
+    p,
+    strong {
       color: cv.getVar("scheme-invert-ter") !important;
     }
   }
