@@ -244,6 +244,9 @@ pre.prismjs {
         background: cv.getVar("white") !important;
       }
     }
+    .docblock-source {
+      border: 1px solid cv.getVar("border") !important;
+    }
     .docblock-argstable {
       background: cv.getVar("scheme-main") !important;
       tbody,
@@ -255,6 +258,7 @@ pre.prismjs {
         .css-o1d7ko {
           background: cv.getVar("main-content-background") !important;
           color: cv.getVar("scheme-invert-ter") !important;
+          border: 1px solid cv.getVar("border");
         }
       }
       select,

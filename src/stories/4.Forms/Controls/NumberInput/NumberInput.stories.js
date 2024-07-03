@@ -57,7 +57,7 @@ export default {
 
 export const Main = {
   name: "Canvas",
-  //tags: ["isHidden"],
+  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,
