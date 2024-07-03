@@ -25,6 +25,7 @@ export default {
     "@storybook/blocks",
     "@storybook/addon-mdx-gfm",
     "@storybook/addon-themes",
+    "storybook-dark-mode",
   ],
   svelteOptions: {
     preprocess: sveltePreprocess(),
