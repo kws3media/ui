@@ -1,14 +1,13 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Story, Meta, Controls, Source  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./Modal.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # Modal
 ## Modal components for showing popups.
-`}/>
+
 
 <Meta of={Stories} />
 <Story of={Stories.Main} />
