@@ -108,6 +108,12 @@ pre.prismjs {
       text-align: inherit;
     }
   }
+  .token {
+    &.punctuation,
+    &.function {
+      color: cv.getVar("grey") !important;
+    }
+  }
 }
 
 @keyframes shake {
@@ -171,53 +177,6 @@ pre.prismjs {
   animation-name: bounce-proportional;
 }
 
-/*pre:not([class*="language-"]) {
-  visibility: hidden;
-}*/
-
-//PRISM JS
-//@import "../../node_modules/prismjs/themes/prism-tomorrow.css";
-/* SCSS for stories */
-
-// .theme-kws-light {
-//   color: #4a4a4a;
-//   background-color: cv.getVar("scheme-main");
-//   pre {
-//     background-color: cv.getVar("scheme-main");
-//     color: #4a4a4a;
-//   }
-// }
-
-// .theme-kws-dark {
-//   color: #f8f8f8;
-//   background-color: cv.getVar("scheme-main");
-//   .title {
-//     color: #f8f8f8;
-//   }
-//   .subtitle {
-//     color: #f8f8f8;
-//   }
-//   .sbdocs > .sb-nodocs > div {
-//     background: #f8f8f8 !important;
-//     color: #333333;
-//   }
-//   .sbdocs-wrapper {
-//     background: #333333;
-//   }
-//   .sbdocs-h1,
-//   .sbdocs-h2,
-//   .sbdocs-h3,
-//   .sbdocs-h4,
-//   .sbdocs-h5,
-//   .sbdocs-h6,
-//   strong {
-//     color: #f8f8f8;
-//   }
-//   .docblock-argstable {
-//     background: #f8f8f8;
-//   }
-// }
-
 .sbdocs-wrapper {
   background: cv.getVar("main-content-background") !important;
   .sbdocs-content {
@@ -274,6 +233,11 @@ pre.prismjs {
     p,
     strong {
       color: cv.getVar("scheme-invert-ter") !important;
+      code {
+        background: cv.getVar("main-content-background") !important;
+        color: cv.getVar("scheme-invert-ter") !important;
+        border: 1px solid cv.getVar("border");
+      }
     }
   }
 }
