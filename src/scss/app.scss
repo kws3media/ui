@@ -255,7 +255,8 @@ pre.prismjs {
       th {
         background: cv.getVar("scheme-main") !important;
         color: cv.getVar("scheme-invert-ter") !important;
-        .css-o1d7ko {
+        .css-o1d7ko,
+        code {
           background: cv.getVar("main-content-background") !important;
           color: cv.getVar("scheme-invert-ter") !important;
           border: 1px solid cv.getVar("border");
