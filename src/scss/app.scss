@@ -252,6 +252,18 @@ pre.prismjs {
       th {
         background: cv.getVar("scheme-main") !important;
         color: cv.getVar("scheme-invert-ter") !important;
+        .css-o1d7ko {
+          background: cv.getVar("main-content-background") !important;
+          color: cv.getVar("scheme-invert-ter") !important;
+        }
+      }
+      select,
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        color: cv.getVar("text") !important;
+        background: cv.getVar("main-content-background");
+        border: 1px solid cv.getVar("border");
       }
     }
     p {
