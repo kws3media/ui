@@ -242,6 +242,11 @@ pre.prismjs {
   }
 }
 
+.flatpickr-calendar.hasTime.noCalendar.is-primary input,
+.flatpickr-calendar.hasTime.noCalendar.is-primary .flatpickr-am-pm {
+  color: cv.getVar("info") !important;
+}
+
 .page-top-right-artifacts {
   position: absolute;
   margin: 0 !important;
