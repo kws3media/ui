@@ -231,7 +231,8 @@ pre.prismjs {
       }
     }
     p,
-    strong {
+    strong,
+    li {
       color: cv.getVar("scheme-invert-ter") !important;
       code {
         background: cv.getVar("main-content-background") !important;
