@@ -78,7 +78,7 @@ html {
   overflow-x: scroll;
   body {
     background: cv.getVar("main-content-background") !important;
-    color: cv.getVar("scheme-invert-ter") !important;
+    color: cv.getVar("text") !important;
   }
 }
 
@@ -183,9 +183,21 @@ pre.prismjs {
     position: relative;
     h1,
     h2,
-    h3,
-    table > th {
-      color: cv.getVar("scheme-invert-ter") !important;
+    h3 {
+      color: cv.getVar("text") !important;
+    }
+    table {
+      tr {
+        &:nth-of-type(2n) {
+          background: cv.getVar("scheme-main-ter") !important;
+        }
+        td {
+          color: cv.getVar("text") !important;
+        }
+      }
+      th {
+        color: cv.getVar("text") !important;
+      }
     }
     .sbdocs-preview {
       background: cv.getVar("scheme-main") !important;
@@ -213,11 +225,11 @@ pre.prismjs {
       td,
       th {
         background: cv.getVar("scheme-main") !important;
-        color: cv.getVar("scheme-invert-ter") !important;
+        color: cv.getVar("text") !important;
         .css-o1d7ko,
         code {
           background: cv.getVar("main-content-background") !important;
-          color: cv.getVar("scheme-invert-ter") !important;
+          color: cv.getVar("text") !important;
           border: 1px solid cv.getVar("border");
         }
       }
@@ -233,10 +245,10 @@ pre.prismjs {
     p,
     strong,
     li {
-      color: cv.getVar("scheme-invert-ter") !important;
+      color: cv.getVar("text") !important;
       code {
         background: cv.getVar("main-content-background") !important;
-        color: cv.getVar("scheme-invert-ter") !important;
+        color: cv.getVar("text") !important;
         border: 1px solid cv.getVar("border");
       }
     }
