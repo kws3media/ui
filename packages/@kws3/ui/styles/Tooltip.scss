@@ -10,7 +10,7 @@ $radius: cv.getVar("radius-small") !default;
 $shadow: 0 5px 10px -5px hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4) !default;
 $popover-background: cv.getVar("background") !default;
 $popover-color: cv.getVar("text") !default;
-$popover-arrow-color: cv.getVar("background") !default;
+$popover-arrow-color: cv.getVar("border") !default;
 $popover-shadow: $shadow !default;
 $popover-radius: $radius !default;
 
