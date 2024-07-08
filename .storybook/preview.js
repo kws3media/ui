@@ -1,6 +1,7 @@
 import { themes } from "@storybook/theming";
 import { lightTheme, darkTheme } from "./kwsTheme";
 import { useDarkMode } from "storybook-dark-mode";
+import "./toggleTheme";
 import "./../src/scss/app.scss";
 
 export const decorators = [
