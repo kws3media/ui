@@ -88,7 +88,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
   /**
    * Icon used when default slot has no content
    */
-  export let icon = "info-circle circle-info";
+  export let icon = "info-circle";
   /**
    * Colour of the trigger icon displayed when default slot has no content
    * @type {ExtendedColorOptions}
