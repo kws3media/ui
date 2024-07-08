@@ -1,5 +1,9 @@
 /**
  * @typedef {import('@kws3/ui/types').TippyPositions} TippyPositions
+ *
+ * @typedef {import("svelte/action").Action<HTMLElement, {
+ * content:any
+ * }>} TippyAction
  */
 /**
  * Activates tooltips via event delegation
@@ -8,12 +12,15 @@
  */
 export function activateTooltips(container: string, opts?: object | null): void;
 /**
- * @type {import("svelte/action").Action}
+ * @type {TippyAction}
  */
-export let popover: import("svelte/action").Action;
+export let popover: TippyAction;
 /**
- * @type {import("svelte/action").Action}
+ * @type {TippyAction}
  */
-export let tooltip: import("svelte/action").Action;
+export let tooltip: TippyAction;
 export type TippyPositions = import('@kws3/ui/types').TippyPositions;
+export type TippyAction = import("svelte/action").Action<HTMLElement, {
+    content: any;
+}>;
 //# sourceMappingURL=Tooltip.d.ts.map
