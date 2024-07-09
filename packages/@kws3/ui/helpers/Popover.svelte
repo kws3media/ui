@@ -15,7 +15,7 @@ If you would like to trigger the popover programatically only, you can use `manu
 Available options: <a target="_blank" href="https://atomiks.github.io/tippyjs/v6/all-props/#placement">https://atomiks.github.io/tippyjs/v6/all-props/#placement</a>, Default: `auto`
   @param {boolean} [interactive=false] - Allows you to interact with the Popover content, when turned on, Default: `false`
   @param {boolean} [hide_on_click=true] - Whether the popover should hide on clicking outside of it, Default: `true`
-  @param {object} [external_target=null] - Specify a target node reference to use as the Popover content
+  @param {HTMLElement | null} [external_target=null] - Specify a target node reference to use as the Popover content
 
 When set to `null`, it will use the content of the `popover` slot, Default: `null`
   @param {string} [max_width="none"] - Maximum allowed width of the popover
@@ -126,6 +126,7 @@ It can be any CSS value associated with `max-width` property, including `"none"`
    * Specify a target node reference to use as the Popover content
    *
    * When set to `null`, it will use the content of the `popover` slot
+   * @type {HTMLElement | null}
    */
   export let external_target = null;
   /**

@@ -5,6 +5,7 @@ import { existsSync, rmSync } from "fs";
 
 const scriptDir = "./scripts/dts_generator";
 const watchDir = "./packages/@kws3/ui/**/*.js";
+const ignoreDir = "./packages/@kws3/ui/node_modules/*";
 
 //generate d.ts, d.ts.map files
 const generateDts = (filepath) => {
@@ -20,7 +21,7 @@ const removeDts = (filepath) => {
 
   const fileName = `${path.dirname(filepath)}/${path.basename(
     filepath,
-    path.extname(filepath)
+    path.extname(filepath),
   )}`;
 
   [`${fileName}.d.ts`, `${fileName}.d.ts.map`].forEach((file) => {
@@ -33,7 +34,10 @@ const removeDts = (filepath) => {
 };
 
 //watch files
-const watcher = chokidar.watch(watchDir, { persistent: true });
+const watcher = chokidar.watch(watchDir, {
+  persistent: true,
+  ignored: ignoreDir,
+});
 
 watcher
   .on("add", generateDts)
