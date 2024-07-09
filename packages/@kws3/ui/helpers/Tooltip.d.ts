@@ -2,7 +2,7 @@
  * @typedef {import('@kws3/ui/types').TippyPositions} TippyPositions
  *
  * @typedef {import("svelte/action").Action<HTMLElement, {
- * content:any
+ * content?: HTMLElement
  * }>} TippyAction
  */
 /**
@@ -21,6 +21,6 @@ export let popover: TippyAction;
 export let tooltip: TippyAction;
 export type TippyPositions = import('@kws3/ui/types').TippyPositions;
 export type TippyAction = import("svelte/action").Action<HTMLElement, {
-    content: any;
+    content?: HTMLElement;
 }>;
 //# sourceMappingURL=Tooltip.d.ts.map
