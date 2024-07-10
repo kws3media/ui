@@ -109,8 +109,8 @@ pre.prismjs {
   background-color: cv.getVar("main-content-background");
   color: cv.getVar("text");
   .sbdocs-wrapper {
+    position: relative;
     .sbdocs-content {
-      position: relative;
       strong {
         color: cv.getVar("text-strong");
       }
@@ -123,11 +123,12 @@ pre.prismjs {
   margin: 0 !important;
   padding: 0.75rem;
   border-radius: 0 0 cv.getVar("radius") cv.getVar("radius");
-  top: -4rem;
-  right: 0;
+  top: 0;
+  right: 1rem;
   z-index: 2;
   display: flex;
   flex-direction: column;
+  background-color: cv.getVar("scheme-main-bis");
   span {
     font-size: 0.75rem;
   }
