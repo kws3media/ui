@@ -1,31 +1,26 @@
-import { themes } from "@storybook/theming";
-import { lightTheme, darkTheme } from "./kwsTheme";
-import { useDarkMode } from "storybook-dark-mode";
-import "./toggleTheme";
-import "./../src/scss/app.scss";
+import { light, dark } from "./kwsTheme";
+import { DocsContainer } from "./DocsContainer.js";
 
-export const decorators = [
-  (Story) => {
-    const isDarkMode = useDarkMode();
-    const theme = isDarkMode ? "dark" : "light";
-    document.body.setAttribute("data-theme", theme);
-    return Story();
-  },
-];
+import "./../src/scss/app.scss";
 
 export const parameters = {
   darkMode: {
-    dark: { ...themes.dark, ...darkTheme },
-    light: { ...themes.light, ...lightTheme },
+    dark,
+    light,
     current: "light",
     stylePreview: true,
+    darkClass: ["theme-dark", "dark"],
+    lightClass: ["theme-light", "light"],
   },
   layout: "centered",
   controls: {
     hideNoControlsWarning: true,
     expanded: false,
   },
-  docs: { page: null },
+  docs: {
+    page: null,
+    container: DocsContainer,
+  },
   options: { showPanel: true },
   backgrounds: { disable: true },
   viewMode: "docs",
