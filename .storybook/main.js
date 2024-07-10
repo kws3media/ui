@@ -18,8 +18,6 @@ export default {
     "@storybook/addon-actions",
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
-    "@storybook/addon-links",
-    "@storybook/preset-svelte",
     "@storybook/addon-controls",
     "@storybook/theming",
     "@storybook/blocks",

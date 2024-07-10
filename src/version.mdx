@@ -54,7 +54,7 @@ export function handleVersionChange(version){
             onClick={() => handleVersionChange(key)}
           >
             {versions[key]['name']}
-            <small className="is-block has-text-grey is-size-7">{versions[key]['description']}</small>
+            <small className="is-block is-size-7">{versions[key]['description']}</small>
           </a>
         ))}
       </div>
@@ -72,7 +72,7 @@ export function handleVersionChange(version){
   
   <div className="artifact-item-block is-hidden-mobile">
     <div className="field has-addons is-flex-grow-1">
-      <span className="control is-expanded"><input id="npm-command-copier" className="input is-small has-background-light is-family-monospace" readOnly value={cmd} /></span>
+      <span className="control is-expanded"><input id="npm-command-copier" className="input is-small is-grey is-family-monospace" readOnly value={cmd} /></span>
       <span className="control">
         <button className="button is-small" title="Copy to clipboard" onClick={ctc}>
           <span className="icon is-small">

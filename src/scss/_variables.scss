@@ -4,27 +4,21 @@
 @use "bulma/sass/utilities/initial-variables" as iv;
 @use "bulma/sass/utilities/css-variables" as cv;
 
-//Primary colors
-$info: #1dafec;
-$primary: #293b8f;
-$danger: #da2128;
-$success: #07ae4d;
-$warning: #d6cf66;
-$link: #1a77ba;
+$primary: #7956ef;
+$info: #00aced;
+$success: iv.$green;
+$warning: rgb(184, 152, 36);
+$danger: iv.$red;
+$light: #f1f4f9;
+$dark: #4a545f;
+$link: #0049c5;
 
-$dark: #16233e;
+$body-font-size: 16px;
 
-$background: cv.getVar("scheme-main");
 $radius-small: 2px;
-$radius: cv.getVar("radius");
+$radius: 4px;
 $radius-medium: 6px;
 $radius-large: 8px;
-
-//easings
-$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-$easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
-$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-$easeOutCustom: cubic-bezier(0.1, 0.82, 0.25, 1);
 
 $shadow:
   0 1px 3px
@@ -88,33 +82,15 @@ $shadow-high-dark:
       0.5
     );
 
-// Override global Sass variables from the /utilities folder
-@forward "bulma/sass/utilities/derived-variables" with (
-  //Primary colors
-  $info: $info,
-  $primary: $primary,
-  $danger: $danger,
-  $success: $success,
-  $warning: $warning,
-  $link: $link,
-  $dark: $dark,
-  $background: $background
-);
-
-// Override Sass variables from the /form folder
-@forward "bulma/sass/form";
-
-// Import the components you need
-@forward "bulma/sass/base";
-@forward "bulma/sass/components";
-@forward "bulma/sass/elements" with (
-  $title-color: $primary,
-  $title-weight: 300,
-  $subtitle-weight: 300
-);
-@forward "bulma/sass/grid";
-@forward "bulma/sass/layout";
-@forward "bulma/sass/helpers";
-
-// Import the themes so that all CSS variables have a value
-@forward "bulma/sass/themes";
+@forward "bulma/sass/utilities/derived-variables"
+  with(
+    $primary: $primary,
+    $info: $info,
+    $success: $success,
+    $warning: $warning,
+    $danger: $danger,
+    $link: $link,
+    $light: $light,
+    $dark: $dark
+  );
+@forward "bulma/sass/utilities/controls";

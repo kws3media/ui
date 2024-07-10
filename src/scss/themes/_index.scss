@@ -55,10 +55,33 @@
         "input-background-l": 17%,
       )
     );
+    @each $name, $pair in vars.$colors {
+      $color: cv.getVar($name);
+      &.is-#{$name} {
+        border-color: hsl(
+          cv.getVar("input-focus-h"),
+          cv.getVar("input-focus-s"),
+          calc(cv.getVar("input-focus-l") - 20%)
+        );
+        &:focus,
+        &.is-active,
+        &.is-focused,
+        &:focus-within {
+          border-color: hsl(
+            cv.getVar("input-focus-h"),
+            cv.getVar("input-focus-s"),
+            calc(cv.getVar("input-focus-l"))
+          );
+        }
+      }
+    }
   }
   .textarea,
   .input:not(.is-static),
   .select select {
     box-shadow: inset 0 1px 3px hsla(0, 0%, 4%, 0.9);
+    &:disabled {
+      box-shadow: none;
+    }
   }
 }
