@@ -111,6 +111,9 @@ pre.prismjs {
   .sbdocs-wrapper {
     .sbdocs-content {
       position: relative;
+      strong {
+        color: cv.getVar("text-strong");
+      }
     }
   }
 }
