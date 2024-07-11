@@ -106,13 +106,16 @@ pre.prismjs {
 }
 
 #storybook-docs {
-  background-color: cv.getVar("main-content-background");
+  background-color: #2f2f2f;
   color: cv.getVar("text");
   .sbdocs-wrapper {
     position: relative;
     .sbdocs-content {
       strong {
         color: cv.getVar("text-strong");
+      }
+      .docs-story {
+        background-color: cv.getVar("main-content-background");
       }
     }
   }

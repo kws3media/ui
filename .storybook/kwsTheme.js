@@ -16,8 +16,8 @@ const lightTheme = create({
 const darkTheme = create({
   ...baseTheme,
   base: "dark",
-  appPreviewBg: "#353b46",
-  appContentBg: "#353b46",
+  appContentBg: "#2f2f2f",
+  appPreviewBg: "#2f2f2f",
 });
 
 export const dark = { ...themes.dark, ...darkTheme };
