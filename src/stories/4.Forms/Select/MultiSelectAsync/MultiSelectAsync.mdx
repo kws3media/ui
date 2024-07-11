@@ -12,25 +12,25 @@ import * as Stories from "./MultiSelectAsync.stories";
 <Canvas />
 <Controls />
 
-<div className="notification is-primary is-light">
+<div className="notification is-primary is-light sb-unstyled">
   <div className="columns">
     <div className="column">
-      <h3 className="sb-unstyled subtitle">
+      <h3 className="subtitle">
         Async filter function <code>search</code>
       </h3>
-      <div className="sb-unstyled">
+      <div className="">
         This function is called when the user types in the search field.
         It is passed the search string and should return a promise that
         resolves to an array of options.
       </div>
-      <div className="sb-unstyled">
+      <div className="">
         This function is not called every keydown while the user is typing.
         It is called only when user finishes typing.
       </div>
-      <div className="sb-unstyled">
+      <div className="">
         Note: 
       </div>
-      <ul className="sb-unstyled">
+      <ul className="">
         <li>Only send this prop if you want to fetch <code>options</code> asynchronously.</li>
         <li><code>options</code> prop will be ignored if this prop is set.</li>
         <li>To improve rendering performance, slice down the options if items array contains a large dataset on a single match.</li>
@@ -45,7 +45,7 @@ import * as Stories from "./MultiSelectAsync.stories";
       />
     </div>
     <div className="column">
-      <h3 className="sb-unstyled subtitle">Example:</h3>
+      <h3 className="subtitle">Example:</h3>
       <Source
         language="jsx"
         code={dedent`<MultiSelect
