@@ -38,7 +38,13 @@ $text: hsl(vars.$scheme-h, vars.$scheme-s, $text-l);
       "scheme-invert-bis-l": 98%,
       "scheme-invert-l": 100%,
       "text-invert-l": 14%,
-
+      "text-invert":
+        hsla(
+          cv.getVar("text-h"),
+          cv.getVar("text-s"),
+          cv.getVar("text-invert-l"),
+          1
+        ),
       "soft-l": vars.$dark-l,
       "bold-l": vars.$light-l,
       "soft-invert-l": vars.$light-l,
