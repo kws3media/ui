@@ -39,8 +39,9 @@ This property can be bound to, to fetch the current value, Default: `null`
         }}
         class="button is-{size}  {fullwidth ? 'is-fullwidth' : ''} {value ===
         option.value
-          ? 'is-active ' +
-            (option.active_class ? option.active_class : active_class)
+          ? option.active_class
+            ? option.active_class
+            : active_class
           : option.inactive_class
             ? option.inactive_class
             : inactive_class}">
