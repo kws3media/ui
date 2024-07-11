@@ -12,23 +12,23 @@ import * as Stories from "./MultiSelect.stories";
 <Canvas />
 <Controls />
 
-<div className="notification is-primary is-light">
+<div className="notification is-primary is-light sb-unstyled">
   <div className="columns">
     <div className="column">
-      <h3 className="sb-unstyled subtitle">Input format <code>options</code></h3>
+      <h3 className="subtitle">Input format <code>options</code></h3>
       <div>Can send either an array of strings, or an array of objects.</div>
       <div>Always ensure the shape of the array items are consistent.</div>
       <div>When an array of objects is sent, </div>
       <div><code>array_item[search_key]</code> is used for search-as-you-type, </div>
       <div>and <code>array_item[value_key]</code> is returned as the value once an item is selected.</div>
       <div>See supported data formats in example story above.</div>
-      <h3 className="sb-unstyled subtitle">Output format <code>value</code></h3>
+      <h3 className="subtitle">Output format <code>value</code></h3>
       <div>The output in <code>value</code> will always be an array, even if a single item is selected.</div>
     </div>
     <div className="column">
-    <h3 className="sb-unstyled subtitle">Customising dropdown text items</h3>
+    <h3 className="subtitle">Customising dropdown text items</h3>
     <div>See documentation for default slot.</div>
-    <h4 className="sb-unstyled subtitle">Example:</h4>
+    <h4 className="subtitle">Example:</h4>
     <Source
   language="jsx"
   code={

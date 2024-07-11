@@ -18,30 +18,30 @@ import * as Stories from "./AutoComplete.stories.js";
 <Canvas />
 <Controls />
 
-<div className="notification is-primary is-light">
+<div className="notification is-primary is-light sb-unstyled">
   <div className="columns">
     <div className="column">
-      <h3 className="sb-unstyled subtitle">
+      <h3 className="subtitle">
         Input format <code>options</code>
       </h3>
-      <p className="sb-unstyled">
+      <p className="">
         Can send either an array of strings, or an array of objects.<br></br>Always
         ensure the shape of the array items are consistent.
       </p>
-      <p className="sb-unstyled">See supported data formats in example story above.</p>
-      <p className="sb-unstyled">
+      <p className="">See supported data formats in example story above.</p>
+      <p className="">
         Note: <code>option.label</code> contains matched characters wrapped
         inside <code>&lt;span class="h"&gt;</code> tags.{" "}
       </p>
-      <p className="sb-unstyled">
+      <p className="">
         Note: Highlighted results can be turned off by setting{" "}
         <code>highlighted_results</code> property to <code>false</code>
       </p>
     </div>
     <div className="column">
-      <h3 className="sb-unstyled subtitle">Customising dropdown text items</h3>
-      <p className="sb-unstyled">See documentation for default slot.</p>
-      <h4 className="sb-unstyled subtitle">Example:</h4>
+      <h3 className="subtitle">Customising dropdown text items</h3>
+      <p className="">See documentation for default slot.</p>
+      <h4 className="subtitle">Example:</h4>
       <Source
         language="jsx"
         code={dedent`<AutoComplete
