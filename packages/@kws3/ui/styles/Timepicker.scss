@@ -56,10 +56,11 @@ $radius: cv.getVar("radius") !default;
       border: 1px solid $color;
       input,
       .flatpickr-am-pm {
-        color: $color-dark;
+        color: $text;
         &:hover,
         &:focus {
           background: $color-light;
+          color: $color-dark;
         }
       }
       .numInputWrapper {

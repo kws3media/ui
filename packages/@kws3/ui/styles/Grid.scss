@@ -74,6 +74,7 @@ $cell-border-color: cv.getVar("table-cell-border-color") !default;
       background-color: $checked-row-background !important;
       color: $checked-row-color !important;
       border-color: $checked-row-border-color !important;
+      box-shadow: inset 0 1px 0 $checked-row-border-color;
     }
   }
 
@@ -127,6 +128,7 @@ $cell-border-color: cv.getVar("table-cell-border-color") !default;
             background: $active-row-background;
             color: $active-row-color;
             border-color: $active-row-border-color;
+            box-shadow: inset 0 1px 0 $active-row-border-color;
           }
         }
       }
@@ -166,7 +168,17 @@ $cell-border-color: cv.getVar("table-cell-border-color") !default;
       tr.is-selected {
         td.is-sticky-column,
         th.is-sticky-column {
-          box-shadow: inset -1px 0 0 $sticky-column-active-row-border-color;
+          box-shadow:
+            inset -1px 0 0 $sticky-column-active-row-border-color,
+            inset 0 1px 0 $sticky-column-active-row-border-color;
+        }
+      }
+      tr.is-checked {
+        td.is-sticky-column,
+        th.is-sticky-column {
+          box-shadow:
+            inset -1px 0 0 $checked-row-border-color,
+            inset 0 1px 0 $checked-row-border-color;
         }
       }
     }

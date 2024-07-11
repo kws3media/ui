@@ -79,7 +79,7 @@
         This does not work with event delegation.<br />
         Instead the <code>tooltip</code> action has to be used.<br />
         See:
-        <a href="/?path=/docs/helpers-tooltips-3-tooltip-action--page"
+        <a href="./?path=/docs/helpers-tooltips-3-tooltip-action--docs"
           >Tooltip Action</a>
       </p>
       <div>

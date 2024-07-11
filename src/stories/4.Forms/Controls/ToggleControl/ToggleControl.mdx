@@ -1,4 +1,4 @@
-import { Story, Meta, Controls, Source, Description, Canvas  } from "@storybook/blocks";
+import { Story, Meta, Controls, Source, Canvas  } from "@storybook/blocks";
 import dedent from 'ts-dedent';
 import Version from '~/version.mdx';
 import * as Stories from "./ToggleControl.stories";
@@ -6,12 +6,10 @@ import * as Stories from "./ToggleControl.stories";
 
 <Version />
 
-<Description markdown={dedent`
 # ToggleControl
 ## To be used when using Toggle within a form
 #### To be used with &lt;Toggle&gt; & &lt;ToggleButtons&gt; components, so that they can be lined up with a &lt;label class="label"&gt; in existing forms.
 #### It is a wrapper component with no functionality of it's own.
-`}/>
 
 <Meta of={Stories} />
 <Canvas of={Stories.Main} />

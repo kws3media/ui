@@ -1,0 +1,152 @@
+@use "sass:list";
+
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "../_variables" as vars;
+@use "bulma/sass/utilities/functions" as fn;
+@use "bulma/sass/themes/setup";
+
+// The main lightness of this theme
+$scheme-main-l: 100%;
+// The main scheme color, used to make calculations
+$scheme-main: hsl(vars.$scheme-h, vars.$scheme-s, $scheme-main-l);
+
+@mixin light-theme {
+  @include cv.register-vars(
+    (
+      "primary": vars.$primary,
+      "info": vars.$info,
+      "warning": vars.$warning,
+      "scheme-h": vars.$scheme-h,
+      "scheme-s": vars.$scheme-s,
+      "light-l": vars.$light-l,
+      "light-invert-l": vars.$dark-l,
+      "dark-l": vars.$dark-l,
+      "dark-invert-l": vars.$light-l,
+      "soft-l": vars.$light-l,
+      "bold-l": vars.$dark-l,
+      "soft-invert-l": vars.$dark-l,
+      "bold-invert-l": vars.$light-l,
+
+      //custom variables
+      "main-content-background": #{cv.getVar("scheme-main-bis")},
+
+      // Deltas
+      "hover-background-l-delta": -5%,
+      "active-background-l-delta": -10%,
+
+      "hover-border-l-delta": -10%,
+      "active-border-l-delta": -20%,
+
+      "hover-color-l-delta": -5%,
+      "active-color-l-delta": -10%,
+
+      "hover-shadow-a-delta": -0.05,
+      "active-shadow-a-delta": -0.1,
+
+      // Light only
+      "scheme-brightness": "light",
+      "scheme-main-l": $scheme-main-l,
+      "scheme-main-bis-l": 98%,
+      "scheme-main-ter-l": 96%,
+      "background-l": 96%,
+      "border-weak-l": 93%,
+      "border-l": 86%,
+      "text-weak-l": 48%,
+      "text-l": 29%,
+      "text-strong-l": 21%,
+      "text-title-l": 14%,
+      "scheme-invert-ter-l": 14%,
+      "scheme-invert-bis-l": 7%,
+      "scheme-invert-l": 4%,
+
+      // Typography
+      "family-primary": vars.$family-primary,
+      "family-secondary": vars.$family-secondary,
+      "family-code": vars.$family-code,
+      "size-small": vars.$size-small,
+      "size-normal": vars.$size-normal,
+      "size-medium": vars.$size-medium,
+      "size-large": vars.$size-large,
+      "weight-light": vars.$weight-light,
+      "weight-normal": vars.$weight-normal,
+      "weight-medium": vars.$weight-medium,
+      "weight-semibold": vars.$weight-semibold,
+      "weight-bold": vars.$weight-bold,
+      "weight-extrabold": vars.$weight-extrabold,
+
+      // Other
+      "shadow": vars.$shadow,
+      "shadow-high": vars.$shadow-high,
+      "block-spacing": vars.$block-spacing,
+      "duration": 294ms,
+      "easing": ease-out,
+      "radius-small": vars.$radius-small,
+      "radius": vars.$radius,
+      "radius-medium": vars.$radius-medium,
+      "radius-large": vars.$radius-large,
+      "radius-rounded": 9999px,
+      "speed": 86ms,
+
+      "arrow-color": #{cv.getVar("link")},
+      "loading-color": #{cv.getVar("border")},
+      "burger-h": #{cv.getVar("link-h")},
+      "burger-s": #{cv.getVar("link-s")},
+      "burger-l": #{cv.getVar("link-l")},
+      "burger-border-radius": 0.5em,
+      // Using px values to prevent half pixel issues
+      "burger-gap": 5px,
+      "burger-item-height": 2px,
+      "burger-item-width": 20px,
+    )
+  );
+
+  // Colors
+  $no-palette: ("white", "black", "light", "dark");
+
+  @each $name, $color in vars.$colors {
+    $base: $color;
+    $invert: null;
+    $light: null;
+    $dark: null;
+
+    @if type-of($color == "list") {
+      $base: list.nth($color, 1);
+
+      @if list.length($color) > 3 {
+        $invert: list.nth($color, 2);
+        $light: list.nth($color, 3);
+        $dark: list.nth($color, 4);
+      } @else if list.length($color) > 1 {
+        $invert: list.nth($color, 2);
+      }
+    }
+
+    @if list.index($no-palette, $name) {
+      @include cv.generate-basic-palette($name, $base, $invert);
+    } @else {
+      @include cv.generate-color-palette(
+        $name,
+        $base,
+        $scheme-main-l,
+        $invert,
+        $light,
+        $dark
+      );
+    }
+
+    @include cv.generate-on-scheme-colors($name, $base, $scheme-main);
+  }
+
+  // Shades
+  @each $name, $shade in vars.$shades {
+    @include cv.register-var($name, $shade);
+  }
+
+  @include cv.register-hsl("shadow", vars.$shadow-color);
+
+  @each $size in vars.$sizes {
+    $i: index(vars.$sizes, $size);
+    $name: "size-#{$i}";
+    @include cv.register-var($name, $size);
+  }
+}

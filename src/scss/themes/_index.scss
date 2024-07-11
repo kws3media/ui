@@ -1,0 +1,87 @@
+/* Bulma Themes */
+@charset "utf-8";
+
+@use "bulma/sass/utilities/css-variables" as cv;
+@use "bulma/sass/themes/setup";
+@use "../_variables" as vars;
+
+@use "_light";
+@use "_dark";
+
+:root {
+  @include light.light-theme;
+  @include setup.setup-theme;
+}
+
+// prefers-color-scheme: light
+@include cv.system-theme($name: "light") {
+  @include light.light-theme;
+}
+
+// prefers-color-scheme: dark
+@include cv.system-theme($name: "dark") {
+  @include dark.dark-theme;
+}
+
+// :root, [data-theme=light], .theme-light
+@include cv.bulma-theme($name: "light") {
+  @include light.light-theme;
+  @include setup.setup-theme;
+  @include cv.register-vars(
+    (
+      "shadow": vars.$shadow,
+      "shadow-high": vars.$shadow-high,
+    )
+  );
+}
+
+// [data-theme=dark], .theme-dark
+@include cv.bulma-theme($name: "dark") {
+  @include dark.dark-theme;
+  @include setup.setup-theme;
+  @include cv.register-vars(
+    (
+      "shadow": vars.$shadow-dark,
+      "shadow-high": vars.$shadow-high-dark,
+    )
+  );
+
+  .input,
+  .textarea,
+  .select {
+    @include cv.register-vars(
+      (
+        "input-s": 24%,
+        "input-background-l": 17%,
+      )
+    );
+    @each $name, $pair in vars.$colors {
+      $color: cv.getVar($name);
+      &.is-#{$name} {
+        border-color: hsl(
+          cv.getVar("input-focus-h"),
+          cv.getVar("input-focus-s"),
+          calc(cv.getVar("input-focus-l") - 20%)
+        );
+        &:focus,
+        &.is-active,
+        &.is-focused,
+        &:focus-within {
+          border-color: hsl(
+            cv.getVar("input-focus-h"),
+            cv.getVar("input-focus-s"),
+            calc(cv.getVar("input-focus-l"))
+          );
+        }
+      }
+    }
+  }
+  .textarea,
+  .input:not(.is-static),
+  .select select {
+    box-shadow: inset 0 1px 3px hsla(0, 0%, 4%, 0.9);
+    &:disabled {
+      box-shadow: none;
+    }
+  }
+}

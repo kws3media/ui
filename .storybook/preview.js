@@ -1,16 +1,27 @@
+import { light, dark } from "./kwsTheme";
+import { DocsContainer } from "./DocsContainer.js";
+
 import "./../src/scss/app.scss";
 
-export default {
-  parameters: {
-    layout: "centered",
-    //actions: { argTypesRegex: "^on[A-Z].*" },
-    controls: {
-      hideNoControlsWarning: true,
-      expanded: false,
-    },
-    docs: { page: null },
-    options: { showPanel: true },
-    backgrounds: { disable: true },
-    viewMode: "docs",
+export const parameters = {
+  darkMode: {
+    dark,
+    light,
+    current: "light",
+    stylePreview: true,
+    darkClass: ["theme-dark", "dark"],
+    lightClass: ["theme-light", "light"],
   },
+  layout: "centered",
+  controls: {
+    hideNoControlsWarning: true,
+    expanded: false,
+  },
+  docs: {
+    page: null,
+    container: DocsContainer,
+  },
+  options: { showPanel: true },
+  backgrounds: { disable: true },
+  viewMode: "docs",
 };
