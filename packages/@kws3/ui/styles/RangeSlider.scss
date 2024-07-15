@@ -8,14 +8,14 @@ $track-radius: cv.getVar("radius") !default;
 $track-border: 0px solid cv.getVar("border") !default;
 $track-shadow: cv.getVar("input-shadow") !default;
 $thumb-background: cv.getVar("text-invert") !default;
-$thumb-radius: cv.getVar("radius-small") !default;
+$thumb-radius: cv.getVar("radius") !default;
 $thumb-border: 1px solid cv.getVar("border") !default;
 $thumb-shadow: none !default;
 $thumb-to-track-ratio: 2 !default;
 $output-width: 3rem !default;
 $output-background: cv.getVar("border-weak") !default;
 $output-color: cv.getVar("text") !default;
-$output-radius: cv.getVar("radius-small") !default;
+$output-radius: cv.getVar("radius") !default;
 
 @use "sass:math";
 
