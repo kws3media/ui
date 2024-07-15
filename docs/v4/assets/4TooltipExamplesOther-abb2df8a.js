@@ -1,0 +1,5 @@
+import{j as t}from"./jsx-runtime-01215b87.js";import{u as i}from"./index-4b5f231d.js";import{M as n,d as s}from"./index-95581144.js";import{M as m}from"./version-ee24219f.js";import{S as p,M as a}from"./4TooltipExamplesOther.stories-b163f775.js";import"./iframe-1fcd48d6.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-de833af9.js";import"./index-5a8fdfec.js";import"./index-356e4a49.js";import"./index-ae6f3512.js";import"./RadialChart-9728098f.js";import"./index-4339844e.js";import"./index-ce0c298e.js";import"./index-8cc5c1ab.js";import"./spread-8a54911c.js";import"./index-af29543d.js";import"./index-5da554f5.js";function e(o){const r={h3:"h3",p:"p",...i(),...o.components};return t.jsxs(t.Fragment,{children:[t.jsx(m,{}),`
+`,t.jsx(n,{of:p}),`
+`,t.jsx(r.h3,{id:"examples--recipies",children:"Examples & Recipies"}),`
+`,t.jsx(r.p,{children:"A list of other things that can be done with tooltips that are not listed in the previous examples"}),`
+`,t.jsx(s,{of:a})]})}function _(o={}){const{wrapper:r}={...i(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(e,{...o})}):e(o)}export{_ as default};
