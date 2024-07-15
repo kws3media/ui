@@ -34,6 +34,18 @@
       "types": "./form/index.d.ts",
       "svelte": "./form/index.js"
     },
+    "./search": {
+      "types": "./search/index.d.ts",
+      "svelte": "./search/index.js"
+    },
+    "./resizeObserver": {
+      "types": "./resizeObserver/index.d.ts",
+      "svelte": "./resizeObserver/index.js"
+    },
+    "./keyboard": {
+      "types": "./keyboard/index.d.ts",
+      "svelte": "./keyboard/index.js"
+    },
     ".": {
       "types": "./index.d.ts",
       "svelte": "./index.js"
