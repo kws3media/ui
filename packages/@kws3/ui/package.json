@@ -30,6 +30,10 @@
       "types": "./utils/index.d.ts",
       "default": "./utils/index.js"
     },
+    "./form": {
+      "types": "./form/index.d.ts",
+      "svelte": "./form/index.js"
+    },
     ".": {
       "types": "./index.d.ts",
       "svelte": "./index.js"
