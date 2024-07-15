@@ -120,7 +120,7 @@ Default value: `<span>{option[search_key] || option}</span>`
       on:click|stopPropagation={removeAll}
       style={shouldShowClearAll ? "" : "display: none;"} />
   {/if}
-  {#if rootContainer}
+  {#if typeof window !== "undefined"}
     <div
       class="kws-searchableselect is-{color || 'primary'}"
       use:portal={dropdown_portal}>
@@ -335,6 +335,8 @@ Default value: `<span>{option[search_key] || option}</span>`
   let klass = "";
   export { klass as class };
 
+  let rootContainer;
+
   if (!search && (!options || !options.length))
     console.error(`Missing options`);
 
@@ -524,11 +526,13 @@ Default value: `<span>{option[search_key] || option}</span>`
 
   onMount(() => {
     //ensure we have a root container for all our hoisitng related stuff
-    let rootContainer = document.getElementById(rootContainerId);
-    if (!rootContainer) {
-      rootContainer = document.createElement("div");
-      rootContainer.id = rootContainerId;
-      document.body.appendChild(rootContainer);
+    if (typeof window !== "undefined") {
+      rootContainer = document.getElementById(rootContainerId);
+      if (!rootContainer) {
+        rootContainer = document.createElement("div");
+        rootContainer.id = rootContainerId;
+        document.body.appendChild(rootContainer);
+      }
     }
 
     POPPER = createPopper(el, dropdown, {
