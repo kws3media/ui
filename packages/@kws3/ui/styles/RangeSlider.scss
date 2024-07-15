@@ -13,8 +13,8 @@ $thumb-border: 1px solid cv.getVar("border") !default;
 $thumb-shadow: none !default;
 $thumb-to-track-ratio: 2 !default;
 $output-width: 3rem !default;
-$output-background: cv.getVar("scheme-invert-ter") !default;
-$output-color: cv.getVar("text-invert") !default;
+$output-background: cv.getVar("border-weak") !default;
+$output-color: cv.getVar("text") !default;
 $output-radius: cv.getVar("radius-small") !default;
 
 @use "sass:math";
