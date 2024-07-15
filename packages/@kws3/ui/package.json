@@ -3,7 +3,6 @@
   "version": "4.5.1",
   "description": "UI components for use with Svelte v3 applications.",
   "main": "index.js",
-  "svelte": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,7 +23,18 @@
   "publishConfig": {
     "access": "public"
   },
+  "svelte": "index.js",
   "types": "./index.d.ts",
+  "exports": {
+    "./utils": {
+      "types": "./utils/index.d.ts",
+      "default": "./utils/index.js"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "svelte": "./index.js"
+    }
+  },
   "peerDependencies": {
     "bulma": "^1.0.0",
     "svelte": "^4.2.10"
