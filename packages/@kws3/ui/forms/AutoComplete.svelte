@@ -240,15 +240,6 @@ Default value: `<span>{option.label}</span>`
   if (!search && (!options || !options.length))
     console.error(`Missing options`);
 
-  //ensure we have a root container for all our hoisitng related stuff
-
-  let rootContainer = document.getElementById(rootContainerId);
-  if (!rootContainer) {
-    rootContainer = document.createElement("div");
-    rootContainer.id = rootContainerId;
-    document.body.appendChild(rootContainer);
-  }
-
   const fire = createEventDispatcher();
 
   let el, //whole wrapping element
@@ -337,6 +328,14 @@ Default value: `<span>{option.label}</span>`
   const debouncedTriggerSearch = debounce(triggerExternalSearch, 150, false);
 
   onMount(() => {
+    //ensure we have a root container for all our hoisitng related stuff
+    let rootContainer = document.getElementById(rootContainerId);
+    if (!rootContainer) {
+      rootContainer = document.createElement("div");
+      rootContainer.id = rootContainerId;
+      document.body.appendChild(rootContainer);
+    }
+
     POPPER = createPopper(el, dropdown, {
       strategy: popper_strategy,
       placement: "bottom-start",
