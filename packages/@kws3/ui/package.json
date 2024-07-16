@@ -46,7 +46,7 @@
       "types": "./keyboard/index.d.ts",
       "svelte": "./keyboard/index.js"
     },
-    "./styles/*.scss": "./styles/*.scss",
+    "./styles/*": "./styles/*",
     ".": {
       "types": "./index.d.ts",
       "svelte": "./index.js"
