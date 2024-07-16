@@ -1,5 +1,4 @@
 import { LineChart } from "@kws3/ui";
-//import LineChartDecorator from "./LineChart.svelte";
 
 let args = {
   data: [
@@ -22,7 +21,6 @@ let argTypes = {};
 export default {
   title: "Charts/Line Chart",
   component: LineChart,
-  //decorators: [() => LineChartDecorator],
   args: args,
   argTypes: {},
   props: args,

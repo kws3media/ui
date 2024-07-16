@@ -1,5 +1,4 @@
 import { AreaChart } from "@kws3/ui";
-//import AreaChartDecorator from "./AreaChart.svelte";
 
 let args = {
   data: [
@@ -22,7 +21,6 @@ let argTypes = {};
 export default {
   title: "Charts/Area Chart",
   component: AreaChart,
-  //decorators: [() => AreaChartDecorator],
   args: args,
   argTypes: {},
   props: args,

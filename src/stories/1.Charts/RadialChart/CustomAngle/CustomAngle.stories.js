@@ -1,5 +1,4 @@
 import { RadialChart } from "@kws3/ui";
-//import RadialChartDecorator from "../RadialChart.svelte";
 
 let args = {
   data: 70,

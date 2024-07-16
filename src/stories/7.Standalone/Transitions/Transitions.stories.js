@@ -1,6 +1,5 @@
 import { Transition } from "@kws3/ui";
 import TransitionDecorator from "./Transitions.svelte";
-//import { withActions } from "@storybook/addon-actions/decorator";
 
 let args = {
   x: 0,

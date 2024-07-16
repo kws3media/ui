@@ -39,12 +39,6 @@ export default {
   argTypes: argTypes,
   parameters: {
     layout: "fullscreen",
-    // docs: {
-    //   source: {
-    //     type: "dynamic",
-    //     excludeDecorators: true,
-    //   },
-    // },
   },
   template: "<ConfirmButton />",
 };

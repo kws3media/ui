@@ -28,10 +28,6 @@ let argTypes = {
     control: "select",
     optons: Sizes,
   },
-  // search_strategy: {
-  //   control: "select",
-  //   options: ["fuzzy", "strict"],
-  // },
 };
 
 export default {
