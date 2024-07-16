@@ -1,9 +1,8 @@
 {
   "name": "@kws3/ui",
-  "version": "4.5.0",
+  "version": "4.5.2",
   "description": "UI components for use with Svelte v3 applications.",
   "main": "index.js",
-  "svelte": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,13 +23,40 @@
   "publishConfig": {
     "access": "public"
   },
+  "svelte": "index.js",
   "types": "./index.d.ts",
+  "exports": {
+    "./utils": {
+      "types": "./utils/index.d.ts",
+      "default": "./utils/index.js"
+    },
+    "./form": {
+      "types": "./form/index.d.ts",
+      "svelte": "./form/index.js"
+    },
+    "./search": {
+      "types": "./search/index.d.ts",
+      "svelte": "./search/index.js"
+    },
+    "./resizeObserver": {
+      "types": "./resizeObserver/index.d.ts",
+      "svelte": "./resizeObserver/index.js"
+    },
+    "./keyboard": {
+      "types": "./keyboard/index.d.ts",
+      "svelte": "./keyboard/index.js"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "svelte": "./index.js"
+    }
+  },
   "peerDependencies": {
     "bulma": "^1.0.0",
     "svelte": "^4.2.10"
   },
   "dependencies": {
-    "@kws3/text-mask-core": "^5.1.3",
+    "@kws3/text-mask-core": "^5.1.5",
     "apexcharts": "3.33.2",
     "flatpickr": "^4.5.2",
     "svelte-portal": "^2.2.1",

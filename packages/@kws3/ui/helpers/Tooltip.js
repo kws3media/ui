@@ -4,7 +4,7 @@ import tippy, { delegate } from "tippy.js";
  * @typedef {import('@kws3/ui/types').TippyPositions} TippyPositions
  *
  * @typedef {import("svelte/action").Action<HTMLElement, {
- * content:any
+ * content?: HTMLElement
  * }>} TippyAction
  */
 

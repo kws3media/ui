@@ -90,7 +90,7 @@ $focus-box-shadow-color: hsla(
   input[type="radio"]:checked + .kws-checkbox-label {
     &:after {
       transform: none;
-      border: 0.25em solid #fff;
+      border: 0.25em solid $check-color-invert;
       background: $check-color;
       width: 1em;
       height: 1em;

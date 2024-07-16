@@ -2,7 +2,7 @@
   @component
 
 
-  @param {object} [value=null] - Value of the Input
+  @param {any} [value=null] - Value of the Input
 
 This property can be bound to, to fetch the current value, Default: `null`
   @param {string} [placeholder="Please select..."] - Placeholder text for the input, Default: `"Please select..."`
@@ -96,7 +96,7 @@ Default value: `<span>{option[search_key] || option}</span>`
    * Value of the Input
    *
    * This property can be bound to, to fetch the current value
-   * @type {object}
+   * @type {any}
    */
   export let value = null;
   /**
