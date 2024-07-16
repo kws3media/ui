@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "MakeKeyEvent",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

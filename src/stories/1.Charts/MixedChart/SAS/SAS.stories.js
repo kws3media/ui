@@ -1,5 +1,4 @@
 import { MixedChart } from "@kws3/ui";
-//import MixedChartDecorator from "../MixedChart.svelte";
 
 let args = {
   data: [
@@ -22,7 +21,6 @@ let argTypes = {};
 export default {
   title: "Charts/Complex Charts/Single Axis (Simple)",
   component: MixedChart,
-  //decorators: [() => MixedChartDecorator],
   args: args,
   argTypes: {},
   props: args,
@@ -33,7 +31,6 @@ export default {
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

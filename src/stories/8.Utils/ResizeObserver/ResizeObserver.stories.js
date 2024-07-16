@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "ResizeObserver",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "CloneObject",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

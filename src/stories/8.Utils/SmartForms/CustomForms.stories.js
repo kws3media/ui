@@ -12,7 +12,6 @@ export default {
 
 export const Main = {
   name: "CustomValidator",
-  tags: ["isHidden"],
   component: Decorator,
   args: {},
   argTypes: {},

@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "RandomInteger",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

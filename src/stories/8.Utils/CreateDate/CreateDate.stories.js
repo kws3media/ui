@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "CreateDate",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

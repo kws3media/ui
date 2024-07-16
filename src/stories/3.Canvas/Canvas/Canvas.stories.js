@@ -33,7 +33,6 @@ export default {
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
   args: args,
   argTypes: {},
   decorators: [(_, { args }) => ({ Component: Decorator, props: args })],

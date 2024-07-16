@@ -37,17 +37,15 @@ let argTypes = {
 };
 
 export default {
-  title: "Helpers/Popover/1. Popover Component",
+  title: "Helpers/Popover/Popover",
   component: Popover,
   decorators: [(_, { args }) => ({ Component: PopoverDecorator, props: args })],
   args: args,
   argTypes: argTypes,
-  tags: ["isHidden"],
 };
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

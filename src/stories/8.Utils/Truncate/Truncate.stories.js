@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "Truncate",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

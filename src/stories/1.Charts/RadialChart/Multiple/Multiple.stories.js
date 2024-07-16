@@ -1,5 +1,4 @@
 import { RadialChart } from "@kws3/ui";
-//import RadialChartDecorator from "../RadialChart.svelte";
 
 let args = {
   data: [70, 50, 40, 20],
@@ -27,7 +26,6 @@ export default {
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

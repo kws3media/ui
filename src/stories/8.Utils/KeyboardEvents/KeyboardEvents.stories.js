@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "KeyboardEvents",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

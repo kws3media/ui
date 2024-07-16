@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "rAF",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

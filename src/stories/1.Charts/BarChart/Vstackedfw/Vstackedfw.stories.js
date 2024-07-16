@@ -1,5 +1,4 @@
 import { BarChart } from "@kws3/ui";
-//import BarChartDecorator from "../BarChart.svelte";
 
 let args = {
   data: [
@@ -26,7 +25,6 @@ let argTypes = {};
 export default {
   title: "Charts/Bar Charts/Vertical Stacked Full Width",
   component: BarChart,
-  //decorators: [() => BarChartDecorator],
   args: args,
   argTypes: {},
   props: args,
@@ -37,7 +35,6 @@ export default {
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

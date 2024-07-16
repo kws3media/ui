@@ -1,5 +1,4 @@
 import { PieChart } from "@kws3/ui";
-//import PieChartDecorator from "./PieChart.svelte";
 
 let args = {
   data: [10, 10, 20, 60],
@@ -15,7 +14,6 @@ let argTypes = {};
 export default {
   title: "Charts/Pie Chart",
   component: PieChart,
-  //decorators: [() => PieChartDecorator],
   args: args,
   argTypes: {},
   props: args,
@@ -26,7 +24,6 @@ export default {
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,
