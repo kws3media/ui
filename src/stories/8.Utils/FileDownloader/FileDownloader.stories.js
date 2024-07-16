@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "FileDownloader",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

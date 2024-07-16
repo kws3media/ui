@@ -40,7 +40,6 @@ export default {
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

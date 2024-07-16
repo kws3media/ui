@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "Nl2br",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

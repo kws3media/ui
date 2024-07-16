@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "Currency",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

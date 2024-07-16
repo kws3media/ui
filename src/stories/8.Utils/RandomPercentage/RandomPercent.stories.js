@@ -17,7 +17,6 @@ export default {
 
 export const Main = {
   name: "RandomPercent",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

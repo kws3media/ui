@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "DateToOrdinal",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

@@ -39,7 +39,6 @@ export default {
 
 export const Main = {
   name: "Preview",
-  tags: ["isHidden"],
   decorators: [
     (_, { args }) => ({ Component: FileUploadDecorator, props: args }),
   ],

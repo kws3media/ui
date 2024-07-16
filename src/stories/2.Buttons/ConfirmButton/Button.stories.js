@@ -51,7 +51,6 @@ export default {
 
 export const Main = {
   name: "Canvas",
-  //tags: ["isHidden"],
   play: playInteractions,
   props: args,
   decorators: [(_, { args }) => ({ Component: ButtonDecorator, props: args })],

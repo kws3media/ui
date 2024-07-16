@@ -13,7 +13,6 @@ export default {
 
 export const Main = {
   name: "SmartForms",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "CapitaliseFirstLetter",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

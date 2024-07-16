@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "Debounce",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };

@@ -12,7 +12,6 @@ export default {
 };
 
 export const Main = {
-  tags: ["isHidden"],
   args: args,
   argTypes: argTypes,
   props: args,

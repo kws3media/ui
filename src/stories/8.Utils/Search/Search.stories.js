@@ -10,7 +10,6 @@ export default {
 
 export const Main = {
   name: "Search",
-  tags: ["isHidden"],
   args: {},
   argTypes: {},
 };
