@@ -1,8 +1,0 @@
-import{k as _}from"./RadialChart-5b1df549.js";import"./index-af29543d.js";import{w as g,u as e,e as a}from"./index-b7fffc4c.js";import{S as b,C as n}from"./frameworkTypes-6fa5738f.js";const d=async({args:w,canvasElement:m})=>{const l=g(m),t=l.getAllByRole("button"),s=l.getByTestId("input");await e.click(t[1]),await a(Number(s.value)).toEqual(1),await e.click(t[1]),await a(Number(s.value)).toEqual(2),await e.click(t[0]),await a(Number(s.value)).toEqual(1),await e.click(t[0]),await a(Number(s.value)).toEqual(0)};let r={class:"",style:"",input:null,value:0,step:1,min:0,max:100,disabled:!1,fullwidth:!1,typeable:!0,minus_icon:"minus",minus_icon_color:"danger",minus_button_color:"",plus_icon:"plus",plus_icon_color:"success",plus_button_color:"",input_only:!1,force_integer:!1},p={size:{control:"select",options:b},minus_icon:{},minus_icon_color:{control:"select",options:n},minus_button_color:{control:"select",options:n},plus_icon:{},plus_icon_color:{control:"select",options:n},plus_button_color:{control:"select",options:n}};const y={title:"Forms/Controls/NumberInput",component:_,args:r,argTypes:p},o={name:"Canvas",tags:["isHidden"],args:r,argTypes:p,props:r,play:d};var i,c,u;o.parameters={...o.parameters,docs:{...(i=o.parameters)==null?void 0:i.docs,source:{originalSource:`{
-  name: "Canvas",
-  tags: ["isHidden"],
-  args: args,
-  argTypes: argTypes,
-  props: args,
-  play: playInteractions
-}`,...(u=(c=o.parameters)==null?void 0:c.docs)==null?void 0:u.source}}};const f=["Main"],E=Object.freeze(Object.defineProperty({__proto__:null,Main:o,__namedExportsOrder:f,default:y},Symbol.toStringTag,{value:"Module"}));export{E as S};
