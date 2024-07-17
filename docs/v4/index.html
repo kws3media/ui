@@ -3,54 +3,72 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>UI | KWS3 Media</title>
+    <title>storybook - Storybook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     
-    <link rel="shortcut icon" href="favicon.png?v=0eca4a7" />
+    <link rel="shortcut icon" href="favicon.png?v=6769717" />
     
-    <link
-      rel="prefetch"
-      href="./sb-common-assets/nunito-sans-regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="prefetch"
-      href="./sb-common-assets/nunito-sans-bold.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
+    <style>
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-regular.woff2') format('woff2');
+      }
 
-    <link href="./sb-manager/runtime.js?v=0eca4a7" rel="modulepreload" />
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-italic.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-bold.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: italic;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-bold-italic.woff2') format('woff2');
+      }
+    </style>
+
+    <link href="./sb-manager/runtime.js?v=6769717" rel="modulepreload" />
 
     
-    <link href="./sb-addons/storybook-core-server-presets-0/common-manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/essentials-backgrounds-1/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/essentials-backgrounds-1/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/essentials-toolbars-2/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/essentials-toolbars-2/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/essentials-measure-3/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/essentials-measure-3/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/essentials-outline-4/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/essentials-outline-4/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/actions-5/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/actions-5/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/interactions-6/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/interactions-6/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/viewport-7/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/viewport-7/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/controls-8/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/controls-8/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/themes-9/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/themes-9/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/storybook-dark-mode-esm-preset-10/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/storybook-dark-mode-esm-preset-10/manager-bundle.js?v=6769717" rel="modulepreload" />
     
-    <link href="./sb-addons/storybook-11/manager-bundle.js?v=0eca4a7" rel="modulepreload" />
+    <link href="./sb-addons/storybook-11/manager-bundle.js?v=6769717" rel="modulepreload" />
        
 
     <style>
@@ -116,7 +134,7 @@
         
       
         
-          window['STORYBOOK_RENDERER'] = "@storybook/svelte";
+          window['STORYBOOK_RENDERER'] = "svelte";
         
       
         
@@ -134,7 +152,7 @@
       import './sb-manager/globals-runtime.js';
       
       
-        import './sb-addons/storybook-core-server-presets-0/common-manager-bundle.js';
+        import './sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js';
       
         import './sb-addons/essentials-backgrounds-1/manager-bundle.js';
       
@@ -163,7 +181,7 @@
     </script>
 
     
-    <link href="./sb-preview/runtime.js?v=0eca4a7" rel="prefetch" as="script" />
+    <link href="./sb-preview/runtime.js?v=6769717" rel="prefetch" as="script" />
     
   </body>
 </html>

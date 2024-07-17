@@ -1,0 +1,9 @@
+import{S as T,b as C,s as D,q as l,C as E,k as y,u as e,c as O,v as a,E as k,n as A,h as w,r as j}from"./index-ae6f3512.js";import{g as h}from"./index-8cc5c1ab.js";function q(d){let o,r,t,n,p,s,g,i,m,c,_,b;return{c(){o=l("div"),r=l("div"),t=l("div"),n=l("h2"),p=E(`Animation
+        `),s=l("button"),s.textContent="Start",g=y(),i=l("button"),i.textContent="Stop",m=y(),c=l("div"),e(s,"type","button"),e(s,"class","button is-primary is-small"),e(i,"type","button"),e(i,"class","button is-danger is-small"),e(n,"class","subtitle is-5"),e(c,"id","animatedDiv"),e(c,"style","width:100%;height : 200px"),e(c,"data-key",d[0]),e(t,"class","column is-6"),e(r,"class","columns is-multiline"),e(o,"id","tooltip-example-container-1")},m(u,v){O(u,o,v),a(o,r),a(r,t),a(t,n),a(n,p),a(n,s),a(n,g),a(n,i),a(t,m),a(t,c),_||(b=[k(s,"click",d[3]),k(i,"click",d[4])],_=!0)},p(u,[v]){v&1&&e(c,"data-key",u[0])},i:A,o:A,d(u){u&&w(o),_=!1,j(b)}}}function I(d,o,r){let t;function n(){let m=document.getElementById("animatedDiv");m&&(m.innerHTML+=`<div style=" width: 10px;
+      height: 10px;
+      background: orange;
+      float: left;"></div>`),r(0,t=h(n))}t=h(n);function p(){r(0,t=h(n))}function s(){cancelAnimationFrame(t)}return[t,p,s,()=>{p()},()=>{s()}]}class M extends T{constructor(o){super(),C(this,o,I,q,D,{})}}const $=M;M.__docgen={version:3,name:"rAF.svelte",data:[],computed:[],methods:[],components:[],description:null,keywords:[],events:[],slots:[],refs:[]};const z={title:"Utils/2. Examples/rAF",name:"rAF",component:$,args:{},argTypes:{}},f={name:"rAF",args:{},argTypes:{}};var x,F,S;f.parameters={...f.parameters,docs:{...(x=f.parameters)==null?void 0:x.docs,source:{originalSource:`{
+  name: "rAF",
+  args: {},
+  argTypes: {}
+}`,...(S=(F=f.parameters)==null?void 0:F.docs)==null?void 0:S.source}}};const B=["Main"],P=Object.freeze(Object.defineProperty({__proto__:null,Main:f,__namedExportsOrder:B,default:z},Symbol.toStringTag,{value:"Module"}));export{f as M,P as S};
