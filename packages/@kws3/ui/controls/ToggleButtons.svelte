@@ -2,7 +2,7 @@
   @component
 
 
-  @param {object} [value=null] - Value of the Toggle button
+  @param {any} [value=null] - Value of the Toggle button
 
 This property can be bound to, to fetch the current value, Default: `null`
   @param {boolean} [disabled=false] - Disables the Toggle button, Default: `false`
@@ -19,7 +19,7 @@ This property can be bound to, to fetch the current value, Default: `null`
 ---, Default: `[]`
   @param {string} [inner_class=""] - CSS classes for Button `.control` wrapper, Default: `""`
   @param {string} [active_class="is-primary"] - CSS classes to apply when a button is active (pressed), Default: `"is-primary"`
-  @param {string} [inactive_class="is-outlined"] - CSS classes to apply when a button is inactive (not pressed), Default: `"is-outlined"`
+  @param {string} [inactive_class=""] - CSS classes to apply when a button is inactive (not pressed), Default: `""`
   @param {SizeOptions} [size=] - Size of the Toggle Buttons, Default: ``
   @param {boolean} [fullwidth=false] - Expand all buttons so that they occupy full width of wrapping element, Default: `false`
   @param {string} [class=""] - CSS classes for the Button container, Default: `""`
@@ -76,6 +76,7 @@ This property can be bound to, to fetch the current value, Default: `null`
    * Value of the Toggle button
    *
    * This property can be bound to, to fetch the current value
+   * @type {any}
    */
   export let value = null,
     /**
