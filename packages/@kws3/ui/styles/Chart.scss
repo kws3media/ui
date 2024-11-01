@@ -4,6 +4,9 @@ $background-color: cv.getVar("scheme-main") !default;
 $foreground-color: cv.getVar("text") !default;
 
 .kws-chart {
+  .apexcharts-text {
+    fill: $foreground-color !important;
+  }
   .apexcharts-tooltip {
     display: flex;
     border: 0;
