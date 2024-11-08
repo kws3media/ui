@@ -40,12 +40,12 @@
       class="button is-{size} {_doing
         ? main_color + ' is-loading'
         : _error
-        ? 'is-danger is-shaking'
-        : _done
-        ? main_color
-        : confirm
-        ? main_color
-        : main_color} {button_class}"
+          ? 'is-danger is-shaking'
+          : _done
+            ? main_color
+            : confirm
+              ? main_color
+              : main_color} {button_class}"
       type="button"
       on:click|preventDefault|stopPropagation={doit}
       disabled={_done || _doing || _error || disabled}>
@@ -135,6 +135,7 @@
     should_confirm = true,
     /**
      * Context property
+     * @type {any}
      */
     context = "",
     /**

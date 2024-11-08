@@ -102,6 +102,7 @@
     done_text = "Done",
     /**
      * Context property
+     * @type {any}
      */
     context = "",
     /**

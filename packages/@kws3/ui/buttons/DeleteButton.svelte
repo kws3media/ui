@@ -101,6 +101,7 @@
     done_text = "Deleted",
     /**
      * Context property
+     * @type {any}
      */
     context = null,
     /**
