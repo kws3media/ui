@@ -26,7 +26,9 @@ _Default values shown as example_
     dedent`
     @use '@kws3/ui/styles/Chart.scss' with (
       $background-color: cv.getVar("scheme-main"),
-      $foreground-color: cv.getVar("text")
+      $foreground-color: cv.getVar("text"),
+      $axis-lines-color: cv.getVar("border"),
+      $grid-lines-color: cv.getVar("border-weak")
     );
     `
   }

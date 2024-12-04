@@ -2,8 +2,21 @@
 
 $background-color: cv.getVar("scheme-main") !default;
 $foreground-color: cv.getVar("text") !default;
+$axis-lines-color: cv.getVar("border") !default;
+$grid-lines-color: cv.getVar("border-weak") !default;
 
 .kws-chart {
+  .apexcharts-gridlines-horizontal {
+    line {
+      stroke: $grid-lines-color !important;
+    }
+  }
+  .apexcharts-xaxis,
+  .apexcharts-yaxis {
+    line {
+      stroke: $axis-lines-color !important;
+    }
+  }
   .apexcharts-text {
     fill: $foreground-color !important;
   }
