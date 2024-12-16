@@ -4,6 +4,7 @@ $background-color: cv.getVar("scheme-main") !default;
 $foreground-color: cv.getVar("text") !default;
 $axis-lines-color: cv.getVar("border") !default;
 $grid-lines-color: cv.getVar("border-weak") !default;
+$tooltip-box-shadow: cv.getVar("shadow") !default;
 
 .kws-chart {
   .apexcharts-gridlines-horizontal {
@@ -25,6 +26,7 @@ $grid-lines-color: cv.getVar("border-weak") !default;
     border: 0;
     background: $background-color;
     border-radius: 0;
+    box-shadow: $tooltip-box-shadow;
     .apexcharts-tooltip-title {
       background: $background-color;
       color: $foreground-color;
