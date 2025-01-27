@@ -1,0 +1,888 @@
+[
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-filedownloader--file-downloader",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "8e89cf3e-b334-4161-aa21-db83de556c5e",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-filedownloader--file-downloader",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Pie Chart\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| data | Chart data<br>array |  | RAW<br>data : \\[<br>- 0 : 10<br>- 1 : 10<br>- 2 : 20<br>- 3 : 60<br>\\] |\n| labels | Data labels<br>array |  | RAW<br>labels : \\[<br>- 0 : \"Me\"<br>- 1 : \"You\"<br>- 2 : \"Her\"<br>- 3 : \"Them\"<br>\\] |\n| width | Chart width, supports CSS size strings<br>string | 100% |  |\n| height | Chart height, supports CSS size strings<br>string | auto |  |\n| sparklines | Displays the chart as a sparkline chart.<br>These are charts with minimal UI and can be<br>squeezed into small spaces<br>boolean | false | FalseTrue |\n| colors | Chart colors, can be modified globally in framework settings<br>Send an array of colors to override the default colors, or do not send anything to use the default colors<br>array |  | Set object |\n| options | Chart options, see ApexCharts options for pie charts<br>object |  | RAW<br>options : {<br>} |\n| captured\\_events | String array of event names that will be captured and fired as svelte events.<br>This is to prevent unnecessary event subscriptions.<br>array |  | Set object |\n| class | CSS classes for container<br>string | \"\" | Set string |\n| Hide events itemsevents | Hide events items |\n| animationEnd | All chart events only fire when they are mentioned in `captured_events` list. See ApexChart Events [https://apexcharts.com/docs/options/chart/events/](https://apexcharts.com/docs/options/chart/events/) for full list of supported events.<br>- | - | - |\n| beforeMount | - | - | - |\n| mounted | - | - | - |\n| updated | - | - | - |\n| mouseMove | - | - | - |\n| mouseLeave | - | - | - |\n| click | - | - | - |\n| legendClick | - | - | - |\n| markerClick | - | - | - |\n| selection | - | - | - |\n| dataPointSelection | - | - | - |\n| dataPointMouseEnter | - | - | - |\n| dataPointMouseLeave | - | - | - |\n| beforeZoom | - | - | - |\n| beforeResetZoom | - | - | - |\n| zoomed | - | - | - |\n| scrolled | - | - | - |\n| brushScrolled | - | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { PieChart } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Chart.scss' with (\n  $background-color: cv.getVar(\"scheme-main\"),\n  $foreground-color: cv.getVar(\"text\"),\n  $axis-lines-color: cv.getVar(\"border\"),\n  $grid-lines-color: cv.getVar(\"border-weak\")\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/charts-pie-chart--docs",
+      "title": "Charts / Pie Chart - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "8c113e46-905c-4e5b-a7aa-8551f02a8d35",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/charts-pie-chart--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-datetoordinal--date-to-ordinal",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "12aefba5-130b-4195-9e3d-5a524ae25f6b",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-datetoordinal--date-to-ordinal",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# ClipboardCopier\n\n## Copies configurable text to clipboard on click\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| copied\\_icon\\_color | Colour of the `copied_icon` after a succesful copy operation<br>If `''` is selected, Icon will not change colour after copying<br>ColorOptions | success | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| copied\\_text | Tooltip displayed after a succesful copy operation<br>string | Copied! |  |\n| copied\\_icon | Icon displayed on successful copy operation<br>string | check |  |\n| text | Default tooltip text<br>string | Copy to clipboard |  |\n| icon | Icon to be used as the copy button<br>string | copy |  |\n| copy | Text to be copied into clipboard<br>string | \"\" |  |\n| copied | Determines if the copy operation has taken place<br>boolean | false | FalseTrue |\n| class | CSS classes for the whole component<br>string | \"\" |  |\n| Hide slots itemsslots | Hide slots items |\n| default | Description label displayed before copy icon<br>- | - | - |\n\n### Usage\n\n#### Import the component\n\n```\n\nimport { ClipboardCopier } from '@kws3/ui';\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-clipboardcopier--docs",
+      "title": "Helpers / ClipboardCopier - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "48c986ff-252d-4b0f-b5c1-3b78bb851120",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-clipboardcopier--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# DeleteButton\n\n## Delete Button with built-in confirmation.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| class | CSS classes for the button container<br>string | \"\" |  |\n| button\\_class | CSS classes for the Delete button<br>string | \"\" |  |\n| text | Button text<br>string | Delete |  |\n| icon | Name of the icon that is to be displayed in the button<br>string | minus-circle |  |\n| icon\\_only | Removes text, and text space in the button<br>boolean | false | FalseTrue |\n| done\\_text | Button text displayed after task is completed successfully<br>string | Deleted |  |\n| done\\_icon | Name of the icon displayed after task is completed successfully<br>string | check |  |\n| disabled | Disables the button when `true`<br>boolean | false | FalseTrue |\n| cy | data-cy attribute for cypress<br>string | \"\" |  |\n| context | Context property<br>any |  |  |\n| color | Color of the Button<br>ColorOptions | danger | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| size | Size of the Button<br>SizeOptions | \"\" | Choose option...smallmediumlarge |\n| completion\\_timeout | Specifies the duration to wait after the `erased` event, before the UI state returns to normal<br>number | 600 |  |\n| error\\_timeout | Specifies the duration to wait after the `error` event, before the UI state returns to normal<br>number | 3000 |  |\n| Hide events itemsevents | Hide events items |\n| erase | Fired when user confirms delete<br>- | - | - |\n| erased | Fired when deletion completes<br>- | - | - |\n| error | Fired when there is an error<br>- | - | - |\n\n### Usage\n\n```\n\n<DeleteButton\n  {text}\n  {icon}\n  {doing_icon}\n  {done_icon}\n  {doing_text}\n  {done_text}\n  {color}\n  {size}\n  {icon_only}\n  {disabled}\n  on:erase={eraseDo}\n/>\n<script>\n  import { DeleteButton } from '@kws3/ui';\n  export let color = \"primary\";\n  export let disabled = false;\n  export let size=\"\";\n  export let icon_only = false;\n  export let text = \"Delete\";\n  export let icon = \"minus-circle\";\n  export let done_icon = \"check\";\n  export let done_text = \"Deleted\";\n  export let context = \"_context_delete\";\n  function eraseDo(event){\n    let { doing, done, error, context } = event.detail;\n    doing();\n    somePromise().then(() => {\n      //set visual state to Done\n      //it will autmatically revert back to\n      //normal state after \"completion_timeout\"\n      done();\n    })\n    .catch(() => {\n      //set visual state to Error\n      //it will autmatically revert back to\n      //normal state after \"completion_timeout\"\n      error();\n    })\n  }\n</script>\n```\n\nCopy\n\n`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.\n\n```\n\n<script>\n  function eraseDo(event){\n    let {doing, done, error} = event.detail;\n    doing();\n    somePromise().then(() => {\n      done(() => {\n        //some callback\n      }, 500);\n    })\n    .catch(() => {\n      error(() => {\n        //some callback\n      }, 500);\n    });\n  }\n</script>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/buttons-delete-button--docs",
+      "title": "Buttons / Delete Button - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "8aed7aa4-b17e-45ac-9a03-c9a55c72dd60",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/buttons-delete-button--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-randominteger--random-integer",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "afeb4a8d-efa7-4477-83aa-ec487e9e1493",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-randominteger--random-integer",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-nl2br--nl-2-br",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "bcdf1404-c582-46e8-b01a-a05997c3d572",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-nl2br--nl-2-br",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# GridView\n\n## GridView component in datagrid.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| iteration\\_key | Iteration key<br>string | id |  |\n| data | Contains all the results that needs to be displayed<br>array |  | RAW<br>data : \\[<br>0 : {...} 5 keys<br>1 : {...} 5 keys<br>2 : {...} 5 keys<br>3 : {...} 5 keys<br>4 : {...} 5 keys<br>\\] |\n| columns | Table column names. {db\\_field\\_name: column\\_name}<br>object |  | RAW<br>columns : {<br>- id : \"ID\"<br>- name : \"Name\"<br>- surname : \"Surname\"<br>} |\n| transition | Determines if a transition effect is used<br>boolean | false | FalseTrue |\n| class | CSS classes for parent table<br>string | \"\" |  |\n| is\\_striped | Determines whether to use alternating row shading in the table view<br>boolean | true | FalseTrue |\n| is\\_narrow | Determines whether to display rows in a more compact manner<br>boolean | false | FalseTrue |\n| clickableRows | Determines whether rows are clickable or not<br>boolean | false | FalseTrue |\n| bulk\\_actions | Determines if selecting multiple rows and doing multiple actions is allowed<br>boolean | false | FalseTrue |\n| selectAll | Determines if all rows are selected<br>boolean | false | FalseTrue |\n| selectedIds | List of unique IDs of all the selected rows<br>array |  | RAW<br>selectedIds : \\[<br>- 0 : 2<br>\\] |\n| selectAllCheckboxColor | Colour of the `select all` checkbox<br>ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| selectCheckboxColor | Color of the checkbox on each row<br>ColorOptions | info | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| selectCheckboxSize | Size of the checkbox<br>SizeOptions | medium | Choose option...smallmediumlarge |\n| valueTransformers | Contains all custom values for each column<br>object |  | RAW<br>valueTransformers : {<br>} |\n| classTransformers | CSS classes for each column<br>object |  | RAW<br>classTransformers : {<br>} |\n| styleTransformers | CSS styles for each column<br>object |  | RAW<br>styleTransformers : {<br>} |\n| visibilityMap | Contains list of columns which can be visible or not<br>object |  | RAW<br>visibilityMap : {<br>} |\n| cellComponentMap | Contains list of columns with its custom cell component<br>object |  | RAW<br>cellComponentMap : {<br>} |\n| visualActivationOnClick | Determines whether clickable rows activate visually on click<br>boolean | true | Set boolean |\n| activatedId | Unique id of row that is activated<br>object |  | Set object |\n| rowComponent | Contains a custom row component<br>any |  | Set object |\n| Hide events itemsevents | Hide events items |\n| toggleSelectAll | Fires an event every time the `select all` checkbox is toggled<br>- | - | - |\n| rowClick | - | - | - |\n| rowSelectChecked | - | - | - |\n| \\_forwardEvent | - | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nuse { GridView } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Grid.scss' with (\n  $box-shadow: cv.getVar(\"shadow\"),\n  $th-background: cv.getVar(\"table-background-color\"),\n  $th-color: cv.getVar(\"text\"),\n  $tag-margin: 0 0.125rem 0.125rem 0,\n  $icon-size: 1.5em,\n  $checked-row-background: cv.getVar(\"info-light\"),\n  $checked-row-color: cv.getVar(\"info\"),\n  $checked-row-border-color: $checked-row-color,\n  $active-row-background: cv.getVar(\"table-row-active-background-color\"),\n  $active-row-color: cv.getVar(\"table-row-active-color\"),\n  $active-row-border-color: $active-row-color,\n  $background: cv.getVar(\"table-background-color\"),\n  $striped-row-background: cv.getVar(\"table-striped-row-even-background-color\"),\n  $sticky-column-border-color: cv.getVar(\"border\"),\n  $sticky-column-active-row-border-color: $active-row-border-color,\n  $hover-background-color: cv.getVar(\"table-row-hover-background-color\"),\n  $even-row-hover-background-color: cv.getVar(\"table-striped-row-even-hover-background-color\"),\n  $cell-border-color: cv.getVar(\"table-cell-border-color\"),\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/datagrid-gridview--docs",
+      "title": "Datagrid / GridView - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "e75bd349-79d8-47b1-829c-243970eb4093",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/datagrid-gridview--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/framework-settings--docs",
+      "title": "Framework Settings - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "d4e11bcf-0cad-4b3b-af21-57311381886e",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/framework-settings--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Timepicker\n\n## Timepicker component that allows you to select time.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| value | Accepts a date value in the format `H:i`<br>Where `H` is in 24hr format<br>This property can be bound to, to fetch the selected time. Output is in the same format as input.<br>string | \"\" |  |\n| style | Inline CSS for the input<br>string | \"\" |  |\n| class | CSS classes for the input<br>string | \"\" |  |\n| placeholder | Placeholder text for the input<br>string | Select Time.. |  |\n| disabled | Disables the component<br>boolean | false | FalseTrue |\n| time\\_24hr | Display time selection UI in 24hr format<br>boolean | false | FalseTrue |\n| min\\_time | Set earliest selectable time as string<br>**Example:** `\"01:00 PM\"` or \"13:00\"\\`<br>any |  |  |\n| max\\_time | Set latest selectable time as string<br>**Example:** `\"03:00 PM\"` or \"15:00\"\\`<br>any |  |  |\n| options | Extended set of options as supported by Flatpicker<br>See: [https://flatpickr.js.org/options/](https://flatpickr.js.org/options/)<br>object |  | RAW<br>options : {<br>} |\n| ui\\_color | Colour of popup time selection UI<br>ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| color | Colour of the Time picker input<br>ColorOptions | \"\" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| readonly | Make input value read-only<br>boolean | false | FalseTrue |\n| Hide events itemsevents | Hide events items |\n| timeChange | Triggered when time changes<br>- | - | - |\n| ready | Triggered when UI is ready<br>- | - | - |\n| open | Triggered when popup UI opens<br>- | - | - |\n| close | Triggered when popup UI closes<br>- | - | - |\n| change | Native input change event<br>- | - | - |\n\n### Usage\n\n#### Import the SCSS:\n\n**Note:** _Need to import flatpicker SCSS file first_\n\n```\n\n@use 'flatpickr/dist/flatpickr';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Timepicker.scss' with (\n  $theme-colors: dv.$colors,\n  $background: cv.getVar(\"scheme-main-ter\"),\n  $text: cv.getVar(\"text\"),\n  $shadow: cv.getVar(\"shadow\"),\n  $radius: cv.getVar(\"radius\"),\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/forms-timepicker--docs",
+      "title": "Forms / Timepicker - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "a137858f-9f4f-4a29-acfc-c46372c5b335",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/forms-timepicker--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Colorpicker\n\n## Colorpicker component that allows you to select a colour.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| color | Current selected colour (hex format only)<br>This property can be bound to, to fetch the current colour<br>string | 000000 |  |\n| typeable | Allows typing the colour hex Code<br>boolean | true | FalseTrue |\n| readonly | Enables read-only mode<br>boolean | false | FalseTrue |\n| mini | Alternate mini colour picker without typeable input<br>boolean | false | FalseTrue |\n| disabled | Disables the component<br>boolean | false | FalseTrue |\n| size | Size of the colour picker trigger<br>SizeOptions | \"\" | Choose option...smallmediumlarge |\n| Hide events itemsevents | Hide events items |\n| change | Triggered when color changes<br>- | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { Colorpicker } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Colorpicker.scss' with (\n  $picker-shadow: cv.getVar(\"shadow\"),\n  $picker-border-color: cv.getVar(\"border\"),\n  $preview-shadow:\n    0 0.125rem 0.1875rem\n      hsla(\n        cv.getVar(\"shadow-h\"),\n        cv.getVar(\"shadow-s\"),\n        cv.getVar(\"shadow-l\"),\n        0.1\n      ),\n    0 0 0 0.0625rem\n      hsla(\n        cv.getVar(\"shadow-h\"),\n        cv.getVar(\"shadow-s\"),\n        cv.getVar(\"shadow-l\"),\n        0.1\n      ),\n  $preview-radius: cv.getVar(\"radius-small\"),\n  $icon-shadow: 0 0.0625rem 0.0625rem\n    hsla(cv.getVar(\"shadow-h\"), cv.getVar(\"shadow-s\"), cv.getVar(\"shadow-l\"), 0.4),\n  $dragover-hilight-color: cv.getVar(\"success-soft\"),\n);\n```\n\nCopy\n\nThis component supports HTML5 drag and drop.\n\nUse `event.dataTransfer.setData('text', <new_color>)` on the draggable element.\nThen once you drop the draggable element into this component, it picks up the data from the `text` value.\n\n#### **Example:**\n\n```\n\n<div\n  style=\"background:#bada55\"\n  draggable=\"true\"\n  on:dragstart={(e) => {\n    e.dataTransfer.setData(\"text\", \"bada55\");\n  }}>\n  #bada55\n</div>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/forms-colorpicker--docs",
+      "title": "Forms / Colorpicker - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "9072414d-de59-469f-9a42-ffb34af29ea8",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/forms-colorpicker--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Divider\n\n## Component to display a horizontal or vertical divider with optional text.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| color | Color of the Divider lines<br>ColorOptions | \"\" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| light | Whether to display a lighter variant of the `color`<br>boolean | false | FalseTrue |\n| vertical | Whether to orient the Divider vertically. Vertical Divider take up the height of their parent.<br>boolean | false | FalseTrue |\n| alignment | Alignment of the Divider text. `top`/ `left` and `bottom`/ `right` are analogous for vertical Dividers<br>Exclude<Positions, 'start'\\|'end'> | center | Choose option...topbottomleftrightstartcenterend |\n| class | CSS class for Divider<br>string | \"\" |  |\n| style | Inline CSS styles for the Divider<br>string | \"\" |  |\n| Hide slots itemsslots | Hide slots items |\n| default | Default slot for text inside Divider<br>- | - | - |\n\n### Usage\n\n##### Import the component:\n\n```\n\nimport { Divider } from '@kws3/ui';\n```\n\nCopy\n\nUse `m-*` helper classes from Bulma to precisely control the spacing around the divider.\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Divider.scss' with (\n  $theme-colors: dv.$colors,\n  $color: cv.getVar(\"border\"),\n  $font-size: cv.getVar(\"size-small\"),\n  $gap: 0.25rem,\n  $margin: 1rem\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-divider--docs",
+      "title": "Helpers / Divider - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "0925c2d5-e882-42be-902d-d7ced7ebe895",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-divider--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-raf--raf",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "b7be2516-1a75-4b06-9f95-4d6795c3b11c",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-raf--raf",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-debounce--debounce",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "230887e3-e42e-4aa8-ba7e-311298dbc9e3",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-debounce--debounce",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n## 1\\. truncate\n\nThe `truncate` function shortens the given string to a specified length.\n\n#### Usage\n\n```\n\nimport { truncate } from \"@kws3/ui/utils\";\ntruncate(string, length);\nCopy\n```\n\n#### [🔗 Learn more about truncate](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-truncate--truncate)\n\n## 2\\. nl2br\n\nThe `nl2br` function replaces each newline ( `\\n`) with HTML line breaks ( `<br>`) in a string.\n\n#### Usage\n\n```\n\nimport { nl2br } from \"@kws3/ui/utils\";\nnl2br(input);\nCopy\n```\n\n#### [🔗 Learn more about nl2br](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-nl2br--nl-2-br)\n\n## 3\\. cloneObject\n\nThe `cloneObject` function is used to clone any js object.\n\n#### Usage\n\n```\n\nimport { cloneObject } from \"@kws3/ui/utils\";\ncloneObject(obj);\nCopy\n```\n\n#### [🔗 Learn more about cloneObject](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-cloneobject--clone-object)\n\n## 4\\. rAF\n\nThe `rAF` function is used to request an animation before the next repaint.\n\n#### Usage\n\n```\n\nimport { rAF } from \"@kws3/ui/utils\";\nrAF(callBackFunction);\nCopy\n```\n\n#### [🔗 Learn more about rAF](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-raf--raf)\n\n## 5\\. debounce\n\nThe `debounce` function is used to specify the function to execute after the debounce time.\n\n#### Usage\n\n```\n\nimport { debounce } from \"@kws3/ui/utils\";\ndebounce(callBackFunction, threshold);\nCopy\n```\n\n#### [🔗 Learn more about debounce](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-debounce--debounce)\n\n## 6\\. capitaliseFirstLetter\n\nThe `capitaliseFirstLetter` function converts the first character of a string to uppercase.\n\n#### Usage\n\n```\n\nimport { capitaliseFirstLetter } from \"@kws3/ui/utils\";\ncapitaliseFirstLetter(string);\nCopy\n```\n\n#### [🔗 Learn more about capitaliseFirstLetter](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-capitalisefirstletter--capitalise-first-letter)\n\n## 7\\. createDate\n\nThe `createDate` function makes mysql dates work in safari.\n\n#### Usage\n\n```\n\nimport { createDate } from \"@kws3/ui/utils\";\ncreateDate(date);\nCopy\n```\n\n#### [🔗 Learn more about createDate](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-createdate--create-date)\n\n## 8\\. Smart Forms\n\nThe `makeForms` is a factory helper used for tracking if the form data is clean.\n\n#### Usage\n\n```\n\nimport { makeForms } from \"@kws3/ui/form\";\nmakeForms({form1_data}, {form2_data});\nCopy\n```\n\n#### [🔗 Learn more about Smart Forms](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-smartforms--smart-forms)\n\n## 9\\. Resize Observer\n\nThe `resizeObserver` is used to handle window resizing.\n\n#### Usage\n\n```\n\n{#if hasResizeObserver}\n  <div use:resizeObserver on:resize={resizeHandler}>\n{/if}\n\n<script>\n  import { hasResizeObserver, resizeObserver } from \"@kws3/ui/resizeObserver\";\n</script>\nCopy\n```\n\n#### [🔗 Learn more about Resize Observer](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-resizeobserver--resize-observer)\n\n## 10\\. Search\n\nThe `makeSearchEngine` is a factory helper used to create a search engine with options.\n\n#### Usage\n\n```\n\nimport { makeSearchEngine } from \"@kws3/ui/search\";\nlet searchOptions = {\n  search_key, // optional, default 'value'\n  scoreThreshold, // optional, default 5\n  fuzzyOpts : {\n    analyzeSubTerms, // Whether or not analyze sub-terms, default false\n    analyzeSubTermDepth, //How many sub terms should be analyzed , default 10,\n    highlighting: {\n      before, // markup to add before mattched charectar, default '<em>'\n      after, // markup to add after mattched charectar, default '</em>'\n    },\n  }\n}\nconst fuzzysearch = makeSearchEngine(searchOptions);\nfuzzysearch(needle, haystack);\nCopy\n```\n\n#### [🔗 Learn more about Search](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-search--search)\n\n## 11\\. keyboard events\n\nThe `keyboard` package is used to trigger events based on certain key strokes.\n\n#### Usage\n\n```\n\n<input type=\"text\" use:enter={enterEvent} use:tab={tabEvent} />\n<script>\n  import { enter, tab } from \"@kws3/ui/keyboard\";\n  function enterEvent() {\n    console.log(\"Enter Pressed\");\n  }\n</script>\nCopy\n```\n\n#### [🔗 Learn more about keyboardEvents](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-keyboardevents-1-pre-defined-events--1-pre-defined-events)\n\n## 12\\. makeKeyDefinition\n\nThe `makeKeyDefinition` is a factory helper used to create custom keydown handler events.\nKey combinations can be made with any modifier keys from `Shift`, `Ctrl`, `Alt`, `Meta` with characters, numbers or function keys.\n\n#### Usage\n\n```\n\nimport {makeKeyDefinition} from \"@kws3/ui/keyboard\";\nconst save = makeKeyDefinition(keyCombination)\nCopy\n```\n\n#### [🔗 Learn more about makeKeyDefinition](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-keyboardevents-2-create-key-events--2-create-key-events)\n\n## 13\\. currency\n\nThe `currency` function is used to return a number in a currency format.\n\n#### Usage\n\n```\n\nimport { currency } from \"@kws3/ui/utils\";\ncurrency(number);\nCopy\n```\n\n#### [🔗 Learn more about currency](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-currency--currency)\n\n## 14\\. dateToOrdinal\n\nThe `dateToOrdinal` function converts an date to an ordinal.\n\n#### Usage\n\n```\n\nimport { dateToOrdinal } from \"@kws3/ui/utils\";\ndateToOrdinal(number);\nCopy\n```\n\n#### [🔗 Learn more about dateToOrdinal](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-datetoordinal--date-to-ordinal)\n\n## 15\\. randomIntegerFromInterval\n\nThe `randomIntegerFromInterval` function is used to return a random integer.\n\n#### Usage\n\n```\n\nimport { randomIntegerFromInterval } from \"@kws3/ui/utils\";\nrandomIntegerFromInterval(min, max);\nCopy\n```\n\n#### [🔗 Learn more about randomIntegerFromInterval](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-randominteger--random-integer)\n\n## 16\\. randomPercent\n\nThe `randomPercent` returns a random percentage. Default value for `min` and `max` are `1` & `100` respectively.\n\n#### Usage\n\n```\n\nimport { randomPercent } from \"@kws3/ui/utils\";\nrandomPercent(min, max);\nrandomPercent(min);\nrandomPercent();\nCopy\n```\n\n#### [🔗 Learn more about randomPercent](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-randompercent--random-percent)\n\n## 17\\. fileDownloader\n\nThe `fileDownloader` function is used to download data/stream.\n\n**Parameter:**\ndata: `type : object`\nfileName: `type : string`\n\n```\n\nimport { fileDownloader } from \"@kws3/ui/utils\";\nfileDownloader(data, filename);\nCopy\n```\n\n#### [🔗 Learn more about fileDownloader](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-filedownloader--file-downloader)",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/utils-1-overview--docs",
+      "title": "Utils / 1. Overview - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "9a060e10-e4df-4046-a00c-f6a8ebecf065",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/utils-1-overview--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# ProcessButton\n\n## Process Button with properties.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| class | CSS classes for button container<br>string | \"\" |  |\n| button\\_class | CSS classes for the Process button<br>string | \"\" |  |\n| text | Button text<br>string | Click Me |  |\n| icon | Name of the icon that is to be displayed in the button<br>string | check |  |\n| icon\\_only | Removes text, and text space in the button<br>boolean | false | FalseTrue |\n| done\\_text | Button text displayed after task is completed successfully<br>string | Done |  |\n| done\\_icon | Name of the icon displayed after task is completed successfully<br>string | check |  |\n| disabled | Disables the button when `true`<br>boolean | false | FalseTrue |\n| cy | data-cy attribute for cypress<br>string | \"\" |  |\n| context | Context property<br>any | \"\" |  |\n| size | Size of the Button<br>SizeOptions | \"\" | Choose option...smallmediumlarge |\n| color | Color of the Button<br>ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| completion\\_timeout | Specifies the duration to wait after the `done` event, before the UI state returns to normal<br>number | 600 |  |\n| error\\_timeout | Specifies the duration to wait after the `error` event, before the UI state returns to normal<br>number | 3000 |  |\n| Hide events itemsevents | Hide events items |\n| do | Fired when user presses button<br>- | - | - |\n| done | Fired when task completes successfully<br>- | - | - |\n| error | Fired when there is an error<br>- | - | - |\n\n### Usage\n\n```\n\n<ProcessButton\n  {text}\n  {icon}\n  {done_icon}\n  {done_text}\n  {color}\n  {size}\n  {icon_only}\n  {disabled}\n  on:doing={onDoing}\n/>\n<script>\n  import { ProcessButton } from '@kws3/ui';\n  export let color = \"primary\";\n  export let disabled = false;\n  export let size=\"\";\n  export let icon_only = false;\n  export let text = \"Click Me\";\n  export let icon = \"check\";\n  export let done_icon = \"check\";\n  export let done_text = \"Done\";\n  function onDoing(event){\n    let {doing, done, error} = event.detail;\n    doing();\n    somePromise().then(() => {\n      //set visual state to Done\n      //it will autmatically revert back to\n      //normal state after \"completion_timeout\"\n      done();\n    })\n    .catch(() => {\n      //set visual state to Error\n      //it will autmatically revert back to\n      //normal state after \"completion_timeout\"\n      error();\n    })\n  }\n</script>\n```\n\nCopy\n\n`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.\n\n```\n\n<script>\n  function onDoing(event){\n    let {doing, done, error} = event.detail;\n    doing();\n    somePromise().then(() => {\n      done(() => {\n        //some callback\n      }, 500);\n    })\n    .catch(() => {\n      error(() => {\n        //some callback\n      }, 500);\n    });\n  }\n</script>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/buttons-process-button--docs",
+      "title": "Buttons / Process Button - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "936c6504-6317-43a8-991b-3d430edb1a56",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/buttons-process-button--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-resizeobserver--resize-observer",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "e962e34b-3a1e-4137-9e33-fcbe0838cb44",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-resizeobserver--resize-observer",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Dialog\n\n## Message components for showing alerts.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| title | string | - |  |\n| help\\_text | string | - |  |\n| size | string | - | Choose option...smallmediumlarge |\n| input\\_value | string | - |  |\n| icon | string | - |  |\n| icon\\_color | string | - | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| icon\\_size | string | - | Choose option...smallmediumlarge |\n| ok\\_button\\_text | - | - | - |\n| ok\\_button\\_color | - | - | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| ok\\_button\\_icon | - | - | - |\n| cancel\\_button\\_text | - | - | - |\n| cancel\\_button\\_color | - | - | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| cancel\\_button\\_icon | - | - | - |\n\nThe signature of the helper functions are almost identical to their native counterparts.\n\nThe main differences are:\n\n1. They return a `Promise`. The `Promise` fulfils with the same values as the native functions.\n2. They accept an extra argument with a configuration object\n\nValid values for the configuration object are in the table above.\n\n### Usage\n\n```\n\nimport { Dialog } from '@kws3/ui';\n//---\n//alert example\nlet alert_done = await Dialog.alert('This is an alert', {title: \"someTitle\"});\n//---\n//confirm example\nlet accepted = await Dialog.confirm(\"Agree with everything?\", {ok_button_text: \"Yes\", cancel_button_text: \"No\"})\n//---\n//prompt example\nlet age = await Dialog.prompt(\"How old are you?\");\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-dialog--docs",
+      "title": "Helpers / Dialog - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "4d1530d2-aea9-464d-97bd-d2716b6d5015",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-dialog--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/forms-searchinput--docs",
+      "title": "Forms / SearchInput - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "213ffb9a-3165-46a4-a223-ac30b14e7bfe",
+      "viewport": "width=device-width, initial-scale=1, maximum-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/forms-searchinput--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# DataSort\n\n## DataSort component in datagrid.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| options | List of options in the dropdown<br>array |  | RAW<br>options : \\[<br>0 : {...} 2 keys<br>1 : {...} 2 keys<br>\\] |\n| sort\\_by | Stores the selected option value<br>string | \"\" |  |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { DataSort } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/DataSort.scss' with (\n  $border-radius: cv.getVar(\"radius-medium\"),\n  $background: cv.getVar(\"border\"),\n  $label-background: hsla(\n    cv.getVar(\"scheme-h\"),\n    cv.getVar(\"scheme-s\"),\n    90%,\n    1\n  ),\n  $dropdown-text-color: cv.getVar(\"primary\"),\n  $dropdown-marker-color: cv.getVar(\"primary\"),\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/datagrid-datasort--docs",
+      "title": "Datagrid / DataSort - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "58114f98-9d5a-4337-82a4-75eeab422295",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/datagrid-datasort--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Donut Chart\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| data | Chart data<br>array |  | RAW<br>data : \\[<br>- 0 : 60<br>- 1 : 20<br>- 2 : 10<br>- 3 : 10<br>\\] |\n| labels | Data labels<br>array |  | RAW<br>labels : \\[<br>- 0 : \"Me\"<br>- 1 : \"You\"<br>- 2 : \"Her\"<br>- 3 : \"Them\"<br>\\] |\n| width | Chart width, supports CSS size strings<br>string | 100% |  |\n| height | Chart height, supports CSS size strings<br>string | auto |  |\n| sparklines | Displays the chart as a sparkline chart.<br>These are charts with minimal UI and can be<br>squeezed into small spaces<br>boolean | false | FalseTrue |\n| colors | Chart colors, can be modified globally in framework settings<br>Send an array of colors to override the default colors, or do not send anything to use the default colors<br>array |  | Set object |\n| options | Chart options, see ApexCharts options for donut charts<br>object |  | RAW<br>options : {<br>} |\n| captured\\_events | String array of event names that will be captured and fired as svelte events.<br>This is to prevent unnecessary event subscriptions.<br>array |  | Set object |\n| class | CSS classes for container<br>string | \"\" | Set string |\n| Hide events itemsevents | Hide events items |\n| animationEnd | All chart events only fire when they are mentioned in `captured_events` list. See ApexChart Events [https://apexcharts.com/docs/options/chart/events/](https://apexcharts.com/docs/options/chart/events/) for full list of supported events.<br>- | - | - |\n| beforeMount | - | - | - |\n| mounted | - | - | - |\n| updated | - | - | - |\n| mouseMove | - | - | - |\n| mouseLeave | - | - | - |\n| click | - | - | - |\n| legendClick | - | - | - |\n| markerClick | - | - | - |\n| selection | - | - | - |\n| dataPointSelection | - | - | - |\n| dataPointMouseEnter | - | - | - |\n| dataPointMouseLeave | - | - | - |\n| beforeZoom | - | - | - |\n| beforeResetZoom | - | - | - |\n| zoomed | - | - | - |\n| scrolled | - | - | - |\n| brushScrolled | - | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { DonutChart } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Chart.scss' with (\n  $background-color: cv.getVar(\"scheme-main\"),\n  $foreground-color: cv.getVar(\"text\"),\n  $axis-lines-color: cv.getVar(\"border\"),\n  $grid-lines-color: cv.getVar(\"border-weak\")\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/charts-donut-chart--docs",
+      "title": "Charts / Donut Chart - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "577d86ed-43cb-4fce-8ef7-99d3b8e30470",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/charts-donut-chart--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# TileView\n\n## TileView component in datagrid.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| iteration\\_key | Iteration key<br>string | id |  |\n| data | Contains all the results to be listed<br>array |  | RAW<br>data : \\[<br>0 : {...} 5 keys<br>1 : {...} 5 keys<br>2 : {...} 5 keys<br>3 : {...} 5 keys<br>4 : {...} 5 keys<br>5 : {...} 5 keys<br>6 : {...} 5 keys<br>\\] |\n| transition | Determines if a transition effect is used<br>boolean | false | FalseTrue |\n| class | CSS classes for tiles wrapper<br>string | \"\" |  |\n| tileItemComponent | Contains a custom component<br>object |  | Set object |\n| per\\_row | Sets how many items to display in a row. This is ignored when `fluid_items_per_row` is `true`<br>number | 3 |  |\n| fluid\\_items\\_per\\_row | When set to `true`, the number of items per row varies with available space<br>boolean | false | FalseTrue |\n| min\\_width | CSS string specifying minimum width, this is only applied when `fluid_items_per_row` is `true`<br>string | unset |  |\n| max\\_width | CSS string specifying maximum width, this is only applied when `fluid_items_per_row` is `true`<br>string | unset |  |\n| grow | Whether a tile can grow if there is space available, this is only applied when `fluid_items_per_row` is `true`<br>boolean | true | FalseTrue |\n| shrink | Whether a tile can shrink if there isn't enough space available, this is only applied when `fluid_items_per_row` is `true`<br>boolean | true | FalseTrue |\n| columns | Column names for the displayed table {db\\_field\\_name: column\\_name}<br>object |  | RAW<br>columns : {<br>- id : \"ID\"<br>- name : \"Name\"<br>- surname : \"Surname\"<br>} |\n| clickableRows | Determines whether rows are clickable or not<br>boolean | false | FalseTrue |\n| valueTransformers | Contains all custom values for each column<br>object |  | RAW<br>valueTransformers : {<br>} |\n| classTransformers | CSS class names for each column<br>object |  | RAW<br>classTransformers : {<br>} |\n| styleTransformers | CSS styles for each column<br>object |  | RAW<br>styleTransformers : {<br>} |\n| visibilityMap | Contains list of columns which can be visible or not<br>object |  | RAW<br>visibilityMap : {<br>} |\n| visualActivationOnClick | Determines whether clickable rows activate visually on click<br>boolean | true | Set boolean |\n| activatedId | Unique id of row that is activated<br>object |  | Set object |\n| Hide events itemsevents | Hide events items |\n| rowClick | - | - | - |\n| rowSelectChecked | - | - | - |\n| \\_forwardEvent | - | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { TileView } from '@kws3/ui';\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/datagrid-tileview--docs",
+      "title": "Datagrid / TileView - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "3d23f4d0-a240-4659-8025-82274e3c1b8c",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/datagrid-tileview--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-keyboardevents-2-create-key-events--2-create-key-events",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "500027b8-8b0f-4f9d-bc9c-53210c3ec3d5",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-keyboardevents-2-create-key-events--2-create-key-events",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Notification\n\n## Notification components.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| color | Color of the Notification box<br>ColorOptions | info | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| class | CSS classes for notification container<br>string | \"\" |  |\n| style | Inline CSS for notification content<br>string | \"\" |  |\n| light | Inverted colors for notification box and contents<br>boolean | false | FalseTrue |\n| dismissable | Determines whether close button is displayed or not<br>boolean | false | FalseTrue |\n| active | Determines whether the whole component is being displayed or not<br>boolean | true | FalseTrue |\n| Hide events itemsevents | Hide events items |\n| dismiss | Fired when dismiss button is clicked.<br>Turns `active` to `false`, which hides the component.<br>The parent can then decide what to do with the component<br>- | - | - |\n| Hide slots itemsslots | Hide slots items |\n| default | Used for notification content<br>- | - | - |\n\n### Usage\n\n```\n\nimport { Notification } from '@kws3/ui';\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-notification--docs",
+      "title": "Helpers / Notification - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "3632fea7-7aa0-469f-b458-7edfe22516f1",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-notification--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Message\n\n## Message components for showing alerts.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| size | Size of the Message<br>SizeOptions | \"\" | Choose option...smallmediumlarge |\n| color | Color of the Message box<br>ExtendedColorOptions | info | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| class | CSS classes for Message box<br>string | \"\" |  |\n| style | Inline CSS for Message box<br>string | \"\" |  |\n| inner\\_class | CSS classes for Message content<br>string | \"\" |  |\n| inner\\_style | Inline CSS for Message content<br>string | \"\" |  |\n| title\\_class | CSS classes for Message box title<br>string | \"\" |  |\n| title | Title of the message box<br>Having content here will display the title bar and content, even if `has_title` is set to false<br>string | \"\" |  |\n| has\\_title | Determines whether to show title bar when no title content is present<br>boolean | false | FalseTrue |\n| dismissable | Determines whether close button is displayed or not<br>boolean | false | FalseTrue |\n| active | Determines whether the whole component is being displayed or not<br>boolean | true | FalseTrue |\n| Hide events itemsevents | Hide events items |\n| dismiss | Fired when dismiss button is clicked.<br>Turns `active` off, which hides the component.<br>The parent can then decide what to do with the component<br>- | - | - |\n| Hide slots itemsslots | Hide slots items |\n| title | Used for message title.<br>**Example:** `<h1 slot=\"title\"> This is a Slot Header </h1>`<br>- | - | - |\n| default | Used for message content<br>- | - | - |\n\n### Usage\n\n```\n\nimport { Message } from '@kws3/ui';\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-message--docs",
+      "title": "Helpers / Message - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "174da48e-a841-47d3-92fe-470e15a809df",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-message--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-currency--currency",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "152a92e5-bdad-4641-8a8b-0fb2e780b8e0",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-currency--currency",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Canvas\n\n## Canvas component.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| width | Canvas width<br>string | 250px |  |\n| height | Canvas height<br>string | 250px |  |\n| pen\\_width | pen width<br>number | 2 |  |\n| eraser\\_width | Eraser width<br>number | 6 |  |\n| pen\\_color | line color<br>string | #ff0000 |  |\n| background\\_image | Background image for the canvas<br>string | \"\" |  |\n| readonly | Determines whether canvas is readonly or not<br>boolean | false | FalseTrue |\n| disabled | Determines whether canvas is disabled or not<br>boolean | false | FalseTrue |\n| has\\_controls | Determines control tools available or not<br>boolean | true | FalseTrue |\n| image | The Data created in the canvas by the user<br>string | \"\" |  |\n| initial\\_scale | Initial transform scale for the canvas before expansion<br>number | 1 |  |\n| expand\\_to | The direction to which the canvas should expand.<br>'top', 'bottom', 'left', 'right', 'center' and also 'n%'<br>string | center |  |\n| expand\\_from | The direction from which the canvas should expand.<br>'top', 'bottom', 'left', 'right', 'center' and also 'n%'<br>string | center |  |\n| expand\\_scale | Transform scale of the canvas on expansion<br>value in percentage %<br>number | 50 |  |\n| tools | List of tools available for user to select from<br>object |  | RAW<br>tools : {<br>Pen : {...} 3 keys<br>Eraser : {...} 3 keys<br>} |\n| actions | List of actions toolbar<br>array |  | RAW<br>actions : \\[<br>- 0 : \"controls\"<br>- 1 : \"colorpicker\"<br>- 2 : \"undo\"<br>- 3 : \"redo\"<br>- 4 : \"reset\"<br>- 5 : \"expand\"<br>\\] |\n| toolbar\\_placement | Default position of the action toolbar<br>Extract<Positions, 'bottom'\\|'top'> | bottom | - |\n| control\\_position | Default position of controls<br>Extract<Positions, 'start'\\|'center'\\|'end'> | center | - |\n| active\\_tool | Default active tool<br>string'Pen''Eraser' | \"\" | - |\n| cy | data-cy attribute for cypress<br>string | \"\" |  |\n| is\\_touched | Determines whether canvas is touched or not<br>boolean | false | Set boolean |\n\n### Usage\n\n```\n\nimport { Canvas } from '@kws3/ui';\n```\n\nCopy\n\n##### Import the CSS:\n\n```\n\n@use '@kws3/ui/styles/Canvas.scss';\n```\n\nCopy\n\n### Usage Example\n\n```\n\n<Canvas\n    bind:image\n    {width}\n    {height}\n    {pen_width}\n    {eraser_width}\n    {pen_color}\n    {background_image}\n    {readonly}\n    {disabled}\n    {initial_scale}\n    {expand_to}\n    {expand_from}\n    {expand_scale}\n    {tools}\n    {active_tool}\n    {actions}\n    {has_controls}\n    {toolbar_placement}\n    {control_position}\n    />\n\n<script>\n  import { Canvas, Pen, Eraser  } from '@kws3/ui';\n\n  export let width = \"250px\",\n    height = \"250px\",\n    pen_width = 2,\n    eraser_width = 6,\n    pen_color = \"#ff0000\",\n    background_image = \"\",\n    readonly = false,\n    disabled = false,\n    image = \"\",\n    initial_scale = 1,\n    expand_to = \"center\",\n    expand_from = \"center\",\n    expand_scale = 50,\n    tools = { Pen, Eraser },\n    actions = [\"controls\", \"colorpicker\", \"undo\", \"redo\", \"reset\", \"expand\"],\n    toolbar_placement = \"bottom\",\n    control_position = \"center\",\n    active_tool = \"Pen\",\n    has_controls = true,\n    cy = \"\";\n</script>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/canvas-canvas--docs",
+      "title": "Canvas / Canvas - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "dda8f543-c570-415f-ade6-c52397706432",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/canvas-canvas--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n## Changelog\n\n## 4.5.5\n\n- Fix type of `ToggleButtons` value, it can be any type\n- Fix Charts axis text colours to match theme\n- Fix Charts axis line colours to match theme\n- Fix Charts grid line colours to match theme\n- Fix type of `context` prop of Button components, it can be any type\n\n## 4.5.4\n\n- Bugfix, add types to exports\n\n## 4.5.3\n\n- Bugfix, add styles to exports\n\n## 4.5.2\n\n- Fix hardcoded color in `Radio` component\n- Remove legacy additional `is-active` class from active buttons in `ToggleButtons` component\n- Fix value type in `SearchableSelect`\n- Make `AutoComplete`, `SearchableSelect` and `MultiSelect` components work in SSR mode\n- Fix default colors and output radius for `RangeSlider`\n- Fix default thumb and output radius for `RangeSlider`\n\n## 4.5.1\n\n- Fix ActionReturn type for `popover` action\n- Update popover arrow default colour to be border color\n- Fix dark mode default text colour in `Timepicker` component\n- Fix default border colours for active and checked rows in `Grid` component\n- Allow border colours to be configured for checked and active rows in `Grid` component\n\n# 4.5.0 \\[BREAKING\\]\n\n- This version requires Bulma v1\n- Supports bulma dark mode\n- All SCSS files are now modular, so you need to use `@use` instead of `@import`\n- All SCSS variable names have been updated. Now they do not start with `$kws-` and are more generic. This is due to using modular SCSS\n- All SCSS variables now have default Bulma css variables as default values, so most of the time an override will not be required, and it will just work according to the active theme\n- `ToggleButtons` component now has it's own SCSS file that needs to be imported\n- Default `inactive_class` has changed in `ToggleButtons` component\n- Some internal class names in `FileUpload` component have changed\n- Some internal class names in `TimelineItem` component have changed\n- `Colorpicker` component's wrapper class name has changed\n- All instances of `is-marginless` css class has been replaced with `marginless`, as this is how new Bulma v1 supports it\n- All instances of `is-paddingless` css class has been replaced with `paddingless`, as this is how new Bulma v1 supports it\n- Fix `datepicker` and `timepicker` action return types\n- Fix utility `cloneObject` type signature\n- Add `transparent` to `ExtendedColors` type\n\n## 4.3.5\n\n- Fix Radio component value type\n\n## 4.3.4\n\n- Make granular types of form maker generic\n\n## 4.3.3\n\n- More granular types for form maker\n\n## 4.3.2\n\n- Extended typings for form helper\n- Fix typings for ButtonEvent\n\n## 4.3.1\n\n- Include bulma 0.9 as peer dependency\n- Include svelte 4 as peer dependency\n\n## 4.3.0\n\n- `StickyColumnsTableWrapper` now includes a box shadow to compensate for the inner table's drop shadow being hidden due to overflow clipping.\n- **\\[BREAKING\\]** `GridView` component now transitions each `GridCell` independently, previously used to transition each `GridRow`. This means all content in `GridCell` now includes an additional wrapper element for handling the transitions. This matches the behaviour in `TileView`.\n\n## 4.2.5\n\n- Fix z-index for sticky columns\n- Allow `inner_class` in `InfiniteList` component\n- Configurable scroll shadows on `InfiniteList` defaulting to a radial scroll shadow\n\n## 4.2.1\n\n- Fix grid row hover state colors for sticky columns\n\n## 4.2.0\n\n- Fix grid row transitions to be global\n- Add `createScaler` and `scale` functions to utils\n- `GridView` is no longer wrapped in `div.data-table`\n- New component `StickyColumnsTableWrapper` added\n- Use dynamic scroll shadows for `InfiniteList` component\n\n## 4.1.4\n\n- add `black` and `white` as valid color types\n\n## 4.1.3\n\n- Ensure transitions are global for `Modal`, `CardModal` and `ActionSheet` components\n- `InfiniteList` \\- do not fake a scroll event on a resize event, fixes loading bugs\n\n## 4.1.2\n\n- `MultiSelect` \\- fixed issue where raw object were initially outputted (if provided)\n- `SearchableSelect and ` MultiSelect\\` (Async): resolved issue with the 'active' class not attaching to the most matched item in dropdown options\n- `SearchableSelect` \\- improved behavior, ensuring the `tab` key correctly loses focus\n- `AutoComplete` \\- dropdown now closes on loss of focus triggered by the `tab` key\n\n## 4.1.1\n\n- `DatePicker` \\- add support for configurable border radius\n- `DatePicker` \\- add support for configurable box shadow\n- `DatePicker` \\- bug fix on date range selection colors\n\n## 4.1.0\n\n- New component `InfiniteList` Added\n\n## 4.0.3\n\n- `ScrollableList` \\- bugfixes, and add support for removing items without affecting scroll position\n\n## 4.0.2\n\n- `ToggleButtons` \\- add support for count tags, and fix css not applying\n\n## 4.0.1\n\n- `ScrollableList` \\- add support for custom iteration key for keyed each block\n\n## 4.0.0\n\n- add svelte 4 compatibility\n\n* * *\n\n## 2.3.4\n\n- add `black` and `white` as valid color types\n\n## 2.3.3\n\n- `InfiniteList` \\- do not fake a scroll event on a resize event, fixes loading bugs\n\n## 2.3.2\n\n- `MultiSelect` \\- fixed issue where raw object were initially outputted (if provided)\n- `SearchableSelect and ` MultiSelect\\` (Async): resolved issue with the 'active' class not attaching to the most matched item in dropdown options\n- `SearchableSelect` \\- improved behavior, ensuring the `tab` key correctly loses focus\n- `AutoComplete` \\- dropdown now closes on loss of focus triggered by the `tab` key\n\n## 2.3.1\n\n- `DatePicker` \\- add support for configurable border radius\n- `DatePicker` \\- add support for configurable box shadow\n- `DatePicker` \\- bug fix on date range selection colors\n\n## 2.3.0\n\n- New component `InfiniteList` Added\n\n## 2.2.5\n\n- `ScrollableList` \\- bugfixes, and add support for removing items without affecting scroll position\n\n## 2.2.4\n\n- `ToggleButtons` \\- add support for count tags, and fix css not applying\n\n## 2.2.3\n\n- `ScrollableList` \\- add support for custom iteration key for keyed each block\n\n## 2.2.2\n\n- `ScrollableList` \\- fix jumping issue when edge of scrollable regions are reached\n\n## 2.2.1\n\n- `Icon` fix icon sizes when line-awesome icons are loaded\n- `Icon` fix material icons when icon family is set globally\n- `Icon` add support for adding custom icon families\n- `Chart` fix, ensure ApexCharts is loaded before trying to initialise it\n\n## 2.2.0\n\n- Fix bug where `ScrollableList` component puts extra padding on top of list when fast scroll to top\n- `ScrollableList` \\- Fix bug to reset internal positioning props when data changes\n- fix Popperjs position strategy to work better on mobile by default, affects `SearchableSelect`, `MultiSelect` and `AutoComplete` components\n- `ActionSheet` \\- Update styling to make it wokr better visually on desktop\n\n## 2.1.4\n\n- Fix bug where disabled `Checkbox` components wrongly appeared as if they were checked\n- Allow adding CSS classes to the input field in `NumberInput` component\n\n## 2.1.3\n\n- `PasswordInput` \\- add support for field `autocomplete` and `required`\n- `PasswordValidator` \\- fix `valid` field binding\n\n## 2.1.2\n\n- `PasswordInput` \\- add support for field `name`\n- `PasswordInput` \\- fix spacing when icons are turned off\n\n## 2.1.1\n\n- Package `text-mask-core` moved to @kws3 namespace.\n\n## 2.1.0\n\n- Bugfix with Colorpicker component, where colors could not be typed in manually.\n- Extended typing and typescript support\n- New Components added `Canvas`, `ESignature`, `PenInput` and `PenControls`\n- Exposed `Canvas` tools ( `Pen` and `Eraser`) from `DrawingPad` \\- drawing helper module.\n- New Components added `PasswordInput` with value show/hide feature.\n\n## 2.0.5\n\n- `RangeSlider` \\- Expose native `input` event\n- `RangeSlider` \\- Supports thumb color class `is-thumb-{color}`\n- `AutoComplete`, `SearchInput`, `SearchableSelect` and `MultiSelect` \\- deprecated `scoreThreshold`, changed to `score_threshold`\n\n## 2.0.4\n\n- `ToggleButtons` \\- set the value if not disabled and not the same value is set\n\n## 2.0.3\n\n- Sveltkit compatibility fix ('window' not defined)\n\n## 2.0.2\n\n- Bugfixes with chart default colours\n- Set today's date on datepicker initialisation so that long running pages don't stick to the date of first load as today's date\n\n## 2.0.1\n\n- Hardcoded color bugfix on pagination styles\n\n## 2.0.0\n\n- Add support for custom CSS classes for the table in `GridView` component\n- Add support for displaying `GridView` table rows in a compact manner using `is_narrow` prop.\n- Vertically center all rows by default in `GridView`.\n- Add support for custom CSS classes for the wrapper in `TileView` component\n- Add support for variable number of items per row in `TileView` component via `fluid_items_per_row` prop\n- Fix keyboard scrolling issue on `AutoComplete`, `MultiSelect` and `SearchableSelect` component\n- Fix `time_24hr` reactivity issue on `Timepicker`\n- Expose `min_time`, `max_time` from `Timepicker`\n- Expose `readonly` from `Datepicker` and `Timepicker` to prevent calendar opening on focus.\n- New `SearchInput` component: search on multiple keys at the same time.\n- Deprecated `@kws3/ui/utils/fuzzysearch` and `@kws3/ui/utils/some_module`.\n- Expose factory function `makeSearchEngine` from `@kws3/ui/search`\n- Expose `truncate`, `nl2br`, `cloneObject`, `rAF`, `debounce`, `capitaliseFirstLetter`, `createDate`, `currency`, `dateToOrdinal`, `randomIntegerFromInterval`, `randomPercent`, `fileDownloader` from `@kws3/ui/utils`.\n- Expose keyboard events of `enter`, `tab`, `escape`, `space`, `leftarrow`, `rightarrow`, `downarrow`, `uparrow`, `backspace`, `del` from `@kws3/ui/keyboard`.\n- Expose `hasResizeObserver`, `resizeObserver` from `@kws3/ui/resizeObserver`\n- New utility `makeForms` exposed from `@kws3\\ui\\form`\n- Add support for material symbols icon pack from [https://fonts.google.com/icons](https://fonts.google.com/icons)\n- Baby steps towards typings\n\n## 1.9.3\n\n- Bug fix with fuzzy.js initial config hoisting\n\n## 1.9.2\n\n- Bug fix with fuzzy.js and Vite prebundling\n- Debounce fuzzy searches\n- Expose `@kws3/ui/utils/fuzzysearch` as a reusable function\n\n## 1.9.1\n\n- `SearchableSelect` and `MultiSelect`: match colors of dropdown area to theme color when dropdown area is inside a `Portal`\n- `AutoComplete`: match colors of dropdown area to theme color when dropdown area is inside a `Portal`\n\n## 1.9.0\n\n- Use new fuzzy algorithm for `AutoComplete`, `MultiSelect` and `SearchableSelect` component\n- Add property `scoreThreshold` in `AutoComplete`, `MultiSelect` and `SearchableSelect` component to control search accuracy.\n- Bugfix: Keep `SubmitButton` disabled while it's not ready to submit yet\n\n## 1.8.4\n\n- New `AutoComplete` component\n- Make options text size match the input `size` in `MultiSelect` and `SearchableSelect`.\n- Prevent default arrow up/down behaviour on `MultiSelect` and `SearchableSelect` when options dropdown is open.\n\n## 1.8.3\n\n- Allow `clickableRows` and `bulk_actions` to work at the same time on `GridView`\n- Various bugfixes on `GridRow`\n- New `visualActivationOnClick` prop for `GridView` and `TileView`\n- Change the way click activation works on `GridView` and `TileView` rows. Now only one row can be activated at a time\n\n## 1.8.2\n\n- Usability fixes for `NumberInput`\n- New `input_only`, `force_integer`, `style` and `class` props for `NumberInput`\n- Forward `focus`, `blur` input events for `NumberInput`\n- Use custom version of `fuzzysearch` for `SearchableSelect` and `MultiSelect`\n\n## 1.8.1\n\n- New `ScrollableList` component\n\n## 1.8.0\n\n- `Modal`, `CardModal` and `ActionSheet` components now play an outro transition instead of abruptly disappearing.\n- Usability fixes for `SearchableSelect` and `MultiSelect`.\n- `SearchableSelect` and `MultiSelect` now support loading options via an async function.\n- `SearchableSelect` and `MultiSelect` now match results using a fuzzy `search_strategy`. This can be changed to old behaviour by specifying `search_strategy=\"strict\"`.\n\n## 1.7.4\n\n- Update ApexCharts to version 3.33.2\n- Added support for subscribing to chart events\n- Added support for distributed bar charts using new `distributed` prop on `BarChart` component\n- Added examples for leveraging advanced chart features\n\n## 1.7.3\n\n- Fix docs for `Popover`\n- Increase performance for `SlidingPane` by using ResizeObserver when available\n\n## 1.7.2\n\n- `DatePicker` component: fix initialisation bug on mobile\n- `Pagination` component: rename property `breakThreshold` -\\> `maxVisiblePages` plus bugfix and documentation update\n\n## 1.7.1\n\n- `Skeleton` component: Illustrate in example the use of empty string for `color` prop.\n- `Pagination` component: Deprecate `meta` prop. And use separate props for `offset`, `limit`, `count` and `total` instead.\n- `Pagination` component: Add methods `prev()`, `next()`, `first()`, `last()` and `goto(page)`.\n- New `Divider` component.\n- `Modal` component can now be opened and closed programatically via `open()` and `close()` methods.\n- Added linting rules for ESLint. And corrected all resulting issues.\n\n## 1.7.0\n\n- Ensure uniform usage of `$kws-theme-colors` across all components, this means `$kws-theme-colors` can be independent of the global `$colors` SCSS variable.\n- `DataSearch` component: Expand filters to fill area when main search input is not present.\n- `DataSort` component: Increase click area for activating dropdown, and provide visual segementation between label and dropdown.\n- New `Skeleton` component.\n\n## 1.6.9\n\n- New `Timeline`, `TimelineItem` and `TimelineHeader` components.\n\n## 1.6.8\n\n- Vertically align `is-icon` cells in `Grid`\n\n## 1.6.7\n\n- Added granular events `showing`, `shown`, `hiding` and `hidden` for `Popover`.\n- Added `is-checked` class on `Grid` when a row is checked using the multiselect checkboxes.\n- New colors for `is-checked` class on `Grid`\n\n## 1.6.6\n\n- Enhance `Popover` with native `show` `hide` `enable` `disable` methods\n\n## 1.6.5\n\n- Filter fix on `DataSearch`\n\n## 1.6.4\n\n- Add support for `dropdown_portal` prop in `SearchableSelect`\n\n## 1.6.3\n\n- Prevent submit call on `MultiSelect` when `Enter` key is pressed while searching\n- Fix filter items going blank after search is initiated in `DataSearch`\n\n## 1.6.2\n\n- Add `dropdown_portal` prop on `MultiSelect` to allow rendering dropdown in alternative locations\n\n## 1.6.1\n\n- New `Portal` component\n- Use `Portal` for `MultiSelect` and `SearchableSelect` components\n\n## 1.6.0\n\n- Fix `DataSearch` responsiveness for mobile\n- Fix `Pagination` CSS for mobile\n- Fix `DataSort` responsiveness for mobile\n- Fix functionality of `DataSearch`\n\n## 1.5.9\n\n- Fix `z-index` issue with `SearchableSelect`\n\n## 1.5.8\n\n- Showing `undefined` on total in `Pagination`\n\n## 1.5.7\n\n- Width calculation on `DataSearch`\n- More `text` validation `Nl2br`\n\n## 1.5.6\n\n- Fix attribute of `MultiSelect`\n- Fix `text` checking on `Nl2br`\n\n## 1.5.5\n\n- Added `BarChart`\n- Added `LineChart`\n- Added `AreaChart`\n- Added `RadialChart`\n- Support `sparklines` in `Charts`\n- Add `yAxisOptions` and `horizontal` bar for `Charts`\n- Fix attribute of `ConfirmButton`\n- Fix error Handling in `MixedChart`\n\n## 1.5.1\n\n- Chart bugfixes\n- Fix attribute of `NumberInput` for UI testing\n\n## 1.5.0\n\n- Added `DonutChart`\n- Added `MixedChart`\n- Added `PieChart`\n\n## 1.4.7\n\n- Fix value mismatch on `NumberInput`\n\n## 1.4.6\n\n- Fix Typing bug on `NumberInput`\n\n## 1.4.5\n\n- Fix **on:change** event on `NumberInput`\n\n## 1.4.4\n\n- import `Floatie`, `FloatingUIOutput`, `FloatiesStore` from `@kws3/ui` for `FloatingUIOutput`\n\n## 1.4.3\n\n- Rename `completion_timeout` to `error_timeout` in `Buttons`",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/changelog--docs",
+      "title": "Changelog - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "792c9d91-19e6-494b-9b1a-a6598592fb29",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/changelog--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-actionsheet--docs",
+      "title": "Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "e7f1dc02-51c6-4089-b5d6-f399deccf153",
+      "viewport": "width=device-width, initial-scale=1, maximum-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-actionsheet--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# ESignature\n\n## ESignature component for taking user pen input.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| width | Canvas width<br>string | 520px |  |\n| height | Canvas height<br>string | 170px |  |\n| background\\_image | Background image for the canvas<br>string | \"\" |  |\n| readonly | Determines whether canvas is readonly or not<br>boolean | false | FalseTrue |\n| disabled | Determines whether canvas is disabled or not<br>boolean | false | FalseTrue |\n| control\\_position | Default position of controls<br>Extract<Positions, 'start'\\|'center'\\|'end'> | center | - |\n| image | The Data created in the canvas by the user (readonly) (base64)<br>string | \"\" | Set string |\n| is\\_touched | (readonly) Determines whether canvas is touched or not<br>boolean | false | Set boolean |\n| expand\\_from | The direction from which the canvas should expand.<br>'top', 'bottom', 'left', 'right', 'center' and also 'n%'<br>string | center | Set string |\n| expand\\_to | The direction to which the canvas should expand.<br>'top', 'bottom', 'left', 'right', 'center' and also 'n%'<br>string | center | Set string |\n| expand\\_scale | Transform scale of the canvas on expansion<br>value in percentage %<br>number | 50 | Set number |\n| actions | List of actions toolbar<br>array |  | Set object |\n\n### Usage\n\n```\n\nimport { ESignature } from '@kws3/ui';\n```\n\nCopy\n\n##### Import the CSS:\n\n```\n\n@use '@kws3/ui/styles/Canvas.scss';\n```\n\nCopy\n\n### Usage Example\n\n```\n\n<ESignature\n    bind:image\n    bind:is_touched\n    {width}\n    {height}\n    {readonly}\n    {disabled}\n  />\n\n<script>\n  import { ESignature } from '@kws3/ui';\n  export let width = \"520px\",\n    height = \"170px\",\n    background_image = \"\",\n    readonly = false,\n    disabled = false,\n    image = \"\",\n    is_touched = false;\n\n</script>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/canvas-esignature--docs",
+      "title": "Canvas / ESignature - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "f8b2edc8-c944-40ae-bc6c-7bdf94d4d86a",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/canvas-esignature--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-smartforms--smart-forms",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "f8ee5fda-f4e6-492d-a757-6aa196357ca1",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-smartforms--smart-forms",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-keyboardevents-1-pre-defined-events--1-pre-defined-events",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "3c93e9d5-3865-477d-bf3c-57c8586a6cf2",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-keyboardevents-1-pre-defined-events--1-pre-defined-events",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# DataSearch\n\n## DataSearch component in datagrid.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| hasSearch | Determines whether there is a search input or not<br>boolean | true | FalseTrue |\n| hasFilters | Determines if there are filters on search<br>boolean | true | FalseTrue |\n| placeholder | Placeholder text for the search input<br>string | \"\" |  |\n| filters | Contains all the filter dropdown values<br>object |  | RAW<br>filters : {<br>role : \\[...\\] 2 items<br>status : \\[...\\] 2 items<br>} |\n| q | Query string from the browser url<br>string | \"\" |  |\n| filter\\_in\\_use\\_class | CSS class for in use filters<br>string | is-in-use |  |\n| filter\\_not\\_in\\_use\\_class | Css class for not in use filters<br>string | is-not-in-use |  |\n| filterComponent | To use a custom component for filters<br>object |  | Set object |\n| filter\\_label\\_map | Contains all the labels for the filter dropdowns<br>object |  | RAW<br>filter\\_label\\_map : {<br>} |\n| Hide events itemsevents | Hide events items |\n| resetSearch | Triggered when the search is reset<br>- | - | - |\n| search | Event triggered on search<br>- | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { DataSearch } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n```\n\n@use '@kws3/ui/styles/DataSearch.scss';\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/datagrid-datasearch--docs",
+      "title": "Datagrid / DataSearch - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "e40f21f0-d3a7-458e-9e93-cb39a5d1807c",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/datagrid-datasearch--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# ConfirmButton\n\n## Confirm Button with built-in confirmation.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| class | CSS classes for button container<br>string | \"\" |  |\n| button\\_class | CSS classes for the Confirm button<br>string | \"\" |  |\n| text | Button text<br>string | \"\" |  |\n| icon | Name of the icon that is to be displayed in the button<br>string | check |  |\n| icon\\_only | Removes text, and text space in the button<br>boolean | false | FalseTrue |\n| done\\_text | Button text displayed after task is completed successfully<br>string | Done |  |\n| done\\_icon | Name of the icon displayed after task is completed successfully<br>string | check |  |\n| disabled | Disables the button when `true`<br>boolean | false | FalseTrue |\n| cy | data-cy attribute for cypress<br>string | \"\" |  |\n| context | Context property<br>any | \"\" |  |\n| should\\_confirm | When `false`, skips the confirmation prompt, and makes it a one step process<br>boolean | true | FalseTrue |\n| size | Size of the Button<br>SizeOptions | \"\" | Choose option...smallmediumlarge |\n| color | Color of the Button<br>ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| completion\\_timeout | Specifies the duration to wait after the `done` event, before the UI state returns to normal<br>number | 600 |  |\n| error\\_timeout | Specifies the duration to wait after the `error` event, before the UI state returns to normal<br>number | 3000 |  |\n| Hide events itemsevents | Hide events items |\n| do | Fired when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.<br>- | - | - |\n| done | Fired when task completes<br>- | - | - |\n| error | Fired when there is an error<br>- | - | - |\n\n### Example source code\n\n```\n\n<ConfirmButton text=\"Do It?\" color=\"primary\" size=\"small\" icon_only=\"true\" disabled=\"false\" />\n```\n\nCopy\n\n### Usage Example\n\n```\n\n<ConfirmButton\n  {color}\n  {disabled}\n  {size}\n  {icon_only}\n  {text}\n  {icon}\n  {doing_icon}\n  {done_icon}\n  {doing_text}\n  {done_text}\n  on:do={confirmDo}\n/>\n<script>\n  import { ConfirmButton } from '@kws3/buttons';\n  export let color = \"primary\";\n  export let disabled = false;\n  export let size = \"\";\n  export let icon_only = false;\n  export let text = \"Do it?\";\n  export let icon = \"minus-circle\";\n  export let doing_icon = \"hourglass\";\n  export let done_icon = \"check\";\n  export let doing_text = \"Doing\";\n  export let done_text = \"Done\";\n  function confirmDo(event){\n    let {doing, done, error} = event.detail;\n    doing();\n    somePromise().then(() => {\n      //set visual state to Done\n      //it will autmatically revert back to\n      //normal state after \"completion_timeout\"\n      done();\n    })\n    .catch(() => {\n      //set visual state to Error\n      //it will autmatically revert back to\n      //normal state after \"completion_timeout\"\n      error();\n    });\n  }\n</script>\n```\n\nCopy\n\n`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.\n\n```\n\n<script>\n  function confirmDo(event){\n    let {doing, done, error} = event.detail;\n    doing();\n    somePromise().then(() => {\n      done(() => {\n        //some callback\n      }, 500);\n    })\n    .catch(() => {\n      error(() => {\n        //some callback\n      }, 500);\n    });\n  }\n</script>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/buttons-confirmbutton--docs",
+      "title": "Buttons / ConfirmButton - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "33cb7140-9cb3-465f-8685-96a839233eff",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/buttons-confirmbutton--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# InfiniteList\n\n## InfiniteList component that fires an event when the end of the list is reached, so you can load more list items\n\n#### Much simpler than ScrollableList, as it does not do any list virtualisation to reduce DOM Nodes\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| items | Array of items<br>array |  | RAW<br>items : \\[<br>\\] |\n| height | Height of the wrapper, CSS String<br>string | 100% |  |\n| class | CSS classes for component container<br>string | \"\" |  |\n| end\\_offset | `end` event will be fired when the scroll position reaches this many pixels from the end of the list.<br>number | 400 |  |\n| style | Inline CSS for component container<br>string | \"\" |  |\n| inner\\_class | CSS classes for inner scroller container<br>string | \"\" |  |\n| linear\\_scroll\\_shadow | Modify the look of scroll shadows from radial to linear<br>boolean | false | FalseTrue |\n| iteration\\_key | Iteration key - by default it uses the index of the array inside the keyed each block<br>object |  | Set object |\n| Hide events itemsevents | Hide events items |\n| end | Fired when the scroll position reaches `end_offset` pixels from the end of the list.<br>- | - | - |\n| Hide slots itemsslots | Hide slots items |\n| default | Default slot for list view items<br>`item` `index`<br>- | - | - |\n| loader | Optional slot to display a loading graphic at the bottom of the list<br>while more items are loading<br>- | - | - |\n\n### Usage\n\n##### Import the component:\n\n```\n\nimport { InfiniteList } from '@kws3/ui';\n```\n\nCopy\n\nNormal Usage Example:\n\nYou can define the `let` variables on main component\n\n```\n\n<InfiniteList\n  {items}\n  {end_offset}\n  on:end={endReached}\n  let:item\n  let:index\n>\n  <ListItem {item} {index} />\n</InfiniteList>\nCopy\n```\n\nUsage with loader slot Example:\n\nYou have to define the `let` variables in a slot wrapper\n\n```\n\n<InfiniteList\n  {items}\n  {end_offset}\n  on:end={endReached}\n>\n  <span\n    slot=\"default\"\n    let:item\n    let:index\n  >\n    <ListItem {item} {index} />\n  </span>\n  <span slot=\"loader\">Loading...</span>\n</InfiniteList>\nCopy\n```",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-infinitelist--docs",
+      "title": "Helpers / InfiniteList - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "ef452055-1fa7-4430-a0bf-b3bd216c167f",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-infinitelist--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| title | Title of the panel<br>Having content here will display the title bar, even if has\\_title is false<br>string | \"\" |  |\n| subtitle | Subtitle of the panel<br>This will not display if there is no title area<br>string | \"\" |  |\n| class | CSS classes for Panel container<br>string | \"\" |  |\n| style | Inline CSS for Panel container<br>string | \"\" |  |\n| inner\\_class | CSS classes for Panel content<br>string | \"\" |  |\n| inner\\_style | Inline CSS for Panel content<br>string | \"\" |  |\n| cy | data-cy attribute for cypress<br>string | \"\" |  |\n| collapse\\_icon | Icon indicating whether Panel is collapsible<br>This will not display if there is no title area<br>string | caret-right |  |\n| collapsible | Determines whether panel is collapsible<br>This will not work if there is no title area<br>boolean | false | FalseTrue |\n| collapsed | Determines whether Panel is currently collapsed or not<br>boolean | false | FalseTrue |\n| relative | Indicates whether the Panel has `position: relative` or not<br>You might need this if there are absolutely positioned elements inside the Panel<br>boolean | false | FalseTrue |\n| has\\_toolbar | Used to show or hide toolbar slot contents (slot=“toolbar”)<br>boolean | true | FalseTrue |\n| has\\_center | Used to show or hide center slot contents of the title area (slot=“center”)<br>boolean | true | FalseTrue |\n| has\\_title | Determines whether to show title bar when no title content is present<br>boolean | false | FalseTrue |\n| Hide slots itemsslots | Hide slots items |\n| center | Used for center aligned title content<br>This will not work if there is no title area<br>- | - | - |\n| toolbar | Used for right aligned toolbars<br>This will not work if there is no title area<br>- | - | - |\n| default | Used for panel content<br>- | - | - |\n\n### Usage\n\n##### Import the component:\n\n```\n\nimport { Panel } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Panel.scss' with(\n  $heading-background: cv.getVar(\"scheme-main-bis\"),\n  $background: cv.getVar(\"scheme-main\"),\n  $box-shadow: cv.getVar(\"shadow\"),\n  $color: cv.getVar(\"text\"),\n  $title-color: cv.getVar(\"text\"),\n  $title-weight: 700,\n  $caret-open-color: cv.getVar(\"text\"),\n  $caret-closed-color: cv.getVar(\"link\"),\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-panel--docs",
+      "title": "Helpers / Panel - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "005cfa75-db77-4adf-b64b-87509211bed7",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-panel--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Nl2br\n\n## Insert line breaks where newlines occur in the string This component provides a XSS-safe way of outputting multiline text.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| text | Text to process and output<br>string | \"\" |  |\n\n### Usage\n\n### Import the component:\n\n```\n\nimport { Nl2br } from '@kws3/ui';\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-nl2br--docs",
+      "title": "Helpers / Nl2br - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "c26e97b2-c3c1-49e8-8fa0-a4ad6ccc55b0",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-nl2br--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Loader\n\n## Graphic to display a loading status to users.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| spinner\\_color | Color of the Spinner<br>ExtendedColorOptions | grey | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| spinner\\_size | Size of the Spinner<br>SizeOptions | medium | Choose option...smallmediumlarge |\n| background\\_color | Backgound color of the Spinner container<br>BGColorOptions | transparent | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| background\\_size | Size of the Spinner container. It can also accept css units<br>**Examples:** `small` \\| `medium` \\| `large` \\| `halfheight` \\| `fullheight` \\| `10px` \\| `5rem` \\| `100vh`<br>string | medium |  |\n| class | CSS class for Loader<br>string | \"\" |  |\n| style | Inline CSS for Loader<br>string | \"\" |  |\n| is\\_inline | Determines if the Loader is inline or not<br>boolean | false | FalseTrue |\n| has\\_overlay | Determines if loader is displayed on top of a semi-transparent overlay.<br>`background_color` is ignored when this is set to `true`<br>The overlay is absolutely positioned. Ensure that the parent container is relatively positioned when using this.<br>boolean | false | FalseTrue |\n\n### Usage\n\n##### Import the component:\n\n```\n\nimport { Loader } from '@kws3/ui';\n```\n\nCopy\n\n##### Import the CSS:\n\n```\n\n@use '@kws3/ui/styles/Loader.scss';\n```\n\nCopy\n\n##### SCSS customization variables with default values:\n\n```\n\n@use '@kws3/ui/styles/Loader.scss' with(\n  $theme-colors: dv.$colors,\n  $width: 2rem,\n  $height: 2rem,\n  $width-medium: ($width * 1.5),\n  $height-medium: ($height * 1.5),\n  $width-large: ($width * 3),\n  $height-large: ($height * 3),\n  $color: cv.getVar(\"text\"),\n  $overlay-background: rgba(0, 0, 0, 0.15),\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-loader--docs",
+      "title": "Helpers / Loader - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "7582e59f-87dc-4f8d-a287-d2f5274ccb61",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-loader--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Portal\n\n## Component for rendering outside the DOM of parent component\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| target | DOM Element or CSS Selector<br>HTMLElementstring | body |  |\n| Hide slots itemsslots | Hide slots items |\n| default | - | - | - |\n\nThis is a re-export of `svelte-portal`.\nSee [https://github.com/romkor/svelte-portal/blob/2.1.2/README.md](https://github.com/romkor/svelte-portal/blob/2.1.2/README.md) for more information.\n\n### Usage\n\n##### Import the component:\n\n```\n\n<Portal target=\"body\">\n  <div class=\"toast\">Entity successfully updated!</div>\n</Portal>\n\n<script>\n  import { Portal } from '@kws3/ui';\n</script>\n```\n\nCopy\n\n##### Import the action:\n\n```\n\n<div class=\"toast\" use:portal={document.body}>Entity successfully updated!</div>\n\n<script>\n  import { portal } from '@kws3/ui';\n  // notice the character case\n</script>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-portal--docs",
+      "title": "Helpers / Portal - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "ce748dcc-87ad-47b7-9d8d-d9c3f6fea276",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-portal--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Password Validator\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| password | Password for validating<br>string | \"\" |  |\n| compact | Determines whether validator should display in compact mode or expanded mode<br>boolean | true | FalseTrue |\n| min | Minimum number of characters required<br>number | 8 |  |\n| lower | Whether a lower-case character is required<br>boolean | true | FalseTrue |\n| upper | Whether a upper-case character is required<br>boolean | true | FalseTrue |\n| digit | Whether a digit character is required<br>boolean | true | FalseTrue |\n| special | Whether a special character is required<br>boolean | true | FalseTrue |\n| custom\\_rules | Array of custom rules defined as objects<br>Object must contain:<br>`name` `text` `identifier` `regex` `negate (optional)`<br>array |  | RAW<br>custom\\_rules : \\[<br>\\] |\n| class | CSS classes for container<br>string | \"\" |  |\n| style | Inline CSS style for container<br>string | \"\" |  |\n| valid | Variable used to check if password Validator returns true or false<br>Should be used with `bind` from parent component<br>boolean | false | Set boolean |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { PasswordValidator } from '@kws3/ui';\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/forms-passwordvalidator--docs",
+      "title": "Forms / PasswordValidator - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "f37478ee-e3d0-4781-b12b-272674e37338",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/forms-passwordvalidator--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Pagination\n\n## Pagination component in datagrid.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| meta | Object containing `total`, `count`, `limit` and `offset` values<br>**DEPRECATED**: Use `total`, `count`, `limit` and `offset` props instead<br>object |  | RAW<br>meta : {<br>} |\n| limit | Number of items to be displayed per page<br>number | 0 |  |\n| total | Total number of items available<br>number | 0 |  |\n| count | Number of items being displayed in this page<br>number | 0 |  |\n| offset | Offset of the first item in this page<br>number | 0 |  |\n| showTotal | Determines whether to show total or not<br>boolean | true | FalseTrue |\n| showCurrent | Determines whether to display a breakdown of the range of items currently being displayed in a page<br>boolean | true | FalseTrue |\n| showPerPage | Determines whether to display the UI that allows user to choose the number of items to be displayed per page<br>boolean | true | FalseTrue |\n| maxVisiblePages | Maximum number of consecutive pages to show in pagination after which a break is introduced in between them<br>number | 10 |  |\n| entityName | String to display total entries<br>string | entries |  |\n| size | Size of the pagination elements<br>string | small | Choose option...smallmediumlarge |\n| frame | Determines whether to show pagination frame or not<br>boolean | false | FalseTrue |\n| iconRight | Right navigation icon<br>string | chevron-right |  |\n| iconLeft | Left navigation icon<br>string | chevron-left |  |\n| perPageOptions | Available options given to the user, to choose the number of items displayed per page<br>array |  | RAW<br>perPageOptions : \\[<br>- 0 : 20<br>- 1 : 50<br>- 2 : 100<br>- 3 : 150<br>- 4 : 200<br>- 5 : 250<br>\\] |\n| Hide events itemsevents | Hide events items |\n| setLimit | Event used to set a new `limit`.<br>_Event Data:_ `{currentPage, newLimit}`<br>- | - | - |\n| paginate | Event triggered on pagination change with new `offset` and current `limit` values.<br>_Event Data:_ `{offset, limit}`<br>- | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { Pagination } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Pagination.scss' with(\n  $item-color: cv.getVar(\"text\"),\n  $item-background: cv.getVar(\"scheme-main\"),\n  $item-border: 1px solid cv.getVar(\"border\"),\n  $item-hover-color: $item-color,\n  $item-hover-border: $item-border,\n  $item-disabled-background: cv.getVar(\"pagination-disabled-background-color\"),\n  $item-disabled-color: cv.getVar(\"pagination-disabled-color\"),\n  $item-ellipsis-background: transparent,\n  $item-ellipsis-border-color: transparent,\n  $item-active-background: cv.getVar(\"success\"),\n  $item-active-color: cv.getVar(\"success-invert\"),\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/datagrid-pagination--docs",
+      "title": "Datagrid / Pagination - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "54825fcb-1545-4738-83b1-6de5071fe4ca",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/datagrid-pagination--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# ScrollableList\n\n## ScrollableList component that efficiently displays large amounts of data\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| items | Array of items<br>array |  | RAW<br>items : \\[<br>\\] |\n| start | First item index rendered inside viewport - readonly<br>number | 0 |  |\n| end | Last item index rendered inside viewport - readonly<br>number | 0 |  |\n| height | Height of the wrapper, CSS String<br>string | 100% |  |\n| item\\_height | Height of each list item. If not set, height will be calculated automatically based on each item's offsetHeight<br>numbernull |  | - |\n| class | CSS classes for scroller container<br>string | \"\" |  |\n| end\\_threshold | `end` event will be fired when the list reaches this many items before the end of the list.<br>number | 10 |  |\n| padding\\_threshold | render 'n' number of items on outside the viewport (top and bottom) to avoid visible glitches on scrolling.<br>number | 5 |  |\n| style | Inline CSS for scroller container<br>string | \"\" |  |\n| iteration\\_key | Iteration key - by default it uses the index of the array inside the keyed each block<br>object |  | Set object |\n| mutation\\_threshold | Number of items that can be spliced in or out, before the scroll position resets, helpful for adding/removing list items in-place<br>number | 5 | Set number |\n| Hide events itemsevents | Hide events items |\n| end | Fired when the list reaches `end_threshold` items before the end of the list.<br>- | - | - |\n| Hide slots itemsslots | Hide slots items |\n| default | Default slot for list view items<br>`item` `index`<br>- | - | - |\n| loader | Optional slot to display a loading graphic at the bottom of the list<br>while more items are loading<br>- | - | - |\n\n### Usage\n\n##### Import the component:\n\n```\n\nimport { ScrollableList } from '@kws3/ui';\n```\n\nCopy\n\nNormal Usage Example:\n\nYou can define the `let` variables on main component\n\n```\n\n<ScrollableList\n  {items}\n  {height}\n  {item_height}\n  {end_threshold}\n  {padding_threshold}\n  bind:start\n  bind:end\n  on:end={endReached}\n  let:item\n  let:index\n>\n  <ListItem {item} {index} />\n</ScrollableList>\nCopy\n```\n\nUsage with loader slot Example:\n\nYou have to define the `let` variables in a slot wrapper\n\n```\n\n<ScrollableList\n  {items}\n  {height}\n  {item_height}\n  {end_threshold}\n  {padding_threshold}\n  bind:start\n  bind:end\n  on:end={endReached}\n>\n  <span\n    slot=\"default\"\n    let:item\n    let:index\n  >\n    <ListItem {item} {index} />\n  </span>\n  <span slot=\"loader\">Loading...</span>\n</ScrollableList>\nCopy\n```",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-scrollablelist--docs",
+      "title": "Helpers / ScrollableList - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "7cb50d85-c604-4f06-9216-ff88eebb6718",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-scrollablelist--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-createdate--create-date",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "eec76dd4-d3a7-4bde-b4ef-7bc2a4ace79f",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-createdate--create-date",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# SubmitButton\n\n## Submit Button with built-in confirmation.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| class | CSS classes for Button container<br>string | \"\" |  |\n| text | Button text<br>string | Save Changes |  |\n| icon | Name of the icon that is to be displayed in the button<br>string | save |  |\n| icon\\_only | Removes text, and text space in the button<br>boolean | false | FalseTrue |\n| saved\\_text | Text displayed after submission is completed successfully<br>string | Saved |  |\n| error\\_text | Text displayed if submission is not successful<br>string | Failed to Save |  |\n| disabled | Disables the button when `true`<br>boolean | false | FalseTrue |\n| cy | data-cy attribute for cypress<br>string | submit |  |\n| tracker | Tracker object to be sent from outside to change the state of the button.<br>ButtonTracker |  | - |\n| color | Color of the Button<br>ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| size | Size of the Button<br>SizeOptions | \"\" | Choose option...smallmediumlarge |\n| completion\\_timeout | Specifies the duration to wait after the `saved` event, before the UI state returns to normal<br>number | 600 |  |\n| error\\_timeout | Specifies the duration to wait after the `error` event, before the UI state returns to normal<br>number | 3000 |  |\n| Hide events itemsevents | Hide events items |\n| saved | Fired on successful submission<br>- | - | - |\n| error | Fired when there is an error<br>- | - | - |\n\n### Usage\n\n```\n\n<form on:submit|preventDefault={save}>\n  <SubmitButton bind:this={BUTTON_STATE} />\n</form>\n<script>\n  import { SubmitButton } from '@kws3/buttons';\n  let BUTTON_STATE;\n  function save(e){\n    BUTTON_STATE.saving();\n    somepromise.then((r) => {\n      BUTTON_STATE.saved(() => {\n        //some callback function\n      }, 1000);\n    })\n    .catch((r) => {\n      BUTTON_STATE.error(() => {\n        //some callback function\n      }, 1000);\n    })\n  }\n</script>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/buttons-submit-button--docs",
+      "title": "Buttons / Submit Button - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "f52efe44-c922-44ab-ac21-824fdd1279f8",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/buttons-submit-button--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/charts-area-chart--docs",
+      "title": "Charts / Area Chart - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "e581c1ab-9f47-475b-a0ba-93b45e869ed4",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/charts-area-chart--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Line Chart\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| data | Chart data<br>array |  | RAW<br>data : \\[<br>0 : \\[...\\] 4 items<br>1 : \\[...\\] 4 items<br>2 : \\[...\\] 4 items<br>3 : \\[...\\] 4 items<br>\\] |\n| labels | Data labels<br>array |  | RAW<br>labels : \\[<br>- 0 : \"2021\"<br>- 1 : \"2022\"<br>- 2 : \"2023\"<br>- 3 : \"2024\"<br>\\] |\n| sets | Data sets<br>array |  | RAW<br>sets : \\[<br>- 0 : \"Purchased\"<br>- 1 : \"Expense\"<br>- 2 : \"Sold\"<br>- 3 : \"Revenue\"<br>\\] |\n| width | Chart width, supports CSS size strings<br>string | 100% |  |\n| height | Chart height, supports CSS size strings<br>string | auto |  |\n| colors | Chart colors, can be modified globally in framework settings<br>Send an array of colors to override the default colors, or do not send anything to use the default colors<br>array |  | Set object |\n| sparklines | Displays the chart as a sparkline chart.<br>These are charts with minimal UI and can be<br>squeezed into small spaces<br>boolean | false | FalseTrue |\n| y\\_axis\\_options | Y Axis options, see ApexCharts options for Y Axis<br>object |  | RAW<br>y\\_axis\\_options : {<br>} |\n| options | Chart options, see ApexCharts options for bar charts<br>object |  | RAW<br>options : {<br>} |\n| captured\\_events | String array of event names that will be captured and fired as svelte events.<br>This is to prevent unnecessary event subscriptions.<br>array |  | Set object |\n| class | CSS classes for container<br>string | \"\" | Set string |\n| Hide events itemsevents | Hide events items |\n| animationEnd | All chart events only fire when they are mentioned in `captured_events` list. See ApexChart Events [https://apexcharts.com/docs/options/chart/events/](https://apexcharts.com/docs/options/chart/events/) for full list of supported events.<br>- | - | - |\n| beforeMount | - | - | - |\n| mounted | - | - | - |\n| updated | - | - | - |\n| mouseMove | - | - | - |\n| mouseLeave | - | - | - |\n| click | - | - | - |\n| legendClick | - | - | - |\n| markerClick | - | - | - |\n| selection | - | - | - |\n| dataPointSelection | - | - | - |\n| dataPointMouseEnter | - | - | - |\n| dataPointMouseLeave | - | - | - |\n| beforeZoom | - | - | - |\n| beforeResetZoom | - | - | - |\n| zoomed | - | - | - |\n| scrolled | - | - | - |\n| brushScrolled | - | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { LineChart } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Chart.scss' with (\n  $background-color: cv.getVar(\"scheme-main\"),\n  $foreground-color: cv.getVar(\"text\"),\n  $axis-lines-color: cv.getVar(\"border\"),\n  $grid-lines-color: cv.getVar(\"border-weak\")\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/charts-line-chart--docs",
+      "title": "Charts / Line Chart - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "18c22254-a59d-40ab-bffa-fbaa32603f4c",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/charts-line-chart--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n![logo](https://kws3.media/assets/images/logo.png)\n\n# Welcome to UI Elements from KWS3 Media\n\nUse the navigation panel on the left to browse all the components.\n\n_This is a work in progress, documentation and examples are being added_\n_all the time._\n\n_If you find anything that needs changing, get in_\n_touch!_\n\nThis refers to Svelte v4 components.\n\nFor components compatible with Svelte v3 please go to: [https://ui.kws3.media/v3](https://ui.kws3.media/v3)",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/welcome--docs",
+      "title": "Welcome - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "021eae90-92a0-4c74-8c47-3c5f6ce1c8e7",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Password Input\n\n## An Input component that can show/hide password.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| class | CSS classes of the PasswordInput<br>string | \"\" |  |\n| style | Inline CSS for the PasswordInput<br>string | \"\" |  |\n| size | Size of the PasswordInput<br>SizeOptions | \"\" | - |\n| color | Colour of the PasswordInput<br>ColorOptions | \"\" | - |\n| disabled | Disables the PasswordInput<br>boolean | false | FalseTrue |\n| show\\_visibility\\_switch | whether has visibility feature or not<br>boolean | true | FalseTrue |\n| placeholder | Input placeholder<br>string | \"\" |  |\n| show\\_field\\_icon | whether to show field icon or not<br>boolean | true | Set boolean |\n| field\\_icon | field icon name<br>string | lock | Set string |\n| field\\_icon\\_family | Icon family to be used<br>Defaults to global family set via `Icon.setDefaultIconType()`<br>Ultimately defaults to `fa`, if family is not set anywhere<br>FontFamilies | fa | - |\n| visibility\\_switch\\_icon\\_family | Icon family to be used<br>Defaults to global family set via `Icon.setDefaultIconType()`<br>Ultimately defaults to `fa`, if family is not set anywhere<br>FontFamilies | fa | - |\n| visibility\\_switch\\_on\\_icon | visibility switch on icon name<br>string | eye | Set string |\n| visibility\\_switch\\_off\\_icon | visibility switch off icon icon name<br>string | eye-slash | Set string |\n| visibility\\_switch\\_on\\_color | visibility switch on icon color<br>ExtendedColorOptions | grey | - |\n| visibility\\_switch\\_off\\_color | visibility switch off icon color<br>ExtendedColorOptions | grey | - |\n| value | Value of the Input<br>This property can be bound to, to fetch the current value<br>?string | \"\" | - |\n| required | Whether Input is required or not<br>boolean | false | Set boolean |\n| autocomplete | Whether autocompletion turned off or on<br>string | on | Set string |\n| name | Input HTML name<br>string | password | Set string |\n| Hide events itemsevents | Hide events items |\n| focus | - | - | - |\n| blur | - | - | - |\n| change | - | - | - |\n| input | - | - | - |\n| keyup | - | - | - |\n| keydown | - | - | - |\n| paste | - | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { PasswordInput } from '@kws3/ui';\n```\n\nCopy\n\n#### With PasswordValidator:\n\n```\n\n<PasswordInput\n  bind:value={new_pass}\n  {size}\n  {color}\n  {placeholder}\n  {has_visibility_switcher}\n  {disabled} />\n<PasswordValidator password={new_pass} />\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/forms-passwordinput--docs",
+      "title": "Forms / PasswordInput - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "dc7fe67a-6b47-412e-980f-d1b5f731f241",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/forms-passwordinput--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# MaskedInput\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| mask | Mask array<br>Each element in the array has to be either a string or a regular expression. Each string is a fixed character in the mask and each regular expression is a placeholder that accepts user input.<br>array |  | RAW<br>mask : \\[<br>\\] |\n| placeholder\\_char | This character represents the fillable spot in the mask, the guide character<br>string | \\_ |  |\n| guide | Displays a guide when the user starts typing<br>boolean | true | FalseTrue |\n| guide\\_when\\_empty | Displays a guide even before the user starts typing<br>Requires `guide` to be `true`<br>boolean | false | FalseTrue |\n| guide\\_on\\_output | Whether the output should contain guide characters<br>boolean | false | FalseTrue |\n| keep\\_char\\_positions | When set to `true`, deleting a character leaves an empty space to allow overwriting<br>Requires `guide` to be `true`<br>boolean | false | FalseTrue |\n| placeholder | Placeholder text. Requires `guide_when_empty` to be `false` to be displayed.<br>string | \"\" |  |\n| class | CSS classes for the input<br>string | \"\" |  |\n| value | Input value<br>string | \"\" |  |\n| Hide events itemsevents | Hide events items |\n| change | Native input change event<br>- | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { MaskedInput } from '@kws3/ui';\n```\n\nCopy\n\n### Mask array examples\n\n```\n\n<!-- US Phone number -->\n<MaskedInput\n  mask={[\\\n    \"(\", /[1-9]/, /d/, /d/, \")\", \" \",\\\n    /d/, /d/, /d/, \"-\",\\\n    /d/, /d/, /d/, /d/\\\n  ]}\n/>\n<!-- Credit card -->\n<MaskedInput\n  mask={[\\\n    /d/, /d/, /d/, /d/, \" \",\\\n    /d/, /d/, /d/, /d/, \" \",\\\n    /d/, /d/, /d/, /d/, \" \",\\\n    /d/, /d/, /d/, /d/\\\n  ]}\n/>\n<!-- dd/mm/YYYY -->\n<MaskedInput\n  mask={[\\\n    /d/, /d/, \"/\",\\\n    /d/, /d/, \"/\",\\\n    /[1-2]/, /d/, /d/, /d/\\\n  ]}\n/>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/forms-maskedinput--docs",
+      "title": "Forms / MaskedInput - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "329b8733-1d88-4675-b45a-0ff2286a1a31",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/forms-maskedinput--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Datepicker\n\n## Datepicker component that allows you to select date.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| value | Accepts a date value in the format `yyyy-mm-dd`<br>In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`<br>This property can be bound to, to fetch the selected date or date range. Output is in the same format as input.<br>string | \"\" |  |\n| style | Inline CSS for the input<br>string | \"\" |  |\n| class | CSS classes for the input<br>string | \"\" |  |\n| placeholder | Placeholder text for the input<br>string | Select Date.. |  |\n| disabled | Disables the component<br>boolean | false | FalseTrue |\n| min\\_date | Set earliest selectable date as an object or string<br>**Example:** `\"2021-06-06\"` or `\"(new Date('2021-01-01'))\"`<br>any |  | Set object |\n| max\\_date | Set latest selectable date as an object or string<br>**Example:** `\"2021-06-06\"` or `\"(new Date('2021-01-01'))\"`<br>any |  | Set object |\n| enable\\_dates | Enables a range of dates and disables all others<br>array |  | RAW<br>enable\\_dates : \\[<br>\\] |\n| disable\\_dates | Disables a range of dates and enables all others<br>array |  | RAW<br>disable\\_dates : \\[<br>\\] |\n| range\\_mode | Allows selecting a date range<br>boolean | false | FalseTrue |\n| options | Extended set of options as supported by Flatpicker<br>See: [https://flatpickr.js.org/options/](https://flatpickr.js.org/options/)<br>object |  | RAW<br>options : {<br>} |\n| calendar\\_color | Colour of the Calendar<br>ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| color | Colour of the Date picker input<br>ColorOptions | \"\" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| readonly | Make input value read-only<br>boolean | false | FalseTrue |\n| Hide events itemsevents | Hide events items |\n| dateChange | Triggered when the date changes<br>- | - | - |\n| monthChange | Triggered when the Month changes<br>- | - | - |\n| yearChange | Triggered when the Year changes<br>- | - | - |\n| ready | Triggered when UI is ready<br>- | - | - |\n| open | Triggered when popup UI opens<br>- | - | - |\n| close | Triggered when popup UI closes<br>- | - | - |\n| change | Native input change event<br>- | - | - |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { Datepicker } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\n**Note:** _Need to import flatpicker SCSS file first_\n\n```\n\n@use 'flatpickr/dist/flatpickr';\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Datepicker.scss' with (\n  $theme-colors: dv.$colors,\n  $background: cv.getVar(\"scheme-main-ter\"),\n  $text: cv.getVar(\"text\"),\n  $shadow: cv.getVar(\"shadow\"),\n  $radius: cv.getVar(\"radius-small\"),\n);\n```\n\nCopy\n\n### `min_date` and `max_date`\n\nCan either send a string or a Date object for both these properties.\n**Example:**\n\n```\n\n<Datepicker\n  min_date=\"2021-06-06\"\n  max_date={(new Date('2021-01-01')}\n/>\n```\n\nCopy\n\n### `enable_dates` and `disable_dates`\n\nThese two properties expect an array to be sent to them.\n\nTo enable specific dates, use `enable_dates`. To disable specific dates, use `disable_dates`.\n\nThe array can contain a list of dates, in string or object formats.\n**Example:**\n\n```\n\n<Datepicker\n  disable_dates={[\\\n    '2021-01-01',\\\n    '2021-01-02',\\\n    new Date(2025, 8, 9)\\\n  ]}\n/>\n```\n\nCopy\n\nThe array can contain a list of date ranges.\n**Example:**\n\n```\n\n<Datepicker\n  disable_dates={[\\\n    {\\\n      from: '2021-01-01',\\\n      to: '2021-01-02'\\\n    },\\\n    {\\\n      from: new Date(2025, 8, 9),\\\n      to: new Date(2025, 9, 9)\\\n    }\\\n  ]}\n/>\n```\n\nCopy\n\nThe array can also contain a function to dynamically determine the date.\n**Example:**\n\n```\n\n<Datepicker\n  disable_dates={[\\\n    function(date) {\\\n      // return true to disable\\\n      return (\\\n        date.getDay() === 0 ||\\\n        date.getDay() === 6\\\n      );\\\n    }\\\n  ]}\n/>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/forms-datepicker--docs",
+      "title": "Forms / Datepicker - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "ab8fa1fa-a8a4-4dfa-98dd-cc20d13cee55",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/forms-datepicker--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Datagrid\n\n## This shows an example of all datagrid components work together.\n\nGrid view\n\nTile\n\n* * *\n\nAny roleAdministratorUser\n\nAny statusActiveInactive\n\nSearch\n\nSort By:\n\nDefaultID Newest FirstID Oldest First\n\n| ID | Name | Surname | Role | Status |\n| --- | --- | --- | --- | --- |\n| 1 | Jhon | Doe | Administrator | Active |\n| 2 | James | Bond | User | Active |\n| 3 | Tony | Starks | User | Active |\n| 4 | Captain | America | User | Active |\n| 5 | Natasha | Romanoff | User | Active |\n\nShowing 1 to 5 \\|  **15 entries**\n\n* * *\n\n#### Example usage of datagrid components\n\n```\n\n{#if data}\n  <div className=\"columns\">\n    <div className=\"column\">\n      <DataSearch\n        {hasSearch}\n        {hasFilters}\n        {placeholder}\n        {filters}\n        {q}\n        {filter_in_use_class}\n        {filter_not_in_use_class}\n        {filterComponent}\n        {filter_label_map}\n        on:search={search}\n        on:resetSearch={resetSearch} />\n      <DataSort {options} {sort_by} on:sort={sort} />\n    </div>\n  </div>\n\n  <div className=\"columns\">\n    <div className=\"column\">\n      <GridView\n        {iteration_key}\n        {data}\n        {columns}\n        {transition}\n        {is_striped}\n        {clickableRows}\n        {bulk_actions}\n        {selectAll}\n        {selectedIds}\n        {selectAllCheckboxColor}\n        {selectCheckboxColor}\n        {selectCheckboxSize}\n        {valueTransformers}\n        {classTransformers}\n        {styleTransformers}\n        {visibilityMap}\n        {cellComponentMap} />\n    </div>\n  </div>\n\n  {#if has_pagination}\n    <div className=\"columns\">\n      <div className=\"column\">\n        <Pagination {meta} {perPageOptions} on:paginate={paginate} />\n      </div>\n    </div>\n  {/if}\n{/if}\n\n<script>\n  import {\n    DataSearch,\n    DataSort,\n    GridView,\n    TileView,\n    Pagination\n  } from \"@kws3/ui\";\n  import { response } from \"./users.js\";\n\n  let hasSearch = true,\n    hasFilters = true,\n    placeholder = \"Search by name or surname\",\n    filters = response.filters,\n    options = response.options,\n    data = [],\n    columns = {\n      id: \"ID\",\n      name: \"Name\",\n      surname: \"Surname\",\n      role: \"Role\",\n      status: \"Status\",\n    },\n    meta = response.meta,\n    q = \"\",\n    filter_in_use_class = \"is-in-use\",\n    filter_not_in_use_class = \"is-not-in-use\",\n    filterComponent = null,\n    filter_label_map = {},\n    sort_by = \"\",\n    iteration_key = \"id\",\n    transition = false,\n    is_striped = true,\n    clickableRows = false,\n    bulk_actions = false,\n    selectAll = false,\n    selectedIds = [],\n    selectAllCheckboxColor = \"primary\",\n    selectCheckboxColor = \"info\",\n    selectCheckboxSize = \"medium\",\n    classTransformers = {},\n    styleTransformers = {},\n    visibilityMap = {},\n    cellComponentMap = {},\n    tileItemComponent = null,\n    per_row = 3,\n    perPageOptions = [5];\n\n  let is_loading = false;\n  let original_data = response.records;\n  let is_tile_view = false;\n  let limit = meta.limit;\n  let page_number = 1;\n\n  let valueTransformers = {\n    role(v, row) {\n      switch (row.role) {\n        case \"A\":\n          return \"Administrator\";\n          break;\n        case \"U\":\n          return \"User\";\n          break;\n      }\n    },\n    status(v, row) {\n      return v == 1 ? \"Active\" : \"Inactive\";\n    },\n  };\n\n  $: data = original_data.slice((page_number - 1) * limit, page_number * limit);\n  $: has_pagination = original_data.length > limit;\n\n  function search({ detail }) {\n    //Write functionality for custom search\n  }\n\n  function resetSearch() {\n    //Write functionality for custom reset search\n  }\n\n  function paginate({ detail }) {\n    //Write functionality for custom paginate\n  }\n\n  function sort({ detail }) {\n    //Write functionality for custom sort\n  }\n</script>\nCopy\n```",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/datagrid-example--docs",
+      "title": "Datagrid / Example - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "7286082a-e91d-42dc-9820-a529c950f563",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/datagrid-example--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-truncate--truncate",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "d3c4747d-74da-4d3d-881b-7e2217d724fb",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-truncate--truncate",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Icon\n\n## An Icon component to display supported icons.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| family | Icon family, can be modified globally in framework settings<br>Ultimately defaults to `fa`, if family is not set anywhere<br>FontFamilies | \"\" | Choose option...falarlasgguniconsmaterial |\n| size | Size of the Icon<br>SizeOptions | \"\" | Choose option...smallmediumlarge |\n| color | Color of the Icon<br>ExtendedColorOptions | \"\" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |\n| icon | The name of the icon that is to be displayed, from the relevant icon family<br>string | \"\" |  |\n| class | CSS classes for icon container<br>string | \"\" |  |\n| style | Inline CSS for icon container<br>string | \"\" |  |\n| inner\\_class | CSS classes for icon<br>string | \"\" |  |\n| inner\\_style | Inline CSS for icon<br>string | \"\" |  |\n\n### fontawesome.io\n\n#### Requires FontAwesome version <= 4.7.0, this can be either loaded from your bundle, or from a CDN\n\n```\n\n<Icon icon=\"check\" color=\"\" size=\"\" />\n```\n\nCopy\n\n### iconscout.com/unicons\n\n#### For Unicons icons, requires css loading as mentioned in [https://iconscout.com/unicons](https://iconscout.com/unicons) this can be either loaded from your bundle, or from a CDN\n\n```\n\n<Icon family=\"unicons\" icon=\"check\" color=\"\" size=\"\" />\n```\n\nCopy\n\n### css.gg\n\n#### For GG icons, requires css loading as mentioned in [https://css.gg/](https://css.gg/) this can be either loaded from your bundle, or from a CDN\n\n```\n\n<Icon family=\"gg\" icon=\"check\" color=\"\" size=\"\" />\n```\n\nCopy\n\n### icons8.com/line-awesome\n\n#### For LineAwesome icons, requires css loading as mentioned in [https://icons8.com/line-awesome/howto](https://icons8.com/line-awesome/howto) this can be either loaded from your bundle, or from a CDN\n\n##### Icon can have 3 styles: regular, solid or brand. For each style can use `lar` `las` or `lab` accordingly.\n\n```\n\n<Icon family=\"lar\" icon=\"check\" color=\"\" size=\"\" />\n<Icon family=\"las\" icon=\"check\" color=\"\" size=\"\" />\n```\n\nCopy\n\n### Material Icons\n\n#### For material icons, requires css loading as mentioned in [https://fonts.google.com/icons](https://fonts.google.com/icons) this can be either loaded from your bundle, or from a CDN\n\n```\n\n<Icon family=\"material\" icon=\"face\" color=\"\" size=\"\" />\n```\n\nCopy\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { Icon } from '@kws3/ui';\n```\n\nCopy\n\n#### Set default icon family:\n\nInstead of specifying an icon family on each icon, it can be set globally on your app, using the package's `defaultIconFamily` setting\n\n```\n\nimport { applySettings } from '@kws3/ui';\napplySettings({\n  defaultIconFamily: \"lar\"\n});\n//now all icons will use this family unless overriden on a per icon basis\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-icon--docs",
+      "title": "Helpers / Icon - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "a24a10dc-3304-4af0-aa8b-1d7e538c73c0",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-icon--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# StickyColumnsTableWrapper\n\n## StickyColumnsTableWrapper component in datagrid.\n\n#### Display a table where a variable number of columns could stick to the left,if the table width exceeds the width of the viewport.\n\n#### Additionally, a shadow is displayed when there are parts of the table hidden by the scrollable area.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| inner\\_class | string | \"\" |  |\n| outer\\_class | string | \"\" |  |\n| width | string | 100% |  |\n\n### Usage\n\n#### Import the component:\n\n```\n\nimport { StickyColumnsTableWrapper } from '@kws3/ui';\n```\n\nCopy\n\n#### Import the SCSS:\n\nThis component requires Grid.css to work\n\n```\n\n@import '@kws3/ui/styles/Grid.scss';\n```\n\nCopy\n\nSee GridView for SCSS customization variables\n\nThis component expects a `table.table` in it's slot.\n\nEach column that you want to be fixed on scroll, has to have a class of `is-sticky-column`. And has to have a CSS `left` value.\n\nThis has to be attached to all `<td>` and `<th>` elements in that column.",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/datagrid-sticky-columns-table--docs",
+      "title": "Datagrid / Sticky Columns Table - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "76dd9335-6188-4eab-9839-c136e9d8592c",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/datagrid-sticky-columns-table--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Skeleton\n\n## Component to display a loading status as a skeleton of the content to load.\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| class | CSS class for Skeleton<br>string | \"\" |  |\n| lines | @typedef {import('<br>number | 1 |  |\n| width | CSS string denoting width of the Skeleton<br>**Examples:** `10px` \\| `5rem` \\| `100vh`<br>string | 100% |  |\n| height | CSS string denoting height of the Skeleton<br>**Examples:** `10px` \\| `5rem` \\| `100vh` \\| `auto`<br>string | auto |  |\n| radius | CSS string denoting border-radius of the Skeleton<br>**Examples:** `10px` \\| `5rem`<br>string | 0px |  |\n| circle | Whether the Skeleton should be rendered as a circle.<br>If this is set to `true`, the `radius` property will be ignored.<br>boolean | false | FalseTrue |\n| color | Color of the Skeleton lines<br>ExtendedColorOptions | \"\" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklinkgreytransparent |\n\n### Usage\n\n##### Import the component:\n\n```\n\nimport { Skeleton } from '@kws3/ui';\n```\n\nCopy\n\nIt is possible to let this component mimic the appearance of Bulma elements if you attach an appropriate CSS class to the `class` property.\nFor example:\n\n```\n\n<!--Displays like a button-->\n<Skeleton class=\"button\" color=\"primary\" />\n<!--Displays like a input-->\n<Skeleton class=\"input\" />\n<!--Displays like a box-->\n<Skeleton class=\"box\" />\n```\n\nCopy\n\n#### Import the SCSS:\n\n_Default values shown as example_\n\n```\n\n@use '@kws3/ui/styles/Skeleton.scss' with (\n  $theme-colors: $colors;\n  $color: hsla(\n    cv.getVar(\"text-h\"),\n    cv.getVar(\"text-s\"),\n    cv.getVar(\"text-weak-l\"),\n    0.2\n  );\n  $hilight-color: hsla(\n    cv.getVar(\"text-h\"),\n    cv.getVar(\"text-s\"),\n    cv.getVar(\"text-80-l\"),\n    0.2\n  );\n);\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/helpers-skeleton--docs",
+      "title": "Helpers / Skeleton - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "b5450634-dc79-4cdc-b5bb-5b77937d523b",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/helpers-skeleton--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-randompercent--random-percent",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "7d870154-54e8-4608-962c-b74823a8ea27",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-randompercent--random-percent",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "Version4.5.5\n\n[v1.x.xCompatible with Svelte 2](https://ui.kws3.media/v2/) [v2.x.xCompatible with Svelte 3](https://ui.kws3.media/v3/) [v4.x.xCompatible with Svelte 4](https://ui.kws3.media/v4/)\n\n[Github](https://github.com/kws3media/ui/tree/master/packages/%40kws3/ui)\n\n# Transitions\n\n## A set of components to declaratively use Svelte transitions\n\n| Name | Description | Default | Control |\n| --- | --- | --- | --- |\n| Hide properties itemsproperties | Hide properties items |\n| x | X position on transition start, used for `fly` transitions<br>number | 0 |  |\n| y | Y position on transition start, used for `fly` transitions<br>number | 0 |  |\n| from | Starting scale, used for `scale` transitions<br>number | 0.5 |  |\n| to | Final scale, used for `scale` transitions<br>number | 1 |  |\n| transition | If `false`, transition animations will not run, and behave like a static element.<br>boolean | true | FalseTrue |\n| type | Transition types.<br>'fly''fade''scale''slide' | fly | - |\n| duration | Duration of the transition in milliseconds<br>number | 300 |  |\n| delay | Delays the start of the transition - in milliseconds<br>number | 0 |  |\n| easing | Specifies the easing function to be used<br>Defaults to `sineOut` if left empty<br>`cubicOut` \\| `sineOut` \\| `elasticOut` \\| `expoOut` \\| `circOut` \\| `bounceOut` \\| `backOut`<br>string | sineOut |  |\n| class | CSS classes for the wrapper element<br>string | \"\" |  |\n| Hide slots itemsslots | Hide slots items |\n| default | Used to display content<br>- | - | - |\n\n### Usage\n\n##### Import the component:\n\n```\n\nimport { Transition } from '@kws3/ui';\n```\n\nCopy\n\n### Examples\n\nFly\n\n```\n\n<Transition\n  type=\"fly\"\n  duration=\"{300}\"\n  x=\"{0}\"\n  y=\"{20}\"\n/>\n```\n\nCopy\n\nFade\n\n```\n\n<Transition\n  type=\"fade\"\n  duration=\"{300}\"\n/>\n```\n\nCopy\n\nSlide\n\n```\n\n<Transition\n  type=\"slide\"\n  duration=\"{300}\"\n/>\n```\n\nCopy\n\nScale\n\n```\n\n<Transition\n  type=\"scale\"\n  duration=\"{300}\"\n  from=\"{0.5}\"\n  to=\"{1}\"\n/>\n```\n\nCopy",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/?path=/docs/standalone-transitions--docs",
+      "title": "Standalone / Transitions - Docs ⋅ Storybook",
+      "favicon": {},
+      "language": "en",
+      "scrapeId": "d261cea2-dca1-4134-a18e-0c6fed8fa331",
+      "viewport": [
+        "width=device-width, initial-scale=1, maximum-scale=1",
+        "width=device-width, initial-scale=1"
+      ],
+      "sourceURL": "https://ui.kws3.media/v4/?path=/docs/standalone-transitions--docs",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-search--search",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "061b86b8-e84d-41f2-9f07-a45ea753c1fc",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-search--search",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-cloneobject--clone-object",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "696e1c52-3e5c-49c2-8ac0-878e75492186",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-cloneobject--clone-object",
+      "statusCode": 200
+    }
+  },
+  {
+    "markdown": "",
+    "metadata": {
+      "url": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-capitalisefirstletter--capitalise-first-letter",
+      "title": "Storybook",
+      "language": "en",
+      "scrapeId": "a3f70382-9750-4bfc-afe1-61858cae8633",
+      "viewport": "width=device-width, initial-scale=1",
+      "sourceURL": "https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-capitalisefirstletter--capitalise-first-letter",
+      "statusCode": 200
+    }
+  }
+]

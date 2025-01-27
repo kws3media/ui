@@ -1,0 +1,3933 @@
+https://ui.kws3.media/v4/?path=/docs/charts-pie-chart--docs
+Charts / Pie Chart
+
+# Pie Chart
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| data | Chart data
+array |  | RAW
+data : \[
+- 0 : 10
+- 1 : 10
+- 2 : 20
+- 3 : 60
+\] |
+| labels | Data labels
+array |  | RAW
+labels : \[
+- 0 : "Me"
+- 1 : "You"
+- 2 : "Her"
+- 3 : "Them"
+\] |
+| width | Chart width, supports CSS size strings
+string | 100% |  |
+| height | Chart height, supports CSS size strings
+string | auto |  |
+| sparklines | Displays the chart as a sparkline chart.
+These are charts with minimal UI and can be
+squeezed into small spaces
+boolean | false | FalseTrue |
+| colors | Chart colors, can be modified globally in framework settings
+Send an array of colors to override the default colors, or do not send anything to use the default colors
+array |  | Set object |
+| options | Chart options, see ApexCharts options for pie charts
+object |  | RAW
+options : {
+} |
+| captured\_events | String array of event names that will be captured and fired as svelte events.
+This is to prevent unnecessary event subscriptions.
+array |  | Set object |
+| class | CSS classes for container
+string | "" | Set string |
+| Hide events itemsevents | Hide events items |
+| animationEnd | All chart events only fire when they are mentioned in `captured_events` list. See ApexChart Events [https://apexcharts.com/docs/options/chart/events/](https://apexcharts.com/docs/options/chart/events/) for full list of supported events.
+- | - | - |
+| beforeMount | - | - | - |
+| mounted | - | - | - |
+| updated | - | - | - |
+| mouseMove | - | - | - |
+| mouseLeave | - | - | - |
+| click | - | - | - |
+| legendClick | - | - | - |
+| markerClick | - | - | - |
+| selection | - | - | - |
+| dataPointSelection | - | - | - |
+| dataPointMouseEnter | - | - | - |
+| dataPointMouseLeave | - | - | - |
+| beforeZoom | - | - | - |
+| beforeResetZoom | - | - | - |
+| zoomed | - | - | - |
+| scrolled | - | - | - |
+| brushScrolled | - | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { PieChart } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Chart.scss' with (
+  $background-color: cv.getVar("scheme-main"),
+  $foreground-color: cv.getVar("text"),
+  $axis-lines-color: cv.getVar("border"),
+  $grid-lines-color: cv.getVar("border-weak")
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-clipboardcopier--docs
+Helpers / ClipboardCopier
+
+# ClipboardCopier
+
+## Copies configurable text to clipboard on click
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| copied\_icon\_color | Colour of the `copied_icon` after a succesful copy operation
+If `''` is selected, Icon will not change colour after copying
+ColorOptions | success | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| copied\_text | Tooltip displayed after a succesful copy operation
+string | Copied! |  |
+| copied\_icon | Icon displayed on successful copy operation
+string | check |  |
+| text | Default tooltip text
+string | Copy to clipboard |  |
+| icon | Icon to be used as the copy button
+string | copy |  |
+| copy | Text to be copied into clipboard
+string | "" |  |
+| copied | Determines if the copy operation has taken place
+boolean | false | FalseTrue |
+| class | CSS classes for the whole component
+string | "" |  |
+| Hide slots itemsslots | Hide slots items |
+| default | Description label displayed before copy icon
+- | - | - |
+
+### Usage
+
+#### Import the component
+
+```
+
+import { ClipboardCopier } from '@kws3/ui';
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/buttons-delete-button--docs
+Buttons / Delete Button
+
+# DeleteButton
+
+## Delete Button with built-in confirmation.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| class | CSS classes for the button container
+string | "" |  |
+| button\_class | CSS classes for the Delete button
+string | "" |  |
+| text | Button text
+string | Delete |  |
+| icon | Name of the icon that is to be displayed in the button
+string | minus-circle |  |
+| icon\_only | Removes text, and text space in the button
+boolean | false | FalseTrue |
+| done\_text | Button text displayed after task is completed successfully
+string | Deleted |  |
+| done\_icon | Name of the icon displayed after task is completed successfully
+string | check |  |
+| disabled | Disables the button when `true`
+boolean | false | FalseTrue |
+| cy | data-cy attribute for cypress
+string | "" |  |
+| context | Context property
+any |  |  |
+| color | Color of the Button
+ColorOptions | danger | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| size | Size of the Button
+SizeOptions | "" | Choose option...smallmediumlarge |
+| completion\_timeout | Specifies the duration to wait after the `erased` event, before the UI state returns to normal
+number | 600 |  |
+| error\_timeout | Specifies the duration to wait after the `error` event, before the UI state returns to normal
+number | 3000 |  |
+| Hide events itemsevents | Hide events items |
+| erase | Fired when user confirms delete
+- | - | - |
+| erased | Fired when deletion completes
+- | - | - |
+| error | Fired when there is an error
+- | - | - |
+
+### Usage
+
+```
+
+<DeleteButton
+  {text}
+  {icon}
+  {doing_icon}
+  {done_icon}
+  {doing_text}
+  {done_text}
+  {color}
+  {size}
+  {icon_only}
+  {disabled}
+  on:erase={eraseDo}
+/>
+<script>
+  import { DeleteButton } from '@kws3/ui';
+  export let color = "primary";
+  export let disabled = false;
+  export let size="";
+  export let icon_only = false;
+  export let text = "Delete";
+  export let icon = "minus-circle";
+  export let done_icon = "check";
+  export let done_text = "Deleted";
+  export let context = "_context_delete";
+  function eraseDo(event){
+    let { doing, done, error, context } = event.detail;
+    doing();
+    somePromise().then(() => {
+      //set visual state to Done
+      //it will autmatically revert back to
+      //normal state after "completion_timeout"
+      done();
+    })
+    .catch(() => {
+      //set visual state to Error
+      //it will autmatically revert back to
+      //normal state after "completion_timeout"
+      error();
+    })
+  }
+</script>
+```
+
+
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+
+```
+
+<script>
+  function eraseDo(event){
+    let {doing, done, error} = event.detail;
+    doing();
+    somePromise().then(() => {
+      done(() => {
+        //some callback
+      }, 500);
+    })
+    .catch(() => {
+      error(() => {
+        //some callback
+      }, 500);
+    });
+  }
+</script>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/datagrid-gridview--docs
+Datagrid / GridView
+
+# GridView
+
+## GridView component in datagrid.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| iteration\_key | Iteration key
+string | id |  |
+| data | Contains all the results that needs to be displayed
+array |  | RAW
+data : \[
+0 : {...} 5 keys
+1 : {...} 5 keys
+2 : {...} 5 keys
+3 : {...} 5 keys
+4 : {...} 5 keys
+\] |
+| columns | Table column names. {db\_field\_name: column\_name}
+object |  | RAW
+columns : {
+- id : "ID"
+- name : "Name"
+- surname : "Surname"
+} |
+| transition | Determines if a transition effect is used
+boolean | false | FalseTrue |
+| class | CSS classes for parent table
+string | "" |  |
+| is\_striped | Determines whether to use alternating row shading in the table view
+boolean | true | FalseTrue |
+| is\_narrow | Determines whether to display rows in a more compact manner
+boolean | false | FalseTrue |
+| clickableRows | Determines whether rows are clickable or not
+boolean | false | FalseTrue |
+| bulk\_actions | Determines if selecting multiple rows and doing multiple actions is allowed
+boolean | false | FalseTrue |
+| selectAll | Determines if all rows are selected
+boolean | false | FalseTrue |
+| selectedIds | List of unique IDs of all the selected rows
+array |  | RAW
+selectedIds : \[
+- 0 : 2
+\] |
+| selectAllCheckboxColor | Colour of the `select all` checkbox
+ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| selectCheckboxColor | Color of the checkbox on each row
+ColorOptions | info | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| selectCheckboxSize | Size of the checkbox
+SizeOptions | medium | Choose option...smallmediumlarge |
+| valueTransformers | Contains all custom values for each column
+object |  | RAW
+valueTransformers : {
+} |
+| classTransformers | CSS classes for each column
+object |  | RAW
+classTransformers : {
+} |
+| styleTransformers | CSS styles for each column
+object |  | RAW
+styleTransformers : {
+} |
+| visibilityMap | Contains list of columns which can be visible or not
+object |  | RAW
+visibilityMap : {
+} |
+| cellComponentMap | Contains list of columns with its custom cell component
+object |  | RAW
+cellComponentMap : {
+} |
+| visualActivationOnClick | Determines whether clickable rows activate visually on click
+boolean | true | Set boolean |
+| activatedId | Unique id of row that is activated
+object |  | Set object |
+| rowComponent | Contains a custom row component
+any |  | Set object |
+| Hide events itemsevents | Hide events items |
+| toggleSelectAll | Fires an event every time the `select all` checkbox is toggled
+- | - | - |
+| rowClick | - | - | - |
+| rowSelectChecked | - | - | - |
+| \_forwardEvent | - | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+use { GridView } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Grid.scss' with (
+  $box-shadow: cv.getVar("shadow"),
+  $th-background: cv.getVar("table-background-color"),
+  $th-color: cv.getVar("text"),
+  $tag-margin: 0 0.125rem 0.125rem 0,
+  $icon-size: 1.5em,
+  $checked-row-background: cv.getVar("info-light"),
+  $checked-row-color: cv.getVar("info"),
+  $checked-row-border-color: $checked-row-color,
+  $active-row-background: cv.getVar("table-row-active-background-color"),
+  $active-row-color: cv.getVar("table-row-active-color"),
+  $active-row-border-color: $active-row-color,
+  $background: cv.getVar("table-background-color"),
+  $striped-row-background: cv.getVar("table-striped-row-even-background-color"),
+  $sticky-column-border-color: cv.getVar("border"),
+  $sticky-column-active-row-border-color: $active-row-border-color,
+  $hover-background-color: cv.getVar("table-row-hover-background-color"),
+  $even-row-hover-background-color: cv.getVar("table-striped-row-even-hover-background-color"),
+  $cell-border-color: cv.getVar("table-cell-border-color"),
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/forms-timepicker--docs
+Forms / Timepicker
+
+# Timepicker
+
+## Timepicker component that allows you to select time.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| value | Accepts a date value in the format `H:i`
+Where `H` is in 24hr format
+This property can be bound to, to fetch the selected time. Output is in the same format as input.
+string | "" |  |
+| style | Inline CSS for the input
+string | "" |  |
+| class | CSS classes for the input
+string | "" |  |
+| placeholder | Placeholder text for the input
+string | Select Time.. |  |
+| disabled | Disables the component
+boolean | false | FalseTrue |
+| time\_24hr | Display time selection UI in 24hr format
+boolean | false | FalseTrue |
+| min\_time | Set earliest selectable time as string
+**Example:** `"01:00 PM"` or "13:00"\`
+any |  |  |
+| max\_time | Set latest selectable time as string
+**Example:** `"03:00 PM"` or "15:00"\`
+any |  |  |
+| options | Extended set of options as supported by Flatpicker
+See: [https://flatpickr.js.org/options/](https://flatpickr.js.org/options/)
+object |  | RAW
+options : {
+} |
+| ui\_color | Colour of popup time selection UI
+ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| color | Colour of the Time picker input
+ColorOptions | "" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| readonly | Make input value read-only
+boolean | false | FalseTrue |
+| Hide events itemsevents | Hide events items |
+| timeChange | Triggered when time changes
+- | - | - |
+| ready | Triggered when UI is ready
+- | - | - |
+| open | Triggered when popup UI opens
+- | - | - |
+| close | Triggered when popup UI closes
+- | - | - |
+| change | Native input change event
+- | - | - |
+
+### Usage
+
+#### Import the SCSS:
+
+**Note:** _Need to import flatpicker SCSS file first_
+
+```
+
+@use 'flatpickr/dist/flatpickr';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Timepicker.scss' with (
+  $theme-colors: dv.$colors,
+  $background: cv.getVar("scheme-main-ter"),
+  $text: cv.getVar("text"),
+  $shadow: cv.getVar("shadow"),
+  $radius: cv.getVar("radius"),
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/forms-colorpicker--docs
+Forms / Colorpicker
+
+# Colorpicker
+
+## Colorpicker component that allows you to select a colour.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| color | Current selected colour (hex format only)
+This property can be bound to, to fetch the current colour
+string | 000000 |  |
+| typeable | Allows typing the colour hex Code
+boolean | true | FalseTrue |
+| readonly | Enables read-only mode
+boolean | false | FalseTrue |
+| mini | Alternate mini colour picker without typeable input
+boolean | false | FalseTrue |
+| disabled | Disables the component
+boolean | false | FalseTrue |
+| size | Size of the colour picker trigger
+SizeOptions | "" | Choose option...smallmediumlarge |
+| Hide events itemsevents | Hide events items |
+| change | Triggered when color changes
+- | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { Colorpicker } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Colorpicker.scss' with (
+  $picker-shadow: cv.getVar("shadow"),
+  $picker-border-color: cv.getVar("border"),
+  $preview-shadow:
+    0 0.125rem 0.1875rem
+      hsla(
+        cv.getVar("shadow-h"),
+        cv.getVar("shadow-s"),
+        cv.getVar("shadow-l"),
+        0.1
+      ),
+    0 0 0 0.0625rem
+      hsla(
+        cv.getVar("shadow-h"),
+        cv.getVar("shadow-s"),
+        cv.getVar("shadow-l"),
+        0.1
+      ),
+  $preview-radius: cv.getVar("radius-small"),
+  $icon-shadow: 0 0.0625rem 0.0625rem
+    hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4),
+  $dragover-hilight-color: cv.getVar("success-soft"),
+);
+```
+
+
+
+This component supports HTML5 drag and drop.
+
+Use `event.dataTransfer.setData('text', <new_color>)` on the draggable element.
+Then once you drop the draggable element into this component, it picks up the data from the `text` value.
+
+#### **Example:**
+
+```
+
+<div
+  style="background:#bada55"
+  draggable="true"
+  on:dragstart={(e) => {
+    e.dataTransfer.setData("text", "bada55");
+  }}>
+  #bada55
+</div>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-divider--docs
+Helpers / Divider
+
+# Divider
+
+## Component to display a horizontal or vertical divider with optional text.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| color | Color of the Divider lines
+ColorOptions | "" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| light | Whether to display a lighter variant of the `color`
+boolean | false | FalseTrue |
+| vertical | Whether to orient the Divider vertically. Vertical Divider take up the height of their parent.
+boolean | false | FalseTrue |
+| alignment | Alignment of the Divider text. `top`/ `left` and `bottom`/ `right` are analogous for vertical Dividers
+Exclude<Positions, 'start'\|'end'> | center | Choose option...topbottomleftrightstartcenterend |
+| class | CSS class for Divider
+string | "" |  |
+| style | Inline CSS styles for the Divider
+string | "" |  |
+| Hide slots itemsslots | Hide slots items |
+| default | Default slot for text inside Divider
+- | - | - |
+
+### Usage
+
+##### Import the component:
+
+```
+
+import { Divider } from '@kws3/ui';
+```
+
+
+
+Use `m-*` helper classes from Bulma to precisely control the spacing around the divider.
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Divider.scss' with (
+  $theme-colors: dv.$colors,
+  $color: cv.getVar("border"),
+  $font-size: cv.getVar("size-small"),
+  $gap: 0.25rem,
+  $margin: 1rem
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/utils-1-overview--docs
+Utils / 1. Overview
+
+## 1\. truncate
+
+The `truncate` function shortens the given string to a specified length.
+
+#### Usage
+
+```
+
+import { truncate } from "@kws3/ui/utils";
+truncate(string, length);
+
+```
+
+#### [🔗 Learn more about truncate](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-truncate--truncate)
+
+## 2\. nl2br
+
+The `nl2br` function replaces each newline ( `\n`) with HTML line breaks ( `
+`) in a string.
+
+#### Usage
+
+```
+
+import { nl2br } from "@kws3/ui/utils";
+nl2br(input);
+
+```
+
+#### [🔗 Learn more about nl2br](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-nl2br--nl-2-br)
+
+## 3\. cloneObject
+
+The `cloneObject` function is used to clone any js object.
+
+#### Usage
+
+```
+
+import { cloneObject } from "@kws3/ui/utils";
+cloneObject(obj);
+
+```
+
+#### [🔗 Learn more about cloneObject](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-cloneobject--clone-object)
+
+## 4\. rAF
+
+The `rAF` function is used to request an animation before the next repaint.
+
+#### Usage
+
+```
+
+import { rAF } from "@kws3/ui/utils";
+rAF(callBackFunction);
+
+```
+
+#### [🔗 Learn more about rAF](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-raf--raf)
+
+## 5\. debounce
+
+The `debounce` function is used to specify the function to execute after the debounce time.
+
+#### Usage
+
+```
+
+import { debounce } from "@kws3/ui/utils";
+debounce(callBackFunction, threshold);
+
+```
+
+#### [🔗 Learn more about debounce](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-debounce--debounce)
+
+## 6\. capitaliseFirstLetter
+
+The `capitaliseFirstLetter` function converts the first character of a string to uppercase.
+
+#### Usage
+
+```
+
+import { capitaliseFirstLetter } from "@kws3/ui/utils";
+capitaliseFirstLetter(string);
+
+```
+
+#### [🔗 Learn more about capitaliseFirstLetter](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-capitalisefirstletter--capitalise-first-letter)
+
+## 7\. createDate
+
+The `createDate` function makes mysql dates work in safari.
+
+#### Usage
+
+```
+
+import { createDate } from "@kws3/ui/utils";
+createDate(date);
+
+```
+
+#### [🔗 Learn more about createDate](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-createdate--create-date)
+
+## 8\. Smart Forms
+
+The `makeForms` is a factory helper used for tracking if the form data is clean.
+
+#### Usage
+
+```
+
+import { makeForms } from "@kws3/ui/form";
+makeForms({form1_data}, {form2_data});
+
+```
+
+#### [🔗 Learn more about Smart Forms](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-smartforms--smart-forms)
+
+## 9\. Resize Observer
+
+The `resizeObserver` is used to handle window resizing.
+
+#### Usage
+
+```
+
+{#if hasResizeObserver}
+  <div use:resizeObserver on:resize={resizeHandler}>
+{/if}
+
+<script>
+  import { hasResizeObserver, resizeObserver } from "@kws3/ui/resizeObserver";
+</script>
+
+```
+
+#### [🔗 Learn more about Resize Observer](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-resizeobserver--resize-observer)
+
+## 10\. Search
+
+The `makeSearchEngine` is a factory helper used to create a search engine with options.
+
+#### Usage
+
+```
+
+import { makeSearchEngine } from "@kws3/ui/search";
+let searchOptions = {
+  search_key, // optional, default 'value'
+  scoreThreshold, // optional, default 5
+  fuzzyOpts : {
+    analyzeSubTerms, // Whether or not analyze sub-terms, default false
+    analyzeSubTermDepth, //How many sub terms should be analyzed , default 10,
+    highlighting: {
+      before, // markup to add before mattched charectar, default '<em>'
+      after, // markup to add after mattched charectar, default '</em>'
+    },
+  }
+}
+const fuzzysearch = makeSearchEngine(searchOptions);
+fuzzysearch(needle, haystack);
+
+```
+
+#### [🔗 Learn more about Search](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-search--search)
+
+## 11\. keyboard events
+
+The `keyboard` package is used to trigger events based on certain key strokes.
+
+#### Usage
+
+```
+
+<input type="text" use:enter={enterEvent} use:tab={tabEvent} />
+<script>
+  import { enter, tab } from "@kws3/ui/keyboard";
+  function enterEvent() {
+    console.log("Enter Pressed");
+  }
+</script>
+
+```
+
+#### [🔗 Learn more about keyboardEvents](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-keyboardevents-1-pre-defined-events--1-pre-defined-events)
+
+## 12\. makeKeyDefinition
+
+The `makeKeyDefinition` is a factory helper used to create custom keydown handler events.
+Key combinations can be made with any modifier keys from `Shift`, `Ctrl`, `Alt`, `Meta` with characters, numbers or function keys.
+
+#### Usage
+
+```
+
+import {makeKeyDefinition} from "@kws3/ui/keyboard";
+const save = makeKeyDefinition(keyCombination)
+
+```
+
+#### [🔗 Learn more about makeKeyDefinition](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-keyboardevents-2-create-key-events--2-create-key-events)
+
+## 13\. currency
+
+The `currency` function is used to return a number in a currency format.
+
+#### Usage
+
+```
+
+import { currency } from "@kws3/ui/utils";
+currency(number);
+
+```
+
+#### [🔗 Learn more about currency](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-currency--currency)
+
+## 14\. dateToOrdinal
+
+The `dateToOrdinal` function converts an date to an ordinal.
+
+#### Usage
+
+```
+
+import { dateToOrdinal } from "@kws3/ui/utils";
+dateToOrdinal(number);
+
+```
+
+#### [🔗 Learn more about dateToOrdinal](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-datetoordinal--date-to-ordinal)
+
+## 15\. randomIntegerFromInterval
+
+The `randomIntegerFromInterval` function is used to return a random integer.
+
+#### Usage
+
+```
+
+import { randomIntegerFromInterval } from "@kws3/ui/utils";
+randomIntegerFromInterval(min, max);
+
+```
+
+#### [🔗 Learn more about randomIntegerFromInterval](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-randominteger--random-integer)
+
+## 16\. randomPercent
+
+The `randomPercent` returns a random percentage. Default value for `min` and `max` are `1` & `100` respectively.
+
+#### Usage
+
+```
+
+import { randomPercent } from "@kws3/ui/utils";
+randomPercent(min, max);
+randomPercent(min);
+randomPercent();
+
+```
+
+#### [🔗 Learn more about randomPercent](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-randompercent--random-percent)
+
+## 17\. fileDownloader
+
+The `fileDownloader` function is used to download data/stream.
+
+**Parameter:**
+data: `type : object`
+fileName: `type : string`
+
+```
+
+import { fileDownloader } from "@kws3/ui/utils";
+fileDownloader(data, filename);
+
+```
+
+#### [🔗 Learn more about fileDownloader](https://ui.kws3.media/v4/iframe.html?path=/story/utils-2-examples-filedownloader--file-downloader)
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/buttons-process-button--docs
+Buttons / Process Button
+
+# ProcessButton
+
+## Process Button with properties.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| class | CSS classes for button container
+string | "" |  |
+| button\_class | CSS classes for the Process button
+string | "" |  |
+| text | Button text
+string | Click Me |  |
+| icon | Name of the icon that is to be displayed in the button
+string | check |  |
+| icon\_only | Removes text, and text space in the button
+boolean | false | FalseTrue |
+| done\_text | Button text displayed after task is completed successfully
+string | Done |  |
+| done\_icon | Name of the icon displayed after task is completed successfully
+string | check |  |
+| disabled | Disables the button when `true`
+boolean | false | FalseTrue |
+| cy | data-cy attribute for cypress
+string | "" |  |
+| context | Context property
+any | "" |  |
+| size | Size of the Button
+SizeOptions | "" | Choose option...smallmediumlarge |
+| color | Color of the Button
+ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| completion\_timeout | Specifies the duration to wait after the `done` event, before the UI state returns to normal
+number | 600 |  |
+| error\_timeout | Specifies the duration to wait after the `error` event, before the UI state returns to normal
+number | 3000 |  |
+| Hide events itemsevents | Hide events items |
+| do | Fired when user presses button
+- | - | - |
+| done | Fired when task completes successfully
+- | - | - |
+| error | Fired when there is an error
+- | - | - |
+
+### Usage
+
+```
+
+<ProcessButton
+  {text}
+  {icon}
+  {done_icon}
+  {done_text}
+  {color}
+  {size}
+  {icon_only}
+  {disabled}
+  on:doing={onDoing}
+/>
+<script>
+  import { ProcessButton } from '@kws3/ui';
+  export let color = "primary";
+  export let disabled = false;
+  export let size="";
+  export let icon_only = false;
+  export let text = "Click Me";
+  export let icon = "check";
+  export let done_icon = "check";
+  export let done_text = "Done";
+  function onDoing(event){
+    let {doing, done, error} = event.detail;
+    doing();
+    somePromise().then(() => {
+      //set visual state to Done
+      //it will autmatically revert back to
+      //normal state after "completion_timeout"
+      done();
+    })
+    .catch(() => {
+      //set visual state to Error
+      //it will autmatically revert back to
+      //normal state after "completion_timeout"
+      error();
+    })
+  }
+</script>
+```
+
+
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+
+```
+
+<script>
+  function onDoing(event){
+    let {doing, done, error} = event.detail;
+    doing();
+    somePromise().then(() => {
+      done(() => {
+        //some callback
+      }, 500);
+    })
+    .catch(() => {
+      error(() => {
+        //some callback
+      }, 500);
+    });
+  }
+</script>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-dialog--docs
+Helpers / Dialog
+
+# Dialog
+
+## Message components for showing alerts.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| title | string | - |  |
+| help\_text | string | - |  |
+| size | string | - | Choose option...smallmediumlarge |
+| input\_value | string | - |  |
+| icon | string | - |  |
+| icon\_color | string | - | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| icon\_size | string | - | Choose option...smallmediumlarge |
+| ok\_button\_text | - | - | - |
+| ok\_button\_color | - | - | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| ok\_button\_icon | - | - | - |
+| cancel\_button\_text | - | - | - |
+| cancel\_button\_color | - | - | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| cancel\_button\_icon | - | - | - |
+
+The signature of the helper functions are almost identical to their native counterparts.
+
+The main differences are:
+
+1. They return a `Promise`. The `Promise` fulfils with the same values as the native functions.
+2. They accept an extra argument with a configuration object
+
+Valid values for the configuration object are in the table above.
+
+### Usage
+
+```
+
+import { Dialog } from '@kws3/ui';
+//---
+//alert example
+let alert_done = await Dialog.alert('This is an alert', {title: "someTitle"});
+//---
+//confirm example
+let accepted = await Dialog.confirm("Agree with everything?", {ok_button_text: "Yes", cancel_button_text: "No"})
+//---
+//prompt example
+let age = await Dialog.prompt("How old are you?");
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/datagrid-datasort--docs
+Datagrid / DataSort
+
+# DataSort
+
+## DataSort component in datagrid.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| options | List of options in the dropdown
+array |  | RAW
+options : \[
+0 : {...} 2 keys
+1 : {...} 2 keys
+\] |
+| sort\_by | Stores the selected option value
+string | "" |  |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { DataSort } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/DataSort.scss' with (
+  $border-radius: cv.getVar("radius-medium"),
+  $background: cv.getVar("border"),
+  $label-background: hsla(
+    cv.getVar("scheme-h"),
+    cv.getVar("scheme-s"),
+    90%,
+    1
+  ),
+  $dropdown-text-color: cv.getVar("primary"),
+  $dropdown-marker-color: cv.getVar("primary"),
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/charts-donut-chart--docs
+Charts / Donut Chart
+
+# Donut Chart
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| data | Chart data
+array |  | RAW
+data : \[
+- 0 : 60
+- 1 : 20
+- 2 : 10
+- 3 : 10
+\] |
+| labels | Data labels
+array |  | RAW
+labels : \[
+- 0 : "Me"
+- 1 : "You"
+- 2 : "Her"
+- 3 : "Them"
+\] |
+| width | Chart width, supports CSS size strings
+string | 100% |  |
+| height | Chart height, supports CSS size strings
+string | auto |  |
+| sparklines | Displays the chart as a sparkline chart.
+These are charts with minimal UI and can be
+squeezed into small spaces
+boolean | false | FalseTrue |
+| colors | Chart colors, can be modified globally in framework settings
+Send an array of colors to override the default colors, or do not send anything to use the default colors
+array |  | Set object |
+| options | Chart options, see ApexCharts options for donut charts
+object |  | RAW
+options : {
+} |
+| captured\_events | String array of event names that will be captured and fired as svelte events.
+This is to prevent unnecessary event subscriptions.
+array |  | Set object |
+| class | CSS classes for container
+string | "" | Set string |
+| Hide events itemsevents | Hide events items |
+| animationEnd | All chart events only fire when they are mentioned in `captured_events` list. See ApexChart Events [https://apexcharts.com/docs/options/chart/events/](https://apexcharts.com/docs/options/chart/events/) for full list of supported events.
+- | - | - |
+| beforeMount | - | - | - |
+| mounted | - | - | - |
+| updated | - | - | - |
+| mouseMove | - | - | - |
+| mouseLeave | - | - | - |
+| click | - | - | - |
+| legendClick | - | - | - |
+| markerClick | - | - | - |
+| selection | - | - | - |
+| dataPointSelection | - | - | - |
+| dataPointMouseEnter | - | - | - |
+| dataPointMouseLeave | - | - | - |
+| beforeZoom | - | - | - |
+| beforeResetZoom | - | - | - |
+| zoomed | - | - | - |
+| scrolled | - | - | - |
+| brushScrolled | - | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { DonutChart } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Chart.scss' with (
+  $background-color: cv.getVar("scheme-main"),
+  $foreground-color: cv.getVar("text"),
+  $axis-lines-color: cv.getVar("border"),
+  $grid-lines-color: cv.getVar("border-weak")
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/datagrid-tileview--docs
+Datagrid / TileView
+
+# TileView
+
+## TileView component in datagrid.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| iteration\_key | Iteration key
+string | id |  |
+| data | Contains all the results to be listed
+array |  | RAW
+data : \[
+0 : {...} 5 keys
+1 : {...} 5 keys
+2 : {...} 5 keys
+3 : {...} 5 keys
+4 : {...} 5 keys
+5 : {...} 5 keys
+6 : {...} 5 keys
+\] |
+| transition | Determines if a transition effect is used
+boolean | false | FalseTrue |
+| class | CSS classes for tiles wrapper
+string | "" |  |
+| tileItemComponent | Contains a custom component
+object |  | Set object |
+| per\_row | Sets how many items to display in a row. This is ignored when `fluid_items_per_row` is `true`
+number | 3 |  |
+| fluid\_items\_per\_row | When set to `true`, the number of items per row varies with available space
+boolean | false | FalseTrue |
+| min\_width | CSS string specifying minimum width, this is only applied when `fluid_items_per_row` is `true`
+string | unset |  |
+| max\_width | CSS string specifying maximum width, this is only applied when `fluid_items_per_row` is `true`
+string | unset |  |
+| grow | Whether a tile can grow if there is space available, this is only applied when `fluid_items_per_row` is `true`
+boolean | true | FalseTrue |
+| shrink | Whether a tile can shrink if there isn't enough space available, this is only applied when `fluid_items_per_row` is `true`
+boolean | true | FalseTrue |
+| columns | Column names for the displayed table {db\_field\_name: column\_name}
+object |  | RAW
+columns : {
+- id : "ID"
+- name : "Name"
+- surname : "Surname"
+} |
+| clickableRows | Determines whether rows are clickable or not
+boolean | false | FalseTrue |
+| valueTransformers | Contains all custom values for each column
+object |  | RAW
+valueTransformers : {
+} |
+| classTransformers | CSS class names for each column
+object |  | RAW
+classTransformers : {
+} |
+| styleTransformers | CSS styles for each column
+object |  | RAW
+styleTransformers : {
+} |
+| visibilityMap | Contains list of columns which can be visible or not
+object |  | RAW
+visibilityMap : {
+} |
+| visualActivationOnClick | Determines whether clickable rows activate visually on click
+boolean | true | Set boolean |
+| activatedId | Unique id of row that is activated
+object |  | Set object |
+| Hide events itemsevents | Hide events items |
+| rowClick | - | - | - |
+| rowSelectChecked | - | - | - |
+| \_forwardEvent | - | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { TileView } from '@kws3/ui';
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-notification--docs
+Helpers / Notification
+
+# Notification
+
+## Notification components.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| color | Color of the Notification box
+ColorOptions | info | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| class | CSS classes for notification container
+string | "" |  |
+| style | Inline CSS for notification content
+string | "" |  |
+| light | Inverted colors for notification box and contents
+boolean | false | FalseTrue |
+| dismissable | Determines whether close button is displayed or not
+boolean | false | FalseTrue |
+| active | Determines whether the whole component is being displayed or not
+boolean | true | FalseTrue |
+| Hide events itemsevents | Hide events items |
+| dismiss | Fired when dismiss button is clicked.
+Turns `active` to `false`, which hides the component.
+The parent can then decide what to do with the component
+- | - | - |
+| Hide slots itemsslots | Hide slots items |
+| default | Used for notification content
+- | - | - |
+
+### Usage
+
+```
+
+import { Notification } from '@kws3/ui';
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-message--docs
+Helpers / Message
+
+# Message
+
+## Message components for showing alerts.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| size | Size of the Message
+SizeOptions | "" | Choose option...smallmediumlarge |
+| color | Color of the Message box
+ExtendedColorOptions | info | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| class | CSS classes for Message box
+string | "" |  |
+| style | Inline CSS for Message box
+string | "" |  |
+| inner\_class | CSS classes for Message content
+string | "" |  |
+| inner\_style | Inline CSS for Message content
+string | "" |  |
+| title\_class | CSS classes for Message box title
+string | "" |  |
+| title | Title of the message box
+Having content here will display the title bar and content, even if `has_title` is set to false
+string | "" |  |
+| has\_title | Determines whether to show title bar when no title content is present
+boolean | false | FalseTrue |
+| dismissable | Determines whether close button is displayed or not
+boolean | false | FalseTrue |
+| active | Determines whether the whole component is being displayed or not
+boolean | true | FalseTrue |
+| Hide events itemsevents | Hide events items |
+| dismiss | Fired when dismiss button is clicked.
+Turns `active` off, which hides the component.
+The parent can then decide what to do with the component
+- | - | - |
+| Hide slots itemsslots | Hide slots items |
+| title | Used for message title.
+**Example:** `<h1 slot="title"> This is a Slot Header </h1>`
+- | - | - |
+| default | Used for message content
+- | - | - |
+
+### Usage
+
+```
+
+import { Message } from '@kws3/ui';
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/canvas-canvas--docs
+Canvas / Canvas
+
+# Canvas
+
+## Canvas component.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| width | Canvas width
+string | 250px |  |
+| height | Canvas height
+string | 250px |  |
+| pen\_width | pen width
+number | 2 |  |
+| eraser\_width | Eraser width
+number | 6 |  |
+| pen\_color | line color
+string | #ff0000 |  |
+| background\_image | Background image for the canvas
+string | "" |  |
+| readonly | Determines whether canvas is readonly or not
+boolean | false | FalseTrue |
+| disabled | Determines whether canvas is disabled or not
+boolean | false | FalseTrue |
+| has\_controls | Determines control tools available or not
+boolean | true | FalseTrue |
+| image | The Data created in the canvas by the user
+string | "" |  |
+| initial\_scale | Initial transform scale for the canvas before expansion
+number | 1 |  |
+| expand\_to | The direction to which the canvas should expand.
+'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+string | center |  |
+| expand\_from | The direction from which the canvas should expand.
+'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+string | center |  |
+| expand\_scale | Transform scale of the canvas on expansion
+value in percentage %
+number | 50 |  |
+| tools | List of tools available for user to select from
+object |  | RAW
+tools : {
+Pen : {...} 3 keys
+Eraser : {...} 3 keys
+} |
+| actions | List of actions toolbar
+array |  | RAW
+actions : \[
+- 0 : "controls"
+- 1 : "colorpicker"
+- 2 : "undo"
+- 3 : "redo"
+- 4 : "reset"
+- 5 : "expand"
+\] |
+| toolbar\_placement | Default position of the action toolbar
+Extract<Positions, 'bottom'\|'top'> | bottom | - |
+| control\_position | Default position of controls
+Extract<Positions, 'start'\|'center'\|'end'> | center | - |
+| active\_tool | Default active tool
+string'Pen''Eraser' | "" | - |
+| cy | data-cy attribute for cypress
+string | "" |  |
+| is\_touched | Determines whether canvas is touched or not
+boolean | false | Set boolean |
+
+### Usage
+
+```
+
+import { Canvas } from '@kws3/ui';
+```
+
+
+
+##### Import the CSS:
+
+```
+
+@use '@kws3/ui/styles/Canvas.scss';
+```
+
+
+
+### Usage Example
+
+```
+
+<Canvas
+    bind:image
+    {width}
+    {height}
+    {pen_width}
+    {eraser_width}
+    {pen_color}
+    {background_image}
+    {readonly}
+    {disabled}
+    {initial_scale}
+    {expand_to}
+    {expand_from}
+    {expand_scale}
+    {tools}
+    {active_tool}
+    {actions}
+    {has_controls}
+    {toolbar_placement}
+    {control_position}
+    />
+
+<script>
+  import { Canvas, Pen, Eraser  } from '@kws3/ui';
+
+  export let width = "250px",
+    height = "250px",
+    pen_width = 2,
+    eraser_width = 6,
+    pen_color = "#ff0000",
+    background_image = "",
+    readonly = false,
+    disabled = false,
+    image = "",
+    initial_scale = 1,
+    expand_to = "center",
+    expand_from = "center",
+    expand_scale = 50,
+    tools = { Pen, Eraser },
+    actions = ["controls", "colorpicker", "undo", "redo", "reset", "expand"],
+    toolbar_placement = "bottom",
+    control_position = "center",
+    active_tool = "Pen",
+    has_controls = true,
+    cy = "";
+</script>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/changelog--docs
+Changelog
+
+## Changelog
+
+## 4.5.5
+
+- Fix type of `ToggleButtons` value, it can be any type
+- Fix Charts axis text colours to match theme
+- Fix Charts axis line colours to match theme
+- Fix Charts grid line colours to match theme
+- Fix type of `context` prop of Button components, it can be any type
+
+## 4.5.4
+
+- Bugfix, add types to exports
+
+## 4.5.3
+
+- Bugfix, add styles to exports
+
+## 4.5.2
+
+- Fix hardcoded color in `Radio` component
+- Remove legacy additional `is-active` class from active buttons in `ToggleButtons` component
+- Fix value type in `SearchableSelect`
+- Make `AutoComplete`, `SearchableSelect` and `MultiSelect` components work in SSR mode
+- Fix default colors and output radius for `RangeSlider`
+- Fix default thumb and output radius for `RangeSlider`
+
+## 4.5.1
+
+- Fix ActionReturn type for `popover` action
+- Update popover arrow default colour to be border color
+- Fix dark mode default text colour in `Timepicker` component
+- Fix default border colours for active and checked rows in `Grid` component
+- Allow border colours to be configured for checked and active rows in `Grid` component
+
+# 4.5.0 \[BREAKING\]
+
+- This version requires Bulma v1
+- Supports bulma dark mode
+- All SCSS files are now modular, so you need to use `@use` instead of `@import`
+- All SCSS variable names have been updated. Now they do not start with `$kws-` and are more generic. This is due to using modular SCSS
+- All SCSS variables now have default Bulma css variables as default values, so most of the time an override will not be required, and it will just work according to the active theme
+- `ToggleButtons` component now has it's own SCSS file that needs to be imported
+- Default `inactive_class` has changed in `ToggleButtons` component
+- Some internal class names in `FileUpload` component have changed
+- Some internal class names in `TimelineItem` component have changed
+- `Colorpicker` component's wrapper class name has changed
+- All instances of `is-marginless` css class has been replaced with `marginless`, as this is how new Bulma v1 supports it
+- All instances of `is-paddingless` css class has been replaced with `paddingless`, as this is how new Bulma v1 supports it
+- Fix `datepicker` and `timepicker` action return types
+- Fix utility `cloneObject` type signature
+- Add `transparent` to `ExtendedColors` type
+
+## 4.3.5
+
+- Fix Radio component value type
+
+## 4.3.4
+
+- Make granular types of form maker generic
+
+## 4.3.3
+
+- More granular types for form maker
+
+## 4.3.2
+
+- Extended typings for form helper
+- Fix typings for ButtonEvent
+
+## 4.3.1
+
+- Include bulma 0.9 as peer dependency
+- Include svelte 4 as peer dependency
+
+## 4.3.0
+
+- `StickyColumnsTableWrapper` now includes a box shadow to compensate for the inner table's drop shadow being hidden due to overflow clipping.
+- **\[BREAKING\]** `GridView` component now transitions each `GridCell` independently, previously used to transition each `GridRow`. This means all content in `GridCell` now includes an additional wrapper element for handling the transitions. This matches the behaviour in `TileView`.
+
+## 4.2.5
+
+- Fix z-index for sticky columns
+- Allow `inner_class` in `InfiniteList` component
+- Configurable scroll shadows on `InfiniteList` defaulting to a radial scroll shadow
+
+## 4.2.1
+
+- Fix grid row hover state colors for sticky columns
+
+## 4.2.0
+
+- Fix grid row transitions to be global
+- Add `createScaler` and `scale` functions to utils
+- `GridView` is no longer wrapped in `div.data-table`
+- New component `StickyColumnsTableWrapper` added
+- Use dynamic scroll shadows for `InfiniteList` component
+
+## 4.1.4
+
+- add `black` and `white` as valid color types
+
+## 4.1.3
+
+- Ensure transitions are global for `Modal`, `CardModal` and `ActionSheet` components
+- `InfiniteList` \- do not fake a scroll event on a resize event, fixes loading bugs
+
+## 4.1.2
+
+- `MultiSelect` \- fixed issue where raw object were initially outputted (if provided)
+- `SearchableSelect and ` MultiSelect\` (Async): resolved issue with the 'active' class not attaching to the most matched item in dropdown options
+- `SearchableSelect` \- improved behavior, ensuring the `tab` key correctly loses focus
+- `AutoComplete` \- dropdown now closes on loss of focus triggered by the `tab` key
+
+## 4.1.1
+
+- `DatePicker` \- add support for configurable border radius
+- `DatePicker` \- add support for configurable box shadow
+- `DatePicker` \- bug fix on date range selection colors
+
+## 4.1.0
+
+- New component `InfiniteList` Added
+
+## 4.0.3
+
+- `ScrollableList` \- bugfixes, and add support for removing items without affecting scroll position
+
+## 4.0.2
+
+- `ToggleButtons` \- add support for count tags, and fix css not applying
+
+## 4.0.1
+
+- `ScrollableList` \- add support for custom iteration key for keyed each block
+
+## 4.0.0
+
+- add svelte 4 compatibility
+
+* * *
+
+## 2.3.4
+
+- add `black` and `white` as valid color types
+
+## 2.3.3
+
+- `InfiniteList` \- do not fake a scroll event on a resize event, fixes loading bugs
+
+## 2.3.2
+
+- `MultiSelect` \- fixed issue where raw object were initially outputted (if provided)
+- `SearchableSelect and ` MultiSelect\` (Async): resolved issue with the 'active' class not attaching to the most matched item in dropdown options
+- `SearchableSelect` \- improved behavior, ensuring the `tab` key correctly loses focus
+- `AutoComplete` \- dropdown now closes on loss of focus triggered by the `tab` key
+
+## 2.3.1
+
+- `DatePicker` \- add support for configurable border radius
+- `DatePicker` \- add support for configurable box shadow
+- `DatePicker` \- bug fix on date range selection colors
+
+## 2.3.0
+
+- New component `InfiniteList` Added
+
+## 2.2.5
+
+- `ScrollableList` \- bugfixes, and add support for removing items without affecting scroll position
+
+## 2.2.4
+
+- `ToggleButtons` \- add support for count tags, and fix css not applying
+
+## 2.2.3
+
+- `ScrollableList` \- add support for custom iteration key for keyed each block
+
+## 2.2.2
+
+- `ScrollableList` \- fix jumping issue when edge of scrollable regions are reached
+
+## 2.2.1
+
+- `Icon` fix icon sizes when line-awesome icons are loaded
+- `Icon` fix material icons when icon family is set globally
+- `Icon` add support for adding custom icon families
+- `Chart` fix, ensure ApexCharts is loaded before trying to initialise it
+
+## 2.2.0
+
+- Fix bug where `ScrollableList` component puts extra padding on top of list when fast scroll to top
+- `ScrollableList` \- Fix bug to reset internal positioning props when data changes
+- fix Popperjs position strategy to work better on mobile by default, affects `SearchableSelect`, `MultiSelect` and `AutoComplete` components
+- `ActionSheet` \- Update styling to make it wokr better visually on desktop
+
+## 2.1.4
+
+- Fix bug where disabled `Checkbox` components wrongly appeared as if they were checked
+- Allow adding CSS classes to the input field in `NumberInput` component
+
+## 2.1.3
+
+- `PasswordInput` \- add support for field `autocomplete` and `required`
+- `PasswordValidator` \- fix `valid` field binding
+
+## 2.1.2
+
+- `PasswordInput` \- add support for field `name`
+- `PasswordInput` \- fix spacing when icons are turned off
+
+## 2.1.1
+
+- Package `text-mask-core` moved to @kws3 namespace.
+
+## 2.1.0
+
+- Bugfix with Colorpicker component, where colors could not be typed in manually.
+- Extended typing and typescript support
+- New Components added `Canvas`, `ESignature`, `PenInput` and `PenControls`
+- Exposed `Canvas` tools ( `Pen` and `Eraser`) from `DrawingPad` \- drawing helper module.
+- New Components added `PasswordInput` with value show/hide feature.
+
+## 2.0.5
+
+- `RangeSlider` \- Expose native `input` event
+- `RangeSlider` \- Supports thumb color class `is-thumb-{color}`
+- `AutoComplete`, `SearchInput`, `SearchableSelect` and `MultiSelect` \- deprecated `scoreThreshold`, changed to `score_threshold`
+
+## 2.0.4
+
+- `ToggleButtons` \- set the value if not disabled and not the same value is set
+
+## 2.0.3
+
+- Sveltkit compatibility fix ('window' not defined)
+
+## 2.0.2
+
+- Bugfixes with chart default colours
+- Set today's date on datepicker initialisation so that long running pages don't stick to the date of first load as today's date
+
+## 2.0.1
+
+- Hardcoded color bugfix on pagination styles
+
+## 2.0.0
+
+- Add support for custom CSS classes for the table in `GridView` component
+- Add support for displaying `GridView` table rows in a compact manner using `is_narrow` prop.
+- Vertically center all rows by default in `GridView`.
+- Add support for custom CSS classes for the wrapper in `TileView` component
+- Add support for variable number of items per row in `TileView` component via `fluid_items_per_row` prop
+- Fix keyboard scrolling issue on `AutoComplete`, `MultiSelect` and `SearchableSelect` component
+- Fix `time_24hr` reactivity issue on `Timepicker`
+- Expose `min_time`, `max_time` from `Timepicker`
+- Expose `readonly` from `Datepicker` and `Timepicker` to prevent calendar opening on focus.
+- New `SearchInput` component: search on multiple keys at the same time.
+- Deprecated `@kws3/ui/utils/fuzzysearch` and `@kws3/ui/utils/some_module`.
+- Expose factory function `makeSearchEngine` from `@kws3/ui/search`
+- Expose `truncate`, `nl2br`, `cloneObject`, `rAF`, `debounce`, `capitaliseFirstLetter`, `createDate`, `currency`, `dateToOrdinal`, `randomIntegerFromInterval`, `randomPercent`, `fileDownloader` from `@kws3/ui/utils`.
+- Expose keyboard events of `enter`, `tab`, `escape`, `space`, `leftarrow`, `rightarrow`, `downarrow`, `uparrow`, `backspace`, `del` from `@kws3/ui/keyboard`.
+- Expose `hasResizeObserver`, `resizeObserver` from `@kws3/ui/resizeObserver`
+- New utility `makeForms` exposed from `@kws3\ui\form`
+- Add support for material symbols icon pack from [https://fonts.google.com/icons](https://fonts.google.com/icons)
+- Baby steps towards typings
+
+## 1.9.3
+
+- Bug fix with fuzzy.js initial config hoisting
+
+## 1.9.2
+
+- Bug fix with fuzzy.js and Vite prebundling
+- Debounce fuzzy searches
+- Expose `@kws3/ui/utils/fuzzysearch` as a reusable function
+
+## 1.9.1
+
+- `SearchableSelect` and `MultiSelect`: match colors of dropdown area to theme color when dropdown area is inside a `Portal`
+- `AutoComplete`: match colors of dropdown area to theme color when dropdown area is inside a `Portal`
+
+## 1.9.0
+
+- Use new fuzzy algorithm for `AutoComplete`, `MultiSelect` and `SearchableSelect` component
+- Add property `scoreThreshold` in `AutoComplete`, `MultiSelect` and `SearchableSelect` component to control search accuracy.
+- Bugfix: Keep `SubmitButton` disabled while it's not ready to submit yet
+
+## 1.8.4
+
+- New `AutoComplete` component
+- Make options text size match the input `size` in `MultiSelect` and `SearchableSelect`.
+- Prevent default arrow up/down behaviour on `MultiSelect` and `SearchableSelect` when options dropdown is open.
+
+## 1.8.3
+
+- Allow `clickableRows` and `bulk_actions` to work at the same time on `GridView`
+- Various bugfixes on `GridRow`
+- New `visualActivationOnClick` prop for `GridView` and `TileView`
+- Change the way click activation works on `GridView` and `TileView` rows. Now only one row can be activated at a time
+
+## 1.8.2
+
+- Usability fixes for `NumberInput`
+- New `input_only`, `force_integer`, `style` and `class` props for `NumberInput`
+- Forward `focus`, `blur` input events for `NumberInput`
+- Use custom version of `fuzzysearch` for `SearchableSelect` and `MultiSelect`
+
+## 1.8.1
+
+- New `ScrollableList` component
+
+## 1.8.0
+
+- `Modal`, `CardModal` and `ActionSheet` components now play an outro transition instead of abruptly disappearing.
+- Usability fixes for `SearchableSelect` and `MultiSelect`.
+- `SearchableSelect` and `MultiSelect` now support loading options via an async function.
+- `SearchableSelect` and `MultiSelect` now match results using a fuzzy `search_strategy`. This can be changed to old behaviour by specifying `search_strategy="strict"`.
+
+## 1.7.4
+
+- Update ApexCharts to version 3.33.2
+- Added support for subscribing to chart events
+- Added support for distributed bar charts using new `distributed` prop on `BarChart` component
+- Added examples for leveraging advanced chart features
+
+## 1.7.3
+
+- Fix docs for `Popover`
+- Increase performance for `SlidingPane` by using ResizeObserver when available
+
+## 1.7.2
+
+- `DatePicker` component: fix initialisation bug on mobile
+- `Pagination` component: rename property `breakThreshold` -\> `maxVisiblePages` plus bugfix and documentation update
+
+## 1.7.1
+
+- `Skeleton` component: Illustrate in example the use of empty string for `color` prop.
+- `Pagination` component: Deprecate `meta` prop. And use separate props for `offset`, `limit`, `count` and `total` instead.
+- `Pagination` component: Add methods `prev()`, `next()`, `first()`, `last()` and `goto(page)`.
+- New `Divider` component.
+- `Modal` component can now be opened and closed programatically via `open()` and `close()` methods.
+- Added linting rules for ESLint. And corrected all resulting issues.
+
+## 1.7.0
+
+- Ensure uniform usage of `$kws-theme-colors` across all components, this means `$kws-theme-colors` can be independent of the global `$colors` SCSS variable.
+- `DataSearch` component: Expand filters to fill area when main search input is not present.
+- `DataSort` component: Increase click area for activating dropdown, and provide visual segementation between label and dropdown.
+- New `Skeleton` component.
+
+## 1.6.9
+
+- New `Timeline`, `TimelineItem` and `TimelineHeader` components.
+
+## 1.6.8
+
+- Vertically align `is-icon` cells in `Grid`
+
+## 1.6.7
+
+- Added granular events `showing`, `shown`, `hiding` and `hidden` for `Popover`.
+- Added `is-checked` class on `Grid` when a row is checked using the multiselect checkboxes.
+- New colors for `is-checked` class on `Grid`
+
+## 1.6.6
+
+- Enhance `Popover` with native `show` `hide` `enable` `disable` methods
+
+## 1.6.5
+
+- Filter fix on `DataSearch`
+
+## 1.6.4
+
+- Add support for `dropdown_portal` prop in `SearchableSelect`
+
+## 1.6.3
+
+- Prevent submit call on `MultiSelect` when `Enter` key is pressed while searching
+- Fix filter items going blank after search is initiated in `DataSearch`
+
+## 1.6.2
+
+- Add `dropdown_portal` prop on `MultiSelect` to allow rendering dropdown in alternative locations
+
+## 1.6.1
+
+- New `Portal` component
+- Use `Portal` for `MultiSelect` and `SearchableSelect` components
+
+## 1.6.0
+
+- Fix `DataSearch` responsiveness for mobile
+- Fix `Pagination` CSS for mobile
+- Fix `DataSort` responsiveness for mobile
+- Fix functionality of `DataSearch`
+
+## 1.5.9
+
+- Fix `z-index` issue with `SearchableSelect`
+
+## 1.5.8
+
+- Showing `undefined` on total in `Pagination`
+
+## 1.5.7
+
+- Width calculation on `DataSearch`
+- More `text` validation `Nl2br`
+
+## 1.5.6
+
+- Fix attribute of `MultiSelect`
+- Fix `text` checking on `Nl2br`
+
+## 1.5.5
+
+- Added `BarChart`
+- Added `LineChart`
+- Added `AreaChart`
+- Added `RadialChart`
+- Support `sparklines` in `Charts`
+- Add `yAxisOptions` and `horizontal` bar for `Charts`
+- Fix attribute of `ConfirmButton`
+- Fix error Handling in `MixedChart`
+
+## 1.5.1
+
+- Chart bugfixes
+- Fix attribute of `NumberInput` for UI testing
+
+## 1.5.0
+
+- Added `DonutChart`
+- Added `MixedChart`
+- Added `PieChart`
+
+## 1.4.7
+
+- Fix value mismatch on `NumberInput`
+
+## 1.4.6
+
+- Fix Typing bug on `NumberInput`
+
+## 1.4.5
+
+- Fix **on:change** event on `NumberInput`
+
+## 1.4.4
+
+- import `Floatie`, `FloatingUIOutput`, `FloatiesStore` from `@kws3/ui` for `FloatingUIOutput`
+
+## 1.4.3
+
+- Rename `completion_timeout` to `error_timeout` in `Buttons`
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/canvas-esignature--docs
+Canvas / ESignature
+
+# ESignature
+
+## ESignature component for taking user pen input.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| width | Canvas width
+string | 520px |  |
+| height | Canvas height
+string | 170px |  |
+| background\_image | Background image for the canvas
+string | "" |  |
+| readonly | Determines whether canvas is readonly or not
+boolean | false | FalseTrue |
+| disabled | Determines whether canvas is disabled or not
+boolean | false | FalseTrue |
+| control\_position | Default position of controls
+Extract<Positions, 'start'\|'center'\|'end'> | center | - |
+| image | The Data created in the canvas by the user (readonly) (base64)
+string | "" | Set string |
+| is\_touched | (readonly) Determines whether canvas is touched or not
+boolean | false | Set boolean |
+| expand\_from | The direction from which the canvas should expand.
+'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+string | center | Set string |
+| expand\_to | The direction to which the canvas should expand.
+'top', 'bottom', 'left', 'right', 'center' and also 'n%'
+string | center | Set string |
+| expand\_scale | Transform scale of the canvas on expansion
+value in percentage %
+number | 50 | Set number |
+| actions | List of actions toolbar
+array |  | Set object |
+
+### Usage
+
+```
+
+import { ESignature } from '@kws3/ui';
+```
+
+
+
+##### Import the CSS:
+
+```
+
+@use '@kws3/ui/styles/Canvas.scss';
+```
+
+
+
+### Usage Example
+
+```
+
+<ESignature
+    bind:image
+    bind:is_touched
+    {width}
+    {height}
+    {readonly}
+    {disabled}
+  />
+
+<script>
+  import { ESignature } from '@kws3/ui';
+  export let width = "520px",
+    height = "170px",
+    background_image = "",
+    readonly = false,
+    disabled = false,
+    image = "",
+    is_touched = false;
+
+</script>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/datagrid-datasearch--docs
+Datagrid / DataSearch
+
+# DataSearch
+
+## DataSearch component in datagrid.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| hasSearch | Determines whether there is a search input or not
+boolean | true | FalseTrue |
+| hasFilters | Determines if there are filters on search
+boolean | true | FalseTrue |
+| placeholder | Placeholder text for the search input
+string | "" |  |
+| filters | Contains all the filter dropdown values
+object |  | RAW
+filters : {
+role : \[...\] 2 items
+status : \[...\] 2 items
+} |
+| q | Query string from the browser url
+string | "" |  |
+| filter\_in\_use\_class | CSS class for in use filters
+string | is-in-use |  |
+| filter\_not\_in\_use\_class | Css class for not in use filters
+string | is-not-in-use |  |
+| filterComponent | To use a custom component for filters
+object |  | Set object |
+| filter\_label\_map | Contains all the labels for the filter dropdowns
+object |  | RAW
+filter\_label\_map : {
+} |
+| Hide events itemsevents | Hide events items |
+| resetSearch | Triggered when the search is reset
+- | - | - |
+| search | Event triggered on search
+- | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { DataSearch } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+```
+
+@use '@kws3/ui/styles/DataSearch.scss';
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/buttons-confirmbutton--docs
+Buttons / ConfirmButton
+
+# ConfirmButton
+
+## Confirm Button with built-in confirmation.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| class | CSS classes for button container
+string | "" |  |
+| button\_class | CSS classes for the Confirm button
+string | "" |  |
+| text | Button text
+string | "" |  |
+| icon | Name of the icon that is to be displayed in the button
+string | check |  |
+| icon\_only | Removes text, and text space in the button
+boolean | false | FalseTrue |
+| done\_text | Button text displayed after task is completed successfully
+string | Done |  |
+| done\_icon | Name of the icon displayed after task is completed successfully
+string | check |  |
+| disabled | Disables the button when `true`
+boolean | false | FalseTrue |
+| cy | data-cy attribute for cypress
+string | "" |  |
+| context | Context property
+any | "" |  |
+| should\_confirm | When `false`, skips the confirmation prompt, and makes it a one step process
+boolean | true | FalseTrue |
+| size | Size of the Button
+SizeOptions | "" | Choose option...smallmediumlarge |
+| color | Color of the Button
+ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| completion\_timeout | Specifies the duration to wait after the `done` event, before the UI state returns to normal
+number | 600 |  |
+| error\_timeout | Specifies the duration to wait after the `error` event, before the UI state returns to normal
+number | 3000 |  |
+| Hide events itemsevents | Hide events items |
+| do | Fired when user confirms action. Or in case of `should_confirm` set at `false`, event is fired when user clicks button.
+- | - | - |
+| done | Fired when task completes
+- | - | - |
+| error | Fired when there is an error
+- | - | - |
+
+### Example source code
+
+```
+
+<ConfirmButton text="Do It?" color="primary" size="small" icon_only="true" disabled="false" />
+```
+
+
+
+### Usage Example
+
+```
+
+<ConfirmButton
+  {color}
+  {disabled}
+  {size}
+  {icon_only}
+  {text}
+  {icon}
+  {doing_icon}
+  {done_icon}
+  {doing_text}
+  {done_text}
+  on:do={confirmDo}
+/>
+<script>
+  import { ConfirmButton } from '@kws3/buttons';
+  export let color = "primary";
+  export let disabled = false;
+  export let size = "";
+  export let icon_only = false;
+  export let text = "Do it?";
+  export let icon = "minus-circle";
+  export let doing_icon = "hourglass";
+  export let done_icon = "check";
+  export let doing_text = "Doing";
+  export let done_text = "Done";
+  function confirmDo(event){
+    let {doing, done, error} = event.detail;
+    doing();
+    somePromise().then(() => {
+      //set visual state to Done
+      //it will autmatically revert back to
+      //normal state after "completion_timeout"
+      done();
+    })
+    .catch(() => {
+      //set visual state to Error
+      //it will autmatically revert back to
+      //normal state after "completion_timeout"
+      error();
+    });
+  }
+</script>
+```
+
+
+
+`done()` and `error()` can take an optional callback function, and an extra `timeout` parameter that overrides the `completion_timeout` property.
+
+```
+
+<script>
+  function confirmDo(event){
+    let {doing, done, error} = event.detail;
+    doing();
+    somePromise().then(() => {
+      done(() => {
+        //some callback
+      }, 500);
+    })
+    .catch(() => {
+      error(() => {
+        //some callback
+      }, 500);
+    });
+  }
+</script>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-infinitelist--docs
+Helpers / InfiniteList
+
+# InfiniteList
+
+## InfiniteList component that fires an event when the end of the list is reached, so you can load more list items
+
+#### Much simpler than ScrollableList, as it does not do any list virtualisation to reduce DOM Nodes
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| items | Array of items
+array |  | RAW
+items : \[
+\] |
+| height | Height of the wrapper, CSS String
+string | 100% |  |
+| class | CSS classes for component container
+string | "" |  |
+| end\_offset | `end` event will be fired when the scroll position reaches this many pixels from the end of the list.
+number | 400 |  |
+| style | Inline CSS for component container
+string | "" |  |
+| inner\_class | CSS classes for inner scroller container
+string | "" |  |
+| linear\_scroll\_shadow | Modify the look of scroll shadows from radial to linear
+boolean | false | FalseTrue |
+| iteration\_key | Iteration key - by default it uses the index of the array inside the keyed each block
+object |  | Set object |
+| Hide events itemsevents | Hide events items |
+| end | Fired when the scroll position reaches `end_offset` pixels from the end of the list.
+- | - | - |
+| Hide slots itemsslots | Hide slots items |
+| default | Default slot for list view items
+`item` `index`
+- | - | - |
+| loader | Optional slot to display a loading graphic at the bottom of the list
+while more items are loading
+- | - | - |
+
+### Usage
+
+##### Import the component:
+
+```
+
+import { InfiniteList } from '@kws3/ui';
+```
+
+
+
+Normal Usage Example:
+
+You can define the `let` variables on main component
+
+```
+
+<InfiniteList
+  {items}
+  {end_offset}
+  on:end={endReached}
+  let:item
+  let:index
+>
+  <ListItem {item} {index} />
+</InfiniteList>
+
+```
+
+Usage with loader slot Example:
+
+You have to define the `let` variables in a slot wrapper
+
+```
+
+<InfiniteList
+  {items}
+  {end_offset}
+  on:end={endReached}
+>
+  <span
+    slot="default"
+    let:item
+    let:index
+  >
+    <ListItem {item} {index} />
+  </span>
+  <span slot="loader">Loading...</span>
+</InfiniteList>
+
+```
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-panel--docs
+Helpers / Panel
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| title | Title of the panel
+Having content here will display the title bar, even if has\_title is false
+string | "" |  |
+| subtitle | Subtitle of the panel
+This will not display if there is no title area
+string | "" |  |
+| class | CSS classes for Panel container
+string | "" |  |
+| style | Inline CSS for Panel container
+string | "" |  |
+| inner\_class | CSS classes for Panel content
+string | "" |  |
+| inner\_style | Inline CSS for Panel content
+string | "" |  |
+| cy | data-cy attribute for cypress
+string | "" |  |
+| collapse\_icon | Icon indicating whether Panel is collapsible
+This will not display if there is no title area
+string | caret-right |  |
+| collapsible | Determines whether panel is collapsible
+This will not work if there is no title area
+boolean | false | FalseTrue |
+| collapsed | Determines whether Panel is currently collapsed or not
+boolean | false | FalseTrue |
+| relative | Indicates whether the Panel has `position: relative` or not
+You might need this if there are absolutely positioned elements inside the Panel
+boolean | false | FalseTrue |
+| has\_toolbar | Used to show or hide toolbar slot contents (slot=“toolbar”)
+boolean | true | FalseTrue |
+| has\_center | Used to show or hide center slot contents of the title area (slot=“center”)
+boolean | true | FalseTrue |
+| has\_title | Determines whether to show title bar when no title content is present
+boolean | false | FalseTrue |
+| Hide slots itemsslots | Hide slots items |
+| center | Used for center aligned title content
+This will not work if there is no title area
+- | - | - |
+| toolbar | Used for right aligned toolbars
+This will not work if there is no title area
+- | - | - |
+| default | Used for panel content
+- | - | - |
+
+### Usage
+
+##### Import the component:
+
+```
+
+import { Panel } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Panel.scss' with(
+  $heading-background: cv.getVar("scheme-main-bis"),
+  $background: cv.getVar("scheme-main"),
+  $box-shadow: cv.getVar("shadow"),
+  $color: cv.getVar("text"),
+  $title-color: cv.getVar("text"),
+  $title-weight: 700,
+  $caret-open-color: cv.getVar("text"),
+  $caret-closed-color: cv.getVar("link"),
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-nl2br--docs
+Helpers / Nl2br
+
+# Nl2br
+
+## Insert line breaks where newlines occur in the string This component provides a XSS-safe way of outputting multiline text.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| text | Text to process and output
+string | "" |  |
+
+### Usage
+
+### Import the component:
+
+```
+
+import { Nl2br } from '@kws3/ui';
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-loader--docs
+Helpers / Loader
+
+# Loader
+
+## Graphic to display a loading status to users.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| spinner\_color | Color of the Spinner
+ExtendedColorOptions | grey | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| spinner\_size | Size of the Spinner
+SizeOptions | medium | Choose option...smallmediumlarge |
+| background\_color | Backgound color of the Spinner container
+BGColorOptions | transparent | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| background\_size | Size of the Spinner container. It can also accept css units
+**Examples:** `small` \| `medium` \| `large` \| `halfheight` \| `fullheight` \| `10px` \| `5rem` \| `100vh`
+string | medium |  |
+| class | CSS class for Loader
+string | "" |  |
+| style | Inline CSS for Loader
+string | "" |  |
+| is\_inline | Determines if the Loader is inline or not
+boolean | false | FalseTrue |
+| has\_overlay | Determines if loader is displayed on top of a semi-transparent overlay.
+`background_color` is ignored when this is set to `true`
+The overlay is absolutely positioned. Ensure that the parent container is relatively positioned when using this.
+boolean | false | FalseTrue |
+
+### Usage
+
+##### Import the component:
+
+```
+
+import { Loader } from '@kws3/ui';
+```
+
+
+
+##### Import the CSS:
+
+```
+
+@use '@kws3/ui/styles/Loader.scss';
+```
+
+
+
+##### SCSS customization variables with default values:
+
+```
+
+@use '@kws3/ui/styles/Loader.scss' with(
+  $theme-colors: dv.$colors,
+  $width: 2rem,
+  $height: 2rem,
+  $width-medium: ($width * 1.5),
+  $height-medium: ($height * 1.5),
+  $width-large: ($width * 3),
+  $height-large: ($height * 3),
+  $color: cv.getVar("text"),
+  $overlay-background: rgba(0, 0, 0, 0.15),
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-portal--docs
+Helpers / Portal
+
+# Portal
+
+## Component for rendering outside the DOM of parent component
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| target | DOM Element or CSS Selector
+HTMLElementstring | body |  |
+| Hide slots itemsslots | Hide slots items |
+| default | - | - | - |
+
+This is a re-export of `svelte-portal`.
+See [https://github.com/romkor/svelte-portal/blob/2.1.2/README.md](https://github.com/romkor/svelte-portal/blob/2.1.2/README.md) for more information.
+
+### Usage
+
+##### Import the component:
+
+```
+
+<Portal target="body">
+  <div class="toast">Entity successfully updated!</div>
+</Portal>
+
+<script>
+  import { Portal } from '@kws3/ui';
+</script>
+```
+
+
+
+##### Import the action:
+
+```
+
+<div class="toast" use:portal={document.body}>Entity successfully updated!</div>
+
+<script>
+  import { portal } from '@kws3/ui';
+  // notice the character case
+</script>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/forms-passwordvalidator--docs
+Forms / PasswordValidator
+
+# Password Validator
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| password | Password for validating
+string | "" |  |
+| compact | Determines whether validator should display in compact mode or expanded mode
+boolean | true | FalseTrue |
+| min | Minimum number of characters required
+number | 8 |  |
+| lower | Whether a lower-case character is required
+boolean | true | FalseTrue |
+| upper | Whether a upper-case character is required
+boolean | true | FalseTrue |
+| digit | Whether a digit character is required
+boolean | true | FalseTrue |
+| special | Whether a special character is required
+boolean | true | FalseTrue |
+| custom\_rules | Array of custom rules defined as objects
+Object must contain:
+`name` `text` `identifier` `regex` `negate (optional)`
+array |  | RAW
+custom\_rules : \[
+\] |
+| class | CSS classes for container
+string | "" |  |
+| style | Inline CSS style for container
+string | "" |  |
+| valid | Variable used to check if password Validator returns true or false
+Should be used with `bind` from parent component
+boolean | false | Set boolean |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { PasswordValidator } from '@kws3/ui';
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/datagrid-pagination--docs
+Datagrid / Pagination
+
+# Pagination
+
+## Pagination component in datagrid.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| meta | Object containing `total`, `count`, `limit` and `offset` values
+**DEPRECATED**: Use `total`, `count`, `limit` and `offset` props instead
+object |  | RAW
+meta : {
+} |
+| limit | Number of items to be displayed per page
+number | 0 |  |
+| total | Total number of items available
+number | 0 |  |
+| count | Number of items being displayed in this page
+number | 0 |  |
+| offset | Offset of the first item in this page
+number | 0 |  |
+| showTotal | Determines whether to show total or not
+boolean | true | FalseTrue |
+| showCurrent | Determines whether to display a breakdown of the range of items currently being displayed in a page
+boolean | true | FalseTrue |
+| showPerPage | Determines whether to display the UI that allows user to choose the number of items to be displayed per page
+boolean | true | FalseTrue |
+| maxVisiblePages | Maximum number of consecutive pages to show in pagination after which a break is introduced in between them
+number | 10 |  |
+| entityName | String to display total entries
+string | entries |  |
+| size | Size of the pagination elements
+string | small | Choose option...smallmediumlarge |
+| frame | Determines whether to show pagination frame or not
+boolean | false | FalseTrue |
+| iconRight | Right navigation icon
+string | chevron-right |  |
+| iconLeft | Left navigation icon
+string | chevron-left |  |
+| perPageOptions | Available options given to the user, to choose the number of items displayed per page
+array |  | RAW
+perPageOptions : \[
+- 0 : 20
+- 1 : 50
+- 2 : 100
+- 3 : 150
+- 4 : 200
+- 5 : 250
+\] |
+| Hide events itemsevents | Hide events items |
+| setLimit | Event used to set a new `limit`.
+_Event Data:_ `{currentPage, newLimit}`
+- | - | - |
+| paginate | Event triggered on pagination change with new `offset` and current `limit` values.
+_Event Data:_ `{offset, limit}`
+- | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { Pagination } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Pagination.scss' with(
+  $item-color: cv.getVar("text"),
+  $item-background: cv.getVar("scheme-main"),
+  $item-border: 1px solid cv.getVar("border"),
+  $item-hover-color: $item-color,
+  $item-hover-border: $item-border,
+  $item-disabled-background: cv.getVar("pagination-disabled-background-color"),
+  $item-disabled-color: cv.getVar("pagination-disabled-color"),
+  $item-ellipsis-background: transparent,
+  $item-ellipsis-border-color: transparent,
+  $item-active-background: cv.getVar("success"),
+  $item-active-color: cv.getVar("success-invert"),
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-scrollablelist--docs
+Helpers / ScrollableList
+
+# ScrollableList
+
+## ScrollableList component that efficiently displays large amounts of data
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| items | Array of items
+array |  | RAW
+items : \[
+\] |
+| start | First item index rendered inside viewport - readonly
+number | 0 |  |
+| end | Last item index rendered inside viewport - readonly
+number | 0 |  |
+| height | Height of the wrapper, CSS String
+string | 100% |  |
+| item\_height | Height of each list item. If not set, height will be calculated automatically based on each item's offsetHeight
+numbernull |  | - |
+| class | CSS classes for scroller container
+string | "" |  |
+| end\_threshold | `end` event will be fired when the list reaches this many items before the end of the list.
+number | 10 |  |
+| padding\_threshold | render 'n' number of items on outside the viewport (top and bottom) to avoid visible glitches on scrolling.
+number | 5 |  |
+| style | Inline CSS for scroller container
+string | "" |  |
+| iteration\_key | Iteration key - by default it uses the index of the array inside the keyed each block
+object |  | Set object |
+| mutation\_threshold | Number of items that can be spliced in or out, before the scroll position resets, helpful for adding/removing list items in-place
+number | 5 | Set number |
+| Hide events itemsevents | Hide events items |
+| end | Fired when the list reaches `end_threshold` items before the end of the list.
+- | - | - |
+| Hide slots itemsslots | Hide slots items |
+| default | Default slot for list view items
+`item` `index`
+- | - | - |
+| loader | Optional slot to display a loading graphic at the bottom of the list
+while more items are loading
+- | - | - |
+
+### Usage
+
+##### Import the component:
+
+```
+
+import { ScrollableList } from '@kws3/ui';
+```
+
+
+
+Normal Usage Example:
+
+You can define the `let` variables on main component
+
+```
+
+<ScrollableList
+  {items}
+  {height}
+  {item_height}
+  {end_threshold}
+  {padding_threshold}
+  bind:start
+  bind:end
+  on:end={endReached}
+  let:item
+  let:index
+>
+  <ListItem {item} {index} />
+</ScrollableList>
+
+```
+
+Usage with loader slot Example:
+
+You have to define the `let` variables in a slot wrapper
+
+```
+
+<ScrollableList
+  {items}
+  {height}
+  {item_height}
+  {end_threshold}
+  {padding_threshold}
+  bind:start
+  bind:end
+  on:end={endReached}
+>
+  <span
+    slot="default"
+    let:item
+    let:index
+  >
+    <ListItem {item} {index} />
+  </span>
+  <span slot="loader">Loading...</span>
+</ScrollableList>
+
+```
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/buttons-submit-button--docs
+Buttons / Submit Button
+
+# SubmitButton
+
+## Submit Button with built-in confirmation.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| class | CSS classes for Button container
+string | "" |  |
+| text | Button text
+string | Save Changes |  |
+| icon | Name of the icon that is to be displayed in the button
+string | save |  |
+| icon\_only | Removes text, and text space in the button
+boolean | false | FalseTrue |
+| saved\_text | Text displayed after submission is completed successfully
+string | Saved |  |
+| error\_text | Text displayed if submission is not successful
+string | Failed to Save |  |
+| disabled | Disables the button when `true`
+boolean | false | FalseTrue |
+| cy | data-cy attribute for cypress
+string | submit |  |
+| tracker | Tracker object to be sent from outside to change the state of the button.
+ButtonTracker |  | - |
+| color | Color of the Button
+ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| size | Size of the Button
+SizeOptions | "" | Choose option...smallmediumlarge |
+| completion\_timeout | Specifies the duration to wait after the `saved` event, before the UI state returns to normal
+number | 600 |  |
+| error\_timeout | Specifies the duration to wait after the `error` event, before the UI state returns to normal
+number | 3000 |  |
+| Hide events itemsevents | Hide events items |
+| saved | Fired on successful submission
+- | - | - |
+| error | Fired when there is an error
+- | - | - |
+
+### Usage
+
+```
+
+<form on:submit|preventDefault={save}>
+  <SubmitButton bind:this={BUTTON_STATE} />
+</form>
+<script>
+  import { SubmitButton } from '@kws3/buttons';
+  let BUTTON_STATE;
+  function save(e){
+    BUTTON_STATE.saving();
+    somepromise.then((r) => {
+      BUTTON_STATE.saved(() => {
+        //some callback function
+      }, 1000);
+    })
+    .catch((r) => {
+      BUTTON_STATE.error(() => {
+        //some callback function
+      }, 1000);
+    })
+  }
+</script>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/charts-line-chart--docs
+Charts / Line Chart
+
+# Line Chart
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| data | Chart data
+array |  | RAW
+data : \[
+0 : \[...\] 4 items
+1 : \[...\] 4 items
+2 : \[...\] 4 items
+3 : \[...\] 4 items
+\] |
+| labels | Data labels
+array |  | RAW
+labels : \[
+- 0 : "2021"
+- 1 : "2022"
+- 2 : "2023"
+- 3 : "2024"
+\] |
+| sets | Data sets
+array |  | RAW
+sets : \[
+- 0 : "Purchased"
+- 1 : "Expense"
+- 2 : "Sold"
+- 3 : "Revenue"
+\] |
+| width | Chart width, supports CSS size strings
+string | 100% |  |
+| height | Chart height, supports CSS size strings
+string | auto |  |
+| colors | Chart colors, can be modified globally in framework settings
+Send an array of colors to override the default colors, or do not send anything to use the default colors
+array |  | Set object |
+| sparklines | Displays the chart as a sparkline chart.
+These are charts with minimal UI and can be
+squeezed into small spaces
+boolean | false | FalseTrue |
+| y\_axis\_options | Y Axis options, see ApexCharts options for Y Axis
+object |  | RAW
+y\_axis\_options : {
+} |
+| options | Chart options, see ApexCharts options for bar charts
+object |  | RAW
+options : {
+} |
+| captured\_events | String array of event names that will be captured and fired as svelte events.
+This is to prevent unnecessary event subscriptions.
+array |  | Set object |
+| class | CSS classes for container
+string | "" | Set string |
+| Hide events itemsevents | Hide events items |
+| animationEnd | All chart events only fire when they are mentioned in `captured_events` list. See ApexChart Events [https://apexcharts.com/docs/options/chart/events/](https://apexcharts.com/docs/options/chart/events/) for full list of supported events.
+- | - | - |
+| beforeMount | - | - | - |
+| mounted | - | - | - |
+| updated | - | - | - |
+| mouseMove | - | - | - |
+| mouseLeave | - | - | - |
+| click | - | - | - |
+| legendClick | - | - | - |
+| markerClick | - | - | - |
+| selection | - | - | - |
+| dataPointSelection | - | - | - |
+| dataPointMouseEnter | - | - | - |
+| dataPointMouseLeave | - | - | - |
+| beforeZoom | - | - | - |
+| beforeResetZoom | - | - | - |
+| zoomed | - | - | - |
+| scrolled | - | - | - |
+| brushScrolled | - | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { LineChart } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Chart.scss' with (
+  $background-color: cv.getVar("scheme-main"),
+  $foreground-color: cv.getVar("text"),
+  $axis-lines-color: cv.getVar("border"),
+  $grid-lines-color: cv.getVar("border-weak")
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/welcome--docs
+Welcome
+
+![logo](https://kws3.media/assets/images/logo.png)
+
+# Welcome to UI Elements from KWS3 Media
+
+Use the navigation panel on the left to browse all the components.
+
+_This is a work in progress, documentation and examples are being added_
+_all the time._
+
+_If you find anything that needs changing, get in_
+_touch!_
+
+This refers to Svelte v4 components.
+
+For components compatible with Svelte v3 please go to: [https://ui.kws3.media/v3](https://ui.kws3.media/v3)
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/forms-passwordinput--docs
+Forms / PasswordInput
+
+# Password Input
+
+## An Input component that can show/hide password.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| class | CSS classes of the PasswordInput
+string | "" |  |
+| style | Inline CSS for the PasswordInput
+string | "" |  |
+| size | Size of the PasswordInput
+SizeOptions | "" | - |
+| color | Colour of the PasswordInput
+ColorOptions | "" | - |
+| disabled | Disables the PasswordInput
+boolean | false | FalseTrue |
+| show\_visibility\_switch | whether has visibility feature or not
+boolean | true | FalseTrue |
+| placeholder | Input placeholder
+string | "" |  |
+| show\_field\_icon | whether to show field icon or not
+boolean | true | Set boolean |
+| field\_icon | field icon name
+string | lock | Set string |
+| field\_icon\_family | Icon family to be used
+Defaults to global family set via `Icon.setDefaultIconType()`
+Ultimately defaults to `fa`, if family is not set anywhere
+FontFamilies | fa | - |
+| visibility\_switch\_icon\_family | Icon family to be used
+Defaults to global family set via `Icon.setDefaultIconType()`
+Ultimately defaults to `fa`, if family is not set anywhere
+FontFamilies | fa | - |
+| visibility\_switch\_on\_icon | visibility switch on icon name
+string | eye | Set string |
+| visibility\_switch\_off\_icon | visibility switch off icon icon name
+string | eye-slash | Set string |
+| visibility\_switch\_on\_color | visibility switch on icon color
+ExtendedColorOptions | grey | - |
+| visibility\_switch\_off\_color | visibility switch off icon color
+ExtendedColorOptions | grey | - |
+| value | Value of the Input
+This property can be bound to, to fetch the current value
+?string | "" | - |
+| required | Whether Input is required or not
+boolean | false | Set boolean |
+| autocomplete | Whether autocompletion turned off or on
+string | on | Set string |
+| name | Input HTML name
+string | password | Set string |
+| Hide events itemsevents | Hide events items |
+| focus | - | - | - |
+| blur | - | - | - |
+| change | - | - | - |
+| input | - | - | - |
+| keyup | - | - | - |
+| keydown | - | - | - |
+| paste | - | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { PasswordInput } from '@kws3/ui';
+```
+
+
+
+#### With PasswordValidator:
+
+```
+
+<PasswordInput
+  bind:value={new_pass}
+  {size}
+  {color}
+  {placeholder}
+  {has_visibility_switcher}
+  {disabled} />
+<PasswordValidator password={new_pass} />
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/forms-maskedinput--docs
+Forms / MaskedInput
+
+# MaskedInput
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| mask | Mask array
+Each element in the array has to be either a string or a regular expression. Each string is a fixed character in the mask and each regular expression is a placeholder that accepts user input.
+array |  | RAW
+mask : \[
+\] |
+| placeholder\_char | This character represents the fillable spot in the mask, the guide character
+string | \_ |  |
+| guide | Displays a guide when the user starts typing
+boolean | true | FalseTrue |
+| guide\_when\_empty | Displays a guide even before the user starts typing
+Requires `guide` to be `true`
+boolean | false | FalseTrue |
+| guide\_on\_output | Whether the output should contain guide characters
+boolean | false | FalseTrue |
+| keep\_char\_positions | When set to `true`, deleting a character leaves an empty space to allow overwriting
+Requires `guide` to be `true`
+boolean | false | FalseTrue |
+| placeholder | Placeholder text. Requires `guide_when_empty` to be `false` to be displayed.
+string | "" |  |
+| class | CSS classes for the input
+string | "" |  |
+| value | Input value
+string | "" |  |
+| Hide events itemsevents | Hide events items |
+| change | Native input change event
+- | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { MaskedInput } from '@kws3/ui';
+```
+
+
+
+### Mask array examples
+
+```
+
+<!-- US Phone number -->
+<MaskedInput
+  mask={[\
+    "(", /[1-9]/, /d/, /d/, ")", " ",\
+    /d/, /d/, /d/, "-",\
+    /d/, /d/, /d/, /d/\
+  ]}
+/>
+<!-- Credit card -->
+<MaskedInput
+  mask={[\
+    /d/, /d/, /d/, /d/, " ",\
+    /d/, /d/, /d/, /d/, " ",\
+    /d/, /d/, /d/, /d/, " ",\
+    /d/, /d/, /d/, /d/\
+  ]}
+/>
+<!-- dd/mm/YYYY -->
+<MaskedInput
+  mask={[\
+    /d/, /d/, "/",\
+    /d/, /d/, "/",\
+    /[1-2]/, /d/, /d/, /d/\
+  ]}
+/>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/forms-datepicker--docs
+Forms / Datepicker
+
+# Datepicker
+
+## Datepicker component that allows you to select date.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| value | Accepts a date value in the format `yyyy-mm-dd`
+In `range_mode`, the expected format is `yyyy-mm-dd to yyyy-mm-dd`
+This property can be bound to, to fetch the selected date or date range. Output is in the same format as input.
+string | "" |  |
+| style | Inline CSS for the input
+string | "" |  |
+| class | CSS classes for the input
+string | "" |  |
+| placeholder | Placeholder text for the input
+string | Select Date.. |  |
+| disabled | Disables the component
+boolean | false | FalseTrue |
+| min\_date | Set earliest selectable date as an object or string
+**Example:** `"2021-06-06"` or `"(new Date('2021-01-01'))"`
+any |  | Set object |
+| max\_date | Set latest selectable date as an object or string
+**Example:** `"2021-06-06"` or `"(new Date('2021-01-01'))"`
+any |  | Set object |
+| enable\_dates | Enables a range of dates and disables all others
+array |  | RAW
+enable\_dates : \[
+\] |
+| disable\_dates | Disables a range of dates and enables all others
+array |  | RAW
+disable\_dates : \[
+\] |
+| range\_mode | Allows selecting a date range
+boolean | false | FalseTrue |
+| options | Extended set of options as supported by Flatpicker
+See: [https://flatpickr.js.org/options/](https://flatpickr.js.org/options/)
+object |  | RAW
+options : {
+} |
+| calendar\_color | Colour of the Calendar
+ColorOptions | primary | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| color | Colour of the Date picker input
+ColorOptions | "" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| readonly | Make input value read-only
+boolean | false | FalseTrue |
+| Hide events itemsevents | Hide events items |
+| dateChange | Triggered when the date changes
+- | - | - |
+| monthChange | Triggered when the Month changes
+- | - | - |
+| yearChange | Triggered when the Year changes
+- | - | - |
+| ready | Triggered when UI is ready
+- | - | - |
+| open | Triggered when popup UI opens
+- | - | - |
+| close | Triggered when popup UI closes
+- | - | - |
+| change | Native input change event
+- | - | - |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { Datepicker } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+**Note:** _Need to import flatpicker SCSS file first_
+
+```
+
+@use 'flatpickr/dist/flatpickr';
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Datepicker.scss' with (
+  $theme-colors: dv.$colors,
+  $background: cv.getVar("scheme-main-ter"),
+  $text: cv.getVar("text"),
+  $shadow: cv.getVar("shadow"),
+  $radius: cv.getVar("radius-small"),
+);
+```
+
+
+
+### `min_date` and `max_date`
+
+Can either send a string or a Date object for both these properties.
+**Example:**
+
+```
+
+<Datepicker
+  min_date="2021-06-06"
+  max_date={(new Date('2021-01-01')}
+/>
+```
+
+
+
+### `enable_dates` and `disable_dates`
+
+These two properties expect an array to be sent to them.
+
+To enable specific dates, use `enable_dates`. To disable specific dates, use `disable_dates`.
+
+The array can contain a list of dates, in string or object formats.
+**Example:**
+
+```
+
+<Datepicker
+  disable_dates={[\
+    '2021-01-01',\
+    '2021-01-02',\
+    new Date(2025, 8, 9)\
+  ]}
+/>
+```
+
+
+
+The array can contain a list of date ranges.
+**Example:**
+
+```
+
+<Datepicker
+  disable_dates={[\
+    {\
+      from: '2021-01-01',\
+      to: '2021-01-02'\
+    },\
+    {\
+      from: new Date(2025, 8, 9),\
+      to: new Date(2025, 9, 9)\
+    }\
+  ]}
+/>
+```
+
+
+
+The array can also contain a function to dynamically determine the date.
+**Example:**
+
+```
+
+<Datepicker
+  disable_dates={[\
+    function(date) {\
+      // return true to disable\
+      return (\
+        date.getDay() === 0 ||\
+        date.getDay() === 6\
+      );\
+    }\
+  ]}
+/>
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/datagrid-example--docs
+Datagrid / Example
+
+# Datagrid
+
+## This shows an example of all datagrid components work together.
+
+Grid view
+
+Tile
+
+* * *
+
+Any roleAdministratorUser
+
+Any statusActiveInactive
+
+Search
+
+Sort By:
+
+DefaultID Newest FirstID Oldest First
+
+| ID | Name | Surname | Role | Status |
+| --- | --- | --- | --- | --- |
+| 1 | Jhon | Doe | Administrator | Active |
+| 2 | James | Bond | User | Active |
+| 3 | Tony | Starks | User | Active |
+| 4 | Captain | America | User | Active |
+| 5 | Natasha | Romanoff | User | Active |
+
+Showing 1 to 5 \|  **15 entries**
+
+* * *
+
+#### Example usage of datagrid components
+
+```
+
+{#if data}
+  <div className="columns">
+    <div className="column">
+      <DataSearch
+        {hasSearch}
+        {hasFilters}
+        {placeholder}
+        {filters}
+        {q}
+        {filter_in_use_class}
+        {filter_not_in_use_class}
+        {filterComponent}
+        {filter_label_map}
+        on:search={search}
+        on:resetSearch={resetSearch} />
+      <DataSort {options} {sort_by} on:sort={sort} />
+    </div>
+  </div>
+
+  <div className="columns">
+    <div className="column">
+      <GridView
+        {iteration_key}
+        {data}
+        {columns}
+        {transition}
+        {is_striped}
+        {clickableRows}
+        {bulk_actions}
+        {selectAll}
+        {selectedIds}
+        {selectAllCheckboxColor}
+        {selectCheckboxColor}
+        {selectCheckboxSize}
+        {valueTransformers}
+        {classTransformers}
+        {styleTransformers}
+        {visibilityMap}
+        {cellComponentMap} />
+    </div>
+  </div>
+
+  {#if has_pagination}
+    <div className="columns">
+      <div className="column">
+        <Pagination {meta} {perPageOptions} on:paginate={paginate} />
+      </div>
+    </div>
+  {/if}
+{/if}
+
+<script>
+  import {
+    DataSearch,
+    DataSort,
+    GridView,
+    TileView,
+    Pagination
+  } from "@kws3/ui";
+  import { response } from "./users.js";
+
+  let hasSearch = true,
+    hasFilters = true,
+    placeholder = "Search by name or surname",
+    filters = response.filters,
+    options = response.options,
+    data = [],
+    columns = {
+      id: "ID",
+      name: "Name",
+      surname: "Surname",
+      role: "Role",
+      status: "Status",
+    },
+    meta = response.meta,
+    q = "",
+    filter_in_use_class = "is-in-use",
+    filter_not_in_use_class = "is-not-in-use",
+    filterComponent = null,
+    filter_label_map = {},
+    sort_by = "",
+    iteration_key = "id",
+    transition = false,
+    is_striped = true,
+    clickableRows = false,
+    bulk_actions = false,
+    selectAll = false,
+    selectedIds = [],
+    selectAllCheckboxColor = "primary",
+    selectCheckboxColor = "info",
+    selectCheckboxSize = "medium",
+    classTransformers = {},
+    styleTransformers = {},
+    visibilityMap = {},
+    cellComponentMap = {},
+    tileItemComponent = null,
+    per_row = 3,
+    perPageOptions = [5];
+
+  let is_loading = false;
+  let original_data = response.records;
+  let is_tile_view = false;
+  let limit = meta.limit;
+  let page_number = 1;
+
+  let valueTransformers = {
+    role(v, row) {
+      switch (row.role) {
+        case "A":
+          return "Administrator";
+          break;
+        case "U":
+          return "User";
+          break;
+      }
+    },
+    status(v, row) {
+      return v == 1 ? "Active" : "Inactive";
+    },
+  };
+
+  $: data = original_data.slice((page_number - 1) * limit, page_number * limit);
+  $: has_pagination = original_data.length > limit;
+
+  function search({ detail }) {
+    //Write functionality for custom search
+  }
+
+  function resetSearch() {
+    //Write functionality for custom reset search
+  }
+
+  function paginate({ detail }) {
+    //Write functionality for custom paginate
+  }
+
+  function sort({ detail }) {
+    //Write functionality for custom sort
+  }
+</script>
+
+```
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-icon--docs
+Helpers / Icon
+
+# Icon
+
+## An Icon component to display supported icons.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| family | Icon family, can be modified globally in framework settings
+Ultimately defaults to `fa`, if family is not set anywhere
+FontFamilies | "" | Choose option...falarlasgguniconsmaterial |
+| size | Size of the Icon
+SizeOptions | "" | Choose option...smallmediumlarge |
+| color | Color of the Icon
+ExtendedColorOptions | "" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklink |
+| icon | The name of the icon that is to be displayed, from the relevant icon family
+string | "" |  |
+| class | CSS classes for icon container
+string | "" |  |
+| style | Inline CSS for icon container
+string | "" |  |
+| inner\_class | CSS classes for icon
+string | "" |  |
+| inner\_style | Inline CSS for icon
+string | "" |  |
+
+### fontawesome.io
+
+#### Requires FontAwesome version <= 4.7.0, this can be either loaded from your bundle, or from a CDN
+
+```
+
+<Icon icon="check" color="" size="" />
+```
+
+
+
+### iconscout.com/unicons
+
+#### For Unicons icons, requires css loading as mentioned in [https://iconscout.com/unicons](https://iconscout.com/unicons) this can be either loaded from your bundle, or from a CDN
+
+```
+
+<Icon family="unicons" icon="check" color="" size="" />
+```
+
+
+
+### css.gg
+
+#### For GG icons, requires css loading as mentioned in [https://css.gg/](https://css.gg/) this can be either loaded from your bundle, or from a CDN
+
+```
+
+<Icon family="gg" icon="check" color="" size="" />
+```
+
+
+
+### icons8.com/line-awesome
+
+#### For LineAwesome icons, requires css loading as mentioned in [https://icons8.com/line-awesome/howto](https://icons8.com/line-awesome/howto) this can be either loaded from your bundle, or from a CDN
+
+##### Icon can have 3 styles: regular, solid or brand. For each style can use `lar` `las` or `lab` accordingly.
+
+```
+
+<Icon family="lar" icon="check" color="" size="" />
+<Icon family="las" icon="check" color="" size="" />
+```
+
+
+
+### Material Icons
+
+#### For material icons, requires css loading as mentioned in [https://fonts.google.com/icons](https://fonts.google.com/icons) this can be either loaded from your bundle, or from a CDN
+
+```
+
+<Icon family="material" icon="face" color="" size="" />
+```
+
+
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { Icon } from '@kws3/ui';
+```
+
+
+
+#### Set default icon family:
+
+Instead of specifying an icon family on each icon, it can be set globally on your app, using the package's `defaultIconFamily` setting
+
+```
+
+import { applySettings } from '@kws3/ui';
+applySettings({
+  defaultIconFamily: "lar"
+});
+//now all icons will use this family unless overriden on a per icon basis
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/datagrid-sticky-columns-table--docs
+Datagrid / Sticky Columns Table
+
+# StickyColumnsTableWrapper
+
+## StickyColumnsTableWrapper component in datagrid.
+
+#### Display a table where a variable number of columns could stick to the left,if the table width exceeds the width of the viewport.
+
+#### Additionally, a shadow is displayed when there are parts of the table hidden by the scrollable area.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| inner\_class | string | "" |  |
+| outer\_class | string | "" |  |
+| width | string | 100% |  |
+
+### Usage
+
+#### Import the component:
+
+```
+
+import { StickyColumnsTableWrapper } from '@kws3/ui';
+```
+
+
+
+#### Import the SCSS:
+
+This component requires Grid.css to work
+
+```
+
+@import '@kws3/ui/styles/Grid.scss';
+```
+
+
+
+See GridView for SCSS customization variables
+
+This component expects a `table.table` in it's slot.
+
+Each column that you want to be fixed on scroll, has to have a class of `is-sticky-column`. And has to have a CSS `left` value.
+
+This has to be attached to all `<td>` and `<th>` elements in that column.
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/helpers-skeleton--docs
+Helpers / Skeleton
+
+# Skeleton
+
+## Component to display a loading status as a skeleton of the content to load.
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| class | CSS class for Skeleton
+string | "" |  |
+| lines | @typedef {import('
+number | 1 |  |
+| width | CSS string denoting width of the Skeleton
+**Examples:** `10px` \| `5rem` \| `100vh`
+string | 100% |  |
+| height | CSS string denoting height of the Skeleton
+**Examples:** `10px` \| `5rem` \| `100vh` \| `auto`
+string | auto |  |
+| radius | CSS string denoting border-radius of the Skeleton
+**Examples:** `10px` \| `5rem`
+string | 0px |  |
+| circle | Whether the Skeleton should be rendered as a circle.
+If this is set to `true`, the `radius` property will be ignored.
+boolean | false | FalseTrue |
+| color | Color of the Skeleton lines
+ExtendedColorOptions | "" | Choose option...primarysuccesswarninginfodangerdarklightwhiteblacklinkgreytransparent |
+
+### Usage
+
+##### Import the component:
+
+```
+
+import { Skeleton } from '@kws3/ui';
+```
+
+
+
+It is possible to let this component mimic the appearance of Bulma elements if you attach an appropriate CSS class to the `class` property.
+For example:
+
+```
+
+<!--Displays like a button-->
+<Skeleton class="button" color="primary" />
+<!--Displays like a input-->
+<Skeleton class="input" />
+<!--Displays like a box-->
+<Skeleton class="box" />
+```
+
+
+
+#### Import the SCSS:
+
+_Default values shown as example_
+
+```
+
+@use '@kws3/ui/styles/Skeleton.scss' with (
+  $theme-colors: $colors;
+  $color: hsla(
+    cv.getVar("text-h"),
+    cv.getVar("text-s"),
+    cv.getVar("text-weak-l"),
+    0.2
+  );
+  $hilight-color: hsla(
+    cv.getVar("text-h"),
+    cv.getVar("text-s"),
+    cv.getVar("text-80-l"),
+    0.2
+  );
+);
+```
+
+
+
+-------------------------------------
+https://ui.kws3.media/v4/?path=/docs/standalone-transitions--docs
+Standalone / Transitions
+
+# Transitions
+
+## A set of components to declaratively use Svelte transitions
+
+| Name | Description | Default | Control |
+| --- | --- | --- | --- |
+| Hide properties itemsproperties | Hide properties items |
+| x | X position on transition start, used for `fly` transitions
+number | 0 |  |
+| y | Y position on transition start, used for `fly` transitions
+number | 0 |  |
+| from | Starting scale, used for `scale` transitions
+number | 0.5 |  |
+| to | Final scale, used for `scale` transitions
+number | 1 |  |
+| transition | If `false`, transition animations will not run, and behave like a static element.
+boolean | true | FalseTrue |
+| type | Transition types.
+'fly''fade''scale''slide' | fly | - |
+| duration | Duration of the transition in milliseconds
+number | 300 |  |
+| delay | Delays the start of the transition - in milliseconds
+number | 0 |  |
+| easing | Specifies the easing function to be used
+Defaults to `sineOut` if left empty
+`cubicOut` \| `sineOut` \| `elasticOut` \| `expoOut` \| `circOut` \| `bounceOut` \| `backOut`
+string | sineOut |  |
+| class | CSS classes for the wrapper element
+string | "" |  |
+| Hide slots itemsslots | Hide slots items |
+| default | Used to display content
+- | - | - |
+
+### Usage
+
+##### Import the component:
+
+```
+
+import { Transition } from '@kws3/ui';
+```
+
+
+
+### Examples
+
+Fly
+
+```
+
+<Transition
+  type="fly"
+  duration="{300}"
+  x="{0}"
+  y="{20}"
+/>
+```
+
+
+
+Fade
+
+```
+
+<Transition
+  type="fade"
+  duration="{300}"
+/>
+```
+
+
+
+Slide
+
+```
+
+<Transition
+  type="slide"
+  duration="{300}"
+/>
+```
+
+
+
+Scale
+
+```
+
+<Transition
+  type="scale"
+  duration="{300}"
+  from="{0.5}"
+  to="{1}"
+/>
+```
+
+
+
+-------------------------------------
