@@ -1,3 +1,4 @@
+@use "sass:meta";
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
 
@@ -27,7 +28,7 @@ $selected-background: cv.getVar("primary-light") !default;
 $options-background: cv.getVar("scheme-main-ter") !default;
 
 $__modal-z: 41 !default;
-@if variable-exists("modal-z") {
+@if meta.variable-exists("modal-z") {
   $__modal-z: $modal-z;
 }
 

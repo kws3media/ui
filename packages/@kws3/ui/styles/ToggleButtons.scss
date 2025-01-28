@@ -7,10 +7,10 @@ $count-color: cv.getVar("danger-invert") !default;
 .kws-toggle-buttons {
   .button,
   .button:focus {
+    box-shadow: none;
     .icon {
       margin: 0;
     }
-    box-shadow: none;
     &.is-active {
       box-shadow: 0 0 0.6rem
         hsla(

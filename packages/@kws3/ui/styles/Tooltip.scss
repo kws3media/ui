@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "bulma/sass/utilities/css-variables" as cv;
 @use "bulma/sass/utilities/derived-variables" as dv;
 
@@ -7,7 +8,8 @@ $color: cv.getVar("text-invert") !default;
 $arrow-size: 8px !default;
 $padding: 0.5rem !default;
 $radius: cv.getVar("radius-small") !default;
-$shadow: 0 5px 10px -5px hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4) !default;
+$shadow: 0 5px 10px -5px
+  hsla(cv.getVar("shadow-h"), cv.getVar("shadow-s"), cv.getVar("shadow-l"), 0.4) !default;
 $popover-background: cv.getVar("background") !default;
 $popover-color: cv.getVar("text") !default;
 $popover-arrow-color: cv.getVar("border") !default;
@@ -50,7 +52,10 @@ $popover-radius: $radius !default;
   &[data-animation="scale"] {
     @each $placement in $placements {
       &[data-placement^="#{$placement}"] {
-        transform-origin: nth($origins, index($placements, $placement));
+        transform-origin: list.nth(
+          $origins,
+          list.index($placements, $placement)
+        );
       }
     }
 
