@@ -1,0 +1,7 @@
+import{j as t}from"./jsx-runtime-12dc9aff.js";import{u as e}from"./index-21e7f950.js";import{ae as n,ag as s}from"./index-399a5e71.js";import{M as p}from"./version-88c41878.js";import{S as a,M as m}from"./2TooltipExamples.stories-ba17b9a9.js";import"./iframe-5a90e6f6.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-de833af9.js";import"./index-65ec3394.js";import"./index-356e4a49.js";import"./index-ae6f3512.js";import"./RadialChart-f2e282fc.js";import"./index-4339844e.js";import"./index-ce0c298e.js";import"./index-8cc5c1ab.js";import"./spread-8a54911c.js";import"./index-af29543d.js";import"./index-5da554f5.js";function i(r){const o={a:"a",code:"code",h3:"h3",p:"p",strong:"strong",...e(),...r.components};return t.jsxs(t.Fragment,{children:[t.jsx(p,{}),`
+`,t.jsx(n,{of:a}),`
+`,t.jsx(o.h3,{id:"data-attributes",children:"Data Attributes"}),`
+`,t.jsxs(o.p,{children:["Once initialised, tooltips can be controlled to some extent using ",t.jsx(o.code,{children:"data-tippy-*"}),` attributes
+Comprehensive list of supported attributes can be found here: `,t.jsx(o.a,{href:"https://atomiks.github.io/tippyjs/v6/all-props/",rel:"nofollow",children:"https://atomiks.github.io/tippyjs/v6/all-props/"}),`
+`,t.jsx(o.strong,{children:"Examples:"})]}),`
+`,t.jsx(s,{of:m})]})}function w(r={}){const{wrapper:o}={...e(),...r.components};return o?t.jsx(o,{...r,children:t.jsx(i,{...r})}):i(r)}export{w as default};
