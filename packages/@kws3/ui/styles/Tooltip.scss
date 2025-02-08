@@ -49,6 +49,14 @@ $popover-radius: $radius !default;
   $placements: "top", "bottom", "left", "right";
   $origins: bottom, top, right, left;
 
+  position: relative;
+  background-color: $background;
+  color: $color;
+  border-radius: $radius;
+  outline: 0;
+  box-shadow: $shadow;
+  transition-property: transform, visibility, opacity;
+
   &[data-animation="scale"] {
     @each $placement in $placements {
       &[data-placement^="#{$placement}"] {
@@ -68,14 +76,6 @@ $popover-radius: $radius !default;
   &[data-animation="fade"][data-state="hidden"] {
     opacity: 0;
   }
-
-  position: relative;
-  background-color: $background;
-  color: $color;
-  border-radius: $radius;
-  outline: 0;
-  box-shadow: $shadow;
-  transition-property: transform, visibility, opacity;
 
   @each $name, $pair in $theme-colors {
     &[data-theme~="#{$name}"] {
