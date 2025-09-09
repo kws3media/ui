@@ -46,7 +46,7 @@
       {/each}
     {/if}
 
-    <div class="field has-addons action-buttons-field">
+    <div class="field has-addons control action-buttons-field">
       {#if changed}
         <div class="control is-expanded clear-search">
           <button
