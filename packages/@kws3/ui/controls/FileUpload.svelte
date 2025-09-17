@@ -158,7 +158,8 @@ The following functions are returned in `event.detail`:
     _uploaded = 0,
     uploadInput,
     uploadField,
-    formData;
+    formData,
+    name = "";
 
   let fileTypes, _progress, maxFileSize;
 
@@ -311,6 +312,7 @@ The following functions are returned in `event.detail`:
 
     if (valid) {
       _total = size;
+      name = file.name;
       formData.append("userfile", file);
       /**
        * Triggered when file is chosen by user.
