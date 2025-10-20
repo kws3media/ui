@@ -40,6 +40,12 @@ const formMaker = (config) => {
      * @returns
      */
     let compare = (field, oldData, newData) => {
+      if (typeof oldData === "undefined" && typeof newData !== "undefined") {
+        return true;
+      }
+      if (typeof newData === "undefined" && typeof oldData !== "undefined") {
+        return true;
+      }
       if (Array.isArray(newData[field])) {
         if (
           !Array.isArray(oldData[field]) ||
@@ -131,7 +137,7 @@ const formMaker = (config) => {
   });
 
   const isValid = derived(errors, ($errors) =>
-    Object.values($errors).every((v) => v === "")
+    Object.values($errors).every((v) => v === ""),
   );
 
   /** @param {{ [key: string]: any }} newData */
