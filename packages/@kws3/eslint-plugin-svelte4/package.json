@@ -15,7 +15,8 @@
     "eslint",
     "rules",
     "svelte",
-    "svelte4"
+    "svelte4",
+    "svelte5"
   ],
   "peerDependencies": {
     "eslint": "^7.0.0 || ^8.0.0-0",
