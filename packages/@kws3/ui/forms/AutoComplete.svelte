@@ -249,7 +249,7 @@ Default value: `<span>{option.label}</span>`
     input, //the textbox to type in
     POPPER,
     active_option = "",
-    searching = true,
+    searching = false,
     show_options = false,
     mouseTracker = {
       lastX: 0,
