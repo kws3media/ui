@@ -1,4 +1,5 @@
 import flatpickr from "flatpickr";
+import { tick } from "svelte";
 
 function createFlatpickrAction(defaultOpts, hooks, type) {
   return function (
@@ -40,7 +41,10 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
 
     let OPTS = Object.assign(defaultOpts, _opts, opts);
 
-    let picker = flatpickr(node, OPTS);
+    let picker;
+    tick().then(() => {
+      picker = flatpickr(node, OPTS);
+    });
 
     function createFirer(name) {
       return (selectedDates, dateStr, instance) => {
@@ -123,7 +127,7 @@ function createFlatpickrAction(defaultOpts, hooks, type) {
  * disabled:boolean,
  * color: ColorOptions
  * }>} FlatpickerAction
-*/
+ */
 
 /**
  * @type {FlatpickerAction}
@@ -140,7 +144,7 @@ export let datepicker = createFlatpickrAction(
 
 /**
  * @type {FlatpickerAction}
-*/
+ */
 export let timepicker = createFlatpickrAction(
   {
     altInput: true,
