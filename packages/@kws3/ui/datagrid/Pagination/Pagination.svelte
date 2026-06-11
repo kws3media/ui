@@ -135,8 +135,8 @@
 </div>
 
 <script>
+  import { Icon } from "@kws3/ui";
   import { createEventDispatcher } from "svelte";
-  import Icon from "../../helpers/Icon.svelte";
 
   const fire = createEventDispatcher();
 
@@ -346,5 +346,21 @@
    */
   export function last() {
     goto(totalPages);
+  }
+
+  export function getState() {
+    return {
+      hint: `Showing ${_offset * 1 + 1} to ${_offset * 1 + _count * 1} of ${totalItems} ${entityName}`,
+      pages: pages
+        .slice()
+        .map((p) => {
+          return p.p !== "sep" ? p.p + 1 : null;
+        })
+        .filter((p) => p !== null),
+      current_page: currentPage + 1,
+      total_pages: totalPages,
+      page_limits: Object.entries(_perPageOptions).map(([k, v]) => v),
+      current_page_limit: _limit
+    };
   }
 </script>
