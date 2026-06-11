@@ -46,4 +46,18 @@
   $: {
     value = sort_by.replace("%20", " ");
   }
+
+  export function getState() {
+    return {
+      current_value: value,
+      available_options: ["", ...options.map((o) => o.value)],
+    };
+  }
+
+  export function setState(newState) {
+    const available_options = ["", ...options.map((o) => o.value)];
+    if (available_options.includes(newState)) {
+      value = newState;
+    }
+  }
 </script>

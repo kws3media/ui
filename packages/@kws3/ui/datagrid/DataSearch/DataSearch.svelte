@@ -68,8 +68,8 @@
 </form>
 
 <script>
-  import { createEventDispatcher } from "svelte";
   import { Icon } from "@kws3/ui";
+  import { createEventDispatcher } from "svelte";
   import SearchFilter from "./SearchFilter.svelte";
 
   const fire = createEventDispatcher();
@@ -202,5 +202,57 @@
      * Event triggered on search
      */
     fire("search", ret.join("~"));
+  }
+
+  export function getState() {
+    let state = {};
+    if (hasFilters) {
+      state.selectable_filters = Object.entries(filterVals)
+        .map(([k, v]) => {
+          let filter = _filters.find((f) => f.name === k);
+          if (filter) {
+            return {
+              name: k,
+              current_value: v === null ? "" : v,
+              options: filter.options.slice().map((o) => ({
+                name: o.name,
+                value: o.id,
+              })),
+              hint: filter_label_map[k] || filter.name.replace(/_/g, " "),
+            };
+          }
+        })
+        .filter((f) => f !== undefined);
+    }
+    if (hasSearch) {
+      state.free_text_search = {
+        current_value: query,
+        hint: placeholder || "Free Text Search",
+      };
+    }
+    return state;
+  }
+
+  export function setState(state) {
+    if (
+      hasFilters &&
+      state.selectable_filters &&
+      typeof state.selectable_filters === "object"
+    ) {
+      Object.entries(state.selectable_filters).forEach(([k, v]) => {
+        filterVals[k] = v;
+      });
+    }
+    if (hasSearch && typeof state.free_text_search !== "undefined") {
+      query = state.free_text_search;
+    }
+  }
+
+  export function search() {
+    dosearch();
+  }
+
+  export function resetSearch() {
+    doresetSearch();
   }
 </script>
